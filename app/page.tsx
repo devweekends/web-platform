@@ -122,27 +122,27 @@ export default function Home() {
             <Card className="group hover:shadow-lg transition-all duration-300 bg-background border-border">
               <CardHeader className="pb-3">
                 <Badge className="w-fit mb-2 bg-primary/10 text-primary border-primary/20 group-hover:bg-primary/20">
-                  Web Development
+                  GSoC
                 </Badge>
                 <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
-                  Modern React Patterns
+                  GSoC Sunday Meetup
                 </CardTitle>
                 <CardDescription>
-                  Learn advanced React patterns and best practices
+                  Want to crack Google Summer of Code, join this meetup
                 </CardDescription>
               </CardHeader>
               <CardContent className="pb-3">
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
                   <Calendar className="h-4 w-4" />
-                  <span>Saturday, March 15, 2025</span>
+                  <span>Every Saturday</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
                   <Clock className="h-4 w-4" />
-                  <span>10:00 AM - 12:00 PM EST</span>
+                  <span>03:30 PM PKT</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm">
                   <Users className="h-4 w-4" />
-                  <span>Sarah Johnson, Senior Frontend Developer</span>
+                  <span>Aqib Nawab, Muhammad Saqlain</span>
                 </div>
               </CardContent>
               <CardFooter>
@@ -150,7 +150,7 @@ export default function Home() {
                   variant="outline"
                   className="w-full rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300"
                 >
-                  Register Now
+                  Check the Calender Above to Join
                 </Button>
               </CardFooter>
             </Card>
@@ -162,24 +162,24 @@ export default function Home() {
                   DevOps
                 </Badge>
                 <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
-                  CI/CD Pipeline Mastery
+                  Dev Weekends DevOps Bootcamp
                 </CardTitle>
                 <CardDescription>
-                  Build robust CI/CD pipelines for your projects
+                  Master DevOps and Deployment form Basics to Advance
                 </CardDescription>
               </CardHeader>
               <CardContent className="pb-3">
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
                   <Calendar className="h-4 w-4" />
-                  <span>Sunday, March 16, 2025</span>
+                  <span>Every Saturday</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
                   <Clock className="h-4 w-4" />
-                  <span>1:00 PM - 3:00 PM EST</span>
+                  <span>09:00 PM PKT</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm">
                   <Users className="h-4 w-4" />
-                  <span>Michael Chen, DevOps Engineer</span>
+                  <span>Sheryar Ahmad, Software Engineer</span>
                 </div>
               </CardContent>
               <CardFooter>
@@ -187,7 +187,7 @@ export default function Home() {
                   variant="outline"
                   className="w-full rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300"
                 >
-                  Register Now
+                  Check the Calender Above to Join
                 </Button>
               </CardFooter>
             </Card>
@@ -196,27 +196,27 @@ export default function Home() {
             <Card className="group hover:shadow-lg transition-all duration-300 bg-background border-border">
               <CardHeader className="pb-3">
                 <Badge className="w-fit mb-2 bg-primary/10 text-primary border-primary/20 group-hover:bg-primary/20">
-                  AI/ML
+                  Freelance
                 </Badge>
                 <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
-                  Intro to Large Language Models
+                  DW Ramdan Upwork Series
                 </CardTitle>
                 <CardDescription>
-                  Understanding and implementing LLMs in your applications
+                  Complete freelancing guide from Top Rated Freelancers
                 </CardDescription>
               </CardHeader>
               <CardContent className="pb-3">
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
                   <Calendar className="h-4 w-4" />
-                  <span>Saturday, March 22, 2025</span>
+                  <span>Every Sunday</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
                   <Clock className="h-4 w-4" />
-                  <span>11:00 AM - 1:00 PM EST</span>
+                  <span>09:30 PM PKT</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm">
                   <Users className="h-4 w-4" />
-                  <span>Dr. Priya Patel, AI Researcher</span>
+                  <span>Fiaz Ahmad, Top Rated Upworker</span>
                 </div>
               </CardContent>
               <CardFooter>
@@ -224,7 +224,7 @@ export default function Home() {
                   variant="outline"
                   className="w-full rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300"
                 >
-                  Register Now
+                  Check the Calender Above to Join
                 </Button>
               </CardFooter>
             </Card>
