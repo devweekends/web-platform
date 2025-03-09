@@ -1,26 +1,26 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { ModeToggle } from "@/components/mode-toggle"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const routes = [
     { href: "/", label: "Home" },
-    { href: "/sessions", label: "Sessions" },
+    // { href: "/sessions", label: "Sessions" },
     { href: "/mentors", label: "Mentors" },
-    { href: "/community", label: "Community" },
-    { href: "/resources", label: "Resources" },
+    // { href: "/community", label: "Community" },
+    // { href: "/resources", label: "Resources" },
     { href: "/about", label: "About" },
-  ]
+  ];
 
-  const isActive = (path: string) => pathname === path
+  const isActive = (path: string) => pathname === path;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -29,7 +29,9 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-2xl font-bold text-primary">DW</span>
-              <span className="hidden sm:inline-block text-xl font-semibold">Dev Weekends</span>
+              <span className="hidden sm:inline-block text-xl font-semibold">
+                Dev Weekends
+              </span>
             </Link>
           </div>
           <div className="hidden md:flex md:items-center md:space-x-6">
@@ -38,7 +40,9 @@ export default function Navbar() {
                 key={route.href}
                 href={route.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(route.href) ? "text-primary" : "text-muted-foreground"
+                  isActive(route.href)
+                    ? "text-primary"
+                    : "text-muted-foreground"
                 }`}
               >
                 {route.label}
@@ -47,8 +51,21 @@ export default function Navbar() {
           </div>
           <div className="flex items-center space-x-4">
             <ModeToggle />
-            <Button className="hidden md:inline-flex">Join Community</Button>
-            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+            <Button asChild className="hidden md:inline-flex">
+              <Link
+                href="https://linktr.ee/DevWeekends"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join Community
+              </Link>
+            </Button>
+
+            <button
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
               {isMenuOpen ? (
                 <X className="h-6 w-6" aria-hidden="true" />
               ) : (
@@ -65,7 +82,9 @@ export default function Navbar() {
                   key={route.href}
                   href={route.href}
                   className={`text-sm font-medium transition-colors hover:text-primary ${
-                    isActive(route.href) ? "text-primary" : "text-muted-foreground"
+                    isActive(route.href)
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -78,6 +97,5 @@ export default function Navbar() {
         )}
       </nav>
     </header>
-  )
+  );
 }
-

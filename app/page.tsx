@@ -1,12 +1,29 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Calendar, Clock, Users, ArrowRight, Code, Server, Cloud, Brain, CheckCircle2 } from "lucide-react"
-import MentorsPage from "@/components/MentorsPage"
-import GoogleCalendar from "@/components/google_calender"
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import {
+  Calendar,
+  Clock,
+  Users,
+  ArrowRight,
+  Code,
+  Server,
+  Cloud,
+  Brain,
+  CheckCircle2,
+} from "lucide-react";
+import MentorsPage from "@/components/MentorsPage";
+import GoogleCalendar from "@/components/google_calender";
 
 const testimonials = [
   {
@@ -30,7 +47,7 @@ const testimonials = [
       "As someone transitioning into tech from a non-technical background, the supportive community at Dev Weekends made all the difference. The mentors are patient and truly care about your growth.",
     image: "/client-3.jpg",
   },
-]
+];
 
 export default function Home() {
   return (
@@ -45,8 +62,9 @@ export default function Home() {
                 Your Gateway to Tech Events and Bootcamps
               </h1>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                Join a thriving community of students and tech enthusiasts learning, building, and growing together
-                through weekend events and bootcamps.
+                Join a thriving community of students and tech enthusiasts
+                learning, building, and growing together through weekend events
+                and bootcamps.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -55,8 +73,13 @@ export default function Home() {
                   Explore Events <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full">
-                <Link href="/join">Join Community</Link>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="rounded-full"
+              >
+                <Link href="https://linktr.ee/DevWeekends">Join Community</Link>
               </Button>
             </div>
 
@@ -78,17 +101,19 @@ export default function Home() {
         </div>
       </section>
 
+      <GoogleCalendar />
 
-      <GoogleCalendar/>
-      
       {/* Featured Sessions */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <Badge className="px-3 py-1 text-sm">Upcoming Sessions</Badge>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Learn from the Best</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Learn from the Best
+            </h2>
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
-              Join our weekend sessions led by industry experts and enhance your skills in various tech domains.
+              Join our weekend sessions led by industry experts and enhance your
+              skills in various tech domains.
             </p>
           </div>
 
@@ -102,7 +127,9 @@ export default function Home() {
                 <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
                   Modern React Patterns
                 </CardTitle>
-                <CardDescription>Learn advanced React patterns and best practices</CardDescription>
+                <CardDescription>
+                  Learn advanced React patterns and best practices
+                </CardDescription>
               </CardHeader>
               <CardContent className="pb-3">
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
@@ -137,7 +164,9 @@ export default function Home() {
                 <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
                   CI/CD Pipeline Mastery
                 </CardTitle>
-                <CardDescription>Build robust CI/CD pipelines for your projects</CardDescription>
+                <CardDescription>
+                  Build robust CI/CD pipelines for your projects
+                </CardDescription>
               </CardHeader>
               <CardContent className="pb-3">
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
@@ -172,7 +201,9 @@ export default function Home() {
                 <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
                   Intro to Large Language Models
                 </CardTitle>
-                <CardDescription>Understanding and implementing LLMs in your applications</CardDescription>
+                <CardDescription>
+                  Understanding and implementing LLMs in your applications
+                </CardDescription>
               </CardHeader>
               <CardContent className="pb-3">
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
@@ -202,7 +233,8 @@ export default function Home() {
           <div className="flex justify-center mt-12">
             <Button asChild variant="outline" className="group rounded-full">
               <Link href="/sessions">
-                View All Sessions <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                View All Sessions{" "}
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>
@@ -214,10 +246,12 @@ export default function Home() {
         <div className="container">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <Badge className="px-3 py-1 text-sm">Expert Speakers</Badge>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Learn from Industry Leaders</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Learn from Industry Leaders
+            </h2>
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
-              Our events feature experienced professionals who share their expertise, insights, and real-world
-              experiences.
+              Our events feature experienced professionals who share their
+              expertise, insights, and real-world experiences.
             </p>
           </div>
 
@@ -230,9 +264,12 @@ export default function Home() {
         <div className="container">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Focus Areas</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                Our Focus Areas
+              </h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
-                We offer mentorship and sessions across various domains of technology
+                We offer mentorship and sessions across various domains of
+                technology
               </p>
             </div>
           </div>
@@ -248,7 +285,8 @@ export default function Home() {
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  Frontend, backend, and full-stack development with modern frameworks and tools.
+                  Frontend, backend, and full-stack development with modern
+                  frameworks and tools.
                 </p>
               </CardContent>
             </Card>
@@ -263,7 +301,8 @@ export default function Home() {
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  CI/CD, infrastructure as code, containerization, and deployment strategies.
+                  CI/CD, infrastructure as code, containerization, and
+                  deployment strategies.
                 </p>
               </CardContent>
             </Card>
@@ -278,7 +317,8 @@ export default function Home() {
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  AWS, Azure, GCP, serverless architectures, and cloud-native applications.
+                  AWS, Azure, GCP, serverless architectures, and cloud-native
+                  applications.
                 </p>
               </CardContent>
             </Card>
@@ -293,7 +333,8 @@ export default function Home() {
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  ML fundamentals, deep learning, NLP, computer vision, and AI applications.
+                  ML fundamentals, deep learning, NLP, computer vision, and AI
+                  applications.
                 </p>
               </CardContent>
             </Card>
@@ -312,18 +353,21 @@ export default function Home() {
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Dev Weekends started with a simple goal: create a space where tech enthusiasts could learn,
-                  collaborate, and grow together. we've hosted over 100+ events and
-                  welcomed more than 20k+ community members.
+                  Dev Weekends started with a simple goal: create a space where
+                  tech enthusiasts could learn, collaborate, and grow together.
+                  we've hosted over 100+ events and welcomed more than 20k+
+                  community members.
                 </p>
                 <p>
-                  Our focus is on practical, hands-on learning experiences that help attendees build real-world skills.
-                  Whether you're a student just starting out or a seasoned developer looking to expand your knowledge,
-                  our events are designed to provide value for everyone.
+                  Our focus is on practical, hands-on learning experiences that
+                  help attendees build real-world skills. Whether you're a
+                  student just starting out or a seasoned developer looking to
+                  expand your knowledge, our events are designed to provide
+                  value for everyone.
                 </p>
               </div>
               <Button asChild className="rounded-full group">
-                <Link href="/about">
+                <Link href="https://linktr.ee/DevWeekends">
                   Join our community{" "}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
@@ -345,13 +389,14 @@ export default function Home() {
         </div>
       </section>
 
-
       {/* Community Testimonials */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Community Voices</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                Community Voices
+              </h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
                 Hear from our community members about their experiences
               </p>
@@ -367,12 +412,14 @@ export default function Home() {
                 <CardContent className="pt-6">
                   <div className="mb-6 p-6 bg-muted rounded-lg relative">
                     <div className="absolute -bottom-4 left-6 w-0 h-0 border-l-[12px] border-l-transparent border-t-[16px] border-t-muted border-r-[12px] border-r-transparent"></div>
-                    <p className="italic text-muted-foreground">{testimonial.quote}</p>
+                    <p className="italic text-muted-foreground">
+                      {testimonial.quote}
+                    </p>
                   </div>
                   <div className="flex items-center">
                     <div className="relative h-12 w-12 rounded-full overflow-hidden mr-3 border-2 border-primary">
                       <Image
-                        src={testimonial.image }
+                        src={testimonial.image}
                         alt={testimonial.name}
                         width={48}
                         height={48}
@@ -381,7 +428,9 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="font-medium">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {testimonial.role}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -391,10 +440,8 @@ export default function Home() {
         </div>
       </section>
 
-
-
       {/* Join Community Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+      {/* <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container">
           <div className="grid gap-10 lg:grid-cols-2 items-center">
             <div className="space-y-6">
@@ -486,21 +533,30 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background  ">
         <div className="container">
           <div className="flex flex-col items-center justify-center space-y-6 text-center">
             <div className="space-y-3 max-w-[800px]">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Join Our Community Today</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                Join Our Community Today
+              </h2>
               <p className="md:text-xl/relaxed">
-                Connect with mentors, attend sessions, and accelerate your tech career
+                Connect with mentors, attend sessions, and accelerate your tech
+                career
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" variant="secondary" className="rounded-full">
-                Join Now
+                <Link
+                  href="https://linktr.ee/DevWeekends"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Join Community
+                </Link>
               </Button>
               <Button size="lg" variant="secondary" className="rounded-full">
                 Learn More
@@ -510,5 +566,5 @@ export default function Home() {
         </div>
       </section>
     </div>
-  )
+  );
 }
