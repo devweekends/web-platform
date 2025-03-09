@@ -13,7 +13,7 @@ export default function Navbar() {
 
   const routes = [
     { href: "/", label: "Home" },
-    // { href: "/sessions", label: "Sessions" },
+    { href: "/sessions", label: "Sessions" },
     { href: "/mentors", label: "Mentors" },
     // { href: "/community", label: "Community" },
     // { href: "/resources", label: "Resources" },

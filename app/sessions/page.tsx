@@ -64,177 +64,117 @@ export default function SessionsPage() {
 
         <TabsContent value="all" className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Session Card 1 */}
+            {/* GSoC Sunday Meetup */}
             <Card>
               <CardHeader>
-                <Badge className="w-fit mb-2">Web Development</Badge>
-                <CardTitle>Modern React Patterns</CardTitle>
-                <CardDescription>Learn advanced React patterns and best practices</CardDescription>
+                <Badge className="w-fit mb-2">Open Source</Badge>
+                <CardTitle>GSoC Sunday Meetup</CardTitle>
+                <CardDescription>Weekly Google Summer of Code mentorship and guidance</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
                   <Calendar className="h-4 w-4" />
-                  <span>Saturday, March 15, 2025</span>
+                  <span>Every Saturday</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
                   <Clock className="h-4 w-4" />
-                  <span>10:00 AM - 12:00 PM EST</span>
+                  <span>3:30 PM PKT</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm">
                   <Users className="h-4 w-4" />
-                  <span>Sarah Johnson, Senior Frontend Developer</span>
+                  <span>Aqib Nawab and Muhammad Saqlain</span>
                 </div>
               </CardContent>
               <CardFooter>
                 <Button variant="outline" className="w-full">
-                  Register Now
+                  View Calender on Home Page to Join
                 </Button>
               </CardFooter>
             </Card>
 
-            {/* Session Card 2 */}
-            <Card>
-              <CardHeader>
-                <Badge className="w-fit mb-2">DevOps</Badge>
-                <CardTitle>CI/CD Pipeline Mastery</CardTitle>
-                <CardDescription>Build robust CI/CD pipelines for your projects</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>Sunday, March 16, 2025</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                  <Clock className="h-4 w-4" />
-                  <span>1:00 PM - 3:00 PM EST</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm">
-                  <Users className="h-4 w-4" />
-                  <span>Michael Chen, DevOps Engineer</span>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" className="w-full">
-                  Register Now
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Session Card 3 */}
-            <Card>
-              <CardHeader>
-                <Badge className="w-fit mb-2">AI/ML</Badge>
-                <CardTitle>Intro to Large Language Models</CardTitle>
-                <CardDescription>Understanding and implementing LLMs in your applications</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>Saturday, March 22, 2025</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                  <Clock className="h-4 w-4" />
-                  <span>11:00 AM - 1:00 PM EST</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm">
-                  <Users className="h-4 w-4" />
-                  <span>Dr. Priya Patel, AI Researcher</span>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" className="w-full">
-                  Register Now
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Session Card 4 */}
-            <Card>
-              <CardHeader>
-                <Badge className="w-fit mb-2">Cloud Computing</Badge>
-                <CardTitle>Serverless Architecture</CardTitle>
-                <CardDescription>Building scalable applications with serverless technologies</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>Sunday, March 23, 2025</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                  <Clock className="h-4 w-4" />
-                  <span>2:00 PM - 4:00 PM EST</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm">
-                  <Users className="h-4 w-4" />
-                  <span>James Wilson, Cloud Architect</span>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" className="w-full">
-                  Register Now
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Session Card 5 */}
-            <Card>
-              <CardHeader>
-                <Badge className="w-fit mb-2">Web Development</Badge>
-                <CardTitle>Next.js App Router Deep Dive</CardTitle>
-                <CardDescription>Master the latest features of Next.js App Router</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>Saturday, March 29, 2025</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                  <Clock className="h-4 w-4" />
-                  <span>10:00 AM - 12:00 PM EST</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm">
-                  <Users className="h-4 w-4" />
-                  <span>David Kim, Full Stack Developer</span>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" className="w-full">
-                  Register Now
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Session Card 6 */}
+            {/* Dev Weekends DevOps Bootcamp */}
             <Card>
               <CardHeader>
                 <Badge className="w-fit mb-2">DevOps</Badge>
-                <CardTitle>Kubernetes for Beginners</CardTitle>
-                <CardDescription>Getting started with container orchestration</CardDescription>
+                <CardTitle>Dev Weekends DevOps Bootcamp</CardTitle>
+                <CardDescription>Learn the DevOps from basic concepts to Advance concepts</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
                   <Calendar className="h-4 w-4" />
-                  <span>Sunday, March 30, 2025</span>
+                  <span>Every Saturday</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
                   <Clock className="h-4 w-4" />
-                  <span>1:00 PM - 3:00 PM EST</span>
+                  <span>9:00 PM PKT</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm">
                   <Users className="h-4 w-4" />
-                  <span>Lisa Rodriguez, DevOps Specialist</span>
+                  <span>Sheryar Ahmad, Software Engineer</span>
                 </div>
               </CardContent>
               <CardFooter>
                 <Button variant="outline" className="w-full">
-                  Register Now
+                  View Calender on Home Page to Join
                 </Button>
               </CardFooter>
             </Card>
-          </div>
 
-          <div className="flex justify-center mt-8">
-            <Button variant="outline">Load More Sessions</Button>
+            {/* DW Ramdan Upwork Series */}
+            <Card>
+              <CardHeader>
+                <Badge className="w-fit mb-2">Freelancing</Badge>
+                <CardTitle>DW Ramdan Upwork Series</CardTitle>
+                <CardDescription>Master Upwork to build your successfull freelancing career </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
+                  <Calendar className="h-4 w-4" />
+                  <span>Every Sunday</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
+                  <Clock className="h-4 w-4" />
+                  <span>9:30 PM PKT</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm">
+                  <Users className="h-4 w-4" />
+                  <span>Fiaz Ahmad, Top Rated Upworker</span>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="w-full">
+                  View Calender on Home Page to Join
+                </Button>
+              </CardFooter>
+            </Card>
+
+            {/* DW Remote Jobs Series */}
+            <Card>
+              <CardHeader>
+                <Badge className="w-fit mb-2">Career</Badge>
+                <CardTitle>DW Remote Jobs Series</CardTitle>
+                <CardDescription>Find and secure remote job opportunities</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
+                  <Calendar className="h-4 w-4" />
+                  <span>Every Sunday</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
+                  <Clock className="h-4 w-4" />
+                  <span>3:00 PM PKT</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm">
+                  <Users className="h-4 w-4" />
+                  <span>Muhammad Shehroz, Software Engineer</span>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="w-full">
+                  View Calender on Home Page to Join
+                </Button>
+              </CardFooter>
+            </Card>
           </div>
         </TabsContent>
 
@@ -243,61 +183,76 @@ export default function SessionsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card>
               <CardHeader>
-                <Badge className="w-fit mb-2">Web Development</Badge>
-                <CardTitle>Modern React Patterns</CardTitle>
-                <CardDescription>Learn advanced React patterns and best practices</CardDescription>
+                <Badge className="w-fit mb-2">Open Source</Badge>
+                <CardTitle>GSoC Sunday Meetup</CardTitle>
+                <CardDescription>Weekly Google Summer of Code mentorship and guidance</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
                   <Calendar className="h-4 w-4" />
-                  <span>Saturday, March 15, 2025</span>
+                  <span>Every Saturday</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
                   <Clock className="h-4 w-4" />
-                  <span>10:00 AM - 12:00 PM EST</span>
+                  <span>3:30 PM PKT</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm">
                   <Users className="h-4 w-4" />
-                  <span>Sarah Johnson, Senior Frontend Developer</span>
+                  <span>Aqib Nawab and Muhammad Saqlain</span>
                 </div>
               </CardContent>
               <CardFooter>
                 <Button variant="outline" className="w-full">
-                  Register Now
-                </Button>
-              </CardFooter>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Badge className="w-fit mb-2">Web Development</Badge>
-                <CardTitle>Next.js App Router Deep Dive</CardTitle>
-                <CardDescription>Master the latest features of Next.js App Router</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>Saturday, March 29, 2025</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                  <Clock className="h-4 w-4" />
-                  <span>10:00 AM - 12:00 PM EST</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm">
-                  <Users className="h-4 w-4" />
-                  <span>David Kim, Full Stack Developer</span>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" className="w-full">
-                  Register Now
+                  View Calender on Home Page to Join
                 </Button>
               </CardFooter>
             </Card>
           </div>
         </TabsContent>
 
-        {/* Other tabs content would be similar */}
+        <TabsContent value="devops" className="space-y-8">
+          {/* DevOps Sessions */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card>
+              <CardHeader>
+                <Badge className="w-fit mb-2">DevOps</Badge>
+                <CardTitle>Dev Weekends DevOps Bootcamp</CardTitle>
+                <CardDescription>Learn DevOps from the basic to advance concepts</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
+                  <Calendar className="h-4 w-4" />
+                  <span>Every Saturday</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
+                  <Clock className="h-4 w-4" />
+                  <span>9:00 PM PKT</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm">
+                  <Users className="h-4 w-4" />
+                  <span>Sheryar Ahmad, Software Engineer</span>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="w-full">
+                  View Calender on Home Page to Join
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="cloud" className="space-y-8">
+          <div className="flex flex-col items-center justify-center py-12 text-center">
+            <p className="text-muted-foreground">No current session</p>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="ai" className="space-y-8">
+          <div className="flex flex-col items-center justify-center py-12 text-center">
+            <p className="text-muted-foreground">No current session</p>
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
   )
