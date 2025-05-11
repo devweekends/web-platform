@@ -239,51 +239,48 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-            {/* Web Development */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+            {/* Software Engineering */}
             <Card className="bg-card hover:shadow-lg transition-shadow duration-300 border-2 border-border group">
               <CardHeader className="flex flex-col items-center text-center">
                 <div className="p-3 rounded-full bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors duration-300">
                   <Code className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle>Web Development</CardTitle>
+                <CardTitle>Software Engineering</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  Frontend, backend, and full-stack development with modern
-                  frameworks and tools.
+                  Web Application, Mobile Application, Desktop Application, and more.
                 </p>
               </CardContent>
             </Card>
 
-            {/* DevOps */}
+            {/* DSA & Competitive Programming */}
             <Card className="bg-card hover:shadow-lg transition-shadow duration-300 border-2 border-border group">
               <CardHeader className="flex flex-col items-center text-center">
                 <div className="p-3 rounded-full bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors duration-300">
                   <Server className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle>DevOps</CardTitle>
+                <CardTitle>DSA & Competitive Programming</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  CI/CD, infrastructure as code, containerization, and
-                  deployment strategies.
+                  Data Structures, Algorithms, Problem Solving, and Competitive Programming Contests.
                 </p>
               </CardContent>
             </Card>
 
-            {/* Cloud Computing */}
+            {/* DevOps & Cloud */}
             <Card className="bg-card hover:shadow-lg transition-shadow duration-300 border-2 border-border group">
               <CardHeader className="flex flex-col items-center text-center">
                 <div className="p-3 rounded-full bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors duration-300">
                   <Cloud className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle>Cloud Computing</CardTitle>
+                <CardTitle>DevOps & Cloud</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  AWS, Azure, GCP, serverless architectures, and cloud-native
-                  applications.
+                  CI/CD, Infrastructure as Code, Containerization, AWS, Azure, GCP, and Cloud Architecture.
                 </p>
               </CardContent>
             </Card>
@@ -298,8 +295,37 @@ export default function Home() {
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  ML fundamentals, deep learning, NLP, computer vision, and AI
-                  applications.
+                  ML fundamentals, deep learning, NLP, computer vision, and AI applications.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Open Source Programs */}
+            <Card className="bg-card hover:shadow-lg transition-shadow duration-300 border-2 border-border group">
+              <CardHeader className="flex flex-col items-center text-center">
+                <div className="p-3 rounded-full bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                  <Code className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle>Open Source Programs</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-muted-foreground">
+                  GSoC, Hacktoberfest, Outreachy, and other open source contribution programs.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Remote Jobs */}
+            <Card className="bg-card hover:shadow-lg transition-shadow duration-300 border-2 border-border group">
+              <CardHeader className="flex flex-col items-center text-center">
+                <div className="p-3 rounded-full bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                  <Users className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle>Remote Jobs</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-muted-foreground">
+                  Remote job opportunities, freelancing, and international tech careers.
                 </p>
               </CardContent>
             </Card>
