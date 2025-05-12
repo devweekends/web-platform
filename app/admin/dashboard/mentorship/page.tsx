@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
-import MentorshipGraph from "@/components/MentorshipGraph"
+import dynamic from "next/dynamic"
 import {
   Network,
   Table,
@@ -16,6 +16,22 @@ import {
   ChevronDown,
   Plus,
 } from "lucide-react"
+
+// Import MentorshipGraph component dynamically with SSR disabled
+const MentorshipGraph = dynamic(() => import("@/components/MentorshipGraph"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex justify-center items-center h-[500px]">
+      <div className="flex flex-col items-center gap-4">
+        <div className="relative w-12 h-12">
+          <div className="absolute top-0 left-0 w-12 h-12 border-4 border-muted rounded-full"></div>
+          <div className="absolute top-0 left-0 w-12 h-12 border-4 border-t-primary rounded-full animate-spin"></div>
+        </div>
+        <p className="text-muted-foreground">Loading graph visualization...</p>
+      </div>
+    </div>
+  )
+})
 
 const VIEW_OPTIONS = [
   { key: "spider", label: "Spider Web", icon: Network },
@@ -693,8 +709,11 @@ export default function AdminMentorshipPage() {
   }, [])
 
   const handleGraphControl = (action: string) => {
-    const event = new CustomEvent("mentorship-graph-control", { detail: { action } })
-    window.dispatchEvent(event)
+    // Only dispatch event if window is defined (client-side)
+    if (typeof window !== 'undefined') {
+      const event = new CustomEvent("mentorship-graph-control", { detail: { action } })
+      window.dispatchEvent(event)
+    }
   }
 
   const renderView = () => {
@@ -720,7 +739,7 @@ export default function AdminMentorshipPage() {
             <h3 className="text-lg font-medium mb-2">Error Loading Data</h3>
             <p className="text-muted-foreground mb-4">{error}</p>
             <button
-              onClick={() => window.location.reload()}
+              onClick={() => typeof window !== 'undefined' && window.location.reload()}
               className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
             >
               Try Again

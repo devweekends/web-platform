@@ -1,8 +1,24 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import MentorshipGraph from "@/components/MentorshipGraph"
 import { ZoomIn, ZoomOut, Maximize2, RefreshCw, Target, Network, Table, ChevronDown, ChevronUp } from "lucide-react"
+import dynamic from "next/dynamic"
+
+// Import MentorshipGraph component dynamically with SSR disabled
+const MentorshipGraph = dynamic(() => import("@/components/MentorshipGraph"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex justify-center items-center h-[500px]">
+      <div className="flex flex-col items-center gap-4">
+        <div className="relative w-12 h-12">
+          <div className="absolute top-0 left-0 w-12 h-12 border-4 border-muted rounded-full"></div>
+          <div className="absolute top-0 left-0 w-12 h-12 border-4 border-t-primary rounded-full animate-spin"></div>
+        </div>
+        <p className="text-muted-foreground">Loading graph visualization...</p>
+      </div>
+    </div>
+  )
+})
 
 interface Mentor {
   _id: string
