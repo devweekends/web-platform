@@ -5,6 +5,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import { cookies } from 'next/headers';
 import { verify } from 'jsonwebtoken';
 import { ActivityLog } from '@/models/ActivityLog';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -36,7 +37,7 @@ export async function POST(request: Request) {
     const data = await request.json();
 
     // Get admin username from JWT
-    const cookieStore = await cookies();
+    const cookieStore: ReadonlyRequestCookies = await cookies();
     const token = cookieStore.get('admin-token')?.value;
     let adminUsername = 'Unknown';
     if (token && JWT_SECRET) {
@@ -94,7 +95,7 @@ export async function PUT(request: Request) {
 
     const data = await request.json();
     // Get admin username from JWT
-    const cookieStore = await cookies();
+    const cookieStore: ReadonlyRequestCookies = await cookies();
     const token = cookieStore.get('admin-token')?.value;
     let adminUsername = 'Unknown';
     if (token && JWT_SECRET) {
@@ -161,7 +162,7 @@ export async function DELETE(request: Request) {
     }
 
     // In DELETE, extract adminUsername from JWT
-    const cookieStore = await cookies();
+    const cookieStore: ReadonlyRequestCookies = await cookies();
     const token = cookieStore.get('admin-token')?.value;
     let adminUsername = 'Unknown';
     if (token && JWT_SECRET) {

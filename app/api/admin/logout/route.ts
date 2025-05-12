@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 export async function POST() {
   const response = NextResponse.json(

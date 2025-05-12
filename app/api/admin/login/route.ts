@@ -3,6 +3,7 @@ import { Admin } from '@/models/Admin';
 import { signToken } from '@/lib/jwt';
 import { cookies } from 'next/headers';
 import connectDB  from '@/lib/db'; // Fixed import syntax
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 

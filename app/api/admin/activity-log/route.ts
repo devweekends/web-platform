@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { ActivityLog } from '@/models/ActivityLog';
 import connectDB from '@/lib/db';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 export async function GET(request: Request) {
   try {
