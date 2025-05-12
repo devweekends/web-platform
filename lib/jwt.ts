@@ -1,6 +1,16 @@
 // JWT utility functions for Edge Runtime
 const JWT_SECRET = process.env.JWT_SECRET;
 
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is not defined');
+}
+
+interface JWTPayload {
+  [key: string]: any;
+  iat?: number;
+  exp?: number;
+}
+
 // Convert string to Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   return new TextEncoder().encode(str);
@@ -39,7 +49,11 @@ function base64UrlDecode(str: string): string {
 }
 
 // Sign JWT token
-export async function signToken(payload: any): Promise<string> {
+export async function signToken(payload: JWTPayload): Promise<string> {
+  if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET is not defined');
+  }
+
   const header = { alg: 'HS256', typ: 'JWT' };
   const now = Math.floor(Date.now() / 1000);
   const exp = now + (60 * 60 * 24); // 1 day
@@ -70,9 +84,17 @@ export async function signToken(payload: any): Promise<string> {
 
 // Verify JWT token
 export async function verifyToken(token: string): Promise<boolean> {
+  if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET is not defined');
+  }
+
   try {
     const [headerB64, payloadB64, signatureB64] = token.split('.');
     
+    if (!headerB64 || !payloadB64 || !signatureB64) {
+      return false;
+    }
+
     // Verify signature
     const key = await getKey(JWT_SECRET);
     const signature = Uint8Array.from(
@@ -90,10 +112,10 @@ export async function verifyToken(token: string): Promise<boolean> {
     if (!isValid) return false;
 
     // Check expiration
-    const payload = JSON.parse(base64UrlDecode(payloadB64));
+    const payload = JSON.parse(base64UrlDecode(payloadB64)) as JWTPayload;
     const now = Math.floor(Date.now() / 1000);
     
-    return payload.exp > now;
+    return payload.exp ? payload.exp > now : false;
   } catch (error) {
     console.error('Token verification error:', error);
     return false;

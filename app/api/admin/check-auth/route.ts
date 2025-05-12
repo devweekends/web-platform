@@ -6,9 +6,14 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 export async function GET() {
   try {
-    const token = cookies().get('admin-token')?.value;
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get('admin-token')?.value;
 
     if (!token) {
+      return NextResponse.json({ authenticated: false }, { status: 401 });
+    }
+
+    if (!JWT_SECRET) {
       return NextResponse.json({ authenticated: false }, { status: 401 });
     }
 

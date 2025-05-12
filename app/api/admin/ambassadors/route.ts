@@ -36,7 +36,8 @@ export async function POST(request: Request) {
     const data = await request.json();
 
     // Get admin username from JWT
-    const token = cookies().get('admin-token')?.value;
+    const cookieStore = await cookies();
+    const token = cookieStore.get('admin-token')?.value;
     let adminUsername = 'Unknown';
     if (token && JWT_SECRET) {
       try {
@@ -93,7 +94,8 @@ export async function PUT(request: Request) {
 
     const data = await request.json();
     // Get admin username from JWT
-    const token = cookies().get('admin-token')?.value;
+    const cookieStore = await cookies();
+    const token = cookieStore.get('admin-token')?.value;
     let adminUsername = 'Unknown';
     if (token && JWT_SECRET) {
       try {
@@ -159,7 +161,8 @@ export async function DELETE(request: Request) {
     }
 
     // In DELETE, extract adminUsername from JWT
-    const token = cookies().get('admin-token')?.value;
+    const cookieStore = await cookies();
+    const token = cookieStore.get('admin-token')?.value;
     let adminUsername = 'Unknown';
     if (token && JWT_SECRET) {
       try {

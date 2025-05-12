@@ -8,6 +8,10 @@ export async function GET() {
     const sessions = await Session.find().sort({ createdAt: -1 });
     return NextResponse.json(sessions);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to fetch sessions' }, { status: 500 });
+    console.error('Error fetching sessions:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch sessions', details: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 }
+    );
   }
 } 
