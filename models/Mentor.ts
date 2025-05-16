@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import bcryptjs from 'bcryptjs';
 
 export interface IMentor extends Document {
   name: string;
@@ -10,6 +11,9 @@ export interface IMentor extends Document {
   picture?: string;
   university?: string;
   mentees: mongoose.Types.ObjectId[];
+  username?: string;
+  password?: string;
+  comparePassword: (candidatePassword: string) => Promise<boolean>;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -55,11 +59,44 @@ const MentorSchema = new Schema<IMentor>(
     mentees: [{
       type: Schema.Types.ObjectId,
       ref: 'Mentee'
-    }]
+    }],
+    username: {
+      type: String,
+      unique: true,
+      sparse: true,
+      trim: true,
+    },
+    password: {
+      type: String,
+      select: false, // Don't return password by default
+    }
   },
   {
     timestamps: true,
   }
 );
+
+// Add pre-save hook for password hashing
+MentorSchema.pre('save', async function(next) {
+  if (this.password && this.isModified('password')) {
+    try {
+      this.password = await bcryptjs.hash(this.password, 10);
+    } catch (error) {
+      console.error('Error hashing password:', error);
+    }
+  }
+  next();
+});
+
+// Add method to compare passwords
+MentorSchema.methods.comparePassword = async function(candidatePassword: string): Promise<boolean> {
+  try {
+    if (!this.password) return false;
+    return await bcryptjs.compare(candidatePassword, this.password);
+  } catch (error) {
+    console.error('Password comparison error:', error);
+    return false;
+  }
+};
 
 export const Mentor = mongoose.models.Mentor || mongoose.model<IMentor>('Mentor', MentorSchema); 

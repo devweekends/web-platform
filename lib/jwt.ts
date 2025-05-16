@@ -9,6 +9,8 @@ interface JWTPayload {
   [key: string]: string | number | boolean | null | undefined;
   iat?: number;
   exp?: number;
+  role?: string;
+  id?: string;
 }
 
 // Convert string to Uint8Array
@@ -46,6 +48,11 @@ function base64UrlDecode(str: string): string {
   str = str.replace(/-/g, '+').replace(/_/g, '/');
   while (str.length % 4) str += '=';
   return atob(str);
+}
+
+// Shorthand for creating a token with id and role
+export async function createToken(payload: { id: string, role: string }): Promise<string> {
+  return signToken(payload);
 }
 
 // Sign JWT token
@@ -118,6 +125,32 @@ export async function verifyToken(token: string): Promise<boolean> {
     return payload.exp ? payload.exp > now : false;
   } catch (error) {
     console.error('Token verification error:', error);
+    return false;
+  }
+}
+
+// Decode token to get payload
+export function decodeToken(token: string): JWTPayload | null {
+  try {
+    const [_, payloadB64, __] = token.split('.');
+    if (!payloadB64) return null;
+    return JSON.parse(base64UrlDecode(payloadB64));
+  } catch (error) {
+    console.error('Token decode error:', error);
+    return null;
+  }
+}
+
+// Verify mentor token
+export async function verifyMentorToken(token: string): Promise<boolean> {
+  try {
+    const isValid = await verifyToken(token);
+    if (!isValid) return false;
+    
+    const payload = decodeToken(token);
+    return payload?.role === 'mentor';
+  } catch (error) {
+    console.error('Mentor token verification error:', error);
     return false;
   }
 } 

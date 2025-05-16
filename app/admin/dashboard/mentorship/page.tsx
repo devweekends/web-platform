@@ -20,6 +20,8 @@ import {
   Filter,
   X,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 // Import MentorshipGraph component dynamically with SSR disabled
 const MentorshipGraph = dynamic(() => import("@/components/MentorshipGraph"), {
@@ -45,6 +47,7 @@ const VIEW_OPTIONS = [
 
 function TableView({ mentors, mentees }: any) {
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
+  const router = useRouter();
 
   const toggleRow = (id: string) => {
     const newExpanded = new Set(expandedRows);
@@ -54,6 +57,10 @@ function TableView({ mentors, mentees }: any) {
       newExpanded.add(id);
     }
     setExpandedRows(newExpanded);
+  };
+
+  const handleSetCredentials = (mentorId: string) => {
+    router.push(`/admin/dashboard/mentor-credentials/${mentorId}`);
   };
 
   return (
@@ -80,10 +87,16 @@ function TableView({ mentors, mentees }: any) {
                   University
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  Username
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Social Profiles
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Mentees
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  Actions
                 </th>
               </tr>
             </thead>
@@ -134,6 +147,17 @@ function TableView({ mentors, mentees }: any) {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
                         {mentor.university || "-"}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        {mentor.username ? (
+                          <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-800/20 dark:text-green-400">
+                            {mentor.username}
+                          </span>
+                        ) : (
+                          <span className="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800 dark:bg-red-800/20 dark:text-red-400">
+                            Not set
+                          </span>
+                        )}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex space-x-3">
@@ -197,30 +221,29 @@ function TableView({ mentors, mentees }: any) {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        {mentorMentees.length > 0 ? (
-                          <button
-                            onClick={() => toggleRow(mentor._id.toString())}
-                            className="text-primary hover:text-primary/80 flex items-center gap-1"
-                          >
-                            {expandedRows.has(mentor._id.toString()) ? (
-                              <>
-                                Hide Mentees <ChevronUp size={16} />
-                              </>
-                            ) : (
-                              <>
-                                View Mentees ({mentorMentees.length}){" "}
-                                <ChevronDown size={16} />
-                              </>
-                            )}
-                          </button>
-                        ) : (
-                          <span className="text-muted-foreground">
-                            No mentees
-                          </span>
-                        )}
+                        <div
+                          className="inline-flex items-center cursor-pointer text-blue-500 hover:text-blue-700"
+                          onClick={() => toggleRow(mentor._id)}
+                        >
+                          {mentorMentees.length}{" "}
+                          {expandedRows.has(mentor._id) ? (
+                            <ChevronUp className="h-4 w-4 ml-1" />
+                          ) : (
+                            <ChevronDown className="h-4 w-4 ml-1" />
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <Button 
+                          size="sm" 
+                          variant={mentor.username ? "outline" : "default"}
+                          onClick={() => handleSetCredentials(mentor._id)}
+                        >
+                          {mentor.username ? "Update Credentials" : "Set Credentials"}
+                        </Button>
                       </td>
                     </tr>
-                    {expandedRows.has(mentor._id.toString()) &&
+                    {expandedRows.has(mentor._id) &&
                       mentorMentees.length > 0 && (
                         <tr className="bg-muted/50">
                           <td colSpan={6} className="px-6 py-4">

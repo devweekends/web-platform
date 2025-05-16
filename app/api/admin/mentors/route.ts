@@ -161,11 +161,27 @@ export async function PUT(request: Request) {
       picture: imageUrl,
     };
 
-    const mentor = await Mentor.findByIdAndUpdate(
-      id,
-      updateData,
-      { new: true }
-    ).populate('mentees');
+    // Special handling for password
+    // If password is empty or undefined, remove it from updateData to not override existing password
+    if (!updateData.password) {
+      delete updateData.password;
+    }
+
+    let mentor;
+    
+    // If password is included, use save() method to trigger password hashing middleware
+    if (updateData.password) {
+      // Update fields one by one to avoid overriding other fields
+      Object.assign(existingMentor, updateData);
+      mentor = await existingMentor.save();
+    } else {
+      // Use findByIdAndUpdate for updates without password changes
+      mentor = await Mentor.findByIdAndUpdate(
+        id,
+        updateData,
+        { new: true }
+      ).populate('mentees');
+    }
 
     await ActivityLog.create({
       entityType: 'Mentor',
@@ -175,6 +191,7 @@ export async function PUT(request: Request) {
       details: { name: mentor.name, email: mentor.email },
     });
 
+    console.log(`Updated mentor: ${mentor.name}, username: ${mentor.username}`);
     return NextResponse.json(mentor);
   } catch (error) {
     console.error('Error updating mentor:', error);
