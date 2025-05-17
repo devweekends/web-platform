@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const ambassadorSchema = new mongoose.Schema({
   name: {
@@ -29,6 +30,20 @@ const ambassadorSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  username: {
+    type: String,
+    unique: true,
+    sparse: true,
+    trim: true,
+  },
+  password: {
+    type: String,
+    select: false,
+  },
+  tasks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Task',
+  }],
   lastModifiedBy: {
     type: String,
     default: 'Unknown',
@@ -44,10 +59,27 @@ const ambassadorSchema = new mongoose.Schema({
 });
 
 // Update the updatedAt timestamp before saving
-ambassadorSchema.pre('save', function(next) {
+ambassadorSchema.pre('save', async function(next) {
+  if (this.password && this.isModified('password')) {
+    try {
+      this.password = await bcrypt.hash(this.password, 10);
+    } catch (error) {
+      console.error('Error hashing password:', error);
+    }
+  }
   this.updatedAt = new Date();
   next();
 });
+
+ambassadorSchema.methods.comparePassword = async function(candidatePassword: string) {
+  try {
+    if (!this.password) return false;
+    return await bcrypt.compare(candidatePassword, this.password);
+  } catch (error) {
+    console.error('Password comparison error:', error);
+    return false;
+  }
+};
 
 const Ambassador = mongoose.models.Ambassador || mongoose.model('Ambassador', ambassadorSchema);
 

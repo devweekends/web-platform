@@ -153,4 +153,17 @@ export async function verifyMentorToken(token: string): Promise<boolean> {
     console.error('Mentor token verification error:', error);
     return false;
   }
+}
+
+// Verify ambassador token
+export async function verifyAmbassadorToken(token: string): Promise<boolean> {
+  try {
+    const isValid = await verifyToken(token);
+    if (!isValid) return false;
+    const payload = decodeToken(token);
+    return payload?.type === 'ambassador' || payload?.role === 'ambassador';
+  } catch (error) {
+    console.error('Ambassador token verification error:', error);
+    return false;
+  }
 } 

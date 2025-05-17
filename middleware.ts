@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verifyToken, verifyMentorToken } from '@/lib/jwt';
+import { verifyToken, verifyMentorToken, verifyAmbassadorToken } from '@/lib/jwt';
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
@@ -8,6 +8,8 @@ export async function middleware(request: NextRequest) {
   const adminCodeVerified = request.cookies.get('admin-code-verified')?.value;
   const mentorToken = request.cookies.get('mentor-token')?.value;
   const mentorAccessVerified = request.cookies.get('mentor-access-verified')?.value;
+  const ambassadorToken = request.cookies.get('ambassador-token')?.value;
+  const ambassadorAccessVerified = request.cookies.get('ambassador-access-verified')?.value;
 
   // Allow access to admin code verification page
   if (path === '/admin') {
@@ -86,6 +88,44 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Ambassador authentication routes
+  // Allow access to ambassador access code page
+  if (path === '/ambassador') {
+    if (ambassadorToken) {
+      const isValid = await verifyAmbassadorToken(ambassadorToken);
+      if (isValid) {
+        return NextResponse.redirect(new URL('/ambassador/dashboard', request.url));
+      }
+    }
+    return NextResponse.next();
+  }
+
+  // Ambassador login page - only accessible after access code verification
+  if (path === '/ambassador/login') {
+    if (!ambassadorAccessVerified) {
+      return NextResponse.redirect(new URL('/ambassador', request.url));
+    }
+    if (ambassadorToken) {
+      const isValid = await verifyAmbassadorToken(ambassadorToken);
+      if (isValid) {
+        return NextResponse.redirect(new URL('/ambassador/dashboard', request.url));
+      }
+    }
+    return NextResponse.next();
+  }
+
+  // Protect all other ambassador routes
+  if (path.startsWith('/ambassador/') && path !== '/ambassador/login') {
+    if (!ambassadorToken) {
+      return NextResponse.redirect(new URL('/ambassador', request.url));
+    }
+    const isValid = await verifyAmbassadorToken(ambassadorToken);
+    if (!isValid) {
+      return NextResponse.redirect(new URL('/ambassador', request.url));
+    }
+    return NextResponse.next();
+  }
+
   return NextResponse.next();
 }
 
@@ -94,6 +134,8 @@ export const config = {
     '/admin/:path*',
     '/api/admin/:path*',
     '/mentor/:path*',
-    '/api/mentor/:path*'
+    '/api/mentor/:path*',
+    '/ambassador/:path*',
+    '/api/ambassador/:path*'
   ]
 }; 
