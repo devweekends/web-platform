@@ -19,6 +19,7 @@ export default function Navbar() {
     // { href: "/resources", label: "Resources" },
     { href: "/about", label: "About" },
     { href: "/ambassadors", label: "Ambassadors" },
+    { href: "/mindmaster", label: "MindMaster" },
     { href: "/mentorship", label: "Network" },
   ];
 

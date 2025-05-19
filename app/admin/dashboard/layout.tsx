@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LogOut, Menu, X, LayoutDashboard, Users, Users2, CalendarDays, Network, PenToolIcon, Globe } from 'lucide-react';
+import { LogOut, Menu, X, LayoutDashboard, Users, Users2, CalendarDays, Network, PenToolIcon, Globe, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const menuItems = [
@@ -13,6 +13,7 @@ const menuItems = [
   { title: 'Sessions', href: '/admin/dashboard/sessions', icon: <CalendarDays className="w-5 h-5" /> },
   { title: 'Mentorship', href: '/admin/dashboard/mentorship', icon: <Network className="w-5 h-5" /> },
   { title: 'Network', href: '/admin/dashboard/add-mentorship', icon: <Globe className="w-5 h-5" /> },
+  { title: 'MindMaster', href: '/admin/dashboard/mindmaster', icon: <BookOpen className="w-5 h-5" /> },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
