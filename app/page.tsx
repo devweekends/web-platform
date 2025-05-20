@@ -23,10 +23,21 @@ import {
   Cloud,
   Brain,
   CheckCircle2,
+  Star,
+  Linkedin,
 } from "lucide-react";
-import MentorsPage from "@/components/MentorsPage";
 import GoogleCalendar from "@/components/google_calender";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+interface Session {
+  _id: string;
+  name: string;
+  description: string;
+  category: string;
+  date: string;
+  time: string;
+  speaker: string;
+}
 
 const testimonials = [
   {
@@ -52,7 +63,65 @@ const testimonials = [
   },
 ];
 
+const mentors = [
+  {
+    name: "Usman Sheikh",
+    role: "Sr. Cloud Architect at Microsoft",
+    skills: ["K8s", "Cloud", "Azure"],
+    linkedin: "https://www.linkedin.com/in/usmanikramsheikh/",
+    image: "/usman.jpg",
+  },
+  {
+    name: "Zeeshan Adil",
+    role: "Lead Engineer | Expert Vetted Upworker",
+    skills: ["K8s", "AWS", ".NET"],
+    linkedin: "https://www.linkedin.com/in/zeeshanadilbutt/",
+    image: "/m2.png",
+  },
+  // {
+  //   name: "Fiaz Ahmad",
+  //   role: "TOP RATED PLUS (Top 3%) @ Upwork ",
+  //   skills: ["CI/CD", "Docker", "Kubernetes"],
+  //   linkedin: "https://www.linkedin.com/in/fiazahmad/",
+  //   image: "/m5.jpeg",
+  // },
+  {
+    name: "Moeez Ahmad",
+    role: "SWE @ Calo",
+    skills: ["Full Stack", "DevOps", "Serverless"],
+    linkedin: "https://www.linkedin.com/in/moeezahmad01/",
+    image: "/m3.png",
+  },
+  {
+    name: "Tanzeel Saleem",
+    role: "Founder @ DevNexus",
+    skills: ["AWS", "Azure", "Serverless"],
+    linkedin: "https://www.linkedin.com/in/tanzeel-saleem/",
+    image: "/m1.jpg",
+  },
+];
+
 export default function Home() {
+  const [sessions, setSessions] = useState<Session[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSessions = async () => {
+      try {
+        const response = await fetch('/api/sessions');
+        if (!response.ok) throw new Error('Failed to fetch sessions');
+        const data = await response.json();
+        setSessions(data);
+      } catch (error) {
+        console.error('Error fetching sessions:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSessions();
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       {/* Hero Section */}
@@ -113,7 +182,7 @@ export default function Home() {
             <Badge className="px-3 py-1 text-sm">Upcoming Sessions</Badge>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Learn from the Best
-            </h2>
+            </h2> 
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
               Join our weekend sessions led by industry experts and enhance your
               skills in various tech domains.
@@ -121,81 +190,72 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {/* Session Card 1 */}
-            <Card className="group hover:shadow-lg transition-all duration-300 bg-background border-border">
-              <CardHeader className="pb-3">
-                <Badge className="w-fit mb-2 bg-primary/10 text-primary border-primary/20 group-hover:bg-primary/20">
-                  GSoC
-                </Badge>
-                <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
-                  GSoC Sunday Meetup
-                </CardTitle>
-                <CardDescription>
-                  Want to crack Google Summer of Code, join this meetup
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pb-3">
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>Every Saturday</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                  <Clock className="h-4 w-4" />
-                  <span>03:30 PM PKT</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm">
-                  <Users className="h-4 w-4" />
-                  <span>Aqib Nawab, Muhammad Saqlain</span>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button
-                  variant="outline"
-                  className="w-full rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300"
-                >
-                  Check the Calender Above to Join
-                </Button>
-              </CardFooter>
-            </Card>
+            {loading ? (
+              // Loading skeleton
+              Array.from({ length: 3 }).map((_, i) => (
+                <Card key={i} className="animate-pulse">
+                  <CardHeader className="pb-3">
+                    <div className="h-4 w-20 bg-muted rounded mb-2"></div>
+                    <div className="h-6 w-3/4 bg-muted rounded mb-2"></div>
+                    <div className="h-4 w-full bg-muted rounded"></div>
+                  </CardHeader>
+                  <CardContent className="pb-3">
+                    <div className="space-y-2">
+                      <div className="h-4 w-1/2 bg-muted rounded"></div>
+                      <div className="h-4 w-1/3 bg-muted rounded"></div>
+                      <div className="h-4 w-2/3 bg-muted rounded"></div>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <div className="h-10 w-full bg-muted rounded"></div>
+                  </CardFooter>
+                </Card>
+              ))
+            ) : sessions.length > 0 ? (
+              sessions.slice(0, 3).map((session) => (
+                <Card key={session._id} className="group hover:shadow-lg transition-shadow duration-300">
+                  <CardHeader className="pb-3">
+                    <Badge className="w-fit mb-2 bg-primary/10 text-primary border-primary/20 group-hover:bg-primary/20">
+                      {session.category}
+                    </Badge>
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
+                      {session.name}
+                    </CardTitle>
+                    <CardDescription>
+                      {session.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pb-3">
+                    <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
+                      <Calendar className="h-4 w-4" />
+                      <span>{session.date}</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
+                      <Clock className="h-4 w-4" />
+                      <span>{session.time}</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm">
+                      <Users className="h-4 w-4" />
+                      <span>{session.speaker}</span>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button
+                      variant="outline"
+                      className="w-full rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300"
+                    >
+                      Check the Calendar Above to Join
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-muted-foreground">No upcoming sessions at the moment. Please check back later!</p>
+              </div>
+            )}
 
-            {/* Session Card 2 */}
-            <Card className="group hover:shadow-lg transition-all duration-300 bg-background border-border">
-              <CardHeader className="pb-3">
-                <Badge className="w-fit mb-2 bg-primary/10 text-primary border-primary/20 group-hover:bg-primary/20">
-                  DevOps
-                </Badge>
-                <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
-                  Dev Weekends DevOps Bootcamp
-                </CardTitle>
-                <CardDescription>
-                  Master DevOps and Deployment form Basics to Advance
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pb-3">
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>Every Saturday</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                  <Clock className="h-4 w-4" />
-                  <span>09:00 PM PKT</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm">
-                  <Users className="h-4 w-4" />
-                  <span>Sheryar Ahmad, Software Engineer</span>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button
-                  variant="outline"
-                  className="w-full rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300"
-                >
-                  Check the Calender Above to Join
-                </Button>
-              </CardFooter>
-            </Card>
-
-           
+         
           </div>
 
           <div className="flex justify-center mt-12">
@@ -222,8 +282,48 @@ export default function Home() {
               expertise, insights, and real-world experiences.
             </p>
           </div>
-
-          <MentorsPage></MentorsPage>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto px-4">
+            {mentors.map((mentor, index) => (
+              <Card
+                key={index}
+                className="overflow-hidden border border-border/50 bg-card shadow-sm hover:shadow transition-all duration-300"
+              >
+                <CardHeader className="p-0">
+                  <div className="aspect-[4.5/4] relative overflow-hidden">
+                    <Image
+                      src={mentor.image || "/placeholder.svg"}
+                      alt={mentor.name}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+                </CardHeader>
+                <CardContent className="p-4 space-y-2">
+                  <div>
+                    <CardTitle className="text-sm font-semibold">{mentor.name}</CardTitle>
+                    <p className="text-xs text-muted-foreground leading-tight">{mentor.role}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {mentor.skills.map((skill, skillIndex) => (
+                      <Badge
+                        key={skillIndex}
+                        variant="secondary"
+                        className="text-[10px] px-1.5 py-0.5 font-normal bg-secondary/50"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                  <Link
+                    href={mentor.linkedin}
+                    className="inline-flex items-center justify-center rounded text-xs font-medium h-8 px-3 w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                  >
+                    <Linkedin className="h-4 w-4 mr-2" /> Connect on LinkedIn
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 

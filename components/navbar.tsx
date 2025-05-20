@@ -12,15 +12,15 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const routes = [
-    { href: "/", label: "Home" },
-    { href: "/sessions", label: "Sessions" },
-    { href: "/mentors", label: "Mentors" },
+    // { href: "/", label: "Home" },
+    // { href: "/mentors", label: "Mentors" },
     // { href: "/community", label: "Community" },
     // { href: "/resources", label: "Resources" },
     { href: "/about", label: "About" },
+    { href: "/sessions", label: "Sessions" },
     { href: "/ambassadors", label: "Ambassadors" },
-    { href: "/mindmaster", label: "MindMaster" },
     { href: "/mentorship", label: "Network" },
+    { href: "/mindmaster", label: "MindMaster" },
   ];
 
   const isActive = (path: string) => pathname === path;

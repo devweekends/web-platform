@@ -122,7 +122,7 @@ export default function SessionsPage() {
       </div>
 
       {/* Sessions Tabs */}
-      <Tabs value={selectedTopic} onValueChange={setSelectedTopic} className="w-full">
+      <Tabs defaultValue="all" className="space-y-6">
         <TabsList className="mb-6">
           {tabCategories.map(cat => (
             <TabsTrigger key={cat} value={cat}>
@@ -136,12 +136,29 @@ export default function SessionsPage() {
           <TabsContent key={cat} value={cat} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {loading ? (
-                Array.from({ length: 3 }).map((_, i) => (
-                  <Card key={i} className="animate-pulse h-64" />
+                // Loading skeleton
+                Array.from({ length: 6 }).map((_, i) => (
+                  <Card key={i} className="animate-pulse">
+                    <CardHeader>
+                      <div className="h-4 w-20 bg-muted rounded mb-2"></div>
+                      <div className="h-6 w-3/4 bg-muted rounded mb-2"></div>
+                      <div className="h-4 w-full bg-muted rounded"></div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-2">
+                        <div className="h-4 w-1/2 bg-muted rounded"></div>
+                        <div className="h-4 w-1/3 bg-muted rounded"></div>
+                        <div className="h-4 w-2/3 bg-muted rounded"></div>
+                      </div>
+                    </CardContent>
+                    <CardFooter>
+                      <div className="h-10 w-full bg-muted rounded"></div>
+                    </CardFooter>
+                  </Card>
                 ))
               ) : filteredSessions(cat).length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-12 text-center col-span-full">
-                  <p className="text-muted-foreground">No current session</p>
+                  <p className="text-muted-foreground">No sessions found matching your criteria</p>
                 </div>
               ) : (
                 filteredSessions(cat).map((session, idx) => (
@@ -167,7 +184,7 @@ export default function SessionsPage() {
                     </CardContent>
                     <CardFooter>
                       <Button variant="outline" className="w-full">
-                        View Calender on Home Page to Join
+                        View Calendar on Home Page to Join
                       </Button>
                     </CardFooter>
                   </Card>
@@ -178,6 +195,6 @@ export default function SessionsPage() {
         ))}
       </Tabs>
     </div>
-  )
+  );
 }
 
