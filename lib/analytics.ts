@@ -1,8 +1,5 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
-
 declare global {
   interface Window {
     gtag: (
@@ -34,17 +31,6 @@ export const event = ({ action, params }: { action: string; params: any }) => {
     window.gtag('event', action, params);
   }
 };
-
-export function useAnalytics() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    if (pathname && typeof window !== 'undefined') {
-      pageview(pathname + searchParams.toString());
-    }
-  }, [pathname, searchParams]);
-}
 
 // Custom event tracking functions
 export const trackEvent = {

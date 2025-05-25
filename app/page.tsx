@@ -29,7 +29,7 @@ import {
 import GoogleCalendar from "@/components/google_calender";
 import { useState, useEffect } from "react";
 import Script from 'next/script';
-import { useAnalytics, trackEvent } from '@/lib/analytics';
+import { trackEvent } from '@/lib/analytics';
 
 interface Session {
   _id: string;
@@ -107,8 +107,7 @@ export default function Home() {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Initialize analytics
-  useAnalytics();
+
 
   // JSON-LD structured data
   const jsonLd = {

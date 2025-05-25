@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Script from 'next/script'
+import { Analytics } from "@/components/analytics"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -93,7 +94,10 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <div className="flex min-h-screen flex-col">
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1">
+              <Analytics />
+              {children}
+            </main>
             <Footer />
           </div>
         </ThemeProvider>
