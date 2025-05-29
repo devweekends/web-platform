@@ -16,12 +16,12 @@ export default function Navbar() {
     // { href: "/mentors", label: "Mentors" },
     // { href: "/community", label: "Community" },
     // { href: "/resources", label: "Resources" },
-    { href: "/fellowship", label: "Fellowship" },
     { href: "/about", label: "About" },
+    { href: "/fellowship", label: "Fellowship" },
     { href: "/sessions", label: "Sessions" },
-    // { href: "/ambassadors", label: "Ambassadors" },
     { href: "/mentorship", label: "Network" },
-    // { href: "/mindmaster", label: "MindMaster" },
+    { href: "/mindmaster", label: "MindMaster" },
+    // { href: "/ambassadors", label: "Ambassadors" },
   ];
 
   const isActive = (path: string) => pathname === path;

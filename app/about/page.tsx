@@ -34,7 +34,7 @@ export default function AboutPage() {
       </div>
 
       {/* Mission Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16 py-8 md:py-12 lg:py-16">
         <div>
           <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
           <p className="text-muted-foreground mb-4">
@@ -58,7 +58,7 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values Section */}
-      <section className="mb-16">
+      <section className="mb-16 py-8 md:py-12 lg:py-16">
         <h2 className="text-3xl font-bold mb-8 text-center">Core Values</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Card>
@@ -126,7 +126,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mentorship Approach Section */}
-      <section className="mb-16">
+      <section className="mb-16 py-8 md:py-12 lg:py-16">
         <h2 className="text-3xl font-bold mb-8 text-center">How Do We Mentor?</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -239,7 +239,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="mb-16">
+      <section className="mb-16 py-8 md:py-12 lg:py-16">
         <h2 className="text-3xl font-bold mb-8 text-center">Meet Our Team</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

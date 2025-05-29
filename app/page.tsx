@@ -172,7 +172,7 @@ export default function Home() {
       />
       <div className="flex flex-col min-h-screen bg-background text-foreground">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-20 lg:py-24 xl:py-40 bg-background border-b">
+        <section className="w-full py-8 md:py-12 lg:py-16 bg-background border-b">
           <div className="container">
             <div className="flex flex-col items-center space-y-8 text-center">
               <Badge className="px-3 py-1 text-sm">Tech Community</Badge>
@@ -229,7 +229,7 @@ export default function Home() {
         <GoogleCalendar />
 
         {/* Featured Sessions */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <section className="w-full py-8 md:py-12 lg:py-16 bg-background">
           <div className="container">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="px-3 py-1 text-sm">Upcoming Sessions</Badge>
@@ -327,7 +327,7 @@ export default function Home() {
         </section>
 
         {/* Expert Speakers Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <section className="w-full py-8 md:py-12 lg:py-16 bg-background">
           <div className="container">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="px-3 py-1 text-sm">Expert Speakers</Badge>
@@ -390,7 +390,7 @@ export default function Home() {
         </section>
 
         {/* Focus Areas */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <section className="w-full py-8 md:py-12 lg:py-16 bg-background">
           <div className="container">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <div className="space-y-2">
@@ -499,7 +499,7 @@ export default function Home() {
         </section>
 
         {/* About Us Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <section className="w-full py-8 md:py-12 lg:py-16 bg-background">
           <div className="container">
             <div className="grid gap-10 lg:grid-cols-2 items-center">
               <div className="space-y-6">
@@ -546,7 +546,7 @@ export default function Home() {
         </section>
 
         {/* Community Testimonials */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <section className="w-full py-8 md:py-12 lg:py-16 bg-background">
           <div className="container">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <div className="space-y-2">
@@ -705,7 +705,7 @@ export default function Home() {
         </section> */}
 
         {/* CTA Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-background  ">
+        <section className="w-full py-8 md:py-12 lg:py-16 bg-background  ">
           <div className="container">
             <div className="flex flex-col items-center justify-center space-y-6 text-center">
               <div className="space-y-3 max-w-[800px]">

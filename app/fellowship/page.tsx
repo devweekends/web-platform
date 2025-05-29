@@ -302,7 +302,7 @@ export default function FellowshipPage() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-background to-muted/30"></div>
         <div
           className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-primary/5 rounded-full blur-3xl"
@@ -381,7 +381,7 @@ export default function FellowshipPage() {
       {/* Stats Section */}
       <section
         ref={statsRef}
-        className="py-12 sm:py-16 lg:py-20 bg-primary text-primary-foreground relative overflow-hidden"
+        className="py-8 sm:py-12 lg:py-16 bg-primary text-primary-foreground relative overflow-hidden"
       >
         <div
           className="absolute top-0 left-1/4 w-32 sm:w-64 h-32 sm:h-64 bg-primary-foreground/5 rounded-full blur-3xl"
@@ -412,7 +412,7 @@ export default function FellowshipPage() {
       <section
         id="timeline"
         ref={timelineRef}
-        className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-background to-muted/30"></div>
 
@@ -523,7 +523,7 @@ export default function FellowshipPage() {
       </section>
 
       {/* Progress Metrics */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-primary text-primary-foreground relative overflow-hidden">
+      <section className="py-8 sm:py-12 lg:py-16 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12 sm:mb-16">
             <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 tracking-tight">Success Metrics</h3>
@@ -558,7 +558,7 @@ export default function FellowshipPage() {
       {/* Program Overview */}
       <section
         id="program"
-        className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-background to-muted/30"></div>
 
@@ -654,7 +654,7 @@ export default function FellowshipPage() {
       {/* Levels Section */}
       <section
         id="levels"
-        className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-background to-muted/30"></div>
 
@@ -753,7 +753,7 @@ export default function FellowshipPage() {
       </section>
 
       {/* Technology Stack */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground relative overflow-hidden">
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="container mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <Badge
@@ -813,7 +813,7 @@ export default function FellowshipPage() {
       </section>
 
       {/* Fellowship Perks */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-background to-muted/30"></div>
 
         <div className="container mx-auto relative z-10">
@@ -854,7 +854,7 @@ export default function FellowshipPage() {
       {/* Application Section */}
       <section
         id="apply"
-        className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground relative overflow-hidden"
+        className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground relative overflow-hidden"
       >
         <div className="container mx-auto text-center relative z-10">
           <Badge
