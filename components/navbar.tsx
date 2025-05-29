@@ -16,11 +16,12 @@ export default function Navbar() {
     // { href: "/mentors", label: "Mentors" },
     // { href: "/community", label: "Community" },
     // { href: "/resources", label: "Resources" },
+    { href: "/fellowship", label: "Fellowship" },
     { href: "/about", label: "About" },
     { href: "/sessions", label: "Sessions" },
-    { href: "/ambassadors", label: "Ambassadors" },
+    // { href: "/ambassadors", label: "Ambassadors" },
     { href: "/mentorship", label: "Network" },
-    { href: "/mindmaster", label: "MindMaster" },
+    // { href: "/mindmaster", label: "MindMaster" },
   ];
 
   const isActive = (path: string) => pathname === path;
@@ -31,8 +32,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold text-primary">DW</span>
-              <span className="hidden sm:inline-block text-xl font-semibold">
+              <span className=" sm:inline-block text-xl font-semibold">
                 Dev Weekends
               </span>
             </Link>
@@ -78,7 +78,7 @@ export default function Navbar() {
           </div>
         </div>
         {isMenuOpen && (
-          <div className="md:hidden py-4">
+          <div className="md:hidden py-4 transform transition-all duration-300 ease-in-out">
             <div className="flex flex-col space-y-4">
               {routes.map((route) => (
                 <Link

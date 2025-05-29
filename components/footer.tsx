@@ -68,6 +68,11 @@ export default function Footer() {
               <h3 className="text-xs font-semibold uppercase tracking-wider text-primary mb-3">Community</h3>
               <ul className="space-y-1.5 text-xs">
                 <li>
+                  <Link href="/fellowship" className="text-muted-foreground hover:text-primary transition-colors">
+                    Fellowship
+                  </Link>
+                </li>
+                <li>
                   <Link href="/sessions" className="text-muted-foreground hover:text-primary transition-colors">
                     Sessions
                   </Link>
