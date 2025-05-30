@@ -116,11 +116,11 @@ const mentors = [
     image: "/bakar.png",
   },
   {
-    name: "Fiaz Ahmad",
-    role: "TOP RATED PLUS (Top 3%) @ Upwork ",
-    skills: ["CI/CD", "Docker", "Kubernetes"],
-    linkedin: "https://www.linkedin.com/in/fiazahmad/",
-    image: "/m5.jpeg",
+    name: "Farooq Tahir",
+    role: "TOP RATED PLUS @ Upwork",
+    skills: ["Azure", "C#", ".NET"],
+    linkedin: "https://www.linkedin.com/in/farooqtahir/",
+    image: "/farooq.png",
   },
 ];
 
