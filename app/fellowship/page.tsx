@@ -354,14 +354,14 @@ export default function FellowshipPage() {
                 Start Your Journey
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              {/* <Button
+              <Button
                 variant="outline"
                 size="lg"
+                onClick={() => document.getElementById('levels')?.scrollIntoView({ behavior: 'smooth' })}
                 className="flex-1 sm:flex-none border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
               >
-                <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
                 View Program Details
-              </Button> */}
+              </Button>
             </div>
 
             {/* Achievement Tags Preview */}

@@ -91,6 +91,24 @@ export async function PUT(
       { new: true, runValidators: true }
     );
     
+    // Clear caches to ensure fresh data
+    try {
+      // Import cache clearing functions
+      const { clearMentorshipCache } = require('@/app/api/mentorship/route');
+      const { clearAdminMentorCache } = require('@/app/api/admin/mentors/route');
+      const { clearAdminMenteeCache } = require('@/app/api/admin/mentees/route');
+      const { clearPublicMentorCache } = require('@/app/api/mentors/route');
+      const { clearPublicMenteeCache } = require('@/app/api/mentees/route');
+      
+      clearMentorshipCache();
+      clearAdminMentorCache();
+      clearAdminMenteeCache();
+      clearPublicMentorCache();
+      clearPublicMenteeCache();
+    } catch (error) {
+      console.warn('Cache clearing failed:', error);
+    }
+    
     return NextResponse.json(updatedMentee);
   } catch (error) {
     console.error('Error updating mentee:', error);
@@ -141,6 +159,24 @@ export async function DELETE(
       mentor._id,
       { $pull: { mentees: params.id } }
     );
+    
+    // Clear caches to ensure fresh data
+    try {
+      // Import cache clearing functions
+      const { clearMentorshipCache } = require('@/app/api/mentorship/route');
+      const { clearAdminMentorCache } = require('@/app/api/admin/mentors/route');
+      const { clearAdminMenteeCache } = require('@/app/api/admin/mentees/route');
+      const { clearPublicMentorCache } = require('@/app/api/mentors/route');
+      const { clearPublicMenteeCache } = require('@/app/api/mentees/route');
+      
+      clearMentorshipCache();
+      clearAdminMentorCache();
+      clearAdminMenteeCache();
+      clearPublicMentorCache();
+      clearPublicMenteeCache();
+    } catch (error) {
+      console.warn('Cache clearing failed:', error);
+    }
     
     return NextResponse.json({ message: 'Mentee deleted successfully' });
   } catch (error) {

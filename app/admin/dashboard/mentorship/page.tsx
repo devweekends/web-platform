@@ -1121,6 +1121,7 @@ export default function AdminMentorshipPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState("spider");
+  const [tagOperationInProgress, setTagOperationInProgress] = useState(false);
 
   const fetchData = async () => {
     setLoading(true);
@@ -1145,44 +1146,54 @@ export default function AdminMentorshipPage() {
     }
   };
 
-  const handleTagsUpdated = (personId: string, personType: 'mentor' | 'mentee', updatedTags: any[]) => {
-    // Update local state immediately for instant UI feedback
-    if (personType === 'mentor') {
-      setData(prevData => ({
-        ...prevData,
-        mentors: prevData.mentors.map(mentor => 
-          mentor._id === personId 
-            ? { ...mentor, tags: updatedTags }
-            : mentor
-        )
-      }));
-      
-      setFilteredData(prevData => ({
-        ...prevData,
-        mentors: prevData.mentors.map(mentor => 
-          mentor._id === personId 
-            ? { ...mentor, tags: updatedTags }
-            : mentor
-        )
-      }));
-    } else {
-      setData(prevData => ({
-        ...prevData,
-        mentees: prevData.mentees.map(mentee => 
-          mentee._id === personId 
-            ? { ...mentee, tags: updatedTags }
-            : mentee
-        )
-      }));
-      
-      setFilteredData(prevData => ({
-        ...prevData,
-        mentees: prevData.mentees.map(mentee => 
-          mentee._id === personId 
-            ? { ...mentee, tags: updatedTags }
-            : mentee
-        )
-      }));
+  const handleTagsUpdated = async (personId: string, personType: 'mentor' | 'mentee', updatedTags: any[]) => {
+    // Start tag operation tracking
+    setTagOperationInProgress(true);
+    
+    try {
+      // Update local state immediately for instant UI feedback
+      if (personType === 'mentor') {
+        setData(prevData => ({
+          ...prevData,
+          mentors: prevData.mentors.map(mentor => 
+            mentor._id === personId 
+              ? { ...mentor, tags: updatedTags }
+              : mentor
+          )
+        }));
+        
+        setFilteredData(prevData => ({
+          ...prevData,
+          mentors: prevData.mentors.map(mentor => 
+            mentor._id === personId 
+              ? { ...mentor, tags: updatedTags }
+              : mentor
+          )
+        }));
+      } else {
+        setData(prevData => ({
+          ...prevData,
+          mentees: prevData.mentees.map(mentee => 
+            mentee._id === personId 
+              ? { ...mentee, tags: updatedTags }
+              : mentee
+          )
+        }));
+        
+        setFilteredData(prevData => ({
+          ...prevData,
+          mentees: prevData.mentees.map(mentee => 
+            mentee._id === personId 
+              ? { ...mentee, tags: updatedTags }
+              : mentee
+          )
+        }));
+      }
+    } finally {
+      // Add a small delay to show the operation completed
+      setTimeout(() => {
+        setTagOperationInProgress(false);
+      }, 1000);
     }
     
     // Cache invalidation in the API ensures fresh data on next request
@@ -1375,6 +1386,16 @@ export default function AdminMentorshipPage() {
 
   return (
     <div className="container mx-auto py-6">
+      {/* Tag operation indicator */}
+      {tagOperationInProgress && (
+        <div className="mb-4 flex items-center justify-center">
+          <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2 rounded-lg flex items-center gap-2 text-sm">
+            <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+            <span>Updating tags...</span>
+          </div>
+        </div>
+      )}
+
       <div className="mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <h1 className="text-2xl font-semibold">Mentorship Network</h1>
 

@@ -180,6 +180,23 @@ function MentorshipManagementContent() {
       await fetchData()
       setMode("list")
       setEditPerson(null)
+      
+      // Notify other tabs about the data change
+      try {
+        const actionType = isEdit ? 'update' : 'create'
+        localStorage.setItem('mentorship-data-updated', JSON.stringify({
+          type: personType,
+          action: actionType,
+          timestamp: Date.now()
+        }));
+        localStorage.removeItem('mentorship-data-updated'); // Trigger storage event
+        
+        window.dispatchEvent(new CustomEvent('mentorship-data-updated', {
+          detail: { type: personType, action: actionType }
+        }));
+      } catch (error) {
+        console.warn('Cross-tab communication not available:', error);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to save data")
     } finally {
@@ -204,6 +221,22 @@ function MentorshipManagementContent() {
       }
 
       await fetchData()
+      
+      // Notify other tabs about the deletion
+      try {
+        localStorage.setItem('mentorship-data-updated', JSON.stringify({
+          type: type,
+          action: 'delete',
+          timestamp: Date.now()
+        }));
+        localStorage.removeItem('mentorship-data-updated'); // Trigger storage event
+        
+        window.dispatchEvent(new CustomEvent('mentorship-data-updated', {
+          detail: { type: type, action: 'delete' }
+        }));
+      } catch (error) {
+        console.warn('Cross-tab communication not available:', error);
+      }
     } catch (err) {
       setError("Failed to delete. Please try again.")
       console.error(err)

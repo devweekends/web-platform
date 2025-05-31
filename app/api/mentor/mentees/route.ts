@@ -58,6 +58,24 @@ export async function POST(request: NextRequest) {
       { $push: { mentees: mentee._id } }
     );
     
+    // Clear caches to ensure fresh data
+    try {
+      // Import cache clearing functions
+      const { clearMentorshipCache } = require('@/app/api/mentorship/route');
+      const { clearAdminMentorCache } = require('@/app/api/admin/mentors/route');
+      const { clearAdminMenteeCache } = require('@/app/api/admin/mentees/route');
+      const { clearPublicMentorCache } = require('@/app/api/mentors/route');
+      const { clearPublicMenteeCache } = require('@/app/api/mentees/route');
+      
+      clearMentorshipCache();
+      clearAdminMentorCache();
+      clearAdminMenteeCache();
+      clearPublicMentorCache();
+      clearPublicMenteeCache();
+    } catch (error) {
+      console.warn('Cache clearing failed:', error);
+    }
+    
     return NextResponse.json(mentee, { status: 201 });
   } catch (error) {
     console.error('Error creating mentee:', error);

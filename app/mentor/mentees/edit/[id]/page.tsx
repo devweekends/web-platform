@@ -142,6 +142,22 @@ export default function EditMenteePage({ params }: { params: { id: string } }) {
       setSuccess('Mentee updated successfully');
       setMentee(data);
       
+      // Notify other tabs about the mentee update
+      try {
+        localStorage.setItem('mentorship-data-updated', JSON.stringify({
+          type: 'mentee',
+          action: 'update',
+          timestamp: Date.now()
+        }));
+        localStorage.removeItem('mentorship-data-updated'); // Trigger storage event
+        
+        window.dispatchEvent(new CustomEvent('mentorship-data-updated', {
+          detail: { type: 'mentee', action: 'update', data: data }
+        }));
+      } catch (error) {
+        console.warn('Cross-tab communication not available:', error);
+      }
+      
       // Wait a moment to show success message, then redirect
       setTimeout(() => {
         router.push('/mentor/dashboard');

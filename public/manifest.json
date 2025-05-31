@@ -1,0 +1,32 @@
+{
+  "name": "Dev Weekends - Your Gateway to becoming a better Software Engineer",
+  "short_name": "Dev Weekends",
+  "description": "Join a thriving community of students and tech enthusiasts learning, building, and growing together through weekend events and bootcamps.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["education", "developer", "community", "productivity"],
+  "lang": "en",
+  "orientation": "portrait-primary"
+} 

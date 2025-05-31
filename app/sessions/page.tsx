@@ -79,23 +79,28 @@ export default function SessionsPage() {
   };
 
   return (
-    <div className="container py-10">
-      <div className="flex flex-col space-y-4 mb-10">
-        <h1 className="text-4xl font-bold">Upcoming Sessions</h1>
-        <p className="text-muted-foreground text-lg">
+    <div className="container mx-auto px-4 py-6 sm:py-10">
+      <div className="flex flex-col space-y-4 mb-6 sm:mb-10">
+        <h1 className="text-2xl sm:text-4xl font-bold">Upcoming Sessions</h1>
+        <p className="text-muted-foreground text-base sm:text-lg">
           Browse and register for our upcoming mentorship sessions led by industry experts. Filter by topic, date, or
           mentor to find the perfect session for your learning journey.
         </p>
       </div>
 
       {/* Search and Filter */}
-      <div className="flex flex-col md:flex-row gap-4 mb-8">
-        <div className="flex-1">
-          <Input placeholder="Search sessions..." value={search} onChange={e => setSearch(e.target.value)} />
+      <div className="flex flex-col gap-4 mb-6 sm:mb-8">
+        <div className="w-full">
+          <Input 
+            placeholder="Search sessions..." 
+            value={search} 
+            onChange={e => setSearch(e.target.value)}
+            className="w-full"
+          />
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2 w-full">
           <Select value={selectedTopic} onValueChange={setSelectedTopic}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px]">
               <SelectValue placeholder="Topic" />
             </SelectTrigger>
             <SelectContent>
@@ -105,7 +110,7 @@ export default function SessionsPage() {
             </SelectContent>
           </Select>
           <Select defaultValue="upcoming">
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px]">
               <SelectValue placeholder="Time" />
             </SelectTrigger>
             <SelectContent>
@@ -115,26 +120,29 @@ export default function SessionsPage() {
               <SelectItem value="past">Past Sessions</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline" size="icon">
+          <Button variant="outline" size="icon" className="sm:w-auto w-full">
             <Filter className="h-4 w-4" />
+            <span className="ml-2 sm:hidden">Filter</span>
           </Button>
         </div>
       </div>
 
       {/* Sessions Tabs */}
-      <Tabs defaultValue="all" className="space-y-6">
-        <TabsList className="mb-6">
-          {tabCategories.map(cat => (
-            <TabsTrigger key={cat} value={cat}>
-              {cat === 'all'
-                ? 'All Sessions'
-                : topicOptions.find(opt => opt.value === cat)?.label || cat.charAt(0).toUpperCase() + cat.slice(1)}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+      <Tabs defaultValue="all" className="space-y-4 sm:space-y-6">
+        <div className="overflow-x-auto">
+          <TabsList className="mb-4 sm:mb-6 flex w-max sm:w-auto">
+            {tabCategories.map(cat => (
+              <TabsTrigger key={cat} value={cat} className="text-xs sm:text-sm whitespace-nowrap px-2 sm:px-4">
+                {cat === 'all'
+                  ? 'All Sessions'
+                  : topicOptions.find(opt => opt.value === cat)?.label || cat.charAt(0).toUpperCase() + cat.slice(1)}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </div>
         {tabCategories.map(cat => (
-          <TabsContent key={cat} value={cat} className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TabsContent key={cat} value={cat} className="space-y-6 sm:space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {loading ? (
                 // Loading skeleton
                 Array.from({ length: 6 }).map((_, i) => (
@@ -157,33 +165,33 @@ export default function SessionsPage() {
                   </Card>
                 ))
               ) : filteredSessions(cat).length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-12 text-center col-span-full">
-                  <p className="text-muted-foreground">No sessions found matching your criteria</p>
+                <div className="flex flex-col items-center justify-center py-8 sm:py-12 text-center col-span-full">
+                  <p className="text-muted-foreground text-sm sm:text-base">No sessions found matching your criteria</p>
                 </div>
               ) : (
                 filteredSessions(cat).map((session, idx) => (
-                  <Card key={session._id || idx}>
-                    <CardHeader>
-                      <Badge className="w-fit mb-2">{session.category}</Badge>
-                      <CardTitle>{session.name}</CardTitle>
-                      <CardDescription>{session.description}</CardDescription>
+                  <Card key={session._id || idx} className="flex flex-col">
+                    <CardHeader className="pb-3">
+                      <Badge className="w-fit mb-2 text-xs">{session.category}</Badge>
+                      <CardTitle className="text-lg sm:text-xl line-clamp-2">{session.name}</CardTitle>
+                      <CardDescription className="text-sm line-clamp-3">{session.description}</CardDescription>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="flex-1 pb-3">
                       <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                        <Calendar className="h-4 w-4" />
-                        <span>{session.date}</span>
+                        <Calendar className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">{session.date}</span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                        <Clock className="h-4 w-4" />
-                        <span>{session.time}</span>
+                        <Clock className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">{session.time}</span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm">
-                        <Users className="h-4 w-4" />
-                        <span>{session.speaker}</span>
+                        <Users className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate font-medium">{session.speaker}</span>
                       </div>
                     </CardContent>
-                    <CardFooter>
-                      <Button variant="outline" className="w-full">
+                    <CardFooter className="pt-3">
+                      <Button variant="outline" className="w-full text-xs sm:text-sm">
                         View Calendar on Home Page to Join
                       </Button>
                     </CardFooter>

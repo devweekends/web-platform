@@ -79,6 +79,22 @@ export default function AddMenteePage() {
         throw new Error(data.error || 'Failed to add mentee');
       }
       
+      // Notify other tabs about the new mentee
+      try {
+        localStorage.setItem('mentorship-data-updated', JSON.stringify({
+          type: 'mentee',
+          action: 'create',
+          timestamp: Date.now()
+        }));
+        localStorage.removeItem('mentorship-data-updated'); // Trigger storage event
+        
+        window.dispatchEvent(new CustomEvent('mentorship-data-updated', {
+          detail: { type: 'mentee', action: 'create', data: data }
+        }));
+      } catch (error) {
+        console.warn('Cross-tab communication not available:', error);
+      }
+      
       router.push('/mentor/dashboard');
     } catch (err) {
       console.error('Error adding mentee:', err);

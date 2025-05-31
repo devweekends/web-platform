@@ -106,11 +106,26 @@ export async function GET(request: Request) {
   }
 }
 
-// Helper function to invalidate relevant caches
+// Helper function to invalidate caches and notify other tabs
 function invalidateAdminMenteesCaches(menteeId?: string) {
   adminMenteesCache.delete('admin-mentees-all');
   if (menteeId) {
     adminMenteesCache.delete(`admin-mentee-${menteeId}`);
+  }
+  
+  // Notify other tabs/windows about mentee data changes
+  try {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('mentorship-data-updated', JSON.stringify({
+        type: 'mentee',
+        action: 'update',
+        timestamp: Date.now()
+      }));
+      localStorage.removeItem('mentorship-data-updated'); // Trigger storage event
+    }
+  } catch (error) {
+    // Server-side or localStorage not available
+    console.warn('Cross-tab communication not available:', error);
   }
 }
 
