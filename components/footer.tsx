@@ -25,7 +25,7 @@ export default function Footer() {
                 <TreePalm size={18} />
               </Link>
               <Link
-                href="https://www.linkedin.com/company/dev-weekends/"
+                href="https://www.instagram.com/devweekends"
                 className="text-muted-foreground hover:text-primary transition-colors"
                 aria-label="Instagram"
               >

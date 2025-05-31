@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { ZoomIn, ZoomOut, Maximize2, RefreshCw, Target, Network, Table, ChevronDown, ChevronUp } from "lucide-react"
+import { ZoomIn, ZoomOut, Maximize2, RefreshCw, Target, Network, Table, ChevronDown, ChevronUp, Tag as TagIcon } from "lucide-react"
 import dynamic from "next/dynamic"
 
 // Import MentorshipGraph component dynamically with SSR disabled
@@ -20,6 +20,13 @@ const MentorshipGraph = dynamic(() => import("@/components/MentorshipGraph"), {
   )
 })
 
+interface Tag {
+  _id: string
+  name: string
+  description?: string
+  color: string
+}
+
 interface Mentor {
   _id: string
   name: string
@@ -30,6 +37,7 @@ interface Mentor {
   linkedin?: string
   github?: string
   leetcode?: string
+  tags?: Tag[]
 }
 
 interface Mentee {
@@ -43,6 +51,7 @@ interface Mentee {
   github?: string
   leetcode?: string
   mentor?: string | { _id: string; name: string; university?: string; picture?: string }
+  tags?: Tag[]
 }
 
 const VIEW_OPTIONS = [
@@ -79,6 +88,9 @@ function TableView({ mentors, mentees }: { mentors: Mentor[], mentees: Mentee[] 
                   University
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  Tags
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Social Profiles
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
@@ -109,6 +121,24 @@ function TableView({ mentors, mentees }: { mentors: Mentor[], mentees: Mentee[] 
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{mentor.university || "-"}</td>
+                      <td className="px-6 py-4">
+                        <div className="flex flex-wrap gap-1 max-w-48">
+                          {mentor.tags && mentor.tags.length > 0 ? (
+                            mentor.tags.map((tag) => (
+                              <span 
+                                key={tag._id}
+                                className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-white"
+                                style={{ backgroundColor: tag.color }}
+                                title={tag.description}
+                              >
+                                {tag.name}
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-xs text-muted-foreground">No tags</span>
+                          )}
+                        </div>
+                      </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex space-x-3">
                           {mentor.linkedin && (
@@ -179,27 +209,43 @@ function TableView({ mentors, mentees }: { mentors: Mentor[], mentees: Mentee[] 
                     </tr>
                     {expandedRows.has(mentor._id.toString()) && mentorMentees.length > 0 && (
                       <tr className="bg-muted/50">
-                        <td colSpan={4} className="px-6 py-4">
+                        <td colSpan={5} className="px-6 py-4">
                           <div className="pl-11">
                             <h4 className="text-sm font-medium mb-3">Mentees</h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                               {mentorMentees.map((mentee) => (
                                 <div
                                   key={mentee._id.toString()}
-                                  className="flex items-center gap-3 p-3 border rounded-lg bg-card"
+                                  className="flex flex-col gap-2 p-3 border rounded-lg bg-card"
                                 >
-                                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                                  <img
-                                    src={mentee.picture || "/avatar.svg"}
-                                    alt={mentee.name}
-                                    className="w-10 h-10 rounded-full object-cover"
-                                  />
-                                  <div>
-                                    <div className="font-medium">{mentee.name}</div>
-                                    <div className="text-sm text-muted-foreground">
-                                      {mentee.university || "No university"}
+                                  <div className="flex items-center gap-3">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                      src={mentee.picture || "/avatar.svg"}
+                                      alt={mentee.name}
+                                      className="w-10 h-10 rounded-full object-cover"
+                                    />
+                                    <div>
+                                      <div className="font-medium">{mentee.name}</div>
+                                      <div className="text-sm text-muted-foreground">
+                                        {mentee.university || "No university"}
+                                      </div>
                                     </div>
                                   </div>
+                                  {mentee.tags && mentee.tags.length > 0 && (
+                                    <div className="flex flex-wrap gap-1 mt-1">
+                                      {mentee.tags.map((tag) => (
+                                        <span 
+                                          key={tag._id}
+                                          className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium text-white"
+                                          style={{ backgroundColor: tag.color }}
+                                          title={tag.description}
+                                        >
+                                          {tag.name}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  )}
                                 </div>
                               ))}
                             </div>
@@ -227,6 +273,9 @@ function TableView({ mentors, mentees }: { mentors: Mentor[], mentees: Mentee[] 
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   University
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  Tags
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Social Profiles
@@ -258,6 +307,24 @@ function TableView({ mentors, mentees }: { mentors: Mentor[], mentees: Mentee[] 
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{mentee.university || "-"}</td>
+                    <td className="px-6 py-4">
+                      <div className="flex flex-wrap gap-1 max-w-48">
+                        {mentee.tags && mentee.tags.length > 0 ? (
+                          mentee.tags.map((tag) => (
+                            <span 
+                              key={tag._id}
+                              className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-white"
+                              style={{ backgroundColor: tag.color }}
+                              title={tag.description}
+                            >
+                              {tag.name}
+                            </span>
+                          ))
+                        ) : (
+                          <span className="text-xs text-muted-foreground">No tags</span>
+                        )}
+                      </div>
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex space-x-3">
                         {mentee.linkedin && (

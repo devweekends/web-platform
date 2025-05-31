@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import TagAssignment from "@/components/TagAssignment";
 
 // Import MentorshipGraph component dynamically with SSR disabled
 const MentorshipGraph = dynamic(() => import("@/components/MentorshipGraph"), {
@@ -45,7 +46,7 @@ const VIEW_OPTIONS = [
   { key: "gallery", label: "Gallery", icon: Grid },
 ];
 
-function TableView({ mentors, mentees }: any) {
+function TableView({ mentors, mentees, onDataUpdate }: any) {
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
   const router = useRouter();
 
@@ -61,6 +62,10 @@ function TableView({ mentors, mentees }: any) {
 
   const handleSetCredentials = (mentorId: string) => {
     router.push(`/admin/dashboard/mentor-credentials/${mentorId}`);
+  };
+
+  const handleTagsUpdated = (personId: string, personType: 'mentor' | 'mentee', updatedTags: any[]) => {
+    onDataUpdate && onDataUpdate();
   };
 
   return (
@@ -85,6 +90,9 @@ function TableView({ mentors, mentees }: any) {
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   University
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  Tags
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Username
@@ -147,6 +155,17 @@ function TableView({ mentors, mentees }: any) {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
                         {mentor.university || "-"}
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="max-w-48">
+                          <TagAssignment
+                            personId={mentor._id}
+                            personType="mentor"
+                            personName={mentor.name}
+                            currentTags={mentor.tags || []}
+                            onTagsUpdated={(updatedTags) => handleTagsUpdated(mentor._id, 'mentor', updatedTags)}
+                          />
+                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm">
                         {mentor.username ? (
@@ -246,7 +265,7 @@ function TableView({ mentors, mentees }: any) {
                     {expandedRows.has(mentor._id) &&
                       mentorMentees.length > 0 && (
                         <tr className="bg-muted/50">
-                          <td colSpan={6} className="px-6 py-4">
+                          <td colSpan={9} className="px-6 py-4">
                             <div className="pl-11">
                               <h4 className="text-sm font-medium mb-3">
                                 Mentees
@@ -255,8 +274,9 @@ function TableView({ mentors, mentees }: any) {
                                 {mentorMentees.map((mentee: any) => (
                                   <div
                                     key={mentee._id.toString()}
-                                    className="flex items-center gap-3 p-3 border rounded-lg bg-card"
+                                    className="flex flex-col gap-3 p-3 border rounded-lg bg-card"
                                   >
+                                    <div className="flex items-center gap-3">
                                     <Image
                                       src={mentee.picture || "/avatar.svg"}
                                       alt={mentee.name}
@@ -287,11 +307,25 @@ function TableView({ mentors, mentees }: any) {
                                           </a>
                                         </div>
                                       )}
+                                      </div>
+                                    </div>
+                                    
+                                    {/* Tags for mentee */}
+                                    <div className="mt-2">
+                                      <TagAssignment
+                                        personId={mentee._id}
+                                        personType="mentee"
+                                        personName={mentee.name}
+                                        currentTags={mentee.tags || []}
+                                        onTagsUpdated={(updatedTags) => handleTagsUpdated(mentee._id, 'mentee', updatedTags)}
+                                      />
+                                    </div>
+
                                       {/* Social links */}
                                       <div className="flex space-x-3">
-                                        {mentor.linkedin && (
+                                      {mentee.linkedin && (
                                           <a
-                                            href={mentor.linkedin}
+                                          href={mentee.linkedin}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="p-1 rounded-full hover:opacity-80 transition-colors border flex items-center justify-center bg-white"
@@ -309,9 +343,9 @@ function TableView({ mentors, mentees }: any) {
                                             />
                                           </a>
                                         )}
-                                        {mentor.github && (
+                                      {mentee.github && (
                                           <a
-                                            href={mentor.github}
+                                          href={mentee.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="p-1 rounded-full hover:text-foreground flex items-center justify-center"
@@ -330,9 +364,9 @@ function TableView({ mentors, mentees }: any) {
                                             </svg>
                                           </a>
                                         )}
-                                        {mentor.leetcode && (
+                                      {mentee.leetcode && (
                                           <a
-                                            href={mentor.leetcode}
+                                          href={mentee.leetcode}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="p-1 rounded-full hover:opacity-80 transition-colors border flex items-center justify-center bg-white"
@@ -350,7 +384,6 @@ function TableView({ mentors, mentees }: any) {
                                             />
                                           </a>
                                         )}
-                                      </div>
                                     </div>
                                   </div>
                                 ))}
@@ -389,6 +422,9 @@ function TableView({ mentors, mentees }: any) {
                   University
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  Tags
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Social Profiles
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
@@ -404,16 +440,10 @@ function TableView({ mentors, mentees }: any) {
                   mentee.mentor &&
                   mentee.mentor._id
                     ? mentee.mentor
-                    : mentors.find(
-                        (m: any) =>
-                          m._id.toString() === mentee.mentor?.toString()
-                      );
+                    : null;
 
                 return (
-                  <tr
-                    key={mentee._id.toString()}
-                    className="hover:bg-muted/50 transition-colors"
-                  >
+                  <tr key={mentee._id} className="hover:bg-muted/50 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <Image
@@ -423,7 +453,9 @@ function TableView({ mentors, mentees }: any) {
                           height={32}
                           className="w-8 h-8 rounded-full object-cover"
                         />
-                        <span className="ml-3 font-medium">{mentee.name}</span>
+                        <span className="ml-3 font-medium">
+                          {mentee.name}
+                        </span>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -449,6 +481,17 @@ function TableView({ mentors, mentees }: any) {
                     <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
                       {mentee.university || "-"}
                     </td>
+                    <td className="px-6 py-4">
+                      <div className="max-w-48">
+                        <TagAssignment
+                          personId={mentee._id}
+                          personType="mentee"
+                          personName={mentee.name}
+                          currentTags={mentee.tags || []}
+                          onTagsUpdated={(updatedTags) => handleTagsUpdated(mentee._id, 'mentee', updatedTags)}
+                        />
+                      </div>
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex space-x-3">
                         {mentee.linkedin && (
@@ -473,7 +516,7 @@ function TableView({ mentors, mentees }: any) {
                             href={mentee.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1 rounded-full hover:text-foreground flex items-center justify-center"
+                            className="h-8 mt-3 w-8 rounded-full"
                             title="GitHub"
                           >
                             <svg
@@ -733,9 +776,7 @@ function GalleryView({ mentors, mentees }: any) {
               mentee.mentor &&
               mentee.mentor._id
                 ? mentee.mentor
-                : mentors.find(
-                    (m: any) => m._id.toString() === mentee.mentor?.toString()
-                  );
+                : null;
 
             return (
               <div
@@ -1275,6 +1316,7 @@ export default function AdminMentorshipPage() {
           <TableView
             mentors={filteredData.mentors}
             mentees={filteredData.mentees}
+            onDataUpdate={() => handleSearch({ searchTerm: "", role: "all", university: "", mentorName: "" })}
           />
         );
       case "gallery":

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Mentee } from '@/models/Mentee';
 import { Mentor } from '@/models/Mentor';
+import { Tag } from '@/models/Tag';
 import connectDB from '@/lib/db';
 import { v2 as cloudinary } from 'cloudinary';
 import { cookies } from 'next/headers';
@@ -24,8 +25,10 @@ export async function GET(request: Request) {
     const id = searchParams.get('id');
     
     if (id) {
-      // Return a single mentee by ID with populated mentor
-      const mentee = await Mentee.findById(id).populate('mentor');
+      // Return a single mentee by ID with populated mentor and tags
+      const mentee = await Mentee.findById(id)
+        .populate('mentor')
+        .populate('tags');
       
       if (!mentee) {
         return NextResponse.json({ error: 'Mentee not found' }, { status: 404 });
@@ -33,9 +36,10 @@ export async function GET(request: Request) {
       
       return NextResponse.json(mentee);
     } else {
-      // Return all mentees with populated mentors
+      // Return all mentees with populated mentors and tags
       const mentees = await Mentee.find()
         .populate('mentor')
+        .populate('tags')
         .sort({ createdAt: -1 });
 
       return NextResponse.json(mentees);
@@ -202,7 +206,7 @@ export async function PUT(request: Request) {
       id,
       updateData,
       { new: true }
-    ).populate('mentor');
+    ).populate('mentor').populate('tags');
 
     // Log activity
     await ActivityLog.create({

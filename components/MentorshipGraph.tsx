@@ -4,8 +4,15 @@ import React, { useEffect, useRef, useState } from "react"
 import ForceGraph2D from "react-force-graph-2d"
 import type { ForceGraphMethods as ForceGraph2DMethods, NodeObject, LinkObject } from "react-force-graph-2d"
 import { useTheme } from "next-themes"
-import { X, Linkedin, Github, Code, Mail, Phone, ChevronDown, ChevronUp } from "lucide-react"
+import { X, Linkedin, Github, Code, Mail, Phone, ChevronDown, ChevronUp, Tag as TagIcon } from "lucide-react"
 import NextImage from 'next/image'
+
+interface ITag {
+  _id: string
+  name: string
+  description?: string
+  color: string
+}
 
 interface IMentor {
   _id: string | number
@@ -17,6 +24,7 @@ interface IMentor {
   linkedin?: string
   github?: string
   leetcode?: string
+  tags?: ITag[]
 }
 
 interface IMentee {
@@ -30,6 +38,7 @@ interface IMentee {
   github?: string
   leetcode?: string
   mentor?: string | number | { _id: string | number; name: string; university?: string; picture?: string }
+  tags?: ITag[]
 }
 
 interface GraphNode {
@@ -44,6 +53,7 @@ interface GraphNode {
   github?: string
   leetcode?: string
   mentor?: string | { _id: string | number; name: string; university?: string; picture?: string }
+  tags?: ITag[]
   x?: number
   y?: number
 }
@@ -118,6 +128,7 @@ export default function MentorshipGraph({
         linkedin: mentor.linkedin,
         github: mentor.github,
         leetcode: mentor.leetcode,
+        tags: mentor.tags,
         x: Math.random() * 300,
         y: Math.random() * 300,
       }
@@ -141,6 +152,7 @@ export default function MentorshipGraph({
         linkedin: mentee.linkedin,
         github: mentee.github,
         leetcode: mentee.leetcode,
+        tags: mentee.tags,
         x: Math.random() * 300,
         y: Math.random() * 300,
       }
@@ -415,6 +427,7 @@ export default function MentorshipGraph({
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Type</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Email</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">University</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Tags</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
@@ -435,6 +448,24 @@ export default function MentorshipGraph({
                       <td className="px-6 py-4 whitespace-nowrap text-gray-500 dark:text-gray-400">Mentor</td>
                       <td className="px-6 py-4 whitespace-nowrap text-gray-500 dark:text-gray-400">{mentor.email}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-gray-500 dark:text-gray-400">{mentor.university}</td>
+                      <td className="px-6 py-4">
+                        <div className="flex flex-wrap gap-1 max-w-48">
+                          {mentor.tags && mentor.tags.length > 0 ? (
+                            mentor.tags.map((tag) => (
+                              <span 
+                                key={tag._id}
+                                className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-white"
+                                style={{ backgroundColor: tag.color }}
+                                title={tag.description}
+                              >
+                                {tag.name}
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-xs text-gray-400">No tags</span>
+                          )}
+                        </div>
+                      </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {mentorMentees.length > 0 && (
                           <button
@@ -456,16 +487,32 @@ export default function MentorshipGraph({
                     </tr>
                     {expandedRows.has(mentorId) && mentorMentees.length > 0 && (
                       <tr className="bg-gray-50 dark:bg-gray-800/50">
-                        <td colSpan={5} className="px-6 py-4">
+                        <td colSpan={6} className="px-6 py-4">
                           <div className="pl-11">
                             <h4 className="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">Mentees</h4>
                             <div className="space-y-3">
                               {mentorMentees.map((mentee) => (
-                                <div key={mentee._id.toString()} className="flex items-center gap-3">
+                                <div key={mentee._id.toString()} className="flex items-center gap-3 p-2 border rounded">
                                   {/* eslint-disable-next-line @next/next/no-img-element */}
                                   <img src={mentee.picture || '/avatar.svg'} alt={mentee.name} className="w-6 h-6 rounded-full object-cover" />
-                                  <span className="text-gray-700 dark:text-gray-300">{mentee.name}</span>
-                                  <span className="text-gray-500 dark:text-gray-400 text-sm">({mentee.university})</span>
+                                  <div className="flex-1">
+                                    <span className="text-gray-700 dark:text-gray-300 font-medium">{mentee.name}</span>
+                                    <span className="text-gray-500 dark:text-gray-400 text-sm ml-2">({mentee.university})</span>
+                                    {mentee.tags && mentee.tags.length > 0 && (
+                                      <div className="flex flex-wrap gap-1 mt-1">
+                                        {mentee.tags.map((tag) => (
+                                          <span 
+                                            key={tag._id}
+                                            className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium text-white"
+                                            style={{ backgroundColor: tag.color }}
+                                            title={tag.description}
+                                          >
+                                            {tag.name}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
                               ))}
                             </div>
@@ -488,6 +535,24 @@ export default function MentorshipGraph({
                   <td className="px-6 py-4 whitespace-nowrap text-gray-500 dark:text-gray-400">Mentee</td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-500 dark:text-gray-400">{mentee.email}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-500 dark:text-gray-400">{mentee.university}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex flex-wrap gap-1 max-w-48">
+                      {mentee.tags && mentee.tags.length > 0 ? (
+                        mentee.tags.map((tag) => (
+                          <span 
+                            key={tag._id}
+                            className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-white"
+                            style={{ backgroundColor: tag.color }}
+                            title={tag.description}
+                          >
+                            {tag.name}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="text-xs text-gray-400">No tags</span>
+                      )}
+                    </div>
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-500 dark:text-gray-400">
                     {mentors.find(m => m._id.toString() === mentee.mentor?.toString())?.name || 'No mentor'}
                   </td>
@@ -797,6 +862,28 @@ export default function MentorshipGraph({
                    <p className="text-gray-500 dark:text-gray-400">No mentees found</p>}
                 </div>
               </div>
+
+              {/* Tags */}
+              {selectedNode.tags && selectedNode.tags.length > 0 && (
+                <div className="py-3 border-b border-gray-200 dark:border-gray-800">
+                  <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-2">
+                    <TagIcon size={16} />
+                    Tags
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedNode.tags.map((tag) => (
+                      <span 
+                        key={tag._id}
+                        className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-white"
+                        style={{ backgroundColor: tag.color }}
+                        title={tag.description}
+                      >
+                        {tag.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Social Links */}
               <div className="py-3 border-t border-gray-200 dark:border-gray-800">

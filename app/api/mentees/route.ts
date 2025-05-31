@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Mentee } from '@/models/Mentee';
+import { Tag } from '@/models/Tag';
 import connectDB from '@/lib/db';
 
 // GET all mentees with their mentors (public view)
@@ -11,6 +12,7 @@ export async function GET() {
         path: 'mentor',
         select: 'name university picture', // Only select public fields
       })
+      .populate('tags') // Include tags for public display
       .sort({ createdAt: -1 });
 
     return NextResponse.json(mentees);

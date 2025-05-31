@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LogOut, Menu, X, LayoutDashboard, Users, Users2, CalendarDays, Network, PenToolIcon, Globe, BookOpen } from 'lucide-react';
+import { LogOut, Menu, X, LayoutDashboard, Users, Users2, CalendarDays, Network, PenToolIcon, Globe, BookOpen, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const menuItems = [
@@ -13,6 +13,7 @@ const menuItems = [
   { title: 'Sessions', href: '/admin/dashboard/sessions', icon: <CalendarDays className="w-5 h-5" /> },
   { title: 'Mentorship', href: '/admin/dashboard/mentorship', icon: <Network className="w-5 h-5" /> },
   { title: 'Network', href: '/admin/dashboard/add-mentorship', icon: <Globe className="w-5 h-5" /> },
+  { title: 'Tags', href: '/admin/dashboard/tags', icon: <Tag className="w-5 h-5" /> },
   { title: 'MindMaster', href: '/admin/dashboard/mindmaster', icon: <BookOpen className="w-5 h-5" /> },
 ];
 
@@ -44,7 +45,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         style={{ minHeight: 'calc(100vh - 4rem)' }}
       >
         {/* Top: Toggle only */}
-        <div className={`flex items-center h-16 px-2 ${collapsed ? 'justify-center' : 'justify-end'} border-b border-border`}> 
+        <div className="p-4 border-b border-border flex items-center justify-between">
           {/* Collapse/Expand toggle (desktop only) */}
           <Button
             variant="ghost"
@@ -88,7 +89,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           ))}
         </nav>
         {/* Logout at bottom */}
-        <div className={`mt-auto p-2 ${collapsed ? 'flex justify-center' : ''}`}>
+        <div className="p-4 border-t border-border">
           <Button
             variant="ghost"
             className={`w-full flex items-center justify-center text-red-500 hover:bg-red-50 dark:hover:bg-red-900 rounded-lg ${collapsed ? 'px-0' : ''}`}
@@ -104,7 +105,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Overlay for mobile sidebar */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-30  md:hidden"
+          className="fixed inset-0 z-30 bg-black/50 md:hidden"
           onClick={() => setSidebarOpen(false)}
           aria-label="Close sidebar overlay"
         />

@@ -10,6 +10,7 @@ export interface IMentee extends Document {
   picture?: string;
   university?: string;
   mentor: mongoose.Types.ObjectId;
+  tags: mongoose.Types.ObjectId[];
   isMentor: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -58,6 +59,10 @@ const MenteeSchema = new Schema<IMentee>(
       ref: 'Mentor',
       required: [true, 'Mentor is required'],
     },
+    tags: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Tag'
+    }],
     isMentor: {
       type: Boolean,
       default: false,

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Mentor } from '@/models/Mentor';
 import { Mentee } from '@/models/Mentee';
+import { Tag } from '@/models/Tag';
 import connectDB from '@/lib/db';
 import { v2 as cloudinary } from 'cloudinary';
 import { cookies } from 'next/headers';
@@ -27,8 +28,10 @@ export async function GET(request: Request) {
     const id = searchParams.get('id');
     
     if (id) {
-      // Return a single mentor by ID with populated mentees
-      const mentor = await Mentor.findById(id).populate('mentees');
+      // Return a single mentor by ID with populated mentees and tags
+      const mentor = await Mentor.findById(id)
+        .populate('mentees')
+        .populate('tags');
       
       if (!mentor) {
         return NextResponse.json({ error: 'Mentor not found' }, { status: 404 });
@@ -36,9 +39,10 @@ export async function GET(request: Request) {
       
       return NextResponse.json(mentor);
     } else {
-      // Return all mentors with populated mentees
+      // Return all mentors with populated mentees and tags
       const mentors = await Mentor.find()
         .populate('mentees')
+        .populate('tags')
         .sort({ createdAt: -1 });
       return NextResponse.json(mentors);
     }
@@ -138,7 +142,9 @@ export async function PUT(request: Request) {
     }
 
     // Find the existing mentor to get current data
-    const existingMentor = await Mentor.findById(id).populate('mentees');
+    const existingMentor = await Mentor.findById(id)
+      .populate('mentees')
+      .populate('tags');
     if (!existingMentor) {
       return NextResponse.json(
         { error: 'Mentor not found' },
@@ -180,7 +186,7 @@ export async function PUT(request: Request) {
         id,
         updateData,
         { new: true }
-      ).populate('mentees');
+      ).populate('mentees').populate('tags');
     }
 
     await ActivityLog.create({

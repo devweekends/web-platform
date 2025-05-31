@@ -11,6 +11,7 @@ export interface IMentor extends Document {
   picture?: string;
   university?: string;
   mentees: mongoose.Types.ObjectId[];
+  tags: mongoose.Types.ObjectId[];
   username?: string;
   password?: string;
   comparePassword: (candidatePassword: string) => Promise<boolean>;
@@ -59,6 +60,10 @@ const MentorSchema = new Schema<IMentor>(
     mentees: [{
       type: Schema.Types.ObjectId,
       ref: 'Mentee'
+    }],
+    tags: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Tag'
     }],
     username: {
       type: String,
