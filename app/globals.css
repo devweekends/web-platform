@@ -86,3 +86,26 @@
     -webkit-line-clamp: 3;
   }
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modalIn {
+  0% { opacity: 0; transform: scale(0.95) translateY(30px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.4s cubic-bezier(0.4,0,0.2,1) both;
+}
+.animate-modalIn {
+  animation: modalIn 0.4s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+@keyframes heroFadeIn {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-heroFadeIn {
+  animation: heroFadeIn 0.8s cubic-bezier(0.4,0,0.2,1) both;
+}

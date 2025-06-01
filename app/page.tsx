@@ -90,9 +90,9 @@ const mentors = [
   {
     name: "Tanzeel Saleem",
     role: "Founder @ DevNexus",
-    skills: ["AWS", "Azure", "Serverless"],
+    skills: ["AWS", "Node.js", "Microservices"],
     linkedin: "https://www.linkedin.com/in/tanzeel-saleem/",
-    image: "/m1.jpg",
+    image: "/tanzeel.jpg",
   },
   {
     name: "Fiaz Ahmad",
