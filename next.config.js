@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['hebbkx1anhila5yf.public.blob.vercel-storage.com','res.cloudinary.com','randomuser.me'],
+    domains: ['hebbkx1anhila5yf.public.blob.vercel-storage.com','res.cloudinary.com','randomuser.me','cdn.brandfetch.io'],
   },
   typescript: {
     // !! WARN !!

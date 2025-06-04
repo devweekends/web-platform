@@ -1,7 +1,40 @@
 import Link from "next/link"
-import { Facebook, Github, Instagram, Linkedin, TreePalm, Youtube } from "lucide-react"
+import Image from "next/image"
 
 export default function Footer() {
+  const socialLinks = [
+    {
+      name: 'Linktree',
+      url: 'https://linktr.ee/DevWeekends',
+      icon: '/linktree.png'
+    },
+    {
+      name: 'Instagram',
+      url: 'https://www.instagram.com/devweekends',
+      icon: 'https://cdn.brandfetch.io/ido5G85nya/theme/light/id8qc6z_TX.svg?c=1dxbfHSJFAPEGdCLU4o5B'
+    },
+    {
+      name: 'LinkedIn',
+      url: 'https://www.linkedin.com/company/dev-weekends/',
+      icon: 'https://cdn.brandfetch.io/idJFz6sAsl/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B'
+    },
+    {
+      name: 'YouTube',
+      url: 'https://www.youtube.com/@devweekends',
+      icon: 'https://cdn.brandfetch.io/idVfYwcuQz/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B'
+    },
+    {
+      name: 'Facebook',
+      url: 'https://facebook.com/groups/devweekends',
+      icon: 'https://cdn.brandfetch.io/idpKX136kp/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B'
+    },
+    {
+      name: 'Discord',
+      url: 'https://discord.com/invite/c7Sn3yhvSh',
+      icon: 'https://cdn.brandfetch.io/idM8Hlme1a/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B'
+    }
+  ]
+
   return (
     <footer className="bg-gradient-to-b from-background to-muted/30 border-t">
       <div className="container sm:px-4 py-8">
@@ -16,49 +49,22 @@ export default function Footer() {
             <p className="mt-2 text-xs text-muted-foreground">
               A community focused on mentorship to make you better Software Engineer
             </p>
-            <div className="flex flex-wrap gap-3 mt-3">
-              <Link
-                href="https://linktr.ee/DevWeekends"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="Linktree"
-              >
-                <TreePalm size={18} />
-              </Link>
-              <Link
-                href="https://www.instagram.com/devweekends"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram size={18} />
-              </Link>
-              <Link
-                href="https://github.com/devweekends"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={18} />
-              </Link>
-              <Link
-                href="https://www.linkedin.com/company/dev-weekends/"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={18} />
-              </Link>
-              <Link
-                href="https://www.youtube.com/@devweekends"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube size={18} />
-              </Link>
-              <Link
-                href="https://facebook.com/groups/devweekends"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook size={18} />
-              </Link>
+            <div className="flex  flex-wrap gap-4 mt-4">
+              {socialLinks.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.url}
+                  className="relative w-5 h-5 text-muted-foreground hover:text-primary transition-colors"
+                  aria-label={social.name}
+                >
+                  <Image
+                    src={social.icon}
+                    alt={social.name}
+                    fill
+                    className="object-contain hover:scale-110 transition-all duration-300"
+                  />
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -82,11 +88,6 @@ export default function Footer() {
                     Mentors
                   </Link>
                 </li>
-                {/* <li>
-                  <Link href="/ambassadors" className="text-muted-foreground hover:text-primary transition-colors">
-                    Ambassadors
-                  </Link>
-                </li> */}
               </ul>
             </div>
             <div>

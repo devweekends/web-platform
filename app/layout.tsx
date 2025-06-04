@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Script from 'next/script'
 import { Analytics } from "@/components/analytics"
+import { SocialModal } from "@/components/social-modal"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -28,15 +29,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '16x16 32x32' },
-      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
-      { url: '/dw_black.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicons/favicon.ico', sizes: '16x16 32x32' },
+      { url: '/favicons/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicons/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/favicons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/favicons/favicon.ico',
   },
   manifest: '/manifest.json',
   openGraph: {
@@ -114,6 +114,7 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-1">
               <Analytics />
+              <SocialModal />
               {children}
             </main>
             <Footer />
