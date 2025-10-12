@@ -307,31 +307,70 @@ export default function FellowshipPage() {
     <>
       {showModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
         >
           {/* Overlay for blur and dim, closes modal on click */}
           <div
-            className="absolute inset-0 bg-black/30 backdrop-blur-sm transition-all duration-300"
+            className="absolute inset-0 bg-black/60 backdrop-blur-md transition-all duration-500"
             onClick={() => setShowModal(false)}
           />
-          <Card className="max-w-md w-full relative z-10 animate-modalIn">
-            <Button variant="ghost" size="icon" onClick={() => setShowModal(false)} className="absolute top-2 right-2">
-              <X className="w-5 h-5" />
+          <Card className="max-w-lg w-full relative z-10 animate-modalIn bg-white border-2 border-gray-200 shadow-2xl">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => setShowModal(false)} 
+              className="absolute top-4 right-4 hover:bg-gray-100 rounded-full"
+            >
+              <X className="w-5 h-5 text-gray-600" />
             </Button>
-            <CardHeader>
-              <CardTitle>Fellowship is 100% Free!</CardTitle>
-              <CardDescription>
-                <span className="font-semibold text-green-600">No fees, no hidden costs.</span>
+            <CardHeader className="pb-4 pt-8 px-8">
+              <CardTitle className="text-2xl font-bold text-gray-900 text-center mb-2">
+                Fellowship 2025 Completed
+              </CardTitle>
+              <CardDescription className="text-center">
+                <span className="text-lg font-medium text-gray-700">
+                  Thank you for your interest. Applications for 2026 will open next year.
+                </span>
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <ul className="list-disc pl-5 space-y-2 text-sm">
-                <li>All sessions, mentorship, and resources are provided at zero cost to you.</li>
-                <li>Open to all passionate learners, regardless of background.</li>
-                <li>Selection is merit-based and commitment-driven.</li>
-                <li className="font-bold text-red-600 mt-2">Must read all details on this page before joining!</li>
-                <li>By joining, you agree to participate actively and respect the community guidelines.</li>
-              </ul>
+            <CardContent className="px-8 pb-8">
+              <div className="space-y-4">
+                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-3">Program Status</h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      Fellowship 2025 has been successfully completed
+                    </li>
+                    <li className="flex items-start">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      Comprehensive impact report is now available
+                    </li>
+                    <li className="flex items-start">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      Applications for Fellowship 2026 will open next year
+                    </li>
+                    <li className="flex items-start">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      Stay connected for future announcements
+                    </li>
+                  </ul>
+                </div>
+                
+                <div className="pt-2">
+                  <a 
+                    href="https://v0-fellowship-impact-data.vercel.app/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block w-full bg-black text-white text-center py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300 hover:shadow-lg group"
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      View Fellowship 2025 Report
+                      <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </a>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
