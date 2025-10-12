@@ -407,7 +407,7 @@ export default function FellowshipPage() {
                 <br />
                 <span className="relative inline-block mt-2 sm:mt-0">
                   <span className="bg-gray-600 text-white px-3 sm:px-4 md:px-6 py-2 sm:py-3 inline-block transform -rotate-1 rounded-lg text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                    Fellowship Closed
+                    Fellowship 2025 Closed
                   </span>
                 </span>
               </h1>

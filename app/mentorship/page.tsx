@@ -143,8 +143,7 @@ export default function MentorshipPage() {
       description: "For developers with basic knowledge aiming for professional excellence",
       duration: "6 months",
       intensity: "Moderate Pace",
-      liveSessions: "48 Live Sessions",
-      mentorshipHours: "36 Hours 1:1 Mentorship",
+      liveSessions: "20 Live Sessions",
       highlights: [
         "Advanced data structures mastery",
         "Complex algorithms & optimization",
@@ -163,8 +162,8 @@ export default function MentorshipPage() {
       description: "Intensive program for experienced developers targeting senior roles",
       duration: "6 months",
       intensity: "Expert Level",
-      liveSessions: "48 Live Sessions",
-      mentorshipHours: "48 Hours 1:1 Mentorship",
+      liveSessions: "20 Live Sessions",
+    
       highlights: [
         "Complex system architecture design",
         "Advanced algorithms & performance",
@@ -287,14 +286,14 @@ export default function MentorshipPage() {
   ]
 
   const techStack = [
-    { name: "JavaScript/TypeScript", sessions: "8 sessions", icon: <Code2 className="h-4 w-4 sm:h-5 sm:w-5" /> },
-    { name: "React & Next.js", sessions: "8 sessions", icon: <Code className="h-4 w-4 sm:h-5 sm:w-5" /> },
-    { name: "Node.js & Express", sessions: "6 sessions", icon: <Server className="h-4 w-4 sm:h-5 sm:w-5" /> },
-    { name: "Database & SQL", sessions: "6 sessions", icon: <Database className="h-4 w-4 sm:h-5 sm:w-5" /> },
-    { name: "System Design", sessions: "8 sessions", icon: <Layers className="h-4 w-4 sm:h-5 sm:w-5" /> },
-    { name: "Cloud & DevOps", sessions: "6 sessions", icon: <Globe className="h-4 w-4 sm:h-5 sm:w-5" /> },
-    { name: "DSA & Algorithms", sessions: "48 sessions", icon: <Brain className="h-4 w-4 sm:h-5 sm:w-5" /> },
-    { name: "Project Development", sessions: "12 sessions", icon: <Rocket className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "JavaScript/TypeScript", icon: <Code2 className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "React & Next.js", icon: <Code className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Node.js & Express", icon: <Server className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Database & SQL", icon: <Database className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "System Design", icon: <Layers className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Cloud & DevOps", icon: <Globe className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "DSA & Algorithms", icon: <Brain className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Project Development", icon: <Rocket className="h-4 w-4 sm:h-5 sm:w-5" /> },
   ]
 
   const mentorshipPerks = [
@@ -378,9 +377,8 @@ export default function MentorshipPage() {
             </CardHeader>
             <CardContent>
               <ul className="list-disc pl-5 space-y-2 text-sm">
-                <li>48 Live interactive sessions with industry experts</li>
+                <li>20 Live interactive sessions with industry experts</li>
                 <li>Personal mentor assigned for your entire journey</li>
-                <li>24-48 hours of 1:1 mentorship based on your track</li>
                 <li>Job placement assistance and industry referrals</li>
                 <li className="font-bold text-primary">Limited seats - Apply now!</li>
                 <li>Selection based on commitment and passion to learn</li>

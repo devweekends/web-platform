@@ -14,6 +14,7 @@ export default function Navbar() {
   const routes = [
     { href: "/about", label: "About" },
     { href: "/mentorship", label: "Mentorship" },
+    { href: "/fellowship", label: "Fellowship" },
     { href: "/sessions", label: "Sessions" },
     { href: "/mindmaster", label: "MindMaster" },
   ];
