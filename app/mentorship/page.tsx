@@ -1,743 +1,686 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
-import { ZoomIn, ZoomOut, Maximize2, RefreshCw, Target, Network, Table, ChevronDown, ChevronUp, Tag as TagIcon } from "lucide-react"
-import dynamic from "next/dynamic"
-
-// Import MentorshipGraph component dynamically with SSR disabled
-const MentorshipGraph = dynamic(() => import("@/components/MentorshipGraph"), {
-  ssr: false,
-  loading: () => (
-    <div className="flex justify-center items-center h-[500px]">
-      <div className="flex flex-col items-center gap-4">
-        <div className="relative w-12 h-12">
-          <div className="absolute top-0 left-0 w-12 h-12 border-4 border-muted rounded-full"></div>
-          <div className="absolute top-0 left-0 w-12 h-12 border-4 border-t-primary rounded-full animate-spin"></div>
-        </div>
-        <p className="text-muted-foreground">Loading graph visualization...</p>
-      </div>
-    </div>
-  )
-})
-
-interface Tag {
-  _id: string
-  name: string
-  description?: string
-  color: string
-}
-
-interface Mentor {
-  _id: string
-  name: string
-  picture?: string
-  university?: string
-  email: string
-  phone?: string
-  linkedin?: string
-  github?: string
-  leetcode?: string
-  tags?: Tag[]
-}
-
-interface Mentee {
-  _id: string
-  name: string
-  picture?: string
-  university?: string
-  email?: string
-  phone?: string
-  linkedin?: string
-  github?: string
-  leetcode?: string
-  mentor?: string | { _id: string; name: string; university?: string; picture?: string }
-  tags?: Tag[]
-}
-
-const VIEW_OPTIONS = [
-  { key: "spider", label: "Spider Web", icon: Network },
-  { key: "table", label: "Table", icon: Table },
-]
-
-function TableView({ mentors, mentees }: { mentors: Mentor[], mentees: Mentee[] }) {
-  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
-
-  const toggleRow = (id: string) => {
-    const newExpanded = new Set(expandedRows)
-    if (newExpanded.has(id)) {
-      newExpanded.delete(id)
-    } else {
-      newExpanded.add(id)
-    }
-    setExpandedRows(newExpanded)
-  }
-
-  return (
-    <div className="p-4 sm:p-6 space-y-8">
-      {/* Mentors Table */}
-      <div>
-        <h3 className="text-xl font-semibold mb-4 px-2">Mentors ({mentors.length})</h3>
-        <div className="overflow-x-auto rounded-lg border">
-          <table className="min-w-full divide-y divide-border">
-            <thead className="bg-muted/50">
-              <tr>
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[150px]">
-                  Name
-                </th>
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[120px]">
-                  University
-                </th>
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[120px]">
-                  Tags
-                </th>
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px]">
-                  Social
-                </th>
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px]">
-                  Mentees
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-card divide-y divide-border">
-              {mentors.map((mentor) => {
-                const mentorMentees = mentees.filter((m) =>
-                  typeof m.mentor === "object"
-                    ? m.mentor._id?.toString() === mentor._id.toString()
-                    : m.mentor?.toString() === mentor._id.toString(),
-                )
-
-                return (
-                  <React.Fragment key={mentor._id}>
-                    <tr className="hover:bg-muted/50 transition-colors">
-                      <td className="px-4 sm:px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={mentor.picture || "/avatar.svg"}
-                            alt={mentor.name}
-                            className="w-8 h-8 rounded-full object-cover flex-shrink-0"
-                          />
-                          <span className="ml-3 font-medium text-sm sm:text-base">{mentor.name}</span>
-                        </div>
-                      </td>
-                      <td className="px-4 sm:px-6 py-4 text-muted-foreground text-sm">
-                        <div className="max-w-[150px] truncate" title={mentor.university}>
-                          {mentor.university || "-"}
-                        </div>
-                      </td>
-                      <td className="px-4 sm:px-6 py-4">
-                        <div className="flex flex-wrap gap-1 max-w-[200px]">
-                          {mentor.tags && mentor.tags.length > 0 ? (
-                            mentor.tags.slice(0, 3).map((tag) => (
-                              <span 
-                                key={tag._id}
-                                className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-white"
-                                style={{ backgroundColor: tag.color }}
-                                title={tag.description}
-                              >
-                                {tag.name}
-                              </span>
-                            ))
-                          ) : (
-                            <span className="text-xs text-muted-foreground">No tags</span>
-                          )}
-                          {mentor.tags && mentor.tags.length > 3 && (
-                            <span className="text-xs text-muted-foreground">+{mentor.tags.length - 3}</span>
-                          )}
-                        </div>
-                      </td>
-                      <td className="px-4 sm:px-6 py-4 whitespace-nowrap">
-                        <div className="flex space-x-2">
-                          {mentor.linkedin && (
-                            <a
-                              href={mentor.linkedin}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-foreground/70 hover:text-primary transition-colors"
-                              title="LinkedIn"
-                            >
-                              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                              </svg>
-                            </a>
-                          )}
-                          {mentor.github && (
-                            <a
-                              href={mentor.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-foreground/70 hover:text-foreground transition-colors"
-                              title="GitHub"
-                            >
-                              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                  fillRule="evenodd"
-                                  clipRule="evenodd"
-                                  d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.699 1.028 1.592 1.028 2.683 0 3.841-2.337 4.687-4.565 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z"
-                                />
-                              </svg>
-                            </a>
-                          )}
-                          {mentor.leetcode && (
-                            <a
-                              href={mentor.leetcode}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-foreground/70 hover:text-orange-500 transition-colors"
-                              title="LeetCode"
-                            >
-                              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M16.102 17.93l-2.697 2.607c-.466.467-1.111.662-1.823.662s-1.357-.195-1.824-.662l-4.332-4.363c-.467-.467-.702-1.15-.702-1.863s.235-1.357.702-1.824l4.319-4.38c.467-.467 1.125-.645 1.837-.645s1.357.195 1.823.662l2.697 2.606c.514.515 1.111.744 1.715.744 1.31 0 2.315-.925 2.315-2.301 0-.688-.28-1.357-.783-1.85l-3.137-3.082c-1.576-1.576-3.709-2.392-5.85-2.392-2.142 0-4.275.816-5.851 2.392l-4.872 4.914c-1.561 1.576-2.392 3.709-2.392 5.851s.83 4.276 2.392 5.851l4.886 4.914c1.576 1.576 3.709 2.392 5.851 2.392s4.275-.816 5.851-2.392l3.137-3.082c.516-.503.783-1.173.783-1.845 0-1.123-.728-2.301-2.198-2.301-.604 0-1.201.227-1.715.741z" />
-                              </svg>
-                            </a>
-                          )}
-                        </div>
-                      </td>
-                      <td className="px-4 sm:px-6 py-4 whitespace-nowrap">
-                        {mentorMentees.length > 0 ? (
-                          <button
-                            onClick={() => toggleRow(mentor._id.toString())}
-                            className="text-primary hover:text-primary/80 flex items-center gap-1 text-sm transition-colors"
-                          >
-                            {expandedRows.has(mentor._id.toString()) ? (
-                              <>
-                                <span className="hidden sm:inline">Hide</span> <ChevronUp size={16} />
-                              </>
-                            ) : (
-                              <>
-                                <span className="hidden sm:inline">View</span> ({mentorMentees.length}) <ChevronDown size={16} />
-                              </>
-                            )}
-                          </button>
-                        ) : (
-                          <span className="text-muted-foreground text-sm">None</span>
-                        )}
-                      </td>
-                    </tr>
-                    {expandedRows.has(mentor._id.toString()) && mentorMentees.length > 0 && (
-                      <tr className="bg-muted/30">
-                        <td colSpan={5} className="px-4 sm:px-6 py-4">
-                          <div className="pl-2 sm:pl-11">
-                            <h4 className="text-sm font-medium mb-3">Mentees</h4>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                              {mentorMentees.map((mentee) => (
-                                <div
-                                  key={mentee._id.toString()}
-                                  className="flex flex-col gap-2 p-3 border rounded-lg bg-card shadow-sm"
-                                >
-                                  <div className="flex items-center gap-3">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
-                                      src={mentee.picture || "/avatar.svg"}
-                                      alt={mentee.name}
-                                      className="w-8 h-8 rounded-full object-cover flex-shrink-0"
-                                    />
-                                    <div className="min-w-0">
-                                      <div className="font-medium text-sm truncate">{mentee.name}</div>
-                                      <div className="text-xs text-muted-foreground truncate">
-                                        {mentee.university || "No university"}
-                                      </div>
-                                    </div>
-                                  </div>
-                                  {mentee.tags && mentee.tags.length > 0 && (
-                                    <div className="flex flex-wrap gap-1 mt-1">
-                                      {mentee.tags.slice(0, 2).map((tag) => (
-                                        <span 
-                                          key={tag._id}
-                                          className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium text-white"
-                                          style={{ backgroundColor: tag.color }}
-                                          title={tag.description}
-                                        >
-                                          {tag.name}
-                                        </span>
-                                      ))}
-                                      {mentee.tags.length > 2 && (
-                                        <span className="text-xs text-muted-foreground">+{mentee.tags.length - 2}</span>
-                                      )}
-                                    </div>
-                                  )}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    )}
-                  </React.Fragment>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Mentees Table */}
-      <div>
-        <h3 className="text-xl font-semibold mb-4 px-2">Mentees ({mentees.length})</h3>
-        <div className="overflow-x-auto rounded-lg border">
-          <table className="min-w-full divide-y divide-border">
-            <thead className="bg-muted/50">
-              <tr>
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[150px]">
-                  Name
-                </th>
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[120px]">
-                  University
-                </th>
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[120px]">
-                  Tags
-                </th>
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px]">
-                  Social
-                </th>
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[120px]">
-                  Mentor
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-card divide-y divide-border">
-              {mentees.map((mentee) => {
-                // Find mentor info
-                const mentorInfo =
-                  typeof mentee.mentor === "object" && mentee.mentor && mentee.mentor._id
-                    ? mentee.mentor
-                    : mentors.find((m) => m._id.toString() === mentee.mentor?.toString())
-
-                return (
-                  <tr key={mentee._id.toString()} className="hover:bg-muted/50 transition-colors">
-                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={mentee.picture || "/avatar.svg"}
-                          alt={mentee.name}
-                          className="w-8 h-8 rounded-full object-cover flex-shrink-0"
-                        />
-                        <span className="ml-3 font-medium text-sm sm:text-base">{mentee.name}</span>
-                      </div>
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 text-muted-foreground text-sm">
-                      <div className="max-w-[150px] truncate" title={mentee.university}>
-                        {mentee.university || "-"}
-                      </div>
-                    </td>
-                    <td className="px-4 sm:px-6 py-4">
-                      <div className="flex flex-wrap gap-1 max-w-[200px]">
-                        {mentee.tags && mentee.tags.length > 0 ? (
-                          mentee.tags.slice(0, 3).map((tag) => (
-                            <span 
-                              key={tag._id}
-                              className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-white"
-                              style={{ backgroundColor: tag.color }}
-                              title={tag.description}
-                            >
-                              {tag.name}
-                            </span>
-                          ))
-                        ) : (
-                          <span className="text-xs text-muted-foreground">No tags</span>
-                        )}
-                        {mentee.tags && mentee.tags.length > 3 && (
-                          <span className="text-xs text-muted-foreground">+{mentee.tags.length - 3}</span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap">
-                      <div className="flex space-x-2">
-                        {mentee.linkedin && (
-                          <a
-                            href={mentee.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-foreground/70 hover:text-primary transition-colors"
-                            title="LinkedIn"
-                          >
-                            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                            </svg>
-                          </a>
-                        )}
-                        {mentee.github && (
-                          <a
-                            href={mentee.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-foreground/70 hover:text-foreground transition-colors"
-                            title="GitHub"
-                          >
-                            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                              <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.699 1.028 1.592 1.028 2.683 0 3.841-2.337 4.687-4.565 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z"
-                              />
-                            </svg>
-                          </a>
-                        )}
-                        {mentee.leetcode && (
-                          <a
-                            href={mentee.leetcode}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-foreground/70 hover:text-orange-500 transition-colors"
-                            title="LeetCode"
-                          >
-                            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M16.102 17.93l-2.697 2.607c-.466.467-1.111.662-1.823.662s-1.357-.195-1.824-.662l-4.332-4.363c-.467-.467-.702-1.15-.702-1.863s.235-1.357.702-1.824l4.319-4.38c.467-.467 1.125-.645 1.837-.645s1.357.195 1.823.662l2.697 2.606c.514.515 1.111.744 1.715.744 1.31 0 2.315-.925 2.315-2.301 0-.688-.28-1.357-.783-1.85l-3.137-3.082c-1.576-1.576-3.709-2.392-5.85-2.392-2.142 0-4.275.816-5.851 2.392l-4.872 4.914c-1.561 1.576-2.392 3.709-2.392 5.851s.83 4.276 2.392 5.851l4.886 4.914c1.576 1.576 3.709 2.392 5.851 2.392s4.275-.816 5.851-2.392l3.137-3.082c.516-.503.783-1.173.783-1.845 0-1.123-.728-2.301-2.198-2.301-.604 0-1.201.227-1.715.741z" />
-                            </svg>
-                          </a>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap">
-                      {mentorInfo ? (
-                        <div className="flex items-center">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={mentorInfo.picture || "/avatar.svg"}
-                            alt={mentorInfo.name}
-                            className="w-6 h-6 rounded-full object-cover mr-2 flex-shrink-0"
-                          />
-                          <span className="text-foreground text-sm truncate">{mentorInfo.name}</span>
-                        </div>
-                      ) : (
-                        <span className="text-muted-foreground text-sm">No mentor</span>
-                      )}
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  )
-}
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import {
+  Code2,
+  Users,
+  Trophy,
+  Target,
+  CheckCircle,
+  ArrowRight,
+  Globe,
+  Award,
+  Lightbulb,
+  Rocket,
+  TrendingUp,
+  Briefcase,
+  Sparkles,
+  ChevronRight,
+  Play,
+  Star,
+  Clock,
+  Brain,
+  Code,
+  Database,
+  Server,
+  Layers,
+  Calendar,
+  X,
+  UserPlus,
+  Headphones,
+  VideoIcon,
+  MessageCircle,
+} from "lucide-react"
+import { useState, useEffect, useRef } from "react"
 
 export default function MentorshipPage() {
-  const [mentors, setMentors] = useState<Mentor[]>([])
-  const [mentees, setMentees] = useState<Mentee[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [view, setView] = useState("spider")
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
-  const [isRefreshing, setIsRefreshing] = useState(false)
-  const [hasNewData, setHasNewData] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const [selectedLevel, setSelectedLevel] = useState(0)
+  const [scrollY, setScrollY] = useState(0)
+  const [animatedStats, setAnimatedStats] = useState([0, 0, 0, 0])
+  const [timelineProgress, setTimelineProgress] = useState(0)
+  const statsRef = useRef<HTMLDivElement>(null)
+  const timelineRef = useRef<HTMLDivElement>(null)
+  const [hasAnimatedStats, setHasAnimatedStats] = useState(false)
+  const [hasAnimatedTimeline, setHasAnimatedTimeline] = useState(false)
+  const [showModal, setShowModal] = useState(true)
 
-  const fetchData = async (showRefreshIndicator = false) => {
-    if (showRefreshIndicator) setIsRefreshing(true)
-    if (!showRefreshIndicator) setLoading(true)
-    setError(null)
-    
-    try {
-      // Add cache-busting for real-time updates
-      const timestamp = Date.now()
-      const res = await fetch(`/api/mentorship?t=${timestamp}`, {
-        headers: {
-          'Cache-Control': 'no-cache',
-          'Pragma': 'no-cache'
-        }
-      })
-      
-      if (!res.ok) throw new Error("Failed to fetch mentorship data")
-      
-      const { mentors: newMentors, mentees: newMentees } = await res.json()
-      
-      // Check if data actually changed to avoid unnecessary re-renders
-      const dataChanged = JSON.stringify(mentors) !== JSON.stringify(newMentors) || 
-                         JSON.stringify(mentees) !== JSON.stringify(newMentees)
-      
-      if (dataChanged || !lastUpdated) {
-        setMentors(newMentors)
-        setMentees(newMentees)
-        setLastUpdated(new Date())
-        
-        // Show "new data" indicator if this was a background refresh
-        if (showRefreshIndicator && dataChanged) {
-          setHasNewData(true)
-          setTimeout(() => setHasNewData(false), 3000)
+  useEffect(() => {
+    setIsVisible(true)
+
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+
+      if (statsRef.current && !hasAnimatedStats) {
+        const rect = statsRef.current.getBoundingClientRect()
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          setHasAnimatedStats(true)
+          animateStats()
         }
       }
-    } catch (error) {
-      setError("Failed to load mentorship data.")
-      console.error(error)
-    } finally {
-      setLoading(false)
-      setIsRefreshing(false)
-    }
-  }
 
-  // Initial data fetch
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  // Listen for admin updates via localStorage or window events (but don't auto-refresh)
-  useEffect(() => {
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'tags-updated') {
-        // Just show notification, don't auto-refresh
-        setHasNewData(true)
-        setTimeout(() => setHasNewData(false), 5000)
-      }
-      
-      // Listen for any mentorship data updates (mentor/mentee changes)
-      if (e.key === 'mentorship-data-updated') {
-        // Just show notification, don't auto-refresh
-        setHasNewData(true)
-        setTimeout(() => setHasNewData(false), 5000)
+      if (timelineRef.current && !hasAnimatedTimeline) {
+        const rect = timelineRef.current.getBoundingClientRect()
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          setHasAnimatedTimeline(true)
+          animateTimeline()
+        }
       }
     }
 
-    const handleTagUpdate = () => {
-      // Just show notification, don't auto-refresh
-      setHasNewData(true)
-      setTimeout(() => setHasNewData(false), 5000)
-    }
-    
-    const handleDataUpdate = (event: Event) => {
-      // Just show notification, don't auto-refresh
-      setHasNewData(true)
-      setTimeout(() => setHasNewData(false), 5000)
-    }
-
-    // Listen for storage events (cross-tab communication)
-    window.addEventListener('storage', handleStorageChange)
-    
-    // Listen for custom events
-    window.addEventListener('tags-updated', handleTagUpdate)
-    window.addEventListener('mentorship-data-updated', handleDataUpdate)
+    window.addEventListener("scroll", handleScroll)
 
     return () => {
-      window.removeEventListener('storage', handleStorageChange)
-      window.removeEventListener('tags-updated', handleTagUpdate)
-      window.removeEventListener('mentorship-data-updated', handleDataUpdate)
+      window.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+  }, [hasAnimatedStats, hasAnimatedTimeline])
 
-  // Manual refresh function with improved UX
-  const handleManualRefresh = async () => {
-    if (isRefreshing) return // Prevent multiple simultaneous refreshes
-    
-    setIsRefreshing(true)
-    setError(null)
-    setHasNewData(false)
-    
-    try {
-      // Add cache-busting for real-time updates
-      const timestamp = Date.now()
-      const res = await fetch(`/api/mentorship?t=${timestamp}`, {
-        headers: {
-          'Cache-Control': 'no-cache',
-          'Pragma': 'no-cache'
-        }
-      })
-      
-      if (!res.ok) throw new Error("Failed to fetch mentorship data")
-      
-      const { mentors: newMentors, mentees: newMentees } = await res.json()
-      
-      // Check if data actually changed
-      const dataChanged = JSON.stringify(mentors) !== JSON.stringify(newMentors) || 
-                         JSON.stringify(mentees) !== JSON.stringify(newMentees)
-      
-      setMentors(newMentors)
-      setMentees(newMentees)
-      setLastUpdated(new Date())
-      
-      if (dataChanged) {
-        // Show brief success indication
-        setHasNewData(true)
-        setTimeout(() => setHasNewData(false), 2000)
+  const animateStats = () => {
+    const targets = [48, 24, 400, 6]
+    const duration = 2000
+    const steps = 60
+    const increment = duration / steps
+
+    let currentStep = 0
+    const timer = setInterval(() => {
+      currentStep++
+      const progress = currentStep / steps
+      const easeOut = 1 - Math.pow(1 - progress, 3)
+
+      setAnimatedStats(targets.map((target) => Math.floor(target * easeOut)))
+
+      if (currentStep >= steps) {
+        clearInterval(timer)
+        setAnimatedStats(targets)
       }
-    } catch (error) {
-      setError("Failed to refresh mentorship data.")
-      console.error(error)
-    } finally {
-      setIsRefreshing(false)
-    }
+    }, increment)
   }
 
-  // Graph controls (zoom, pan, fit, reset)
-  const handleGraphControl = (action: string) => {
-    const event = new CustomEvent("mentorship-graph-control", { detail: { action } })
-    window.dispatchEvent(event)
+  const animateTimeline = () => {
+    let progress = 0
+    const timer = setInterval(() => {
+      progress += 2
+      setTimelineProgress(progress)
+      if (progress >= 100) {
+        clearInterval(timer)
+      }
+    }, 30)
   }
 
-  const renderView = () => {
-    if (loading) {
-      return (
-        <div className="flex justify-center items-center h-full py-20">
-          <div className="flex flex-col items-center gap-4">
-            <div className="relative w-12 h-12">
-              <div className="absolute top-0 left-0 w-12 h-12 border-4 border-muted rounded-full"></div>
-              <div className="absolute top-0 left-0 w-12 h-12 border-4 border-t-primary rounded-full animate-spin"></div>
-            </div>
-            <p className="text-muted-foreground">Loading data...</p>
-          </div>
-        </div>
-      )
-    }
-
-    if (error) {
-      return (
-        <div className="flex justify-center items-center h-full py-20">
-          <div className="text-center max-w-md p-6">
-            <div className="text-destructive mb-2">⚠️</div>
-            <h3 className="text-lg font-medium mb-2">Error Loading Data</h3>
-            <p className="text-muted-foreground mb-4">{error}</p>
-            <button
-              onClick={() => fetchData()}
-              className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-            >
-              Try Again
-            </button>
-          </div>
-        </div>
-      )
-    }
-
-    switch (view) {
-      case "spider":
-        return (
-          <div className="relative w-full h-[calc(100vh-12rem)]">
-            <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-2">
-              <button
-                onClick={() => handleGraphControl("zoomIn")}
-                className="p-2 rounded-md bg-background/90 shadow-lg hover:bg-background transition-all"
-                title="Zoom In"
-              >
-                <ZoomIn className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => handleGraphControl("zoomOut")}
-                className="p-2 rounded-md bg-background/90 shadow-lg hover:bg-background transition-all"
-                title="Zoom Out"
-              >
-                <ZoomOut className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => handleGraphControl("center")}
-                className="p-2 rounded-md bg-background/90 shadow-lg hover:bg-background transition-all"
-                title="Center"
-              >
-                <Target className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => handleGraphControl("fit")}
-                className="p-2 rounded-md bg-background/90 shadow-lg hover:bg-background transition-all"
-                title="Fit"
-              >
-                <Maximize2 className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => handleGraphControl("reset")}
-                className="p-2 rounded-md bg-background/90 shadow-lg hover:bg-background transition-all"
-                title="Reset"
-              >
-                <RefreshCw className="w-5 h-5" />
-              </button>
-            </div>
-            <MentorshipGraph
-              mentors={mentors}
-              mentees={mentees}
-              isAdmin={false}
-              useImages={true}
-              nodeSpacing={150}
-              view={view}
-              autoFit={true}
-            />
-          </div>
-        )
-      case "table":
-        return <TableView mentors={mentors} mentees={mentees} />
-      default:
-        return null
-    }
+  const handleApplyClick = () => {
+    window.open(
+      "https://forms.gle/PgRbXcgUmtrcAGPu8",
+      "_blank",
+    )
   }
+
+  const levels = [
+    {
+      level: 0,
+      title: "Foundation Track",
+      subtitle: "Complete Beginner Journey",
+      description: "Perfect for absolute beginners starting their coding journey with comprehensive support",
+      duration: "6 months",
+      intensity: "Beginner Friendly",
+      liveSessions: "48 Live Sessions",
+      mentorshipHours: "24 Hours 1:1 Mentorship",
+      highlights: [
+        "Programming fundamentals from scratch",
+        "Web development essentials",
+        "Data structures & algorithms basics",
+        "Weekly 1:1 mentor sessions",
+        "Live coding workshops twice a week",
+        "Personal project guidance"
+      ],
+      icon: <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" />,
+      achievement: "Mentee → Certified Fellow (Bronze)"
+    },
+    {
+      level: 1,
+      title: "Professional Track",
+      subtitle: "Industry-Ready Development",
+      description: "For developers with basic knowledge aiming for professional excellence",
+      duration: "6 months",
+      intensity: "Moderate Pace",
+      liveSessions: "48 Live Sessions",
+      mentorshipHours: "36 Hours 1:1 Mentorship",
+      highlights: [
+        "Advanced data structures mastery",
+        "Complex algorithms & optimization",
+        "System design fundamentals",
+        "Bi-weekly 1:1 mentor sessions",
+        "Mock interviews with feedback",
+        "Open source contribution guidance"
+      ],
+      icon: <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6" />,
+      achievement: "Fellow (Bronze) → Certified Fellow (Silver)"
+    },
+    {
+      level: 2,
+      title: "Expert Track",
+      subtitle: "Leadership & Architecture",
+      description: "Intensive program for experienced developers targeting senior roles",
+      duration: "6 months",
+      intensity: "Expert Level",
+      liveSessions: "48 Live Sessions",
+      mentorshipHours: "48 Hours 1:1 Mentorship",
+      highlights: [
+        "Complex system architecture design",
+        "Advanced algorithms & performance",
+        "Leadership & team mentoring",
+        "Weekly 1:1 mentor sessions",
+        "Industry project collaboration",
+        "Career strategy & negotiation"
+      ],
+      icon: <Briefcase className="h-5 w-5 sm:h-6 sm:w-6" />,
+      achievement: "Fellow (Silver) → Certified Fellow (Gold)"
+    }
+  ]
+
+  const timelineData = [
+    {
+      month: "Month 1-2",
+      title: "Foundation & Core Skills",
+      description: "Master fundamentals through live sessions, build strong programming base with direct mentor guidance",
+      milestone: "Complete Core Foundations",
+      features: ["8 Live Sessions/month", "4 Mentor Sessions", "2 Projects"]
+    },
+    {
+      month: "Month 3-4",
+      title: "Advanced Concepts & Practice",
+      description: "Deep dive into DSA, system design, and development practices with personalized mentorship",
+      milestone: "Build Portfolio Projects",
+      features: ["8 Live Sessions/month", "4 Mentor Sessions", "3 Projects"]
+    },
+    {
+      month: "Month 5-6",
+      title: "Industry Readiness & Placement",
+      description: "Real-world projects, interview preparation, and job placement support with mentor advocacy",
+      milestone: "Job Ready & Certified",
+      features: ["8 Live Sessions/month", "6 Mentor Sessions", "Capstone Project"]
+    }
+  ]
+
+  const mentorshipFeatures = [
+    {
+      title: "Personal Mentor Assignment",
+      icon: <UserPlus className="h-6 w-6 sm:h-8 sm:w-8" />,
+      description: "Get matched with an experienced industry mentor based on your goals and learning style",
+      details: [
+        "Dedicated mentor throughout program",
+        "Personalized learning path",
+        "Career guidance & planning",
+        "Project review & feedback",
+        "Industry insights & networking"
+      ]
+    },
+    {
+      title: "Live Interactive Sessions",
+      icon: <VideoIcon className="h-6 w-6 sm:h-8 sm:w-8" />,
+      description: "Attend live coding sessions, workshops, and Q&A with instructors and industry experts",
+      details: [
+        "2 live sessions per week",
+        "Interactive problem solving",
+        "Real-time doubt clearing",
+        "Peer collaboration",
+        "Session recordings available"
+      ]
+    },
+    {
+      title: "1:1 Mentorship Hours",
+      icon: <Headphones className="h-6 w-6 sm:h-8 sm:w-8" />,
+      description: "Regular one-on-one sessions with your mentor for personalized guidance and support",
+      details: [
+        "Weekly/Bi-weekly sessions",
+        "Customized problem solving",
+        "Code review & optimization",
+        "Interview preparation",
+        "Career counseling"
+      ]
+    }
+  ]
+
+  const programSessions = [
+    {
+      title: "DSA Mastery Sessions",
+      icon: <Brain className="h-6 w-6 sm:h-8 sm:w-8" />,
+      sessions: "48 Live Sessions",
+      description: "Comprehensive data structures and algorithms training with live problem-solving",
+      details: [
+        "2 live sessions per week",
+        "3 hours per session",
+        "500+ problems solved",
+        "LeetCode contests",
+        "Pattern recognition training",
+        "Time & space complexity mastery"
+      ]
+    },
+    {
+      title: "Engineering Excellence",
+      icon: <Code className="h-6 w-6 sm:h-8 sm:w-8" />,
+      sessions: "24 Weekend Sessions",
+      description: "Hands-on engineering workshops building production-ready applications",
+      details: [
+        "Weekend intensive workshops",
+        "Full-stack development",
+        "Cloud & DevOps practices",
+        "Microservices architecture",
+        "Testing & CI/CD",
+        "Performance optimization"
+      ]
+    },
+    {
+      title: "Mentorship & Guidance",
+      icon: <MessageCircle className="h-6 w-6 sm:h-8 sm:w-8" />,
+      sessions: "24-48 Hours 1:1",
+      description: "Personalized mentorship sessions tailored to your learning pace and goals",
+      details: [
+        "Weekly check-ins",
+        "Project guidance",
+        "Career planning",
+        "Resume building",
+        "Interview coaching",
+        "Salary negotiation tips"
+      ]
+    }
+  ]
+
+  const techStack = [
+    { name: "JavaScript/TypeScript", sessions: "8 sessions", icon: <Code2 className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "React & Next.js", sessions: "8 sessions", icon: <Code className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Node.js & Express", sessions: "6 sessions", icon: <Server className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Database & SQL", sessions: "6 sessions", icon: <Database className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "System Design", sessions: "8 sessions", icon: <Layers className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Cloud & DevOps", sessions: "6 sessions", icon: <Globe className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "DSA & Algorithms", sessions: "48 sessions", icon: <Brain className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Project Development", sessions: "12 sessions", icon: <Rocket className="h-4 w-4 sm:h-5 sm:w-5" /> },
+  ]
+
+  const mentorshipPerks = [
+    "Free Access to All Live Sessions",
+    "Dedicated Personal Mentor",
+    "1:1 Mentorship Hours",
+    "Job Placement Assistance",
+    "Industry Referrals",
+    "Mock Interview Practice",
+    "Certificate of Completion",
+    "Lifetime Community Access",
+    "Project Portfolio Development",
+    "Resume & LinkedIn Optimization",
+    "Exclusive Industry Workshops",
+    "Peer Learning Groups",
+  ]
+
+  const achievementTags = [
+    { level: "Mentee", requirements: "Entry level" },
+    { level: "Fellow", requirements: "Complete foundation" },
+    { level: "Certified Fellow (Bronze)", requirements: "Complete beginner track" },
+    { level: "Certified Fellow (Silver)", requirements: "Complete intermediate track" },
+    { level: "Certified Fellow (Gold)", requirements: "Complete advanced track" },
+    { level: "Industry Ready", requirements: "Job placement achieved" },
+  ]
+
+  const stats = [
+    {
+      number: animatedStats[0],
+      suffix: "",
+      label: "Live Sessions",
+      icon: <VideoIcon className="h-5 w-5 sm:h-6 sm:w-6" />,
+    },
+    {
+      number: animatedStats[1],
+      suffix: "+",
+      label: "Mentorship Hours",
+      icon: <Headphones className="h-5 w-5 sm:h-6 sm:w-6" />,
+    },
+    {
+      number: animatedStats[2],
+      suffix: "+",
+      label: "Problems Solved",
+      icon: <Target className="h-5 w-5 sm:h-6 sm:w-6" />,
+    },
+    {
+      number: animatedStats[3],
+      suffix: " Months",
+      label: "Comprehensive Program",
+      icon: <Clock className="h-5 w-5 sm:h-6 sm:w-6" />,
+    },
+  ]
+
+  const progressMetrics = [
+    { label: "Placement Rate", value: 92, icon: <Briefcase className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { label: "Mentor Satisfaction", value: 98, icon: <Star className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { label: "Skill Improvement", value: 95, icon: <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { label: "Project Completion", value: 90, icon: <Trophy className="h-4 w-4 sm:h-5 sm:w-5" /> },
+  ]
 
   return (
-    <div className="container mx-auto py-6">
-      {/* Update notifications */}
-      {hasNewData && (
-        <div className="mb-4 flex items-center justify-center">
-          <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2 rounded-lg flex items-center gap-2 text-sm animate-in fade-in slide-in-from-top-2 duration-300">
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-            <span>New updates available! Click refresh to see the latest changes.</span>
-            <button
-              onClick={handleManualRefresh}
-              disabled={isRefreshing}
-              className="ml-2 px-2 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 disabled:opacity-50"
+    <div>
+      {showModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+        >
+          {/* Overlay for blur and dim, closes modal on click */}
+          <div
+            className="absolute inset-0 bg-black/30 backdrop-blur-sm transition-all duration-300"
+            onClick={() => setShowModal(false)}
+          />
+          <Card className="max-w-md w-full relative z-10 animate-modalIn">
+            <Button variant="ghost" size="icon" onClick={() => setShowModal(false)} className="absolute top-2 right-2">
+              <X className="w-5 h-5" />
+            </Button>
+            <CardHeader>
+              <CardTitle>6-Month Mentorship Program</CardTitle>
+              <CardDescription>
+                <span className="font-semibold text-green-600">100% Free - No hidden costs!</span>
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc pl-5 space-y-2 text-sm">
+                <li>48 Live interactive sessions with industry experts</li>
+                <li>Personal mentor assigned for your entire journey</li>
+                <li>24-48 hours of 1:1 mentorship based on your track</li>
+                <li>Job placement assistance and industry referrals</li>
+                <li className="font-bold text-primary">Limited seats - Apply now!</li>
+                <li>Selection based on commitment and passion to learn</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+      <div className={`min-h-screen bg-background text-foreground overflow-x-hidden transition-all duration-300 ${showModal ? 'blur-sm brightness-75 pointer-events-none select-none' : ''}`}>
+        {/* Hero Section */}
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-background to-muted/30"></div>
+          <div
+            className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-primary/5 rounded-full blur-3xl"
+            style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+          ></div>
+          <div
+            className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-primary/3 rounded-full blur-3xl"
+            style={{ transform: `translateY(${scrollY * -0.1}px)` }}
+          ></div>
+
+          <div className="container mx-auto relative z-10 animate-heroFadeIn">
+            <div
+              className={`text-center transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
             >
-              {isRefreshing ? 'Refreshing...' : 'Refresh Now'}
-            </button>
-          </div>
-        </div>
-      )}
-      
-      {isRefreshing && (
-        <div className="mb-4 flex items-center justify-center">
-          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-2 rounded-lg flex items-center gap-2 text-sm">
-            <div className="w-4 h-4 border-2 border-green-600 border-t-transparent rounded-full animate-spin"></div>
-            <span>Refreshing data...</span>
-          </div>
-        </div>
-      )}
-
-      <div className="mb-6 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-          <h1 className="text-2xl font-semibold">Mentorship Network</h1>
-          {lastUpdated && (
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
-              <span className="whitespace-nowrap">Last updated: {lastUpdated.toLocaleTimeString()}</span>
-              <button
-                onClick={handleManualRefresh}
-                disabled={isRefreshing}
-                className="p-1 hover:bg-muted rounded transition-colors flex-shrink-0 disabled:opacity-50"
-                title="Refresh now"
-                aria-label="Refresh data"
+              <Badge
+                variant="outline"
+                className="mb-6 sm:mb-8 border-primary text-primary px-3 sm:px-4 py-1 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
               >
-                <RefreshCw 
-                  className={`w-4 h-4 transition-transform duration-200 ${
-                    isRefreshing ? 'animate-spin' : 'hover:rotate-180'
-                  }`} 
-                />
-              </button>
-            </div>
-          )}
-        </div>
+                <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                2025 Cohort - 6-Month Mentorship Program
+              </Badge>
 
-        <div className="flex justify-center lg:justify-end">
-          <div className="inline-flex rounded-md border overflow-hidden bg-background shadow-sm">
-            {VIEW_OPTIONS.map((option) => {
-              const Icon = option.icon
-              return (
-                <button
-                  key={option.key}
-                  onClick={() => setView(option.key)}
-                  className={`
-                    flex items-center justify-center px-2 sm:px-3 py-2 text-sm font-medium transition-all duration-200
-                    min-w-[70px] sm:min-w-[100px]
-                    ${view === option.key 
-                      ? "bg-primary text-primary-foreground shadow-sm" 
-                      : "text-primary hover:bg-muted hover:text-primary-foreground"
-                    }
-                  `}
-                  title={option.label}
+              <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-8 leading-[1.1] sm:leading-[0.9] tracking-tight">
+                Dev Weekends
+                <br />
+                <span className="relative inline-block mt-2 sm:mt-0">
+                  <span className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-3 sm:px-4 md:px-6 py-2 sm:py-3 inline-block transform -rotate-1 rounded-lg text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                    Mentorship 2025-26
+                  </span>
+                </span>
+              </h1>
+              <p className="text-sm sm:text-xl lg:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+                <strong>6-month comprehensive mentorship program with live sessions</strong>
+                <br className="hidden sm:block" />
+                Get personal mentorship, attend live coding sessions, and become job-ready with our industry-focused curriculum.
+              </p>
+
+              <div className="flex flex-row flex-wrap sm:flex-row gap-3 sm:gap-6 justify-center items-center mb-8 sm:mb-16 px-4">
+                <Button
+                  size="lg"
+                  onClick={handleApplyClick}
+                  className="flex-1 sm:flex-none bg-primary text-primary-foreground hover:bg-primary/90 px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
                 >
-                  <Icon className="w-4 h-4 mr-1 sm:mr-2 flex-shrink-0" />
-                  <span className="hidden sm:inline">{option.label}</span>
-                  <span className="sm:hidden text-xs">{option.label.split(' ')[0]}</span>
-                </button>
-              )
-            })}
-          </div>
-        </div>
-      </div>
+                  Apply for Mentorship
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => document.getElementById('mentorship')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="flex-1 sm:flex-none border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
+                >
+                  Learn About Mentorship
+                </Button>
+              </div>
 
-      <div className="border rounded-lg overflow-hidden bg-card">{renderView()}</div>
+              {/* Achievement Tags Preview */}
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-4xl mx-auto px-4">
+                {achievementTags.map((tag, index) => (
+                  <Badge
+                    key={index}
+                    variant="outline"
+                    className="border-primary text-primary px-2 sm:px-3 py-1 rounded-full font-medium text-xs sm:text-sm"
+                  >
+                    {tag.level}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section
+          ref={statsRef}
+          className="py-8 sm:py-12 lg:py-16 bg-primary text-primary-foreground relative overflow-hidden"
+        >
+          <div
+            className="absolute top-0 left-1/4 w-32 sm:w-64 h-32 sm:h-64 bg-primary-foreground/5 rounded-full blur-3xl"
+            style={{ transform: `translateY(${scrollY * 0.05}px)` }}
+          ></div>
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center group">
+                  <div className="flex justify-center mb-3 sm:mb-4 p-2 sm:p-3 bg-primary-foreground/10 rounded-full w-fit mx-auto group-hover:bg-primary-foreground/20 transition-all duration-300 group-hover:scale-110">
+                    {stat.icon}
+                  </div>
+                  <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 transition-all duration-300">
+                    {stat.number}
+                    {stat.suffix}
+                  </div>
+                  <div className="text-primary-foreground/70 font-medium text-xs sm:text-sm lg:text-base">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        {/* Mentorship Section - NEW */}
+        <section
+          id="mentorship"
+          className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-background to-muted/30"></div>
+
+          <div className="container mx-auto relative z-10">
+            <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+              <Badge
+                variant="outline"
+                className="mb-4 sm:mb-6 border-primary text-primary px-3 sm:px-4 py-1 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
+              >
+                <UserPlus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                Direct Mentorship Program
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 tracking-tight">
+                Personal Mentorship That Transforms
+              </h2>
+              <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+                Get matched with industry experts who guide you through your entire learning journey with personalized support
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-12 sm:mb-16">
+              {mentorshipFeatures.map((feature, index) => (
+                <Card
+                  key={index}
+                  className="border-2 border-border hover:border-primary transition-all duration-500 hover:shadow-xl group bg-card/80 backdrop-blur-sm hover:-translate-y-1"
+                >
+                  <CardHeader className="pb-3 sm:pb-4">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                      {feature.icon}
+                    </div>
+                    <CardTitle className="text-lg sm:text-xl lg:text-2xl font-bold tracking-tight">
+                      {feature.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-3 sm:mb-4">
+                      {feature.description}
+                    </CardDescription>
+                    <ul className="space-y-1.5 sm:space-y-2">
+                      {feature.details.map((detail, detailIndex) => (
+                        <li key={detailIndex} className="flex items-center text-muted-foreground">
+                          <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-primary flex-shrink-0" />
+                          <span className="text-xs sm:text-sm font-medium">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Timeline Section */}
+        <section
+          id="timeline"
+          ref={timelineRef}
+          className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-background to-muted/30"></div>
+
+          <div className="container mx-auto relative z-10">
+            <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+              <Badge
+                variant="outline"
+                className="mb-4 sm:mb-6 border-primary text-primary px-3 sm:px-4 py-1 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
+              >
+                <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                Program Timeline
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 tracking-tight">
+                Your 6-Month Transformation
+              </h2>
+              <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+                A structured journey from beginner to industry-ready developer with continuous mentorship
+              </p>
+            </div>
+
+            {/* Desktop Timeline */}
+            <div className="hidden lg:block max-w-4xl mx-auto">
+              <div className="relative">
+                {/* Timeline Line */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-border"></div>
+                <div
+                  className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-primary transition-all duration-2000 ease-out"
+                  style={{ height: `${timelineProgress}%` }}
+                ></div>
+
+                {/* Timeline Items */}
+                <div className="space-y-16">
+                  {timelineData.map((item, index) => (
+                    <div key={index} className={`flex items-center ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
+                      <div className={`w-1/2 ${index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"}`}>
+                        <Card className="border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-lg">
+                          <CardHeader className="pb-3">
+                            <Badge variant="outline" className="w-fit border-primary text-primary mb-2 text-xs">
+                              {item.month}
+                            </Badge>
+                            <CardTitle className="text-xl font-bold">{item.title}</CardTitle>
+                          </CardHeader>
+                          <CardContent className="pt-0">
+                            <p className="text-muted-foreground mb-3 text-base">{item.description}</p>
+                            <div className="flex items-center text-primary font-semibold text-sm mb-3">
+                              <Trophy className="h-4 w-4 mr-2" />
+                              {item.milestone}
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                              {item.features.map((feature, fIndex) => (
+                                <Badge key={fIndex} variant="secondary" className="text-xs">
+                                  {feature}
+                                </Badge>
+                              ))}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+
+                      {/* Timeline Node */}
+                      <div className="relative z-10">
+                        <div className="w-6 h-6 bg-primary rounded-full border-4 border-background shadow-lg"></div>
+                      </div>
+
+                      <div className="w-1/2"></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Timeline */}
+            <div className="lg:hidden max-w-2xl mx-auto">
+              <div className="relative">
+                {/* Mobile Timeline Line - positioned on the left */}
+                <div className="absolute left-6 top-0 w-0.5 h-full bg-border"></div>
+                <div
+                  className="absolute left-6 top-0 w-0.5 bg-primary transition-all duration-2000 ease-out"
+                  style={{ height: `${timelineProgress}%` }}
+                ></div>
+
+                {/* Mobile Timeline Items */}
+                <div className="space-y-8">
+                  {timelineData.map((item, index) => (
+                    <div key={index} className="flex items-start">
+                      {/* Timeline Node */}
+                      <div className="relative z-10 mr-6">
+                        <div className="w-3 h-3 bg-primary rounded-full border-2 border-background shadow-lg"></div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1">
+                        <Card className="border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-lg">
+                          <CardHeader className="pb-3">
+                            <Badge variant="outline" className="w-fit border-primary text-primary mb-2 text-xs">
+                              {item.month}
+                            </Badge>
+                            <CardTitle className="text-lg font-bold">{item.title}</CardTitle>
+                          </CardHeader>
+                          <CardContent className="pt-0">
+                            <p className="text-muted-foreground mb-3 text-sm">{item.description}</p>
+                            <div className="flex items-center text-primary font-semibold text-sm mb-3">
+                              <Trophy className="h-3 w-3 mr-2" />
+                              {item.milestone}
+                            </div>
+                            <div className="flex flex-wrap gap-1">
+                              {item.features.map((feature, fIndex) => (
+                                <Badge key={fIndex} variant="secondary" className="text-xs">
+                                  {feature}
+                                </Badge>
+                              ))}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   )
 }
