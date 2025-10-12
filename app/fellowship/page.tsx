@@ -399,41 +399,41 @@ export default function FellowshipPage() {
                 className="mb-6 sm:mb-8 border-primary text-primary px-3 sm:px-4 py-1 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
               >
                 <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Summer Program 2025 - Industry Readiness Fellowship
+                Fellowship 2025 - Program Completed
               </Badge>
 
               <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-8 leading-[1.1] sm:leading-[0.9] tracking-tight">
                 Dev Weekends
                 <br />
                 <span className="relative inline-block mt-2 sm:mt-0">
-                  <span className="bg-primary text-primary-foreground px-3 sm:px-4 md:px-6 py-2 sm:py-3 inline-block transform -rotate-1 rounded-lg text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                    Fellowship
+                  <span className="bg-gray-600 text-white px-3 sm:px-4 md:px-6 py-2 sm:py-3 inline-block transform -rotate-1 rounded-lg text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                    Fellowship Closed
                   </span>
                 </span>
               </h1>
 
               <p className="text-sm sm:text-xl lg:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-                <strong>3 months long aggressive hands-on industry readiness fellowship</strong>
+                <strong>Fellowship 2025 has been completed successfully!</strong>
                 <br className="hidden sm:block" />
-                Wanna crack big companies this summer? Master DSA, Engineering, and get industry-ready.
+                Thank you to all participants. Check out our impact report and stay tuned for 2026 applications.
               </p>
 
               <div className="flex flex-row flex-wrap sm:flex-row gap-3 sm:gap-6 justify-center items-center mb-8 sm:mb-16 px-4">
                 <Button
                   size="lg"
-                  onClick={handleApplyClick}
-                  className="flex-1 sm:flex-none bg-primary text-primary-foreground hover:bg-primary/90 px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
+                  onClick={() => window.open('https://v0-fellowship-impact-data.vercel.app/', '_blank')}
+                  className="flex-1 sm:flex-none bg-black text-white hover:bg-gray-800 px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
                 >
-                  Start Your Journey
+                  View 2025 Report
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  onClick={() => document.getElementById('levels')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="flex-1 sm:flex-none border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
+                  onClick={() => window.open('/mentorship', '_self')}
+                  className="flex-1 sm:flex-none border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
                 >
-                  View Program Details
+                  2025-26 Mentorship Program
                 </Button>
               </div>
 

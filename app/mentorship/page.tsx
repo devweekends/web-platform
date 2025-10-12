@@ -78,7 +78,7 @@ export default function MentorshipPage() {
   }, [hasAnimatedStats, hasAnimatedTimeline])
 
   const animateStats = () => {
-    const targets = [48, 24, 400, 6]
+    const targets = [20, 24, 400, 6]
     const duration = 2000
     const steps = 60
     const increment = duration / steps
@@ -111,8 +111,7 @@ export default function MentorshipPage() {
 
   const handleApplyClick = () => {
     window.open(
-      "https://forms.gle/PgRbXcgUmtrcAGPu8",
-      "_blank",
+      "https://forms.gle/48tZYzJn2zzUQ1EC6","_blank",
     )
   }
 
@@ -124,7 +123,7 @@ export default function MentorshipPage() {
       description: "Perfect for absolute beginners starting their coding journey with comprehensive support",
       duration: "6 months",
       intensity: "Beginner Friendly",
-      liveSessions: "48 Live Sessions",
+      liveSessions: "20 Live Sessions",
       mentorshipHours: "24 Hours 1:1 Mentorship",
       highlights: [
         "Programming fundamentals from scratch",
