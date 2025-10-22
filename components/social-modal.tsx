@@ -5,17 +5,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { X } from "lucide-react"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 
 export function SocialModal() {
   const [showModal, setShowModal] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
+    if (pathname === '/mentorship') {
+      return
+    }
     const timer = setTimeout(() => {
       setShowModal(true)
     }, 300)
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [pathname])
 
   const socialLinks = [
     {
