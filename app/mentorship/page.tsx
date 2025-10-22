@@ -140,7 +140,7 @@ export default function MentorshipPage() {
       level: 1,
       title: "Professional Track",
       subtitle: "Industry-Ready Development",
-      description: "For developers with basic knowledge aiming for professional excellence",
+      description: "For engineers with basic knowledge aiming for professional excellence",
       duration: "6 months",
       intensity: "Moderate Pace",
       liveSessions: "20 Live Sessions",
@@ -159,7 +159,7 @@ export default function MentorshipPage() {
       level: 2,
       title: "Expert Track",
       subtitle: "Leadership & Architecture",
-      description: "Intensive program for experienced developers targeting senior roles",
+      description: "Intensive program for experienced engineers targeting senior roles",
       duration: "6 months",
       intensity: "Expert Level",
       liveSessions: "20 Live Sessions",
@@ -438,28 +438,20 @@ export default function MentorshipPage() {
                   Apply for Mentorship
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <Button
+                {/* <Button
                   variant="outline"
                   size="lg"
                   onClick={() => document.getElementById('mentorship')?.scrollIntoView({ behavior: 'smooth' })}
                   className="flex-1 sm:flex-none border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
                 >
                   Learn About Mentorship
-                </Button>
+                </Button> */}
               </div>
+              <p className="text-center text-xs sm:text-sm text-muted-foreground max-w-3xl mx-auto px-6 ">
+                Whether you're starting from scratch or already have experience and feel stuck, this mentorship is for you. Already building? Use our 1:1 guidance to level up and target better companies.
+              </p>
 
-              {/* Achievement Tags Preview */}
-              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-4xl mx-auto px-4">
-                {achievementTags.map((tag, index) => (
-                  <Badge
-                    key={index}
-                    variant="outline"
-                    className="border-primary text-primary px-2 sm:px-3 py-1 rounded-full font-medium text-xs sm:text-sm"
-                  >
-                    {tag.level}
-                  </Badge>
-                ))}
-              </div>
+              
             </div>
           </div>
         </section>
@@ -571,7 +563,10 @@ export default function MentorshipPage() {
                 Your 6-Month Transformation
               </h2>
               <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-                A structured journey from beginner to industry-ready developer with continuous mentorship
+                A structured journey from beginner to industry-ready engineer with continuous mentorship
+              </p>
+              <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-3xl mx-auto">
+                Suitable for all levels — start from zero, get unstuck, or accelerate as an experienced engineer with our Foundation, Professional, and Expert tracks.
               </p>
             </div>
 
