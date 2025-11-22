@@ -46,7 +46,7 @@ export function SocialModal() {
   const socialLinks = [
     {
       name: 'LinkedIn',
-      url: 'https://www.linkedin.com/company/dev-weekends/',
+      url: 'https://www.linkedin.com/company/devweekends/',
       icon: 'https://cdn.brandfetch.io/idJFz6sAsl/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B',
       color: 'hover:bg-[#0077B5]/10'
     },

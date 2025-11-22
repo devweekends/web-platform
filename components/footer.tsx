@@ -15,7 +15,7 @@ export default function Footer() {
     },
     {
       name: 'LinkedIn',
-      url: 'https://www.linkedin.com/company/dev-weekends/',
+      url: 'https://www.linkedin.com/company/devweekends/',
       icon: 'https://cdn.brandfetch.io/idJFz6sAsl/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B'
     },
     {
