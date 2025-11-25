@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const GoogleCalendar: React.FC = () => {
   const calendarSrc =
-    "https://calendar.google.com/calendar/u/0?cid=ZGV2d2Vla2VuZHNAZ21haWwuY29t"
+    "https://calendar.google.com/calendar/embed?src=devweekends%40gmail.com&ctz=Asia%2FKarachi"
   const addToCalendarLink =
     "https://calendar.google.com/calendar/u/0?cid=ZGV2d2Vla2VuZHNAZ21haWwuY29t"
 
