@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Dev Weekends Web Platform
+
+This repository contains the **Dev Weekends** web platform – the public site and internal portals (admin, mentors, ambassadors, mentees) for the Dev Weekends community.
+
+It is built with **Next.js 15 (App Router)**, **React 19**, **TypeScript**, **Tailwind CSS**, and **MongoDB via Mongoose**.
+
+---
+
+## Tech Stack
+
+- **Framework**: Next.js (App Router)
+- **Language**: TypeScript
+- **UI**: React, Tailwind CSS, Radix‑based UI components
+- **Database**: MongoDB (via Mongoose)
+- **Auth / Tokens**: Custom auth using JWT
+- **Other**: Google Analytics, Cloudinary for media, role‑based access for Admin / Mentor / Ambassador
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### 1. Prerequisites
+
+- Node.js (LTS, e.g. 20+ recommended)
+- npm (or another package manager; this repo ships with `package-lock.json`)
+- Access to a MongoDB instance (local or hosted)
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Environment variables
+
+Create a `.env.local` file in the project root.  
+Use `.env.example` as a reference – it includes all the required keys, for example:
+
+```bash
+NEXT_PUBLIC_GA_ID=
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+JWT_SECRET=
+
+NODE_ENV=production
+
+ADMIN_ACCESS_CODE=devweekends
+MENTOR_ACCESS_CODE=devweekends
+AMBASSADOR_ACCESS_CODE=devweekends
+
+MONGODB_URI=
+```
+
+> **Note**: Do **not** commit your real `.env.local` or any secrets.
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+For a production build:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+To run linting:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+High‑level overview of important directories:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **`app/`** – Next.js App Router structure.
+  - Public pages such as `page.tsx`, `about`, `community`, `fellowship`, `mentorship`, `resources`, `sessions`, `mindmaster`, etc.
+  - Authenticated portals under `admin`, `ambassador`, and `mentor` for dashboards, mentees, tags, tasks, sessions, and resources.
+  - API routes under `app/api/*` for auth, mentors/mentees, ambassadors, sessions, tags, resources, tasks, uploads, etc.
+  - `app/layout.tsx` sets global metadata/SEO, theme, navbar/footer, analytics, and social modal.
+- **`components/`** – Reusable React components, including:
+  - Site‑wide components like navbar, footer, analytics, MentorshipGraph, MentorsPage, TagAssignment, Google calendar integration, etc.
+  - `components/ui/` contains primitive UI components (buttons, inputs, dialogs, tabs, etc.).
+- **`lib/`** – Shared logic/utilities:
+  - `db.ts` (MongoDB connection via Mongoose with connection caching),
+  - `auth.ts`, `jwt.ts` for authentication and token helpers,
+  - Analytics helpers, resources data, and general utilities.
+- **`models/`** – Mongoose models for Admin, Mentor, Mentee, Ambassador, CoreTeamMember, ActivityLog, Session, Resource, Tag, Task, MindMaster, etc.
+- **`public/`** – Static assets (images, icons, manifest, favicons).
+- **Config** – `tsconfig.json`, `tailwind.config.ts`, `postcss.config.mjs`, `next.config.*`, etc.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Development Notes
+
+- The project uses **strict TypeScript** – prefer strongly‑typed code and avoid `any` when possible.
+- Use the `@/*` path alias for imports within the repo (configured in `tsconfig.json`), for example:
+
+  ```ts
+  import Navbar from "@/components/navbar"
+  import connectDB from "@/lib/db"
+  ```
+
+- Database access should use the shared `connectDB` helper from `lib/db.ts` and the centralized Mongoose models in `models/`.
+- New features should follow existing patterns in pages/components/API routes whenever possible.
+
+---
+
+## Contributing
+
+Contributions are welcome from the Dev Weekends community and beyond.
+
+- Please read **`CONTRIBUTING.md`** for:
+  - Development environment setup,
+  - Coding standards and project structure,
+  - Branching / PR workflow,
+  - How to add or modify pages, components, and API routes.
+
+If you’re unsure how or where to implement a change, open an issue or discuss it with the maintainers before starting work.
+
+---
+
+## License
+
+Unless otherwise specified by the maintainers, this project is proprietary to **Dev Weekends**.  
+Please contact the core team if you’d like to use or redistribute any part of this codebase.
