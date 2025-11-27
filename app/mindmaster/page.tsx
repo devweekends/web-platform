@@ -74,7 +74,7 @@ export default function MindMaster() {
       {/* ============================================
           HERO SECTION
           ============================================ */}
-      <section className="py-24 md:py-32 px-6 lg:px-12 border-b border-border">
+      <section className="py-16 md:py-20 px-6 lg:px-12 border-b border-border">
         <div className="max-w-[1100px] mx-auto">
           <div className="max-w-3xl">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-6">
@@ -111,7 +111,7 @@ export default function MindMaster() {
       {/* ============================================
           PHILOSOPHY SECTION
           ============================================ */}
-      <section className="py-20 md:py-28 px-6 lg:px-12 bg-muted/20">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -132,7 +132,7 @@ export default function MindMaster() {
               },
             ].map((item, i) => (
               <div key={i} className="group">
-                <div className="text-[10px] font-bold tracking-[3px] text-muted-foreground mb-4">
+                <div className="text-[10px] font-bold tracking-[3px] text-muted-foreground/30 mb-4">
                   {item.number}
                 </div>
                 <h3 className="text-lg font-semibold mb-3">{item.title}</h3>
@@ -171,7 +171,7 @@ export default function MindMaster() {
           FEATURED TALKS SECTION
           ============================================ */}
       {(mindmasterData.talkOfTheWeek || mindmasterData.talkOfTheMonth) && (
-        <section className="py-20 md:py-28 px-6 lg:px-12 border-b border-border">
+        <section className="py-12 md:py-16 px-6 lg:px-12 border-b border-border">
           <div className="max-w-[1100px] mx-auto">
             <div className="flex items-center gap-3 mb-10">
               <Video className="w-5 h-5" />
@@ -265,7 +265,7 @@ export default function MindMaster() {
           FEATURED BOOKS SECTION
           ============================================ */}
       {(mindmasterData.bookOfTheWeek || mindmasterData.bookOfTheMonth) && (
-        <section className="py-20 md:py-28 px-6 lg:px-12 bg-muted/20 border-b border-border">
+        <section className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20 border-b border-border">
           <div className="max-w-[1100px] mx-auto">
             <div className="flex items-center gap-3 mb-10">
               <Book className="w-5 h-5" />
@@ -333,7 +333,7 @@ export default function MindMaster() {
           RECOMMENDED TALKS SECTION
           ============================================ */}
       {mindmasterData.recommendedTalks && mindmasterData.recommendedTalks.length > 0 && (
-        <section className="py-20 md:py-28 px-6 lg:px-12 border-b border-border">
+        <section className="py-12 md:py-16 px-6 lg:px-12 border-b border-border">
           <div className="max-w-[1100px] mx-auto">
             <div className="flex items-center gap-3 mb-10">
               <Video className="w-5 h-5" />
@@ -382,7 +382,7 @@ export default function MindMaster() {
       {/* ============================================
           CTA SECTION
           ============================================ */}
-      <section className="py-20 md:py-28 px-6 lg:px-12 bg-foreground text-background">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-foreground text-background">
         <div className="max-w-[1100px] mx-auto text-center">
           <p className="text-[11px] font-semibold tracking-[3px] uppercase text-background/40 mb-6">
             Join the Community
