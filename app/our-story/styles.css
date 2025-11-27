@@ -1,0 +1,91 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-title {
+  font-weight: 800;
+  letter-spacing: -3px;
+  line-height: 1.05;
+}
+
+.section-title {
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.1;
+}
+
+.section-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.problem-number {
+  font-size: 120px;
+  font-weight: 800;
+  letter-spacing: -5px;
+  line-height: 1;
+}
+
+.pillar-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.impact-number {
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 20px 40px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  color: hsl(var(--foreground));
+  padding: 20px 40px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid hsl(var(--border));
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: hsl(var(--foreground));
+  background: hsl(var(--muted));
+}
