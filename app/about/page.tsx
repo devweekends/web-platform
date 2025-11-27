@@ -27,7 +27,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 md:py-28 px-6 lg:px-12 relative overflow-hidden">
+      <section className="py-12 md:py-16 px-6 lg:px-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
         <div className="max-w-[1100px] mx-auto relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -97,7 +97,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-20 md:py-28 px-6 lg:px-12 bg-muted/20">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-14">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
@@ -113,11 +113,11 @@ export default function AboutPage() {
               <p className="text-lg leading-relaxed text-muted-foreground mb-6">
                 We started Dev Weekends because we saw brilliant minds falling through the cracks. 
                 Students with incredible potential but no roadmap. Engineers who could build anything 
-                but didn''t know where to start. A generation of talent lost to a broken system.
+                but didn&apos;t know where to start. A generation of talent lost to a broken system.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
                 So we built something different. A community where engineers at top companies mentor 
-                the next generation. Where practice isn''t optionalit''s daily. Where success is measured 
+                the next generation. Where practice isn&apos;t optional—it&apos;s daily. Where success is measured 
                 not by what you know, but by how many lives you change after your own transformation.
               </p>
             </div>
@@ -143,7 +143,7 @@ export default function AboutPage() {
       </section>
 
       {/* The Circles Ecosystem */}
-      <section className="py-20 md:py-28 px-6 lg:px-12">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-14">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
@@ -184,7 +184,7 @@ export default function AboutPage() {
       </section>
 
       {/* The Internal Engine */}
-      <section className="py-20 md:py-28 px-6 lg:px-12 bg-muted/20">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-14">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
@@ -253,7 +253,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 md:py-28 px-6 lg:px-12 bg-foreground text-background">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-foreground text-background">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-14">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-background/40 mb-4">
@@ -300,14 +300,14 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-28 px-6 lg:px-12 text-center">
+      <section className="py-12 md:py-16 px-6 lg:px-12 text-center bg-muted/20">
         <div className="max-w-[600px] mx-auto">
           <h2 className="text-[clamp(28px,4vw,42px)] font-bold tracking-tight mb-4">
             Ready to Transform?
           </h2>
           <p className="text-muted-foreground mb-8 leading-relaxed">
             Join 20,000+ engineers who chose to stop waiting and start building. 
-            Your transformation starts with one decision. It''s free, forever.
+            Your transformation starts with one decision. It&apos;s free, forever.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a 
@@ -331,3 +331,5 @@ export default function AboutPage() {
     </div>
   )
 }
+
+

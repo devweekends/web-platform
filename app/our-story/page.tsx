@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, ExternalLink, X, Mail, Linkedin } from "lucide-react"
+import { ArrowRight, ExternalLink, X, Mail, Linkedin, Sun, Sunset, Moon } from "lucide-react"
 
 export default function OurStoryPage() {
   const [showMentorModal, setShowMentorModal] = useState(false)
@@ -102,7 +102,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 1: HERO - THE EMOTIONAL HOOK
           ============================================ */}
-      <section className="relative min-h-[90vh] flex items-center py-20 md:py-28 px-6 lg:px-12 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center py-12 md:py-16 px-6 lg:px-12 overflow-hidden">
         {/* Grid Background Pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
@@ -191,7 +191,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 2: OUR FOCUS AREAS
           ============================================ */}
-      <section id="focus" className="py-20 md:py-28 px-6 lg:px-12 bg-muted/20">
+      <section id="focus" className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-16 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
@@ -247,7 +247,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 3: THE PROBLEM WE SOLVE
           ============================================ */}
-      <section className="py-20 md:py-28 px-6 lg:px-12">
+      <section className="py-12 md:py-16 px-6 lg:px-12">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-16 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
@@ -283,7 +283,7 @@ export default function OurStoryPage() {
                 key={i} 
                 className="bg-background p-8 relative"
               >
-                <span className="text-[72px] font-bold text-muted-foreground/10 leading-none block mb-4">
+                <span className="text-[72px] font-bold text-muted-foreground/30 leading-none block mb-4">
                   {problem.num}
                 </span>
                 <h3 className="text-base font-bold mb-3 tracking-tight">{problem.title}</h3>
@@ -301,7 +301,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 4: THE THREE PILLARS PHILOSOPHY
           ============================================ */}
-      <section id="philosophy" className="py-20 md:py-28 px-6 lg:px-12 bg-foreground text-background">
+      <section id="philosophy" className="py-12 md:py-16 px-6 lg:px-12 bg-foreground text-background">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-16 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-background/40 mb-4">
@@ -388,9 +388,9 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 5: THE DEV WEEKENDS METHOD
           ============================================ */}
-      <section className="py-20 md:py-28 px-6 lg:px-12 bg-muted/20">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
-          <div className="text-center mb-16 reveal">
+          <div className="text-center mb-10 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
               The Dev Weekends Method
             </p>
@@ -408,28 +408,34 @@ export default function OurStoryPage() {
                 time: "Morning", 
                 title: "Mindset Talks", 
                 desc: "Productivity hacks, discipline frameworks, and the psychology of high performers.",
-                tags: ["Productivity", "Discipline", "Mindset"] 
+                tags: ["Productivity", "Discipline", "Mindset"],
+                icon: Sun
               },
               { 
                 time: "Afternoon", 
                 title: "Tech Talks", 
                 desc: "Deep dives into system design, industry best practices, and technical skills.",
-                tags: ["System Design", "DSA", "Industry Skills"] 
+                tags: ["System Design", "DSA", "Industry Skills"],
+                icon: Sunset
               },
               { 
                 time: "Evening", 
                 title: "Spiritual Talks", 
                 desc: "Purpose, resilience, giving back, and building a life beyond code.",
-                tags: ["Purpose", "Resilience", "Community"] 
+                tags: ["Purpose", "Resilience", "Community"],
+                icon: Moon
               },
             ].map((talk, i) => (
               <div 
                 key={i} 
                 className="p-8 bg-background"
               >
-                <span className="text-[10px] font-semibold tracking-[2px] uppercase text-muted-foreground mb-4 block">
-                  {talk.time}
-                </span>
+                <div className="flex items-center gap-2 mb-4">
+                  <talk.icon className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-[10px] font-semibold tracking-[2px] uppercase text-muted-foreground">
+                    {talk.time}
+                  </span>
+                </div>
                 <h3 className="text-lg font-bold tracking-tight mb-3">{talk.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-5">{talk.desc}</p>
                 <div className="flex flex-wrap gap-2">
@@ -451,7 +457,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 6: THE 3-TRACK SYSTEM
           ============================================ */}
-      <section id="tracks" className="py-20 md:py-28 px-6 lg:px-12 bg-foreground text-background">
+      <section id="tracks" className="py-12 md:py-16 px-6 lg:px-12 bg-foreground text-background">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-14 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-background/40 mb-4">
@@ -518,7 +524,7 @@ export default function OurStoryPage() {
                   Path {track.num}
                 </span>
                 <h3 className="text-lg font-bold tracking-tight mb-1">{track.title}</h3>
-                <p className="text-xs text-yellow-300 font-medium mb-4">{track.tagline}</p>
+                <p className="text-xs text-background/50 font-medium mb-4">{track.tagline}</p>
                 <p className="text-sm text-background/60 leading-relaxed mb-5">{track.desc}</p>
                 
                 <ul className="space-y-2 mb-6">
@@ -546,7 +552,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 7: THE FELLOWSHIP EXPERIENCE
           ============================================ */}
-      <section id="fellowship" className="py-20 md:py-28 px-6 lg:px-12 bg-muted/20">
+      <section id="fellowship" className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-16 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
@@ -572,7 +578,7 @@ export default function OurStoryPage() {
                 key={i} 
                 className="bg-background p-6 text-center"
               >
-                <div className="text-4xl font-bold text-muted-foreground/15 mb-2">{step.num}</div>
+                <div className="text-4xl font-bold text-muted-foreground/30 mb-2">{step.num}</div>
                 <h4 className="text-sm font-bold mb-1.5">{step.title}</h4>
                 <p className="text-xs text-muted-foreground leading-relaxed">{step.text}</p>
               </div>
@@ -625,7 +631,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 7.25: THE CIRCLES ECOSYSTEM
           ============================================ */}
-      <section className="py-20 md:py-28 px-6 lg:px-12">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-14 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
@@ -668,7 +674,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 7.5: EVENTS CALENDAR
           ============================================ */}
-      <section className="py-20 md:py-28 px-6 lg:px-12 bg-foreground text-background">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-foreground text-background">
         <div className="max-w-[1100px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
             {/* Left: Info */}
@@ -733,7 +739,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 10: RESOURCES & TOOLS
           ============================================ */}
-      <section className="py-20 md:py-28 px-6 lg:px-12">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-16 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
@@ -801,7 +807,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 11: IMPACT DASHBOARD
           ============================================ */}
-      <section id="impact" ref={statsRef} className="py-20 md:py-28 px-6 lg:px-12 bg-foreground text-background">
+      <section id="impact" ref={statsRef} className="py-12 md:py-16 px-6 lg:px-12 bg-foreground text-background">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-16 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-background/40 mb-4">
@@ -874,7 +880,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 12: THE GIVING BACK MODEL
           ============================================ */}
-      <section className="py-20 md:py-28 px-6 lg:px-12 bg-muted/20">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-16 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
@@ -916,7 +922,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 12.5: LEARN FROM INDUSTRY LEADERS
           ============================================ */}
-      <section className="py-20 md:py-28 px-6 lg:px-12">
+      <section className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-14 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
@@ -1020,7 +1026,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 13: TESTIMONIALS / FELLOW VOICES
           ============================================ */}
-      <section id="community" className="py-20 md:py-28 px-6 lg:px-12 bg-foreground text-background">
+      <section id="community" className="py-12 md:py-16 px-6 lg:px-12 bg-foreground text-background">
         <div className="max-w-[1100px] mx-auto">
           <div className="text-center mb-16 reveal">
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-background/40 mb-4">
@@ -1060,7 +1066,7 @@ export default function OurStoryPage() {
       {/* ============================================
           SECTION 14: JOIN THE MOVEMENT (CTA)
           ============================================ */}
-      <section id="apply" className="py-20 md:py-28 px-6 lg:px-12 text-center">
+      <section id="apply" className="py-12 md:py-16 px-6 lg:px-12 text-center">
         <div className="max-w-[700px] mx-auto reveal">
           <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-tight mb-5">
             Ready to Transform Your Career?
@@ -1095,7 +1101,7 @@ export default function OurStoryPage() {
               { num: "4", text: "Begin Journey" },
             ].map((step, i) => (
               <div key={i} className="p-5 bg-background">
-                <div className="text-2xl font-bold text-muted-foreground/20 mb-1">{step.num}</div>
+                <div className="text-2xl font-bold text-muted-foreground/30 mb-1">{step.num}</div>
                 <div className="text-xs font-medium text-muted-foreground">{step.text}</div>
               </div>
             ))}
@@ -1254,3 +1260,5 @@ export default function OurStoryPage() {
     </div>
   )
 }
+
+
