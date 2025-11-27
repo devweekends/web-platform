@@ -32,7 +32,7 @@ export function SocialModal() {
     }, 300)
 
     return () => clearTimeout(timer)
-  }, [pathname])
+  }, [pathname, SUPPRESS_MS])
 
   const handleClose = () => {
     try {

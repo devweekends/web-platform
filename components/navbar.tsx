@@ -3,25 +3,25 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isApplyOpen, setIsApplyOpen] = useState(false);
   const pathname = usePathname();
 
   const routes = [
     { href: "/about", label: "About" },
-    { href: "/mentorship", label: "Mentorship" },
-    { href: "/fellowship", label: "Fellowship" },
     { href: "/mindmaster", label: "MindMaster" },
+    { href: "https://resources.devweekends.com", label: "Resources", external: true },
+  ];
+
+  const applyOptions = [
+    { href: "/fellowship", label: "Fellowship" },
+    { href: "/mentorship", label: "Mentorship" },
     { href: "/ambassador-program", label: "Ambassadorship" },
-    {
-      href: "https://resources.devweekends.com",
-      label: "Resources",
-      external: true,
-    },
   ];
 
   const isActive = (path: string) => pathname === path;
@@ -31,8 +31,8 @@ export default function Navbar() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className=" sm:inline-block text-xl font-semibold">
+            <Link href="/our-story" className="flex items-center space-x-2">
+              <span className="sm:inline-block text-xl font-black tracking-tight">
                 Dev Weekends
               </span>
             </Link>
@@ -66,15 +66,48 @@ export default function Navbar() {
           </div>
           <div className="flex items-center space-x-4">
             <ModeToggle />
-            <Button asChild className="hidden md:inline-flex">
-              <Link
-                href="https://linktr.ee/DevWeekends"
-                target="_blank"
-                rel="noopener noreferrer"
+            
+            {/* Join Community Button */}
+            <a
+              href="https://discord.com/invite/32mYcRmy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center gap-2 px-4 py-2 border border-foreground/20 text-xs font-semibold uppercase tracking-[1px] hover:bg-foreground hover:text-background transition-all"
+            >
+              Join Community
+            </a>
+            
+            {/* Apply Now Dropdown */}
+            <div className="relative hidden md:block">
+              <Button 
+                onClick={() => setIsApplyOpen(!isApplyOpen)}
+                className="uppercase tracking-[1px] text-xs font-semibold flex items-center gap-1"
               >
-                Join Community
-              </Link>
-            </Button>
+                Apply Now
+                <ChevronDown className={`w-3 h-3 transition-transform ${isApplyOpen ? 'rotate-180' : ''}`} />
+              </Button>
+              
+              {isApplyOpen && (
+                <>
+                  <div 
+                    className="fixed inset-0 z-40" 
+                    onClick={() => setIsApplyOpen(false)}
+                  />
+                  <div className="absolute right-0 mt-2 w-48 bg-background border border-border shadow-lg z-50">
+                    {applyOptions.map((option) => (
+                      <Link
+                        key={option.href}
+                        href={option.href}
+                        className="block px-4 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors"
+                        onClick={() => setIsApplyOpen(false)}
+                      >
+                        {option.label}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
 
             <button
               className="md:hidden"
@@ -119,15 +152,19 @@ export default function Navbar() {
                   </Link>
                 )
               )}
-              <Button asChild className="w-full mt-2">
-                <a
-                  href="https://linktr.ee/DevWeekends"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Join Community
-                </a>
-              </Button>
+              <div className="pt-2 border-t border-border">
+                <p className="text-xs font-semibold uppercase tracking-[2px] text-muted-foreground mb-3">Apply</p>
+                {applyOptions.map((option) => (
+                  <Link
+                    key={option.href}
+                    href={option.href}
+                    className="block py-2 text-sm font-medium text-foreground"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {option.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         )}

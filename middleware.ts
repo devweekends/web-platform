@@ -4,6 +4,12 @@ import { verifyToken, verifyMentorToken, verifyAmbassadorToken } from '@/lib/jwt
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+
+  // Redirect root to our-story page
+  if (path === '/') {
+    return NextResponse.redirect(new URL('/our-story', request.url));
+  }
+
   const token = request.cookies.get('admin-token')?.value;
   const adminCodeVerified = request.cookies.get('admin-code-verified')?.value;
   const mentorToken = request.cookies.get('mentor-token')?.value;
@@ -131,6 +137,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    '/',
     '/admin/:path*',
     '/api/admin/:path*',
     '/mentor/:path*',

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useCallback } from "react"
 import { ZoomIn, ZoomOut, Maximize2, RefreshCw, Target, Network, Table, ChevronDown, ChevronUp, Tag as TagIcon } from "lucide-react"
 import dynamic from "next/dynamic"
 
@@ -425,7 +425,7 @@ export default function MentorshipPage() {
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [hasNewData, setHasNewData] = useState(false)
 
-  const fetchData = async (showRefreshIndicator = false) => {
+  const fetchData = useCallback(async (showRefreshIndicator = false) => {
     if (showRefreshIndicator) setIsRefreshing(true)
     if (!showRefreshIndicator) setLoading(true)
     setError(null)
@@ -466,12 +466,12 @@ export default function MentorshipPage() {
       setLoading(false)
       setIsRefreshing(false)
     }
-  }
+  }, [mentors, mentees, lastUpdated])
 
   // Initial data fetch
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [fetchData])
 
   // Listen for admin updates via localStorage or window events (but don't auto-refresh)
   useEffect(() => {
