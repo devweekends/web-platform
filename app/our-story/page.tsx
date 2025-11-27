@@ -112,12 +112,6 @@ export default function OurStoryPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Content */}
             <div>
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 border border-green-500/30 text-xs font-semibold tracking-[2px] uppercase text-green-700 dark:text-green-400 mb-8">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                Your Gateway to Becoming a Better Software Engineer
-              </div>
-
               {/* Main Headline */}
               <h1 className="text-[clamp(32px,5vw,56px)] font-bold leading-[1.1] tracking-tight mb-6">
                 We Don&apos;t Just Teach Code.
@@ -1260,5 +1254,8 @@ export default function OurStoryPage() {
     </div>
   )
 }
+
+
+
 
 
