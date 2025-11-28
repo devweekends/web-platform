@@ -1,0 +1,40 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#FAFAFA"/>
+  
+  <!-- Split layout -->
+  <rect x="0" y="0" width="480" height="630" fill="#18181B"/>
+  
+  <!-- Left side - Date -->
+  <text x="60" y="60" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <text x="240" y="280" font-family="system-ui, sans-serif" font-size="80" font-weight="800" fill="#FAFAFA" text-anchor="middle">14</text>
+  <text x="240" y="340" font-family="system-ui, sans-serif" font-size="32" font-weight="600" fill="#FEF08A" text-anchor="middle">DEC</text>
+  <text x="240" y="400" font-family="system-ui, sans-serif" font-size="20" fill="#71717A" text-anchor="middle">7:00 PM PKT</text>
+  
+  <rect x="140" y="480" width="200" height="50" fill="#FEF08A" rx="4"/>
+  <text x="240" y="512" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle">FREE EVENT</text>
+  
+  <!-- Right side - Content -->
+  <rect x="540" y="140" width="160" height="36" fill="#18181B"/>
+  <text x="620" y="165" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">WORKSHOP</text>
+  
+  <text x="540" y="260" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B">Git & GitHub</text>
+  <text x="540" y="320" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B">for Beginners</text>
+  
+  <text x="540" y="390" font-family="system-ui, sans-serif" font-size="18" fill="#71717A">Master version control from scratch.</text>
+  <text x="540" y="420" font-family="system-ui, sans-serif" font-size="18" fill="#71717A">Hands-on, practical, no prior experience needed.</text>
+  
+  <!-- Topics -->
+  <rect x="540" y="480" width="100" height="32" fill="#F4F4F5" rx="4"/>
+  <text x="590" y="502" font-family="system-ui, sans-serif" font-size="12" fill="#52525B" text-anchor="middle">Git Basics</text>
+  
+  <rect x="660" y="480" width="100" height="32" fill="#F4F4F5" rx="4"/>
+  <text x="710" y="502" font-family="system-ui, sans-serif" font-size="12" fill="#52525B" text-anchor="middle">Branching</text>
+  
+  <rect x="780" y="480" width="80" height="32" fill="#F4F4F5" rx="4"/>
+  <text x="820" y="502" font-family="system-ui, sans-serif" font-size="12" fill="#52525B" text-anchor="middle">PRs</text>
+  
+  <!-- CTA -->
+  <rect x="540" y="550" width="160" height="50" fill="#18181B" rx="4"/>
+  <text x="620" y="582" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle">Register →</text>
+</svg>

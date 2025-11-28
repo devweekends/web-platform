@@ -1,0 +1,73 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">👤 COGNITO</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">User Identity &amp; Access</text>
+  
+  <rect x="120" y="350" width="420" height="220" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="330" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">User Pools</text>
+  <text x="330" y="420" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">User Directory &amp; Authentication</text>
+  <text x="140" y="460" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Sign up/sign in</text>
+  <text x="140" y="490" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Social identity (Google, Facebook)</text>
+  <text x="140" y="520" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• SAML/OIDC federation</text>
+  <text x="140" y="550" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• MFA, password policies</text>
+  
+  <rect x="560" y="350" width="400" height="220" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="760" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">Identity Pools</text>
+  <text x="760" y="420" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">AWS Credentials for Access</text>
+  <text x="580" y="460" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Temp AWS credentials</text>
+  <text x="580" y="490" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Access AWS resources</text>
+  <text x="580" y="520" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Guest (unauthenticated) access</text>
+  <text x="580" y="550" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• IAM role mapping</text>
+  
+  <text x="120" y="615" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Authentication Flow:</text>
+  
+  <rect x="120" y="640" width="840" height="100" rx="12" fill="white" stroke="#FF9900" stroke-width="1"/>
+  
+  <rect x="160" y="665" width="100" height="50" rx="6" fill="#232F3E"/>
+  <text x="210" y="695" font-family="system-ui, sans-serif" font-size="11" fill="#FF9900" text-anchor="middle">App</text>
+  
+  <text x="280" y="695" font-family="system-ui, sans-serif" font-size="16" fill="#FF9900">→</text>
+  
+  <rect x="310" y="665" width="140" height="50" rx="6" fill="#FF9900"/>
+  <text x="380" y="695" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle">User Pool</text>
+  
+  <text x="470" y="695" font-family="system-ui, sans-serif" font-size="16" fill="#FF9900">→</text>
+  
+  <rect x="500" y="665" width="100" height="50" rx="6" fill="#232F3E"/>
+  <text x="550" y="695" font-family="system-ui, sans-serif" font-size="11" fill="#FF9900" text-anchor="middle">JWT Tokens</text>
+  
+  <text x="620" y="695" font-family="system-ui, sans-serif" font-size="16" fill="#FF9900">→</text>
+  
+  <rect x="650" y="665" width="140" height="50" rx="6" fill="#FF9900"/>
+  <text x="720" y="695" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle">Identity Pool</text>
+  
+  <text x="810" y="695" font-family="system-ui, sans-serif" font-size="16" fill="#FF9900">→</text>
+  
+  <rect x="840" y="665" width="100" height="50" rx="6" fill="#232F3E"/>
+  <text x="890" y="695" font-family="system-ui, sans-serif" font-size="11" fill="#FF9900" text-anchor="middle">AWS Creds</text>
+  
+  <text x="120" y="790" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Tokens Returned:</text>
+  
+  <rect x="120" y="815" width="270" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="255" y="850" font-family="system-ui, sans-serif" font-size="14" font-weight="500" fill="#232F3E" text-anchor="middle">🔑 ID Token</text>
+  <text x="255" y="875" font-family="system-ui, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">User attributes</text>
+  
+  <rect x="405" y="815" width="270" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="540" y="850" font-family="system-ui, sans-serif" font-size="14" font-weight="500" fill="#232F3E" text-anchor="middle">🔐 Access Token</text>
+  <text x="540" y="875" font-family="system-ui, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">API authorization</text>
+  
+  <rect x="690" y="815" width="270" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="825" y="850" font-family="system-ui, sans-serif" font-size="14" font-weight="500" fill="#232F3E" text-anchor="middle">🔄 Refresh Token</text>
+  <text x="825" y="875" font-family="system-ui, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">Get new tokens</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

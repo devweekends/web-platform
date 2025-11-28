@@ -1,0 +1,33 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#264ECF"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="180" height="40" fill="#264ECF"/>
+  <text x="150" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">DEVOPS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Datadog</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#264ECF">APM &amp; Monitoring</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="470" font-family="monospace" font-size="14" fill="#71717A"># Key metrics to track</text>
+  <text x="100" y="505" font-family="monospace" font-size="18" fill="#22C55E">avg:trace.http.request.duration{service:api}</text>
+  
+  <text x="100" y="565" font-family="monospace" font-size="14" fill="#71717A"># Error rate query</text>
+  <text x="100" y="600" font-family="monospace" font-size="18" fill="#22C55E">sum:trace.errors{service:api}.as_count()</text>
+  
+  <text x="100" y="660" font-family="monospace" font-size="14" fill="#71717A"># Container metrics</text>
+  <text x="100" y="695" font-family="monospace" font-size="18" fill="#22C55E">docker.cpu.usage{container_name:app}</text>
+  
+  <text x="100" y="755" font-family="monospace" font-size="14" fill="#71717A"># Log search query</text>
+  <text x="100" y="790" font-family="monospace" font-size="18" fill="#22C55E">service:api status:error @http.status_code:500</text>
+  
+  <text x="100" y="850" font-family="monospace" font-size="14" fill="#71717A"># Alert threshold</text>
+  <text x="100" y="885" font-family="monospace" font-size="18" fill="#22C55E">p95 latency &gt; 500ms for 5 minutes → PagerDuty</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Unified observability: metrics, traces, logs</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

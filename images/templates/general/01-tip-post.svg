@@ -1,0 +1,43 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="120" height="40" fill="#FEF08A"/>
+  <text x="120" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">TIP</text>
+  
+  <!-- Number -->
+  <text x="980" y="200" font-family="system-ui, sans-serif" font-size="120" font-weight="800" fill="#18181B" opacity="0.05" text-anchor="end">#01</text>
+  
+  <!-- Icon placeholder -->
+  <rect x="60" y="280" width="80" height="80" fill="#18181B" rx="8"/>
+  <text x="100" y="332" font-family="system-ui, sans-serif" font-size="36" fill="#FAFAFA" text-anchor="middle">💡</text>
+  
+  <!-- Title -->
+  <text x="60" y="440" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Quick Tip of</text>
+  <text x="60" y="510" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">the Day</text>
+  
+  <!-- Content box -->
+  <rect x="60" y="560" width="960" height="280" fill="#F4F4F5" rx="8"/>
+  
+  <text x="100" y="630" font-family="system-ui, sans-serif" font-size="24" fill="#18181B" font-weight="600">[Tip Title Here]</text>
+  
+  <text x="100" y="700" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">Write your quick tip content here. Keep it</text>
+  <text x="100" y="735" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">concise and actionable. One paragraph that</text>
+  <text x="100" y="770" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">developers can apply immediately.</text>
+  
+  <!-- Tags -->
+  <rect x="60" y="890" width="120" height="36" fill="#18181B" rx="4"/>
+  <text x="120" y="915" font-family="system-ui, sans-serif" font-size="12" fill="#FAFAFA" text-anchor="middle">#productivity</text>
+  
+  <rect x="200" y="890" width="100" height="36" fill="#18181B" rx="4"/>
+  <text x="250" y="915" font-family="system-ui, sans-serif" font-size="12" fill="#FAFAFA" text-anchor="middle">#coding</text>
+  
+  <!-- Footer -->
+  <rect x="60" y="970" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Save this for later!</text>
+  <text x="980" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#FF9900"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="120" height="40" fill="#FF9900"/>
+  <text x="120" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">AWS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Cognito</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FF9900">User Authentication</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="470" font-family="monospace" font-size="14" fill="#71717A"># Create user pool</text>
+  <text x="100" y="505" font-family="monospace" font-size="18" fill="#22C55E">aws cognito-idp create-user-pool --pool-name my-users</text>
+  
+  <text x="100" y="565" font-family="monospace" font-size="14" fill="#71717A"># Create app client</text>
+  <text x="100" y="600" font-family="monospace" font-size="18" fill="#22C55E">aws cognito-idp create-user-pool-client \</text>
+  <text x="120" y="635" font-family="monospace" font-size="18" fill="#22C55E">  --user-pool-id $POOL_ID --client-name web-app</text>
+  
+  <text x="100" y="695" font-family="monospace" font-size="14" fill="#71717A"># Sign up user</text>
+  <text x="100" y="730" font-family="monospace" font-size="18" fill="#22C55E">aws cognito-idp sign-up --client-id $CLIENT_ID \</text>
+  <text x="120" y="765" font-family="monospace" font-size="18" fill="#22C55E">  --username user@email.com --password Pass123!</text>
+  
+  <text x="100" y="825" font-family="monospace" font-size="14" fill="#71717A"># Initiate auth (login)</text>
+  <text x="100" y="860" font-family="monospace" font-size="18" fill="#22C55E">aws cognito-idp initiate-auth --auth-flow USER_PASSWORD_AUTH</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Add auth to apps with OAuth 2.0, SAML, social logins</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

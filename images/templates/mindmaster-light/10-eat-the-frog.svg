@@ -1,0 +1,28 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#06B6D4"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#06B6D4"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Eat the Frog</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#0891B2">First Thing Morning</text>
+  
+  <rect x="60" y="420" width="960" height="180" fill="#F4F4F5" rx="8"/>
+  <text x="540" y="490" font-family="system-ui, sans-serif" font-size="22" fill="#18181B" text-anchor="middle">"If it's your job to eat a frog,</text>
+  <text x="540" y="530" font-family="system-ui, sans-serif" font-size="22" fill="#18181B" text-anchor="middle">it's best to do it first thing in the morning."</text>
+  <text x="540" y="580" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">— Mark Twain</text>
+  
+  <text x="60" y="680" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#18181B">The Frog = Your most important, dreaded task</text>
+  
+  <text x="80" y="740" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">✓ Do your hardest task when energy is highest</text>
+  <text x="80" y="780" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">✓ Everything else feels easy after</text>
+  <text x="80" y="820" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">✓ No more dreading tasks all day</text>
+  <text x="80" y="860" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">✓ Build momentum for the rest of the day</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">What's your frog today?</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

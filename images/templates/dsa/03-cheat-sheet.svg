@@ -1,0 +1,69 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Title -->
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B" text-anchor="middle">Big O Cheat Sheet</text>
+  
+  <!-- Complexity table -->
+  <rect x="60" y="280" width="960" height="600" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="2" rx="8"/>
+  
+  <!-- Headers -->
+  <rect x="60" y="280" width="960" height="60" fill="#18181B" rx="8"/>
+  <text x="200" y="318" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" text-anchor="middle">Notation</text>
+  <text x="450" y="318" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" text-anchor="middle">Name</text>
+  <text x="750" y="318" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" text-anchor="middle">Example</text>
+  
+  <!-- O(1) -->
+  <text x="200" y="390" font-family="monospace" font-size="20" fill="#22C55E" text-anchor="middle">O(1)</text>
+  <text x="450" y="390" font-family="system-ui, sans-serif" font-size="18" fill="#18181B" text-anchor="middle">Constant</text>
+  <text x="750" y="390" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Array access</text>
+  
+  <line x1="100" y1="420" x2="980" y2="420" stroke="#E5E5E5"/>
+  
+  <!-- O(log n) -->
+  <text x="200" y="470" font-family="monospace" font-size="20" fill="#22C55E" text-anchor="middle">O(log n)</text>
+  <text x="450" y="470" font-family="system-ui, sans-serif" font-size="18" fill="#18181B" text-anchor="middle">Logarithmic</text>
+  <text x="750" y="470" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Binary search</text>
+  
+  <line x1="100" y1="500" x2="980" y2="500" stroke="#E5E5E5"/>
+  
+  <!-- O(n) -->
+  <text x="200" y="550" font-family="monospace" font-size="20" fill="#FEF08A" text-anchor="middle">O(n)</text>
+  <text x="450" y="550" font-family="system-ui, sans-serif" font-size="18" fill="#18181B" text-anchor="middle">Linear</text>
+  <text x="750" y="550" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Simple loop</text>
+  
+  <line x1="100" y1="580" x2="980" y2="580" stroke="#E5E5E5"/>
+  
+  <!-- O(n log n) -->
+  <text x="200" y="630" font-family="monospace" font-size="20" fill="#F59E0B" text-anchor="middle">O(n log n)</text>
+  <text x="450" y="630" font-family="system-ui, sans-serif" font-size="18" fill="#18181B" text-anchor="middle">Linearithmic</text>
+  <text x="750" y="630" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Merge sort</text>
+  
+  <line x1="100" y1="660" x2="980" y2="660" stroke="#E5E5E5"/>
+  
+  <!-- O(n²) -->
+  <text x="200" y="710" font-family="monospace" font-size="20" fill="#F97316" text-anchor="middle">O(n²)</text>
+  <text x="450" y="710" font-family="system-ui, sans-serif" font-size="18" fill="#18181B" text-anchor="middle">Quadratic</text>
+  <text x="750" y="710" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Bubble sort</text>
+  
+  <line x1="100" y1="740" x2="980" y2="740" stroke="#E5E5E5"/>
+  
+  <!-- O(2^n) -->
+  <text x="200" y="790" font-family="monospace" font-size="20" fill="#EF4444" text-anchor="middle">O(2ⁿ)</text>
+  <text x="450" y="790" font-family="system-ui, sans-serif" font-size="18" fill="#18181B" text-anchor="middle">Exponential</text>
+  <text x="750" y="790" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Fibonacci recursive</text>
+  
+  <line x1="100" y1="820" x2="980" y2="820" stroke="#E5E5E5"/>
+  
+  <!-- O(n!) -->
+  <text x="200" y="860" font-family="monospace" font-size="20" fill="#EF4444" text-anchor="middle">O(n!)</text>
+  <text x="450" y="860" font-family="system-ui, sans-serif" font-size="18" fill="#18181B" text-anchor="middle">Factorial</text>
+  <text x="750" y="860" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Permutations</text>
+  
+  <!-- Footer -->
+  <text x="540" y="960" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">🟢 Fast → 🔴 Slow</text>
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">@devweekends • Save this!</text>
+</svg>

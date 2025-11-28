@@ -1,0 +1,37 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#A78BFA"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="140" width="200" height="40" fill="#A78BFA"/>
+  <text x="160" y="168" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MINDMASTER</text>
+  
+  <text x="60" y="300" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">The Eisenhower</text>
+  <text x="60" y="370" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#A78BFA">Matrix</text>
+  
+  <text x="60" y="430" font-family="system-ui, sans-serif" font-size="18" fill="#71717A">Prioritize tasks based on urgency and importance</text>
+  
+  <rect x="60" y="480" width="450" height="220" fill="#EF4444" rx="8"/>
+  <text x="285" y="540" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA" text-anchor="middle">DO FIRST</text>
+  <text x="285" y="580" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Urgent + Important</text>
+  <text x="285" y="650" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" opacity="0.8" text-anchor="middle">Deadlines, crises, problems</text>
+  
+  <rect x="530" y="480" width="450" height="220" fill="#A78BFA" rx="8"/>
+  <text x="755" y="540" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA" text-anchor="middle">SCHEDULE</text>
+  <text x="755" y="580" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Not Urgent + Important</text>
+  <text x="755" y="650" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" opacity="0.8" text-anchor="middle">Learning, planning, growth</text>
+  
+  <rect x="60" y="720" width="450" height="220" fill="#F59E0B" rx="8"/>
+  <text x="285" y="780" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA" text-anchor="middle">DELEGATE</text>
+  <text x="285" y="820" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Urgent + Not Important</text>
+  <text x="285" y="890" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" opacity="0.8" text-anchor="middle">Interruptions, some meetings</text>
+  
+  <rect x="530" y="720" width="450" height="220" fill="#71717A" rx="8"/>
+  <text x="755" y="780" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA" text-anchor="middle">ELIMINATE</text>
+  <text x="755" y="820" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Not Urgent + Not Important</text>
+  <text x="755" y="890" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" opacity="0.8" text-anchor="middle">Time wasters, distractions</text>
+  
+  <text x="540" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Focus on Quadrant 2 for long-term success</text>
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">@devweekends</text>
+</svg>

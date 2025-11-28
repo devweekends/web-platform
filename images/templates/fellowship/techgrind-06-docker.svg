@@ -1,0 +1,48 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="techGrad6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF7ED"/>
+      <stop offset="100%" style="stop-color:#FFEDD5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#techGrad6)"/>
+  <rect x="0" y="0" width="8" height="630" fill="#F97316"/>
+  
+  <text x="60" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS FELLOWSHIP</text>
+  
+  <circle cx="1080" cy="52" r="6" fill="#F97316"/>
+  <text x="1100" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#18181B">TECH GRIND</text>
+  
+  <rect x="60" y="140" width="180" height="32" fill="#F97316"/>
+  <text x="150" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">DEVOPS SESSION</text>
+  
+  <text x="60" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="700" fill="#18181B">Docker Multi-Stage</text>
+  <text x="60" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="700" fill="#C2410C">Builds</text>
+  
+  <text x="60" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#52525B">Optimize your Docker images for production</text>
+  
+  <rect x="60" y="450" width="170" height="65" fill="#FFFFFF" rx="4"/>
+  <text x="80" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="1">DATE</text>
+  <text x="80" y="502" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#18181B">Sunday, Jan 12</text>
+  
+  <rect x="250" y="450" width="170" height="65" fill="#FFFFFF" rx="4"/>
+  <text x="270" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="1">TIME</text>
+  <text x="270" y="502" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#18181B">3:00 PM PKT</text>
+  
+  <rect x="440" y="450" width="170" height="65" fill="#FFFFFF" rx="4"/>
+  <text x="460" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="1">FORMAT</text>
+  <text x="460" y="502" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#18181B">Hands-on Lab</text>
+  
+  <rect x="800" y="180" width="340" height="320" fill="#FFFFFF" rx="8"/>
+  <text x="970" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#F97316" text-anchor="middle" letter-spacing="2">YOU'LL LEARN</text>
+  
+  <text x="840" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B">✓ Multi-stage patterns</text>
+  <text x="840" y="315" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B">✓ Layer caching</text>
+  <text x="840" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B">✓ Security best practices</text>
+  <text x="840" y="385" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B">✓ Image size reduction</text>
+  <text x="840" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B">✓ Build arguments</text>
+  
+  <text x="970" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#F97316" text-anchor="middle">From 1GB to 50MB images</text>
+  
+  <text x="60" y="580" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#18181B">Fellowship Members Only →</text>
+</svg>

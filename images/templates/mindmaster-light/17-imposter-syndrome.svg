@@ -1,0 +1,29 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#6366F1"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#6366F1"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Imposter Syndrome</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#4F46E5">You Belong Here</text>
+  
+  <rect x="60" y="420" width="960" height="150" fill="#EEF2FF" rx="8"/>
+  <text x="540" y="480" font-family="system-ui, sans-serif" font-size="20" fill="#18181B" text-anchor="middle">"70% of people experience imposter syndrome</text>
+  <text x="540" y="520" font-family="system-ui, sans-serif" font-size="20" fill="#18181B" text-anchor="middle">at some point in their careers"</text>
+  <text x="540" y="555" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">— International Journal of Behavioral Science</text>
+  
+  <text x="60" y="640" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#18181B">Remind yourself:</text>
+  
+  <text x="80" y="700" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">✓ Everyone googles things - even seniors</text>
+  <text x="80" y="745" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">✓ Not knowing is the first step to learning</text>
+  <text x="80" y="790" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">✓ You were hired for a reason</text>
+  <text x="80" y="835" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">✓ Compare yourself to your past self, not others</text>
+  <text x="80" y="880" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">✓ Document your wins, review them often</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">The fact that you care means you're already ahead</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

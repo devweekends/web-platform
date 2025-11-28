@@ -1,0 +1,27 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#A78BFA"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#A78BFA"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">The 2-Minute Rule</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#7C3AED">Beat Procrastination</text>
+  
+  <rect x="60" y="420" width="960" height="180" fill="#F4F4F5" rx="8"/>
+  <text x="540" y="520" font-family="system-ui, sans-serif" font-size="28" font-weight="600" fill="#18181B" text-anchor="middle">If it takes less than 2 minutes,</text>
+  <text x="540" y="565" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#7C3AED" text-anchor="middle">do it now.</text>
+  
+  <text x="60" y="680" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#18181B">Why it works:</text>
+  
+  <text x="80" y="730" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">• Eliminates decision fatigue</text>
+  <text x="80" y="770" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">• Clears mental clutter instantly</text>
+  <text x="80" y="810" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">• Builds momentum for bigger tasks</text>
+  <text x="80" y="850" font-family="system-ui, sans-serif" font-size="18" fill="#52525B">• Reduces your to-do list anxiety</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Small actions, big impact</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

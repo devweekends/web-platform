@@ -1,0 +1,41 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1200" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1200" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Category -->
+  <rect x="60" y="180" width="140" height="40" fill="#18181B"/>
+  <text x="130" y="208" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">INSIGHT</text>
+  
+  <!-- Main title -->
+  <text x="60" y="340" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#18181B">The One Skill</text>
+  <text x="60" y="410" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#18181B">That Separates</text>
+  <text x="60" y="480" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#18181B">Good Developers</text>
+  <text x="60" y="550" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#18181B">From</text>
+  <text x="60" y="620" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#FEF08A" style="background:#18181B">Great Ones</text>
+  <rect x="58" y="595" width="320" height="14" fill="#FEF08A" opacity="0.5"/>
+  
+  <!-- Content points -->
+  <rect x="60" y="720" width="6" height="6" fill="#18181B"/>
+  <text x="85" y="728" font-family="system-ui, sans-serif" font-size="20" fill="#52525B">Problem-solving mindset over syntax mastery</text>
+  
+  <rect x="60" y="770" width="6" height="6" fill="#18181B"/>
+  <text x="85" y="778" font-family="system-ui, sans-serif" font-size="20" fill="#52525B">Understanding the "why" behind every decision</text>
+  
+  <rect x="60" y="820" width="6" height="6" fill="#18181B"/>
+  <text x="85" y="828" font-family="system-ui, sans-serif" font-size="20" fill="#52525B">Continuous learning as a daily habit</text>
+  
+  <!-- Stats -->
+  <rect x="60" y="920" width="1080" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">20,000+</text>
+  <text x="60" y="1040" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">developers learning together</text>
+  
+  <!-- Author -->
+  <circle cx="1050" cy="1020" r="50" fill="#E5E5E5"/>
+  <text x="1050" y="1025" font-family="system-ui, sans-serif" font-size="12" fill="#A1A1AA" text-anchor="middle">Photo</text>
+  
+  <!-- Footer -->
+  <text x="60" y="1150" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">👆 Follow for more insights | Dev Weekends</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#2496ED"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="180" height="40" fill="#2496ED"/>
+  <text x="150" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">DEVOPS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Docker</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#2496ED">Essential Commands</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="470" font-family="monospace" font-size="14" fill="#71717A"># Build an image</text>
+  <text x="100" y="505" font-family="monospace" font-size="18" fill="#22C55E">docker build -t myapp:latest .</text>
+  
+  <text x="100" y="565" font-family="monospace" font-size="14" fill="#71717A"># Run container with port mapping</text>
+  <text x="100" y="600" font-family="monospace" font-size="18" fill="#22C55E">docker run -d -p 3000:3000 --name app myapp</text>
+  
+  <text x="100" y="660" font-family="monospace" font-size="14" fill="#71717A"># Execute command in running container</text>
+  <text x="100" y="695" font-family="monospace" font-size="18" fill="#22C55E">docker exec -it container_id bash</text>
+  
+  <text x="100" y="755" font-family="monospace" font-size="14" fill="#71717A"># View container logs</text>
+  <text x="100" y="790" font-family="monospace" font-size="18" fill="#22C55E">docker logs -f container_id</text>
+  
+  <text x="100" y="850" font-family="monospace" font-size="14" fill="#71717A"># Clean up unused resources</text>
+  <text x="100" y="885" font-family="monospace" font-size="18" fill="#22C55E">docker system prune -af --volumes</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Use multi-stage builds to reduce image size by 90%</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

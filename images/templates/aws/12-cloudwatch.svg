@@ -1,0 +1,50 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">📊 CLOUDWATCH</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">Monitoring &amp; Observability</text>
+  
+  <rect x="120" y="350" width="280" height="200" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="260" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">📈 Metrics</text>
+  <text x="140" y="430" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• CPU, Memory, Network</text>
+  <text x="140" y="460" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Custom metrics</text>
+  <text x="140" y="490" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• 1-second resolution</text>
+  <text x="140" y="520" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• 15 months retention</text>
+  
+  <rect x="420" y="350" width="260" height="200" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="550" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">📝 Logs</text>
+  <text x="440" y="430" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Log groups/streams</text>
+  <text x="440" y="460" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Insights queries</text>
+  <text x="440" y="490" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Metric filters</text>
+  <text x="440" y="520" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Cross-account</text>
+  
+  <rect x="700" y="350" width="260" height="200" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="830" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">🚨 Alarms</text>
+  <text x="720" y="430" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Threshold-based</text>
+  <text x="720" y="460" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Anomaly detection</text>
+  <text x="720" y="490" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• SNS notifications</text>
+  <text x="720" y="520" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Auto Scaling triggers</text>
+  
+  <text x="120" y="600" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Logs Insights Query:</text>
+  
+  <rect x="120" y="625" width="840" height="140" rx="12" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="140" y="660" font-family="monospace" font-size="15" fill="#FF9900">fields @timestamp, @message</text>
+  <text x="140" y="690" font-family="monospace" font-size="15" fill="#232F3E">| filter @message like /ERROR/</text>
+  <text x="140" y="720" font-family="monospace" font-size="15" fill="#232F3E">| stats count(*) by bin(5m)</text>
+  <text x="140" y="750" font-family="monospace" font-size="15" fill="#232F3E">| sort @timestamp desc</text>
+  
+  <text x="120" y="810" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Dashboards:</text>
+  
+  <rect x="120" y="835" width="840" height="60" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="540" y="873" font-family="system-ui, sans-serif" font-size="15" fill="#64748B" text-anchor="middle">💡 Create custom dashboards with widgets: Line, Stacked, Number, Gauge, Logs table</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

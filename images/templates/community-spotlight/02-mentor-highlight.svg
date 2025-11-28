@@ -1,0 +1,52 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="240" height="40" fill="#18181B"/>
+  <text x="180" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MENTOR HIGHLIGHT</text>
+  
+  <!-- Photo area -->
+  <rect x="60" y="260" width="350" height="450" fill="#E5E5E5" rx="8"/>
+  <text x="235" y="500" font-family="system-ui, sans-serif" font-size="80" fill="#A1A1AA" text-anchor="middle">📷</text>
+  
+  <!-- Content -->
+  <text x="460" y="310" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#18181B">[Mentor Name]</text>
+  <text x="460" y="360" font-family="system-ui, sans-serif" font-size="18" fill="#71717A">Senior Engineer @ [Company]</text>
+  
+  <!-- Stats -->
+  <rect x="460" y="400" width="250" height="80" fill="#F4F4F5" rx="4"/>
+  <text x="585" y="445" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#18181B" text-anchor="middle">3+ Years</text>
+  <text x="585" y="470" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Mentoring Experience</text>
+  
+  <rect x="730" y="400" width="250" height="80" fill="#F4F4F5" rx="4"/>
+  <text x="855" y="445" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#18181B" text-anchor="middle">50+</text>
+  <text x="855" y="470" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Mentees Guided</text>
+  
+  <!-- Expertise -->
+  <text x="460" y="550" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B">EXPERTISE</text>
+  
+  <rect x="460" y="570" width="120" height="32" fill="#18181B" rx="4"/>
+  <text x="520" y="593" font-family="system-ui, sans-serif" font-size="12" fill="#FAFAFA" text-anchor="middle">React</text>
+  
+  <rect x="590" y="570" width="120" height="32" fill="#18181B" rx="4"/>
+  <text x="650" y="593" font-family="system-ui, sans-serif" font-size="12" fill="#FAFAFA" text-anchor="middle">Node.js</text>
+  
+  <rect x="720" y="570" width="140" height="32" fill="#18181B" rx="4"/>
+  <text x="790" y="593" font-family="system-ui, sans-serif" font-size="12" fill="#FAFAFA" text-anchor="middle">System Design</text>
+  
+  <!-- Quote -->
+  <text x="460" y="670" font-family="Georgia, serif" font-size="16" font-style="italic" fill="#52525B">"Helping others grow is the best way to grow</text>
+  <text x="460" y="700" font-family="Georgia, serif" font-size="16" font-style="italic" fill="#52525B">yourself. Every mentee teaches me something."</text>
+  
+  <!-- CTA -->
+  <rect x="60" y="780" width="960" height="100" fill="#18181B" rx="8"/>
+  <text x="540" y="840" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA" text-anchor="middle">Book a session → devweekends.com/mentorship</text>
+  
+  <!-- Footer -->
+  <text x="60" y="950" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Thank you for your dedication! 🙏</text>
+  <text x="980" y="950" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

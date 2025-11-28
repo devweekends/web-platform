@@ -1,0 +1,33 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#6366F1"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="250" height="40" fill="#6366F1"/>
+  <text x="185" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">PRODUCTIVITY TIP</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B">Command Palette</text>
+  <text x="60" y="340" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#6366F1">Master Key</text>
+  
+  <rect x="60" y="400" width="960" height="500" fill="#F4F4F5" rx="8"/>
+  
+  <text x="100" y="460" font-family="monospace" font-size="18" font-weight="600" fill="#18181B">The One Shortcut:</text>
+  
+  <rect x="100" y="490" width="860" height="70" fill="#6366F1" rx="4"/>
+  <text x="530" y="535" font-family="monospace" font-size="24" font-weight="700" fill="#FAFAFA" text-anchor="middle">Ctrl + Shift + P</text>
+  
+  <text x="100" y="610" font-family="system-ui, sans-serif" font-size="16" fill="#18181B">Access EVERY VS Code command from here:</text>
+  
+  <text x="120" y="660" font-family="system-ui, sans-serif" font-size="15" fill="#52525B">• Change theme: "Preferences: Color Theme"</text>
+  <text x="120" y="695" font-family="system-ui, sans-serif" font-size="15" fill="#52525B">• Format code: "Format Document"</text>
+  <text x="120" y="730" font-family="system-ui, sans-serif" font-size="15" fill="#52525B">• Install extensions: "Extensions: Install"</text>
+  <text x="120" y="765" font-family="system-ui, sans-serif" font-size="15" fill="#52525B">• Git commands: "Git: Commit"</text>
+  <text x="120" y="800" font-family="system-ui, sans-serif" font-size="15" fill="#52525B">• Settings: "Preferences: Open Settings"</text>
+  
+  <text x="100" y="860" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">💡 Forgot a shortcut? Find it here!</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">The most powerful shortcut in VS Code</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

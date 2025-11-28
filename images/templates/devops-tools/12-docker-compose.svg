@@ -1,0 +1,31 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#2496ED"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="180" height="40" fill="#2496ED"/>
+  <text x="150" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">DEVOPS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Docker Compose</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#2496ED">Multi-Container Setup</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="455" font-family="monospace" font-size="14" fill="#71717A"># docker-compose.yml</text>
+  <text x="100" y="490" font-family="monospace" font-size="16" fill="#22C55E">version: '3.8'</text>
+  <text x="100" y="525" font-family="monospace" font-size="16" fill="#22C55E">services:</text>
+  <text x="120" y="560" font-family="monospace" font-size="16" fill="#22C55E">  app:</text>
+  <text x="140" y="595" font-family="monospace" font-size="16" fill="#FAFAFA">    build: .</text>
+  <text x="140" y="630" font-family="monospace" font-size="16" fill="#FAFAFA">    ports: ["3000:3000"]</text>
+  <text x="140" y="665" font-family="monospace" font-size="16" fill="#FAFAFA">    depends_on: [db, redis]</text>
+  <text x="140" y="700" font-family="monospace" font-size="16" fill="#FAFAFA">    environment:</text>
+  <text x="160" y="735" font-family="monospace" font-size="16" fill="#71717A">      DATABASE_URL: postgres://db:5432</text>
+  <text x="120" y="785" font-family="monospace" font-size="16" fill="#22C55E">  db:</text>
+  <text x="140" y="820" font-family="monospace" font-size="16" fill="#FAFAFA">    image: postgres:15</text>
+  <text x="140" y="855" font-family="monospace" font-size="16" fill="#FAFAFA">    volumes: [pgdata:/var/lib/postgresql/data]</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">docker compose up -d  |  docker compose down</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

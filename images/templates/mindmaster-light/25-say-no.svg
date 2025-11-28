@@ -1,0 +1,31 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#DC2626"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#DC2626"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Say No More</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#DC2626">Protect Your Time</text>
+  
+  <rect x="60" y="420" width="960" height="130" fill="#FEE2E2" rx="8"/>
+  <text x="540" y="480" font-family="system-ui, sans-serif" font-size="22" fill="#18181B" text-anchor="middle">"People think focus means saying yes to what</text>
+  <text x="540" y="520" font-family="system-ui, sans-serif" font-size="22" fill="#18181B" text-anchor="middle">you focus on. It means saying no to the 100</text>
+  <text x="540" y="540" font-family="system-ui, sans-serif" font-size="22" fill="#18181B" text-anchor="middle">other good ideas."</text>
+  
+  <text x="60" y="620" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#18181B">Polite ways to say no:</text>
+  
+  <text x="80" y="680" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">"I'm focused on [X] right now"</text>
+  <text x="80" y="720" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">"My schedule won't allow it this week"</text>
+  <text x="80" y="760" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">"Have you tried asking [person/resource]?"</text>
+  <text x="80" y="800" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">"I can help after [deadline]"</text>
+  <text x="80" y="840" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">"That's not my area of expertise"</text>
+  
+  <text x="80" y="900" font-family="system-ui, sans-serif" font-size="16" fill="#DC2626">💡 Every yes to something is a no to something else</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Your time is your most valuable resource</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

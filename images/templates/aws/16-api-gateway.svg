@@ -1,0 +1,69 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">🚀 API GATEWAY</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">RESTful API Management</text>
+  
+  <text x="120" y="370" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">API Types:</text>
+  
+  <rect x="120" y="395" width="280" height="160" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="260" y="435" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">REST API</text>
+  <text x="140" y="470" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Full featured</text>
+  <text x="140" y="495" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• API keys, usage plans</text>
+  <text x="140" y="520" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Request validation</text>
+  <text x="140" y="545" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Caching, WAF</text>
+  
+  <rect x="420" y="395" width="260" height="160" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="550" y="435" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">HTTP API</text>
+  <text x="440" y="470" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Low latency, low cost</text>
+  <text x="440" y="495" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• 70% cheaper</text>
+  <text x="440" y="520" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• OIDC/OAuth 2.0</text>
+  <text x="440" y="545" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Simpler setup</text>
+  
+  <rect x="700" y="395" width="260" height="160" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="830" y="435" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">WebSocket</text>
+  <text x="720" y="470" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Real-time, 2-way</text>
+  <text x="720" y="495" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Chat, gaming</text>
+  <text x="720" y="520" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Connection mgmt</text>
+  <text x="720" y="545" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• @connect, @message</text>
+  
+  <text x="120" y="610" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Integration Types:</text>
+  
+  <rect x="120" y="635" width="840" height="100" rx="12" fill="white" stroke="#FF9900" stroke-width="1"/>
+  
+  <rect x="160" y="660" width="150" height="50" rx="8" fill="#232F3E"/>
+  <text x="235" y="690" font-family="system-ui, sans-serif" font-size="13" fill="#FF9900" text-anchor="middle">Lambda</text>
+  
+  <rect x="330" y="660" width="150" height="50" rx="8" fill="#232F3E"/>
+  <text x="405" y="690" font-family="system-ui, sans-serif" font-size="13" fill="#FF9900" text-anchor="middle">HTTP/ALB</text>
+  
+  <rect x="500" y="660" width="150" height="50" rx="8" fill="#232F3E"/>
+  <text x="575" y="690" font-family="system-ui, sans-serif" font-size="13" fill="#FF9900" text-anchor="middle">AWS Service</text>
+  
+  <rect x="670" y="660" width="150" height="50" rx="8" fill="#232F3E"/>
+  <text x="745" y="690" font-family="system-ui, sans-serif" font-size="13" fill="#FF9900" text-anchor="middle">VPC Link</text>
+  
+  <text x="120" y="780" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Authorization:</text>
+  
+  <rect x="120" y="800" width="200" height="60" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="220" y="837" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">IAM Policies</text>
+  
+  <rect x="335" y="800" width="200" height="60" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="435" y="837" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">Cognito</text>
+  
+  <rect x="550" y="800" width="200" height="60" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="650" y="837" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">Lambda Authorizer</text>
+  
+  <rect x="765" y="800" width="195" height="60" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="862" y="837" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">JWT (HTTP API)</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

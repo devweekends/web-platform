@@ -1,0 +1,55 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">⚡ ELASTICACHE</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">In-Memory Caching</text>
+  
+  <rect x="120" y="350" width="420" height="280" rx="12" fill="white" stroke="#D82C20" stroke-width="2"/>
+  <text x="330" y="390" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#D82C20" text-anchor="middle">Redis</text>
+  <text x="140" y="430" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">✅ Complex data structures</text>
+  <text x="140" y="460" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">✅ Pub/Sub messaging</text>
+  <text x="140" y="490" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">✅ Lua scripting</text>
+  <text x="140" y="520" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">✅ Replication &amp; persistence</text>
+  <text x="140" y="550" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">✅ Cluster mode for sharding</text>
+  <text x="140" y="580" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">✅ Sorted sets, streams</text>
+  <text x="140" y="620" font-family="system-ui, sans-serif" font-size="14" fill="#D82C20">Best for: Sessions, leaderboards, queues</text>
+  
+  <rect x="560" y="350" width="400" height="280" rx="12" fill="white" stroke="#00D4AA" stroke-width="2"/>
+  <text x="760" y="390" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#00D4AA" text-anchor="middle">Memcached</text>
+  <text x="580" y="430" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">✅ Simple key-value</text>
+  <text x="580" y="460" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">✅ Multi-threaded</text>
+  <text x="580" y="490" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">✅ Easy horizontal scaling</text>
+  <text x="580" y="520" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">❌ No persistence</text>
+  <text x="580" y="550" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">❌ No replication</text>
+  <text x="580" y="580" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">❌ No complex data types</text>
+  <text x="580" y="620" font-family="system-ui, sans-serif" font-size="14" fill="#00D4AA">Best for: Simple caching, objects</text>
+  
+  <text x="120" y="680" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Caching Strategies:</text>
+  
+  <rect x="120" y="705" width="270" height="90" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="255" y="740" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#232F3E" text-anchor="middle">Lazy Loading</text>
+  <text x="255" y="765" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">Cache on read miss</text>
+  <text x="255" y="785" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">May return stale data</text>
+  
+  <rect x="405" y="705" width="270" height="90" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="540" y="740" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#232F3E" text-anchor="middle">Write-Through</text>
+  <text x="540" y="765" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">Update cache on write</text>
+  <text x="540" y="785" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">Always fresh, more writes</text>
+  
+  <rect x="690" y="705" width="270" height="90" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="825" y="740" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#232F3E" text-anchor="middle">TTL-Based</text>
+  <text x="825" y="765" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">Set expiration time</text>
+  <text x="825" y="785" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">Balance freshness/load</text>
+  
+  <text x="120" y="850" font-family="system-ui, sans-serif" font-size="16" fill="#64748B">💡 Use Redis for most use cases; Memcached only for simple, multi-threaded needs</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

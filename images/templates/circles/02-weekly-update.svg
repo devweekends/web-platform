@@ -1,0 +1,55 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="200" height="40" fill="#18181B"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">CIRCLE UPDATE</text>
+  
+  <!-- Title -->
+  <text x="60" y="320" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B">This Week in</text>
+  <text x="60" y="380" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B">[Circle Name]</text>
+  
+  <!-- Yellow underline -->
+  <rect x="60" y="400" width="300" height="4" fill="#FEF08A"/>
+  
+  <!-- Activities -->
+  <rect x="60" y="460" width="960" height="400" fill="#F4F4F5" rx="8"/>
+  
+  <!-- Activity 1 -->
+  <rect x="100" y="500" width="50" height="50" fill="#18181B" rx="4"/>
+  <text x="125" y="533" font-family="system-ui, sans-serif" font-size="24" fill="#FAFAFA" text-anchor="middle">📚</text>
+  <text x="180" y="530" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">Completed Module 3 of React Course</text>
+  <text x="180" y="558" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">All 8 members finished their assignments</text>
+  
+  <!-- Activity 2 -->
+  <rect x="100" y="600" width="50" height="50" fill="#18181B" rx="4"/>
+  <text x="125" y="633" font-family="system-ui, sans-serif" font-size="24" fill="#FAFAFA" text-anchor="middle">💬</text>
+  <text x="180" y="630" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">Held 2 peer review sessions</text>
+  <text x="180" y="658" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Great feedback exchange on projects</text>
+  
+  <!-- Activity 3 -->
+  <rect x="100" y="700" width="50" height="50" fill="#18181B" rx="4"/>
+  <text x="125" y="733" font-family="system-ui, sans-serif" font-size="24" fill="#FAFAFA" text-anchor="middle">🎯</text>
+  <text x="180" y="730" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">Next week: Build a mini project together</text>
+  <text x="180" y="758" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Collaborative Todo app with React + TypeScript</text>
+  
+  <!-- Stats -->
+  <rect x="60" y="900" width="300" height="80" fill="#18181B" rx="8"/>
+  <text x="210" y="945" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FAFAFA" text-anchor="middle">Week 4 of 12</text>
+  <text x="210" y="970" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Circle Progress</text>
+  
+  <rect x="380" y="900" width="200" height="80" fill="#18181B" rx="8"/>
+  <text x="480" y="945" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#22C55E" text-anchor="middle">100%</text>
+  <text x="480" y="970" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Attendance</text>
+  
+  <rect x="600" y="900" width="200" height="80" fill="#18181B" rx="8"/>
+  <text x="700" y="945" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FEF08A" text-anchor="middle">8/8</text>
+  <text x="700" y="970" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Active Members</text>
+  
+  <!-- Footer -->
+  <text x="980" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

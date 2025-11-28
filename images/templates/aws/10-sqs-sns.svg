@@ -1,0 +1,70 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">📬 SQS &amp; SNS</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">Messaging Services</text>
+  
+  <rect x="120" y="350" width="420" height="300" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="330" y="390" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">📥 SQS (Queue)</text>
+  <text x="330" y="420" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">Simple Queue Service</text>
+  
+  <text x="140" y="460" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Pull-based messaging</text>
+  <text x="140" y="490" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• 1-to-1 (one consumer per msg)</text>
+  <text x="140" y="520" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Messages retained up to 14 days</text>
+  <text x="140" y="550" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Standard (best effort) or FIFO</text>
+  
+  <rect x="160" y="575" width="340" height="50" rx="8" fill="#232F3E"/>
+  <text x="330" y="605" font-family="system-ui, sans-serif" font-size="13" fill="#FF9900" text-anchor="middle">Use for: Decoupling, buffering</text>
+  
+  <rect x="560" y="350" width="400" height="300" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="760" y="390" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">📢 SNS (Topic)</text>
+  <text x="760" y="420" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">Simple Notification Service</text>
+  
+  <text x="580" y="460" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Push-based pub/sub</text>
+  <text x="580" y="490" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• 1-to-many (fan-out)</text>
+  <text x="580" y="520" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• No message persistence</text>
+  <text x="580" y="550" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• SMS, Email, HTTP, Lambda</text>
+  
+  <rect x="600" y="575" width="320" height="50" rx="8" fill="#232F3E"/>
+  <text x="760" y="605" font-family="system-ui, sans-serif" font-size="13" fill="#FF9900" text-anchor="middle">Use for: Notifications, fan-out</text>
+  
+  <text x="120" y="700" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Common Pattern: Fan-Out</text>
+  
+  <rect x="120" y="725" width="840" height="140" rx="12" fill="white" stroke="#FF9900" stroke-width="1"/>
+  
+  <rect x="160" y="760" width="140" height="60" rx="8" fill="#232F3E"/>
+  <text x="230" y="795" font-family="system-ui, sans-serif" font-size="12" fill="#FF9900" text-anchor="middle">Producer</text>
+  
+  <text x="320" y="795" font-family="system-ui, sans-serif" font-size="20" fill="#FF9900">→</text>
+  
+  <rect x="360" y="760" width="140" height="60" rx="8" fill="#FF9900"/>
+  <text x="430" y="795" font-family="system-ui, sans-serif" font-size="12" fill="white" text-anchor="middle">SNS Topic</text>
+  
+  <text x="520" y="775" font-family="system-ui, sans-serif" font-size="16" fill="#FF9900">→</text>
+  <text x="520" y="810" font-family="system-ui, sans-serif" font-size="16" fill="#FF9900">→</text>
+  
+  <rect x="560" y="745" width="120" height="40" rx="6" fill="#232F3E"/>
+  <text x="620" y="770" font-family="system-ui, sans-serif" font-size="11" fill="#FF9900" text-anchor="middle">SQS Queue 1</text>
+  
+  <rect x="560" y="795" width="120" height="40" rx="6" fill="#232F3E"/>
+  <text x="620" y="820" font-family="system-ui, sans-serif" font-size="11" fill="#FF9900" text-anchor="middle">SQS Queue 2</text>
+  
+  <text x="700" y="770" font-family="system-ui, sans-serif" font-size="16" fill="#FF9900">→</text>
+  <text x="700" y="820" font-family="system-ui, sans-serif" font-size="16" fill="#FF9900">→</text>
+  
+  <rect x="740" y="745" width="100" height="40" rx="6" fill="#232F3E"/>
+  <text x="790" y="770" font-family="system-ui, sans-serif" font-size="11" fill="#FF9900" text-anchor="middle">Lambda 1</text>
+  
+  <rect x="740" y="795" width="100" height="40" rx="6" fill="#232F3E"/>
+  <text x="790" y="820" font-family="system-ui, sans-serif" font-size="11" fill="#FF9900" text-anchor="middle">Lambda 2</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

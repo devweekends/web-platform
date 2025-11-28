@@ -1,0 +1,44 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Confetti elements -->
+  <rect x="100" y="100" width="20" height="8" fill="#FEF08A" transform="rotate(45 100 100)"/>
+  <rect x="300" y="150" width="20" height="8" fill="#22C55E" transform="rotate(-30 300 150)"/>
+  <rect x="800" y="120" width="20" height="8" fill="#A78BFA" transform="rotate(60 800 120)"/>
+  <rect x="950" y="200" width="20" height="8" fill="#FEF08A" transform="rotate(-45 950 200)"/>
+  <circle cx="200" cy="200" r="8" fill="#22C55E"/>
+  <circle cx="900" cy="150" r="8" fill="#A78BFA"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="200" height="40" fill="#FEF08A"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">PLACEMENT ALERT</text>
+  
+  <!-- Photo placeholder -->
+  <circle cx="540" cy="400" r="120" fill="#27272A"/>
+  <text x="540" y="410" font-family="system-ui, sans-serif" font-size="40" fill="#52525B" text-anchor="middle">👤</text>
+  
+  <!-- Yellow ring -->
+  <circle cx="540" cy="400" r="130" stroke="#FEF08A" stroke-width="4" fill="none"/>
+  
+  <!-- Name -->
+  <text x="540" y="600" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#FAFAFA" text-anchor="middle">[Name Here]</text>
+  
+  <!-- Achievement -->
+  <text x="540" y="670" font-family="system-ui, sans-serif" font-size="24" fill="#A1A1AA" text-anchor="middle">Got placed at</text>
+  
+  <!-- Company -->
+  <rect x="340" y="710" width="400" height="80" fill="#27272A" rx="8"/>
+  <text x="540" y="762" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#FAFAFA" text-anchor="middle">[COMPANY]</text>
+  
+  <!-- Package -->
+  <text x="540" y="860" font-family="system-ui, sans-serif" font-size="48" font-weight="800" fill="#22C55E" text-anchor="middle">XX LPA</text>
+  
+  <!-- Quote -->
+  <text x="540" y="940" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">"Dev Weekends helped me crack my dream job!"</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">🎉 Congratulations from the Dev Weekends family!</text>
+</svg>

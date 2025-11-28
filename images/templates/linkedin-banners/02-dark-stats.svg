@@ -1,0 +1,29 @@
+<svg width="1584" height="396" viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1584" height="396" fill="#18181B"/>
+  
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid-banner2" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272A" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1584" height="396" fill="url(#grid-banner2)"/>
+  
+  <!-- Branding -->
+  <text x="60" y="60" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Tagline -->
+  <text x="60" y="200" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#FAFAFA">We Don't Just Teach Code.</text>
+  <text x="60" y="260" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#FEF08A">We Build Engineers.</text>
+  
+  <!-- CTA -->
+  <rect x="60" y="310" width="200" height="50" fill="#FAFAFA" rx="4"/>
+  <text x="160" y="344" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="1">JOIN FREE →</text>
+  
+  <!-- Stats on right -->
+  <text x="1400" y="150" font-family="system-ui, sans-serif" font-size="64" font-weight="800" fill="#FAFAFA" text-anchor="end">20K+</text>
+  <text x="1400" y="190" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="end">MEMBERS</text>
+  
+  <text x="1400" y="280" font-family="system-ui, sans-serif" font-size="64" font-weight="800" fill="#FEF08A" text-anchor="end">500+</text>
+  <text x="1400" y="320" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="end">SESSIONS</text>
+</svg>

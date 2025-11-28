@@ -1,0 +1,37 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1200" fill="#18181B"/>
+  
+  <!-- Diagonal accent -->
+  <polygon points="0,0 600,0 0,600" fill="#FEF08A" opacity="0.05"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="180" width="200" height="40" fill="#FAFAFA"/>
+  <text x="160" y="208" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">WE'RE HIRING</text>
+  
+  <!-- Role title -->
+  <text x="60" y="380" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA">Senior</text>
+  <text x="60" y="450" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA">Software</text>
+  <text x="60" y="520" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FEF08A">Engineer</text>
+  
+  <!-- Details -->
+  <rect x="60" y="600" width="300" height="60" fill="#27272A" rx="8"/>
+  <text x="210" y="640" font-family="system-ui, sans-serif" font-size="18" fill="#FAFAFA" text-anchor="middle">📍 Remote • Full-time</text>
+  
+  <!-- Requirements -->
+  <text x="60" y="740" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" letter-spacing="2">REQUIREMENTS</text>
+  
+  <text x="60" y="800" font-family="system-ui, sans-serif" font-size="20" fill="#A1A1AA">✓ 3+ years experience</text>
+  <text x="60" y="850" font-family="system-ui, sans-serif" font-size="20" fill="#A1A1AA">✓ React, Node.js, TypeScript</text>
+  <text x="60" y="900" font-family="system-ui, sans-serif" font-size="20" fill="#A1A1AA">✓ Strong problem-solving skills</text>
+  <text x="60" y="950" font-family="system-ui, sans-serif" font-size="20" fill="#A1A1AA">✓ Passion for learning</text>
+  
+  <!-- CTA -->
+  <rect x="60" y="1040" width="280" height="60" fill="#FAFAFA" rx="4"/>
+  <text x="200" y="1080" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B" text-anchor="middle">Apply Now →</text>
+  
+  <!-- Footer -->
+  <text x="60" y="1160" font-family="system-ui, sans-serif" font-size="14" fill="#52525B">Link in comments | Tag someone who'd be perfect</text>
+</svg>

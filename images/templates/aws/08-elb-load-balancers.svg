@@ -1,0 +1,53 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">⚖️ ELB LOAD BALANCERS</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">Elastic Load Balancing Types</text>
+  
+  <rect x="120" y="350" width="280" height="260" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="260" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">ALB</text>
+  <text x="260" y="415" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">Application Load Balancer</text>
+  <text x="140" y="455" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Layer 7 (HTTP/HTTPS)</text>
+  <text x="140" y="485" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Path-based routing</text>
+  <text x="140" y="515" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Host-based routing</text>
+  <text x="140" y="545" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• WebSocket support</text>
+  <text x="140" y="575" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Lambda targets</text>
+  
+  <rect x="420" y="350" width="260" height="260" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="550" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">NLB</text>
+  <text x="550" y="415" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">Network Load Balancer</text>
+  <text x="440" y="455" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Layer 4 (TCP/UDP)</text>
+  <text x="440" y="485" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Ultra-low latency</text>
+  <text x="440" y="515" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Static IP support</text>
+  <text x="440" y="545" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Millions of RPS</text>
+  <text x="440" y="575" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Preserve source IP</text>
+  
+  <rect x="700" y="350" width="260" height="260" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="830" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">GWLB</text>
+  <text x="830" y="415" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">Gateway Load Balancer</text>
+  <text x="720" y="455" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Layer 3 (IP packets)</text>
+  <text x="720" y="485" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Network appliances</text>
+  <text x="720" y="515" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Firewalls, IDS/IPS</text>
+  <text x="720" y="545" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• GENEVE protocol</text>
+  <text x="720" y="575" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">• Transparent to apps</text>
+  
+  <text x="120" y="660" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">ALB Routing Rules:</text>
+  
+  <rect x="120" y="685" width="840" height="180" rx="12" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="140" y="720" font-family="monospace" font-size="15" fill="#64748B"># Path-based routing</text>
+  <text x="140" y="750" font-family="monospace" font-size="15" fill="#232F3E">/api/*       → API Target Group</text>
+  <text x="140" y="780" font-family="monospace" font-size="15" fill="#232F3E">/static/*    → S3 Bucket (static assets)</text>
+  <text x="140" y="810" font-family="monospace" font-size="15" fill="#64748B"># Host-based routing</text>
+  <text x="140" y="840" font-family="monospace" font-size="15" fill="#232F3E">api.example.com  → API Target Group</text>
+  <text x="140" y="860" font-family="monospace" font-size="15" fill="#232F3E">www.example.com  → Web Target Group</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

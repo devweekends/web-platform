@@ -1,0 +1,23 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="140" width="160" height="40" fill="#22C55E"/>
+  <text x="140" y="168" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle">EID MUBARAK</text>
+  
+  <text x="540" y="380" font-family="system-ui, sans-serif" font-size="72" font-weight="700" fill="#FAFAFA" text-anchor="middle">Eid Mubarak</text>
+  
+  <text x="540" y="480" font-family="system-ui, sans-serif" font-size="28" fill="#22C55E" text-anchor="middle">★ ★ ★</text>
+  
+  <text x="540" y="580" font-family="system-ui, sans-serif" font-size="24" fill="#A1A1AA" text-anchor="middle">Wishing you and your family</text>
+  <text x="540" y="630" font-family="system-ui, sans-serif" font-size="24" fill="#A1A1AA" text-anchor="middle">a blessed Eid</text>
+  
+  <rect x="240" y="700" width="600" height="120" fill="#27272A" rx="8"/>
+  <text x="540" y="760" font-family="system-ui, sans-serif" font-size="18" fill="#FAFAFA" text-anchor="middle">May this Eid bring you joy, success,</text>
+  <text x="540" y="795" font-family="system-ui, sans-serif" font-size="18" fill="#FAFAFA" text-anchor="middle">and many opportunities to grow</text>
+  
+  <text x="540" y="920" font-family="system-ui, sans-serif" font-size="20" fill="#71717A" text-anchor="middle">From the Dev Weekends family</text>
+  
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">@devweekends</text>
+</svg>

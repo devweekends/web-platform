@@ -1,0 +1,49 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="200" height="40" fill="#18181B"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">WEEKLY UPDATE</text>
+  
+  <!-- Week -->
+  <text x="980" y="80" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="end">Week 12</text>
+  
+  <!-- Title -->
+  <text x="60" y="320" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B">This Week at</text>
+  <text x="60" y="380" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B">Dev Weekends</text>
+  
+  <!-- Updates list -->
+  <rect x="60" y="440" width="960" height="500" fill="#F4F4F5" rx="8"/>
+  
+  <!-- Item 1 -->
+  <rect x="100" y="480" width="40" height="40" fill="#FEF08A" rx="4"/>
+  <text x="120" y="510" font-family="system-ui, sans-serif" font-size="20" fill="#18181B" text-anchor="middle">1</text>
+  <text x="170" y="508" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">New session on System Design</text>
+  <text x="170" y="540" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Saturday 5PM IST</text>
+  
+  <!-- Item 2 -->
+  <rect x="100" y="580" width="40" height="40" fill="#FEF08A" rx="4"/>
+  <text x="120" y="610" font-family="system-ui, sans-serif" font-size="20" fill="#18181B" text-anchor="middle">2</text>
+  <text x="170" y="608" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">5 new fellows joined the program</text>
+  <text x="170" y="640" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Welcome to the family!</text>
+  
+  <!-- Item 3 -->
+  <rect x="100" y="680" width="40" height="40" fill="#FEF08A" rx="4"/>
+  <text x="120" y="710" font-family="system-ui, sans-serif" font-size="20" fill="#18181B" text-anchor="middle">3</text>
+  <text x="170" y="708" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">Mentorship batch starting soon</text>
+  <text x="170" y="740" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Applications open until Friday</text>
+  
+  <!-- Item 4 -->
+  <rect x="100" y="780" width="40" height="40" fill="#FEF08A" rx="4"/>
+  <text x="120" y="810" font-family="system-ui, sans-serif" font-size="20" fill="#18181B" text-anchor="middle">4</text>
+  <text x="170" y="808" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">New DSA resources uploaded</text>
+  <text x="170" y="840" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Check the resources section</text>
+  
+  <!-- Footer -->
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">Stay tuned for more updates!</text>
+  <text x="980" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

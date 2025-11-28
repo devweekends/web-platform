@@ -1,0 +1,43 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="240" height="40" fill="#FEF08A"/>
+  <text x="180" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">MEMBER SPOTLIGHT</text>
+  
+  <!-- Photo placeholder with ring -->
+  <circle cx="540" cy="400" r="140" fill="#27272A"/>
+  <circle cx="540" cy="400" r="150" stroke="#FEF08A" stroke-width="4" fill="none"/>
+  <text x="540" y="420" font-family="system-ui, sans-serif" font-size="60" fill="#52525B" text-anchor="middle">👤</text>
+  
+  <!-- Name -->
+  <text x="540" y="620" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#FAFAFA" text-anchor="middle">[Member Name]</text>
+  <text x="540" y="670" font-family="system-ui, sans-serif" font-size="18" fill="#71717A" text-anchor="middle">Community Member since 2023</text>
+  
+  <!-- Stats -->
+  <rect x="140" y="720" width="200" height="100" fill="#27272A" rx="8"/>
+  <text x="240" y="770" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#FAFAFA" text-anchor="middle">6</text>
+  <text x="240" y="800" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Months Active</text>
+  
+  <rect x="360" y="720" width="200" height="100" fill="#27272A" rx="8"/>
+  <text x="460" y="770" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#FEF08A" text-anchor="middle">25+</text>
+  <text x="460" y="800" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Sessions Attended</text>
+  
+  <rect x="580" y="720" width="200" height="100" fill="#27272A" rx="8"/>
+  <text x="680" y="770" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#FAFAFA" text-anchor="middle">5</text>
+  <text x="680" y="800" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Others Helped</text>
+  
+  <rect x="800" y="720" width="200" height="100" fill="#27272A" rx="8"/>
+  <text x="900" y="770" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#22C55E" text-anchor="middle">✓</text>
+  <text x="900" y="800" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Placed!</text>
+  
+  <!-- Quote -->
+  <text x="540" y="900" font-family="Georgia, serif" font-size="18" font-style="italic" fill="#A1A1AA" text-anchor="middle">"Dev Weekends gave me the community I needed"</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1000" font-family="system-ui, sans-serif" font-size="16" fill="#52525B" text-anchor="middle">Congratulations! 🎉</text>
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">@devweekends</text>
+</svg>

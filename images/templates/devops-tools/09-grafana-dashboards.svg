@@ -1,0 +1,32 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#F46800"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="180" height="40" fill="#F46800"/>
+  <text x="150" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">DEVOPS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Grafana</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#F46800">Dashboard Essentials</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="470" font-family="monospace" font-size="14" fill="#71717A"># RED Method (for services)</text>
+  <text x="100" y="505" font-family="monospace" font-size="18" fill="#22C55E">Rate     → Requests per second</text>
+  <text x="100" y="540" font-family="monospace" font-size="18" fill="#22C55E">Errors   → Failed request count</text>
+  <text x="100" y="575" font-family="monospace" font-size="18" fill="#22C55E">Duration → Latency percentiles</text>
+  
+  <text x="100" y="635" font-family="monospace" font-size="14" fill="#71717A"># USE Method (for resources)</text>
+  <text x="100" y="670" font-family="monospace" font-size="18" fill="#22C55E">Utilization → Percent time busy</text>
+  <text x="100" y="705" font-family="monospace" font-size="18" fill="#22C55E">Saturation  → Work queue depth</text>
+  <text x="100" y="740" font-family="monospace" font-size="18" fill="#22C55E">Errors      → Error event count</text>
+  
+  <text x="100" y="800" font-family="monospace" font-size="14" fill="#71717A"># Panel types: Time series, Stat, Gauge, Heatmap</text>
+  <text x="100" y="835" font-family="monospace" font-size="18" fill="#22C55E">Use variables for environment/service filtering</text>
+  <text x="100" y="870" font-family="monospace" font-size="18" fill="#22C55E">Set meaningful thresholds with color coding</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Visualize metrics, logs, and traces in one place</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

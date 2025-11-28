@@ -1,0 +1,35 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="warm-ig" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFBEB"/>
+      <stop offset="100%" style="stop-color:#FEF3C7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#warm-ig)"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Large quote mark -->
+  <text x="60" y="350" font-family="Georgia, serif" font-size="300" fill="#18181B" opacity="0.08">"</text>
+  
+  <!-- Quote text -->
+  <text x="100" y="450" font-family="Georgia, serif" font-size="38" font-style="italic" fill="#18181B">The only way to do</text>
+  <text x="100" y="510" font-family="Georgia, serif" font-size="38" font-style="italic" fill="#18181B">great work is to love</text>
+  <text x="100" y="570" font-family="Georgia, serif" font-size="38" font-style="italic" fill="#18181B">what you do.</text>
+  
+  <!-- Attribution line -->
+  <rect x="100" y="650" width="80" height="2" fill="#18181B"/>
+  
+  <!-- Author -->
+  <text x="100" y="710" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#18181B">Steve Jobs</text>
+  <text x="100" y="745" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">Co-founder, Apple</text>
+  
+  <!-- Decorative circles -->
+  <circle cx="900" cy="200" r="80" fill="none" stroke="#18181B" stroke-width="1" opacity="0.1"/>
+  <circle cx="900" cy="200" r="120" fill="none" stroke="#18181B" stroke-width="1" opacity="0.05"/>
+  
+  <!-- Footer -->
+  <rect x="60" y="950" width="960" height="1" fill="#18181B" opacity="0.1"/>
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Double tap if this resonates ❤️</text>
+</svg>

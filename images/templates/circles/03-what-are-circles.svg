@@ -1,0 +1,51 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="200" height="40" fill="#FEF08A"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">CIRCLES</text>
+  
+  <!-- Title -->
+  <text x="540" y="320" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FAFAFA" text-anchor="middle">What are Circles?</text>
+  
+  <!-- Main visual -->
+  <circle cx="540" cy="540" r="200" stroke="#FEF08A" stroke-width="4" fill="none"/>
+  
+  <!-- Member dots on circle -->
+  <circle cx="540" cy="340" r="30" fill="#27272A"/>
+  <text x="540" y="350" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA" text-anchor="middle">👤</text>
+  
+  <circle cx="708" cy="440" r="30" fill="#27272A"/>
+  <text x="708" y="450" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA" text-anchor="middle">👤</text>
+  
+  <circle cx="740" cy="580" r="30" fill="#27272A"/>
+  <text x="740" y="590" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA" text-anchor="middle">👤</text>
+  
+  <circle cx="640" cy="720" r="30" fill="#27272A"/>
+  <text x="640" y="730" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA" text-anchor="middle">👤</text>
+  
+  <circle cx="440" cy="720" r="30" fill="#27272A"/>
+  <text x="440" y="730" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA" text-anchor="middle">👤</text>
+  
+  <circle cx="340" cy="580" r="30" fill="#27272A"/>
+  <text x="340" y="590" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA" text-anchor="middle">👤</text>
+  
+  <circle cx="372" cy="440" r="30" fill="#27272A"/>
+  <text x="372" y="450" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA" text-anchor="middle">👤</text>
+  
+  <!-- Center text -->
+  <text x="540" y="530" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="#FEF08A" text-anchor="middle">8 People</text>
+  <text x="540" y="560" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">1 Goal</text>
+  
+  <!-- Benefits -->
+  <text x="60" y="850" font-family="system-ui, sans-serif" font-size="18" fill="#FAFAFA">✓ Small peer groups of 6-10 members</text>
+  <text x="60" y="890" font-family="system-ui, sans-serif" font-size="18" fill="#FAFAFA">✓ Weekly sync calls &amp; accountability</text>
+  <text x="60" y="930" font-family="system-ui, sans-serif" font-size="18" fill="#FAFAFA">✓ Focus on specific skills or goals</text>
+  <text x="60" y="970" font-family="system-ui, sans-serif" font-size="18" fill="#FAFAFA">✓ Learn together, grow together</text>
+  
+  <!-- CTA -->
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="16" fill="#52525B" text-anchor="middle">Join a Circle → devweekends.com/circles</text>
+</svg>

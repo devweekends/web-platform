@@ -1,0 +1,40 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#18181B"/>
+  
+  <!-- Glow effect -->
+  <defs>
+    <radialGradient id="ama-glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#18181B;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#ama-glow)"/>
+  
+  <!-- Header -->
+  <text x="60" y="60" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- AMA badge -->
+  <rect x="60" y="150" width="80" height="40" fill="#6366F1"/>
+  <text x="100" y="178" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#FAFAFA" text-anchor="middle">AMA</text>
+  
+  <!-- Title -->
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FAFAFA">Ask Me Anything</text>
+  <text x="60" y="340" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#A78BFA">with Industry Expert</text>
+  
+  <!-- Speaker card -->
+  <rect x="60" y="400" width="500" height="160" fill="#27272A" rx="8"/>
+  <circle cx="150" cy="480" r="50" fill="#3F3F46"/>
+  <text x="150" y="485" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Photo</text>
+  <text x="230" y="460" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="#FAFAFA">Speaker Name</text>
+  <text x="230" y="495" font-family="system-ui, sans-serif" font-size="16" fill="#A1A1AA">Senior Engineer @ Google</text>
+  <text x="230" y="525" font-family="system-ui, sans-serif" font-size="14" fill="#6366F1">10+ years in tech</text>
+  
+  <!-- Details -->
+  <rect x="800" y="400" width="340" height="160" fill="#27272A" rx="8"/>
+  <text x="970" y="450" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">WHEN</text>
+  <text x="970" y="490" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="#FAFAFA" text-anchor="middle">Sunday, Dec 15</text>
+  <text x="970" y="530" font-family="system-ui, sans-serif" font-size="16" fill="#A1A1AA" text-anchor="middle">8:00 PM PKT • Discord</text>
+  
+  <!-- CTA -->
+  <text x="60" y="600" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">Submit your questions in #ama-questions</text>
+</svg>

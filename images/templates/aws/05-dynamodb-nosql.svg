@@ -1,0 +1,33 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#FF9900"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="120" height="40" fill="#FF9900"/>
+  <text x="120" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">AWS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">DynamoDB</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FF9900">NoSQL at Scale</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="470" font-family="monospace" font-size="14" fill="#71717A"># Create table</text>
+  <text x="100" y="505" font-family="monospace" font-size="18" fill="#22C55E">aws dynamodb create-table --table-name Users \</text>
+  <text x="120" y="540" font-family="monospace" font-size="18" fill="#22C55E">  --attribute-definitions AttributeName=id,AttributeType=S</text>
+  
+  <text x="100" y="600" font-family="monospace" font-size="14" fill="#71717A"># Put item</text>
+  <text x="100" y="635" font-family="monospace" font-size="18" fill="#22C55E">aws dynamodb put-item --table-name Users \</text>
+  <text x="120" y="670" font-family="monospace" font-size="18" fill="#22C55E">  --item '{"id":{"S":"123"},"name":{"S":"John"}}'</text>
+  
+  <text x="100" y="730" font-family="monospace" font-size="14" fill="#71717A"># Query by partition key</text>
+  <text x="100" y="765" font-family="monospace" font-size="18" fill="#22C55E">aws dynamodb query --table-name Users \</text>
+  <text x="120" y="800" font-family="monospace" font-size="18" fill="#22C55E">  --key-condition-expression "id = :id"</text>
+  
+  <text x="100" y="860" font-family="monospace" font-size="14" fill="#71717A"># Scan all items (expensive!)</text>
+  <text x="100" y="895" font-family="monospace" font-size="18" fill="#22C55E">aws dynamodb scan --table-name Users</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Single-digit millisecond latency at any scale</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

@@ -1,0 +1,40 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Radial glow -->
+  <defs>
+    <radialGradient id="glow-ig" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FEF08A;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#18181B;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#glow-ig)"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- New badge -->
+  <rect x="60" y="300" width="80" height="32" fill="#FEF08A" rx="4"/>
+  <text x="100" y="322" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#18181B" text-anchor="middle">NEW</text>
+  
+  <!-- Main announcement -->
+  <text x="60" y="420" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA">Something</text>
+  <text x="60" y="490" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA">Big is</text>
+  <text x="60" y="560" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FEF08A">Coming</text>
+  
+  <!-- Date box -->
+  <rect x="60" y="650" width="300" height="120" fill="#27272A" rx="8"/>
+  <text x="210" y="700" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">LAUNCHING ON</text>
+  <text x="210" y="745" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#FAFAFA" text-anchor="middle">Dec 15, 2025</text>
+  
+  <!-- CTA -->
+  <rect x="60" y="850" width="250" height="56" fill="#FAFAFA" rx="4"/>
+  <text x="185" y="886" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" text-anchor="middle">Turn on notifications 🔔</text>
+  
+  <!-- Decorative elements -->
+  <rect x="900" y="300" width="120" height="120" fill="none" stroke="#FEF08A" stroke-width="2" opacity="0.3"/>
+  <rect x="920" y="320" width="120" height="120" fill="none" stroke="#FEF08A" stroke-width="2" opacity="0.2"/>
+  
+  <!-- Footer -->
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">@devweekends</text>
+</svg>

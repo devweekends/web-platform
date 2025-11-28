@@ -1,0 +1,30 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="140" width="220" height="40" fill="#22C55E"/>
+  <text x="170" y="168" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle">DAY 50 COMPLETE!</text>
+  
+  <text x="60" y="300" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#18181B">Day 50</text>
+  
+  <text x="60" y="380" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#A855F7">Lowest Common Ancestor</text>
+  
+  <rect x="60" y="430" width="120" height="40" fill="#FEF08A" rx="4"/>
+  <text x="120" y="458" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle">Medium</text>
+  
+  <rect x="60" y="510" width="960" height="200" fill="#F4F4F5" rx="8"/>
+  <text x="100" y="560" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">Problem:</text>
+  <text x="100" y="600" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">Find the lowest common ancestor (LCA) of two given</text>
+  <text x="100" y="630" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">nodes in a binary tree.</text>
+  <text x="100" y="680" font-family="monospace" font-size="14" fill="#A855F7">Tree: [3,5,1,6,2,0,8], p=5, q=1 -> LCA=3</text>
+  
+  <rect x="60" y="740" width="960" height="150" fill="#F4F4F5" rx="8"/>
+  <text x="100" y="790" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#22C55E">Hint:</text>
+  <text x="100" y="830" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">Recursively search left and right. LCA is where both return non-null.</text>
+  <text x="100" y="865" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Time: O(n) | Space: O(h)</text>
+  
+  <text x="60" y="950" font-family="system-ui, sans-serif" font-size="18" fill="#18181B">Congrats on completing 50 days!</text>
+  
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">@devweekends</text>
+</svg>

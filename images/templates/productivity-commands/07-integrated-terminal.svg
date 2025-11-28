@@ -1,0 +1,42 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#EF4444"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="250" height="40" fill="#EF4444"/>
+  <text x="185" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">PRODUCTIVITY TIP</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B">Integrated Terminal</text>
+  <text x="60" y="340" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#EF4444">Power User</text>
+  
+  <rect x="60" y="400" width="960" height="500" fill="#F4F4F5" rx="8"/>
+  
+  <text x="100" y="460" font-family="monospace" font-size="18" font-weight="600" fill="#18181B">Terminal Commands:</text>
+  
+  <rect x="100" y="490" width="860" height="50" fill="#18181B" rx="4"/>
+  <text x="120" y="523" font-family="monospace" font-size="16" fill="#22C55E">Ctrl + `</text>
+  <text x="300" y="523" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA">Toggle integrated terminal</text>
+  
+  <rect x="100" y="555" width="860" height="50" fill="#18181B" rx="4"/>
+  <text x="120" y="588" font-family="monospace" font-size="16" fill="#22C55E">Ctrl + Shift + `</text>
+  <text x="300" y="588" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA">Create new terminal</text>
+  
+  <rect x="100" y="620" width="860" height="50" fill="#18181B" rx="4"/>
+  <text x="120" y="653" font-family="monospace" font-size="16" fill="#22C55E">Ctrl + PageUp/Down</text>
+  <text x="300" y="653" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA">Switch between terminals</text>
+  
+  <rect x="100" y="685" width="860" height="50" fill="#18181B" rx="4"/>
+  <text x="120" y="718" font-family="monospace" font-size="16" fill="#22C55E">Ctrl + Shift + 5</text>
+  <text x="300" y="718" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA">Split terminal</text>
+  
+  <rect x="100" y="750" width="860" height="50" fill="#18181B" rx="4"/>
+  <text x="120" y="783" font-family="monospace" font-size="16" fill="#22C55E">Ctrl + Shift + C/V</text>
+  <text x="300" y="783" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA">Copy/Paste in terminal</text>
+  
+  <text x="100" y="850" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">💡 Run dev server, tests, and git - all in one view!</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">No more switching to external terminal</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

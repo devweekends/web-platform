@@ -1,0 +1,30 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#00BCD4"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="180" height="40" fill="#00BCD4"/>
+  <text x="150" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">DEVOPS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Jaeger</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#00BCD4">Distributed Tracing</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="455" font-family="monospace" font-size="14" fill="#71717A"># OpenTelemetry setup for Node.js</text>
+  <text x="100" y="490" font-family="monospace" font-size="16" fill="#22C55E">const { NodeTracerProvider } = require(</text>
+  <text x="120" y="525" font-family="monospace" font-size="16" fill="#FAFAFA">  '@opentelemetry/node'</text>
+  <text x="100" y="560" font-family="monospace" font-size="16" fill="#22C55E">);</text>
+  <text x="100" y="610" font-family="monospace" font-size="16" fill="#FAFAFA">const provider = new NodeTracerProvider();</text>
+  <text x="100" y="660" font-family="monospace" font-size="14" fill="#71717A"># Configure Jaeger exporter</text>
+  <text x="100" y="695" font-family="monospace" font-size="16" fill="#22C55E">const exporter = new JaegerExporter({</text>
+  <text x="120" y="730" font-family="monospace" font-size="16" fill="#FAFAFA">  endpoint: 'http://jaeger:14268/api/traces'</text>
+  <text x="100" y="765" font-family="monospace" font-size="16" fill="#22C55E">});</text>
+  <text x="100" y="815" font-family="monospace" font-size="14" fill="#71717A"># Key: propagate trace context between services</text>
+  <text x="100" y="850" font-family="monospace" font-size="16" fill="#22C55E">W3C TraceContext or B3 headers</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Trace requests across microservices</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

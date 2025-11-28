@@ -1,0 +1,45 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="200" height="40" fill="#A78BFA"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MINDMASTER</text>
+  
+  <!-- Swipe indicator -->
+  <text x="980" y="80" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="end">SWIPE →</text>
+  
+  <!-- Title -->
+  <text x="540" y="320" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#18181B" text-anchor="middle">5 Cognitive</text>
+  <text x="540" y="390" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#A78BFA" text-anchor="middle">Biases</text>
+  
+  <!-- Subtitle -->
+  <text x="540" y="460" font-family="system-ui, sans-serif" font-size="24" fill="#71717A" text-anchor="middle">That Affect Your Coding Decisions</text>
+  
+  <!-- Preview -->
+  <rect x="60" y="520" width="960" height="350" fill="#F4F4F5" rx="8"/>
+  
+  <text x="100" y="590" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">1. Confirmation Bias</text>
+  <text x="100" y="625" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Looking for evidence that confirms what you believe</text>
+  
+  <text x="100" y="680" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">2. Sunk Cost Fallacy</text>
+  <text x="100" y="715" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Continuing with bad code because you invested time</text>
+  
+  <text x="100" y="770" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">3. Anchoring Effect</text>
+  <text x="100" y="805" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">First solution shapes all future thinking</text>
+  
+  <text x="100" y="845" font-family="system-ui, sans-serif" font-size="16" fill="#A78BFA">Swipe to see all 5 →</text>
+  
+  <!-- Carousel dots -->
+  <circle cx="480" cy="930" r="6" fill="#18181B"/>
+  <circle cx="510" cy="930" r="6" fill="#D4D4D8"/>
+  <circle cx="540" cy="930" r="6" fill="#D4D4D8"/>
+  <circle cx="570" cy="930" r="6" fill="#D4D4D8"/>
+  <circle cx="600" cy="930" r="6" fill="#D4D4D8"/>
+  
+  <!-- Footer -->
+  <text x="540" y="1000" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Save this for your next code review 💡</text>
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">@devweekends</text>
+</svg>

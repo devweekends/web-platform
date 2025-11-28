@@ -1,0 +1,63 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">📊 KINESIS</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">Real-Time Data Streaming</text>
+  
+  <rect x="120" y="350" width="420" height="180" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="330" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">Data Streams</text>
+  <text x="140" y="430" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Real-time data ingestion</text>
+  <text x="140" y="460" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Shards for throughput (1 MB/s in)</text>
+  <text x="140" y="490" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• 24hr default retention (up to 365d)</text>
+  <text x="140" y="520" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Multiple consumers per stream</text>
+  
+  <rect x="560" y="350" width="400" height="180" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="760" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">Firehose</text>
+  <text x="580" y="430" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Load data to destinations</text>
+  <text x="580" y="460" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• S3, Redshift, OpenSearch</text>
+  <text x="580" y="490" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Auto scaling, no shards</text>
+  <text x="580" y="520" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Near real-time (60s buffer)</text>
+  
+  <text x="120" y="580" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Data Streams Architecture:</text>
+  
+  <rect x="120" y="605" width="840" height="130" rx="12" fill="white" stroke="#FF9900" stroke-width="1"/>
+  
+  <rect x="160" y="640" width="120" height="60" rx="8" fill="#232F3E"/>
+  <text x="220" y="675" font-family="system-ui, sans-serif" font-size="12" fill="#FF9900" text-anchor="middle">Producers</text>
+  
+  <text x="300" y="675" font-family="system-ui, sans-serif" font-size="18" fill="#FF9900">→</text>
+  
+  <rect x="340" y="630" width="300" height="80" rx="8" fill="#FF9900"/>
+  <text x="490" y="660" font-family="system-ui, sans-serif" font-size="14" fill="white" text-anchor="middle">Kinesis Data Stream</text>
+  <text x="490" y="685" font-family="system-ui, sans-serif" font-size="12" fill="white" text-anchor="middle">Shard 1 | Shard 2 | Shard 3</text>
+  
+  <text x="660" y="675" font-family="system-ui, sans-serif" font-size="18" fill="#FF9900">→</text>
+  
+  <rect x="700" y="640" width="120" height="60" rx="8" fill="#232F3E"/>
+  <text x="760" y="675" font-family="system-ui, sans-serif" font-size="12" fill="#FF9900" text-anchor="middle">Consumers</text>
+  
+  <text x="860" y="660" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">Lambda</text>
+  <text x="860" y="680" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">KCL App</text>
+  <text x="860" y="700" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">Firehose</text>
+  
+  <text x="120" y="780" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Use Cases:</text>
+  
+  <rect x="120" y="805" width="270" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="255" y="845" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">📈 Real-time analytics</text>
+  
+  <rect x="405" y="805" width="270" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="540" y="845" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">📝 Log aggregation</text>
+  
+  <rect x="690" y="805" width="270" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="825" y="845" font-family="system-ui, sans-serif" font-size="14" fill="#232F3E" text-anchor="middle">🎮 Gaming/IoT events</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

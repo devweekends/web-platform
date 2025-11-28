@@ -1,0 +1,42 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="200" height="40" fill="#FEF08A"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">ANNOUNCEMENT</text>
+  
+  <!-- Megaphone icon area -->
+  <rect x="820" y="120" width="200" height="200" fill="#27272A" rx="12"/>
+  <text x="920" y="240" font-family="system-ui, sans-serif" font-size="80" text-anchor="middle">📢</text>
+  
+  <!-- Main text -->
+  <text x="60" y="400" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA">Big News!</text>
+  
+  <!-- Content -->
+  <text x="60" y="500" font-family="system-ui, sans-serif" font-size="28" fill="#A1A1AA">We're excited to announce</text>
+  
+  <!-- Highlight box -->
+  <rect x="60" y="550" width="960" height="200" fill="#27272A" rx="8"/>
+  <text x="540" y="660" font-family="system-ui, sans-serif" font-size="36" font-weight="600" fill="#FAFAFA" text-anchor="middle">[Your Announcement Here]</text>
+  <text x="540" y="720" font-family="system-ui, sans-serif" font-size="18" fill="#71717A" text-anchor="middle">Add details about the announcement</text>
+  
+  <!-- Key points -->
+  <rect x="60" y="800" width="300" height="80" fill="#27272A" rx="4"/>
+  <text x="210" y="848" font-family="system-ui, sans-serif" font-size="16" fill="#FAFAFA" text-anchor="middle">📅 Key Detail 1</text>
+  
+  <rect x="390" y="800" width="300" height="80" fill="#27272A" rx="4"/>
+  <text x="540" y="848" font-family="system-ui, sans-serif" font-size="16" fill="#FAFAFA" text-anchor="middle">🎯 Key Detail 2</text>
+  
+  <rect x="720" y="800" width="300" height="80" fill="#27272A" rx="4"/>
+  <text x="870" y="848" font-family="system-ui, sans-serif" font-size="16" fill="#FAFAFA" text-anchor="middle">🔗 Key Detail 3</text>
+  
+  <!-- CTA -->
+  <rect x="340" y="930" width="400" height="60" fill="#FEF08A" rx="8"/>
+  <text x="540" y="970" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B" text-anchor="middle">Learn More →</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">devweekends.com</text>
+</svg>

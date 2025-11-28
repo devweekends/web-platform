@@ -1,0 +1,33 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect width="8" height="1080" fill="#EC4899"/>
+  
+  <text x="540" y="80" text-anchor="middle" fill="#18181B" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="600" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="460" y="110" width="160" height="36" rx="4" fill="#EC4899"/>
+  <text x="540" y="135" text-anchor="middle" fill="white" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600">INTERVIEW</text>
+  
+  <text x="540" y="220" text-anchor="middle" fill="#18181B" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="700">Detect Cycle</text>
+  <text x="540" y="280" text-anchor="middle" fill="#EC4899" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="600">Floyd's Slow-Fast Pointer</text>
+  
+  <rect x="80" y="340" width="920" height="520" rx="8" fill="#18181B"/>
+  
+  <text x="120" y="400" fill="#71717A" font-family="ui-monospace, monospace" font-size="24"># O(1) space cycle detection</text>
+  <text x="120" y="440" fill="#22C55E" font-family="ui-monospace, monospace" font-size="24">def has_cycle(head):</text>
+  <text x="140" y="480" fill="#22C55E" font-family="ui-monospace, monospace" font-size="24">if not head or not head.next:</text>
+  <text x="160" y="520" fill="#22C55E" font-family="ui-monospace, monospace" font-size="24">return False</text>
+  
+  <text x="140" y="580" fill="#22C55E" font-family="ui-monospace, monospace" font-size="24">slow = head</text>
+  <text x="140" y="620" fill="#22C55E" font-family="ui-monospace, monospace" font-size="24">fast = head.next</text>
+  
+  <text x="140" y="680" fill="#22C55E" font-family="ui-monospace, monospace" font-size="24">while slow != fast:</text>
+  <text x="160" y="720" fill="#22C55E" font-family="ui-monospace, monospace" font-size="24">if not fast or not fast.next:</text>
+  <text x="180" y="760" fill="#22C55E" font-family="ui-monospace, monospace" font-size="24">return False</text>
+  <text x="160" y="800" fill="#22C55E" font-family="ui-monospace, monospace" font-size="24">slow = slow.next</text>
+  <text x="160" y="840" fill="#22C55E" font-family="ui-monospace, monospace" font-size="24">fast = fast.next.next</text>
+  
+  <line x1="80" y1="920" x2="1000" y2="920" stroke="#E4E4E7" stroke-width="1"/>
+  
+  <text x="540" y="970" text-anchor="middle" fill="#71717A" font-family="system-ui, -apple-system, sans-serif" font-size="24">Tortoise and Hare algorithm</text>
+  <text x="540" y="1020" text-anchor="middle" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="20">@devweekends</text>
+</svg>

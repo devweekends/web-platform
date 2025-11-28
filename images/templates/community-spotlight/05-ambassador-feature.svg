@@ -1,0 +1,42 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="260" height="40" fill="#FEF08A"/>
+  <text x="190" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">AMBASSADOR FEATURE</text>
+  
+  <!-- Photo placeholder -->
+  <rect x="60" y="260" width="400" height="500" fill="#27272A" rx="8"/>
+  <text x="260" y="520" font-family="system-ui, sans-serif" font-size="80" fill="#52525B" text-anchor="middle">📷</text>
+  
+  <!-- Content side -->
+  <text x="520" y="320" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#FAFAFA">[Ambassador Name]</text>
+  <text x="520" y="370" font-family="system-ui, sans-serif" font-size="18" fill="#FEF08A">Campus Ambassador</text>
+  <text x="520" y="410" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">[College Name]</text>
+  
+  <!-- Achievements -->
+  <text x="520" y="490" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#A1A1AA">ACHIEVEMENTS</text>
+  
+  <rect x="520" y="520" width="480" height="70" fill="#27272A" rx="4"/>
+  <text x="560" y="562" font-family="system-ui, sans-serif" font-size="16" fill="#FAFAFA">🎯 Onboarded 50+ students</text>
+  
+  <rect x="520" y="610" width="480" height="70" fill="#27272A" rx="4"/>
+  <text x="560" y="652" font-family="system-ui, sans-serif" font-size="16" fill="#FAFAFA">📢 Organized 5 campus events</text>
+  
+  <rect x="520" y="700" width="480" height="70" fill="#27272A" rx="4"/>
+  <text x="560" y="742" font-family="system-ui, sans-serif" font-size="16" fill="#FAFAFA">⭐ Top Ambassador Q4 2024</text>
+  
+  <!-- Quote -->
+  <text x="60" y="840" font-family="Georgia, serif" font-size="18" font-style="italic" fill="#A1A1AA">"Being an ambassador helped me develop leadership</text>
+  <text x="60" y="875" font-family="Georgia, serif" font-size="18" font-style="italic" fill="#A1A1AA">skills while helping my peers grow."</text>
+  
+  <!-- CTA -->
+  <rect x="60" y="930" width="400" height="50" fill="#FEF08A" rx="8"/>
+  <text x="260" y="963" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" text-anchor="middle">Become an Ambassador →</text>
+  
+  <!-- Footer -->
+  <text x="980" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="end">@devweekends</text>
+</svg>

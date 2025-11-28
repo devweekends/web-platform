@@ -1,0 +1,36 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Subtle gradient overlay -->
+  <rect width="1080" height="1080" fill="url(#motGrad)" opacity="0.3"/>
+  <defs>
+    <linearGradient id="motGrad" x1="0" y1="0" x2="1080" y2="1080">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Quote marks -->
+  <text x="60" y="300" font-family="Georgia, serif" font-size="200" fill="#FEF08A" opacity="0.3">"</text>
+  
+  <!-- Quote text -->
+  <text x="100" y="450" font-family="Georgia, serif" font-size="48" font-style="italic" fill="#FAFAFA">The best time to</text>
+  <text x="100" y="520" font-family="Georgia, serif" font-size="48" font-style="italic" fill="#FAFAFA">plant a tree was</text>
+  <text x="100" y="590" font-family="Georgia, serif" font-size="48" font-style="italic" fill="#FAFAFA">20 years ago.</text>
+  
+  <text x="100" y="700" font-family="Georgia, serif" font-size="48" font-style="italic" fill="#FEF08A">The second best</text>
+  <text x="100" y="770" font-family="Georgia, serif" font-size="48" font-style="italic" fill="#FEF08A">time is now.</text>
+  
+  <!-- Attribution -->
+  <text x="100" y="880" font-family="system-ui, sans-serif" font-size="18" fill="#71717A">— Chinese Proverb</text>
+  
+  <!-- Closing quote -->
+  <text x="980" y="820" font-family="Georgia, serif" font-size="200" fill="#FEF08A" opacity="0.3" text-anchor="end">"</text>
+  
+  <!-- Footer -->
+  <rect x="60" y="980" width="960" height="1" fill="#27272A"/>
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">Start your journey today | @devweekends</text>
+</svg>

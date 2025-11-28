@@ -1,0 +1,47 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#FAFAFA"/>
+  
+  <!-- Left side with image placeholder -->
+  <rect x="0" y="0" width="500" height="630" fill="#E4E4E7"/>
+  <text x="250" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">Book Cover</text>
+  <text x="250" y="325" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">or Visual</text>
+  
+  <!-- Content side -->
+  <!-- Dev Weekends branding -->
+  <text x="560" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Category -->
+  <rect x="560" y="140" width="160" height="28" fill="#FEF08A"/>
+  <text x="640" y="159" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">BOOK REVIEW</text>
+  
+  <!-- Main title -->
+  <text x="560" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#18181B">Atomic Habits</text>
+  
+  <!-- Author -->
+  <text x="560" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#71717A">by James Clear</text>
+  
+  <!-- Rating stars -->
+  <text x="560" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#F59E0B">★★★★★</text>
+  <text x="700" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">Must Read</text>
+  
+  <!-- Key takeaways -->
+  <text x="560" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" letter-spacing="2">KEY TAKEAWAYS</text>
+  
+  <rect x="560" y="420" width="6" height="6" fill="#18181B"/>
+  <text x="580" y="428" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#52525B">Small changes compound over time</text>
+  
+  <rect x="560" y="450" width="6" height="6" fill="#18181B"/>
+  <text x="580" y="458" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#52525B">Identity-based habits stick better</text>
+  
+  <rect x="560" y="480" width="6" height="6" fill="#18181B"/>
+  <text x="580" y="488" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#52525B">Environment shapes behavior</text>
+  
+  <!-- Read more CTA -->
+  <rect x="560" y="540" width="160" height="44" fill="#18181B"/>
+  <text x="640" y="568" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="1">READ REVIEW →</text>
+  
+  <!-- Decorative -->
+  <rect x="1100" y="100" width="50" height="50" fill="none" stroke="#18181B" stroke-width="1" opacity="0.2"/>
+  <rect x="1110" y="110" width="50" height="50" fill="none" stroke="#18181B" stroke-width="1" opacity="0.1"/>
+</svg>

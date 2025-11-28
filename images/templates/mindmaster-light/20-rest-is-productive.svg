@@ -1,0 +1,33 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#84CC16"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#84CC16"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Rest is Productive</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#4D7C0F">Take Real Breaks</text>
+  
+  <rect x="60" y="420" width="960" height="160" fill="#F4F4F5" rx="8"/>
+  <text x="540" y="490" font-family="system-ui, sans-serif" font-size="24" fill="#18181B" text-anchor="middle">"Almost everything will work again</text>
+  <text x="540" y="530" font-family="system-ui, sans-serif" font-size="24" fill="#18181B" text-anchor="middle">if you unplug it for a few minutes.</text>
+  <text x="540" y="560" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="#4D7C0F" text-anchor="middle">Including you."</text>
+  
+  <text x="60" y="660" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#18181B">Quality breaks:</text>
+  
+  <text x="80" y="710" font-family="system-ui, sans-serif" font-size="17" fill="#22C55E">✓ Walk without phone</text>
+  <text x="80" y="750" font-family="system-ui, sans-serif" font-size="17" fill="#22C55E">✓ Look out window (20-20-20 rule)</text>
+  <text x="80" y="790" font-family="system-ui, sans-serif" font-size="17" fill="#22C55E">✓ Stretching or exercise</text>
+  <text x="80" y="830" font-family="system-ui, sans-serif" font-size="17" fill="#22C55E">✓ Meditation</text>
+  
+  <text x="560" y="710" font-family="system-ui, sans-serif" font-size="17" fill="#EF4444">✗ Scrolling social media</text>
+  <text x="560" y="750" font-family="system-ui, sans-serif" font-size="17" fill="#EF4444">✗ Checking email</text>
+  <text x="560" y="790" font-family="system-ui, sans-serif" font-size="17" fill="#EF4444">✗ Watching YouTube</text>
+  <text x="560" y="830" font-family="system-ui, sans-serif" font-size="17" fill="#EF4444">✗ Switching to another screen</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">A tired brain writes buggy code</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

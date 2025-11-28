@@ -1,0 +1,36 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  <rect x="0" y="0" width="1080" height="8" fill="#FEF08A"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <text x="540" y="280" font-family="system-ui, sans-serif" font-size="140" font-weight="800" fill="#FAFAFA" text-anchor="middle">2024</text>
+  <text x="540" y="360" font-family="system-ui, sans-serif" font-size="36" fill="#FEF08A" text-anchor="middle">Year in Review</text>
+  
+  <rect x="60" y="420" width="300" height="180" fill="#27272A" rx="8"/>
+  <text x="210" y="500" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FEF08A" text-anchor="middle">150+</text>
+  <text x="210" y="560" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Sessions Conducted</text>
+  
+  <rect x="390" y="420" width="300" height="180" fill="#27272A" rx="8"/>
+  <text x="540" y="500" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#22C55E" text-anchor="middle">75+</text>
+  <text x="540" y="560" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Placements</text>
+  
+  <rect x="720" y="420" width="300" height="180" fill="#27272A" rx="8"/>
+  <text x="870" y="500" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA" text-anchor="middle">5K+</text>
+  <text x="870" y="560" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Community Members</text>
+  
+  <rect x="60" y="630" width="300" height="180" fill="#27272A" rx="8"/>
+  <text x="210" y="710" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA" text-anchor="middle">40+</text>
+  <text x="210" y="770" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Active Mentors</text>
+  
+  <rect x="390" y="630" width="300" height="180" fill="#27272A" rx="8"/>
+  <text x="540" y="710" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA" text-anchor="middle">25+</text>
+  <text x="540" y="770" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Circles Formed</text>
+  
+  <rect x="720" y="630" width="300" height="180" fill="#27272A" rx="8"/>
+  <text x="870" y="710" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA" text-anchor="middle">15+</text>
+  <text x="870" y="770" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Countries</text>
+  
+  <text x="540" y="920" font-family="system-ui, sans-serif" font-size="24" fill="#A1A1AA" text-anchor="middle">Thank you for an incredible year</text>
+  <text x="540" y="1000" font-family="system-ui, sans-serif" font-size="16" fill="#52525B" text-anchor="middle">@devweekends</text>
+</svg>

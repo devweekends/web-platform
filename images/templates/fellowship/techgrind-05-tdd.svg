@@ -1,0 +1,48 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="techGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDF2F8"/>
+      <stop offset="100%" style="stop-color:#FCE7F3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#techGrad5)"/>
+  <rect x="0" y="0" width="8" height="630" fill="#EC4899"/>
+  
+  <text x="60" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS FELLOWSHIP</text>
+  
+  <circle cx="1080" cy="52" r="6" fill="#EC4899"/>
+  <text x="1100" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#18181B">TECH GRIND</text>
+  
+  <rect x="60" y="140" width="180" height="32" fill="#EC4899"/>
+  <text x="150" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">TESTING SESSION</text>
+  
+  <text x="60" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="700" fill="#18181B">Test-Driven</text>
+  <text x="60" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="700" fill="#BE185D">Development</text>
+  
+  <text x="60" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#52525B">Write tests first, code second - the TDD workflow</text>
+  
+  <rect x="60" y="450" width="170" height="65" fill="#FFFFFF" rx="4"/>
+  <text x="80" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="1">DATE</text>
+  <text x="80" y="502" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#18181B">Sunday, Jan 5</text>
+  
+  <rect x="250" y="450" width="170" height="65" fill="#FFFFFF" rx="4"/>
+  <text x="270" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="1">TIME</text>
+  <text x="270" y="502" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#18181B">3:00 PM PKT</text>
+  
+  <rect x="440" y="450" width="170" height="65" fill="#FFFFFF" rx="4"/>
+  <text x="460" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="1">FORMAT</text>
+  <text x="460" y="502" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#18181B">Pair Coding</text>
+  
+  <rect x="800" y="180" width="340" height="320" fill="#FFFFFF" rx="8"/>
+  <text x="970" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#EC4899" text-anchor="middle" letter-spacing="2">WHAT WE'LL COVER</text>
+  
+  <text x="840" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B">✓ Red-Green-Refactor cycle</text>
+  <text x="840" y="315" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B">✓ Jest &amp; Testing Library</text>
+  <text x="840" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B">✓ Mocking strategies</text>
+  <text x="840" y="385" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B">✓ Integration tests</text>
+  <text x="840" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B">✓ Coverage goals</text>
+  
+  <text x="970" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#EC4899" text-anchor="middle">Build a tested feature together</text>
+  
+  <text x="60" y="580" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#18181B">Fellowship Members Only →</text>
+</svg>

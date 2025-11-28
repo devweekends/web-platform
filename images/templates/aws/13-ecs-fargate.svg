@@ -1,0 +1,59 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">🐳 ECS &amp; FARGATE</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">Container Orchestration</text>
+  
+  <rect x="120" y="350" width="420" height="220" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="330" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">🖥️ EC2 Launch Type</text>
+  <text x="140" y="430" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• You manage EC2 instances</text>
+  <text x="140" y="460" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Full control over infrastructure</text>
+  <text x="140" y="490" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• GPU/specialized workloads</text>
+  <text x="140" y="520" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Use Spot instances for savings</text>
+  <text x="140" y="550" font-family="system-ui, sans-serif" font-size="15" fill="#FF9900">Best for: Cost optimization, GPU</text>
+  
+  <rect x="560" y="350" width="400" height="220" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="760" y="390" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FF9900" text-anchor="middle">☁️ Fargate Launch Type</text>
+  <text x="580" y="430" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Serverless containers</text>
+  <text x="580" y="460" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• No infrastructure management</text>
+  <text x="580" y="490" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Pay per vCPU/memory</text>
+  <text x="580" y="520" font-family="system-ui, sans-serif" font-size="15" fill="#64748B">• Automatic scaling</text>
+  <text x="580" y="550" font-family="system-ui, sans-serif" font-size="15" fill="#FF9900">Best for: Simplicity, variable load</text>
+  
+  <text x="120" y="615" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">ECS Components:</text>
+  
+  <rect x="120" y="640" width="840" height="110" rx="12" fill="white" stroke="#FF9900" stroke-width="1"/>
+  
+  <rect x="160" y="665" width="180" height="60" rx="8" fill="#232F3E"/>
+  <text x="250" y="700" font-family="system-ui, sans-serif" font-size="13" fill="#FF9900" text-anchor="middle">Cluster</text>
+  
+  <text x="360" y="700" font-family="system-ui, sans-serif" font-size="18" fill="#FF9900">→</text>
+  
+  <rect x="400" y="665" width="180" height="60" rx="8" fill="#232F3E"/>
+  <text x="490" y="700" font-family="system-ui, sans-serif" font-size="13" fill="#FF9900" text-anchor="middle">Service</text>
+  
+  <text x="600" y="700" font-family="system-ui, sans-serif" font-size="18" fill="#FF9900">→</text>
+  
+  <rect x="640" y="665" width="140" height="60" rx="8" fill="#232F3E"/>
+  <text x="710" y="700" font-family="system-ui, sans-serif" font-size="13" fill="#FF9900" text-anchor="middle">Task</text>
+  
+  <text x="800" y="700" font-family="system-ui, sans-serif" font-size="18" fill="#FF9900">→</text>
+  
+  <rect x="840" y="665" width="100" height="60" rx="8" fill="#232F3E"/>
+  <text x="890" y="700" font-family="system-ui, sans-serif" font-size="13" fill="#FF9900" text-anchor="middle">Container</text>
+  
+  <text x="120" y="800" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Task Definition (key fields):</text>
+  
+  <rect x="120" y="820" width="840" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="140" y="860" font-family="monospace" font-size="14" fill="#232F3E">cpu: 256 | memory: 512 | image: myapp:latest | portMappings: [{containerPort: 80}]</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

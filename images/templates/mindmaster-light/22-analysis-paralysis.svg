@@ -1,0 +1,30 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#D946EF"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#D946EF"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Analysis Paralysis</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#A21CAF">Just Start</text>
+  
+  <rect x="60" y="420" width="960" height="120" fill="#FAE8FF" rx="8"/>
+  <text x="540" y="480" font-family="system-ui, sans-serif" font-size="22" fill="#18181B" text-anchor="middle">"Done is better than perfect."</text>
+  <text x="540" y="520" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">— Sheryl Sandberg</text>
+  
+  <text x="60" y="620" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#18181B">Break the overthinking cycle:</text>
+  
+  <text x="80" y="680" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">1. Set a decision deadline (e.g., 10 minutes)</text>
+  <text x="80" y="720" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">2. Define "good enough" criteria upfront</text>
+  <text x="80" y="760" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">3. Accept that most decisions are reversible</text>
+  <text x="80" y="800" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">4. Use the 70% rule: act at 70% certainty</text>
+  <text x="80" y="840" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">5. Start with the smallest possible step</text>
+  
+  <text x="80" y="900" font-family="system-ui, sans-serif" font-size="16" fill="#D946EF">💡 You'll learn more by doing than by planning</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Progress over perfection</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

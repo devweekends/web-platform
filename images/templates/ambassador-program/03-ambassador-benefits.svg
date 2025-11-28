@@ -1,0 +1,39 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="140" width="260" height="40" fill="#FEF08A"/>
+  <text x="190" y="168" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">AMBASSADOR PROGRAM</text>
+  
+  <text x="60" y="300" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FAFAFA">Ambassador</text>
+  <text x="60" y="370" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#22C55E">Benefits</text>
+  
+  <rect x="60" y="430" width="460" height="140" fill="#27272A" rx="8"/>
+  <text x="290" y="490" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FEF08A" text-anchor="middle">Exclusive Swag</text>
+  <text x="290" y="530" font-family="system-ui, sans-serif" font-size="15" fill="#A1A1AA" text-anchor="middle">Dev Weekends merchandise,</text>
+  <text x="290" y="555" font-family="system-ui, sans-serif" font-size="15" fill="#A1A1AA" text-anchor="middle">stickers, and gear</text>
+  
+  <rect x="560" y="430" width="460" height="140" fill="#27272A" rx="8"/>
+  <text x="790" y="490" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#22C55E" text-anchor="middle">Mentorship Access</text>
+  <text x="790" y="530" font-family="system-ui, sans-serif" font-size="15" fill="#A1A1AA" text-anchor="middle">1-on-1 sessions with</text>
+  <text x="790" y="555" font-family="system-ui, sans-serif" font-size="15" fill="#A1A1AA" text-anchor="middle">industry professionals</text>
+  
+  <rect x="60" y="590" width="460" height="140" fill="#27272A" rx="8"/>
+  <text x="290" y="650" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#3B82F6" text-anchor="middle">Network Growth</text>
+  <text x="290" y="690" font-family="system-ui, sans-serif" font-size="15" fill="#A1A1AA" text-anchor="middle">Connect with ambassadors</text>
+  <text x="290" y="715" font-family="system-ui, sans-serif" font-size="15" fill="#A1A1AA" text-anchor="middle">worldwide</text>
+  
+  <rect x="560" y="590" width="460" height="140" fill="#27272A" rx="8"/>
+  <text x="790" y="650" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#A855F7" text-anchor="middle">Resume Boost</text>
+  <text x="790" y="690" font-family="system-ui, sans-serif" font-size="15" fill="#A1A1AA" text-anchor="middle">Official recognition and</text>
+  <text x="790" y="715" font-family="system-ui, sans-serif" font-size="15" fill="#A1A1AA" text-anchor="middle">reference letters</text>
+  
+  <rect x="60" y="750" width="960" height="140" fill="#27272A" rx="8"/>
+  <text x="540" y="810" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#EF4444" text-anchor="middle">Event Support</text>
+  <text x="540" y="855" font-family="system-ui, sans-serif" font-size="15" fill="#A1A1AA" text-anchor="middle">Resources, budget support, and marketing materials for your local events</text>
+  
+  <text x="540" y="950" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA" text-anchor="middle">Join the community today</text>
+  
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">@devweekends</text>
+</svg>

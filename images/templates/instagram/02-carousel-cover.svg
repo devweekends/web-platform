@@ -1,0 +1,50 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid-ig" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272A" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-ig)"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Swipe indicator -->
+  <text x="980" y="80" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="end">SWIPE →</text>
+  
+  <!-- Main number -->
+  <text x="540" y="380" font-family="system-ui, sans-serif" font-size="180" font-weight="800" fill="#FAFAFA" text-anchor="middle">5</text>
+  
+  <!-- Title -->
+  <text x="540" y="500" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#FAFAFA" text-anchor="middle">Things Every</text>
+  <text x="540" y="560" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#FAFAFA" text-anchor="middle">Developer Must Know</text>
+  
+  <!-- Yellow underline -->
+  <rect x="340" y="580" width="400" height="4" fill="#FEF08A"/>
+  
+  <!-- Subtitle -->
+  <text x="540" y="660" font-family="system-ui, sans-serif" font-size="20" fill="#A1A1AA" text-anchor="middle">A thread that will change your career</text>
+  
+  <!-- Tags -->
+  <rect x="320" y="750" width="100" height="32" fill="#27272A" rx="4"/>
+  <text x="370" y="772" font-family="system-ui, sans-serif" font-size="12" fill="#A1A1AA" text-anchor="middle">#coding</text>
+  
+  <rect x="440" y="750" width="100" height="32" fill="#27272A" rx="4"/>
+  <text x="490" y="772" font-family="system-ui, sans-serif" font-size="12" fill="#A1A1AA" text-anchor="middle">#tech</text>
+  
+  <rect x="560" y="750" width="100" height="32" fill="#27272A" rx="4"/>
+  <text x="610" y="772" font-family="system-ui, sans-serif" font-size="12" fill="#A1A1AA" text-anchor="middle">#career</text>
+  
+  <!-- Carousel dots -->
+  <circle cx="480" cy="950" r="6" fill="#FAFAFA"/>
+  <circle cx="510" cy="950" r="6" fill="#52525B"/>
+  <circle cx="540" cy="950" r="6" fill="#52525B"/>
+  <circle cx="570" cy="950" r="6" fill="#52525B"/>
+  <circle cx="600" cy="950" r="6" fill="#52525B"/>
+  
+  <!-- Footer -->
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">@devweekends</text>
+</svg>

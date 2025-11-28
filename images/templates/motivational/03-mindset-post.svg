@@ -1,0 +1,31 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="160" height="40" fill="#FEF08A"/>
+  <text x="140" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">MINDSET</text>
+  
+  <!-- Main title -->
+  <text x="60" y="350" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FAFAFA">Stop comparing your</text>
+  <text x="60" y="420" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FEF08A">Chapter 1</text>
+  <text x="60" y="490" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FAFAFA">to someone else's</text>
+  <text x="60" y="560" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FEF08A">Chapter 10</text>
+  
+  <!-- Visual -->
+  <rect x="60" y="640" width="450" height="200" fill="#27272A" rx="8"/>
+  <text x="285" y="720" font-family="system-ui, sans-serif" font-size="80" text-anchor="middle">📖</text>
+  <text x="285" y="800" font-family="system-ui, sans-serif" font-size="18" fill="#71717A" text-anchor="middle">Your Journey</text>
+  
+  <rect x="530" y="640" width="450" height="200" fill="#27272A" rx="8"/>
+  <text x="755" y="720" font-family="system-ui, sans-serif" font-size="80" text-anchor="middle">📚</text>
+  <text x="755" y="800" font-family="system-ui, sans-serif" font-size="18" fill="#71717A" text-anchor="middle">Their Journey</text>
+  
+  <!-- Message -->
+  <text x="540" y="920" font-family="system-ui, sans-serif" font-size="20" fill="#A1A1AA" text-anchor="middle">Everyone starts somewhere. Focus on your progress.</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="16" fill="#52525B" text-anchor="middle">Save this for when you need a reminder 💛</text>
+</svg>

@@ -1,0 +1,30 @@
+<svg width="1584" height="396" viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1584" height="396" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="396" fill="#18181B"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid-banner1" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1584" height="396" fill="url(#grid-banner1)" opacity="0.5"/>
+  
+  <!-- Branding -->
+  <text x="60" y="60" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Main text -->
+  <text x="60" y="180" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Building the Next Generation</text>
+  <text x="60" y="240" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">of Software Engineers</text>
+  
+  <!-- Yellow highlight -->
+  <rect x="58" y="255" width="400" height="12" fill="#FEF08A" opacity="0.6"/>
+  
+  <!-- Stats -->
+  <text x="60" y="340" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">20,000+ Members • 500+ Sessions • 50+ Mentors</text>
+  
+  <!-- Decorative -->
+  <rect x="1300" y="80" width="120" height="120" fill="none" stroke="#18181B" stroke-width="2" opacity="0.1"/>
+  <rect x="1320" y="100" width="120" height="120" fill="#FEF08A" opacity="0.3"/>
+  <rect x="1340" y="120" width="120" height="120" fill="none" stroke="#18181B" stroke-width="1" opacity="0.1"/>
+</svg>

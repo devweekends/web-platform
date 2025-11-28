@@ -1,0 +1,40 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#F43F5E"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#F43F5E"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Energy Management</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#E11D48">&gt; Time Management</text>
+  
+  <rect x="60" y="420" width="960" height="430" fill="#F4F4F5" rx="8"/>
+  
+  <text x="100" y="480" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">Match tasks to energy levels:</text>
+  
+  <rect x="100" y="510" width="400" height="80" fill="#22C55E" rx="8"/>
+  <text x="300" y="545" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#FAFAFA" text-anchor="middle">HIGH ENERGY (Morning)</text>
+  <text x="300" y="575" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Complex coding, architecture, learning</text>
+  
+  <rect x="520" y="510" width="400" height="80" fill="#F59E0B" rx="8"/>
+  <text x="720" y="545" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#18181B" text-anchor="middle">MEDIUM ENERGY</text>
+  <text x="720" y="575" font-family="system-ui, sans-serif" font-size="14" fill="#18181B" text-anchor="middle">Meetings, code review, emails</text>
+  
+  <rect x="100" y="610" width="400" height="80" fill="#3B82F6" rx="8"/>
+  <text x="300" y="645" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#FAFAFA" text-anchor="middle">LOW ENERGY</text>
+  <text x="300" y="675" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Admin tasks, docs, planning</text>
+  
+  <rect x="520" y="610" width="400" height="80" fill="#A78BFA" rx="8"/>
+  <text x="720" y="645" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#FAFAFA" text-anchor="middle">CREATIVE ENERGY</text>
+  <text x="720" y="675" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Brainstorming, side projects</text>
+  
+  <text x="100" y="750" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">💡 Track your energy patterns for 1 week to know YOUR rhythm</text>
+  
+  <text x="100" y="800" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">Energy comes from: Sleep, exercise, food, breaks, purpose</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Manage energy, not just time</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

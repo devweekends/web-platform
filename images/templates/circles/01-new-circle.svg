@@ -1,0 +1,50 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="200" cy="200" r="100" stroke="#27272A" stroke-width="2" fill="none"/>
+  <circle cx="880" cy="200" r="80" stroke="#27272A" stroke-width="2" fill="none"/>
+  <circle cx="900" cy="880" r="120" stroke="#27272A" stroke-width="2" fill="none"/>
+  <circle cx="150" cy="850" r="60" stroke="#27272A" stroke-width="2" fill="none"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="200" height="40" fill="#FEF08A"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">NEW CIRCLE</text>
+  
+  <!-- Main content -->
+  <text x="60" y="350" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA">Join the</text>
+  
+  <!-- Circle name -->
+  <rect x="60" y="380" width="600" height="100" fill="#27272A" rx="8"/>
+  <text x="90" y="450" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FEF08A">[Circle Name]</text>
+  
+  <text x="60" y="540" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA">Circle</text>
+  
+  <!-- Description -->
+  <text x="60" y="620" font-family="system-ui, sans-serif" font-size="20" fill="#A1A1AA">A focused peer group for learning and growing together</text>
+  
+  <!-- Details -->
+  <rect x="60" y="680" width="450" height="100" fill="#27272A" rx="8"/>
+  <text x="100" y="720" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Focus Area</text>
+  <text x="100" y="755" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA">Frontend Development</text>
+  
+  <rect x="530" y="680" width="450" height="100" fill="#27272A" rx="8"/>
+  <text x="570" y="720" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Meeting Time</text>
+  <text x="570" y="755" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA">Saturdays 6PM IST</text>
+  
+  <!-- What you get -->
+  <text x="60" y="850" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">✓ Weekly sync calls</text>
+  <text x="60" y="885" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">✓ Accountability partners</text>
+  <text x="400" y="850" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">✓ Peer code reviews</text>
+  <text x="400" y="885" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">✓ Project collaborations</text>
+  
+  <!-- CTA -->
+  <rect x="60" y="940" width="300" height="60" fill="#FEF08A" rx="8"/>
+  <text x="210" y="980" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B" text-anchor="middle">Join Now →</text>
+  
+  <!-- Spots -->
+  <text x="400" y="980" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">Only 8 spots available!</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#8B5CF6"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="180" height="40" fill="#8B5CF6"/>
+  <text x="150" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">GIT TIPS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Git Rebase</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#8B5CF6">Interactive Mode</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="470" font-family="monospace" font-size="14" fill="#71717A"># Rebase last 3 commits interactively</text>
+  <text x="100" y="505" font-family="monospace" font-size="18" fill="#22C55E">git rebase -i HEAD~3</text>
+  
+  <text x="100" y="565" font-family="monospace" font-size="14" fill="#71717A"># Available commands in editor:</text>
+  <text x="100" y="600" font-family="monospace" font-size="16" fill="#FEF08A">pick   </text><text x="220" y="600" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA">- use commit as is</text>
+  <text x="100" y="635" font-family="monospace" font-size="16" fill="#FEF08A">reword </text><text x="220" y="635" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA">- change commit message</text>
+  <text x="100" y="670" font-family="monospace" font-size="16" fill="#FEF08A">squash </text><text x="220" y="670" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA">- combine with previous commit</text>
+  <text x="100" y="705" font-family="monospace" font-size="16" fill="#FEF08A">fixup  </text><text x="220" y="705" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA">- squash and discard message</text>
+  <text x="100" y="740" font-family="monospace" font-size="16" fill="#FEF08A">drop   </text><text x="220" y="740" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA">- remove commit entirely</text>
+  
+  <text x="100" y="810" font-family="monospace" font-size="14" fill="#71717A"># Abort if things go wrong</text>
+  <text x="100" y="845" font-family="monospace" font-size="18" fill="#22C55E">git rebase --abort</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Clean up your commit history before PR</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

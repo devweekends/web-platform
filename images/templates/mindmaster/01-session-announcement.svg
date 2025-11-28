@@ -1,0 +1,47 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Brain waves pattern -->
+  <path d="M0 200 Q100 180 200 200 T400 200 T600 200 T800 200 T1000 200 T1080 200" stroke="#27272A" stroke-width="2" fill="none"/>
+  <path d="M0 220 Q100 200 200 220 T400 220 T600 220 T800 220 T1000 220 T1080 220" stroke="#27272A" stroke-width="2" fill="none"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="200" height="40" fill="#A78BFA"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MINDMASTER</text>
+  
+  <!-- Brain icon -->
+  <text x="980" y="200" font-family="system-ui, sans-serif" font-size="80" fill="#A78BFA" opacity="0.3" text-anchor="end">🧠</text>
+  
+  <!-- Title -->
+  <text x="60" y="380" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#FAFAFA">MindMaster</text>
+  <text x="60" y="450" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#A78BFA">Session #42</text>
+  
+  <!-- Topic -->
+  <rect x="60" y="500" width="960" height="120" fill="#27272A" rx="8"/>
+  <text x="100" y="560" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">TOPIC</text>
+  <text x="100" y="595" font-family="system-ui, sans-serif" font-size="28" fill="#FAFAFA">The Psychology of Procrastination</text>
+  
+  <!-- Details -->
+  <rect x="60" y="660" width="450" height="100" fill="#27272A" rx="8"/>
+  <text x="100" y="705" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">DATE &amp; TIME</text>
+  <text x="100" y="740" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA">Sunday, 5 PM IST</text>
+  
+  <rect x="530" y="660" width="490" height="100" fill="#27272A" rx="8"/>
+  <text x="570" y="705" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">SPEAKER</text>
+  <text x="570" y="740" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA">[Speaker Name]</text>
+  
+  <!-- What you'll learn -->
+  <text x="60" y="830" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">What you'll learn:</text>
+  <text x="60" y="870" font-family="system-ui, sans-serif" font-size="16" fill="#A1A1AA">✓ Why we procrastinate (the science)</text>
+  <text x="60" y="905" font-family="system-ui, sans-serif" font-size="16" fill="#A1A1AA">✓ Practical techniques to overcome it</text>
+  <text x="60" y="940" font-family="system-ui, sans-serif" font-size="16" fill="#A1A1AA">✓ Building sustainable productivity habits</text>
+  
+  <!-- CTA -->
+  <rect x="60" y="980" width="250" height="50" fill="#A78BFA" rx="8"/>
+  <text x="185" y="1013" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" text-anchor="middle">Join Session →</text>
+  
+  <text x="340" y="1013" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Free for all community members</text>
+</svg>

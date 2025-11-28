@@ -1,0 +1,36 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="140" width="200" height="40" fill="#A78BFA"/>
+  <text x="160" y="168" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MINDMASTER</text>
+  
+  <text x="540" y="300" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B" text-anchor="middle">The Learning Pyramid</text>
+  
+  <polygon points="540,380 240,900 840,900" fill="#F4F4F5" stroke="#E5E5E5" stroke-width="2"/>
+  
+  <rect x="440" y="420" width="200" height="50" fill="#18181B" rx="4"/>
+  <text x="540" y="452" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Lecture 5%</text>
+  
+  <rect x="400" y="490" width="280" height="50" fill="#27272A" rx="4"/>
+  <text x="540" y="522" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Reading 10%</text>
+  
+  <rect x="360" y="560" width="360" height="50" fill="#52525B" rx="4"/>
+  <text x="540" y="592" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Audio-Visual 20%</text>
+  
+  <rect x="320" y="630" width="440" height="50" fill="#71717A" rx="4"/>
+  <text x="540" y="662" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Demonstration 30%</text>
+  
+  <rect x="280" y="700" width="520" height="50" fill="#A78BFA" rx="4"/>
+  <text x="540" y="732" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Discussion 50%</text>
+  
+  <rect x="260" y="770" width="560" height="50" fill="#8B5CF6" rx="4"/>
+  <text x="540" y="802" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Practice by Doing 75%</text>
+  
+  <rect x="240" y="840" width="600" height="50" fill="#7C3AED" rx="4"/>
+  <text x="540" y="872" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Teaching Others 90%</text>
+  
+  <text x="540" y="970" font-family="system-ui, sans-serif" font-size="18" fill="#18181B" text-anchor="middle">The best way to learn is to teach</text>
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">That's why we encourage peer mentoring</text>
+</svg>

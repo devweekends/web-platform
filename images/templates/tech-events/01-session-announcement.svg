@@ -1,0 +1,43 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="630" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="60" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Live badge -->
+  <rect x="1020" y="40" width="120" height="36" fill="#EF4444"/>
+  <circle cx="1050" cy="58" r="6" fill="#FAFAFA"/>
+  <text x="1110" y="65" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle">LIVE</text>
+  
+  <!-- Event type -->
+  <rect x="60" y="150" width="160" height="36" fill="#18181B"/>
+  <text x="140" y="175" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">TECH SESSION</text>
+  
+  <!-- Title -->
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Introduction to</text>
+  <text x="60" y="340" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Cloud Computing</text>
+  
+  <!-- Yellow highlight -->
+  <rect x="58" y="315" width="320" height="10" fill="#FEF08A" opacity="0.6"/>
+  
+  <!-- Details row -->
+  <rect x="60" y="400" width="160" height="50" fill="#F4F4F5" rx="4"/>
+  <text x="140" y="432" font-family="system-ui, sans-serif" font-size="14" font-weight="500" fill="#18181B" text-anchor="middle">Sat, Dec 14</text>
+  
+  <rect x="240" y="400" width="140" height="50" fill="#F4F4F5" rx="4"/>
+  <text x="310" y="432" font-family="system-ui, sans-serif" font-size="14" font-weight="500" fill="#18181B" text-anchor="middle">7:00 PM</text>
+  
+  <rect x="400" y="400" width="120" height="50" fill="#F4F4F5" rx="4"/>
+  <text x="460" y="432" font-family="system-ui, sans-serif" font-size="14" font-weight="500" fill="#18181B" text-anchor="middle">Discord</text>
+  
+  <!-- Speaker -->
+  <circle cx="100" cy="540" r="40" fill="#E5E5E5"/>
+  <text x="100" y="545" font-family="system-ui, sans-serif" font-size="10" fill="#A1A1AA" text-anchor="middle">Photo</text>
+  <text x="160" y="530" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B">Speaker Name</text>
+  <text x="160" y="555" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Cloud Engineer @ AWS</text>
+  
+  <!-- CTA -->
+  <rect x="1000" y="520" width="140" height="50" fill="#18181B" rx="4"/>
+  <text x="1070" y="552" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle">Join Free →</text>
+</svg>

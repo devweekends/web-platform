@@ -1,0 +1,54 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Confetti -->
+  <rect x="100" y="100" width="20" height="8" fill="#FEF08A" transform="rotate(45 100 100)"/>
+  <rect x="300" y="150" width="20" height="8" fill="#22C55E" transform="rotate(-30 300 150)"/>
+  <rect x="800" y="120" width="20" height="8" fill="#A78BFA" transform="rotate(60 800 120)"/>
+  <rect x="950" y="200" width="20" height="8" fill="#FEF08A" transform="rotate(-45 950 200)"/>
+  <circle cx="200" cy="200" r="8" fill="#22C55E"/>
+  <circle cx="900" cy="150" r="8" fill="#A78BFA"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="280" height="40" fill="#FEF08A"/>
+  <text x="200" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">CIRCLE GRADUATION</text>
+  
+  <!-- Title -->
+  <text x="540" y="320" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FAFAFA" text-anchor="middle">Congratulations!</text>
+  
+  <!-- Circle name -->
+  <text x="540" y="400" font-family="system-ui, sans-serif" font-size="32" fill="#FEF08A" text-anchor="middle">[Circle Name] Batch 1</text>
+  
+  <!-- Trophy visual -->
+  <text x="540" y="540" font-family="system-ui, sans-serif" font-size="120" text-anchor="middle">🏆</text>
+  
+  <!-- Subtitle -->
+  <text x="540" y="640" font-family="system-ui, sans-serif" font-size="24" fill="#A1A1AA" text-anchor="middle">12 weeks of dedication and growth</text>
+  
+  <!-- Stats -->
+  <rect x="140" y="700" width="200" height="120" fill="#27272A" rx="8"/>
+  <text x="240" y="760" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#FAFAFA" text-anchor="middle">8</text>
+  <text x="240" y="795" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Graduates</text>
+  
+  <rect x="360" y="700" width="200" height="120" fill="#27272A" rx="8"/>
+  <text x="460" y="760" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#22C55E" text-anchor="middle">24</text>
+  <text x="460" y="795" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Sessions</text>
+  
+  <rect x="580" y="700" width="200" height="120" fill="#27272A" rx="8"/>
+  <text x="680" y="760" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#FAFAFA" text-anchor="middle">96%</text>
+  <text x="680" y="795" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Attendance</text>
+  
+  <rect x="800" y="700" width="200" height="120" fill="#27272A" rx="8"/>
+  <text x="900" y="760" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#FEF08A" text-anchor="middle">3</text>
+  <text x="900" y="795" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Got Placed!</text>
+  
+  <!-- Message -->
+  <text x="540" y="900" font-family="system-ui, sans-serif" font-size="20" fill="#71717A" text-anchor="middle">From strangers to lifelong friends and collaborators</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1000" font-family="system-ui, sans-serif" font-size="18" fill="#FAFAFA" text-anchor="middle">You did it! 🎉</text>
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">@devweekends</text>
+</svg>

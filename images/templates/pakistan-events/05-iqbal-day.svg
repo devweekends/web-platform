@@ -1,0 +1,26 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="140" width="200" height="40" fill="#18181B"/>
+  <text x="160" y="168" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle">9 NOVEMBER</text>
+  
+  <text x="60" y="320" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#18181B">Iqbal Day</text>
+  
+  <text x="60" y="400" font-family="system-ui, sans-serif" font-size="24" fill="#52525B">Remembering Allama Muhammad Iqbal</text>
+  
+  <rect x="60" y="460" width="960" height="280" fill="#F4F4F5" rx="8"/>
+  
+  <text x="540" y="540" font-family="Georgia, serif" font-size="28" font-style="italic" fill="#18181B" text-anchor="middle">"Khudi ko kar buland itna</text>
+  <text x="540" y="590" font-family="Georgia, serif" font-size="28" font-style="italic" fill="#18181B" text-anchor="middle">ke har taqdeer se pehle</text>
+  <text x="540" y="640" font-family="Georgia, serif" font-size="28" font-style="italic" fill="#18181B" text-anchor="middle">Khuda bande se khud pooche bata teri raza kya hai"</text>
+  
+  <text x="540" y="700" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">— Allama Iqbal</text>
+  
+  <rect x="60" y="800" width="960" height="100" fill="#18181B" rx="8"/>
+  <text x="540" y="860" font-family="system-ui, sans-serif" font-size="22" fill="#FAFAFA" text-anchor="middle">Raise yourself to such heights that destiny asks you your will</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Building engineers who shape their own destiny</text>
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">@devweekends</text>
+</svg>

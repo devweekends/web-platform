@@ -1,0 +1,32 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#FF9900"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="120" height="40" fill="#FF9900"/>
+  <text x="120" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">AWS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">SQS</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FF9900">Message Queues</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="470" font-family="monospace" font-size="14" fill="#71717A"># Create queue</text>
+  <text x="100" y="505" font-family="monospace" font-size="18" fill="#22C55E">aws sqs create-queue --queue-name my-queue</text>
+  
+  <text x="100" y="565" font-family="monospace" font-size="14" fill="#71717A"># Send message</text>
+  <text x="100" y="600" font-family="monospace" font-size="18" fill="#22C55E">aws sqs send-message --queue-url $URL \</text>
+  <text x="120" y="635" font-family="monospace" font-size="18" fill="#22C55E">  --message-body '{"event":"order_placed"}'</text>
+  
+  <text x="100" y="695" font-family="monospace" font-size="14" fill="#71717A"># Receive messages</text>
+  <text x="100" y="730" font-family="monospace" font-size="18" fill="#22C55E">aws sqs receive-message --queue-url $URL \</text>
+  <text x="120" y="765" font-family="monospace" font-size="18" fill="#22C55E">  --max-number-of-messages 10</text>
+  
+  <text x="100" y="825" font-family="monospace" font-size="14" fill="#71717A"># Delete message after processing</text>
+  <text x="100" y="860" font-family="monospace" font-size="18" fill="#22C55E">aws sqs delete-message --queue-url $URL --receipt-handle $H</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Decouple services with reliable async messaging</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

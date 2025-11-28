@@ -1,0 +1,28 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <text x="540" y="400" font-family="system-ui, sans-serif" font-size="80" font-weight="800" fill="#18181B" text-anchor="middle">Thank You</text>
+  <text x="540" y="500" font-family="system-ui, sans-serif" font-size="80" font-weight="800" fill="#18181B" text-anchor="middle">2024</text>
+  
+  <rect x="340" y="530" width="400" height="4" fill="#FEF08A"/>
+  
+  <text x="540" y="620" font-family="system-ui, sans-serif" font-size="24" fill="#52525B" text-anchor="middle">To every member, mentor, and ambassador</text>
+  <text x="540" y="660" font-family="system-ui, sans-serif" font-size="24" fill="#52525B" text-anchor="middle">who made this year special</text>
+  
+  <rect x="160" y="720" width="200" height="120" fill="#18181B" rx="8"/>
+  <text x="260" y="780" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#FAFAFA" text-anchor="middle">5,000+</text>
+  <text x="260" y="815" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Members</text>
+  
+  <rect x="400" y="720" width="200" height="120" fill="#18181B" rx="8"/>
+  <text x="500" y="780" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#FAFAFA" text-anchor="middle">40+</text>
+  <text x="500" y="815" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Mentors</text>
+  
+  <rect x="640" y="720" width="200" height="120" fill="#18181B" rx="8"/>
+  <text x="740" y="780" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#FAFAFA" text-anchor="middle">30+</text>
+  <text x="740" y="815" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Ambassadors</text>
+  
+  <text x="540" y="940" font-family="system-ui, sans-serif" font-size="28" fill="#18181B" text-anchor="middle">See you in 2025!</text>
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">@devweekends</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Tip badge -->
+  <rect x="60" y="200" width="180" height="36" fill="#18181B"/>
+  <text x="150" y="225" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">TIP OF THE DAY</text>
+  
+  <!-- Large number -->
+  <text x="850" y="350" font-family="system-ui, sans-serif" font-size="300" font-weight="800" fill="#18181B" opacity="0.05" text-anchor="end">01</text>
+  
+  <!-- Main content -->
+  <text x="60" y="400" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Your Tip Title</text>
+  <text x="60" y="460" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Goes Here</text>
+  
+  <!-- Yellow highlight -->
+  <rect x="58" y="435" width="200" height="12" fill="#FEF08A" opacity="0.7"/>
+  
+  <!-- Description -->
+  <text x="60" y="560" font-family="system-ui, sans-serif" font-size="22" fill="#71717A" style="max-width: 800px">Add your tip description here. Keep it</text>
+  <text x="60" y="595" font-family="system-ui, sans-serif" font-size="22" fill="#71717A">concise and actionable for your audience.</text>
+  
+  <!-- Code snippet box -->
+  <rect x="60" y="680" width="960" height="200" fill="#18181B" rx="8"/>
+  <text x="90" y="730" font-family="monospace" font-size="18" fill="#A78BFA">const</text>
+  <text x="155" y="730" font-family="monospace" font-size="18" fill="#FAFAFA">tip =</text>
+  <text x="225" y="730" font-family="monospace" font-size="18" fill="#4ADE80">"Your code here"</text>
+  <text x="90" y="770" font-family="monospace" font-size="18" fill="#A78BFA">console</text>
+  <text x="175" y="770" font-family="monospace" font-size="18" fill="#FAFAFA">.log(tip)</text>
+  
+  <!-- Footer -->
+  <rect x="60" y="950" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">Save this for later 📌</text>
+  <text x="980" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="end">@devweekends</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="200" height="40" fill="#A78BFA"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">BOOK CLUB</text>
+  
+  <!-- Book visual -->
+  <rect x="660" y="240" width="320" height="450" fill="#27272A" rx="8"/>
+  <rect x="680" y="260" width="280" height="410" fill="#A78BFA" rx="4"/>
+  <text x="820" y="400" font-family="system-ui, sans-serif" font-size="60" text-anchor="middle">📚</text>
+  <text x="820" y="480" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA" text-anchor="middle">[Book Title]</text>
+  <text x="820" y="520" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">by [Author]</text>
+  
+  <!-- Title -->
+  <text x="60" y="320" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#FAFAFA">Book of the</text>
+  <text x="60" y="380" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#A78BFA">Month</text>
+  
+  <!-- Description -->
+  <text x="60" y="480" font-family="system-ui, sans-serif" font-size="18" fill="#A1A1AA">Why we picked this book:</text>
+  <text x="60" y="530" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">Add 2-3 lines about why this book</text>
+  <text x="60" y="565" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">is valuable for developers and the</text>
+  <text x="60" y="600" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">key takeaways we'll discuss.</text>
+  
+  <!-- Discussion schedule -->
+  <rect x="60" y="680" width="500" height="100" fill="#27272A" rx="8"/>
+  <text x="100" y="720" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Discussion Session</text>
+  <text x="100" y="755" font-family="system-ui, sans-serif" font-size="20" fill="#FAFAFA">Sunday, 6 PM IST</text>
+  
+  <!-- Key themes -->
+  <text x="60" y="850" font-family="system-ui, sans-serif" font-size="16" fill="#A78BFA">Key themes we'll explore:</text>
+  <text x="60" y="890" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">• Theme 1</text>
+  <text x="60" y="925" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">• Theme 2</text>
+  <text x="60" y="960" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">• Theme 3</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">Join the MindMaster book club! @devweekends</text>
+</svg>

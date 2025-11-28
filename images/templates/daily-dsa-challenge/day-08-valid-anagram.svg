@@ -1,0 +1,30 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="140" width="220" height="40" fill="#18181B"/>
+  <text x="170" y="168" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle">DAILY DSA CHALLENGE</text>
+  
+  <text x="60" y="300" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#18181B">Day 08</text>
+  
+  <text x="60" y="380" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#A855F7">Valid Anagram</text>
+  
+  <rect x="60" y="430" width="120" height="40" fill="#22C55E" rx="4"/>
+  <text x="120" y="458" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle">Easy</text>
+  
+  <rect x="60" y="510" width="960" height="200" fill="#F4F4F5" rx="8"/>
+  <text x="100" y="560" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">Problem:</text>
+  <text x="100" y="600" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">Given two strings s and t, return true if t is an</text>
+  <text x="100" y="630" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">anagram of s, and false otherwise.</text>
+  <text x="100" y="680" font-family="monospace" font-size="14" fill="#A855F7">Input: s="anagram", t="nagaram" Output: true</text>
+  
+  <rect x="60" y="740" width="960" height="150" fill="#F4F4F5" rx="8"/>
+  <text x="100" y="790" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#22C55E">Hint:</text>
+  <text x="100" y="830" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">Count character frequencies with a hash map.</text>
+  <text x="100" y="865" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Time: O(n) | Space: O(1) - 26 letters</text>
+  
+  <text x="60" y="950" font-family="system-ui, sans-serif" font-size="18" fill="#18181B">Drop your solution in the comments</text>
+  
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">@devweekends</text>
+</svg>

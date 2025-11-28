@@ -1,0 +1,31 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#F97316"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#F97316"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Morning Routine</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#C2410C">for Developers</text>
+  
+  <rect x="60" y="420" width="960" height="430" fill="#F4F4F5" rx="8"/>
+  
+  <text x="100" y="480" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">High-performance morning stack:</text>
+  
+  <text x="100" y="530" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">☀️ 6:00 - Wake up (no snooze!)</text>
+  <text x="100" y="570" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">💧 6:05 - Hydrate first</text>
+  <text x="100" y="610" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">🏃 6:15 - 15min exercise or walk</text>
+  <text x="100" y="650" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">🧘 6:30 - 10min meditation or journaling</text>
+  <text x="100" y="690" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">🍳 6:45 - Healthy breakfast</text>
+  <text x="100" y="730" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">📱 7:15 - NO phone/social media until now</text>
+  <text x="100" y="770" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">💻 7:30 - Plan today's 3 most important tasks</text>
+  <text x="100" y="810" font-family="system-ui, sans-serif" font-size="17" fill="#52525B">🚀 8:00 - Deep work begins</text>
+  
+  <text x="60" y="920" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">💡 Win your morning, win your day</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Customize based on your schedule</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

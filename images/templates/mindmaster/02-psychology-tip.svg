@@ -1,0 +1,41 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#A78BFA"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="160" width="200" height="40" fill="#A78BFA"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MINDMASTER</text>
+  
+  <!-- Topic badge -->
+  <rect x="280" y="160" width="200" height="40" fill="#18181B"/>
+  <text x="380" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle">PSYCHOLOGY TIP</text>
+  
+  <!-- Title -->
+  <text x="60" y="340" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">The 2-Minute Rule</text>
+  
+  <!-- Content box -->
+  <rect x="60" y="400" width="960" height="350" fill="#F4F4F5" rx="8"/>
+  
+  <text x="100" y="470" font-family="Georgia, serif" font-size="24" font-style="italic" fill="#52525B">"If a task takes less than 2 minutes,</text>
+  <text x="100" y="510" font-family="Georgia, serif" font-size="24" font-style="italic" fill="#52525B">do it immediately instead of adding</text>
+  <text x="100" y="550" font-family="Georgia, serif" font-size="24" font-style="italic" fill="#52525B">it to your to-do list."</text>
+  
+  <text x="100" y="620" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">— David Allen, Getting Things Done</text>
+  
+  <text x="100" y="700" font-family="system-ui, sans-serif" font-size="18" fill="#18181B">Why it works:</text>
+  <text x="100" y="735" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">• Reduces mental clutter</text>
+  <text x="400" y="735" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">• Builds momentum</text>
+  <text x="700" y="735" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">• Creates quick wins</text>
+  
+  <!-- Application -->
+  <text x="60" y="840" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">Try it now:</text>
+  <text x="60" y="880" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">Reply to that email. File that document. Drink that water. 🚀</text>
+  
+  <!-- Footer -->
+  <rect x="60" y="950" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1010" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">MindMaster: Psychology insights for developers</text>
+  <text x="980" y="1010" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#8B5CF6"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#8B5CF6"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Spaced Repetition</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#6D28D9">Learn Forever</text>
+  
+  <rect x="60" y="420" width="960" height="380" fill="#F4F4F5" rx="8"/>
+  
+  <text x="100" y="480" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">Review intervals for lasting memory:</text>
+  
+  <rect x="100" y="510" width="150" height="100" fill="#8B5CF6" rx="8"/>
+  <text x="175" y="555" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FAFAFA" text-anchor="middle">Day 1</text>
+  <text x="175" y="590" font-family="system-ui, sans-serif" font-size="12" fill="#FAFAFA" text-anchor="middle">Learn it</text>
+  
+  <text x="270" y="560" font-family="system-ui, sans-serif" font-size="24" fill="#8B5CF6">→</text>
+  
+  <rect x="310" y="510" width="150" height="100" fill="#A78BFA" rx="8"/>
+  <text x="385" y="555" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FAFAFA" text-anchor="middle">Day 3</text>
+  <text x="385" y="590" font-family="system-ui, sans-serif" font-size="12" fill="#FAFAFA" text-anchor="middle">Review</text>
+  
+  <text x="480" y="560" font-family="system-ui, sans-serif" font-size="24" fill="#8B5CF6">→</text>
+  
+  <rect x="520" y="510" width="150" height="100" fill="#C4B5FD" rx="8"/>
+  <text x="595" y="555" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#18181B" text-anchor="middle">Week 1</text>
+  <text x="595" y="590" font-family="system-ui, sans-serif" font-size="12" fill="#18181B" text-anchor="middle">Review</text>
+  
+  <text x="690" y="560" font-family="system-ui, sans-serif" font-size="24" fill="#8B5CF6">→</text>
+  
+  <rect x="730" y="510" width="150" height="100" fill="#DDD6FE" rx="8"/>
+  <text x="805" y="555" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#18181B" text-anchor="middle">Month 1</text>
+  <text x="805" y="590" font-family="system-ui, sans-serif" font-size="12" fill="#18181B" text-anchor="middle">Review</text>
+  
+  <text x="100" y="680" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">Tools: Anki, Notion, or simple flashcards</text>
+  
+  <text x="100" y="730" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">💡 Perfect for: Algorithms, APIs, concepts, commands</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Science-backed learning technique</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

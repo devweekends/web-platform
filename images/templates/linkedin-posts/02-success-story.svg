@@ -1,0 +1,49 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1200" fill="#18181B"/>
+  
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid-li" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#27272A" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#grid-li)"/>
+  
+  <!-- Header -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Story badge -->
+  <rect x="60" y="180" width="180" height="40" fill="#FAFAFA"/>
+  <text x="150" y="208" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">SUCCESS STORY</text>
+  
+  <!-- Main quote -->
+  <text x="60" y="380" font-family="Georgia, serif" font-size="44" fill="#FAFAFA" font-style="italic">"I went from earning</text>
+  <text x="60" y="450" font-family="Georgia, serif" font-size="44" fill="#FAFAFA" font-style="italic">₹15,000/month to</text>
+  <text x="60" y="520" font-family="Georgia, serif" font-size="44" fill="#FEF08A" font-style="italic">₹3,00,000/month</text>
+  <text x="60" y="590" font-family="Georgia, serif" font-size="44" fill="#FAFAFA" font-style="italic">in just 8 months."</text>
+  
+  <!-- Divider -->
+  <rect x="60" y="660" width="100" height="3" fill="#FEF08A"/>
+  
+  <!-- Attribution -->
+  <circle cx="100" cy="760" r="40" fill="#27272A"/>
+  <text x="100" y="765" font-family="system-ui, sans-serif" font-size="12" fill="#52525B" text-anchor="middle">Photo</text>
+  <text x="160" y="750" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FAFAFA">Fellow Name</text>
+  <text x="160" y="780" font-family="system-ui, sans-serif" font-size="16" fill="#71717A">Now SDE @ Amazon</text>
+  
+  <!-- Journey stats -->
+  <rect x="60" y="880" width="340" height="120" fill="#27272A" rx="8"/>
+  <text x="230" y="930" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">BEFORE</text>
+  <text x="230" y="975" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#FAFAFA" text-anchor="middle">Fresher, No Job</text>
+  
+  <rect x="430" y="880" width="340" height="120" fill="#FEF08A" rx="8"/>
+  <text x="600" y="930" font-family="system-ui, sans-serif" font-size="14" fill="#18181B" text-anchor="middle">AFTER</text>
+  <text x="600" y="975" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#18181B" text-anchor="middle">FAANG Engineer</text>
+  
+  <!-- CTA -->
+  <rect x="60" y="1060" width="280" height="56" fill="#FAFAFA" rx="4"/>
+  <text x="200" y="1096" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" text-anchor="middle">Read full story →</text>
+  
+  <!-- Footer -->
+  <text x="600" y="1170" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">Join 20,000+ engineers transforming their careers</text>
+</svg>

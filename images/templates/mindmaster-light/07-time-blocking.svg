@@ -1,0 +1,40 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#F59E0B"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#F59E0B"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Time Blocking</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#B45309">Your Calendar = Your Priorities</text>
+  
+  <rect x="60" y="420" width="960" height="420" fill="#F4F4F5" rx="8"/>
+  
+  <text x="100" y="480" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">Sample Developer Day:</text>
+  
+  <rect x="100" y="510" width="860" height="45" fill="#22C55E" rx="4"/>
+  <text x="120" y="540" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA">9:00 - 11:00 | Deep Work: Feature Development</text>
+  
+  <rect x="100" y="565" width="860" height="45" fill="#3B82F6" rx="4"/>
+  <text x="120" y="595" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA">11:00 - 11:30 | Email &amp; Slack Catch-up</text>
+  
+  <rect x="100" y="620" width="860" height="45" fill="#A78BFA" rx="4"/>
+  <text x="120" y="650" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA">11:30 - 12:30 | Code Review &amp; Meetings</text>
+  
+  <rect x="100" y="675" width="860" height="45" fill="#71717A" rx="4"/>
+  <text x="120" y="705" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA">12:30 - 1:30 | Lunch Break (Protected!)</text>
+  
+  <rect x="100" y="730" width="860" height="45" fill="#22C55E" rx="4"/>
+  <text x="120" y="760" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA">1:30 - 4:00 | Deep Work: Bug Fixes</text>
+  
+  <rect x="100" y="785" width="860" height="45" fill="#F59E0B" rx="4"/>
+  <text x="120" y="815" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B">4:00 - 5:00 | Learning &amp; Side Projects</text>
+  
+  <text x="60" y="910" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">💡 What gets scheduled, gets done!</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Protect your deep work time</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

@@ -1,0 +1,56 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">🌐 VPC NETWORKING</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">Virtual Private Cloud</text>
+  
+  <rect x="120" y="340" width="840" height="400" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="540" y="375" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#232F3E" text-anchor="middle">VPC: 10.0.0.0/16</text>
+  
+  <rect x="160" y="400" width="380" height="150" rx="8" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="350" y="430" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#2E7D32" text-anchor="middle">Public Subnet (AZ-1)</text>
+  <text x="350" y="455" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">10.0.1.0/24</text>
+  <rect x="200" y="475" width="140" height="50" rx="6" fill="#232F3E"/>
+  <text x="270" y="505" font-family="system-ui, sans-serif" font-size="12" fill="#FF9900" text-anchor="middle">Web Server</text>
+  <rect x="360" y="475" width="140" height="50" rx="6" fill="#232F3E"/>
+  <text x="430" y="505" font-family="system-ui, sans-serif" font-size="12" fill="#FF9900" text-anchor="middle">NAT Gateway</text>
+  
+  <rect x="560" y="400" width="380" height="150" rx="8" fill="#FFEBEE" stroke="#F44336" stroke-width="2"/>
+  <text x="750" y="430" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#C62828" text-anchor="middle">Private Subnet (AZ-1)</text>
+  <text x="750" y="455" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">10.0.2.0/24</text>
+  <rect x="600" y="475" width="140" height="50" rx="6" fill="#232F3E"/>
+  <text x="670" y="505" font-family="system-ui, sans-serif" font-size="12" fill="#FF9900" text-anchor="middle">App Server</text>
+  <rect x="760" y="475" width="140" height="50" rx="6" fill="#232F3E"/>
+  <text x="830" y="505" font-family="system-ui, sans-serif" font-size="12" fill="#FF9900" text-anchor="middle">Database</text>
+  
+  <rect x="160" y="570" width="780" height="60" rx="8" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="540" y="605" font-family="system-ui, sans-serif" font-size="14" fill="#1565C0" text-anchor="middle">Internet Gateway → Route Table → Subnets</text>
+  
+  <rect x="160" y="650" width="180" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="250" y="685" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#232F3E" text-anchor="middle">🔐 Security Groups</text>
+  <text x="250" y="708" font-family="system-ui, sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Instance-level</text>
+  
+  <rect x="355" y="650" width="180" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="445" y="685" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#232F3E" text-anchor="middle">🛡️ NACLs</text>
+  <text x="445" y="708" font-family="system-ui, sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Subnet-level</text>
+  
+  <rect x="550" y="650" width="180" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="640" y="685" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#232F3E" text-anchor="middle">🔗 VPC Peering</text>
+  <text x="640" y="708" font-family="system-ui, sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Connect VPCs</text>
+  
+  <rect x="745" y="650" width="180" height="70" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="835" y="685" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#232F3E" text-anchor="middle">🚪 VPC Endpoints</text>
+  <text x="835" y="708" font-family="system-ui, sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Private AWS access</text>
+  
+  <text x="120" y="875" font-family="system-ui, sans-serif" font-size="16" fill="#64748B">💡 Use VPC Flow Logs to monitor network traffic</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#009639"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="180" height="40" fill="#009639"/>
+  <text x="150" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">DEVOPS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">NGINX</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#009639">Reverse Proxy Config</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="460" font-family="monospace" font-size="16" fill="#22C55E">upstream backend {</text>
+  <text x="120" y="495" font-family="monospace" font-size="16" fill="#FAFAFA">  server 127.0.0.1:3000;</text>
+  <text x="120" y="530" font-family="monospace" font-size="16" fill="#FAFAFA">  server 127.0.0.1:3001;</text>
+  <text x="100" y="565" font-family="monospace" font-size="16" fill="#22C55E">}</text>
+  <text x="100" y="615" font-family="monospace" font-size="16" fill="#22C55E">server {</text>
+  <text x="120" y="650" font-family="monospace" font-size="16" fill="#FAFAFA">  listen 80;</text>
+  <text x="120" y="685" font-family="monospace" font-size="16" fill="#FAFAFA">  server_name example.com;</text>
+  <text x="120" y="735" font-family="monospace" font-size="16" fill="#22C55E">  location / {</text>
+  <text x="140" y="770" font-family="monospace" font-size="16" fill="#FAFAFA">    proxy_pass http://backend;</text>
+  <text x="140" y="805" font-family="monospace" font-size="16" fill="#FAFAFA">    proxy_set_header Host $host;</text>
+  <text x="140" y="840" font-family="monospace" font-size="16" fill="#FAFAFA">    proxy_set_header X-Real-IP $remote_addr;</text>
+  <text x="120" y="875" font-family="monospace" font-size="16" fill="#22C55E">  }</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Test: nginx -t  |  Reload: nginx -s reload</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

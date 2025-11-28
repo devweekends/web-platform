@@ -1,0 +1,38 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="green-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0FDF4"/>
+      <stop offset="100%" style="stop-color:#DCFCE7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#green-grad)"/>
+  
+  <!-- Header -->
+  <text x="60" y="60" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="150" width="180" height="40" fill="#18181B"/>
+  <text x="150" y="178" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">OPEN SOURCE</text>
+  
+  <!-- Title -->
+  <text x="60" y="290" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Hacktoberfest</text>
+  <text x="60" y="350" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Prep Session</text>
+  
+  <!-- Subtitle -->
+  <text x="60" y="420" font-family="system-ui, sans-serif" font-size="20" fill="#52525B">Get ready to contribute to open source</text>
+  
+  <!-- What you'll learn -->
+  <text x="60" y="490" font-family="system-ui, sans-serif" font-size="16" fill="#22C55E">✓ Finding good first issues</text>
+  <text x="60" y="520" font-family="system-ui, sans-serif" font-size="16" fill="#22C55E">✓ Making quality PRs</text>
+  <text x="60" y="550" font-family="system-ui, sans-serif" font-size="16" fill="#22C55E">✓ Building your profile</text>
+  
+  <!-- Event card -->
+  <rect x="800" y="200" width="340" height="280" fill="#FFFFFF" rx="8"/>
+  <text x="970" y="260" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">WHEN</text>
+  <text x="970" y="300" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#18181B" text-anchor="middle">Oct 1, 2025</text>
+  <text x="970" y="340" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">7:00 PM PKT</text>
+  
+  <rect x="850" y="380" width="240" height="50" fill="#18181B" rx="4"/>
+  <text x="970" y="412" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle">Join Discord →</text>
+  <text x="970" y="455" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Free for all members</text>
+</svg>

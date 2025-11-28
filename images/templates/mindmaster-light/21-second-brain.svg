@@ -1,0 +1,40 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#0EA5E9"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="230" height="40" fill="#0EA5E9"/>
+  <text x="175" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MIND &amp; PRODUCTIVITY</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Second Brain</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#0284C7">Externalize Knowledge</text>
+  
+  <rect x="60" y="420" width="960" height="430" fill="#F4F4F5" rx="8"/>
+  
+  <text x="100" y="480" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">The PARA Method:</text>
+  
+  <rect x="100" y="510" width="420" height="100" fill="#0EA5E9" rx="8"/>
+  <text x="310" y="550" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA" text-anchor="middle">PROJECTS</text>
+  <text x="310" y="585" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Active tasks with deadlines</text>
+  
+  <rect x="540" y="510" width="420" height="100" fill="#22C55E" rx="8"/>
+  <text x="750" y="550" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA" text-anchor="middle">AREAS</text>
+  <text x="750" y="585" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Ongoing responsibilities</text>
+  
+  <rect x="100" y="630" width="420" height="100" fill="#F59E0B" rx="8"/>
+  <text x="310" y="670" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#18181B" text-anchor="middle">RESOURCES</text>
+  <text x="310" y="705" font-family="system-ui, sans-serif" font-size="14" fill="#18181B" text-anchor="middle">Reference materials &amp; interests</text>
+  
+  <rect x="540" y="630" width="420" height="100" fill="#A78BFA" rx="8"/>
+  <text x="750" y="670" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA" text-anchor="middle">ARCHIVES</text>
+  <text x="750" y="705" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Completed or inactive items</text>
+  
+  <text x="100" y="790" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">Tools: Notion, Obsidian, Roam, or plain folders</text>
+  
+  <text x="100" y="830" font-family="system-ui, sans-serif" font-size="16" fill="#52525B">💡 Capture → Organize → Distill → Express</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Based on Tiago Forte's Building a Second Brain</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">🪣 S3 STORAGE CLASSES</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">Simple Storage Service</text>
+  
+  <rect x="120" y="350" width="420" height="100" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="330" y="385" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#232F3E" text-anchor="middle">S3 Standard</text>
+  <text x="330" y="415" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Frequently accessed data</text>
+  <text x="330" y="440" font-family="system-ui, sans-serif" font-size="14" fill="#FF9900" text-anchor="middle">99.99% availability</text>
+  
+  <rect x="560" y="350" width="400" height="100" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="760" y="385" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#232F3E" text-anchor="middle">S3 Standard-IA</text>
+  <text x="760" y="415" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Infrequent access</text>
+  <text x="760" y="440" font-family="system-ui, sans-serif" font-size="14" fill="#FF9900" text-anchor="middle">~40% cheaper storage</text>
+  
+  <rect x="120" y="470" width="420" height="100" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="330" y="505" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#232F3E" text-anchor="middle">S3 Glacier Instant</text>
+  <text x="330" y="535" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Archive with ms retrieval</text>
+  <text x="330" y="560" font-family="system-ui, sans-serif" font-size="14" fill="#FF9900" text-anchor="middle">~68% cheaper than Standard</text>
+  
+  <rect x="560" y="470" width="400" height="100" rx="12" fill="white" stroke="#FF9900" stroke-width="2"/>
+  <text x="760" y="505" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#232F3E" text-anchor="middle">S3 Glacier Deep Archive</text>
+  <text x="760" y="535" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Long-term archive (12hrs)</text>
+  <text x="760" y="560" font-family="system-ui, sans-serif" font-size="14" fill="#FF9900" text-anchor="middle">~95% cheaper!</text>
+  
+  <text x="120" y="620" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Key Features:</text>
+  
+  <rect x="120" y="650" width="840" height="200" rx="12" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="140" y="690" font-family="monospace" font-size="16" fill="#FF9900">// Bucket policy example</text>
+  <text x="140" y="720" font-family="monospace" font-size="16" fill="#232F3E">"Effect": "Deny",</text>
+  <text x="140" y="750" font-family="monospace" font-size="16" fill="#232F3E">"Action": "s3:*",</text>
+  <text x="140" y="780" font-family="monospace" font-size="16" fill="#232F3E">"Condition": {"Bool": {"aws:SecureTransport": "false"}}</text>
+  <text x="140" y="820" font-family="system-ui, sans-serif" font-size="14" fill="#64748B">↑ Deny non-HTTPS requests</text>
+  
+  <text x="120" y="890" font-family="system-ui, sans-serif" font-size="16" fill="#64748B">💡 Use S3 Lifecycle policies to auto-transition between storage classes</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#FF9900"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="120" height="40" fill="#FF9900"/>
+  <text x="120" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">AWS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">EC2</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FF9900">Instance Management</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="470" font-family="monospace" font-size="14" fill="#71717A"># List running instances</text>
+  <text x="100" y="505" font-family="monospace" font-size="18" fill="#22C55E">aws ec2 describe-instances --filters "Name=instance-state-name,Values=running"</text>
+  
+  <text x="100" y="565" font-family="monospace" font-size="14" fill="#71717A"># Start an instance</text>
+  <text x="100" y="600" font-family="monospace" font-size="18" fill="#22C55E">aws ec2 start-instances --instance-ids i-1234567890</text>
+  
+  <text x="100" y="660" font-family="monospace" font-size="14" fill="#71717A"># Stop an instance</text>
+  <text x="100" y="695" font-family="monospace" font-size="18" fill="#22C55E">aws ec2 stop-instances --instance-ids i-1234567890</text>
+  
+  <text x="100" y="755" font-family="monospace" font-size="14" fill="#71717A"># Get instance public IP</text>
+  <text x="100" y="790" font-family="monospace" font-size="18" fill="#22C55E">aws ec2 describe-instances --query 'Reservations[].Instances[].PublicIpAddress'</text>
+  
+  <text x="100" y="850" font-family="monospace" font-size="14" fill="#71717A"># SSH into instance</text>
+  <text x="100" y="885" font-family="monospace" font-size="18" fill="#22C55E">ssh -i key.pem ec2-user@&lt;public-ip&gt;</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Elastic Compute Cloud - Virtual servers in the cloud</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

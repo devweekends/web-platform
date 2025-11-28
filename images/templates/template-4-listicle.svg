@@ -1,0 +1,41 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#FAFAFA"/>
+  
+  <!-- Three column layout lines -->
+  <line x1="400" y1="100" x2="400" y2="530" stroke="#E5E5E5" stroke-width="1"/>
+  <line x1="800" y1="100" x2="800" y2="530" stroke="#E5E5E5" stroke-width="1"/>
+  
+  <!-- Dev Weekends branding -->
+  <text x="60" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Category -->
+  <rect x="60" y="100" width="140" height="28" fill="#18181B"/>
+  <text x="130" y="119" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">COMMUNITY</text>
+  
+  <!-- Number cards -->
+  <!-- Card 1 -->
+  <text x="120" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="120" font-weight="800" fill="#18181B" text-anchor="middle" opacity="0.1">01</text>
+  <text x="120" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#18181B" text-anchor="middle">First Point</text>
+  <text x="120" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Description here</text>
+  
+  <!-- Card 2 -->
+  <text x="600" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="120" font-weight="800" fill="#18181B" text-anchor="middle" opacity="0.1">02</text>
+  <text x="600" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#18181B" text-anchor="middle">Second Point</text>
+  <text x="600" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Description here</text>
+  
+  <!-- Card 3 -->
+  <text x="1000" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="120" font-weight="800" fill="#18181B" text-anchor="middle" opacity="0.1">03</text>
+  <text x="1000" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#18181B" text-anchor="middle">Third Point</text>
+  <text x="1000" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Description here</text>
+  
+  <!-- Main title at bottom -->
+  <text x="60" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#18181B">3 Things Every Developer</text>
+  <text x="60" y="530" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#18181B">Should Know in 2025</text>
+  
+  <!-- Yellow highlight -->
+  <rect x="58" y="505" width="280" height="12" fill="#FEF08A" opacity="0.6"/>
+  
+  <!-- Date -->
+  <text x="1100" y="590" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" text-anchor="end">Read time: 8 min</text>
+</svg>

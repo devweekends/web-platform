@@ -1,0 +1,58 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="40" y="40" width="1000" height="1000" rx="24" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  
+  <text x="540" y="120" font-family="system-ui, sans-serif" font-size="32" font-weight="bold" fill="#FF9900" text-anchor="middle">AWS SERVICES</text>
+  
+  <rect x="80" y="160" width="920" height="60" rx="12" fill="#232F3E"/>
+  <text x="540" y="200" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#FF9900" text-anchor="middle">☸️ EKS (KUBERNETES)</text>
+  
+  <rect x="80" y="250" width="920" height="680" rx="16" fill="#FFF8F0" stroke="#FF9900" stroke-width="2"/>
+  
+  <text x="540" y="310" font-family="system-ui, sans-serif" font-size="26" font-weight="bold" fill="#232F3E" text-anchor="middle">Managed Kubernetes Service</text>
+  
+  <text x="120" y="370" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Cluster Architecture:</text>
+  
+  <rect x="120" y="395" width="840" height="200" rx="12" fill="white" stroke="#FF9900" stroke-width="1"/>
+  
+  <rect x="160" y="420" width="300" height="80" rx="8" fill="#232F3E"/>
+  <text x="310" y="455" font-family="system-ui, sans-serif" font-size="14" fill="#FF9900" text-anchor="middle">Control Plane (AWS Managed)</text>
+  <text x="310" y="480" font-family="system-ui, sans-serif" font-size="12" fill="white" text-anchor="middle">API Server | etcd | Scheduler</text>
+  
+  <rect x="520" y="420" width="400" height="160" rx="8" fill="#FFF8F0" stroke="#FF9900" stroke-width="1"/>
+  <text x="720" y="445" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#232F3E" text-anchor="middle">Data Plane (Your Account)</text>
+  
+  <rect x="540" y="465" width="160" height="45" rx="4" fill="#232F3E"/>
+  <text x="620" y="493" font-family="system-ui, sans-serif" font-size="11" fill="#FF9900" text-anchor="middle">Node Group (EC2)</text>
+  
+  <rect x="720" y="465" width="180" height="45" rx="4" fill="#FF9900"/>
+  <text x="810" y="493" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle">Fargate Profile</text>
+  
+  <rect x="540" y="520" width="360" height="45" rx="4" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="720" y="548" font-family="system-ui, sans-serif" font-size="11" fill="#232F3E" text-anchor="middle">Pods running your containers</text>
+  
+  <text x="120" y="640" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Node Types:</text>
+  
+  <rect x="120" y="665" width="270" height="100" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="255" y="705" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#232F3E" text-anchor="middle">Managed Node Groups</text>
+  <text x="255" y="735" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">AWS provisions EC2</text>
+  <text x="255" y="755" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">Auto updates &amp; scaling</text>
+  
+  <rect x="405" y="665" width="270" height="100" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="540" y="705" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#232F3E" text-anchor="middle">Self-Managed</text>
+  <text x="540" y="735" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">You manage EC2</text>
+  <text x="540" y="755" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">Full control, custom AMI</text>
+  
+  <rect x="690" y="665" width="270" height="100" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="825" y="705" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#232F3E" text-anchor="middle">Fargate</text>
+  <text x="825" y="735" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">Serverless pods</text>
+  <text x="825" y="755" font-family="system-ui, sans-serif" font-size="13" fill="#64748B" text-anchor="middle">No node management</text>
+  
+  <text x="120" y="815" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#FF9900">Key Add-ons:</text>
+  
+  <rect x="120" y="835" width="840" height="55" rx="8" fill="white" stroke="#FF9900" stroke-width="1"/>
+  <text x="540" y="870" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">AWS LB Controller | EBS CSI | Cluster Autoscaler | CoreDNS | kube-proxy | VPC CNI</text>
+  
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#FF9900" text-anchor="middle">DEV WEEKENDS</text>
+  <text x="540" y="1010" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">@devweekends</text>
+</svg>

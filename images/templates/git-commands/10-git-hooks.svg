@@ -1,0 +1,31 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#F59E0B"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="130" width="180" height="40" fill="#F59E0B"/>
+  <text x="150" y="157" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">GIT TIPS</text>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B">Git Hooks</text>
+  <text x="60" y="345" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#F59E0B">Automate Quality</text>
+  
+  <rect x="60" y="410" width="960" height="480" fill="#18181B" rx="8"/>
+  
+  <text x="100" y="470" font-family="monospace" font-size="14" fill="#71717A"># .git/hooks/pre-commit (make executable)</text>
+  <text x="100" y="505" font-family="monospace" font-size="16" fill="#22C55E">#!/bin/sh</text>
+  <text x="100" y="540" font-family="monospace" font-size="16" fill="#22C55E">npm run lint &amp;&amp; npm run test</text>
+  
+  <text x="100" y="600" font-family="monospace" font-size="14" fill="#71717A"># Popular hooks:</text>
+  <text x="100" y="640" font-family="monospace" font-size="15" fill="#FEF08A">pre-commit    </text><text x="300" y="640" font-family="system-ui, sans-serif" font-size="13" fill="#A1A1AA">Run before commit</text>
+  <text x="100" y="675" font-family="monospace" font-size="15" fill="#FEF08A">commit-msg    </text><text x="300" y="675" font-family="system-ui, sans-serif" font-size="13" fill="#A1A1AA">Validate commit message</text>
+  <text x="100" y="710" font-family="monospace" font-size="15" fill="#FEF08A">pre-push      </text><text x="300" y="710" font-family="system-ui, sans-serif" font-size="13" fill="#A1A1AA">Run before pushing</text>
+  <text x="100" y="745" font-family="monospace" font-size="15" fill="#FEF08A">post-merge    </text><text x="300" y="745" font-family="system-ui, sans-serif" font-size="13" fill="#A1A1AA">Run after merging</text>
+  
+  <text x="100" y="810" font-family="monospace" font-size="14" fill="#71717A"># Use Husky for easier hook management</text>
+  <text x="100" y="845" font-family="monospace" font-size="16" fill="#22C55E">npx husky-init &amp;&amp; npm install</text>
+  
+  <rect x="60" y="940" width="960" height="1" fill="#E5E5E5"/>
+  <text x="60" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">Never push broken code again</text>
+  <text x="980" y="1000" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>
