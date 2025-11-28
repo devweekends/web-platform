@@ -44,8 +44,7 @@ export default function AboutPage() {
                 Who Change Lives
               </h1>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Pakistan's largest free engineering mentorship community. We don't just teach code—we 
-                transform students into world-class engineers through mentorship, community, and relentless practice.
+                Your Gateway to becoming a better Software Engineer
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link 
