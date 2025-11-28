@@ -1,0 +1,89 @@
+<svg width="1600" height="1131" viewBox="0 0 1600 1131" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clean white certificate -->
+  <rect width="1600" height="1131" fill="#FFFFFF"/>
+  
+  <!-- Subtle pattern -->
+  <defs>
+    <pattern id="cert-dots" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="15" cy="15" r="1" fill="#E5E5E5"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1131" fill="url(#cert-dots)"/>
+  
+  <!-- Border -->
+  <rect x="60" y="60" width="1480" height="1011" fill="none" stroke="#18181B" stroke-width="4"/>
+  
+  <!-- Top yellow bar -->
+  <rect x="60" y="60" width="1480" height="20" fill="#FEF08A"/>
+  
+  <!-- Header -->
+  <text x="800" y="150" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#18181B" letter-spacing="8" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Impact badge -->
+  <rect x="625" y="180" width="350" height="45" fill="#18181B" rx="22"/>
+  <text x="800" y="210" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">🌟 IMPACT MAKER AWARD</text>
+  
+  <!-- Certificate title -->
+  <text x="800" y="310" font-family="Georgia, serif" font-size="48" font-weight="400" fill="#18181B" text-anchor="middle">Certificate of Impact</text>
+  
+  <!-- Decorative line -->
+  <rect x="400" y="340" width="800" height="2" fill="#FEF08A"/>
+  
+  <!-- Presented to -->
+  <text x="800" y="410" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Honoring the remarkable contributions of</text>
+  
+  <!-- Name placeholder -->
+  <text x="800" y="490" font-family="Georgia, serif" font-size="58" font-weight="600" fill="#18181B" text-anchor="middle">[Ambassador Name]</text>
+  
+  <!-- University -->
+  <text x="800" y="540" font-family="system-ui, sans-serif" font-size="20" fill="#71717A" text-anchor="middle">[University Name]</text>
+  
+  <!-- Yellow underline -->
+  <rect x="300" y="560" width="1000" height="6" fill="#FEF08A"/>
+  
+  <!-- Impact description -->
+  <text x="800" y="630" font-family="system-ui, sans-serif" font-size="18" fill="#52525B" text-anchor="middle">For making a significant impact on the tech community by</text>
+  
+  <!-- Impact stats -->
+  <g transform="translate(150, 680)">
+    <rect x="0" y="0" width="280" height="120" fill="#FAFAFA" stroke="#E5E5E5" stroke-width="1" rx="8"/>
+    <text x="140" y="55" font-family="system-ui, sans-serif" font-size="40" font-weight="800" fill="#18181B" text-anchor="middle">[X]+</text>
+    <text x="140" y="90" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Students Mentored</text>
+  </g>
+  
+  <g transform="translate(470, 680)">
+    <rect x="0" y="0" width="280" height="120" fill="#FAFAFA" stroke="#E5E5E5" stroke-width="1" rx="8"/>
+    <text x="140" y="55" font-family="system-ui, sans-serif" font-size="40" font-weight="800" fill="#18181B" text-anchor="middle">[X]+</text>
+    <text x="140" y="90" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Workshops Conducted</text>
+  </g>
+  
+  <g transform="translate(790, 680)">
+    <rect x="0" y="0" width="280" height="120" fill="#FAFAFA" stroke="#E5E5E5" stroke-width="1" rx="8"/>
+    <text x="140" y="55" font-family="system-ui, sans-serif" font-size="40" font-weight="800" fill="#18181B" text-anchor="middle">[X]+</text>
+    <text x="140" y="90" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Hours Volunteered</text>
+  </g>
+  
+  <g transform="translate(1110, 680)">
+    <rect x="0" y="0" width="280" height="120" fill="#18181B" rx="8"/>
+    <text x="140" y="55" font-family="system-ui, sans-serif" font-size="40" font-weight="800" fill="#FEF08A" text-anchor="middle">[X]+</text>
+    <text x="140" y="90" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Lives Impacted</text>
+  </g>
+  
+  <!-- Quote -->
+  <text x="800" y="870" font-family="Georgia, serif" font-size="18" font-style="italic" fill="#71717A" text-anchor="middle">"The greatest impact comes from lifting others as we climb."</text>
+  
+  <!-- Signatures -->
+  <g transform="translate(350, 920)">
+    <line x1="0" y1="40" x2="280" y2="40" stroke="#18181B" stroke-width="1"/>
+    <text x="140" y="70" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Zeeshan Adil, Founder</text>
+  </g>
+  
+  <g transform="translate(970, 920)">
+    <line x1="0" y1="40" x2="280" y2="40" stroke="#18181B" stroke-width="1"/>
+    <text x="140" y="70" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">[Date]</text>
+  </g>
+  
+  <!-- Badge -->
+  <circle cx="800" cy="1000" r="45" fill="#18181B"/>
+  <text x="800" y="1008" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#FEF08A" text-anchor="middle">DW</text>
+</svg>

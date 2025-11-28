@@ -1,0 +1,69 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid-remote" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272A" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-remote)"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="340" y="140" width="400" height="44" fill="#FEF08A" rx="4"/>
+  <text x="540" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">💼 CAREER MILESTONE</text>
+  
+  <!-- Big number -->
+  <text x="540" y="440" font-family="system-ui, sans-serif" font-size="220" font-weight="800" fill="#FAFAFA" text-anchor="middle">100+</text>
+  
+  <!-- Yellow highlight bar -->
+  <rect x="290" y="470" width="500" height="12" fill="#FEF08A" opacity="0.8"/>
+  
+  <!-- Label -->
+  <text x="540" y="560" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#FEF08A" text-anchor="middle">Remote Job Placements</text>
+  
+  <!-- Platforms -->
+  <text x="540" y="630" font-family="system-ui, sans-serif" font-size="18" fill="#71717A" text-anchor="middle">Placed in top remote platforms worldwide</text>
+  
+  <g transform="translate(140, 680)">
+    <rect x="0" y="0" width="140" height="50" fill="#27272A" rx="4"/>
+    <text x="70" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle">Upwork</text>
+    
+    <rect x="160" y="0" width="140" height="50" fill="#27272A" rx="4"/>
+    <text x="230" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle">Toptal</text>
+    
+    <rect x="320" y="0" width="140" height="50" fill="#27272A" rx="4"/>
+    <text x="390" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle">Turing</text>
+    
+    <rect x="480" y="0" width="140" height="50" fill="#27272A" rx="4"/>
+    <text x="550" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle">Arc</text>
+    
+    <rect x="640" y="0" width="140" height="50" fill="#FEF08A" rx="4"/>
+    <text x="710" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle">& Direct</text>
+  </g>
+  
+  <!-- Stats -->
+  <g transform="translate(290, 800)">
+    <rect x="0" y="0" width="220" height="80" fill="#27272A" rx="8"/>
+    <text x="110" y="40" font-family="system-ui, sans-serif" font-size="28" font-weight="800" fill="#FEF08A" text-anchor="middle">$50K+</text>
+    <text x="110" y="65" font-family="system-ui, sans-serif" font-size="11" fill="#71717A" text-anchor="middle" letter-spacing="1">AVG SALARY</text>
+    
+    <rect x="250" y="0" width="220" height="80" fill="#27272A" rx="8"/>
+    <text x="360" y="40" font-family="system-ui, sans-serif" font-size="28" font-weight="800" fill="#FAFAFA" text-anchor="middle">100%</text>
+    <text x="360" y="65" font-family="system-ui, sans-serif" font-size="11" fill="#71717A" text-anchor="middle" letter-spacing="1">FREE SUPPORT</text>
+  </g>
+  
+  <!-- CTA -->
+  <rect x="390" y="920" width="300" height="50" fill="#FEF08A" rx="4"/>
+  <text x="540" y="953" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="1">START YOUR JOURNEY →</text>
+  
+  <!-- Decorative -->
+  <rect x="100" y="250" width="60" height="60" fill="none" stroke="#FEF08A" stroke-width="2" opacity="0.2"/>
+  <rect x="920" y="850" width="60" height="60" fill="#FEF08A" opacity="0.1"/>
+  
+  <!-- Footer -->
+  <text x="540" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>

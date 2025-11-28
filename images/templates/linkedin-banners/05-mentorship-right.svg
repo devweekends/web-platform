@@ -1,0 +1,38 @@
+<svg width="1584" height="396" viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1584" height="396" fill="#FAFAFA"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid-mentorship" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1584" height="396" fill="url(#grid-mentorship)" opacity="0.5"/>
+  
+  <!-- Content positioned on RIGHT side (left is covered by profile photo) -->
+  
+  <!-- Branding top right -->
+  <text x="1520" y="50" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3" text-anchor="end">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="1380" y="70" width="140" height="32" fill="#18181B"/>
+  <text x="1450" y="92" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MENTORSHIP</text>
+  
+  <!-- Main headline on right -->
+  <text x="1520" y="170" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B" text-anchor="end">Free 1:1 Mentorship</text>
+  <text x="1520" y="225" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B" text-anchor="end">From Industry Experts</text>
+  
+  <!-- Yellow highlight under text -->
+  <rect x="1100" y="235" width="420" height="10" fill="#FEF08A" opacity="0.6"/>
+  
+  <!-- Stats -->
+  <text x="1520" y="300" font-family="system-ui, sans-serif" font-size="18" fill="#71717A" text-anchor="end">50+ Mentors • 20k+ Members </text>
+  
+  <!-- CTA -->
+  <rect x="1320" y="330" width="200" height="46" fill="#18181B" rx="4"/>
+  <text x="1420" y="360" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="1">JOIN DISCORD NOW →</text>
+  
+  <!-- Decorative elements on far right -->
+  <circle cx="900" cy="80" r="40" fill="none" stroke="#18181B" stroke-width="1" opacity="0.1"/>
+  <circle cx="920" cy="100" r="40" fill="#FEF08A" opacity="0.3"/>
+</svg>

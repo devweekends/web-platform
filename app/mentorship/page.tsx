@@ -457,6 +457,30 @@ export default function MentorshipPage() {
                 Whether you're starting from scratch or already have experience and feel stuck, this mentorship is for you. Already building? Use our 1:1 guidance to level up and target better companies.
               </p>
 
+              {/* Palestine Support Banner */}
+              <div className="mt-8 sm:mt-12 flex flex-col items-center justify-center gap-3">
+                <div className="flex items-center gap-4 px-6 py-3 bg-primary border border-border">
+                  {/* Palestine Flag */}
+                  <div className="w-20 h-14 sm:w-24 sm:h-16 relative overflow-hidden flex-shrink-0 border border-white/20">
+                    {/* Black stripe */}
+                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-black"></div>
+                    {/* White stripe */}
+                    <div className="absolute top-1/3 left-0 right-0 h-1/3 bg-white"></div>
+                    {/* Green stripe */}
+                    <div className="absolute top-2/3 left-0 right-0 h-1/3 bg-[#009736]"></div>
+                    {/* Red triangle */}
+                    <div className="absolute top-0 left-0 w-0 h-0 border-t-[28px] sm:border-t-[32px] border-t-transparent border-b-[28px] sm:border-b-[32px] border-b-transparent border-l-[32px] sm:border-l-[40px] border-l-[#CE1126]"></div>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-sm sm:text-base font-semibold text-primary-foreground">
+                      🇵🇸 We Stand With Palestine
+                    </span>
+                    <span className="text-xs sm:text-sm text-primary-foreground/70 font-medium">
+                      Exclusive Access for Palestinians
+                    </span>
+                  </div>
+                </div>
+              </div>
               
             </div>
           </div>

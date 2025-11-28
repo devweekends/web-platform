@@ -1,0 +1,57 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid-3y" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-3y)"/>
+  
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="12" height="1080" fill="#18181B"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="365" y="140" width="350" height="44" fill="#18181B" rx="4"/>
+  <text x="540" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FEF08A" text-anchor="middle" letter-spacing="2">🎂 ANNIVERSARY MILESTONE</text>
+  
+  <!-- Big number with years -->
+  <text x="540" y="420" font-family="system-ui, sans-serif" font-size="280" font-weight="800" fill="#18181B" text-anchor="middle">3</text>
+  <text x="540" y="520" font-family="system-ui, sans-serif" font-size="60" font-weight="700" fill="#18181B" text-anchor="middle">YEARS</text>
+  
+  <!-- Yellow highlight bar -->
+  <rect x="340" y="540" width="400" height="14" fill="#FEF08A"/>
+  
+  <!-- Label -->
+  <text x="540" y="620" font-family="system-ui, sans-serif" font-size="36" font-weight="600" fill="#52525B" text-anchor="middle">Building Engineers Since 2022</text>
+  
+  <!-- Timeline stats -->
+  <g transform="translate(140, 690)">
+    <rect x="0" y="0" width="240" height="100" fill="#F4F4F5" rx="8"/>
+    <text x="120" y="40" font-family="system-ui, sans-serif" font-size="32" font-weight="800" fill="#18181B" text-anchor="middle">20K+</text>
+    <text x="120" y="70" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle" letter-spacing="1">MEMBERS</text>
+    
+    <rect x="270" y="0" width="240" height="100" fill="#F4F4F5" rx="8"/>
+    <text x="390" y="40" font-family="system-ui, sans-serif" font-size="32" font-weight="800" fill="#18181B" text-anchor="middle">500+</text>
+    <text x="390" y="70" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle" letter-spacing="1">SESSIONS</text>
+    
+    <rect x="540" y="0" width="240" height="100" fill="#18181B" rx="8"/>
+    <text x="660" y="40" font-family="system-ui, sans-serif" font-size="32" font-weight="800" fill="#FEF08A" text-anchor="middle">100+</text>
+    <text x="660" y="70" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle" letter-spacing="1">LIVES CHANGED</text>
+  </g>
+  
+  <!-- Message -->
+  <text x="540" y="880" font-family="system-ui, sans-serif" font-size="24" fill="#18181B" text-anchor="middle">3 years of free tech education!</text>
+  <text x="540" y="925" font-family="system-ui, sans-serif" font-size="18" fill="#71717A" text-anchor="middle">Thank you for growing with us 🙏</text>
+  
+  <!-- CTA -->
+  <rect x="390" y="960" width="300" height="50" fill="#18181B" rx="4"/>
+  <text x="540" y="993" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="1">CELEBRATE WITH US →</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1050" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>

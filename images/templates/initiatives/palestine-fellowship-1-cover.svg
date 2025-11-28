@@ -1,0 +1,49 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- PAGE 1: COVER -->
+  <rect width="1200" height="630" fill="#FAFAFA"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid1" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid1)" opacity="0.4"/>
+  
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="8" height="630" fill="#18181B"/>
+  
+  <!-- Branding -->
+  <text x="60" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  <text x="60" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="2">EMPOWERING ENGINEERS SINCE 2017</text>
+  
+  <!-- Palestine Flag -->
+  <rect x="60" y="120" width="100" height="22" fill="#000000"/>
+  <rect x="60" y="142" width="100" height="22" fill="#FFFFFF"/>
+  <rect x="60" y="164" width="100" height="22" fill="#009736"/>
+  <polygon points="60,120 95,153 60,186" fill="#CE1126"/>
+  
+  <!-- Main Title -->
+  <text x="60" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="800" fill="#18181B">Palestine Tech</text>
+  <text x="60" y="325" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="800" fill="#18181B">Fellowship Initiative</text>
+  
+  <!-- Subtitle -->
+  <text x="60" y="380" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717A">A Zero-Cost Technical Mentorship Program</text>
+  <text x="60" y="405" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717A">for Palestinian Engineers and Students</text>
+  
+  <!-- Divider -->
+  <rect x="60" y="440" width="100" height="4" fill="#18181B"/>
+  
+  <!-- Key Stats -->
+  <text x="60" y="490" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B" font-weight="600">4-Month Intensive Fellowship</text>
+  <text x="60" y="515" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B" font-weight="600">200 Students Capacity</text>
+  <text x="60" y="540" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B" font-weight="600">70% Projected Placement Rate</text>
+  <text x="60" y="565" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B" font-weight="600">100% Free - No Funding Required</text>
+  
+  <!-- Website -->
+  <text x="60" y="610" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">devweekends.com</text>
+  
+  <!-- Decorative corner -->
+  <rect x="1050" y="50" width="80" height="80" fill="none" stroke="#18181B" stroke-width="2"/>
+  <rect x="1070" y="70" width="80" height="80" fill="#E4E4E7"/>
+</svg>

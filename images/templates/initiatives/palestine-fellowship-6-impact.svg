@@ -1,0 +1,83 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- PAGE 6: PROJECTED IMPACT - Dark Theme -->
+  <rect width="1200" height="630" fill="#18181B"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid6" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272A" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid6)" opacity="0.5"/>
+  
+  <!-- Left accent bar - Green -->
+  <rect x="0" y="0" width="8" height="630" fill="#009736"/>
+  
+  <!-- Header -->
+  <text x="60" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" letter-spacing="2">DEV WEEKENDS</text>
+  <text x="1140" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" text-anchor="end">05</text>
+  
+  <!-- Section marker -->
+  <text x="60" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#009736" letter-spacing="2">PROJECTED IMPACT</text>
+  
+  <!-- Title -->
+  <text x="60" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" fill="#FAFAFA">Measurable Outcomes</text>
+  
+  <!-- Divider -->
+  <rect x="60" y="175" width="60" height="3" fill="#009736"/>
+  
+  <!-- 4 Impact Metrics -->
+  <rect x="60" y="210" width="250" height="150" fill="#27272A"/>
+  <rect x="60" y="210" width="4" height="150" fill="#FAFAFA"/>
+  <text x="80" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="800" fill="#FAFAFA">200</text>
+  <rect x="80" y="290" width="50" height="3" fill="#009736"/>
+  <text x="80" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA">Students per Cohort</text>
+  <text x="80" y="342" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#71717A">Maximum capacity for quality</text>
+  
+  <rect x="340" y="210" width="250" height="150" fill="#27272A"/>
+  <rect x="340" y="210" width="4" height="150" fill="#FAFAFA"/>
+  <text x="360" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="800" fill="#FAFAFA">70%</text>
+  <rect x="360" y="290" width="50" height="3" fill="#009736"/>
+  <text x="360" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA">Placement Target</text>
+  <text x="360" y="342" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#71717A">Within 6 months of completion</text>
+  
+  <rect x="620" y="210" width="250" height="150" fill="#27272A"/>
+  <rect x="620" y="210" width="4" height="150" fill="#FAFAFA"/>
+  <text x="640" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="800" fill="#FAFAFA">140</text>
+  <rect x="640" y="290" width="50" height="3" fill="#009736"/>
+  <text x="640" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA">Engineers Employed</text>
+  <text x="640" y="342" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#71717A">Projected per cohort</text>
+  
+  <rect x="900" y="210" width="240" height="150" fill="#27272A"/>
+  <rect x="900" y="210" width="4" height="150" fill="#FAFAFA"/>
+  <text x="920" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="800" fill="#FAFAFA">0</text>
+  <rect x="920" y="290" width="50" height="3" fill="#009736"/>
+  <text x="920" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA">Cost to Students</text>
+  <text x="920" y="342" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#71717A">Completely free</text>
+  
+  <!-- Timeline -->
+  <text x="60" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#009736" font-weight="600" letter-spacing="2">IMPLEMENTATION TIMELINE</text>
+  
+  <text x="60" y="445" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#FAFAFA" font-weight="600">Week 1-2</text>
+  <text x="180" y="445" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Application review and cohort selection</text>
+  
+  <text x="60" y="470" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#FAFAFA" font-weight="600">Week 3-4</text>
+  <text x="180" y="470" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Onboarding and mentor matching</text>
+  
+  <text x="60" y="495" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#FAFAFA" font-weight="600">Month 1-4</text>
+  <text x="180" y="495" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Concurrent training: Tech sessions, DSA, weekly tasks, career prep</text>
+  
+  <text x="60" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#FAFAFA" font-weight="600">Month 5-6</text>
+  <text x="180" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Ongoing placement support and outcome tracking</text>
+  
+  <!-- Vision Box -->
+  <rect x="620" y="430" width="520" height="100" fill="#009736"/>
+  <text x="640" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#FAFAFA" font-weight="600" letter-spacing="2">LONG-TERM VISION</text>
+  <text x="640" y="490" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#FAFAFA">Successful fellows become mentors, creating a self-sustaining</text>
+  <text x="640" y="510" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#FAFAFA">ecosystem that serves Palestinian engineers for generations.</text>
+  
+  <!-- Footer -->
+  <rect x="60" y="600" width="1080" height="1" fill="#27272A"/>
+  <text x="60" y="620" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A">devweekends.com</text>
+  <text x="1140" y="620" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" text-anchor="end">Palestine Tech Fellowship Initiative</text>
+</svg>

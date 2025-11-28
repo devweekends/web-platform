@@ -1,0 +1,65 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- LIVE NOW - Maximum urgency -->
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Animated pulse background effect (static representation) -->
+  <circle cx="540" cy="450" r="300" fill="#EF4444" opacity="0.05"/>
+  <circle cx="540" cy="450" r="250" fill="#EF4444" opacity="0.08"/>
+  <circle cx="540" cy="450" r="200" fill="#EF4444" opacity="0.1"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- LIVE badge with pulsing dot -->
+  <rect x="390" y="130" width="300" height="55" fill="#EF4444" rx="27"/>
+  <circle cx="440" cy="158" r="10" fill="#FFFFFF"/>
+  <text x="560" y="166" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">LIVE NOW</text>
+  
+  <!-- Big LIVE text -->
+  <text x="540" y="420" font-family="system-ui, sans-serif" font-size="200" font-weight="800" fill="#EF4444" text-anchor="middle">LIVE</text>
+  
+  <!-- Subtext -->
+  <text x="540" y="500" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FAFAFA" text-anchor="middle">We're Live Right Now!</text>
+  
+  <!-- Red underline -->
+  <rect x="240" y="525" width="600" height="8" fill="#EF4444"/>
+  
+  <!-- Event name -->
+  <text x="540" y="620" font-family="system-ui, sans-serif" font-size="42" font-weight="600" fill="#FAFAFA" text-anchor="middle">[Event Name]</text>
+  <text x="540" y="675" font-family="system-ui, sans-serif" font-size="22" fill="#71717A" text-anchor="middle">[Event Description/Topic]</text>
+  
+  <!-- Speaker -->
+  <g transform="translate(290, 720)">
+    <rect x="0" y="0" width="500" height="90" fill="#27272A" rx="12"/>
+    <circle cx="55" cy="45" r="32" fill="#3F3F46"/>
+    <text x="55" y="50" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle">Photo</text>
+    <text x="110" y="38" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#FAFAFA">With [Speaker Name]</text>
+    <text x="110" y="62" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">[Role] @ [Company]</text>
+  </g>
+  
+  <!-- Stats -->
+  <g transform="translate(290, 840)">
+    <rect x="0" y="0" width="240" height="60" fill="#27272A" rx="8"/>
+    <circle cx="30" cy="30" r="8" fill="#22C55E"/>
+    <text x="140" y="38" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" text-anchor="middle">[X]+ Watching</text>
+  </g>
+  
+  <g transform="translate(550, 840)">
+    <rect x="0" y="0" width="240" height="60" fill="#27272A" rx="8"/>
+    <text x="120" y="38" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FEF08A" text-anchor="middle">On Discord Stage</text>
+  </g>
+  
+  <!-- CTA -->
+  <rect x="290" y="930" width="500" height="70" fill="#EF4444" rx="12"/>
+  <text x="540" y="975" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">JOIN NOW! 🔴</text>
+  
+  <!-- Corner accents -->
+  <rect x="50" y="50" width="80" height="8" fill="#EF4444"/>
+  <rect x="50" y="50" width="8" height="80" fill="#EF4444"/>
+  
+  <rect x="950" y="50" width="80" height="8" fill="#EF4444"/>
+  <rect x="1022" y="50" width="8" height="80" fill="#EF4444"/>
+  
+  <!-- Footer -->
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle" letter-spacing="2">DISCORD.GG/DEVWEEKENDS</text>
+</svg>

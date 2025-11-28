@@ -1,0 +1,46 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#5865F2"/>
+  
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid-5k-discord" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#7289DA" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-5k-discord)" opacity="0.3"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Celebration badge -->
+  <rect x="365" y="140" width="350" height="44" fill="#FFFFFF" rx="22"/>
+  <text x="540" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#5865F2" text-anchor="middle" letter-spacing="2">🎊 DISCORD MILESTONE</text>
+  
+  <!-- Big number -->
+  <text x="540" y="450" font-family="system-ui, sans-serif" font-size="200" font-weight="800" fill="#FFFFFF" text-anchor="middle">5,000</text>
+  
+  <!-- White highlight bar -->
+  <rect x="290" y="480" width="500" height="12" fill="#FFFFFF" opacity="0.6"/>
+  
+  <!-- Label -->
+  <text x="540" y="560" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FFFFFF" text-anchor="middle">Discord Members</text>
+  
+  <!-- Discord logo area -->
+  <circle cx="540" cy="700" r="70" fill="#FFFFFF"/>
+  <text x="540" y="720" font-family="system-ui, sans-serif" font-size="50" fill="#5865F2" text-anchor="middle">💬</text>
+  
+  <!-- Message -->
+  <text x="540" y="860" font-family="system-ui, sans-serif" font-size="24" fill="#FFFFFF" text-anchor="middle">5K developers learning, growing, winning together!</text>
+  <text x="540" y="905" font-family="system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.7)" text-anchor="middle">Join our daily discussions, code reviews & live sessions</text>
+  
+  <!-- Confetti elements -->
+  <circle cx="150" cy="200" r="8" fill="#FEF08A"/>
+  <circle cx="920" cy="300" r="10" fill="#FEF08A"/>
+  <circle cx="200" cy="800" r="6" fill="#FEF08A"/>
+  <circle cx="880" cy="850" r="8" fill="#FEF08A"/>
+  <rect x="100" y="400" width="20" height="20" fill="#FEF08A" opacity="0.6" transform="rotate(45 110 410)"/>
+  <rect x="950" y="500" width="25" height="25" fill="#FEF08A" opacity="0.6" transform="rotate(30 962 512)"/>
+  
+  <!-- Footer -->
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>

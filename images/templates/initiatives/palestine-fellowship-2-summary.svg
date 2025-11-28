@@ -1,0 +1,73 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- PAGE 2: EXECUTIVE SUMMARY -->
+  <rect width="1200" height="630" fill="#FAFAFA"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid2" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid2)" opacity="0.4"/>
+  
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="8" height="630" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" letter-spacing="2">DEV WEEKENDS</text>
+  <text x="1140" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" text-anchor="end">01</text>
+  
+  <!-- Section marker -->
+  <text x="60" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#71717A" letter-spacing="2">EXECUTIVE SUMMARY</text>
+  
+  <!-- Title -->
+  <text x="60" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" fill="#18181B">The Opportunity</text>
+  
+  <!-- Divider -->
+  <rect x="60" y="175" width="60" height="3" fill="#18181B"/>
+  
+  <!-- Content -->
+  <text x="60" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">Dev Weekends, a volunteer-driven tech community operating since 2017, proposes a dedicated</text>
+  <text x="60" y="242" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">technical fellowship program for Palestinian engineers and students affected by the ongoing crisis.</text>
+  
+  <!-- Program Fundamentals Box -->
+  <rect x="60" y="280" width="500" height="200" fill="#F4F4F5"/>
+  <rect x="60" y="280" width="4" height="200" fill="#18181B"/>
+  
+  <text x="80" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#18181B" font-weight="600" letter-spacing="2">PROGRAM FUNDAMENTALS</text>
+  
+  <text x="80" y="345" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">Duration: 4-month intensive fellowship</text>
+  <text x="80" y="368" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">Capacity: 200 Palestinian students per cohort</text>
+  <text x="80" y="391" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">Cost: Completely free</text>
+  <text x="80" y="414" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">Delivery: 100% remote</text>
+  <text x="80" y="437" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">Focus: Full-Stack Development with AI Engineering</text>
+  <text x="80" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">Outcome: 70% job placement within 6 months</text>
+  
+  <!-- Track Record Box -->
+  <rect x="600" y="280" width="540" height="200" fill="#F4F4F5"/>
+  <rect x="600" y="280" width="4" height="200" fill="#009736"/>
+  
+  <text x="620" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#18181B" font-weight="600" letter-spacing="2">OUR TRACK RECORD</text>
+  
+  <!-- Stats in 2x2 grid -->
+  <text x="620" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#18181B">50+</text>
+  <text x="620" y="385" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Active Mentors</text>
+  
+  <text x="820" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#18181B">800+</text>
+  <text x="820" y="385" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Engineers Trained</text>
+  
+  <text x="620" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#18181B">70%</text>
+  <text x="620" y="465" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Placement Rate</text>
+  
+  <text x="820" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#18181B">8+</text>
+  <text x="820" y="465" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Years Operating</text>
+  
+  <!-- Bottom text -->
+  <text x="60" y="530" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">Palestinian youth possess exceptional talent. Remote work in technology offers a pathway to</text>
+  <text x="60" y="552" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">economic independence that transcends geographical constraints.</text>
+  
+  <!-- Footer -->
+  <rect x="60" y="600" width="1080" height="1" fill="#E4E4E7"/>
+  <text x="60" y="620" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A">devweekends.com</text>
+  <text x="1140" y="620" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" text-anchor="end">Palestine Tech Fellowship Initiative</text>
+</svg>

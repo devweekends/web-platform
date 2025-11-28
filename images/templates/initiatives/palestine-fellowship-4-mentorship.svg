@@ -1,0 +1,84 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- PAGE 4: MENTORSHIP MODEL -->
+  <rect width="1200" height="630" fill="#FAFAFA"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid4" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid4)" opacity="0.4"/>
+  
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="8" height="630" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" letter-spacing="2">DEV WEEKENDS</text>
+  <text x="1140" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" text-anchor="end">03</text>
+  
+  <!-- Section marker -->
+  <text x="60" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#71717A" letter-spacing="2">MENTORSHIP MODEL</text>
+  
+  <!-- Title -->
+  <text x="60" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" fill="#18181B">Support Framework</text>
+  
+  <!-- Divider -->
+  <rect x="60" y="175" width="60" height="3" fill="#18181B"/>
+  
+  <!-- 6 Support components in 2x3 grid -->
+  <!-- Row 1 -->
+  <rect x="60" y="200" width="340" height="120" fill="#F4F4F5"/>
+  <rect x="60" y="200" width="4" height="120" fill="#18181B"/>
+  <text x="80" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#18181B">Personal Mentor Assignment</text>
+  <text x="80" y="255" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Dedicated industry mentor paired</text>
+  <text x="80" y="273" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">with each participant for the</text>
+  <text x="80" y="291" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">entire 4-month program</text>
+  
+  <rect x="430" y="200" width="340" height="120" fill="#F4F4F5"/>
+  <rect x="430" y="200" width="4" height="120" fill="#18181B"/>
+  <text x="450" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#18181B">1:1 Mentorship Sessions</text>
+  <text x="450" y="255" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Weekly one-on-one sessions</text>
+  <text x="450" y="273" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">focused on individual progress</text>
+  <text x="450" y="291" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">and career planning</text>
+  
+  <rect x="800" y="200" width="340" height="120" fill="#F4F4F5"/>
+  <rect x="800" y="200" width="4" height="120" fill="#18181B"/>
+  <text x="820" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#18181B">Weekly Tasks and Guidance</text>
+  <text x="820" y="255" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Structured assignments with</text>
+  <text x="820" y="273" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">clear deliverables and detailed</text>
+  <text x="820" y="291" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">mentor feedback</text>
+  
+  <!-- Row 2 -->
+  <rect x="60" y="340" width="340" height="120" fill="#F4F4F5"/>
+  <rect x="60" y="340" width="4" height="120" fill="#18181B"/>
+  <text x="80" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#18181B">Mock Interview Preparation</text>
+  <text x="80" y="395" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Technical coding rounds, system</text>
+  <text x="80" y="413" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">design, and behavioral interviews</text>
+  <text x="80" y="431" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">with real feedback</text>
+  
+  <rect x="430" y="340" width="340" height="120" fill="#F4F4F5"/>
+  <rect x="430" y="340" width="4" height="120" fill="#18181B"/>
+  <text x="450" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#18181B">Resume and Career Advisory</text>
+  <text x="450" y="395" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Professional resume review,</text>
+  <text x="450" y="413" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">LinkedIn optimization, strategic</text>
+  <text x="450" y="431" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">career guidance</text>
+  
+  <rect x="800" y="340" width="340" height="120" fill="#F4F4F5"/>
+  <rect x="800" y="340" width="4" height="120" fill="#18181B"/>
+  <text x="820" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#18181B">Remote Job Placement</text>
+  <text x="820" y="395" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Industry referrals, freelancing</text>
+  <text x="820" y="413" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">platform guidance (Upwork,</text>
+  <text x="820" y="431" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">Toptal), direct applications</text>
+  
+  <!-- Mentor Commitment Box -->
+  <rect x="60" y="485" width="1080" height="60" fill="#F4F4F5"/>
+  <rect x="60" y="485" width="4" height="60" fill="#009736"/>
+  <text x="80" y="510" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#18181B" font-weight="600" letter-spacing="2">MENTOR COMMITMENT</text>
+  <text x="80" y="532" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">Mentors commit 40-50 hours across the entire program duration, providing consistent support throughout the fellowship.</text>
+  
+  <!-- Footer -->
+  <rect x="60" y="600" width="1080" height="1" fill="#E4E4E7"/>
+  <text x="60" y="620" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A">devweekends.com</text>
+  <text x="1140" y="620" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" text-anchor="end">Palestine Tech Fellowship Initiative</text>
+</svg>

@@ -1,0 +1,74 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- PAGE 7: CALL TO ACTION -->
+  <rect width="1200" height="630" fill="#FAFAFA"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid7" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid7)" opacity="0.4"/>
+  
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="8" height="630" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="60" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" letter-spacing="2">DEV WEEKENDS</text>
+  <text x="1140" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" text-anchor="end">06</text>
+  
+  <!-- Section marker -->
+  <text x="60" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#71717A" letter-spacing="2">GET INVOLVED</text>
+  
+  <!-- Title -->
+  <text x="60" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" fill="#18181B">Join the Initiative</text>
+  
+  <!-- Divider -->
+  <rect x="60" y="175" width="60" height="3" fill="#18181B"/>
+  
+  <!-- For Students -->
+  <text x="60" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#18181B">For Palestinian Students</text>
+  <text x="60" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">Applications are open for Palestinian students and early-career engineers.</text>
+  <text x="60" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">No prior experience required for the Foundation Track.</text>
+  
+  <text x="60" y="305" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#18181B" font-weight="600">Requirements:</text>
+  <text x="80" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">- Palestinian nationality or residence</text>
+  <text x="80" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">- Basic computer and internet access (if not available, we can fund up to 30+ students)</text>
+  <text x="80" y="368" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">- Commitment to complete the 4-month program</text>
+  <text x="80" y="388" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">- English proficiency (intermediate level)</text>
+  
+  <!-- For Mentors -->
+  <text x="620" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#18181B">For Volunteer Mentors</text>
+  <text x="620" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">We welcome experienced engineers who wish to contribute.</text>
+  <text x="620" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717A">Anyone passionate about helping can join through our website.</text>
+  
+  <text x="620" y="305" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#18181B" font-weight="600">Commitment:</text>
+  <text x="640" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">- 40-50 hours total across program duration</text>
+  <text x="640" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">- Industry experience in relevant domains</text>
+  <text x="640" y="368" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">- Passion for education and community</text>
+  <text x="640" y="388" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">- Availability for remote sessions</text>
+  
+  <!-- Contact Box -->
+  <rect x="60" y="430" width="1080" height="90" fill="#F4F4F5"/>
+  <rect x="60" y="430" width="4" height="90" fill="#009736"/>
+  
+  <text x="80" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#18181B" font-weight="600" letter-spacing="2">CONNECT WITH US</text>
+  
+  <text x="80" y="495" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B" font-weight="600">Website</text>
+  <text x="200" y="495" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">devweekends.com</text>
+  
+  <text x="450" y="495" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#18181B" font-weight="600">Apply / Mentor</text>
+  <text x="600" y="495" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">devweekends.com</text>
+  
+  <!-- Closing statement -->
+  <text x="600" y="555" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#18181B" text-anchor="middle" font-weight="600">No funding required. Just dedicated engineers helping engineers build better futures.</text>
+  
+  <!-- Palestine Flag centered -->
+  <rect x="550" y="575" width="100" height="11" fill="#000000"/>
+  <rect x="550" y="586" width="100" height="11" fill="#FFFFFF"/>
+  <rect x="550" y="597" width="100" height="11" fill="#009736"/>
+  <polygon points="550,575 585,591.5 550,608" fill="#CE1126"/>
+  
+  <!-- Footer -->
+  <rect x="60" y="620" width="1080" height="1" fill="#E4E4E7"/>
+</svg>

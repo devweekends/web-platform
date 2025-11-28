@@ -1,0 +1,64 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Warm gradient background -->
+  <defs>
+    <linearGradient id="mentor-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFBEB"/>
+      <stop offset="100%" style="stop-color:#FEF3C7"/>
+    </linearGradient>
+    <pattern id="grid-mentors" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FCD34D" stroke-width="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#mentor-grad)"/>
+  <rect width="1080" height="1080" fill="url(#grid-mentors)" opacity="0.4"/>
+  
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="12" height="1080" fill="#18181B"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="365" y="140" width="350" height="44" fill="#18181B" rx="4"/>
+  <text x="540" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FEF08A" text-anchor="middle" letter-spacing="2">👨‍🏫 MENTORSHIP MILESTONE</text>
+  
+  <!-- Big number -->
+  <text x="540" y="440" font-family="system-ui, sans-serif" font-size="240" font-weight="800" fill="#18181B" text-anchor="middle">50+</text>
+  
+  <!-- Highlight bar -->
+  <rect x="340" y="470" width="400" height="14" fill="#FCD34D"/>
+  
+  <!-- Label -->
+  <text x="540" y="560" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B" text-anchor="middle">Industry Mentors</text>
+  
+  <!-- Companies -->
+  <text x="540" y="630" font-family="system-ui, sans-serif" font-size="20" fill="#52525B" text-anchor="middle">From top companies around the world</text>
+  
+  <g transform="translate(140, 680)">
+    <rect x="0" y="0" width="160" height="50" fill="#FFFFFF" rx="4"/>
+    <text x="80" y="32" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" text-anchor="middle">Microsoft</text>
+    
+    <rect x="180" y="0" width="140" height="50" fill="#FFFFFF" rx="4"/>
+    <text x="250" y="32" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" text-anchor="middle">Google</text>
+    
+    <rect x="340" y="0" width="120" height="50" fill="#FFFFFF" rx="4"/>
+    <text x="400" y="32" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" text-anchor="middle">Meta</text>
+    
+    <rect x="480" y="0" width="140" height="50" fill="#FFFFFF" rx="4"/>
+    <text x="550" y="32" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" text-anchor="middle">Upwork</text>
+    
+    <rect x="640" y="0" width="120" height="50" fill="#18181B" rx="4"/>
+    <text x="700" y="32" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FEF08A" text-anchor="middle">& More</text>
+  </g>
+  
+  <!-- Message -->
+  <text x="540" y="830" font-family="system-ui, sans-serif" font-size="24" fill="#18181B" text-anchor="middle">Free 1:1 mentorship for all members!</text>
+  <text x="540" y="875" font-family="system-ui, sans-serif" font-size="18" fill="#52525B" text-anchor="middle">Career guidance • Code reviews • Interview prep • Project help</text>
+  
+  <!-- CTA -->
+  <rect x="390" y="920" width="300" height="50" fill="#18181B" rx="4"/>
+  <text x="540" y="953" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="1">GET A MENTOR →</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>

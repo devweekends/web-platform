@@ -1,0 +1,72 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- DEV WEEKENDS - PPT Template 2: Content Slide with Points -->
+  <!-- Design Language: Minimalist, Black/White, Grid-based, Bold Typography -->
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#FAFAFA"/>
+  
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid2" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#grid2)" opacity="0.4"/>
+  
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="12" height="1080" fill="#18181B"/>
+  
+  <!-- Header section with title -->
+  <rect x="0" y="0" width="1920" height="200" fill="#18181B"/>
+  
+  <!-- Dev Weekends branding -->
+  <text x="80" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <!-- Slide Title -->
+  <text x="80" y="140" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="700" fill="#FAFAFA">Your Section Title Here</text>
+  
+  <!-- Slide number -->
+  <text x="1830" y="140" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#FAFAFA" text-anchor="end">01</text>
+  
+  <!-- Content Area - Left Column -->
+  <text x="80" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="2">KEY POINTS</text>
+  
+  <!-- Point 1 -->
+  <rect x="80" y="340" width="8" height="8" fill="#18181B"/>
+  <text x="110" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600" fill="#18181B">First Key Point</text>
+  <text x="110" y="385" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717A">Description or additional context for this point goes here.</text>
+  <text x="110" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717A">Can span multiple lines if needed.</text>
+  
+  <!-- Point 2 -->
+  <rect x="80" y="470" width="8" height="8" fill="#18181B"/>
+  <text x="110" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600" fill="#18181B">Second Key Point</text>
+  <text x="110" y="515" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717A">Description or additional context for this point goes here.</text>
+  <text x="110" y="540" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717A">Can span multiple lines if needed.</text>
+  
+  <!-- Point 3 -->
+  <rect x="80" y="600" width="8" height="8" fill="#18181B"/>
+  <text x="110" y="610" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600" fill="#18181B">Third Key Point</text>
+  <text x="110" y="645" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717A">Description or additional context for this point goes here.</text>
+  <text x="110" y="670" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717A">Can span multiple lines if needed.</text>
+  
+  <!-- Point 4 -->
+  <rect x="80" y="730" width="8" height="8" fill="#18181B"/>
+  <text x="110" y="740" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600" fill="#18181B">Fourth Key Point</text>
+  <text x="110" y="775" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717A">Description or additional context for this point goes here.</text>
+  <text x="110" y="800" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717A">Can span multiple lines if needed.</text>
+  
+  <!-- Right side - Visual placeholder -->
+  <rect x="1000" y="280" width="800" height="600" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="2"/>
+  <text x="1400" y="560" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#A1A1AA" text-anchor="middle">Image / Chart / Diagram</text>
+  <text x="1400" y="595" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#D4D4D8" text-anchor="middle">Place your visual content here</text>
+  
+  <!-- Decorative corner -->
+  <rect x="1720" y="280" width="80" height="80" fill="none" stroke="#18181B" stroke-width="2"/>
+  
+  <!-- Bottom bar -->
+  <rect x="0" y="1050" width="1920" height="30" fill="#18181B"/>
+  
+  <!-- Footer -->
+  <text x="80" y="1010" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">© Dev Weekends 2025</text>
+  <text x="1830" y="1010" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" text-anchor="end">devweekends.org</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- DEV WEEKENDS - PPT Template 1: Title/Intro Slide -->
+  <!-- Design Language: Minimalist, Black/White, Grid-based, Bold Typography -->
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#FAFAFA"/>
+  
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#grid)" opacity="0.4"/>
+  
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="12" height="1080" fill="#18181B"/>
+  
+  <!-- Dev Weekends branding top left -->
+  <text x="80" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#18181B" letter-spacing="4">DEV WEEKENDS</text>
+  <text x="80" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#71717A" letter-spacing="2">EMPOWERING ENGINEERS SINCE 2020</text>
+  
+  <!-- Decorative corner elements -->
+  <rect x="1750" y="60" width="100" height="100" fill="none" stroke="#18181B" stroke-width="2"/>
+  <rect x="1770" y="80" width="100" height="100" fill="#FEF08A" opacity="0.5"/>
+  
+  <!-- Main Title Area -->
+  <text x="80" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="800" fill="#18181B" letter-spacing="-2">Your Presentation</text>
+  <text x="80" y="530" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="800" fill="#18181B" letter-spacing="-2">Title Goes Here</text>
+  
+  <!-- Subtitle -->
+  <text x="80" y="620" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#71717A">A brief description or subtitle for your presentation</text>
+  
+  <!-- Horizontal divider -->
+  <rect x="80" y="680" width="400" height="4" fill="#18181B"/>
+  
+  <!-- Presenter info -->
+  <text x="80" y="750" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#18181B">Presenter Name</text>
+  <text x="80" y="780" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#71717A">Role / Position • Date</text>
+  
+  <!-- Decorative large number -->
+  <text x="1400" y="900" font-family="system-ui, -apple-system, sans-serif" font-size="400" font-weight="900" fill="#18181B" opacity="0.03">DW</text>
+  
+  <!-- Bottom accent bar -->
+  <rect x="0" y="1050" width="1920" height="30" fill="#18181B"/>
+  
+  <!-- Bottom website -->
+  <text x="1750" y="1010" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A" text-anchor="end">devweekends.org</text>
+</svg>

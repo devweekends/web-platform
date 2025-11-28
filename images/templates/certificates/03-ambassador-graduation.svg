@@ -1,0 +1,91 @@
+<svg width="1600" height="1131" viewBox="0 0 1600 1131" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Warm gradient certificate -->
+  <defs>
+    <linearGradient id="warm-cert" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFBEB"/>
+      <stop offset="100%" style="stop-color:#FEF3C7"/>
+    </linearGradient>
+    <pattern id="cert-grid-warm" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FCD34D" stroke-width="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1131" fill="url(#warm-cert)"/>
+  <rect width="1600" height="1131" fill="url(#cert-grid-warm)" opacity="0.4"/>
+  
+  <!-- Border -->
+  <rect x="40" y="40" width="1520" height="1051" fill="none" stroke="#18181B" stroke-width="3"/>
+  <rect x="50" y="50" width="1500" height="1031" fill="none" stroke="#18181B" stroke-width="1"/>
+  
+  <!-- Left accent bar -->
+  <rect x="40" y="40" width="15" height="1051" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="800" y="130" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B" letter-spacing="6" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Completion badge -->
+  <rect x="600" y="160" width="400" height="50" fill="#18181B" rx="4"/>
+  <text x="800" y="193" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FEF08A" text-anchor="middle" letter-spacing="2">🎓 PROGRAM COMPLETION</text>
+  
+  <!-- Certificate title -->
+  <text x="800" y="290" font-family="Georgia, serif" font-size="52" font-weight="400" fill="#18181B" text-anchor="middle">Ambassador Graduation</text>
+  <text x="800" y="340" font-family="Georgia, serif" font-size="28" fill="#52525B" text-anchor="middle">Certificate</text>
+  
+  <!-- Decorative line -->
+  <rect x="300" y="370" width="1000" height="3" fill="#18181B"/>
+  
+  <!-- Presented to -->
+  <text x="800" y="440" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">This is to certify that</text>
+  
+  <!-- Name placeholder -->
+  <text x="800" y="530" font-family="Georgia, serif" font-size="64" font-weight="600" fill="#18181B" text-anchor="middle">[Ambassador Name]</text>
+  
+  <!-- Yellow underline for name -->
+  <rect x="250" y="555" width="1100" height="10" fill="#FCD34D"/>
+  
+  <!-- Description -->
+  <text x="800" y="630" font-family="system-ui, sans-serif" font-size="18" fill="#52525B" text-anchor="middle">has successfully completed the Dev Weekends Campus Ambassador Program</text>
+  <text x="800" y="665" font-family="system-ui, sans-serif" font-size="18" fill="#52525B" text-anchor="middle">demonstrating exceptional leadership, community building, and dedication</text>
+  <text x="800" y="700" font-family="system-ui, sans-serif" font-size="18" fill="#52525B" text-anchor="middle">to empowering fellow students in their tech journey.</text>
+  
+  <!-- Duration -->
+  <rect x="600" y="740" width="400" height="60" fill="#FFFFFF" rx="4"/>
+  <text x="800" y="778" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B" text-anchor="middle">[Duration] • [University]</text>
+  
+  <!-- Skills -->
+  <g transform="translate(200, 840)">
+    <rect x="0" y="0" width="220" height="45" fill="#18181B" rx="4"/>
+    <text x="110" y="30" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FAFAFA" text-anchor="middle">Event Management</text>
+  </g>
+  <g transform="translate(450, 840)">
+    <rect x="0" y="0" width="220" height="45" fill="#18181B" rx="4"/>
+    <text x="110" y="30" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FAFAFA" text-anchor="middle">Community Building</text>
+  </g>
+  <g transform="translate(700, 840)">
+    <rect x="0" y="0" width="220" height="45" fill="#18181B" rx="4"/>
+    <text x="110" y="30" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FAFAFA" text-anchor="middle">Public Speaking</text>
+  </g>
+  <g transform="translate(950, 840)">
+    <rect x="0" y="0" width="220" height="45" fill="#18181B" rx="4"/>
+    <text x="110" y="30" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FAFAFA" text-anchor="middle">Tech Advocacy</text>
+  </g>
+  <g transform="translate(1200, 840)">
+    <rect x="0" y="0" width="220" height="45" fill="#FCD34D" rx="4"/>
+    <text x="110" y="30" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#18181B" text-anchor="middle">Leadership</text>
+  </g>
+  
+  <!-- Signatures -->
+  <g transform="translate(300, 930)">
+    <line x1="0" y1="50" x2="300" y2="50" stroke="#18181B" stroke-width="1"/>
+    <text x="150" y="75" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Zeeshan Adil, Founder</text>
+  </g>
+  
+  <g transform="translate(1000, 930)">
+    <line x1="0" y1="50" x2="300" y2="50" stroke="#18181B" stroke-width="1"/>
+    <text x="150" y="75" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Graduation Date</text>
+  </g>
+  
+  <!-- Badge -->
+  <circle cx="800" cy="1020" r="50" fill="#18181B"/>
+  <circle cx="800" cy="1020" r="42" fill="none" stroke="#FCD34D" stroke-width="2"/>
+  <text x="800" y="1028" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#FCD34D" text-anchor="middle">DW</text>
+</svg>

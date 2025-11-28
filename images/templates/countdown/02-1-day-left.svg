@@ -1,0 +1,62 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 1 Day countdown - Dark urgency theme -->
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid-1d" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272A" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-1d)"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Urgent countdown badge -->
+  <rect x="365" y="130" width="350" height="50" fill="#EF4444" rx="25"/>
+  <text x="540" y="163" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">🚨 TOMORROW!</text>
+  
+  <!-- Big number -->
+  <text x="540" y="460" font-family="system-ui, sans-serif" font-size="320" font-weight="800" fill="#FEF08A" text-anchor="middle">1</text>
+  
+  <!-- Days label -->
+  <text x="540" y="540" font-family="system-ui, sans-serif" font-size="64" font-weight="700" fill="#FAFAFA" text-anchor="middle">DAY LEFT</text>
+  
+  <!-- Highlight bar -->
+  <rect x="290" y="565" width="500" height="8" fill="#EF4444"/>
+  
+  <!-- Event name -->
+  <text x="540" y="660" font-family="system-ui, sans-serif" font-size="38" font-weight="600" fill="#FAFAFA" text-anchor="middle">[Event Name]</text>
+  <text x="540" y="710" font-family="system-ui, sans-serif" font-size="22" fill="#71717A" text-anchor="middle">[Event Description/Topic]</text>
+  
+  <!-- Event details -->
+  <g transform="translate(215, 780)">
+    <rect x="0" y="0" width="200" height="70" fill="#27272A" rx="8"/>
+    <text x="100" y="35" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">DATE</text>
+    <text x="100" y="55" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" text-anchor="middle">[Tomorrow]</text>
+  </g>
+  
+  <g transform="translate(440, 780)">
+    <rect x="0" y="0" width="200" height="70" fill="#27272A" rx="8"/>
+    <text x="100" y="35" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">TIME</text>
+    <text x="100" y="55" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" text-anchor="middle">[Time] PKT</text>
+  </g>
+  
+  <g transform="translate(665, 780)">
+    <rect x="0" y="0" width="200" height="70" fill="#FEF08A" rx="8"/>
+    <text x="100" y="35" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">PLATFORM</text>
+    <text x="100" y="55" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" text-anchor="middle">Discord</text>
+  </g>
+  
+  <!-- Urgent CTA -->
+  <rect x="340" y="900" width="400" height="60" fill="#EF4444" rx="8"/>
+  <text x="540" y="938" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">DON'T MISS OUT! 🔔</text>
+  
+  <!-- Pulsing circle effect -->
+  <circle cx="540" cy="380" r="200" fill="none" stroke="#FEF08A" stroke-width="2" opacity="0.1"/>
+  <circle cx="540" cy="380" r="230" fill="none" stroke="#FEF08A" stroke-width="1" opacity="0.05"/>
+  
+  <!-- Footer -->
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>

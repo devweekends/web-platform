@@ -1,0 +1,88 @@
+<svg width="1080" height="1350" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0C0C0C"/>
+      <stop offset="100%" style="stop-color:#18181B"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1080" height="1350" fill="url(#bg5)"/>
+  
+  <pattern id="g5" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  </pattern>
+  <rect width="1080" height="1350" fill="url(#g5)"/>
+  
+  <rect x="0" y="0" width="6" height="1350" fill="#FAFAFA"/>
+  
+  <text x="60" y="60" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#71717A" letter-spacing="3">IMPACT PROJECTIONS</text>
+  <text x="60" y="110" font-family="system-ui, sans-serif" font-size="44" font-weight="800" fill="#FAFAFA">Projected Outcomes</text>
+  <rect x="60" y="130" width="130" height="4" fill="#FEF08A"/>
+  
+  <text x="60" y="180" font-family="system-ui, sans-serif" font-size="16" fill="#A1A1AA">Based on our track record with 100+ successful placements</text>
+  
+  <rect x="60" y="230" width="480" height="180" rx="14" fill="rgba(254,240,138,0.1)" stroke="#FEF08A" stroke-width="2"/>
+  <text x="300" y="310" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#FEF08A" text-anchor="middle">200</text>
+  <text x="300" y="360" font-family="system-ui, sans-serif" font-size="16" fill="#FAFAFA" text-anchor="middle">Fellows Per Year</text>
+  <text x="300" y="390" font-family="system-ui, sans-serif" font-size="13" fill="#71717A" text-anchor="middle">50 per cohort, 4 cohorts annually</text>
+  
+  <rect x="560" y="230" width="460" height="180" rx="14" fill="rgba(250,250,250,0.05)" stroke="#3F3F46" stroke-width="1"/>
+  <text x="790" y="310" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#FAFAFA" text-anchor="middle">70%</text>
+  <text x="790" y="360" font-family="system-ui, sans-serif" font-size="16" fill="#FAFAFA" text-anchor="middle">Placement Rate</text>
+  <text x="790" y="390" font-family="system-ui, sans-serif" font-size="13" fill="#71717A" text-anchor="middle">Within 6 months of completion</text>
+  
+  <text x="60" y="480" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FEF08A" letter-spacing="3">ANNUAL IMPACT</text>
+  <rect x="60" y="490" width="80" height="3" fill="#FEF08A"/>
+  
+  <rect x="60" y="520" width="310" height="120" rx="10" fill="rgba(250,250,250,0.03)" stroke="#3F3F46" stroke-width="1"/>
+  <text x="215" y="575" font-family="system-ui, sans-serif" font-size="40" font-weight="800" fill="#FAFAFA" text-anchor="middle">140</text>
+  <text x="215" y="615" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">Job Placements</text>
+  
+  <rect x="385" y="520" width="310" height="120" rx="10" fill="rgba(250,250,250,0.03)" stroke="#3F3F46" stroke-width="1"/>
+  <text x="540" y="575" font-family="system-ui, sans-serif" font-size="40" font-weight="800" fill="#FAFAFA" text-anchor="middle">$1.5K</text>
+  <text x="540" y="615" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">Avg Monthly Salary</text>
+  
+  <rect x="710" y="520" width="310" height="120" rx="10" fill="rgba(250,250,250,0.03)" stroke="#3F3F46" stroke-width="1"/>
+  <text x="865" y="575" font-family="system-ui, sans-serif" font-size="40" font-weight="800" fill="#FAFAFA" text-anchor="middle">$2.5M</text>
+  <text x="865" y="615" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">Annual Income Generated</text>
+  
+  <text x="60" y="710" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FEF08A" letter-spacing="3">WHAT DEV WEEKENDS PROVIDES</text>
+  <rect x="60" y="720" width="160" height="3" fill="#FEF08A"/>
+  
+  <rect x="60" y="750" width="960" height="310" rx="12" fill="rgba(250,250,250,0.03)" stroke="#3F3F46" stroke-width="1"/>
+  
+  <text x="100" y="800" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA">Curriculum and Content</text>
+  <text x="100" y="830" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">40+ hours of recorded training</text>
+  <text x="100" y="855" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Complete AI and Full-Stack syllabi</text>
+  <text x="100" y="880" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Project repositories and assignments</text>
+  
+  <text x="400" y="800" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA">Expert Mentorship</text>
+  <text x="400" y="830" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">50+ industry professionals</text>
+  <text x="400" y="855" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Weekly 1:1 mentoring sessions</text>
+  <text x="400" y="880" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Code reviews and guidance</text>
+  
+  <text x="700" y="800" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA">Career Support</text>
+  <text x="700" y="830" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Resume and LinkedIn optimization</text>
+  <text x="700" y="855" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Mock interviews and preparation</text>
+  <text x="700" y="880" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Direct referrals to 50+ companies</text>
+  
+  <text x="100" y="940" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA">Community Access</text>
+  <text x="100" y="970" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">20,000+ member developer network</text>
+  <text x="100" y="995" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Peer support and collaboration</text>
+  
+  <text x="400" y="940" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA">Program Management</text>
+  <text x="400" y="970" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Full coordination and tracking</text>
+  <text x="400" y="995" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Quality assurance and support</text>
+  
+  <text x="700" y="940" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA">Certification</text>
+  <text x="700" y="970" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Industry-recognized credentials</text>
+  <text x="700" y="995" font-family="system-ui, sans-serif" font-size="13" fill="#71717A">Verified portfolio showcase</text>
+  
+  <rect x="60" y="1100" width="960" height="120" rx="12" fill="#FAFAFA"/>
+  <text x="540" y="1155" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#18181B" text-anchor="middle">No Fees. No Barriers. Just Opportunity.</text>
+  <text x="540" y="1195" font-family="system-ui, sans-serif" font-size="15" fill="#52525B" text-anchor="middle">devweekends.com/palestine-fellowship</text>
+  
+  <text x="540" y="1290" font-family="system-ui, sans-serif" font-size="12" fill="#52525B" text-anchor="middle">Dev Weekends Society</text>
+  <text x="540" y="1315" font-family="system-ui, sans-serif" font-size="11" fill="#71717A" text-anchor="middle">Established 2022  |  20,000+ Members  |  500+ Sessions  |  100+ Job Placements</text>
+  
+</svg>

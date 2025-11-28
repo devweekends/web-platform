@@ -1,0 +1,88 @@
+<svg width="1080" height="1350" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0C0C0C"/>
+      <stop offset="100%" style="stop-color:#18181B"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1080" height="1350" fill="url(#bg1)"/>
+  
+  <pattern id="g1" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  </pattern>
+  <rect width="1080" height="1350" fill="url(#g1)"/>
+  
+  <rect x="0" y="0" width="6" height="1350" fill="#FAFAFA"/>
+  
+  <text x="60" y="70" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#71717A" letter-spacing="3">DEV WEEKENDS INITIATIVE</text>
+  
+  <text x="60" y="130" font-family="system-ui, sans-serif" font-size="52" font-weight="800" fill="#FAFAFA">Palestine Tech</text>
+  <text x="60" y="195" font-family="system-ui, sans-serif" font-size="52" font-weight="800" fill="#FAFAFA">Fellowship</text>
+  <rect x="60" y="215" width="180" height="4" fill="#FEF08A"/>
+  
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="18" fill="#A1A1AA">Free intensive training for Palestinian technologists</text>
+  <text x="60" y="310" font-family="system-ui, sans-serif" font-size="18" fill="#A1A1AA">preparing for global remote opportunities</text>
+  
+  <text x="60" y="400" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FEF08A" letter-spacing="3">PROGRAM TRACKS</text>
+  
+  <rect x="60" y="430" width="470" height="140" rx="8" fill="rgba(250,250,250,0.05)" stroke="#3F3F46" stroke-width="1"/>
+  <text x="90" y="475" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA">AI Engineering</text>
+  <text x="90" y="505" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">LLMs, RAG Systems, AI Agents</text>
+  <text x="90" y="530" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">LangChain, MLOps, Deployment</text>
+  <text x="90" y="555" font-family="system-ui, sans-serif" font-size="12" fill="#FEF08A">Target: $2,000-5,000/month</text>
+  
+  <rect x="550" y="430" width="470" height="140" rx="8" fill="rgba(250,250,250,0.05)" stroke="#3F3F46" stroke-width="1"/>
+  <text x="580" y="475" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA">Full-Stack Development</text>
+  <text x="580" y="505" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">MERN, Next.js, Cloud, DevOps</text>
+  <text x="580" y="530" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">System Design, Microservices</text>
+  <text x="580" y="555" font-family="system-ui, sans-serif" font-size="12" fill="#FEF08A">Target: $1,000-3,000/month</text>
+  
+  <text x="60" y="630" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FEF08A" letter-spacing="3">WHAT YOU GET</text>
+  
+  <rect x="60" y="660" width="310" height="70" rx="6" fill="rgba(250,250,250,0.03)"/>
+  <text x="90" y="700" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#FAFAFA">30+ DSA Sessions</text>
+  <text x="90" y="720" font-family="system-ui, sans-serif" font-size="12" fill="#71717A">LeetCode 300+ preparation</text>
+  
+  <rect x="385" y="660" width="310" height="70" rx="6" fill="rgba(250,250,250,0.03)"/>
+  <text x="415" y="700" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#FAFAFA">15+ Tech Sessions</text>
+  <text x="415" y="720" font-family="system-ui, sans-serif" font-size="12" fill="#71717A">Industry engineering workshops</text>
+  
+  <rect x="710" y="660" width="310" height="70" rx="6" fill="rgba(250,250,250,0.03)"/>
+  <text x="740" y="700" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#FAFAFA">1:1 Mentorship</text>
+  <text x="740" y="720" font-family="system-ui, sans-serif" font-size="12" fill="#71717A">Weekly expert guidance</text>
+  
+  <rect x="60" y="745" width="310" height="70" rx="6" fill="rgba(250,250,250,0.03)"/>
+  <text x="90" y="785" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#FAFAFA">Mock Interviews</text>
+  <text x="90" y="805" font-family="system-ui, sans-serif" font-size="12" fill="#71717A">Technical and behavioral prep</text>
+  
+  <rect x="385" y="745" width="310" height="70" rx="6" fill="rgba(250,250,250,0.03)"/>
+  <text x="415" y="785" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#FAFAFA">Resume Support</text>
+  <text x="415" y="805" font-family="system-ui, sans-serif" font-size="12" fill="#71717A">ATS optimization and review</text>
+  
+  <rect x="710" y="745" width="310" height="70" rx="6" fill="rgba(250,250,250,0.03)"/>
+  <text x="740" y="785" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#FAFAFA">Job Placement</text>
+  <text x="740" y="805" font-family="system-ui, sans-serif" font-size="12" fill="#71717A">Direct referrals to companies</text>
+  
+  <text x="60" y="890" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FEF08A" letter-spacing="3">PROJECTED IMPACT</text>
+  
+  <rect x="60" y="920" width="310" height="130" rx="12" fill="rgba(254,240,138,0.1)" stroke="#FEF08A" stroke-width="1"/>
+  <text x="215" y="980" font-family="system-ui, sans-serif" font-size="56" font-weight="800" fill="#FEF08A" text-anchor="middle">200</text>
+  <text x="215" y="1025" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">Fellows Annually</text>
+  
+  <rect x="385" y="920" width="310" height="130" rx="12" fill="rgba(250,250,250,0.05)"/>
+  <text x="540" y="980" font-family="system-ui, sans-serif" font-size="56" font-weight="800" fill="#FAFAFA" text-anchor="middle">70%</text>
+  <text x="540" y="1025" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">Placement Rate</text>
+  
+  <rect x="710" y="920" width="310" height="130" rx="12" fill="rgba(250,250,250,0.05)"/>
+  <text x="865" y="980" font-family="system-ui, sans-serif" font-size="56" font-weight="800" fill="#FAFAFA" text-anchor="middle">3mo</text>
+  <text x="865" y="1025" font-family="system-ui, sans-serif" font-size="14" fill="#A1A1AA" text-anchor="middle">Program Duration</text>
+  
+  <rect x="60" y="1100" width="960" height="120" rx="12" fill="#FAFAFA"/>
+  <text x="540" y="1155" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#18181B" text-anchor="middle">100% Free. Zero Barriers.</text>
+  <text x="540" y="1195" font-family="system-ui, sans-serif" font-size="15" fill="#52525B" text-anchor="middle">devweekends.com/palestine-fellowship</text>
+  
+  <text x="540" y="1290" font-family="system-ui, sans-serif" font-size="12" fill="#52525B" text-anchor="middle">Dev Weekends Society</text>
+  <text x="540" y="1315" font-family="system-ui, sans-serif" font-size="11" fill="#71717A" text-anchor="middle">20,000+ Members  |  500+ Sessions  |  50+ Mentors  |  100+ Placements</text>
+  
+</svg>

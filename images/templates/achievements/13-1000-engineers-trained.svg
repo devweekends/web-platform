@@ -1,0 +1,72 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid-1000" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272A" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-1000)"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="340" y="140" width="400" height="44" fill="#FEF08A" rx="4"/>
+  <text x="540" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">🎓 TRAINING MILESTONE</text>
+  
+  <!-- Big number -->
+  <text x="540" y="440" font-family="system-ui, sans-serif" font-size="220" font-weight="800" fill="#FEF08A" text-anchor="middle">1,000</text>
+  
+  <!-- Highlight bar -->
+  <rect x="290" y="470" width="500" height="12" fill="#FAFAFA" opacity="0.3"/>
+  
+  <!-- Label -->
+  <text x="540" y="560" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FAFAFA" text-anchor="middle">Engineers Trained</text>
+  
+  <!-- Skills -->
+  <text x="540" y="630" font-family="system-ui, sans-serif" font-size="18" fill="#71717A" text-anchor="middle">Skilled in modern technologies and best practices</text>
+  
+  <g transform="translate(140, 680)">
+    <rect x="0" y="0" width="130" height="50" fill="#27272A" rx="4"/>
+    <text x="65" y="32" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FAFAFA" text-anchor="middle">Full Stack</text>
+    
+    <rect x="150" y="0" width="130" height="50" fill="#27272A" rx="4"/>
+    <text x="215" y="32" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FAFAFA" text-anchor="middle">DevOps</text>
+    
+    <rect x="300" y="0" width="130" height="50" fill="#27272A" rx="4"/>
+    <text x="365" y="32" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FAFAFA" text-anchor="middle">Cloud</text>
+    
+    <rect x="450" y="0" width="130" height="50" fill="#27272A" rx="4"/>
+    <text x="515" y="32" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FAFAFA" text-anchor="middle">DSA</text>
+    
+    <rect x="600" y="0" width="160" height="50" fill="#FEF08A" rx="4"/>
+    <text x="680" y="32" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#18181B" text-anchor="middle">System Design</text>
+  </g>
+  
+  <!-- Success stories -->
+  <g transform="translate(190, 800)">
+    <rect x="0" y="0" width="200" height="90" fill="#27272A" rx="8"/>
+    <text x="100" y="35" font-family="system-ui, sans-serif" font-size="28" font-weight="800" fill="#FEF08A" text-anchor="middle">100+</text>
+    <text x="100" y="60" font-family="system-ui, sans-serif" font-size="11" fill="#71717A" text-anchor="middle">REMOTE JOBS</text>
+    <text x="100" y="78" font-family="system-ui, sans-serif" font-size="10" fill="#52525B" text-anchor="middle">SECURED</text>
+    
+    <rect x="230" y="0" width="200" height="90" fill="#27272A" rx="8"/>
+    <text x="330" y="35" font-family="system-ui, sans-serif" font-size="28" font-weight="800" fill="#FAFAFA" text-anchor="middle">15+</text>
+    <text x="330" y="60" font-family="system-ui, sans-serif" font-size="11" fill="#71717A" text-anchor="middle">GSOC</text>
+    <text x="330" y="78" font-family="system-ui, sans-serif" font-size="10" fill="#52525B" text-anchor="middle">SELECTIONS</text>
+    
+    <rect x="460" y="0" width="200" height="90" fill="#27272A" rx="8"/>
+    <text x="560" y="35" font-family="system-ui, sans-serif" font-size="28" font-weight="800" fill="#FAFAFA" text-anchor="middle">$50K+</text>
+    <text x="560" y="60" font-family="system-ui, sans-serif" font-size="11" fill="#71717A" text-anchor="middle">AVG SALARY</text>
+    <text x="560" y="78" font-family="system-ui, sans-serif" font-size="10" fill="#52525B" text-anchor="middle">ACHIEVED</text>
+  </g>
+  
+  <!-- CTA -->
+  <rect x="390" y="930" width="300" height="50" fill="#FEF08A" rx="4"/>
+  <text x="540" y="963" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="1">BE NEXT →</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>

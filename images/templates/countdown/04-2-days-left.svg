@@ -1,0 +1,65 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 2 Days countdown -->
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid-2d" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272A" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-2d)"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Countdown badge -->
+  <rect x="365" y="130" width="350" height="50" fill="#FEF08A" rx="25"/>
+  <text x="540" y="163" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">⏳ ALMOST HERE!</text>
+  
+  <!-- Big number -->
+  <text x="540" y="460" font-family="system-ui, sans-serif" font-size="320" font-weight="800" fill="#FAFAFA" text-anchor="middle">2</text>
+  
+  <!-- Days label -->
+  <text x="540" y="540" font-family="system-ui, sans-serif" font-size="64" font-weight="700" fill="#FEF08A" text-anchor="middle">DAYS LEFT</text>
+  
+  <!-- Highlight bar -->
+  <rect x="290" y="565" width="500" height="8" fill="#FEF08A" opacity="0.6"/>
+  
+  <!-- Event name -->
+  <text x="540" y="660" font-family="system-ui, sans-serif" font-size="38" font-weight="600" fill="#FAFAFA" text-anchor="middle">[Event Name]</text>
+  <text x="540" y="710" font-family="system-ui, sans-serif" font-size="22" fill="#71717A" text-anchor="middle">[Event Description/Topic]</text>
+  
+  <!-- Event details -->
+  <g transform="translate(215, 780)">
+    <rect x="0" y="0" width="200" height="70" fill="#27272A" rx="8"/>
+    <text x="100" y="35" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">DATE</text>
+    <text x="100" y="55" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" text-anchor="middle">[Day, Date]</text>
+  </g>
+  
+  <g transform="translate(440, 780)">
+    <rect x="0" y="0" width="200" height="70" fill="#27272A" rx="8"/>
+    <text x="100" y="35" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">TIME</text>
+    <text x="100" y="55" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" text-anchor="middle">[Time] PKT</text>
+  </g>
+  
+  <g transform="translate(665, 780)">
+    <rect x="0" y="0" width="200" height="70" fill="#FEF08A" rx="8"/>
+    <text x="100" y="35" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle">PRICE</text>
+    <text x="100" y="55" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" text-anchor="middle">FREE</text>
+  </g>
+  
+  <!-- CTA -->
+  <rect x="340" y="900" width="400" height="60" fill="#FAFAFA" rx="8"/>
+  <text x="540" y="938" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B" text-anchor="middle">MARK YOUR CALENDAR 📅</text>
+  
+  <!-- Decorative -->
+  <rect x="100" y="250" width="60" height="60" fill="none" stroke="#FEF08A" stroke-width="2" opacity="0.2"/>
+  <rect x="120" y="270" width="60" height="60" fill="#FEF08A" opacity="0.1"/>
+  
+  <rect x="920" y="700" width="60" height="60" fill="none" stroke="#FEF08A" stroke-width="2" opacity="0.2"/>
+  <rect x="900" y="680" width="60" height="60" fill="#FEF08A" opacity="0.1"/>
+  
+  <!-- Footer -->
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>

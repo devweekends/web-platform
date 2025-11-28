@@ -1,0 +1,73 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid-views" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-views)"/>
+  
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="12" height="1080" fill="#FF0000"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- YouTube badge -->
+  <rect x="365" y="140" width="350" height="44" fill="#FF0000" rx="8"/>
+  <text x="540" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">▶ YOUTUBE MILESTONE</text>
+  
+  <!-- Big number -->
+  <text x="540" y="430" font-family="system-ui, sans-serif" font-size="160" font-weight="800" fill="#18181B" text-anchor="middle">50,000+</text>
+  
+  <!-- Red highlight bar -->
+  <rect x="240" y="460" width="600" height="12" fill="#FF0000" opacity="0.6"/>
+  
+  <!-- Label -->
+  <text x="540" y="550" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FF0000" text-anchor="middle">Video Views</text>
+  
+  <!-- Message -->
+  <text x="540" y="630" font-family="system-ui, sans-serif" font-size="22" fill="#52525B" text-anchor="middle">50K developers learning from our free tutorials!</text>
+  
+  <!-- Video topics -->
+  <g transform="translate(165, 690)">
+    <rect x="0" y="0" width="150" height="50" fill="#F4F4F5" rx="4"/>
+    <text x="75" y="32" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#18181B" text-anchor="middle">System Design</text>
+    
+    <rect x="170" y="0" width="100" height="50" fill="#F4F4F5" rx="4"/>
+    <text x="220" y="32" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#18181B" text-anchor="middle">DSA</text>
+    
+    <rect x="290" y="0" width="120" height="50" fill="#F4F4F5" rx="4"/>
+    <text x="350" y="32" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#18181B" text-anchor="middle">DevOps</text>
+    
+    <rect x="430" y="0" width="100" height="50" fill="#F4F4F5" rx="4"/>
+    <text x="480" y="32" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#18181B" text-anchor="middle">AWS</text>
+    
+    <rect x="550" y="0" width="130" height="50" fill="#FF0000" rx="4"/>
+    <text x="615" y="32" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Careers</text>
+  </g>
+  
+  <!-- Stats -->
+  <g transform="translate(215, 800)">
+    <rect x="0" y="0" width="200" height="80" fill="#18181B" rx="8"/>
+    <text x="100" y="40" font-family="system-ui, sans-serif" font-size="28" font-weight="800" fill="#FAFAFA" text-anchor="middle">100+</text>
+    <text x="100" y="62" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle" letter-spacing="1">VIDEOS</text>
+    
+    <rect x="230" y="0" width="200" height="80" fill="#18181B" rx="8"/>
+    <text x="330" y="40" font-family="system-ui, sans-serif" font-size="28" font-weight="800" fill="#FF0000" text-anchor="middle">20K+</text>
+    <text x="330" y="62" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle" letter-spacing="1">SUBSCRIBERS</text>
+    
+    <rect x="460" y="0" width="200" height="80" fill="#18181B" rx="8"/>
+    <text x="560" y="40" font-family="system-ui, sans-serif" font-size="28" font-weight="800" fill="#FAFAFA" text-anchor="middle">FREE</text>
+    <text x="560" y="62" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle" letter-spacing="1">FOREVER</text>
+  </g>
+  
+  <!-- CTA -->
+  <rect x="390" y="920" width="300" height="50" fill="#FF0000" rx="4"/>
+  <text x="540" y="953" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">SUBSCRIBE NOW →</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle" letter-spacing="2">YOUTUBE.COM/@DEVWEEKENDS</text>
+</svg>

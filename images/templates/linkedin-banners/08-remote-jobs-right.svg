@@ -1,0 +1,49 @@
+<svg width="1584" height="396" viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Warm gradient background -->
+  <defs>
+    <linearGradient id="remote-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFBEB"/>
+      <stop offset="100%" style="stop-color:#FEF3C7"/>
+    </linearGradient>
+    <pattern id="grid-remote" width="35" height="35" patternUnits="userSpaceOnUse">
+      <path d="M 35 0 L 0 0 0 35" fill="none" stroke="#FCD34D" stroke-width="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="1584" height="396" fill="url(#remote-grad)"/>
+  <rect width="1584" height="396" fill="url(#grid-remote)" opacity="0.4"/>
+  
+  <!-- Content on RIGHT side -->
+  
+  <!-- Branding -->
+  <text x="1520" y="50" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3" text-anchor="end">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="1300" y="80" width="220" height="32" fill="#18181B"/>
+  <text x="1410" y="102" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FEF08A" text-anchor="middle" letter-spacing="2">REMOTE WORK READY</text>
+  
+  <!-- Main headline -->
+  <text x="1520" y="175" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B" text-anchor="end">Land Your Dream</text>
+  <text x="1520" y="230" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B" text-anchor="end">International Remote Job</text>
+  
+  <!-- Yellow highlight -->
+  <rect x="1080" y="242" width="440" height="10" fill="#FCD34D" opacity="0.6"/>
+  
+  <!-- Platforms -->
+  <text x="1520" y="300" font-family="system-ui, sans-serif" font-size="18" fill="#52525B" text-anchor="end">Upwork • Toptal • Turing • Arc • Direct Clients</text>
+  
+  <!-- Success metric -->
+  <rect x="1020" y="330" width="150" height="50" fill="#FFFFFF" rx="4"/>
+  <text x="1095" y="355" font-family="system-ui, sans-serif" font-size="18" font-weight="800" fill="#18181B" text-anchor="middle">100+</text>
+  <text x="1095" y="372" font-family="system-ui, sans-serif" font-size="9" fill="#71717A" text-anchor="middle" letter-spacing="1">PLACED</text>
+  
+  <rect x="1190" y="330" width="150" height="50" fill="#FFFFFF" rx="4"/>
+  <text x="1265" y="355" font-family="system-ui, sans-serif" font-size="18" font-weight="800" fill="#18181B" text-anchor="middle">$50K+</text>
+  <text x="1265" y="372" font-family="system-ui, sans-serif" font-size="9" fill="#71717A" text-anchor="middle" letter-spacing="1">AVG SALARY</text>
+  
+  <rect x="1360" y="330" width="160" height="50" fill="#18181B" rx="4"/>
+  <text x="1440" y="362" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="1">JOIN FREE →</text>
+  
+  <!-- Decorative -->
+  <circle cx="880" cy="100" r="50" fill="none" stroke="#18181B" stroke-width="1" opacity="0.1"/>
+  <circle cx="900" cy="120" r="50" fill="#FCD34D" opacity="0.2"/>
+</svg>

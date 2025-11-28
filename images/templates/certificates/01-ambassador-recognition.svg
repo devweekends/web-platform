@@ -1,0 +1,86 @@
+<svg width="1600" height="1131" viewBox="0 0 1600 1131" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- A4 Landscape Certificate -->
+  <rect width="1600" height="1131" fill="#FAFAFA"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="cert-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1131" fill="url(#cert-grid)" opacity="0.3"/>
+  
+  <!-- Border -->
+  <rect x="40" y="40" width="1520" height="1051" fill="none" stroke="#18181B" stroke-width="2"/>
+  <rect x="55" y="55" width="1490" height="1021" fill="none" stroke="#FEF08A" stroke-width="4"/>
+  <rect x="70" y="70" width="1460" height="991" fill="none" stroke="#18181B" stroke-width="1"/>
+  
+  <!-- Left accent bar -->
+  <rect x="70" y="70" width="12" height="991" fill="#18181B"/>
+  
+  <!-- Header -->
+  <text x="800" y="160" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B" letter-spacing="6" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Decorative line -->
+  <rect x="350" y="190" width="900" height="2" fill="#18181B"/>
+  
+  <!-- Certificate title -->
+  <text x="800" y="280" font-family="Georgia, serif" font-size="52" font-weight="400" fill="#18181B" text-anchor="middle">Certificate of Recognition</text>
+  
+  <!-- Subtitle -->
+  <text x="800" y="340" font-family="system-ui, sans-serif" font-size="20" fill="#71717A" text-anchor="middle" letter-spacing="4">CAMPUS AMBASSADOR</text>
+  
+  <!-- Presented to -->
+  <text x="800" y="430" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">This certificate is proudly presented to</text>
+  
+  <!-- Name placeholder -->
+  <text x="800" y="520" font-family="Georgia, serif" font-size="64" font-weight="600" fill="#18181B" text-anchor="middle">[Ambassador Name]</text>
+  
+  <!-- Yellow underline for name -->
+  <rect x="300" y="545" width="1000" height="8" fill="#FEF08A"/>
+  
+  <!-- Description -->
+  <text x="800" y="620" font-family="system-ui, sans-serif" font-size="18" fill="#52525B" text-anchor="middle">In recognition of outstanding dedication and contribution as a</text>
+  <text x="800" y="655" font-family="system-ui, sans-serif" font-size="18" fill="#52525B" text-anchor="middle">Dev Weekends Campus Ambassador, inspiring fellow students and spreading</text>
+  <text x="800" y="690" font-family="system-ui, sans-serif" font-size="18" fill="#52525B" text-anchor="middle">the mission of free tech education across Pakistan.</text>
+  
+  <!-- University -->
+  <text x="800" y="760" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Representing</text>
+  <text x="800" y="800" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="#18181B" text-anchor="middle">[University Name]</text>
+  
+  <!-- Date and signatures -->
+  <g transform="translate(250, 880)">
+    <line x1="0" y1="60" x2="300" y2="60" stroke="#18181B" stroke-width="1"/>
+    <text x="150" y="90" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Date</text>
+  </g>
+  
+  <g transform="translate(650, 880)">
+    <line x1="0" y1="60" x2="300" y2="60" stroke="#18181B" stroke-width="1"/>
+    <text x="150" y="90" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Zeeshan Adil</text>
+    <text x="150" y="110" font-family="system-ui, sans-serif" font-size="12" fill="#A1A1AA" text-anchor="middle">Founder, Dev Weekends</text>
+  </g>
+  
+  <g transform="translate(1050, 880)">
+    <line x1="0" y1="60" x2="300" y2="60" stroke="#18181B" stroke-width="1"/>
+    <text x="150" y="90" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Program Lead</text>
+    <text x="150" y="110" font-family="system-ui, sans-serif" font-size="12" fill="#A1A1AA" text-anchor="middle">Ambassador Program</text>
+  </g>
+  
+  <!-- Badge/Seal -->
+  <circle cx="800" y="1000" r="45" fill="#18181B"/>
+  <circle cx="800" y="1000" r="38" fill="none" stroke="#FEF08A" stroke-width="2"/>
+  <text x="800" y="1008" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle">DW</text>
+  
+  <!-- Decorative corners -->
+  <rect x="100" y="100" width="60" height="60" fill="none" stroke="#18181B" stroke-width="1" opacity="0.3"/>
+  <rect x="110" y="110" width="60" height="60" fill="#FEF08A" opacity="0.3"/>
+  
+  <rect x="1440" y="100" width="60" height="60" fill="none" stroke="#18181B" stroke-width="1" opacity="0.3"/>
+  <rect x="1430" y="110" width="60" height="60" fill="#FEF08A" opacity="0.3"/>
+  
+  <rect x="100" y="970" width="60" height="60" fill="none" stroke="#18181B" stroke-width="1" opacity="0.3"/>
+  <rect x="110" y="960" width="60" height="60" fill="#FEF08A" opacity="0.3"/>
+  
+  <rect x="1440" y="970" width="60" height="60" fill="none" stroke="#18181B" stroke-width="1" opacity="0.3"/>
+  <rect x="1430" y="960" width="60" height="60" fill="#FEF08A" opacity="0.3"/>
+</svg>

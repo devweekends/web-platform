@@ -1,0 +1,70 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid-50k" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272A" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-50k)"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="340" y="140" width="400" height="44" fill="#FEF08A" rx="4"/>
+  <text x="540" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="2">🏆 MEGA MILESTONE</text>
+  
+  <!-- Big number -->
+  <text x="540" y="420" font-family="system-ui, sans-serif" font-size="180" font-weight="800" fill="#FEF08A" text-anchor="middle">50,000</text>
+  
+  <!-- Yellow highlight bar -->
+  <rect x="215" y="450" width="650" height="14" fill="#FAFAFA" opacity="0.3"/>
+  
+  <!-- Label -->
+  <text x="540" y="540" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FAFAFA" text-anchor="middle">Total Community Reach</text>
+  
+  <!-- Message -->
+  <text x="540" y="620" font-family="system-ui, sans-serif" font-size="22" fill="#71717A" text-anchor="middle">Across all platforms combined!</text>
+  
+  <!-- Platform breakdown -->
+  <g transform="translate(115, 680)">
+    <rect x="0" y="0" width="165" height="90" fill="#27272A" rx="8"/>
+    <text x="82" y="40" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#FAFAFA" text-anchor="middle">20K+</text>
+    <text x="82" y="65" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle" letter-spacing="1">COMMUNITY</text>
+    
+    <rect x="185" y="0" width="165" height="90" fill="#27272A" rx="8"/>
+    <text x="267" y="40" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#FF0000" text-anchor="middle">20K+</text>
+    <text x="267" y="65" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle" letter-spacing="1">YOUTUBE</text>
+    
+    <rect x="370" y="0" width="165" height="90" fill="#27272A" rx="8"/>
+    <text x="452" y="40" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#0A66C2" text-anchor="middle">10K+</text>
+    <text x="452" y="65" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle" letter-spacing="1">LINKEDIN</text>
+    
+    <rect x="555" y="0" width="165" height="90" fill="#27272A" rx="8"/>
+    <text x="637" y="40" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#5865F2" text-anchor="middle">5K+</text>
+    <text x="637" y="65" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle" letter-spacing="1">DISCORD</text>
+    
+    <rect x="740" y="0" width="165" height="90" fill="#FEF08A" rx="8"/>
+    <text x="822" y="40" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#18181B" text-anchor="middle">More</text>
+    <text x="822" y="65" font-family="system-ui, sans-serif" font-size="10" fill="#52525B" text-anchor="middle" letter-spacing="1">PLATFORMS</text>
+  </g>
+  
+  <!-- Impact message -->
+  <text x="540" y="870" font-family="system-ui, sans-serif" font-size="26" fill="#FAFAFA" text-anchor="middle">50K developers in our network!</text>
+  <text x="540" y="915" font-family="system-ui, sans-serif" font-size="18" fill="#71717A" text-anchor="middle">Pakistan's fastest-growing tech community 🚀</text>
+  
+  <!-- CTA -->
+  <rect x="390" y="950" width="300" height="50" fill="#FEF08A" rx="4"/>
+  <text x="540" y="983" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="1">JOIN THE MOVEMENT →</text>
+  
+  <!-- Confetti -->
+  <circle cx="120" cy="250" r="8" fill="#FEF08A" opacity="0.6"/>
+  <circle cx="960" cy="280" r="10" fill="#5865F2" opacity="0.4"/>
+  <circle cx="150" cy="850" r="6" fill="#FF0000" opacity="0.4"/>
+  <circle cx="930" cy="820" r="8" fill="#0A66C2" opacity="0.4"/>
+  
+  <!-- Footer -->
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>

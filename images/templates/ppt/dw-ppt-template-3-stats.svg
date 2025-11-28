@@ -1,0 +1,73 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- DEV WEEKENDS - PPT Template 3: Stats/Impact Slide -->
+  <!-- Design Language: Minimalist, Black/White, Grid-based, Bold Typography -->
+  
+  <!-- Background - Dark theme for impact -->
+  <rect width="1920" height="1080" fill="#18181B"/>
+  
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid3" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#27272A" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#grid3)" opacity="0.5"/>
+  
+  <!-- Left accent bar - Yellow for contrast -->
+  <rect x="0" y="0" width="12" height="1080" fill="#FEF08A"/>
+  
+  <!-- Dev Weekends branding -->
+  <text x="80" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#FAFAFA" letter-spacing="4">DEV WEEKENDS</text>
+  <text x="80" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#71717A" letter-spacing="2">BY THE NUMBERS</text>
+  
+  <!-- Section Title -->
+  <text x="80" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#FEF08A" letter-spacing="3">OUR IMPACT</text>
+  <text x="80" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="800" fill="#FAFAFA">Making a Difference</text>
+  
+  <!-- Stats Grid - 4 columns -->
+  <!-- Stat 1 -->
+  <rect x="80" y="380" width="400" height="280" fill="#27272A" rx="4"/>
+  <text x="130" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="900" fill="#FAFAFA">30+</text>
+  <rect x="130" y="510" width="80" height="4" fill="#FEF08A"/>
+  <text x="130" y="560" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#FAFAFA">Mentors</text>
+  <text x="130" y="590" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">Industry professionals</text>
+  <text x="130" y="615" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">guiding the community</text>
+  
+  <!-- Stat 2 -->
+  <rect x="520" y="380" width="400" height="280" fill="#27272A" rx="4"/>
+  <text x="570" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="900" fill="#FAFAFA">300+</text>
+  <rect x="570" y="510" width="80" height="4" fill="#FEF08A"/>
+  <text x="570" y="560" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#FAFAFA">Mentees</text>
+  <text x="570" y="590" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">Engineers trained and</text>
+  <text x="570" y="615" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">placed in industry</text>
+  
+  <!-- Stat 3 -->
+  <rect x="960" y="380" width="400" height="280" fill="#27272A" rx="4"/>
+  <text x="1010" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="900" fill="#FAFAFA">92%</text>
+  <rect x="1010" y="510" width="80" height="4" fill="#FEF08A"/>
+  <text x="1010" y="560" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#FAFAFA">Placement</text>
+  <text x="1010" y="590" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">Success rate in</text>
+  <text x="1010" y="615" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">job placements</text>
+  
+  <!-- Stat 4 -->
+  <rect x="1400" y="380" width="400" height="280" fill="#27272A" rx="4"/>
+  <text x="1450" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="900" fill="#FAFAFA">5+</text>
+  <rect x="1450" y="510" width="80" height="4" fill="#FEF08A"/>
+  <text x="1450" y="560" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#FAFAFA">Years</text>
+  <text x="1450" y="590" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">Empowering engineers</text>
+  <text x="1450" y="615" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A">across Pakistan</text>
+  
+  <!-- Bottom highlight text -->
+  <text x="960" y="800" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#71717A" text-anchor="middle">From complete beginners to industry-ready engineers</text>
+  
+  <!-- Decorative elements -->
+  <rect x="1750" y="60" width="80" height="80" fill="none" stroke="#FEF08A" stroke-width="2"/>
+  <rect x="1770" y="80" width="80" height="80" fill="#FEF08A" opacity="0.15"/>
+  
+  <!-- Bottom bar - Yellow accent -->
+  <rect x="0" y="1050" width="1920" height="30" fill="#FEF08A"/>
+  
+  <!-- Footer -->
+  <text x="80" y="1010" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A">© Dev Weekends 2025</text>
+  <text x="1830" y="1010" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#71717A" text-anchor="end">devweekends.org</text>
+</svg>

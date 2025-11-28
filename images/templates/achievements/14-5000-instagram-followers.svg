@@ -1,0 +1,55 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Purple gradient background for Instagram -->
+  <defs>
+    <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FCAF45"/>
+      <stop offset="25%" style="stop-color:#F77737"/>
+      <stop offset="50%" style="stop-color:#F56040"/>
+      <stop offset="75%" style="stop-color:#C13584"/>
+      <stop offset="100%" style="stop-color:#833AB4"/>
+    </linearGradient>
+    <pattern id="grid-ig" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#ig-grad)"/>
+  <rect width="1080" height="1080" fill="url(#grid-ig)"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- Badge -->
+  <rect x="365" y="140" width="350" height="44" fill="rgba(255,255,255,0.2)" rx="22"/>
+  <text x="540" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">📸 INSTAGRAM MILESTONE</text>
+  
+  <!-- Big number -->
+  <text x="540" y="450" font-family="system-ui, sans-serif" font-size="200" font-weight="800" fill="#FFFFFF" text-anchor="middle">5,000</text>
+  
+  <!-- Highlight bar -->
+  <rect x="290" y="480" width="500" height="12" fill="rgba(255,255,255,0.4)"/>
+  
+  <!-- Label -->
+  <text x="540" y="570" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FFFFFF" text-anchor="middle">Instagram Followers</text>
+  
+  <!-- Instagram icon -->
+  <rect x="465" y="630" width="150" height="150" fill="rgba(255,255,255,0.2)" rx="35"/>
+  <circle cx="540" cy="705" r="40" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+  <circle cx="590" cy="655" r="8" fill="#FFFFFF"/>
+  
+  <!-- Message -->
+  <text x="540" y="870" font-family="system-ui, sans-serif" font-size="24" fill="#FFFFFF" text-anchor="middle">5K following our visual journey!</text>
+  <text x="540" y="915" font-family="system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.8)" text-anchor="middle">Daily tech tips, career advice & community highlights</text>
+  
+  <!-- CTA -->
+  <rect x="390" y="950" width="300" height="50" fill="rgba(255,255,255,0.95)" rx="25"/>
+  <text x="540" y="983" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#C13584" text-anchor="middle" letter-spacing="1">FOLLOW US →</text>
+  
+  <!-- Decorative -->
+  <circle cx="150" cy="250" r="8" fill="#FFFFFF" opacity="0.4"/>
+  <circle cx="930" cy="300" r="10" fill="#FFFFFF" opacity="0.3"/>
+  <circle cx="120" cy="800" r="6" fill="#FFFFFF" opacity="0.5"/>
+  <circle cx="960" cy="750" r="8" fill="#FFFFFF" opacity="0.4"/>
+  
+  <!-- Footer -->
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="2">@DEVWEEKENDS</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- TODAY - High energy theme -->
+  <defs>
+    <linearGradient id="today-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FEF08A"/>
+      <stop offset="100%" style="stop-color:#FCD34D"/>
+    </linearGradient>
+    <pattern id="grid-today" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#EAB308" stroke-width="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#today-grad)"/>
+  <rect width="1080" height="1080" fill="url(#grid-today)" opacity="0.3"/>
+  
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="12" height="1080" fill="#18181B"/>
+  
+  <!-- Branding -->
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <!-- LIVE badge -->
+  <rect x="365" y="130" width="350" height="50" fill="#18181B" rx="25"/>
+  <circle cx="410" cy="155" r="8" fill="#22C55E"/>
+  <text x="560" y="163" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">HAPPENING TODAY!</text>
+  
+  <!-- TODAY text -->
+  <text x="540" y="420" font-family="system-ui, sans-serif" font-size="180" font-weight="800" fill="#18181B" text-anchor="middle">TODAY</text>
+  
+  <!-- Underline -->
+  <rect x="190" y="450" width="700" height="16" fill="#18181B"/>
+  
+  <!-- Time highlight -->
+  <rect x="340" y="500" width="400" height="80" fill="#18181B" rx="12"/>
+  <text x="540" y="555" font-family="system-ui, sans-serif" font-size="42" font-weight="800" fill="#FEF08A" text-anchor="middle">[TIME] PKT</text>
+  
+  <!-- Event name -->
+  <text x="540" y="660" font-family="system-ui, sans-serif" font-size="40" font-weight="700" fill="#18181B" text-anchor="middle">[Event Name]</text>
+  <text x="540" y="710" font-family="system-ui, sans-serif" font-size="22" fill="#52525B" text-anchor="middle">[Event Description/Topic]</text>
+  
+  <!-- Speaker -->
+  <g transform="translate(290, 760)">
+    <rect x="0" y="0" width="500" height="100" fill="#FFFFFF" rx="12"/>
+    <circle cx="60" cy="50" r="35" fill="#F4F4F5"/>
+    <text x="60" y="55" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle">Photo</text>
+    <text x="120" y="40" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#18181B">With [Speaker Name]</text>
+    <text x="120" y="65" font-family="system-ui, sans-serif" font-size="14" fill="#71717A">[Role] @ [Company]</text>
+  </g>
+  
+  <!-- CTA -->
+  <rect x="290" y="900" width="500" height="70" fill="#18181B" rx="12"/>
+  <text x="540" y="945" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#FEF08A" text-anchor="middle">JOIN NOW ON DISCORD 🚀</text>
+  
+  <!-- Celebration elements -->
+  <text x="100" y="250" font-size="40">🎉</text>
+  <text x="950" y="300" font-size="50">🔥</text>
+  <text x="80" y="800" font-size="35">✨</text>
+  <text x="980" y="750" font-size="45">🎊</text>
+  
+  <!-- Footer -->
+  <text x="540" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#52525B" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>
