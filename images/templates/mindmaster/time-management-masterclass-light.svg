@@ -1,0 +1,35 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#000000"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#000000" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="160" width="200" height="40" fill="#000000"/>
+  <text x="160" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">MINDMASTER</text>
+  
+  <text x="60" y="380" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#000000">Time Management</text>
+  <text x="60" y="450" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#737373">Masterclass</text>
+  
+  <rect x="60" y="500" width="960" height="120" fill="#F5F5F5"/>
+  <text x="100" y="560" font-family="system-ui, sans-serif" font-size="14" fill="#737373">TOPIC</text>
+  <text x="100" y="595" font-family="system-ui, sans-serif" font-size="24" fill="#000000">Master the habits that high performers use to stay organized and unstoppable.</text>
+  
+  <rect x="60" y="660" width="450" height="100" fill="#F5F5F5"/>
+  <text x="100" y="705" font-family="system-ui, sans-serif" font-size="14" fill="#737373">DATE AND TIME</text>
+  <text x="100" y="740" font-family="system-ui, sans-serif" font-size="20" fill="#000000">Friday, Nov 28, 2025 - 9 PM</text>
+  
+  <rect x="530" y="660" width="490" height="100" fill="#F5F5F5"/>
+  <text x="570" y="705" font-family="system-ui, sans-serif" font-size="14" fill="#737373">SPEAKER</text>
+  <text x="570" y="730" font-family="system-ui, sans-serif" font-size="20" fill="#000000">Moeez Ahmad</text>
+  <text x="570" y="750" font-family="system-ui, sans-serif" font-size="14" fill="#737373">Software Engineer @ Calo Inc.</text>
+  
+  <text x="60" y="830" font-family="system-ui, sans-serif" font-size="16" fill="#737373">What you will learn:</text>
+  <text x="60" y="870" font-family="system-ui, sans-serif" font-size="16" fill="#525252">- Prioritization frameworks used by top performers</text>
+  <text x="60" y="905" font-family="system-ui, sans-serif" font-size="16" fill="#525252">- How to eliminate distractions and stay focused</text>
+  <text x="60" y="940" font-family="system-ui, sans-serif" font-size="16" fill="#525252">- Building sustainable daily routines for peak productivity</text>
+  
+  <rect x="60" y="980" width="250" height="50" fill="#000000"/>
+  <text x="185" y="1013" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF" text-anchor="middle">Join Session</text>
+  
+  <text x="340" y="1013" font-family="system-ui, sans-serif" font-size="14" fill="#737373">Free for all community members</text>
+</svg>
