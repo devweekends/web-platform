@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychology of Excellence - MindMaster</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fafafa;
+            color: #18181b;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            width: 100vw;
+            min-height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #e4e4e7;
+        }
+
+        /* Slide Variants */
+        .slide--light {
+            background: #fafafa;
+            color: #18181b;
+        }
+
+        .slide--dark {
+            background: #18181b;
+            color: #fafafa;
+        }
+
+        .slide--muted {
+            background: #f4f4f5;
+            color: #18181b;
+        }
+
+        /* Header */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .brand-divider {
+            width: 1px;
+            height: 16px;
+            background: currentColor;
+            opacity: 0.3;
+        }
+
+        .brand-series {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .slide-number {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            opacity: 0.4;
+        }
+
+        /* Typography */
+        .overline {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .title--xl {
+            font-size: 72px;
+            letter-spacing: -3px;
+        }
+
+        .title--md {
+            font-size: 42px;
+            letter-spacing: -1px;
+        }
+
+        .title--sm {
+            font-size: 32px;
+            letter-spacing: -0.5px;
+        }
+
+        .title-muted {
+            opacity: 0.4;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            opacity: 0.6;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .highlight {
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: #fde047;
+            z-index: -1;
+        }
+
+        .slide--dark .highlight::after {
+            background: #fde047;
+        }
+
+        /* Content Layouts */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content--center {
+            align-items: center;
+            text-align: center;
+        }
+
+        .content--center .subtitle {
+            max-width: 700px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #e4e4e7;
+        }
+
+        .slide--dark .grid-3 {
+            background: #27272a;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            padding: 48px;
+        }
+
+        .slide--dark .card {
+            background: #27272a;
+        }
+
+        .slide--muted .card {
+            background: #fff;
+        }
+
+        .card-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            opacity: 0.3;
+            margin-bottom: 24px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .card-text {
+            font-size: 14px;
+            opacity: 0.6;
+            line-height: 1.7;
+        }
+
+        /* Stats */
+        .stat {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .stat-value {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 12px;
+            letter-spacing: -3px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Lists */
+        .list {
+            list-style: none;
+        }
+
+        .list li {
+            font-size: 18px;
+            padding: 20px 0;
+            border-bottom: 1px solid #e4e4e7;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .slide--dark .list li {
+            border-color: #27272a;
+        }
+
+        .list li:last-child {
+            border-bottom: none;
+        }
+
+        .list-marker {
+            width: 24px;
+            height: 24px;
+            border: 2px solid currentColor;
+            opacity: 0.3;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Quote */
+        .quote-container {
+            max-width: 800px;
+        }
+
+        .quote {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            letter-spacing: -0.5px;
+        }
+
+        .quote-attribution {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .quote-line {
+            width: 40px;
+            height: 1px;
+            background: currentColor;
+            opacity: 0.3;
+        }
+
+        .quote-author {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .quote-role {
+            font-size: 13px;
+            opacity: 0.5;
+            margin-top: 2px;
+        }
+
+        /* Divider */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: currentColor;
+            opacity: 0.2;
+            margin: 32px 0;
+        }
+
+        .content--center .divider {
+            margin: 32px auto;
+        }
+
+        /* Accent Bar */
+        .accent-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: #18181b;
+        }
+
+        .slide--dark .accent-bar {
+            background: #fafafa;
+        }
+
+        /* Two Column Comparison */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid #e4e4e7;
+        }
+
+        .slide--dark .comparison {
+            border-color: #27272a;
+        }
+
+        .comparison-col {
+            padding: 48px;
+        }
+
+        .comparison-col:first-child {
+            border-right: 1px solid #e4e4e7;
+        }
+
+        .slide--dark .comparison-col:first-child {
+            border-color: #27272a;
+        }
+
+        .comparison-header {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 32px;
+            opacity: 0.5;
+        }
+
+        .comparison-item {
+            font-size: 15px;
+            padding: 12px 0;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 48px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: #e4e4e7;
+        }
+
+        .slide--dark .timeline::before {
+            background: #27272a;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -52px;
+            top: 8px;
+            width: 9px;
+            height: 9px;
+            background: #18181b;
+        }
+
+        .slide--dark .timeline-item::before {
+            background: #fafafa;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .timeline-text {
+            font-size: 14px;
+            opacity: 0.6;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            margin-top: auto;
+        }
+
+        .footer-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            opacity: 0.4;
+        }
+
+        /* Print Styles */
+        @media print {
+            .slide {
+                page-break-after: always;
+                height: 100vh;
+            }
+        }
+
+        /* Framework Visual */
+        .framework {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .framework-item {
+            flex: 1;
+            text-align: center;
+            padding: 40px 24px;
+            border: 1px solid #e4e4e7;
+        }
+
+        .slide--dark .framework-item {
+            border-color: #27272a;
+        }
+
+        .framework-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+
+        .framework-title {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .framework-arrow {
+            font-size: 20px;
+            opacity: 0.2;
+            flex-shrink: 0;
+        }
+
+        /* Big Number */
+        .big-number {
+            font-size: 200px;
+            font-weight: 800;
+            line-height: 0.8;
+            letter-spacing: -10px;
+            opacity: 0.05;
+            position: absolute;
+            right: 80px;
+            bottom: 100px;
+        }
+
+        /* Section Block */
+        .section-block {
+            padding: 48px;
+            border: 1px solid #e4e4e7;
+            margin-bottom: 24px;
+        }
+
+        .slide--dark .section-block {
+            border-color: #27272a;
+        }
+
+        .section-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .section-text {
+            font-size: 14px;
+            opacity: 0.6;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: Title -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">01 / 15</div>
+        </div>
+
+        <div class="content">
+            <p class="overline">A Closed Community for Thinkers</p>
+            <h1 class="title title--xl">Psychology of<br><span class="highlight">Excellence</span></h1>
+            <div class="divider"></div>
+            <p class="subtitle">Understanding the mental frameworks that separate exceptional engineers from the rest. Beyond code, there's the mind.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">devweekends.com/mindmaster</span>
+            <span class="footer-text">Psychology Series</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: The Question -->
+    <div class="slide slide--dark">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">02 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <p class="overline">The Central Question</p>
+            <h1 class="title">What separates<br>the <span class="highlight">top 1%</span>?</h1>
+            <p class="subtitle">It's not intelligence. It's not hours worked. It's the way they think, learn, and approach challenges.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: The Research -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">03 / 15</div>
+        </div>
+
+        <div class="content">
+            <p class="overline">Research Findings</p>
+            <h1 class="title title--md">The Excellence Gap</h1>
+            <p class="subtitle" style="margin-bottom: 60px;">Studies reveal that psychological factors account for the majority of performance differences between engineers.</p>
+            
+            <div class="grid-4">
+                <div class="stat">
+                    <div class="stat-value">10x</div>
+                    <div class="stat-label">Productivity Gap</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">80%</div>
+                    <div class="stat-label">Mindset Driven</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">15%</div>
+                    <div class="stat-label">Technical Skills</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">5%</div>
+                    <div class="stat-label">Raw Intelligence</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: Four Pillars -->
+    <div class="slide slide--muted">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">04 / 15</div>
+        </div>
+
+        <div class="content">
+            <p class="overline">Framework</p>
+            <h1 class="title title--md">Four Pillars of<br>Mental Excellence</h1>
+            
+            <div class="grid-3" style="margin-top: 60px;">
+                <div class="card">
+                    <div class="card-number">01</div>
+                    <h3 class="card-title">Growth Mindset</h3>
+                    <p class="card-text">Believing abilities can be developed through dedication and hard work.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">02</div>
+                    <h3 class="card-title">Deep Focus</h3>
+                    <p class="card-text">The ability to concentrate without distraction on cognitively demanding tasks.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">03</div>
+                    <h3 class="card-title">Deliberate Practice</h3>
+                    <p class="card-text">Purposeful, systematic practice designed to improve specific aspects of performance.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 1px; background: #e4e4e7;">
+                <div class="card" style="max-width: 33.33%;">
+                    <div class="card-number">04</div>
+                    <h3 class="card-title">Resilience</h3>
+                    <p class="card-text">The capacity to recover quickly from difficulties and adapt to challenges.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: Growth Mindset -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">05 / 15</div>
+        </div>
+
+        <div class="content">
+            <div class="grid-2">
+                <div>
+                    <p class="overline">Pillar One</p>
+                    <h1 class="title title--md">Growth<br>Mindset</h1>
+                    <div class="divider"></div>
+                    <p class="subtitle">Dr. Carol Dweck's research at Stanford revealed that our beliefs about our abilities profoundly affect our success.</p>
+                </div>
+                
+                <div class="comparison">
+                    <div class="comparison-col">
+                        <div class="comparison-header">Fixed Mindset</div>
+                        <div class="comparison-item">"I'm not a math person"</div>
+                        <div class="comparison-item">Avoids challenges</div>
+                        <div class="comparison-item">Gives up easily</div>
+                        <div class="comparison-item">Ignores feedback</div>
+                        <div class="comparison-item">Feels threatened by others</div>
+                    </div>
+                    <div class="comparison-col">
+                        <div class="comparison-header">Growth Mindset</div>
+                        <div class="comparison-item">"I can learn anything"</div>
+                        <div class="comparison-item">Embraces challenges</div>
+                        <div class="comparison-item">Persists through setbacks</div>
+                        <div class="comparison-item">Learns from criticism</div>
+                        <div class="comparison-item">Inspired by others' success</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: Deep Focus -->
+    <div class="slide slide--dark">
+        <div class="big-number">02</div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">06 / 15</div>
+        </div>
+
+        <div class="content">
+            <div class="grid-2">
+                <div>
+                    <p class="overline">Pillar Two</p>
+                    <h1 class="title title--md">Deep<br>Focus</h1>
+                    <div class="divider"></div>
+                    <p class="subtitle">Cal Newport's concept of "Deep Work" — the ability to focus without distraction on cognitively demanding tasks.</p>
+                    
+                    <ul class="list" style="margin-top: 40px;">
+                        <li><div class="list-marker"></div> Eliminate all distractions</li>
+                        <li><div class="list-marker"></div> Time-block your deep work sessions</li>
+                        <li><div class="list-marker"></div> Build focus like a muscle</li>
+                        <li><div class="list-marker"></div> Learn to embrace boredom</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="section-block">
+                        <div class="section-number">THE FORMULA</div>
+                        <div style="font-size: 20px; font-weight: 600; margin-bottom: 24px; letter-spacing: -0.5px;">
+                            High-Quality Work = Time × Intensity
+                        </div>
+                        <p class="section-text">The output of your work is directly proportional to the time spent multiplied by the intensity of your focus. Shallow work produces shallow results.</p>
+                    </div>
+                    
+                    <div class="section-block">
+                        <div class="section-number">THE RATIO</div>
+                        <div style="display: flex; gap: 40px; margin-top: 16px;">
+                            <div>
+                                <div style="font-size: 32px; font-weight: 700; letter-spacing: -1px;">80%</div>
+                                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; margin-top: 4px;">Deep Work</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 32px; font-weight: 700; letter-spacing: -1px;">20%</div>
+                                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; margin-top: 4px;">Shallow Work</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: Deliberate Practice -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">07 / 15</div>
+        </div>
+
+        <div class="content">
+            <p class="overline">Pillar Three</p>
+            <h1 class="title title--md">Deliberate Practice</h1>
+            <p class="subtitle">Not all practice is equal. Deliberate practice is the gold standard.</p>
+            
+            <div class="framework">
+                <div class="framework-item">
+                    <div class="framework-number">01</div>
+                    <div class="framework-title">Specific Goals</div>
+                </div>
+                <div class="framework-arrow">→</div>
+                <div class="framework-item">
+                    <div class="framework-number">02</div>
+                    <div class="framework-title">Stretch Zone</div>
+                </div>
+                <div class="framework-arrow">→</div>
+                <div class="framework-item">
+                    <div class="framework-number">03</div>
+                    <div class="framework-title">Immediate Feedback</div>
+                </div>
+                <div class="framework-arrow">→</div>
+                <div class="framework-item">
+                    <div class="framework-number">04</div>
+                    <div class="framework-title">Repeat & Refine</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: 10,000 Hour Myth -->
+    <div class="slide slide--muted">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">08 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <p class="overline">Common Misconception</p>
+            <h1 class="title">The 10,000 Hour Myth</h1>
+            <p class="subtitle" style="margin-bottom: 60px;">It's not about the hours. It's about how you spend those hours. Quality of practice matters more than quantity.</p>
+            
+            <div class="grid-3" style="max-width: 900px; margin: 0 auto;">
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 48px; font-weight: 700; letter-spacing: -2px; opacity: 0.3;">10,000</div>
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; margin: 12px 0 16px;">Hours</div>
+                    <p class="card-text">Mindless repetition without purpose</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 48px; font-weight: 700; letter-spacing: -2px; opacity: 0.5;">5,000</div>
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; margin: 12px 0 16px;">Hours</div>
+                    <p class="card-text">Focused practice with some structure</p>
+                </div>
+                <div class="card" style="text-align: center; border: 2px solid #18181b;">
+                    <div style="font-size: 48px; font-weight: 700; letter-spacing: -2px;">2,000</div>
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; margin: 12px 0 16px;">Hours</div>
+                    <p class="card-text">Deliberate practice with feedback</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: Resilience -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">09 / 15</div>
+        </div>
+
+        <div class="content">
+            <div class="grid-2">
+                <div>
+                    <p class="overline">Pillar Four</p>
+                    <h1 class="title title--md">Building<br>Resilience</h1>
+                    <div class="divider"></div>
+                    <p class="subtitle">The path to excellence is paved with failures. What matters is how you respond to setbacks.</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4 class="timeline-title">Recognize the Setback</h4>
+                        <p class="timeline-text">Acknowledge what happened without judgment. It's data, not defeat.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="timeline-title">Reframe the Narrative</h4>
+                        <p class="timeline-text">This is not failure, it's feedback. What can you learn from this experience?</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="timeline-title">Recover Strategically</h4>
+                        <p class="timeline-text">Take a break if needed, but come back with a concrete plan.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="timeline-title">Return Stronger</h4>
+                        <p class="timeline-text">Apply the lessons learned and iterate on your approach.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: Quote -->
+    <div class="slide slide--dark">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">10 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <div class="quote-container">
+                <p class="quote">"The master has failed more times than the beginner has even tried."</p>
+                <div class="quote-attribution">
+                    <div class="quote-line"></div>
+                    <div>
+                        <div class="quote-author">Stephen McCranie</div>
+                        <div class="quote-role">Illustrator & Author</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: Cognitive Biases -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">11 / 15</div>
+        </div>
+
+        <div class="content">
+            <p class="overline">Know Your Enemy</p>
+            <h1 class="title title--md">Cognitive Biases<br>That Hold You Back</h1>
+            
+            <div class="grid-3" style="margin-top: 50px;">
+                <div class="card">
+                    <div class="card-number">IMPOSTOR SYNDROME</div>
+                    <h3 class="card-title">Self-Doubt Despite Success</h3>
+                    <p class="card-text">Doubting your abilities despite evidence of competence. Remember: even the most accomplished feel this way.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">CONFIRMATION BIAS</div>
+                    <h3 class="card-title">Seeking Validation</h3>
+                    <p class="card-text">Seeking information that confirms existing beliefs. Actively look for contradicting evidence.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">DUNNING-KRUGER</div>
+                    <h3 class="card-title">Overestimating Competence</h3>
+                    <p class="card-text">The less you know, the more confident you are. Stay humble and keep learning.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">SUNK COST FALLACY</div>
+                    <h3 class="card-title">Past Investment Trap</h3>
+                    <p class="card-text">Continuing due to past investment rather than future value. Focus on what's ahead.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">PLANNING FALLACY</div>
+                    <h3 class="card-title">Underestimating Time</h3>
+                    <p class="card-text">Underestimating time needed for tasks. Always add buffer to your estimates.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">ANCHORING BIAS</div>
+                    <h3 class="card-title">First Impression Lock</h3>
+                    <p class="card-text">Over-relying on first information received. Always seek multiple perspectives.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: Daily Practices -->
+    <div class="slide slide--dark">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">12 / 15</div>
+        </div>
+
+        <div class="content">
+            <div class="grid-2">
+                <div>
+                    <p class="overline">Actionable Habits</p>
+                    <h1 class="title title--md">Daily Practices</h1>
+                    <div class="divider"></div>
+                    
+                    <ul class="list">
+                        <li><div class="list-marker"></div> Morning: 10 minutes of meditation or journaling</li>
+                        <li><div class="list-marker"></div> Priority: Tackle the hardest task first</li>
+                        <li><div class="list-marker"></div> Focus: 90-minute deep work blocks</li>
+                        <li><div class="list-marker"></div> Review: Daily reflection on what worked</li>
+                        <li><div class="list-marker"></div> Rest: 7-8 hours of quality sleep</li>
+                    </ul>
+                </div>
+                
+                <div class="section-block">
+                    <div class="section-number">THE COMPOUND EFFECT</div>
+                    <h3 class="section-title">The Power of Small Wins</h3>
+                    <p class="section-text" style="margin-bottom: 24px;">Research shows that small daily progress creates a positive cycle of motivation and achievement.</p>
+                    
+                    <div style="padding-top: 24px; border-top: 1px solid #27272a;">
+                        <div style="margin-bottom: 12px; font-size: 14px; opacity: 0.7;">1% better daily = 37x better in a year</div>
+                        <div style="margin-bottom: 12px; font-size: 14px; opacity: 0.7;">Consistency beats intensity</div>
+                        <div style="font-size: 14px; opacity: 0.7;">Systems over goals</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 13: The Equation -->
+    <div class="slide slide--muted">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">13 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <p class="overline">The Formula</p>
+            <h1 class="title title--md">The Excellence Equation</h1>
+            
+            <div style="margin: 60px 0; font-size: 24px; font-weight: 400; letter-spacing: 1px;">
+                <span style="opacity: 0.6;">Growth Mindset</span>
+                <span style="margin: 0 16px; opacity: 0.3;">+</span>
+                <span style="opacity: 0.6;">Deep Focus</span>
+                <span style="margin: 0 16px; opacity: 0.3;">+</span>
+                <span style="opacity: 0.6;">Deliberate Practice</span>
+                <span style="margin: 0 16px; opacity: 0.3;">+</span>
+                <span style="opacity: 0.6;">Resilience</span>
+            </div>
+            
+            <div style="font-size: 56px; font-weight: 700; letter-spacing: -2px; margin-bottom: 32px;">= <span class="highlight">Excellence</span></div>
+            
+            <p class="subtitle">Excellence is not a destination. It's a continuous process of becoming.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 14: Action Plan -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">14 / 15</div>
+        </div>
+
+        <div class="content">
+            <div class="grid-2">
+                <div>
+                    <p class="overline">Take Action</p>
+                    <h1 class="title title--md">Your 7-Day<br>Action Plan</h1>
+                    <div class="divider"></div>
+                    
+                    <div class="section-block">
+                        <div class="section-number">WEEK 1: FOUNDATION</div>
+                        <div style="font-size: 15px; line-height: 2; opacity: 0.7;">
+                            <p><strong>Day 1-2:</strong> Identify your fixed mindset triggers</p>
+                            <p><strong>Day 3-4:</strong> Set up a distraction-free workspace</p>
+                            <p><strong>Day 5-6:</strong> Define one skill to deliberately practice</p>
+                            <p><strong>Day 7:</strong> Reflect and plan for week 2</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="section-block">
+                        <div class="section-number">ONGOING HABITS</div>
+                        <h3 class="section-title">Build the System</h3>
+                        <div style="font-size: 15px; line-height: 2; opacity: 0.7; margin-top: 16px;">
+                            <p>Morning: 5-10 min mindset priming</p>
+                            <p>Daily: 2 hours of deep work minimum</p>
+                            <p>Weekly: Review and adjust practice plan</p>
+                            <p>Monthly: Seek feedback from mentors</p>
+                        </div>
+                    </div>
+                    
+                    <div class="section-block" style="margin-top: 24px;">
+                        <div class="section-number">KEY QUESTION</div>
+                        <p style="font-size: 16px; font-weight: 500; line-height: 1.6; margin-top: 8px;">"What's the one thing I can do today that makes everything else easier or unnecessary?"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Psychology of Excellence</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 15: Closing -->
+    <div class="slide slide--dark">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">15 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <p class="overline">Thank You</p>
+            <h1 class="title title--xl">Beyond Code,<br>There's <span class="highlight">the Mind</span></h1>
+            <div class="divider"></div>
+            <p class="subtitle">Join our weekly MindMaster sessions and grow with a community that understands true engineering excellence.</p>
+            
+            <div style="margin-top: 60px; display: flex; gap: 60px; justify-content: center;">
+                <div style="text-align: left;">
+                    <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Discord</div>
+                    <div style="font-size: 16px; font-weight: 500;">discord.gg/devweekends</div>
+                </div>
+                <div style="text-align: left;">
+                    <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Website</div>
+                    <div style="font-size: 16px; font-weight: 500;">devweekends.com</div>
+                </div>
+                <div style="text-align: left;">
+                    <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">MindMaster</div>
+                    <div style="font-size: 16px; font-weight: 500;">devweekends.com/mindmaster</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Dev Weekends</span>
+            <span class="footer-text">2025</span>
+        </div>
+    </div>
+
+</body>
+</html>

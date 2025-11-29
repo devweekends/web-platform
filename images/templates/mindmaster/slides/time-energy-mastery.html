@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time & Energy Mastery - MindMaster</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fafafa;
+            color: #18181b;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            width: 100vw;
+            min-height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #e4e4e7;
+        }
+
+        .slide--light { background: #fafafa; color: #18181b; }
+        .slide--dark { background: #18181b; color: #fafafa; }
+        .slide--muted { background: #f4f4f5; color: #18181b; }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .brand-divider {
+            width: 1px;
+            height: 16px;
+            background: currentColor;
+            opacity: 0.3;
+        }
+
+        .brand-series {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .slide-number {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            opacity: 0.4;
+        }
+
+        .overline {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .title--xl { font-size: 72px; letter-spacing: -3px; }
+        .title--md { font-size: 42px; letter-spacing: -1px; }
+        .title--sm { font-size: 32px; letter-spacing: -0.5px; }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            opacity: 0.6;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .highlight {
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: #fde047;
+            z-index: -1;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content--center {
+            align-items: center;
+            text-align: center;
+        }
+
+        .content--center .subtitle { max-width: 700px; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #e4e4e7;
+        }
+
+        .slide--dark .grid-3 { background: #27272a; }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 48px;
+        }
+
+        .slide--dark .card { background: #27272a; }
+        .slide--muted .card { background: #fff; }
+
+        .card-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            opacity: 0.3;
+            margin-bottom: 24px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .card-text {
+            font-size: 14px;
+            opacity: 0.6;
+            line-height: 1.7;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .stat-value {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 12px;
+            letter-spacing: -3px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .list {
+            list-style: none;
+        }
+
+        .list li {
+            font-size: 18px;
+            padding: 20px 0;
+            border-bottom: 1px solid #e4e4e7;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .slide--dark .list li { border-color: #27272a; }
+        .list li:last-child { border-bottom: none; }
+
+        .list-marker {
+            width: 24px;
+            height: 24px;
+            border: 2px solid currentColor;
+            opacity: 0.3;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .quote-container { max-width: 800px; }
+
+        .quote {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            letter-spacing: -0.5px;
+        }
+
+        .quote-attribution {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .quote-line {
+            width: 40px;
+            height: 1px;
+            background: currentColor;
+            opacity: 0.3;
+        }
+
+        .quote-author { font-size: 14px; font-weight: 600; }
+        .quote-role { font-size: 13px; opacity: 0.5; margin-top: 2px; }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: currentColor;
+            opacity: 0.2;
+            margin: 32px 0;
+        }
+
+        .content--center .divider { margin: 32px auto; }
+
+        .accent-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: #18181b;
+        }
+
+        .slide--dark .accent-bar { background: #fafafa; }
+
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            margin-top: auto;
+        }
+
+        .footer-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            opacity: 0.4;
+        }
+
+        @media print {
+            .slide { page-break-after: always; height: 100vh; }
+        }
+
+        .section-block {
+            padding: 48px;
+            border: 1px solid #e4e4e7;
+            margin-bottom: 24px;
+        }
+
+        .slide--dark .section-block { border-color: #27272a; }
+        .section-block:last-child { margin-bottom: 0; }
+
+        .section-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .section-text {
+            font-size: 14px;
+            opacity: 0.6;
+            line-height: 1.7;
+        }
+
+        .big-number {
+            font-size: 200px;
+            font-weight: 800;
+            line-height: 0.8;
+            letter-spacing: -10px;
+            opacity: 0.05;
+            position: absolute;
+            right: 80px;
+            bottom: 100px;
+        }
+
+        /* Time Block Schedule */
+        .time-block {
+            display: flex;
+            align-items: stretch;
+            border: 1px solid #e4e4e7;
+            margin-bottom: 12px;
+        }
+
+        .slide--dark .time-block { border-color: #27272a; }
+
+        .time-block-time {
+            font-size: 14px;
+            font-weight: 600;
+            min-width: 120px;
+            padding: 20px 24px;
+            border-right: 1px solid #e4e4e7;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide--dark .time-block-time { border-color: #27272a; }
+
+        .time-block-content {
+            flex: 1;
+            padding: 20px 24px;
+        }
+
+        .time-block-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .time-block-desc {
+            font-size: 13px;
+            opacity: 0.5;
+        }
+
+        /* Energy Bars */
+        .energy-bar {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 16px;
+        }
+
+        .energy-label {
+            min-width: 80px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .energy-track {
+            flex: 1;
+            height: 8px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .slide--dark .energy-track { background: rgba(255,255,255,0.1); }
+
+        .energy-fill {
+            height: 100%;
+            background: #18181b;
+        }
+
+        .slide--dark .energy-fill { background: #fafafa; }
+
+        /* Matrix */
+        .matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1px;
+            background: #e4e4e7;
+            border: 1px solid #e4e4e7;
+        }
+
+        .matrix-cell {
+            background: #fff;
+            padding: 32px;
+        }
+
+        .matrix-header {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin-bottom: 12px;
+        }
+
+        .matrix-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .matrix-action {
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid #e4e4e7;
+        }
+
+        .slide--dark .comparison { border-color: #27272a; }
+
+        .comparison-col { padding: 48px; }
+
+        .comparison-col:first-child {
+            border-right: 1px solid #e4e4e7;
+        }
+
+        .slide--dark .comparison-col:first-child { border-color: #27272a; }
+
+        .comparison-header {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 32px;
+            opacity: 0.5;
+        }
+
+        .comparison-item {
+            font-size: 15px;
+            padding: 12px 0;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: Title -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">01 / 15</div>
+        </div>
+
+        <div class="content">
+            <p class="overline">A Closed Community for Thinkers</p>
+            <h1 class="title title--xl">Time & Energy<br><span class="highlight">Mastery</span></h1>
+            <div class="divider"></div>
+            <p class="subtitle">Time management is energy management. Learn to work with your natural rhythms and multiply your productivity without burning out.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">devweekends.com/mindmaster</span>
+            <span class="footer-text">Productivity Series</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: The Truth -->
+    <div class="slide slide--dark">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">02 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <p class="overline">The Reality Check</p>
+            <h1 class="title">Everyone has the same<br><span class="highlight">24 hours</span></h1>
+            <p class="subtitle">The difference isn't time management — it's energy management. You can't create more time, but you can multiply your energy.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: The Energy Types -->
+    <div class="slide slide--muted">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">03 / 15</div>
+        </div>
+
+        <div class="content">
+            <p class="overline">The Science</p>
+            <h1 class="title title--md">Four Types of Energy</h1>
+            <p class="subtitle" style="margin-bottom: 60px;">Your output depends on four interconnected energy sources. Neglect one, and the others suffer.</p>
+            
+            <div class="grid-4">
+                <div class="card" style="text-align: center;">
+                    <div class="card-number">PHYSICAL</div>
+                    <h3 class="card-title">The Foundation</h3>
+                    <p class="card-text">Sleep, nutrition, exercise. Everything else depends on this.</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div class="card-number">EMOTIONAL</div>
+                    <h3 class="card-title">The Fuel</h3>
+                    <p class="card-text">Positive emotions, relationships, self-confidence.</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div class="card-number">MENTAL</div>
+                    <h3 class="card-title">The Focus</h3>
+                    <p class="card-text">Concentration, creativity, analytical thinking capacity.</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div class="card-number">SPIRITUAL</div>
+                    <h3 class="card-title">The Why</h3>
+                    <p class="card-text">Purpose, meaning, connection to something larger.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: Biological Prime Time -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">04 / 15</div>
+        </div>
+
+        <div class="content">
+            <div class="grid-2">
+                <div>
+                    <p class="overline">Know Yourself</p>
+                    <h1 class="title title--md">Your Biological<br>Prime Time</h1>
+                    <div class="divider"></div>
+                    <p class="subtitle">Everyone has 2-4 hours of peak cognitive performance each day. Identify yours and protect it fiercely.</p>
+                    
+                    <ul class="list" style="margin-top: 40px;">
+                        <li><div class="list-marker"></div> <strong>Morning Larks:</strong> Peak at 6AM - 10AM</li>
+                        <li><div class="list-marker"></div> <strong>Night Owls:</strong> Peak at 9PM - 1AM</li>
+                        <li><div class="list-marker"></div> <strong>Third Birds:</strong> Peak at 10AM - 2PM</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="section-block">
+                        <div class="section-number">TYPICAL ENERGY CURVE</div>
+                        
+                        <div class="energy-bar">
+                            <span class="energy-label">6 AM</span>
+                            <div class="energy-track"><div class="energy-fill" style="width: 50%;"></div></div>
+                        </div>
+                        <div class="energy-bar">
+                            <span class="energy-label">9 AM</span>
+                            <div class="energy-track"><div class="energy-fill" style="width: 100%;"></div></div>
+                        </div>
+                        <div class="energy-bar">
+                            <span class="energy-label">12 PM</span>
+                            <div class="energy-track"><div class="energy-fill" style="width: 80%;"></div></div>
+                        </div>
+                        <div class="energy-bar">
+                            <span class="energy-label">3 PM</span>
+                            <div class="energy-track"><div class="energy-fill" style="width: 35%;"></div></div>
+                        </div>
+                        <div class="energy-bar">
+                            <span class="energy-label">6 PM</span>
+                            <div class="energy-track"><div class="energy-fill" style="width: 55%;"></div></div>
+                        </div>
+                        <div class="energy-bar">
+                            <span class="energy-label">9 PM</span>
+                            <div class="energy-track"><div class="energy-fill" style="width: 25%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: Eisenhower Matrix -->
+    <div class="slide slide--muted">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">05 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <p class="overline">Prioritization Framework</p>
+            <h1 class="title title--md">The Eisenhower Matrix</h1>
+            <p class="subtitle" style="margin-bottom: 50px;">Not everything that's urgent is important. Learn to distinguish between them.</p>
+            
+            <div class="matrix" style="max-width: 800px; margin: 0 auto;">
+                <div class="matrix-cell">
+                    <div class="matrix-header">Urgent + Important</div>
+                    <div class="matrix-title">Do First</div>
+                    <div class="matrix-action">Crisis, deadlines, emergencies</div>
+                </div>
+                <div class="matrix-cell">
+                    <div class="matrix-header">Not Urgent + Important</div>
+                    <div class="matrix-title">Schedule</div>
+                    <div class="matrix-action">Deep work, learning, planning</div>
+                </div>
+                <div class="matrix-cell">
+                    <div class="matrix-header">Urgent + Not Important</div>
+                    <div class="matrix-title">Delegate</div>
+                    <div class="matrix-action">Interruptions, some meetings</div>
+                </div>
+                <div class="matrix-cell">
+                    <div class="matrix-header">Not Urgent + Not Important</div>
+                    <div class="matrix-title">Eliminate</div>
+                    <div class="matrix-action">Time wasters, distractions</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: Time Blocking -->
+    <div class="slide slide--dark">
+        <div class="big-number">TB</div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">06 / 15</div>
+        </div>
+
+        <div class="content">
+            <div class="grid-2">
+                <div>
+                    <p class="overline">Strategy</p>
+                    <h1 class="title title--md">Time<br>Blocking</h1>
+                    <div class="divider"></div>
+                    <p class="subtitle">Don't work from a to-do list. Block your calendar like a meeting with yourself.</p>
+                    
+                    <div style="margin-top: 40px; font-size: 14px; line-height: 2; opacity: 0.7;">
+                        <p>Block your peak hours for deep work</p>
+                        <p>Batch similar tasks together</p>
+                        <p>Add buffer time between blocks</p>
+                        <p>Treat blocks as sacred appointments</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="time-block">
+                        <div class="time-block-time">6:00 - 7:00</div>
+                        <div class="time-block-content">
+                            <div class="time-block-title">Morning Routine</div>
+                            <div class="time-block-desc">Exercise, meditation, journaling</div>
+                        </div>
+                    </div>
+                    <div class="time-block">
+                        <div class="time-block-time">7:00 - 10:00</div>
+                        <div class="time-block-content">
+                            <div class="time-block-title">Deep Work Block</div>
+                            <div class="time-block-desc">Most challenging coding task</div>
+                        </div>
+                    </div>
+                    <div class="time-block">
+                        <div class="time-block-time">10:00 - 11:00</div>
+                        <div class="time-block-content">
+                            <div class="time-block-title">Communication Block</div>
+                            <div class="time-block-desc">Emails, Slack, meetings</div>
+                        </div>
+                    </div>
+                    <div class="time-block">
+                        <div class="time-block-time">11:00 - 12:00</div>
+                        <div class="time-block-content">
+                            <div class="time-block-title">Admin Block</div>
+                            <div class="time-block-desc">Reviews, documentation, planning</div>
+                        </div>
+                    </div>
+                    <div class="time-block">
+                        <div class="time-block-time">1:00 - 4:00</div>
+                        <div class="time-block-content">
+                            <div class="time-block-title">Project Work</div>
+                            <div class="time-block-desc">Feature development, debugging</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: Pomodoro -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">07 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <p class="overline">Technique</p>
+            <h1 class="title title--md">The Pomodoro Technique</h1>
+            <p class="subtitle" style="margin-bottom: 60px;">Work in focused sprints with strategic breaks to maintain energy throughout the day.</p>
+            
+            <div style="display: flex; align-items: center; gap: 32px; justify-content: center;">
+                <div class="section-block" style="text-align: center; min-width: 140px;">
+                    <div style="font-size: 48px; font-weight: 700; letter-spacing: -2px;">25</div>
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; margin-top: 8px;">Minutes Focus</div>
+                </div>
+                <div style="font-size: 24px; opacity: 0.2;">→</div>
+                <div class="section-block" style="text-align: center; min-width: 140px;">
+                    <div style="font-size: 48px; font-weight: 700; letter-spacing: -2px;">5</div>
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; margin-top: 8px;">Minutes Break</div>
+                </div>
+                <div style="font-size: 24px; opacity: 0.2;">→</div>
+                <div class="section-block" style="text-align: center; min-width: 140px;">
+                    <div style="font-size: 48px; font-weight: 700; letter-spacing: -2px;">4×</div>
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; margin-top: 8px;">Then Long Break</div>
+                </div>
+            </div>
+            
+            <p style="font-size: 14px; opacity: 0.5; margin-top: 40px;">After 4 pomodoros, take a longer 15-30 minute break to fully recharge.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: Energy Vampires -->
+    <div class="slide slide--dark">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">08 / 15</div>
+        </div>
+
+        <div class="content">
+            <p class="overline">Watch Out</p>
+            <h1 class="title title--md">Energy Vampires</h1>
+            <p class="subtitle" style="margin-bottom: 50px;">These hidden drains silently kill your productivity. Identify and eliminate them.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-number">CONTEXT SWITCHING</div>
+                    <h3 class="card-title">The 23-Minute Tax</h3>
+                    <p class="card-text">Every switch costs 23 minutes to refocus. Batch similar tasks and protect deep work blocks.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">NOTIFICATIONS</div>
+                    <h3 class="card-title">The Attention Thief</h3>
+                    <p class="card-text">Turn them all off. Check messages on your schedule, not others'.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">DECISION FATIGUE</div>
+                    <h3 class="card-title">The Willpower Drain</h3>
+                    <p class="card-text">Every decision depletes willpower. Automate routine choices.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">POOR SLEEP</div>
+                    <h3 class="card-title">The Compound Debt</h3>
+                    <p class="card-text">Sleep debt compounds. One bad night equals 4 hours of lost productivity.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">BLOOD SUGAR</div>
+                    <h3 class="card-title">The Afternoon Crash</h3>
+                    <p class="card-text">High-carb meals cause slumps. Eat protein-rich, low-glycemic foods.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">UNRESOLVED STRESS</div>
+                    <h3 class="card-title">The Mental Bandwidth</h3>
+                    <p class="card-text">Anxiety consumes mental capacity. Address problems, don't suppress them.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: Quote -->
+    <div class="slide slide--muted">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">09 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <div class="quote-container">
+                <p class="quote">"Time is what we want most, but what we use worst."</p>
+                <div class="quote-attribution">
+                    <div class="quote-line"></div>
+                    <div>
+                        <div class="quote-author">William Penn</div>
+                        <div class="quote-role">Founder of Pennsylvania</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: 80/20 Rule -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">10 / 15</div>
+        </div>
+
+        <div class="content">
+            <div class="grid-2">
+                <div>
+                    <p class="overline">Pareto Principle</p>
+                    <h1 class="title title--md">The 80/20<br>Rule</h1>
+                    <div class="divider"></div>
+                    <p class="subtitle">80% of results come from 20% of efforts. Identify your high-leverage activities.</p>
+                    
+                    <ul class="list" style="margin-top: 40px;">
+                        <li><div class="list-marker"></div> What 20% of work drives 80% of value?</li>
+                        <li><div class="list-marker"></div> What 80% can you eliminate or delegate?</li>
+                        <li><div class="list-marker"></div> Double down on what works</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison">
+                    <div class="comparison-col">
+                        <div class="comparison-header">High-Value (20%)</div>
+                        <div class="comparison-item">System architecture decisions</div>
+                        <div class="comparison-item">Solving hard bugs</div>
+                        <div class="comparison-item">Learning core concepts</div>
+                        <div class="comparison-item">Code reviews for critical systems</div>
+                    </div>
+                    <div class="comparison-col">
+                        <div class="comparison-header">Low-Value (80%)</div>
+                        <div class="comparison-item">Meetings without clear agenda</div>
+                        <div class="comparison-item">Perfecting already-working code</div>
+                        <div class="comparison-item">Tutorial hopping</div>
+                        <div class="comparison-item">Bikeshedding on minor issues</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: Rest is Productive -->
+    <div class="slide slide--dark">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">11 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <p class="overline">Counterintuitive Truth</p>
+            <h1 class="title">Rest is <span class="highlight">Productive</span></h1>
+            <p class="subtitle" style="margin-bottom: 60px;">Strategic rest isn't laziness — it's the secret weapon of high performers.</p>
+            
+            <div class="grid-4">
+                <div class="stat">
+                    <div class="stat-value">7-9</div>
+                    <div class="stat-label">Hours Sleep</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Day Off Weekly</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">15</div>
+                    <div class="stat-label">Min Walks</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Guilt</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: Weekly Review -->
+    <div class="slide slide--muted">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">12 / 15</div>
+        </div>
+
+        <div class="content">
+            <p class="overline">System</p>
+            <h1 class="title title--md">The Weekly Review</h1>
+            <p class="subtitle" style="margin-bottom: 50px;">30 minutes every Sunday to plan the week ahead. Non-negotiable.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-number">01</div>
+                    <h3 class="card-title">Review</h3>
+                    <p class="card-text" style="margin-top: 16px; line-height: 2;">
+                        What got done?<br>
+                        What didn't? Why?<br>
+                        Energy patterns?<br>
+                        Key wins?
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-number">02</div>
+                    <h3 class="card-title">Plan</h3>
+                    <p class="card-text" style="margin-top: 16px; line-height: 2;">
+                        3 big priorities<br>
+                        Time block calendar<br>
+                        Buffer for unexpected<br>
+                        Schedule rest
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-number">03</div>
+                    <h3 class="card-title">Prepare</h3>
+                    <p class="card-text" style="margin-top: 16px; line-height: 2;">
+                        Clear inbox to zero<br>
+                        Organize workspace<br>
+                        Prep materials needed<br>
+                        Visualize success
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 13: Tools -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">13 / 15</div>
+        </div>
+
+        <div class="content">
+            <p class="overline">Recommendations</p>
+            <h1 class="title title--md">Productivity Tools</h1>
+            <p class="subtitle" style="margin-bottom: 50px;">The best tool is the one you'll actually use. Start simple.</p>
+            
+            <div class="grid-4">
+                <div class="card" style="text-align: center;">
+                    <div class="card-number">NOTES</div>
+                    <h3 class="card-title">Notion / Obsidian</h3>
+                    <p class="card-text">Knowledge management and planning</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div class="card-number">CALENDAR</div>
+                    <h3 class="card-title">Google Calendar</h3>
+                    <p class="card-text">Time blocking and scheduling</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div class="card-number">FOCUS</div>
+                    <h3 class="card-title">Forest / Pomofocus</h3>
+                    <p class="card-text">Focus timer and distraction blocker</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div class="card-number">TRACKING</div>
+                    <h3 class="card-title">Toggl Track</h3>
+                    <p class="card-text">Time tracking and analysis</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 14: Action Steps -->
+    <div class="slide slide--dark">
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">14 / 15</div>
+        </div>
+
+        <div class="content">
+            <div class="grid-2">
+                <div>
+                    <p class="overline">Start Today</p>
+                    <h1 class="title title--md">Your Action<br>Steps</h1>
+                    <div class="divider"></div>
+                    
+                    <ul class="list">
+                        <li><div class="list-marker"></div> Track your energy for one week</li>
+                        <li><div class="list-marker"></div> Identify your biological prime time</li>
+                        <li><div class="list-marker"></div> Block your calendar for next week</li>
+                        <li><div class="list-marker"></div> Turn off all notifications</li>
+                        <li><div class="list-marker"></div> Schedule your weekly review</li>
+                    </ul>
+                </div>
+                
+                <div class="section-block">
+                    <div class="section-number">THE ONE THING</div>
+                    <p style="font-size: 18px; font-weight: 500; line-height: 1.6; margin-bottom: 24px;">"What's the one thing I can do, such that by doing it, everything else will be easier or unnecessary?"</p>
+                    <p style="font-size: 13px; opacity: 0.5;">— Gary Keller, The ONE Thing</p>
+                    
+                    <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid #27272a;">
+                        <p style="font-size: 14px; opacity: 0.7;">Ask this question every morning before you start work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Time & Energy Mastery</span>
+            <span class="footer-text">devweekends.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 15: Closing -->
+    <div class="slide slide--light">
+        <div class="accent-bar"></div>
+        
+        <div class="slide-header">
+            <div class="brand">
+                <span class="brand-logo">Dev Weekends</span>
+                <div class="brand-divider"></div>
+                <span class="brand-series">MindMaster</span>
+            </div>
+            <div class="slide-number">15 / 15</div>
+        </div>
+
+        <div class="content content--center">
+            <p class="overline">Thank You</p>
+            <h1 class="title title--xl">Master Your Time,<br><span class="highlight">Master Your Life</span></h1>
+            <div class="divider"></div>
+            <p class="subtitle">Join our weekly MindMaster sessions for more frameworks on productivity, psychology, and purposeful living.</p>
+            
+            <div style="margin-top: 60px; display: flex; gap: 60px; justify-content: center;">
+                <div style="text-align: left;">
+                    <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Discord</div>
+                    <div style="font-size: 16px; font-weight: 500;">discord.gg/devweekends</div>
+                </div>
+                <div style="text-align: left;">
+                    <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Website</div>
+                    <div style="font-size: 16px; font-weight: 500;">devweekends.com</div>
+                </div>
+                <div style="text-align: left;">
+                    <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">MindMaster</div>
+                    <div style="font-size: 16px; font-weight: 500;">devweekends.com/mindmaster</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="footer-text">Dev Weekends</span>
+            <span class="footer-text">2025</span>
+        </div>
+    </div>
+
+</body>
+</html>

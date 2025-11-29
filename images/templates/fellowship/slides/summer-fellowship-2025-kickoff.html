@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Weekends Summer Fellowship 2025 - Kick-Off</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #18181b;
+            color: #fafafa;
+            overflow: hidden;
+        }
+
+        /* Slide Container */
+        .slides-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide--light { background: #fafafa; color: #18181b; }
+        .slide--dark { background: #18181b; color: #fafafa; }
+        .slide--muted { background: #f4f4f5; color: #18181b; }
+        .slide--accent { background: #27272a; color: #fafafa; }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            bottom: 40px;
+            right: 80px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.3);
+            color: #fafafa;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .slide--light .nav-btn,
+        .slide--muted .nav-btn {
+            border-color: rgba(0,0,0,0.2);
+            background: rgba(255,255,255,0.8);
+            color: #18181b;
+        }
+
+        .nav-btn:hover {
+            background: #fde047;
+            color: #18181b;
+            border-color: #fde047;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #fde047;
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 48px;
+            left: 80px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            z-index: 1000;
+        }
+
+        /* Header */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .brand-divider {
+            width: 1px;
+            height: 16px;
+            background: currentColor;
+            opacity: 0.3;
+        }
+
+        .brand-series {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        /* Typography */
+        .overline {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .title--xl { font-size: 72px; letter-spacing: -3px; }
+        .title--lg { font-size: 64px; letter-spacing: -2.5px; }
+        .title--md { font-size: 42px; letter-spacing: -1px; }
+        .title--sm { font-size: 32px; letter-spacing: -0.5px; }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            opacity: 0.6;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .highlight {
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: #fde047;
+            z-index: -1;
+        }
+
+        .slide--dark .highlight::after,
+        .slide--accent .highlight::after {
+            opacity: 0.9;
+        }
+
+        /* Content */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content--center {
+            align-items: center;
+            text-align: center;
+        }
+
+        .content--center .subtitle { max-width: 700px; }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .slide--light .grid-3,
+        .slide--muted .grid-3 { background: #e4e4e7; }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255,255,255,0.05);
+            padding: 48px;
+        }
+
+        .slide--light .card,
+        .slide--muted .card { background: #fff; }
+
+        .card-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            opacity: 0.3;
+            margin-bottom: 24px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .card-text {
+            font-size: 14px;
+            opacity: 0.6;
+            line-height: 1.7;
+        }
+
+        /* Lists */
+        .list {
+            list-style: none;
+        }
+
+        .list li {
+            font-size: 18px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .slide--light .list li,
+        .slide--muted .list li { border-color: #e4e4e7; }
+
+        .list li:last-child { border-bottom: none; }
+
+        .list-marker {
+            width: 8px;
+            height: 8px;
+            background: #fde047;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        /* Section Block */
+        .section-block {
+            padding: 48px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 24px;
+        }
+
+        .slide--light .section-block,
+        .slide--muted .section-block { border-color: #e4e4e7; }
+
+        .section-block:last-child { margin-bottom: 0; }
+
+        .section-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .section-text {
+            font-size: 14px;
+            opacity: 0.6;
+            line-height: 1.7;
+        }
+
+        /* Comparison */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .slide--light .comparison,
+        .slide--muted .comparison { border-color: #e4e4e7; }
+
+        .comparison-col { padding: 48px; }
+
+        .comparison-col:first-child {
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .slide--light .comparison-col:first-child,
+        .slide--muted .comparison-col:first-child { border-color: #e4e4e7; }
+
+        .comparison-header {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 32px;
+            opacity: 0.5;
+        }
+
+        .comparison-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .comparison-text {
+            font-size: 15px;
+            opacity: 0.6;
+            line-height: 1.7;
+        }
+
+        /* Divider */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: currentColor;
+            opacity: 0.2;
+            margin: 32px 0;
+        }
+
+        .content--center .divider { margin: 32px auto; }
+
+        /* Accent Bar */
+        .accent-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: #fde047;
+        }
+
+        /* Footer */
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            margin-top: auto;
+        }
+
+        .footer-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            opacity: 0.4;
+        }
+
+        /* Special Styles */
+        .dev-logo {
+            margin-bottom: 40px;
+        }
+
+        .dev-logo-text {
+            font-size: 64px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .dev-logo-weekends {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            opacity: 0.5;
+            margin-top: 8px;
+        }
+
+        .speakers {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .speaker {
+            text-align: center;
+        }
+
+        .speaker-avatar {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .speaker-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .speaker-role {
+            font-size: 12px;
+            opacity: 0.5;
+            margin-top: 4px;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 32px;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .slide--light .timeline-item,
+        .slide--muted .timeline-item { border-color: #e4e4e7; }
+
+        .timeline-year {
+            font-size: 14px;
+            font-weight: 700;
+            min-width: 80px;
+            opacity: 0.4;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Big decorative number */
+        .big-number {
+            font-size: 200px;
+            font-weight: 800;
+            line-height: 0.8;
+            letter-spacing: -10px;
+            opacity: 0.03;
+            position: absolute;
+            right: 80px;
+            bottom: 100px;
+        }
+
+        /* Keyboard hints */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            opacity: 0.3;
+            letter-spacing: 1px;
+            z-index: 1000;
+        }
+
+        @media print {
+            .slide { page-break-after: always; }
+            .nav, .progress, .slide-counter, .keyboard-hint { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress" id="progress"></div>
+    <div class="slide-counter" id="slideCounter">01 / 14</div>
+    <div class="keyboard-hint">Use arrow keys or buttons to navigate</div>
+
+    <nav class="nav">
+        <button class="nav-btn" id="prevBtn" onclick="prevSlide()">←</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">→</button>
+    </nav>
+
+    <div class="slides-container">
+
+        <!-- SLIDE 1: Title -->
+        <div class="slide slide--dark active" data-slide="1">
+            <div class="accent-bar"></div>
+            
+            <div class="slide-header">
+                <div class="brand">
+                    <span class="brand-logo">Dev Weekends</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-series">Fellowship</span>
+                </div>
+            </div>
+
+            <div class="content content--center">
+                <div class="dev-logo">
+                    <div class="dev-logo-text">Dev</div>
+                    <div class="dev-logo-weekends">[WEEKENDS]</div>
+                </div>
+                <h1 class="title">Summer Fellowship <span class="highlight">2025</span></h1>
+                <p class="subtitle">Kick-Off Session</p>
+                
+                <div class="speakers">
+                    <div class="speaker">
+                        <!-- <div class="speaker-avatar">ZA</div> -->
+                        <div class="speaker-name">Zeeshan Adil</div>
+                        <div class="speaker-role">Founder</div>
+                    </div>
+                    <div class="speaker">
+                        <!-- <div class="speaker-avatar">QA</div> -->
+                        <div class="speaker-name">Qurban Ali</div>
+                        <div class="speaker-role">Co-Founder</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span class="footer-text">devweekends.com/fellowship</span>
+                <span class="footer-text">Summer 2025</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: What is Dev Weekends -->
+        <div class="slide slide--light" data-slide="2">
+            <div class="accent-bar"></div>
+            
+            <div class="slide-header">
+                <div class="brand">
+                    <span class="brand-logo">Dev Weekends</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-series">Fellowship</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <p class="overline">About Us</p>
+                <h1 class="title title--md">What is <span class="highlight">Dev Weekends</span>?</h1>
+                <div class="divider"></div>
+                
+                <div class="grid-2" style="margin-top: 40px;">
+                    <div>
+                        <ul class="list">
+                            <li><div class="list-marker"></div> A community-driven initiative</li>
+                            <li><div class="list-marker"></div> Encourages collaboration among developers</li>
+                            <li><div class="list-marker"></div> Designed to foster growth and learning</li>
+                            <li><div class="list-marker"></div> Creates a supportive environment</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="list">
+                            <li><div class="list-marker"></div> Provides a platform for learning</li>
+                            <li><div class="list-marker"></div> Offers resources to expand knowledge</li>
+                            <li><div class="list-marker"></div> Sharing knowledge together</li>
+                            <li><div class="list-marker"></div> Building projects as a team</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span class="footer-text">Summer Fellowship 2025</span>
+                <span class="footer-text">devweekends.com</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Our Ideology -->
+        <div class="slide slide--dark" data-slide="3">
+            <div class="big-number">01</div>
+            
+            <div class="slide-header">
+                <div class="brand">
+                    <span class="brand-logo">Dev Weekends</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-series">Fellowship</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <p class="overline">Core Values</p>
+                <h1 class="title title--md">Our <span class="highlight">Ideology</span></h1>
+                <p class="subtitle" style="margin-bottom: 60px;">The principles that guide everything we do.</p>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-number">PURPOSE</div>
+                        <h3 class="card-title">Having a Bigger Purpose in Life</h3>
+                        <p class="card-text">Fostering a community where sharing ideas and resources is prioritized over rivalry.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-number">LEARNING</div>
+                        <h3 class="card-title">Continuous Learning</h3>
+                        <p class="card-text">Encouraging a culture where every member seeks to expand their knowledge and skills.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-number">EMPOWERMENT</div>
+                        <h3 class="card-title">Empowerment Through Knowledge Sharing</h3>
+                        <p class="card-text">Creating opportunities for individuals to share insights and experiences to uplift the community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span class="footer-text">Summer Fellowship 2025</span>
+                <span class="footer-text">devweekends.com</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Purpose & Plan -->
+        <div class="slide slide--muted" data-slide="4">
+            <div class="slide-header">
+                <div class="brand">
+                    <span class="brand-logo">Dev Weekends</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-series">Fellowship</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <p class="overline">The Fellowship</p>
+                <h1 class="title title--md">Purpose & <span class="highlight">Plan</span></h1>
+                <p class="subtitle" style="margin-bottom: 60px;">What you'll gain from this experience.</p>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-number">01</div>
+                        <h3 class="card-title">Real-World Experience</h3>
+                        <p class="card-text">Participants gain hands-on experience in the tech industry, preparing them for future careers.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-number">02</div>
+                        <h3 class="card-title">Mentorship Opportunities</h3>
+                        <p class="card-text">Access to industry professionals who provide guidance and support throughout the fellowship.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-number">03</div>
+                        <h3 class="card-title">Skill Development</h3>
+                        <p class="card-text">Fellows will enhance their technical skills, making them more competitive in the job market.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span class="footer-text">Summer Fellowship 2025</span>
+                <span class="footer-text">devweekends.com</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Plan for the Summer -->
+        <div class="slide slide--dark" data-slide="5">
+            <div class="accent-bar"></div>
+            
+            <div class="slide-header">
+                <div class="brand">
+                    <span class="brand-logo">Dev Weekends</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-series">Fellowship</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="grid-2">
+                    <div>
+                        <p class="overline">Roadmap</p>
+                        <h1 class="title title--md">Plan for the <span class="highlight">Summer</span></h1>
+                        <div class="divider"></div>
+                        <p class="subtitle">A structured approach to maximize your growth this season.</p>
+                    </div>
+                    
+                    <div>
+                        <div class="section-block">
+                            <div class="section-number">WORKSHOPS</div>
+                            <p class="section-text">Engage in workshops focused on key technologies. Learn about the latest technologies that are shaping the industry.</p>
+                        </div>
+                        <div class="section-block">
+                            <div class="section-number">MENTORSHIP</div>
+                            <p class="section-text">Participate in mentorship sessions. Gain insights and guidance from experienced professionals in your field.</p>
+                        </div>
+                        <div class="section-block">
+                            <div class="section-number">REAL PROJECTS</div>
+                            <p class="section-text">Collaborate on team projects with real clients. Apply your skills in practical scenarios and build real-world solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span class="footer-text">Summer Fellowship 2025</span>
+                <span class="footer-text">devweekends.com</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: How to Plan Your 4 Years -->
+        <div class="slide slide--light" data-slide="6">
+            <div class="accent-bar"></div>
+            
+            <div class="slide-header">
+                <div class="brand">
+                    <span class="brand-logo">Dev Weekends</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-series">Fellowship</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <p class="overline">Career Path</p>
+                <h1 class="title title--md">How to Plan Your <span class="highlight">4 Years</span></h1>
+                <p class="subtitle" style="margin-bottom: 50px;">Strategic focus areas for your university journey.</p>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-number">TECH</div>
+                        <h3 class="card-title">Technical Skills</h3>
+                        <p class="card-text" style="margin-top: 16px;">
+                            SDDC<br>
+                            Open Source Contributions<br>
+                            System Design<br>
+                            Full-Stack Development
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-number">ECA</div>
+                        <h3 class="card-title">Extra-Curricular</h3>
+                        <p class="card-text" style="margin-top: 16px;">
+                            IELTS Preparation<br>
+                            Leadership Roles<br>
+                            Hacker Cup / Competitions<br>
+                            Community Building
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-number">THEORY</div>
+                        <h3 class="card-title">Academic Foundation</h3>
+                        <p class="card-text" style="margin-top: 16px;">
+                            DSA & Algorithms<br>
+                            Computer Science Fundamentals<br>
+                            Research & Writing<br>
+                            Diverse Tech Exploration
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span class="footer-text">Summer Fellowship 2025</span>
+                <span class="footer-text">devweekends.com</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: Developer vs Engineer -->
+        <div class="slide slide--dark" data-slide="7">
+            <div class="big-number">vs</div>
+            
+            <div class="slide-header">
+                <div class="brand">
+                    <span class="brand-logo">Dev Weekends</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-series">Fellowship</span>
+                </div>
+            </div>
+
+            <div class="content content--center">
+                <p class="overline">Mindset Matters</p>
+                <h1 class="title title--md">Developer vs Engineer <span class="highlight">Mindset</span></h1>
+                <p class="subtitle" style="margin-bottom: 50px;">Understanding the difference in approach.</p>
+                
+                <div class="comparison" style="max-width: 900px; margin: 0 auto;">
+                    <div class="comparison-col">
+                        <div class="comparison-header">Developer</div>
+                        <div class="comparison-title">Focused on Coding</div>
+                        <div class="comparison-text">Developers are primarily concerned with the practical aspects of creating software and applications. Building solutions, writing code, shipping features.</div>
+                    </div>
+                    <div class="comparison-col">
+                        <div class="comparison-header">Engineer</div>
+                        <div class="comparison-title">Focused on Design</div>
+                        <div class="comparison-text">Engineers take a broader view, focusing on how different components fit together to create a cohesive system. Architecture, scalability, maintainability.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span class="footer-text">Summer Fellowship 2025</span>
+                <span class="footer-text">devweekends.com</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: A Day at Dev Weekends -->
+        <div class="slide slide--muted" data-slide="8">
+            <div class="slide-header">
+                <div class="brand">
+                    <span class="brand-logo">Dev Weekends</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-series">Fellowship</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <p class="overline">Experience</p>
+                <h1 class="title title--md">A Day at <span class="highlight">Dev Weekends</span></h1>
+                <p class="subtitle" style="margin-bottom: 50px;">Your journey with mentors and peers.</p>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-number">SESSION 01</div>
+                        <h3 class="card-title">Hands-on Coding Sessions</h3>
+                        <p class="card-text">Engage in practical coding exercises that enhance your skills and build real-world experience.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-number">SESSION 02</div>
+                        <h3 class="card-title">Collaboration on Projects</h3>
+                        <p class="card-text">Work alongside peers to develop innovative projects that solve real problems.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-number">SESSION 03</div>
+                        <h3 class="card-title">Networking Opportunities</h3>
+                        <p class="card-text">Connect with mentors and fellow participants for future opportunities and growth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span class="footer-text">Summer Fellowship 2025</span>
+                <span class="footer-text">devweekends.com</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: Reflection and Talks -->
+        <div class="slide slide--dark" data-slide="9">
+            <div class="accent-bar"></div>
+            
+            <div class="slide-header">
+                <div class="brand">
+                    <span class="brand-logo">Dev Weekends</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-series">Fellowship</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <p class="overline">Beyond Code</p>
+                <h1 class="title title--md">Reflection & <span class="highlight">Talks</span></h1>
+                <p class="subtitle" style="margin-bottom: 50px;">Holistic growth through introspection and discussion.</p>
+                
+                <div class="grid-2" style="gap: 40px;">
+                    <div class="section-block">
+                        <div class="section-number">15-MINUTE REFLECTION</div>
+                        <h3 class="section-title">Write Your Thoughts</h3>
+                        <p class="section-text">Take a moment to introspect and jot down your feelings about the fellowship experience. Self-awareness drives growth.</p>
+                    </div>
+                    <div class="section-block">
+                        <div class="section-number">TALK 01</div>
+                        <h3 class="section-title">Mindset Talk</h3>
+                        <p class="section-text">Engage in discussions that foster a growth mindset among participants. Challenge your thinking.</p>
+                    </div>
+                    <div class="section-block">
+                        <div class="section-number">TALK 02</div>
+                        <h3 class="section-title">Tech Love Talk</h3>
+                        <p class="section-text">Share your passion for technology and its impact on our lives. Connect through shared interests.</p>
+                    </div>
+                    <div class="section-block">
+                        <div class="section-number">TALK 03</div>
+                        <h3 class="section-title">Spiritual Time Talk</h3>
+                        <p class="section-text">Explore spiritual aspects and connect with your inner self during this session. Find deeper meaning.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span class="footer-text">Summer Fellowship 2025</span>
+                <span class="footer-text">devweekends.com</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: Closing -->
+        <div class="slide slide--dark" data-slide="10">
+            <div class="accent-bar"></div>
+            
+            <div class="slide-header">
+                <div class="brand">
+                    <span class="brand-logo">Dev Weekends</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-series">Fellowship</span>
+                </div>
+            </div>
+
+            <div class="content content--center">
+                <div class="dev-logo">
+                    <div class="dev-logo-text">Dev</div>
+                    <div class="dev-logo-weekends">[WEEKENDS]</div>
+                </div>
+                
+                <h1 class="title title--lg">Let's Build Something<br><span class="highlight">Together</span></h1>
+                <div class="divider"></div>
+                
+                <div style="margin-top: 40px; display: flex; gap: 60px; justify-content: center; text-align: left;">
+                    <div>
+                        <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Date</div>
+                        <div style="font-size: 18px; font-weight: 500;">Saturday, 29 Nov</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Time (SLT)</div>
+                        <div style="font-size: 18px; font-weight: 500;">6:05 PM</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Time (CST)</div>
+                        <div style="font-size: 18px; font-weight: 500;">1:35 PM</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Mode</div>
+                        <div style="font-size: 18px; font-weight: 500;">Online</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 60px;">
+                    <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;">Join Us</div>
+                    <div style="font-size: 20px; font-weight: 600;">devweekends.com/fellowship</div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span class="footer-text">Dev Weekends</span>
+                <span class="footer-text">2025</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function updateSlide() {
+            // Update slides
+            document.querySelectorAll('.slide').forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index + 1 === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Update progress bar
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+
+            // Update counter
+            const counter = currentSlide.toString().padStart(2, '0') + ' / ' + totalSlides.toString().padStart(2, '0');
+            document.getElementById('slideCounter').textContent = counter;
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+
+            // Update nav button colors based on slide background
+            const activeSlide = document.querySelector('.slide.active');
+            const nav = document.querySelector('.nav');
+            const counter_el = document.getElementById('slideCounter');
+            const hint = document.querySelector('.keyboard-hint');
+            
+            if (activeSlide.classList.contains('slide--light') || activeSlide.classList.contains('slide--muted')) {
+                nav.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.style.borderColor = 'rgba(0,0,0,0.2)';
+                    btn.style.background = 'rgba(255,255,255,0.8)';
+                    btn.style.color = '#18181b';
+                });
+                counter_el.style.color = '#18181b';
+                hint.style.color = '#18181b';
+            } else {
+                nav.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.style.borderColor = 'rgba(255,255,255,0.2)';
+                    btn.style.background = 'rgba(0,0,0,0.3)';
+                    btn.style.color = '#fafafa';
+                });
+                counter_el.style.color = '#fafafa';
+                hint.style.color = '#fafafa';
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Touch navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+
+        // Initialize
+        updateSlide();
+    </script>
+
+</body>
+</html>
