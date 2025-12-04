@@ -1002,7 +1002,7 @@ function createMindMasterPresentation() {
   });
 
   // Footer info
-  slide15.addText("discord.gg/devweekends", {
+  slide15.addText("discord.gg/Cy7Rgkf4Up", {
     x: 0.6, y: 4.6, w: 11.5, fontSize: 14, fontFace: "Arial",
     color: colors.lightGray, align: "center",
   });

@@ -396,7 +396,7 @@ export default function MindMaster() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="https://discord.gg/devweekends"
+              href="https://discord.gg/Cy7Rgkf4Up"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-background text-foreground font-semibold text-sm uppercase tracking-[1px] hover:opacity-90 transition-all"

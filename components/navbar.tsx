@@ -69,7 +69,7 @@ export default function Navbar() {
             
             {/* Join Community Button */}
             <a
-              href="https://discord.com/invite/32mYcRmy"
+              href="https://discord.gg/Cy7Rgkf4Up"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-2 px-4 py-2 border border-foreground/20 text-xs font-semibold uppercase tracking-[1px] hover:bg-foreground hover:text-background transition-all"

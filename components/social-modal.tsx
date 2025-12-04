@@ -52,7 +52,7 @@ export function SocialModal() {
     },
     {
       name: 'Discord',
-      url: 'https://discord.com/invite/c7Sn3yhvSh',
+      url: 'https://discord.gg/Cy7Rgkf4Up',
       icon: 'https://cdn.brandfetch.io/idM8Hlme1a/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B',
       color: 'hover:bg-[#5865F2]/10'
     },

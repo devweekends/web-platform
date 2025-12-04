@@ -141,7 +141,7 @@ export default function OurStoryPage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <a 
-                  href="https://discord.com/invite/32mYcRmy" 
+                  href="https://discord.gg/Cy7Rgkf4Up" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 px-8 py-4 border border-foreground/20 font-semibold text-xs uppercase tracking-[2px] hover:border-foreground hover:bg-foreground hover:text-background transition-all"

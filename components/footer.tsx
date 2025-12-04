@@ -17,7 +17,7 @@ export default function Footer() {
     {
       name: 'Discord',
       icon: null, // Custom SVG below
-      url: 'https://discord.com/invite/32mYcRmy',
+      url: 'https://discord.gg/Cy7Rgkf4Up',
     },
     {
       name: 'LinkedIn',
@@ -178,7 +178,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a 
-                  href="https://discord.com/invite/32mYcRmy" 
+                  href="https://discord.gg/Cy7Rgkf4Up" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-background/70 hover:text-background transition-colors"
