@@ -1,0 +1,42 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Split layout - editorial magazine style -->
+  <rect width="540" height="1080" fill="#18181B"/>
+  <rect x="540" y="0" width="540" height="1080" fill="#FAFAFA"/>
+  
+  <!-- Left side - dark -->
+  <text x="60" y="100" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <text x="270" y="480" font-family="system-ui, sans-serif" font-size="280" font-weight="900" fill="#FAFAFA" text-anchor="middle">25</text>
+  
+  <text x="270" y="580" font-family="system-ui, sans-serif" font-size="18" fill="#A1A1AA" text-anchor="middle" letter-spacing="3">CAMPUS AMBASSADORS</text>
+  
+  <rect x="60" y="940" width="240" height="50" fill="#FAFAFA"/>
+  <text x="180" y="972" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle" letter-spacing="1">JOIN THE PROGRAM</text>
+  
+  <!-- Right side - light -->
+  <text x="580" y="100" font-family="system-ui, sans-serif" font-size="11" fill="#71717A" letter-spacing="2">THE IMPACT</text>
+  
+  <text x="580" y="220" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#18181B">20+</text>
+  <text x="580" y="260" font-family="system-ui, sans-serif" font-size="14" fill="#52525B">Universities represented</text>
+  
+  <rect x="580" y="300" width="400" height="1" fill="#E5E5E5"/>
+  
+  <text x="580" y="400" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#18181B">50+</text>
+  <text x="580" y="440" font-family="system-ui, sans-serif" font-size="14" fill="#52525B">Events conducted</text>
+  
+  <rect x="580" y="480" width="400" height="1" fill="#E5E5E5"/>
+  
+  <text x="580" y="580" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#18181B">5K+</text>
+  <text x="580" y="620" font-family="system-ui, sans-serif" font-size="14" fill="#52525B">Students reached</text>
+  
+  <rect x="580" y="660" width="400" height="1" fill="#E5E5E5"/>
+  
+  <!-- Quote section -->
+  <text x="580" y="760" font-family="system-ui, sans-serif" font-size="20" fill="#18181B" font-style="italic">"Spreading tech education</text>
+  <text x="580" y="790" font-family="system-ui, sans-serif" font-size="20" fill="#18181B" font-style="italic">across campuses"</text>
+  
+  <text x="580" y="840" font-family="system-ui, sans-serif" font-size="12" fill="#71717A">Workshops - Bootcamps - Mentorship</text>
+  
+  <!-- Footer -->
+  <text x="580" y="1040" font-family="system-ui, sans-serif" font-size="12" fill="#A1A1AA" letter-spacing="2">DEVWEEKENDS.COM/AMBASSADOR</text>
+</svg>

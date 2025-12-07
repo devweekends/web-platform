@@ -14,11 +14,13 @@ export default function Navbar() {
 
   const routes = [
     { href: "/about", label: "About" },
+    { href: "/dsoc", label: "DSOC" },
     { href: "/mindmaster", label: "MindMaster" },
     { href: "https://resources.devweekends.com", label: "Resources", external: true },
   ];
 
   const applyOptions = [
+    { href: "/dsoc", label: "DSOC" },
     { href: "/fellowship", label: "Fellowship" },
     { href: "/mentorship", label: "Mentorship" },
     { href: "/ambassador-program", label: "Ambassadorship" },

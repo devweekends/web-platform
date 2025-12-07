@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#FFF8F0"/>
+  
+  <!-- Grid Pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FF6B35" stroke-width="0.5" opacity="0.2"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#grid)"/>
+  
+  <!-- Main App Window -->
+  <g transform="translate(100, 40)">
+    <!-- Window Frame -->
+    <rect x="0" y="0" width="600" height="420" fill="white" stroke="#1A1A2E" stroke-width="4"/>
+    <rect x="4" y="4" width="592" height="412" fill="white" stroke="#1A1A2E" stroke-width="2"/>
+    
+    <!-- Title Bar -->
+    <rect x="8" y="8" width="584" height="40" fill="#FF6B35"/>
+    <circle cx="30" cy="28" r="8" fill="#1A1A2E"/>
+    <circle cx="54" cy="28" r="8" fill="#1A1A2E"/>
+    <circle cx="78" cy="28" r="8" fill="#1A1A2E"/>
+    <text x="300" y="34" fill="white" font-family="system-ui" font-size="16" font-weight="bold" text-anchor="middle">NoteFlow</text>
+    
+    <!-- Sidebar -->
+    <rect x="8" y="52" width="160" height="360" fill="#1A1A2E"/>
+    
+    <!-- Sidebar Items -->
+    <rect x="20" y="70" width="136" height="32" rx="4" fill="#FF6B35"/>
+    <text x="38" y="92" fill="white" font-family="system-ui" font-size="12" font-weight="600">📝 My Workspace</text>
+    
+    <text x="28" y="130" fill="#888" font-family="system-ui" font-size="11">PAGES</text>
+    
+    <g opacity="0.8">
+      <text x="28" y="158" fill="white" font-family="system-ui" font-size="13">📄 Getting Started</text>
+      <text x="28" y="186" fill="white" font-family="system-ui" font-size="13">📊 Project Tasks</text>
+      <text x="28" y="214" fill="white" font-family="system-ui" font-size="13">📚 Reading List</text>
+      <text x="28" y="242" fill="white" font-family="system-ui" font-size="13">💡 Ideas</text>
+    </g>
+    
+    <text x="28" y="290" fill="#888" font-family="system-ui" font-size="11">SHARED</text>
+    <text x="28" y="318" fill="white" font-family="system-ui" font-size="13" opacity="0.8">👥 Team Space</text>
+    
+    <!-- Main Content Area -->
+    <rect x="172" y="52" width="420" height="360" fill="#FAFAFA"/>
+    
+    <!-- Page Title -->
+    <text x="192" y="92" fill="#1A1A2E" font-family="system-ui" font-size="28" font-weight="bold">Welcome to NoteFlow</text>
+    
+    <!-- Content Blocks -->
+    <rect x="192" y="110" width="380" height="4" rx="2" fill="#E0E0E0"/>
+    
+    <!-- Text Block -->
+    <g transform="translate(192, 130)">
+      <rect x="0" y="0" width="380" height="60" rx="4" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+      <text x="12" y="24" fill="#666" font-family="system-ui" font-size="14">Start writing your notes here...</text>
+      <text x="12" y="46" fill="#999" font-family="system-ui" font-size="12">Type / for commands</text>
+    </g>
+    
+    <!-- Kanban Preview -->
+    <g transform="translate(192, 210)">
+      <text x="0" y="16" fill="#1A1A2E" font-family="system-ui" font-size="16" font-weight="600">📋 Quick Tasks</text>
+      
+      <!-- Kanban Columns -->
+      <g transform="translate(0, 30)">
+        <!-- To Do -->
+        <rect x="0" y="0" width="120" height="140" rx="6" fill="#FCBF49" stroke="#1A1A2E" stroke-width="2"/>
+        <text x="10" y="24" fill="#1A1A2E" font-family="system-ui" font-size="12" font-weight="bold">TO DO</text>
+        <rect x="8" y="36" width="104" height="28" rx="4" fill="white" stroke="#1A1A2E" stroke-width="1"/>
+        <text x="16" y="54" fill="#1A1A2E" font-family="system-ui" font-size="10">Design homepage</text>
+        <rect x="8" y="70" width="104" height="28" rx="4" fill="white" stroke="#1A1A2E" stroke-width="1"/>
+        <text x="16" y="88" fill="#1A1A2E" font-family="system-ui" font-size="10">Setup database</text>
+        
+        <!-- In Progress -->
+        <rect x="130" y="0" width="120" height="140" rx="6" fill="#004E89" stroke="#1A1A2E" stroke-width="2"/>
+        <text x="140" y="24" fill="white" font-family="system-ui" font-size="12" font-weight="bold">IN PROGRESS</text>
+        <rect x="138" y="36" width="104" height="28" rx="4" fill="white" stroke="#1A1A2E" stroke-width="1"/>
+        <text x="146" y="54" fill="#1A1A2E" font-family="system-ui" font-size="10">Build editor</text>
+        
+        <!-- Done -->
+        <rect x="260" y="0" width="120" height="140" rx="6" fill="#2EC4B6" stroke="#1A1A2E" stroke-width="2"/>
+        <text x="270" y="24" fill="#1A1A2E" font-family="system-ui" font-size="12" font-weight="bold">DONE ✓</text>
+        <rect x="268" y="36" width="104" height="28" rx="4" fill="white" stroke="#1A1A2E" stroke-width="1"/>
+        <text x="276" y="54" fill="#1A1A2E" font-family="system-ui" font-size="10">Project setup</text>
+        <rect x="268" y="70" width="104" height="28" rx="4" fill="white" stroke="#1A1A2E" stroke-width="1"/>
+        <text x="276" y="88" fill="#1A1A2E" font-family="system-ui" font-size="10">Authentication</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Floating Elements -->
+  <rect x="50" y="380" width="60" height="60" fill="#9B5DE5" stroke="#1A1A2E" stroke-width="3" transform="rotate(-10 80 410)"/>
+  <rect x="720" y="80" width="50" height="50" fill="#F15BB5" stroke="#1A1A2E" stroke-width="3" transform="rotate(15 745 105)"/>
+  <rect x="680" y="420" width="40" height="40" fill="#FCBF49" stroke="#1A1A2E" stroke-width="3"/>
+  
+  <!-- Tech Stack Badges -->
+  <g transform="translate(100, 475)">
+    <rect x="0" y="0" width="80" height="24" rx="4" fill="#1A1A2E"/>
+    <text x="40" y="16" fill="white" font-family="system-ui" font-size="10" font-weight="bold" text-anchor="middle">Next.js</text>
+    
+    <rect x="90" y="0" width="80" height="24" rx="4" fill="#E0234E"/>
+    <text x="130" y="16" fill="white" font-family="system-ui" font-size="10" font-weight="bold" text-anchor="middle">NestJS</text>
+    
+    <rect x="180" y="0" width="80" height="24" rx="4" fill="#336791"/>
+    <text x="220" y="16" fill="white" font-family="system-ui" font-size="10" font-weight="bold" text-anchor="middle">PostgreSQL</text>
+    
+    <rect x="270" y="0" width="80" height="24" rx="4" fill="#3ECF8E"/>
+    <text x="310" y="16" fill="white" font-family="system-ui" font-size="10" font-weight="bold" text-anchor="middle">Supabase</text>
+  </g>
+</svg>

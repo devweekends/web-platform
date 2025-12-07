@@ -1,0 +1,51 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#18181B"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="160" width="280" height="40" fill="#18181B"/>
+  <text x="200" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">FELLOWSHIP SUCCESS</text>
+  
+  <text x="540" y="400" font-family="system-ui, sans-serif" font-size="160" font-weight="800" fill="#18181B" text-anchor="middle">50+</text>
+  
+  <text x="540" y="480" font-family="system-ui, sans-serif" font-size="36" font-weight="600" fill="#18181B" text-anchor="middle">Fellows Placed</text>
+  <text x="540" y="530" font-family="system-ui, sans-serif" font-size="20" fill="#71717A" text-anchor="middle">in 2024</text>
+  
+  <rect x="340" y="560" width="400" height="4" fill="#FEF08A"/>
+  
+  <rect x="60" y="620" width="300" height="140" fill="#F4F4F5"/>
+  <text x="210" y="680" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B" text-anchor="middle">15 LPA</text>
+  <text x="210" y="720" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Average Package</text>
+  
+  <rect x="390" y="620" width="300" height="140" fill="#F4F4F5"/>
+  <text x="540" y="680" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B" text-anchor="middle">35 LPA</text>
+  <text x="540" y="720" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Highest Package</text>
+  
+  <rect x="720" y="620" width="300" height="140" fill="#FEF08A"/>
+  <text x="870" y="680" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#18181B" text-anchor="middle">100%</text>
+  <text x="870" y="720" font-family="system-ui, sans-serif" font-size="14" fill="#18181B" text-anchor="middle">Placement Rate</text>
+  
+  <text x="540" y="840" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Top companies hiring our fellows:</text>
+  
+  <rect x="60" y="880" width="140" height="50" fill="#18181B"/>
+  <text x="130" y="912" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Google</text>
+  
+  <rect x="220" y="880" width="140" height="50" fill="#18181B"/>
+  <text x="290" y="912" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Microsoft</text>
+  
+  <rect x="380" y="880" width="140" height="50" fill="#18181B"/>
+  <text x="450" y="912" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Amazon</text>
+  
+  <rect x="540" y="880" width="140" height="50" fill="#18181B"/>
+  <text x="610" y="912" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Meta</text>
+  
+  <rect x="700" y="880" width="140" height="50" fill="#18181B"/>
+  <text x="770" y="912" font-family="system-ui, sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">Atlassian</text>
+  
+  <rect x="860" y="880" width="140" height="50" fill="#FEF08A"/>
+  <text x="930" y="912" font-family="system-ui, sans-serif" font-size="14" fill="#18181B" text-anchor="middle">+ more</text>
+  
+  <rect x="60" y="980" width="960" height="1" fill="#E5E5E5"/>
+  <text x="540" y="1040" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Apply for the next cohort at devweekends.com</text>
+</svg>

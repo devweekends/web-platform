@@ -1,0 +1,43 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lightGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5F3FF"/>
+      <stop offset="100%" style="stop-color:#EDE9FE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#lightGrad1)"/>
+  
+  <text x="60" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <circle cx="1080" cy="52" r="6" fill="#A78BFA"/>
+  <text x="1100" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#18181B">LIVE SESSION</text>
+  
+  <rect x="60" y="160" width="160" height="28" fill="#A78BFA"/>
+  <text x="140" y="179" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="2">MINDMASTER</text>
+  
+  <text x="60" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="46" font-weight="700" fill="#18181B">Time Management:</text>
+  <text x="60" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="46" font-weight="700" fill="#7C3AED">Maximize Your Day</text>
+  
+  <text x="60" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#52525B">Learn proven strategies to take control of your time</text>
+  
+  <rect x="60" y="450" width="180" height="70" fill="#FFFFFF" rx="4"/>
+  <text x="80" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="1">DATE</text>
+  <text x="80" y="505" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#18181B">Friday, Dec 27</text>
+  
+  <rect x="260" y="450" width="180" height="70" fill="#FFFFFF" rx="4"/>
+  <text x="280" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="1">TIME</text>
+  <text x="280" y="505" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#18181B">9:00 PM PKT</text>
+  
+  <rect x="460" y="450" width="180" height="70" fill="#FFFFFF" rx="4"/>
+  <text x="480" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="1">PLATFORM</text>
+  <text x="480" y="505" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#18181B">Discord Stage</text>
+  
+  <rect x="800" y="200" width="340" height="300" fill="#FFFFFF" rx="8"/>
+  <circle cx="970" cy="300" r="60" fill="#EDE9FE"/>
+  <text x="970" y="305" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#7C3AED" text-anchor="middle">Speaker</text>
+  <text x="970" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" fill="#18181B" text-anchor="middle">Moeez</text>
+  <text x="970" y="425" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#71717A" text-anchor="middle">Time Management Expert</text>
+  <text x="970" y="470" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#A78BFA" text-anchor="middle">Interactive Q&amp;A included</text>
+  
+  <text x="60" y="590" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#18181B">Free for all community members →</text>
+</svg>

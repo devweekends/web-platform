@@ -1,0 +1,37 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <defs>
+    <pattern id="grid-discord-light" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-discord-light)"/>
+  
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <rect x="390" y="140" width="300" height="40" fill="#5865F2"/>
+  <text x="540" y="168" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">MILESTONE UNLOCKED</text>
+  
+  <text x="540" y="450" font-family="system-ui, sans-serif" font-size="200" font-weight="800" fill="#18181B" text-anchor="middle">2,000</text>
+  
+  <rect x="290" y="480" width="500" height="12" fill="#FEF08A"/>
+  
+  <text x="540" y="560" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#5865F2" text-anchor="middle">Discord Members</text>
+  
+  <circle cx="540" cy="700" r="60" fill="#5865F2"/>
+  <path d="M510 680 C510 680 520 710 540 710 C560 710 570 680 570 680" stroke="#FFFFFF" stroke-width="6" fill="none"/>
+  <circle cx="525" cy="695" r="8" fill="#FFFFFF"/>
+  <circle cx="555" cy="695" r="8" fill="#FFFFFF"/>
+  
+  <text x="540" y="850" font-family="system-ui, sans-serif" font-size="24" fill="#52525B" text-anchor="middle">Thank you for being part of our journey!</text>
+  <text x="540" y="890" font-family="system-ui, sans-serif" font-size="20" fill="#71717A" text-anchor="middle">Together, we are building the future of tech in Pakistan</text>
+  
+  <rect x="100" y="200" width="80" height="80" fill="none" stroke="#5865F2" stroke-width="2" opacity="0.3"/>
+  <rect x="120" y="220" width="80" height="80" fill="#FEF08A" opacity="0.1"/>
+  
+  <rect x="900" y="800" width="80" height="80" fill="none" stroke="#5865F2" stroke-width="2" opacity="0.3"/>
+  <rect x="880" y="780" width="80" height="80" fill="#FEF08A" opacity="0.1"/>
+  
+  <text x="540" y="1020" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>

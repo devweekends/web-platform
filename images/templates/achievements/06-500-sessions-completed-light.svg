@@ -1,0 +1,57 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <defs>
+    <pattern id="grid-sessions-light" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-sessions-light)"/>
+  
+  <text x="540" y="100" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#18181B" letter-spacing="4" text-anchor="middle">DEV WEEKENDS</text>
+  
+  <rect x="365" y="140" width="350" height="44" fill="#18181B"/>
+  <text x="540" y="170" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FEF08A" text-anchor="middle" letter-spacing="2">EDUCATION MILESTONE</text>
+  
+  <text x="540" y="450" font-family="system-ui, sans-serif" font-size="220" font-weight="800" fill="#18181B" text-anchor="middle">500+</text>
+  
+  <rect x="290" y="480" width="500" height="12" fill="#FEF08A"/>
+  
+  <text x="540" y="560" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#18181B" text-anchor="middle">Free Sessions Delivered</text>
+  
+  <g transform="translate(165, 640)">
+    <rect x="0" y="0" width="150" height="50" fill="#F4F4F5"/>
+    <text x="75" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle">System Design</text>
+    
+    <rect x="170" y="0" width="100" height="50" fill="#F4F4F5"/>
+    <text x="220" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle">DSA</text>
+    
+    <rect x="290" y="0" width="120" height="50" fill="#F4F4F5"/>
+    <text x="350" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle">DevOps</text>
+    
+    <rect x="430" y="0" width="100" height="50" fill="#F4F4F5"/>
+    <text x="480" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle">AWS</text>
+    
+    <rect x="550" y="0" width="130" height="50" fill="#FEF08A"/>
+    <text x="615" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" text-anchor="middle">and More</text>
+  </g>
+  
+  <text x="540" y="800" font-family="system-ui, sans-serif" font-size="24" fill="#18181B" text-anchor="middle">500+ hours of free tech education!</text>
+  <text x="540" y="845" font-family="system-ui, sans-serif" font-size="18" fill="#71717A" text-anchor="middle">By industry experts from Microsoft, Google, Meta and more</text>
+  
+  <g transform="translate(240, 890)">
+    <rect x="0" y="0" width="180" height="70" fill="#F4F4F5"/>
+    <text x="90" y="35" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#18181B" text-anchor="middle">50+</text>
+    <text x="90" y="55" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle" letter-spacing="1">MENTORS</text>
+    
+    <rect x="210" y="0" width="180" height="70" fill="#FEF08A"/>
+    <text x="300" y="35" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#18181B" text-anchor="middle">20K+</text>
+    <text x="300" y="55" font-family="system-ui, sans-serif" font-size="10" fill="#18181B" text-anchor="middle" letter-spacing="1">LEARNERS</text>
+    
+    <rect x="420" y="0" width="180" height="70" fill="#F4F4F5"/>
+    <text x="510" y="35" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#18181B" text-anchor="middle">100%</text>
+    <text x="510" y="55" font-family="system-ui, sans-serif" font-size="10" fill="#71717A" text-anchor="middle" letter-spacing="1">FREE</text>
+  </g>
+  
+  <text x="540" y="1030" font-family="system-ui, sans-serif" font-size="14" fill="#71717A" text-anchor="middle" letter-spacing="2">DEVWEEKENDS.COM</text>
+</svg>

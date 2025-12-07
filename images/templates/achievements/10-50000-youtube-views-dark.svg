@@ -1,0 +1,35 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#18181B"/>
+  
+  <text x="540" y="580" font-family="system-ui, sans-serif" font-size="340" font-weight="900" fill="#FAFAFA" text-anchor="middle" opacity="0.03">50K</text>
+  
+  <g transform="translate(100, 0)">
+    <text x="0" y="120" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FAFAFA" letter-spacing="4">DEV WEEKENDS</text>
+    
+    <text x="0" y="340" font-family="system-ui, sans-serif" font-size="72" font-weight="300" fill="#FAFAFA">We just hit</text>
+    
+    <text x="0" y="480" font-family="system-ui, sans-serif" font-size="160" font-weight="800" fill="#FF0000">50,000</text>
+    
+    <text x="0" y="560" font-family="system-ui, sans-serif" font-size="48" font-weight="400" fill="#FAFAFA">views on YouTube</text>
+    
+    <rect x="0" y="600" width="120" height="3" fill="#FEF08A"/>
+    
+    <text x="0" y="700" font-family="system-ui, sans-serif" font-size="26" font-weight="500" fill="#A1A1AA">Free tutorials. Real impact.</text>
+    <text x="0" y="740" font-family="system-ui, sans-serif" font-size="22" font-weight="400" fill="#71717A">Thank you for learning with us.</text>
+    
+    <g transform="translate(0, 820)">
+      <text x="0" y="0" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#FAFAFA">100+ videos</text>
+      <text x="180" y="0" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#FAFAFA">20K subscribers</text>
+      <text x="420" y="0" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#FF0000">100% free</text>
+    </g>
+  </g>
+  
+  <g transform="translate(850, 460)">
+    <rect x="0" y="0" width="80" height="56" fill="#FF0000"/>
+    <polygon points="30,18 30,38 50,28" fill="#FFFFFF"/>
+  </g>
+  
+  <text x="100" y="980" font-family="system-ui, sans-serif" font-size="18" font-weight="500" fill="#52525B">@devweekends</text>
+  
+  <rect x="0" y="0" width="8" height="1080" fill="#FF0000"/>
+</svg>

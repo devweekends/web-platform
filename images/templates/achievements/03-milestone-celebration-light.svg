@@ -1,0 +1,49 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <defs>
+    <pattern id="grid-milestone-light" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E5E5" stroke-width="0.5"/>
+    </pattern>
+    <radialGradient id="milestoneGlowLight">
+      <stop offset="0%" stop-color="#FEF08A" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid-milestone-light)"/>
+  
+  <circle cx="540" cy="540" r="400" fill="url(#milestoneGlowLight)"/>
+  
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
+  
+  <rect x="60" y="160" width="160" height="40" fill="#18181B"/>
+  <text x="140" y="188" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FEF08A" text-anchor="middle" letter-spacing="2">MILESTONE</text>
+  
+  <text x="540" y="280" font-family="system-ui, sans-serif" font-size="60" text-anchor="middle">STAR</text>
+  
+  <text x="540" y="520" font-family="system-ui, sans-serif" font-size="200" font-weight="800" fill="#18181B" text-anchor="middle">5K</text>
+  
+  <rect x="380" y="550" width="320" height="6" fill="#FEF08A"/>
+  
+  <text x="540" y="640" font-family="system-ui, sans-serif" font-size="36" fill="#18181B" text-anchor="middle">Community Members</text>
+  
+  <text x="540" y="720" font-family="system-ui, sans-serif" font-size="20" fill="#71717A" text-anchor="middle">Thank you for being part of our journey!</text>
+  
+  <rect x="140" y="800" width="200" height="100" fill="#F4F4F5"/>
+  <text x="240" y="855" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#18181B" text-anchor="middle">200+</text>
+  <text x="240" y="880" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Sessions</text>
+  
+  <rect x="360" y="800" width="200" height="100" fill="#F4F4F5"/>
+  <text x="460" y="855" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#18181B" text-anchor="middle">50+</text>
+  <text x="460" y="880" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Mentors</text>
+  
+  <rect x="580" y="800" width="200" height="100" fill="#F4F4F5"/>
+  <text x="680" y="855" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#18181B" text-anchor="middle">15+</text>
+  <text x="680" y="880" font-family="system-ui, sans-serif" font-size="12" fill="#71717A" text-anchor="middle">Countries</text>
+  
+  <rect x="800" y="800" width="200" height="100" fill="#FEF08A"/>
+  <text x="900" y="855" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#18181B" text-anchor="middle">3</text>
+  <text x="900" y="880" font-family="system-ui, sans-serif" font-size="12" fill="#18181B" text-anchor="middle">Years</text>
+  
+  <text x="540" y="1000" font-family="system-ui, sans-serif" font-size="16" fill="#71717A" text-anchor="middle">Building better engineers together</text>
+</svg>
