@@ -1,0 +1,59 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="invert" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0"/>
+    </filter>
+  </defs>
+
+  <rect width="1080" height="1080" fill="#18181B"/>
+
+  <!-- Subtle watermark -->
+  <text x="540" y="620" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="320" font-weight="900" fill="#FAFAFA" text-anchor="middle" opacity="0.035">GSoC</text>
+
+  <!-- Left accent bar (grayscale) -->
+  <rect x="0" y="0" width="10" height="1080" fill="#FAFAFA" opacity="0.18"/>
+
+  <g transform="translate(110, 0)">
+    <!-- Logo placeholder area - logos will be added manually -->
+
+    <!-- Title -->
+    <text x="0" y="278" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="64" font-weight="300" fill="#FAFAFA">Special Sunday session</text>
+    <text x="0" y="408" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="96" font-weight="950" fill="#FAFAFA" letter-spacing="-1.4">GSoC Prep</text>
+
+    <text x="0" y="472" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="30" font-weight="650" fill="#D4D4D8">Every Sunday • 9:00 PM</text>
+
+    <rect x="0" y="514" width="120" height="3" fill="#FAFAFA" opacity="0.25"/>
+
+    <!-- Speakers -->
+    <g filter="url(#softShadow)" transform="translate(0, 565)">
+      <rect x="0" y="0" width="860" height="340" rx="18" fill="#0B0B10" stroke="#FAFAFA" stroke-opacity="0.06"/>
+      <rect x="34" y="34" width="54" height="8" rx="4" fill="#FAFAFA" opacity="0.22"/>
+
+      <text x="34" y="88" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="800" fill="#FAFAFA" letter-spacing="2">3 SPEAKERS</text>
+
+      <g transform="translate(34, 124)">
+        <text x="0" y="0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="28" font-weight="850" fill="#FAFAFA">Saqlain</text>
+        <text x="0" y="32" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="500" fill="#A1A1AA">GSoC @ Chromium</text>
+
+        <text x="0" y="98" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="28" font-weight="850" fill="#FAFAFA">Salman</text>
+        <text x="0" y="32" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="500" fill="#A1A1AA">GSoC @ Fossology</text>
+
+        <text x="0" y="196" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="28" font-weight="850" fill="#FAFAFA">Aqib</text>
+        <text x="0" y="228" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="500" fill="#A1A1AA">Paid Open Source</text>
+      </g>
+
+      <g transform="translate(520, 124)">
+        <text x="0" y="0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#FAFAFA">What we’ll cover</text>
+        <text x="0" y="40" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="500" fill="#D4D4D8">• Picking orgs &amp; project ideas</text>
+        <text x="0" y="74" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="500" fill="#D4D4D8">• Proposal structure &amp; milestones</text>
+        <text x="0" y="108" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="500" fill="#D4D4D8">• Q&amp;A + next steps</text>
+      </g>
+    </g>
+
+    <!-- Footer -->
+    <text x="0" y="980" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="600" fill="#71717A">@devweekends</text>
+  </g>
+</svg>

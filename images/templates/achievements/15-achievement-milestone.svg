@@ -1,0 +1,72 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <!-- Subtle grid -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#E4E4E7" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Dev Weekends Logo (inline) -->
+  <g transform="translate(440, 60)">
+    <circle cx="100" cy="50" r="50" fill="#18181B"/>
+    <text x="100" y="42" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#FAFAFA" text-anchor="middle">Dev</text>
+    <text x="100" y="62" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#FAFAFA" text-anchor="middle" letter-spacing="1">{WEEKENDS}</text>
+  </g>
+
+  <!-- Header -->
+  <g transform="translate(100, 200)">
+    <text x="440" y="0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="600" fill="#71717A" text-anchor="middle" letter-spacing="2">ACHIEVEMENT UNLOCKED</text>
+  </g>
+
+  <!-- Big number -->
+  <g transform="translate(100, 280)">
+    <text x="440" y="180" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="220" font-weight="900" fill="#18181B" text-anchor="middle" letter-spacing="-6">[50K]</text>
+    
+    <rect x="320" y="220" width="240" height="6" fill="#18181B"/>
+    
+    <text x="440" y="310" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="48" font-weight="700" fill="#18181B" text-anchor="middle">[Milestone Label]</text>
+  </g>
+
+  <!-- Stats row -->
+  <g transform="translate(100, 660)">
+    <!-- Stat 1 -->
+    <g>
+      <rect x="0" y="0" width="270" height="120" fill="#18181B" rx="14"/>
+      <text x="135" y="56" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="32" font-weight="900" fill="#FAFAFA" text-anchor="middle">[Stat 1]</text>
+      <text x="135" y="90" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#A1A1AA" text-anchor="middle" letter-spacing="1">LABEL</text>
+    </g>
+    
+    <!-- Stat 2 -->
+    <g transform="translate(290, 0)">
+      <rect x="0" y="0" width="270" height="120" fill="#18181B" rx="14"/>
+      <text x="135" y="56" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="32" font-weight="900" fill="#FAFAFA" text-anchor="middle">[Stat 2]</text>
+      <text x="135" y="90" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#A1A1AA" text-anchor="middle" letter-spacing="1">LABEL</text>
+    </g>
+    
+    <!-- Stat 3 -->
+    <g transform="translate(580, 0)">
+      <rect x="0" y="0" width="270" height="120" fill="#18181B" rx="14"/>
+      <text x="135" y="56" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="32" font-weight="900" fill="#FAFAFA" text-anchor="middle">[Stat 3]</text>
+      <text x="135" y="90" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#A1A1AA" text-anchor="middle" letter-spacing="1">LABEL</text>
+    </g>
+  </g>
+
+  <!-- Message -->
+  <g transform="translate(100, 840)">
+    <text x="440" y="0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="600" fill="#52525B" text-anchor="middle">Thanks to every member who built with us.</text>
+    <text x="440" y="44" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="500" fill="#71717A" text-anchor="middle">Keep learning. Keep shipping.</text>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(140, 940)">
+    <rect x="0" y="0" width="340" height="60" fill="#18181B" rx="12"/>
+    <text x="170" y="40" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA" text-anchor="middle">Join the community →</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="940" y="1000" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="600" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

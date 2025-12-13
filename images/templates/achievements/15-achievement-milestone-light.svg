@@ -1,0 +1,35 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="invert" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <rect width="1080" height="1080" fill="#18181B"/>
+
+  <!-- Watermark -->
+  <text x="540" y="620" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="360" font-weight="900" fill="#FAFAFA" text-anchor="middle" opacity="0.03">WIN</text>
+
+  <rect x="0" y="0" width="10" height="1080" fill="#FAFAFA" opacity="0.18"/>
+
+  <g transform="translate(110, 0)">
+    <image href="../../../public/dw_black.png" x="0" y="74" width="44" height="44" filter="url(#invert)" preserveAspectRatio="xMidYMid meet"/>
+    <text x="62" y="118" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="24" font-weight="800" fill="#FAFAFA" letter-spacing="4">DEV WEEKENDS</text>
+    <rect x="62" y="140" width="120" height="3" fill="#FAFAFA" opacity="0.22"/>
+
+    <text x="0" y="300" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="68" font-weight="300" fill="#FAFAFA">Achievement unlocked</text>
+
+    <text x="0" y="480" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="164" font-weight="950" fill="#FAFAFA" letter-spacing="-2">[50,000]</text>
+
+    <text x="0" y="560" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="54" font-weight="650" fill="#FAFAFA">[Milestone label]</text>
+
+    <rect x="0" y="610" width="120" height="3" fill="#FAFAFA" opacity="0.25"/>
+
+    <text x="0" y="710" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="550" fill="#D4D4D8">Thanks to every member who built with us.</text>
+    <text x="0" y="750" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="500" fill="#A1A1AA">Keep learning. Keep shipping.</text>
+
+    <text x="0" y="868" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#FAFAFA">Next goal:</text>
+    <text x="116" y="868" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="500" fill="#71717A">[Add next goal]</text>
+
+    <text x="0" y="980" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="600" fill="#71717A">@devweekends</text>
+  </g>
+</svg>
