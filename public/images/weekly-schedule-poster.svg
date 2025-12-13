@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#E4E4E7" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid)" opacity="0.5"/>
+
+  <g transform="translate(80, 60)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#71717A" letter-spacing="2">DEV WEEKENDS</text>
+    <text x="0" y="80" font-family="system-ui, sans-serif" font-size="72" font-weight="900" fill="#18181B" letter-spacing="-2">Weekly Schedule</text>
+    <rect x="0" y="120" width="180" height="6" fill="#18181B"/>
+    <text x="0" y="170" font-family="system-ui, sans-serif" font-size="24" font-weight="500" fill="#52525B">This Weeks Sessions</text>
+  </g>
+
+  <g transform="translate(80, 280)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#71717A" letter-spacing="2">DSA SESSIONS</text>
+    
+    <g transform="translate(0, 30)">
+      <rect x="0" y="0" width="920" height="100" fill="#18181B" rx="12"/>
+      <circle cx="30" cy="50" r="8" fill="#22C55E"/>
+      <text x="60" y="42" font-family="system-ui, sans-serif" font-size="26" font-weight="800" fill="#FAFAFA">Arrays and Hashing Fundamentals</text>
+      <text x="60" y="72" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#A1A1AA">Monday, 8:00 PM - Speaker: Priya Sharma</text>
+    </g>
+
+    <g transform="translate(0, 145)">
+      <rect x="0" y="0" width="920" height="100" fill="#18181B" rx="12"/>
+      <circle cx="30" cy="50" r="8" fill="#22C55E"/>
+      <text x="60" y="42" font-family="system-ui, sans-serif" font-size="26" font-weight="800" fill="#FAFAFA">Trees and Graph Traversals</text>
+      <text x="60" y="72" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#A1A1AA">Wednesday, 8:30 PM - Speaker: Rahul Verma</text>
+    </g>
+
+    <g transform="translate(0, 260)">
+      <rect x="0" y="0" width="920" height="100" fill="#18181B" rx="12"/>
+      <circle cx="30" cy="50" r="8" fill="#22C55E"/>
+      <text x="60" y="42" font-family="system-ui, sans-serif" font-size="26" font-weight="800" fill="#FAFAFA">Dynamic Programming Patterns</text>
+      <text x="60" y="72" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#A1A1AA">Friday, 9:00 PM - Speaker: Arjun Mehta</text>
+    </g>
+  </g>
+
+  <g transform="translate(80, 620)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#71717A" letter-spacing="2">ENGINEERING SESSIONS</text>
+    
+    <g transform="translate(0, 30)">
+      <rect x="0" y="0" width="920" height="100" fill="#18181B" rx="12"/>
+      <circle cx="30" cy="50" r="8" fill="#3B82F6"/>
+      <text x="60" y="42" font-family="system-ui, sans-serif" font-size="26" font-weight="800" fill="#FAFAFA">System Design: Scalability Basics</text>
+      <text x="60" y="72" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#A1A1AA">Tuesday, 8:00 PM - Speaker: Neha Gupta</text>
+    </g>
+
+    <g transform="translate(0, 145)">
+      <rect x="0" y="0" width="920" height="100" fill="#18181B" rx="12"/>
+      <circle cx="30" cy="50" r="8" fill="#3B82F6"/>
+      <text x="60" y="42" font-family="system-ui, sans-serif" font-size="26" font-weight="800" fill="#FAFAFA">Building REST APIs with Node.js</text>
+      <text x="60" y="72" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#A1A1AA">Thursday, 8:30 PM - Speaker: Vikram Singh</text>
+    </g>
+  </g>
+
+  <g transform="translate(80, 950)">
+    <rect x="0" y="0" width="440" height="70" fill="#18181B" rx="12"/>
+    <text x="220" y="46" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FAFAFA" text-anchor="middle">Join Dev Weekends</text>
+  </g>
+
+  <text x="1000" y="1000" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>

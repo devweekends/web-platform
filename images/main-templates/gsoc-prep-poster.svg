@@ -1,0 +1,112 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="#FAFAFA"/>
+  
+  <!-- Subtle grid -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#E4E4E7" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#grid)" opacity="0.5"/>
+
+  <!-- Decorative accent lines (inspired by tech theme) -->
+  <line x1="900" y1="0" x2="900" y2="200" stroke="#E4E4E7" stroke-width="2"/>
+  <line x1="900" y1="200" x2="1000" y2="200" stroke="#E4E4E7" stroke-width="2"/>
+  <circle cx="1000" cy="200" r="4" fill="#18181B"/>
+  
+  <line x1="950" y1="0" x2="950" y2="120" stroke="#E4E4E7" stroke-width="2"/>
+  <line x1="950" y1="120" x2="1020" y2="120" stroke="#E4E4E7" stroke-width="2"/>
+  <circle cx="1020" cy="120" r="3" fill="#71717A"/>
+
+  <!-- Logo placeholder area -->
+  <g transform="translate(80, 60)">
+    <!-- GSoC logo and emojis will be added here -->
+  </g>
+
+  <!-- Main Title Section -->
+  <g transform="translate(80, 220)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="90" font-weight="900" fill="#18181B" letter-spacing="-3">GSoC Prep</text>
+    <text x="0" y="50" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="28" font-weight="500" fill="#52525B">Recurring Sunday Meets</text>
+  </g>
+
+  <!-- Time Badge -->
+  <g transform="translate(720, 190)">
+    <rect x="0" y="0" width="280" height="56" rx="28" fill="none" stroke="#18181B" stroke-width="2"/>
+    <text x="140" y="36" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="600" fill="#18181B" text-anchor="middle">Every Sunday • 9:00 PM</text>
+  </g>
+
+  <!-- Speaker Cards -->
+  <g transform="translate(80, 340)">
+    <!-- Speaker 1 -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="290" height="200" fill="#18181B" rx="16"/>
+      <text x="24" y="55" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="800" fill="#FFFFFF">Muhammad Saqlain</text>
+      <rect x="24" y="75" width="60" height="3" fill="#71717A"/>
+      <text x="24" y="115" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA">GSoC @ Chromium</text>
+      <text x="24" y="160" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="500" fill="#A1A1AA">Proposals &amp; timelines</text>
+    </g>
+
+    <!-- Speaker 2 -->
+    <g transform="translate(310, 0)">
+      <rect x="0" y="0" width="290" height="200" fill="#18181B" rx="16"/>
+      <text x="24" y="55" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="32" font-weight="800" fill="#FFFFFF">Salman</text>
+      <rect x="24" y="75" width="60" height="3" fill="#71717A"/>
+      <text x="24" y="115" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA">GSoC @ Fossology</text>
+      <text x="24" y="160" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="500" fill="#A1A1AA">Mentors &amp; community</text>
+    </g>
+
+    <!-- Speaker 3 -->
+    <g transform="translate(620, 0)">
+      <rect x="0" y="0" width="290" height="200" fill="#18181B" rx="16"/>
+      <text x="24" y="55" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="32" font-weight="800" fill="#FFFFFF">Aqib</text>
+      <rect x="24" y="75" width="60" height="3" fill="#71717A"/>
+      <text x="24" y="115" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#FAFAFA">Paid Open Source</text>
+      <text x="24" y="160" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="500" fill="#A1A1AA">First contributions</text>
+    </g>
+  </g>
+
+  <!-- What You'll Learn Section -->
+  <g transform="translate(80, 620)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="32" font-weight="800" fill="#18181B">What You'll Learn</text>
+    
+    <g transform="translate(0, 50)">
+      <!-- Item 1 -->
+      <g transform="translate(0, 0)">
+        <circle cx="8" cy="-8" r="8" fill="#18181B"/>
+        <text x="32" y="0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="24" font-weight="600" fill="#18181B">Picking orgs &amp; project ideas</text>
+      </g>
+      
+      <!-- Item 2 -->
+      <g transform="translate(0, 55)">
+        <circle cx="8" cy="-8" r="8" fill="#18181B"/>
+        <text x="32" y="0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="24" font-weight="600" fill="#18181B">Proposal structure &amp; milestones</text>
+      </g>
+      
+      <!-- Item 3 -->
+      <g transform="translate(0, 110)">
+        <circle cx="8" cy="-8" r="8" fill="#18181B"/>
+        <text x="32" y="0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="24" font-weight="600" fill="#18181B">Live Q&amp;A with mentors</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- CTA Button -->
+  <g transform="translate(80, 920)">
+    <rect x="0" y="0" width="400" height="80" rx="40" fill="#18181B"/>
+    <text x="200" y="52" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="700" fill="#FAFAFA" text-anchor="middle">Join Dev Weekends GSoC →</text>
+  </g>
+
+  <!-- Decorative bottom accent -->
+  <g transform="translate(880, 900)">
+    <rect x="0" y="0" width="120" height="120" rx="20" fill="#18181B" opacity="0.05"/>
+    <rect x="30" y="30" width="60" height="60" rx="12" fill="#18181B" opacity="0.1"/>
+  </g>
+
+  <!-- Bottom decorative lines -->
+  <line x1="80" y1="1000" x2="400" y2="1000" stroke="#E4E4E7" stroke-width="2"/>
+  <circle cx="400" cy="1000" r="4" fill="#18181B"/>
+  
+  <!-- Footer -->
+  <text x="1000" y="1040" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="600" fill="#A1A1AA" text-anchor="end">@devweekends</text>
+</svg>
