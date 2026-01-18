@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LogOut, Menu, X, LayoutDashboard, Users, Users2, CalendarDays, Network, Globe, BookOpen, Tag, Briefcase } from 'lucide-react';
+import { LogOut, Menu, X, LayoutDashboard, Users, Users2, CalendarDays, Network, Globe, BookOpen, Tag, Briefcase, Rocket, MessageSquareQuote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const menuItems = [
@@ -17,6 +17,8 @@ const menuItems = [
   { title: 'Tags', href: '/admin/dashboard/tags', icon: <Tag className="w-5 h-5" /> },
   { title: 'MindMaster', href: '/admin/dashboard/mindmaster', icon: <BookOpen className="w-5 h-5" /> },
   { title: 'Resources', href: '/admin/dashboard/resources', icon: <BookOpen className="w-5 h-5" /> },
+  { title: 'Projects', href: '/admin/dashboard/projects', icon: <Rocket className="w-5 h-5" /> },
+  { title: 'Testimonials', href: '/admin/dashboard/testimonials', icon: <MessageSquareQuote className="w-5 h-5" /> },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

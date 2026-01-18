@@ -10,14 +10,19 @@ import { ModeToggle } from "@/components/mode-toggle";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isApplyOpen, setIsApplyOpen] = useState(false);
+  const [isCommunityOpen, setIsCommunityOpen] = useState(false);
   const pathname = usePathname();
 
   const routes = [
     { href: "/about", label: "About" },
-    { href: "/dsoc", label: "DSOC" },
     { href: "/mindmaster", label: "MindMaster" },
     { href: "/careers", label: "Careers" },
     { href: "https://resources.devweekends.com", label: "Resources", external: true },
+  ];
+
+  const communityOptions = [
+    { href: "/projects", label: "Projects" },
+    { href: "/testimonials", label: "Testimonials" },
   ];
 
   const applyOptions = [
@@ -41,6 +46,38 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="hidden md:flex md:items-center md:space-x-6">
+            <div className="relative">
+              <button
+                onClick={() => setIsCommunityOpen(!isCommunityOpen)}
+                className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1 ${
+                  isActive('/projects') || isActive('/testimonials') ? "text-primary" : "text-muted-foreground"
+                }`}
+              >
+                Community
+                <ChevronDown className={`w-3 h-3 transition-transform ${isCommunityOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isCommunityOpen && (
+                <>
+                  <div 
+                    className="fixed inset-0 z-40" 
+                    onClick={() => setIsCommunityOpen(false)}
+                  />
+                  <div className="absolute left-0 mt-2 w-48 bg-background border border-border shadow-lg z-50 rounded-md overflow-hidden">
+                    {communityOptions.map((option) => (
+                      <Link
+                        key={option.href}
+                        href={option.href}
+                        className="block px-4 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors"
+                        onClick={() => setIsCommunityOpen(false)}
+                      >
+                        {option.label}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
             {routes.map((route) =>
               route.external ? (
                 <a
@@ -155,6 +192,20 @@ export default function Navbar() {
                   </Link>
                 )
               )}
+              {/* Community Dropdown for Mobile */}
+              <div className="pt-2 border-t border-border">
+                <p className="text-xs font-semibold uppercase tracking-[2px] text-muted-foreground mb-3">Community</p>
+                {communityOptions.map((option) => (
+                  <Link
+                    key={option.href}
+                    href={option.href}
+                    className="block py-2 text-sm font-medium text-foreground"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {option.label}
+                  </Link>
+                ))}
+              </div>
               <div className="pt-2 border-t border-border">
                 <p className="text-xs font-semibold uppercase tracking-[2px] text-muted-foreground mb-3">Apply</p>
                 {applyOptions.map((option) => (

@@ -177,6 +177,16 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
+                <Link href="/projects" className="text-background/70 hover:text-background transition-colors">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="/testimonials" className="text-background/70 hover:text-background transition-colors">
+                  Testimonials
+                </Link>
+              </li>
+              <li>
                 <a 
                   href="https://discord.gg/Cy7Rgkf4Up" 
                   target="_blank" 
