@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Purpose-Driven Life 2026 — MindMaster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --fg: #e5e7eb;
+      --muted: #161b22;
+      --card: #0f1623;
+      --accent: #f2c14e;
+      --accent-2: #5eead4;
+      --accent-3: #a78bfa;
+      --accent-4: #f472b6;
+      --grid-line: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.08);
+    }
+
+    body.theme--light {
+      --bg: #fafafa;
+      --fg: #18181b;
+      --muted: #f4f4f5;
+      --card: #ffffff;
+      --grid-line: rgba(24,24,27,0.06);
+      --border: rgba(24,24,27,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .presentation {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      width: 100vw;
+      min-height: 100vh;
+      padding: 72px 80px 96px;
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      inset: 0;
+      overflow: auto;
+      opacity: 0;
+      transform: translate3d(28px, 0, 0);
+      transition: opacity 380ms ease, transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .slide.is-active {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      pointer-events: auto;
+    }
+
+    .slide--light { background: linear-gradient(145deg, #0e1624, #0b1220); color: var(--fg); }
+    .slide--muted { background: linear-gradient(135deg, #0a0f1a, #0c1623); color: var(--fg); }
+    .slide--dark { background: linear-gradient(135deg, #06080f, #0b0f1b); color: var(--fg); }
+
+    body.theme--light .slide--light { background: #fafafa; color: #18181b; }
+    body.theme--light .slide--muted { background: #f4f4f5; color: #18181b; }
+    body.theme--light .slide--dark { background: #18181b; color: #fafafa; }
+
+    .grid-backdrop {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 56px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; }
+    .brand-badge { padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; background: rgba(255,255,255,0.04); }
+    .brand-divider { width: 32px; height: 1px; background: var(--border); }
+    .brand-series { opacity: 0.65; font-weight: 600; }
+
+    .slide-number { font-size: 12px; letter-spacing: 2px; opacity: 0.5; font-weight: 600; }
+    .phase-tag { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border); font-size: 12px; letter-spacing: 1px; opacity: 0.9; }
+
+    .overline { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.5; margin-bottom: 18px; font-weight: 600; }
+    .title { font-size: 58px; font-weight: 700; letter-spacing: -2px; line-height: 1.05; margin-bottom: 18px; }
+    .title--xl { font-size: 72px; letter-spacing: -3px; }
+    .title--md { font-size: 44px; letter-spacing: -1px; }
+    .title--sm { font-size: 32px; letter-spacing: -0.5px; }
+    .subtitle { font-size: 18px; opacity: 0.7; max-width: 760px; line-height: 1.7; }
+
+    .content { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; gap: 28px; }
+    .content--center { align-items: center; text-align: center; }
+    .content--center .subtitle { max-width: 820px; }
+
+    .divider { width: 72px; height: 2px; background: var(--accent); opacity: 0.8; margin: 28px 0; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 42px; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    body.theme--light .card { box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+
+    .card-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.4px; }
+    .card-meta { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; margin-bottom: 12px; }
+    .card-text { font-size: 15px; opacity: 0.72; line-height: 1.7; }
+
+    .list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .list li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; font-size: 17px; align-items: start; }
+    .list-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--accent); margin-top: 6px; }
+
+    .quote { font-size: 34px; font-weight: 600; line-height: 1.4; letter-spacing: -0.8px; }
+    .quote-attrib { font-size: 14px; opacity: 0.65; margin-top: 14px; }
+
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--border); border-radius: 999px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+
+    .diagram { width: 100%; max-width: 520px; }
+    .sparkline { width: 100%; max-width: 780px; }
+
+    .progress {
+      position: fixed;
+      left: 0; bottom: 0;
+      width: 100%; height: 8px;
+      background: rgba(255,255,255,0.05);
+      z-index: 10;
+    }
+    .progress__bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-3)); transition: width 0.35s ease; }
+
+    .hud {
+      position: fixed;
+      top: 20px; right: 24px;
+      display: flex; align-items: center; gap: 12px;
+      z-index: 11;
+    }
+
+    .counter { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: rgba(0,0,0,0.35); font-size: 13px; letter-spacing: 1px; }
+    .toggle { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); cursor: pointer; font-size: 13px; }
+    body.theme--light .toggle { background: rgba(24,24,27,0.04); }
+
+    .nav-hint {
+      position: fixed;
+      left: 24px; bottom: 24px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.45);
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      z-index: 11;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(180deg, var(--accent), var(--accent-3)); opacity: 0.85; }
+
+    .badge-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .timeline { display: grid; gap: 16px; }
+    .timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 14px; align-items: center; }
+    .timeline-bullet { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 6px rgba(242,193,78,0.12); }
+
+    .table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    .table th, .table td { border: 1px solid var(--border); padding: 12px 14px; text-align: left; }
+    .table th { text-transform: uppercase; letter-spacing: 1px; font-size: 12px; opacity: 0.7; }
+    .table td { font-size: 14px; opacity: 0.85; }
+
+    .cta { display: grid; gap: 12px; }
+    .checkbox-line { display: flex; gap: 10px; align-items: center; font-size: 16px; }
+    .checkbox-box { width: 18px; height: 18px; border: 2px solid var(--border); border-radius: 4px; }
+
+    @media (max-width: 720px) {
+      .slide { padding: 60px 24px 96px; }
+      .title { font-size: 42px; }
+      .title--xl { font-size: 56px; }
+      .slide-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .hud { right: 16px; top: 12px; }
+      .nav-hint { left: 12px; bottom: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="presentation">
+    <div class="progress"><div class="progress__bar" id="progress"></div></div>
+    <div class="hud">
+      <div class="counter" id="counter">01 / 40</div>
+      <button class="toggle" id="themeToggle" type="button">Toggle Theme</button>
+    </div>
+    <div class="nav-hint">← / → or Space to navigate</div>
+
+    <!-- SLIDE 1 -->
+    <section class="slide slide--light is-active" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="accent-bar"></div>
+      <div class="slide-header">
+        <div class="brand">
+          <span class="brand-badge">Dev Weekends</span>
+          <div class="brand-divider"></div>
+          <span class="brand-series">MindMaster</span>
+        </div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">01 / 40</div>
+      </div>
+      <div class="content">
+        <p class="overline">Opening Challenge</p>
+        <h1 class="title title--xl">What is your purpose for 2026?</h1>
+        <p class="subtitle">Most of us set resolutions; few hit them. The missing layer is purpose beneath goals.</p>
+        <div class="grid-2" style="margin-top: 24px;">
+          <div class="card">
+            <div class="card-meta">Poll</div>
+            <div class="card-title">How many made 2025 resolutions?</div>
+            <div class="checkbox-line"><span class="checkbox-box"></span>Yes</div>
+            <div class="checkbox-line"><span class="checkbox-box"></span>No</div>
+            <div class="card-title" style="margin-top: 18px;">How many achieved 90-100%?</div>
+            <div class="checkbox-line"><span class="checkbox-box"></span>Most of them</div>
+            <div class="checkbox-line"><span class="checkbox-box"></span>Some</div>
+            <div class="checkbox-line"><span class="checkbox-box"></span>Almost none</div>
+          </div>
+          <div class="card">
+            <div class="card-meta">Reality Check</div>
+            <div class="card-text">People aged 20-25 often miss even modest goals because the engine beneath—purpose—is undefined. This deck is a journey from darkness to clarity.</div>
+            <div style="margin-top: 18px;">
+              <div class="card-meta">Four Steps</div>
+              <svg class="sparkline" viewBox="0 0 820 160" aria-hidden="true" role="img">
+                <defs>
+                  <linearGradient id="gradStep" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="var(--accent-3)" />
+                    <stop offset="0.5" stop-color="var(--accent)" />
+                    <stop offset="1" stop-color="var(--accent-2)" />
+                  </linearGradient>
+                </defs>
+                <path d="M40 30 L190 30 L240 80 L190 130 L40 130 L90 80 Z" fill="rgba(167,139,250,0.16)" stroke="var(--accent-3)" stroke-width="2" />
+                <path d="M250 30 L400 30 L450 80 L400 130 L250 130 L300 80 Z" fill="rgba(94,234,212,0.14)" stroke="var(--accent-2)" stroke-width="2" />
+                <path d="M460 30 L610 30 L660 80 L610 130 L460 130 L510 80 Z" fill="rgba(242,193,78,0.14)" stroke="var(--accent)" stroke-width="2" />
+                <path d="M670 30 L820 30 L870 80 L820 130 L670 130 L720 80 Z" transform="translate(-50,0)" fill="rgba(244,114,182,0.12)" stroke="var(--accent-4)" stroke-width="2" />
+
+                <text x="74" y="92" fill="var(--fg)" font-size="14" font-weight="700">Know your purpose</text>
+                <text x="284" y="92" fill="var(--fg)" font-size="14" font-weight="700">Know your potential</text>
+                <text x="504" y="92" fill="var(--fg)" font-size="14" font-weight="700">Know your path</text>
+                <text x="694" y="92" fill="var(--fg)" font-size="14" font-weight="700">Know your process</text>
+
+                <rect x="40" y="140" width="390" height="10" fill="rgba(94,234,212,0.18)" />
+                <rect x="430" y="140" width="390" height="10" fill="rgba(242,193,78,0.18)" />
+                <text x="40" y="158" fill="var(--fg)" font-size="11" opacity="0.7">Universal pillars</text>
+                <text x="430" y="158" fill="var(--fg)" font-size="11" opacity="0.7">Unique to you</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">02 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Fundamental Difference</p>
+          <h1 class="title title--md">Purpose ≠ Goals</h1>
+          <div class="divider"></div>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-meta">Purpose (المقصد)</div>
+              <div class="card-text">
+                <ul class="list">
+                  <li><span class="list-dot"></span><span>Who you want to be</span></li>
+                  <li><span class="list-dot"></span><span>Why you do what you do</span></li>
+                  <li><span class="list-dot"></span><span>Never ends; larger than lifetime</span></li>
+                  <li><span class="list-dot"></span><span>Example: serve humanity and uphold justice</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-meta">Goals (الأهداف)</div>
+              <div class="card-text">
+                <ul class="list">
+                  <li><span class="list-dot"></span><span>What you want to achieve</span></li>
+                  <li><span class="list-dot"></span><span>Specific and measurable</span></li>
+                  <li><span class="list-dot"></span><span>Has an end point</span></li>
+                  <li><span class="list-dot"></span><span>Example: build a home for parents; earn PKR 10 lakh/month</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p class="subtitle" style="margin-top: 18px;">Purpose defines who you are. Goals define what you do.</p>
+        </div>
+        <div class="card" style="display:flex; justify-content:center; align-items:center;">
+          <svg class="diagram" viewBox="0 0 320 320" aria-hidden="true">
+            <circle cx="120" cy="160" r="90" fill="none" stroke="var(--accent-3)" stroke-width="8" stroke-dasharray="8 10"></circle>
+            <circle cx="200" cy="160" r="70" fill="none" stroke="var(--accent-2)" stroke-width="8"></circle>
+            <text x="90" y="160" fill="var(--fg)" font-size="16" font-weight="700">Purpose</text>
+            <text x="190" y="170" fill="var(--fg)" font-size="16" font-weight="700">Goals</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide slide--dark" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">03 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Story</p>
+          <h1 class="title title--md">The Business Class Principle</h1>
+          <p class="subtitle">Buy business class once, and your mind works differently to stay there. Vision expands, effort follows.</p>
+          <ul class="list" style="margin-top: 16px;">
+            <li><span class="list-dot"></span><span>Small goals → small effort → small life patterns</span></li>
+            <li><span class="list-dot"></span><span>Big goals → big effort → transformed lifestyle</span></li>
+            <li><span class="list-dot"></span><span>Big goals flow from a clear purpose, not from greed</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Visual Parallel</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="20" y="40" width="140" height="50" rx="10" fill="var(--card)" stroke="var(--border)" stroke-width="2"></rect>
+            <rect x="200" y="30" width="140" height="70" rx="14" fill="var(--accent-2)" opacity="0.2" stroke="var(--accent-2)" stroke-width="2"></rect>
+            <rect x="200" y="120" width="140" height="70" rx="14" fill="var(--accent-3)" opacity="0.2" stroke="var(--accent-3)" stroke-width="2"></rect>
+            <text x="40" y="72" fill="var(--fg)" font-size="13" font-weight="600">Economy comfort</text>
+            <text x="214" y="72" fill="var(--fg)" font-size="13" font-weight="600">Business vision</text>
+            <text x="210" y="162" fill="var(--fg)" font-size="13" font-weight="600">Purpose-backed hustle</text>
+            <path d="M160 65 C190 60 190 160 200 160" stroke="var(--accent)" stroke-width="4" fill="none" marker-end="url(#arrow)" />
+            <defs>
+              <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+                <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)" />
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">04 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Mindset Check</p>
+          <h1 class="title title--md">The Real Issue Isn’t Resources</h1>
+          <div class="divider"></div>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Pakistan ka masla talent nahi hai</span></li>
+            <li><span class="list-dot"></span><span>Resources ka masla nahi hai</span></li>
+            <li><span class="list-dot"></span><span>Internet ka masla nahi hai</span></li>
+            <li><span class="list-dot"></span><span>Mindset aur purpose ka masla hai</span></li>
+          </ul>
+          <p class="subtitle" style="margin-top: 14px;">Earning PKR 10–15 lakh/month in Pakistan is a comfortable life. Many can reach it in 6–7 years (some in 4–5). Do you believe it for yourself?</p>
+        </div>
+        <div class="card">
+          <div class="card-meta">Illustration</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="40" y="50" width="120" height="120" rx="18" fill="var(--card)" stroke="var(--border)" stroke-width="2"></rect>
+            <rect x="200" y="40" width="120" height="140" rx="18" fill="var(--accent-2)" opacity="0.12" stroke="var(--accent-2)" stroke-width="2"></rect>
+            <line x1="160" y1="110" x2="200" y2="110" stroke="var(--accent)" stroke-width="5" stroke-dasharray="6 8" />
+            <text x="70" y="115" fill="var(--fg)" font-weight="700">Before</text>
+            <text x="220" y="115" fill="var(--fg)" font-weight="700">After</text>
+            <text x="70" y="140" fill="var(--fg)" font-size="12" opacity="0.7">Low ceiling mindset</text>
+            <text x="220" y="140" fill="var(--fg)" font-size="12" opacity="0.7">Purpose-led ceiling</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide slide--dark" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">05 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Then What?</p>
+          <h1 class="title title--md">The Athlete’s Depression</h1>
+          <p class="subtitle">When purpose is tied to a single achievement, emptiness follows once the podium is reached.</p>
+          <ul class="list" style="margin-top: 16px;">
+            <li><span class="list-dot"></span><span>Athletes hit gold then feel lost</span></li>
+            <li><span class="list-dot"></span><span>Built the house, bought the SUV, stable income—now what?</span></li>
+            <li><span class="list-dot"></span><span>Achievement without purpose leads to burnout or boredom</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Visual</div>
+          <svg class="diagram" viewBox="0 0 360 240" aria-hidden="true">
+            <rect x="40" y="140" width="80" height="80" fill="var(--card)" stroke="var(--border)" />
+            <rect x="140" y="100" width="80" height="120" fill="var(--card)" stroke="var(--border)" />
+            <rect x="240" y="60" width="80" height="160" fill="var(--accent)" opacity="0.8" />
+            <circle cx="280" cy="40" r="18" stroke="var(--accent)" stroke-width="4" fill="none" />
+            <path d="M280 58 L280 90" stroke="var(--accent)" stroke-width="4" />
+            <text x="52" y="220" fill="var(--fg)" font-size="12">Start</text>
+            <text x="250" y="220" fill="var(--fg)" font-size="12">Trophy</text>
+            <text x="210" y="120" fill="var(--fg)" font-size="12" opacity="0.7">Now what?</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6 -->
+    <section class="slide slide--light" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="accent-bar"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">06 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Universal Pillars</p>
+          <h1 class="title title--md">Every Human’s Core Purpose</h1>
+          <p class="subtitle">Three pillars within an Islamic frame—your unique path comes after.</p>
+          <ul class="list" style="margin-top: 14px;">
+            <li><span class="list-dot"></span><span><strong>Worship (العبادة):</strong> true connection with the Creator; built on shukr</span></li>
+            <li><span class="list-dot"></span><span><strong>Unity & Relationships (الأخوة):</strong> family, community, ummah; building genuine bonds</span></li>
+            <li><span class="list-dot"></span><span><strong>Justice (العدل):</strong> stand against oppression; serve humanity</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Pillars Diagram</div>
+          <svg class="diagram" viewBox="0 0 360 260" aria-hidden="true">
+            <rect x="40" y="180" width="280" height="30" fill="var(--accent-2)" opacity="0.2" stroke="var(--accent-2)" />
+            <rect x="60" y="120" width="60" height="80" fill="var(--card)" stroke="var(--border)" />
+            <rect x="150" y="100" width="60" height="100" fill="var(--card)" stroke="var(--border)" />
+            <rect x="240" y="120" width="60" height="80" fill="var(--card)" stroke="var(--border)" />
+            <polygon points="40,120 320,120 180,60" fill="none" stroke="var(--accent)" stroke-width="3" />
+            <text x="72" y="165" fill="var(--fg)" font-size="12" font-weight="600">Worship</text>
+            <text x="154" y="145" fill="var(--fg)" font-size="12" font-weight="600">Unity</text>
+            <text x="248" y="165" fill="var(--fg)" font-size="12" font-weight="600">Justice</text>
+            <text x="150" y="210" fill="var(--fg)" font-size="12" opacity="0.7">Meaningful Life</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7 -->
+    <section class="slide slide--dark" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">07 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Responsibility</p>
+          <h1 class="title title--md">The Palestine Question</h1>
+          <p class="subtitle">We feel pain, then scroll away. Responsibility fades because purpose is weak.</p>
+          <ul class="list" style="margin-top: 12px;">
+            <li><span class="list-dot"></span><span>Do you see injustice? Do you feel hurt?</span></li>
+            <li><span class="list-dot"></span><span>Do you agree it is <em>your</em> responsibility?</span></li>
+            <li><span class="list-dot"></span><span>On the Day of Judgment: “What did you do during that time?”</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Before / After</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="40" y="60" width="120" height="120" rx="12" fill="var(--card)" stroke="var(--border)" />
+            <rect x="200" y="40" width="120" height="160" rx="12" fill="var(--accent-4)" opacity="0.16" stroke="var(--accent-4)" />
+            <text x="70" y="120" fill="var(--fg)" font-size="13">Scroll</text>
+            <text x="214" y="120" fill="var(--fg)" font-size="13">Own</text>
+            <path d="M160 120 L200 120" stroke="var(--accent)" stroke-width="4" marker-end="url(#arrow7)" />
+            <defs><marker id="arrow7" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)" /></marker></defs>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">08 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Finding Your Unique Purpose</p>
+          <h1 class="title title--md">Be Like Your Beloved</h1>
+          <p class="subtitle">We imitate what we love. Let that love point your purpose.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Whose words live in your mind? Prophet Muhammad ﷺ, sahaba, righteous scholars, your parents</span></li>
+            <li><span class="list-dot"></span><span>Love drives remembrance, pleasing, imitation, valuing advice</span></li>
+            <li><span class="list-dot"></span><span>Example story: Rahman’s childhood gift mattered because of intention and love</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Circle of Love</div>
+          <svg class="diagram" viewBox="0 0 360 240" aria-hidden="true">
+            <circle cx="120" cy="120" r="60" fill="var(--accent-2)" opacity="0.12" stroke="var(--accent-2)" />
+            <circle cx="220" cy="120" r="60" fill="var(--accent-3)" opacity="0.12" stroke="var(--accent-3)" />
+            <text x="86" y="120" fill="var(--fg)" font-size="12">Love</text>
+            <text x="188" y="120" fill="var(--fg)" font-size="12">Imitation</text>
+            <text x="130" y="160" fill="var(--fg)" font-size="12">Purpose</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9 -->
+    <section class="slide slide--dark" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">09 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Seek Knowledge</p>
+          <h1 class="title title--md">Knowledge Must Sit on Pillars</h1>
+          <p class="subtitle">Without worship, unity, and justice, knowledge becomes aimless.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Ask: which knowledge helps you serve justice?</span></li>
+            <li><span class="list-dot"></span><span>Which skills enable impact?</span></li>
+            <li><span class="list-dot"></span><span>How does learning pull you closer to the Creator?</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Rooted Knowledge</div>
+          <svg class="diagram" viewBox="0 0 360 240" aria-hidden="true">
+            <circle cx="180" cy="90" r="48" fill="var(--accent-3)" opacity="0.18" stroke="var(--accent-3)" />
+            <text x="152" y="96" fill="var(--fg)" font-size="13" font-weight="700">Knowledge</text>
+            <line x1="180" y1="138" x2="120" y2="200" stroke="var(--accent)" stroke-width="4" />
+            <line x1="180" y1="138" x2="180" y2="200" stroke="var(--accent-2)" stroke-width="4" />
+            <line x1="180" y1="138" x2="240" y2="200" stroke="var(--accent-4)" stroke-width="4" />
+            <text x="98" y="220" fill="var(--fg)" font-size="12">Worship</text>
+            <text x="168" y="220" fill="var(--fg)" font-size="12">Unity</text>
+            <text x="234" y="220" fill="var(--fg)" font-size="12">Justice</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">10 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Foundation</p>
+          <h1 class="title title--md">Start With Shukr (الشكر)</h1>
+          <p class="subtitle">Gratitude → love → worship → purpose. Shukr is an engine, not an excuse to stop.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Notice every blessing; love the Giver</span></li>
+            <li><span class="list-dot"></span><span>Love drives worship; worship clarifies purpose</span></li>
+            <li><span class="list-dot"></span><span>Fake shukr: "I have enough, so I’ll relax"</span></li>
+            <li><span class="list-dot"></span><span>Real shukr: "I’m blessed, so I can serve more"</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Spiral</div>
+          <svg class="diagram" viewBox="0 0 360 240" aria-hidden="true">
+            <path d="M100 180 Q180 60 260 180" fill="none" stroke="var(--accent)" stroke-width="5" />
+            <path d="M120 180 Q180 90 240 180" fill="none" stroke="var(--accent-2)" stroke-width="5" />
+            <path d="M140 180 Q180 120 220 180" fill="none" stroke="var(--accent-3)" stroke-width="5" />
+            <text x="86" y="200" fill="var(--fg)" font-size="12">Gratitude</text>
+            <text x="150" y="200" fill="var(--fg)" font-size="12">Love</text>
+            <text x="206" y="200" fill="var(--fg)" font-size="12">Worship</text>
+            <text x="244" y="200" fill="var(--fg)" font-size="12">Purpose</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11 -->
+    <section class="slide slide--light" data-phase="potential">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="accent-bar"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Potential</div>
+        <div class="slide-number">11 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Self-Discovery</p>
+          <h1 class="title title--md">The Intersection</h1>
+          <p class="subtitle">Your purpose hides where your abilities, your pain, and the world’s need overlap.</p>
+          <ul class="list" style="margin-top: 12px;">
+            <li><span class="list-dot"></span><span>Life story: childhood dreams; injustices that moved you</span></li>
+            <li><span class="list-dot"></span><span>Abilities & temperament: what feels natural; praised strengths</span></li>
+            <li><span class="list-dot"></span><span>Emotional triggers: pains that make you say “I must act”</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Venn</div>
+          <svg class="diagram" viewBox="0 0 360 260" aria-hidden="true">
+            <circle cx="150" cy="130" r="70" fill="var(--accent-2)" opacity="0.18" />
+            <circle cx="210" cy="130" r="70" fill="var(--accent-3)" opacity="0.18" />
+            <circle cx="180" cy="180" r="70" fill="var(--accent-4)" opacity="0.18" />
+            <text x="120" y="120" fill="var(--fg)" font-size="12">Abilities</text>
+            <text x="216" y="120" fill="var(--fg)" font-size="12">Pain</text>
+            <text x="162" y="210" fill="var(--fg)" font-size="12">Need</text>
+            <text x="162" y="160" fill="var(--fg)" font-size="12" font-weight="700">Purpose</text>
+          </svg>
+          <div class="badge-grid" style="margin-top: 16px;">
+            <span class="pill">S <span style="opacity:0.7;">Spirit</span></span>
+            <span class="pill">P <span style="opacity:0.7;">Personality</span></span>
+            <span class="pill">A <span style="opacity:0.7;">Abilities</span></span>
+            <span class="pill">R <span style="opacity:0.7;">Relish</span></span>
+            <span class="pill">K <span style="opacity:0.7;">Knowledge</span></span>
+            <span class="pill">L <span style="opacity:0.7;">Life story</span></span>
+            <span class="pill">I <span style="opacity:0.7;">Intelligence</span></span>
+            <span class="pill">T <span style="opacity:0.7;">Temperaments</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12 -->
+    <section class="slide slide--dark" data-phase="potential">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Potential</div>
+        <div class="slide-number">12 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Case Study</p>
+          <h1 class="title title--md">Sundar Stem Example</h1>
+          <p class="subtitle">World-class programmers in Pakistan built by individuals with purpose beyond wealth.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Purpose → investment → system that outlives founders</span></li>
+            <li><span class="list-dot"></span><span>50 attendees join FAANG (PKR 8–9 crore/year each)</span></li>
+            <li><span class="list-dot"></span><span>Pooling enables Sundar Stem 2.0 → kids to MIT/Stanford → companies born</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Timeline</div>
+          <div class="timeline">
+            <div class="timeline-item"><span class="timeline-bullet"></span><div><strong>Year 0–3:</strong> Skills + purpose</div></div>
+            <div class="timeline-item"><span class="timeline-bullet"></span><div><strong>Year 4–7:</strong> PKR 8–9 crore/year earners emerge</div></div>
+            <div class="timeline-item"><span class="timeline-bullet"></span><div><strong>Year 8–12:</strong> Pool funds; build Sundar Stem 2.0</div></div>
+            <div class="timeline-item"><span class="timeline-bullet"></span><div><strong>Year 15–20:</strong> Graduates create enduring companies</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13 -->
+    <section class="slide slide--muted" data-phase="path">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Path</div>
+        <div class="slide-number">13 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">From Purpose to Action</p>
+          <h1 class="title title--md">Map the Path</h1>
+          <p class="subtitle">Mission, monetization, spark, and labor turn purpose into movement.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span><strong>Mission:</strong> your specific calling</span></li>
+            <li><span class="list-dot"></span><span><strong>Monetization:</strong> halal resourcing (money is a tool)</span></li>
+            <li><span class="list-dot"></span><span><strong>Spark:</strong> unique angle that excites you</span></li>
+            <li><span class="list-dot"></span><span><strong>Labor:</strong> the actual work—teach, code, build, organize</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Islamic Ikigai (Path)</div>
+          <svg class="diagram" viewBox="0 0 360 260" aria-hidden="true">
+            <circle cx="180" cy="135" r="80" fill="rgba(167,139,250,0.12)" stroke="var(--accent-3)" stroke-width="2" />
+            <circle cx="130" cy="125" r="70" fill="rgba(94,234,212,0.10)" stroke="var(--accent-2)" stroke-width="2" />
+            <circle cx="230" cy="125" r="70" fill="rgba(242,193,78,0.10)" stroke="var(--accent)" stroke-width="2" />
+            <circle cx="180" cy="180" r="70" fill="rgba(244,114,182,0.09)" stroke="var(--accent-4)" stroke-width="2" />
+
+            <text x="112" y="92" fill="var(--fg)" font-size="12" font-weight="700">Mission</text>
+            <text x="240" y="92" fill="var(--fg)" font-size="12" font-weight="700">Ummah</text>
+            <text x="94" y="165" fill="var(--fg)" font-size="12" font-weight="700">Monetise</text>
+            <text x="238" y="165" fill="var(--fg)" font-size="12" font-weight="700">Spark</text>
+            <text x="168" y="232" fill="var(--fg)" font-size="12" font-weight="700">Labour</text>
+
+            <circle cx="180" cy="142" r="28" fill="var(--card)" stroke="var(--border)" />
+            <text x="156" y="146" fill="var(--fg)" font-size="11" font-weight="800">ALLAH</text>
+          </svg>
+          <p class="card-text" style="margin-top: 10px;">Money is a tool. Your center stays Allah—then mission, spark, and labor become worship and service.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14 -->
+    <section class="slide slide--dark" data-phase="process">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Process</div>
+        <div class="slide-number">14 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Execution Framework</p>
+          <h1 class="title title--md">Stack from Dua Upwards</h1>
+          <p class="subtitle">Purpose → vision → goals → systems → action → direction & urgency; dua is the base.</p>
+        </div>
+        <div class="card">
+          <div class="card-meta">Inverted Pyramid</div>
+          <svg class="diagram" viewBox="0 0 360 280" aria-hidden="true">
+            <rect x="50" y="46" width="260" height="28" rx="10" fill="rgba(167,139,250,0.14)" stroke="var(--accent-3)" />
+            <rect x="50" y="86" width="260" height="28" rx="10" fill="rgba(94,234,212,0.12)" stroke="var(--accent-2)" />
+            <rect x="50" y="126" width="260" height="28" rx="10" fill="rgba(242,193,78,0.12)" stroke="var(--accent)" />
+            <rect x="50" y="166" width="260" height="28" rx="10" fill="rgba(244,114,182,0.10)" stroke="var(--accent-4)" />
+            <rect x="50" y="206" width="260" height="28" rx="10" fill="rgba(255,255,255,0.04)" stroke="var(--border)" />
+            <rect x="50" y="246" width="260" height="22" rx="10" fill="rgba(94,234,212,0.10)" stroke="var(--accent-2)" />
+
+            <text x="170" y="66" fill="var(--fg)" font-size="12" font-weight="700" text-anchor="middle">Purpose</text>
+            <text x="170" y="106" fill="var(--fg)" font-size="12" font-weight="700" text-anchor="middle">Vision</text>
+            <text x="170" y="146" fill="var(--fg)" font-size="12" font-weight="700" text-anchor="middle">Goals</text>
+            <text x="170" y="186" fill="var(--fg)" font-size="12" font-weight="700" text-anchor="middle">Systems</text>
+            <text x="170" y="226" fill="var(--fg)" font-size="12" font-weight="700" text-anchor="middle">Action</text>
+            <text x="170" y="262" fill="var(--fg)" font-size="12" font-weight="800" text-anchor="middle">Dua (Foundation)</text>
+
+            <text x="170" y="214" fill="var(--fg)" font-size="10" opacity="0.65" text-anchor="middle">Direction & urgency live inside your systems</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15 -->
+    <section class="slide slide--muted" data-phase="process">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Process</div>
+        <div class="slide-number">15 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Obstacles</p>
+          <h1 class="title title--md">Doubts & Desires</h1>
+          <ul class="list" style="margin-top: 12px;">
+            <li><span class="list-dot"></span><span>Doubts: am I chosen, what if I fail, am I good enough?</span></li>
+            <li><span class="list-dot"></span><span>Answer: selection is Allah’s; bring ikhlas, He opens doors</span></li>
+            <li><span class="list-dot"></span><span>Desires: crave ease, avoid hard work</span></li>
+            <li><span class="list-dot"></span><span>Solution: keep one deed as wasila—did hard thing for Allah or avoided temptation for Allah</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Path with Obstacles</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <line x1="40" y1="180" x2="320" y2="60" stroke="var(--accent)" stroke-width="4" />
+            <circle cx="140" cy="140" r="18" fill="var(--accent-4)" opacity="0.3" />
+            <circle cx="240" cy="110" r="18" fill="var(--accent-3)" opacity="0.3" />
+            <text x="126" y="145" fill="var(--fg)" font-size="11">Doubt</text>
+            <text x="225" y="115" fill="var(--fg)" font-size="11">Desire</text>
+            <circle cx="60" cy="180" r="10" fill="var(--accent-2)" />
+            <circle cx="320" cy="60" r="12" fill="var(--accent)" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 16 -->
+    <section class="slide slide--dark" data-phase="process">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Process</div>
+        <div class="slide-number">16 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">The Dua</p>
+          <h1 class="title title--md">Jundun Ar-Rabbika (جندن الربك)</h1>
+          <p class="subtitle">Ask the King like you are asking a King: “O Allah, choose me for something big.”</p>
+          <ul class="list" style="margin-top: 12px;">
+            <li><span class="list-dot"></span><span>Not: give me a car; help me pass one interview</span></li>
+            <li><span class="list-dot"></span><span>But: make me among Your soldiers; use me for service</span></li>
+            <li><span class="list-dot"></span><span>Being chosen makes ordinary people extraordinary</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Selection</div>
+          <svg class="diagram" viewBox="0 0 360 240" aria-hidden="true">
+            <rect x="80" y="80" width="200" height="120" rx="16" fill="var(--card)" stroke="var(--border)" />
+            <circle cx="180" cy="110" r="24" fill="var(--accent-2)" opacity="0.4" />
+            <line x1="180" y1="134" x2="180" y2="170" stroke="var(--accent)" stroke-width="4" />
+            <circle cx="180" cy="182" r="8" fill="var(--accent)" />
+            <path d="M180 56 L180 82" stroke="var(--accent)" stroke-width="5" marker-end="url(#arrow16)" />
+            <defs><marker id="arrow16" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)" /></marker></defs>
+            <text x="150" y="206" fill="var(--fg)" font-size="12">Chosen</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 17 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">17 / 40</div>
+      </div>
+      <div class="content">
+        <p class="overline">Yearning</p>
+        <h1 class="title title--md">“خدا تھا وہ”</h1>
+        <p class="subtitle">When no path is visible, Allah is preparing you. Every closed door is training.</p>
+        <div class="card" style="margin-top: 18px;">
+          <p class="card-text" style="font-size: 16px;">“I thought it was my thought... but it was Allah. The tongue I cannot control, the heart I cannot convince, the life I cannot direct—it all belongs to Him. Trials you cannot bear, tears you cannot stop—He prepares you for what He chose.”</p>
+          <p class="card-text" style="margin-top: 12px; opacity: 0.7;">UN rejections until two offers arrived together; Systems Limited silence until it suddenly opened—timing was His.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 18 -->
+    <section class="slide slide--dark" data-phase="process">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Process</div>
+        <div class="slide-number">18 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Practice</p>
+          <h1 class="title title--md">The 15-Minute Revolution</h1>
+          <p class="subtitle">Every night after Isha or Maghrib: lights off, paper and pen, talk to Allah 15–20 minutes.</p>
+          <ul class="list" style="margin-top: 12px;">
+            <li><span class="list-dot"></span><span>Write, don’t type—forces clarity</span></li>
+            <li><span class="list-dot"></span><span>Be honest: confusion, hurt, desire, service</span></li>
+            <li><span class="list-dot"></span><span>30 days of this builds connection and reveals patterns</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Night Desk</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="60" y="140" width="240" height="40" fill="var(--card)" stroke="var(--border)" />
+            <rect x="120" y="90" width="120" height="60" fill="var(--accent-2)" opacity="0.2" />
+            <line x1="120" y1="90" x2="240" y2="150" stroke="var(--border)" stroke-width="2" />
+            <line x1="240" y1="90" x2="120" y2="150" stroke="var(--border)" stroke-width="2" />
+            <circle cx="180" cy="70" r="18" fill="var(--accent)" opacity="0.5" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 19 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">19 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Proof Around You</p>
+          <h1 class="title title--md">When Allah Rewrites Plans</h1>
+          <p class="subtitle">Wajjahat’s path: Shor Kot → PUCIT → ICPC gold → RV Soft. Could he plan that?</p>
+          <ul class="list" style="margin-top: 10px;">
+            <li><span class="list-dot"></span><span>We all have impossible moments that became real</span></li>
+            <li><span class="list-dot"></span><span>Patterns: kept moving, ikhlas, unexpected openings</span></li>
+            <li><span class="list-dot"></span><span>Are you where you planned 5 years ago—or beyond?</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Winding Road</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <path d="M40 180 C120 120 160 200 240 140 C280 110 300 80 320 60" stroke="var(--accent)" stroke-width="5" fill="none" />
+            <circle cx="40" cy="180" r="10" fill="var(--accent-2)" />
+            <circle cx="320" cy="60" r="12" fill="var(--accent-3)" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 20 -->
+    <section class="slide slide--dark" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">20 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Comfort Trap</p>
+          <h1 class="title title--md">Ease Can Kill Creativity</h1>
+          <p class="subtitle">Good food, pay, titles can dull hunger; purpose keeps you sharp.</p>
+          <ul class="list" style="margin-top: 12px;">
+            <li><span class="list-dot"></span><span>UN period: work fine but not at potential</span></li>
+            <li><span class="list-dot"></span><span>Goalpost creep: PKR 3 crore house → PKR 5 crore house; Fortuner → Land Cruiser</span></li>
+            <li><span class="list-dot"></span><span>Purpose recenters away from endless upgrades</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Contrast</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="40" y="120" width="120" height="60" rx="12" fill="var(--card)" stroke="var(--border)" />
+            <rect x="200" y="60" width="120" height="120" rx="18" fill="var(--accent-2)" opacity="0.2" />
+            <text x="70" y="155" fill="var(--fg)" font-size="12">Comfort</text>
+            <text x="220" y="120" fill="var(--fg)" font-size="12">Purpose Drive</text>
+            <path d="M160 150 L200 120" stroke="var(--accent)" stroke-width="4" marker-end="url(#arrow20)" />
+            <defs><marker id="arrow20" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)" /></marker></defs>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 21 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">21 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Thought Experiment</p>
+          <h1 class="title title--md">If Elon Musk Became Muslim</h1>
+          <p class="subtitle">The what would stay; the why would change.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Same innovation, ambition, work ethic</span></li>
+            <li><span class="list-dot"></span><span>Center shifts to serving Allah and akhirah</span></li>
+            <li><span class="list-dot"></span><span>We need excellence with the right center</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Split Screen</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="40" y="60" width="120" height="120" fill="var(--card)" stroke="var(--border)" />
+            <rect x="200" y="60" width="120" height="120" fill="var(--accent-2)" opacity="0.2" stroke="var(--accent-2)" />
+            <text x="72" y="125" fill="var(--fg)" font-size="12">Same Actions</text>
+            <text x="210" y="125" fill="var(--fg)" font-size="12">New Intention</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 22 -->
+    <section class="slide slide--dark" data-phase="process">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Process</div>
+        <div class="slide-number">22 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Wasila</p>
+          <h1 class="title title--md">Find Your One Deed</h1>
+          <p class="subtitle">Keep one act you can present in dua as proof of sincerity.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Something you wanted but didn’t do for Allah</span></li>
+            <li><span class="list-dot"></span><span>Or something you hated but did for Allah</span></li>
+            <li><span class="list-dot"></span><span>Use it as wasila: “You remember that moment...”</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Crossroads</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <path d="M180 200 L180 40" stroke="var(--accent)" stroke-width="5" />
+            <path d="M180 120 L300 80" stroke="var(--accent-2)" stroke-width="5" />
+            <path d="M180 120 L60 80" stroke="var(--accent-4)" stroke-width="5" />
+            <circle cx="180" cy="120" r="12" fill="var(--accent)" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 23 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">23 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Centering</p>
+          <h1 class="title title--md">كل شيء مركزه الله</h1>
+          <p class="subtitle">Same action, different center → different joy and barakah.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Cooking: not just “family happy” but “Allah commanded care”</span></li>
+            <li><span class="list-dot"></span><span>Business: skills to serve creation; wealth for justice</span></li>
+            <li><span class="list-dot"></span><span>Code: halal income and systems that help people</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Center Diagram</div>
+          <svg class="diagram" viewBox="0 0 360 240" aria-hidden="true">
+            <circle cx="180" cy="120" r="80" fill="var(--accent-2)" opacity="0.12" />
+            <circle cx="180" cy="120" r="40" fill="var(--accent)" opacity="0.5" />
+            <text x="162" y="126" fill="var(--fg)" font-size="14" font-weight="700">Allah</text>
+            <text x="90" y="120" fill="var(--fg)" font-size="12">Family</text>
+            <text x="232" y="120" fill="var(--fg)" font-size="12">Work</text>
+            <text x="160" y="200" fill="var(--fg)" font-size="12">Service</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 24 -->
+    <section class="slide slide--dark" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">24 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Big Question</p>
+          <h1 class="title title--md">What If God Doesn’t Exist?</h1>
+          <p class="subtitle">Infinite regression is illogical. Study prophecies and fulfilled signs.</p>
+          <ul class="list" style="margin-top: 10px;">
+            <li><span class="list-dot"></span><span>Quranic facts before science; Surah Rum prediction</span></li>
+            <li><span class="list-dot"></span><span>Bedouin Arabs defeating superpowers</span></li>
+            <li><span class="list-dot"></span><span>Recommended: Hamza Yusuf, Harun Yahya, Maurice Bucaille, Izhar-ul-Haq</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Light Emerges</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="40" y="60" width="280" height="120" rx="16" fill="var(--card)" stroke="var(--border)" />
+            <path d="M80 140 Q180 40 280 140" stroke="var(--accent)" stroke-width="5" fill="none" />
+            <text x="140" y="170" fill="var(--fg)" font-size="12">Questions → Light</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 25 -->
+    <section class="slide slide--muted" data-phase="path">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Path</div>
+        <div class="slide-number">25 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Team Over Idea</p>
+          <h1 class="title title--md">Scholars vs. Action</h1>
+          <p class="subtitle">Knowledge without action = arrogance. Action without knowledge = misfire. Islam wants teams with both, centered on Allah.</p>
+        </div>
+        <div class="card">
+          <div class="card-meta">Balance</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="80" y="120" width="80" height="60" fill="var(--accent-3)" opacity="0.2" />
+            <rect x="200" y="120" width="80" height="60" fill="var(--accent-2)" opacity="0.2" />
+            <circle cx="140" cy="120" r="10" fill="var(--accent-3)" />
+            <circle cx="220" cy="120" r="10" fill="var(--accent-2)" />
+            <circle cx="180" cy="80" r="16" fill="var(--accent)" />
+            <text x="110" y="160" fill="var(--fg)" font-size="12">Knowledge</text>
+            <text x="212" y="160" fill="var(--fg)" font-size="12">Action</text>
+            <text x="170" y="84" fill="var(--fg)" font-size="12">Allah</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 26 -->
+    <section class="slide slide--dark" data-phase="path">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Path</div>
+        <div class="slide-number">26 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Timeline</p>
+          <h1 class="title title--md">Life Begins at 40?</h1>
+          <p class="subtitle">Prophet ﷺ received prophethood at 40; most impact after. Many sahaba were late bloomers.</p>
+          <ul class="list" style="margin-top: 10px;">
+            <li><span class="list-dot"></span><span>You have decades; 20s build character and skill</span></li>
+            <li><span class="list-dot"></span><span>The miracle: Islam spread more after his passing—because of system + team</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Age Timeline</div>
+          <div class="timeline">
+            <div class="timeline-item"><span class="timeline-bullet"></span><div>40: Revelation</div></div>
+            <div class="timeline-item"><span class="timeline-bullet"></span><div>63: Passing, legacy intact</div></div>
+            <div class="timeline-item"><span class="timeline-bullet"></span><div>Post-63: Massive spread via sahaba</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 27 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">27 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Shukr Reframed</p>
+          <h1 class="title title--md">Pakistani Definition vs Reality</h1>
+          <p class="subtitle">Wrong shukr = laziness disguised as contentment. Right shukr = energy to serve more.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Health → help those without</span></li>
+            <li><span class="list-dot"></span><span>Education → teach those lacking access</span></li>
+            <li><span class="list-dot"></span><span>Income → fund those in need</span></li>
+            <li><span class="list-dot"></span><span>Zuhd: having everything but choosing simplicity to give more (Abu Ubaidah)</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Spiral</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <path d="M80 180 Q180 80 280 180" stroke="var(--accent-2)" stroke-width="4" fill="none" />
+            <path d="M100 180 Q180 110 260 180" stroke="var(--accent-3)" stroke-width="4" fill="none" />
+            <text x="90" y="200" fill="var(--fg)" font-size="12">Wrong</text>
+            <text x="230" y="200" fill="var(--fg)" font-size="12">Right</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 28 -->
+    <section class="slide slide--dark" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">28 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Scale Check</p>
+          <h1 class="title title--md">PKR 3 Crore House: Big or Small Goal?</h1>
+          <p class="subtitle">On a global scale, building a house for parents might be 6/10. Even if you win—who else is transformed?</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Family happy, yes. But injustice unchanged.</span></li>
+            <li><span class="list-dot"></span><span>Goalposts keep moving: bigger house, better car</span></li>
+            <li><span class="list-dot"></span><span>Include others from the start to avoid emptiness</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Expanding Circles</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <circle cx="120" cy="120" r="40" fill="var(--accent)" opacity="0.4" />
+            <circle cx="180" cy="120" r="70" fill="var(--accent-2)" opacity="0.14" />
+            <circle cx="240" cy="120" r="100" fill="var(--accent-3)" opacity="0.12" />
+            <text x="100" y="124" fill="var(--fg)" font-size="12">Family</text>
+            <text x="162" y="144" fill="var(--fg)" font-size="12">Community</text>
+            <text x="220" y="160" fill="var(--fg)" font-size="12">Ummah</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 29 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">29 / 40</div>
+      </div>
+      <div class="content">
+        <p class="overline">Reflection</p>
+        <h1 class="title title--md">What Will You Say?</h1>
+        <div class="grid-3" style="margin-top: 20px;">
+          <div class="card"><div class="card-title">Purpose</div><p class="card-text">Was it comfort, or was it service and justice?</p></div>
+          <div class="card"><div class="card-title">Injustice</div><p class="card-text">When you witnessed oppression, what did you do?</p></div>
+          <div class="card"><div class="card-title">Legacy</div><p class="card-text">Who remembers you—family only, or thousands through systems you built?</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 30 -->
+    <section class="slide slide--dark" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">30 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Heart Test</p>
+          <h1 class="title title--md">Why Goals Fail Without Purpose</h1>
+          <p class="subtitle">“Dil hi nahi karta” because inner calling is absent.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>3 AM prod bug: with purpose you smile, without you suffer</span></li>
+            <li><span class="list-dot"></span><span>University hustle vs job comfort: hunger reduced</span></li>
+            <li><span class="list-dot"></span><span>Money without purpose increases comfort, reduces drive</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Two Faces</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <circle cx="120" cy="120" r="40" fill="var(--accent-2)" opacity="0.3" />
+            <circle cx="240" cy="120" r="40" fill="var(--accent-4)" opacity="0.3" />
+            <text x="90" y="124" fill="var(--fg)" font-size="12">Joyful</text>
+            <text x="220" y="124" fill="var(--fg)" font-size="12">Drained</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 31 -->
+    <section class="slide slide--muted" data-phase="process">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Process</div>
+        <div class="slide-number">31 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Ikhlas Test</p>
+          <h1 class="title title--md">كل العمل مركزه النية</h1>
+          <p class="subtitle">Why are you doing this? Money, family, or Allah as center?</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Money is halal; family is worship—when centered on Allah</span></li>
+            <li><span class="list-dot"></span><span>Same actions, different intention → different barakah</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Bullseye</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <circle cx="180" cy="120" r="80" stroke="var(--accent-2)" fill="none" stroke-width="3" />
+            <circle cx="180" cy="120" r="50" stroke="var(--accent-3)" fill="none" stroke-width="3" />
+            <circle cx="180" cy="120" r="22" fill="var(--accent)" />
+            <text x="166" y="125" fill="var(--fg)" font-size="12" font-weight="700">Allah</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 32 -->
+    <section class="slide slide--dark" data-phase="path">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Path</div>
+        <div class="slide-number">32 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Systems Thinking</p>
+          <h1 class="title title--md">Build Systems, Not Just Success</h1>
+          <p class="subtitle">Prophet ﷺ left system, team, purpose that scaled after him. Do the same in your domain.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>System: principles that scale</span></li>
+            <li><span class="list-dot"></span><span>Team: trained people with shared purpose</span></li>
+            <li><span class="list-dot"></span><span>Purpose: bigger than one lifetime</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Tree</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="160" y="140" width="40" height="60" fill="var(--accent)" opacity="0.6" />
+            <circle cx="180" cy="110" r="40" fill="var(--accent-2)" opacity="0.2" />
+            <circle cx="140" cy="100" r="30" fill="var(--accent-3)" opacity="0.2" />
+            <circle cx="220" cy="100" r="30" fill="var(--accent-4)" opacity="0.2" />
+            <text x="160" y="210" fill="var(--fg)" font-size="12">Roots</text>
+            <text x="162" y="120" fill="var(--fg)" font-size="12">Shade</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 33 -->
+    <section class="slide slide--muted" data-phase="potential">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Potential</div>
+        <div class="slide-number">33 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Big Thinking</p>
+          <h1 class="title title--md">Sundar Stem Could Be You</h1>
+          <p class="subtitle">Purpose-driven thinking at scale is the bottleneck.</p>
+          <ul class="list" style="margin-top: 10px;">
+            <li><span class="list-dot"></span><span>10 people earning PKR 8–9 crore/year can pool resources to fund systems</span></li>
+            <li><span class="list-dot"></span><span>10 years: 50 kids in MIT/Stanford/Harvard</span></li>
+            <li><span class="list-dot"></span><span>20 years: billion-dollar companies, just systems, leaders with purpose</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Exponential</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <path d="M40 180 Q120 140 180 160 Q240 140 320 60" stroke="var(--accent)" stroke-width="5" fill="none" />
+            <circle cx="40" cy="180" r="10" fill="var(--accent-2)" />
+            <circle cx="180" cy="160" r="10" fill="var(--accent-3)" />
+            <circle cx="320" cy="60" r="12" fill="var(--accent-4)" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 34 -->
+    <section class="slide slide--dark" data-phase="process">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Process</div>
+        <div class="slide-number">34 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Dua Framework</p>
+          <h1 class="title title--md">اللهم اجعلني من جندك</h1>
+          <ul class="list" style="margin-top: 10px;">
+            <li><span class="list-dot"></span><span>Sabr: when path unclear, patience to trust</span></li>
+            <li><span class="list-dot"></span><span>Shukr: see every blessing and connect to Allah</span></li>
+            <li><span class="list-dot"></span><span>Ikhlas: keep heart firm</span></li>
+            <li><span class="list-dot"></span><span>Selection: choose me for something big</span></li>
+            <li><span class="list-dot"></span><span>Tawfeeq: success only by Him</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Light Beam</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="140" y="100" width="80" height="100" rx="12" fill="var(--card)" stroke="var(--border)" />
+            <polygon points="180,40 140,100 220,100" fill="var(--accent)" opacity="0.3" />
+            <text x="158" y="160" fill="var(--fg)" font-size="12">Servant</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 35 -->
+    <section class="slide slide--muted" data-phase="process">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Process</div>
+        <div class="slide-number">35 / 40</div>
+      </div>
+      <div class="content">
+        <p class="overline">Avoid Traps</p>
+        <h1 class="title title--md">The Fake Versions</h1>
+        <table class="table">
+          <thead><tr><th>Aspect</th><th>Fake</th><th>Real</th></tr></thead>
+          <tbody>
+            <tr><td>Gratitude</td><td>“I have enough, so I’ll relax”</td><td>“I’m blessed, so I’ll serve more”</td></tr>
+            <tr><td>Hope</td><td>“Allah will provide” + no action</td><td>Work hardest + trust Allah</td></tr>
+            <tr><td>Humility</td><td>“I’m nobody” to avoid effort</td><td>Allah can make anyone special</td></tr>
+            <tr><td>Worship</td><td>Only rituals, ignore justice</td><td>Pray + serve + uphold justice</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SLIDE 36 -->
+    <section class="slide slide--dark" data-phase="potential">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Potential</div>
+        <div class="slide-number">36 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Training</p>
+          <h1 class="title title--md">Intelligence Is Trainable</h1>
+          <p class="subtitle">Brain grows through progressive resistance.</p>
+          <ul class="list" style="margin-top: 10px;">
+            <li><span class="list-dot"></span><span>Do harder problems than your level</span></li>
+            <li><span class="list-dot"></span><span>If 30 days possible, try 15</span></li>
+            <li><span class="list-dot"></span><span>Sleep, sunlight, walks, nutrition</span></li>
+            <li><span class="list-dot"></span><span>Purpose keeps you chasing challenge</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Growth Curve</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <path d="M60 180 Q140 140 180 150 Q240 140 300 60" stroke="var(--accent)" stroke-width="5" fill="none" />
+            <text x="70" y="190" fill="var(--fg)" font-size="12">Comfort</text>
+            <text x="250" y="70" fill="var(--fg)" font-size="12">Challenge</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 37 -->
+    <section class="slide slide--muted" data-phase="process">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Process</div>
+        <div class="slide-number">37 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Start Tonight</p>
+          <h1 class="title title--md">The 15-Minute Commitment</h1>
+          <p class="subtitle">After Isha/Maghrib, quiet space, handwritten journaling + talking to Allah for 30 days.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Write on paper; phones distract</span></li>
+            <li><span class="list-dot"></span><span>Express confusion, pain, desires, questions</span></li>
+            <li><span class="list-dot"></span><span>Ask for guidance on purpose; be brutally honest</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Calendar</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="80" y="60" width="200" height="120" rx="14" fill="var(--card)" stroke="var(--border)" />
+            <line x1="80" y1="100" x2="280" y2="100" stroke="var(--border)" />
+            <text x="130" y="85" fill="var(--fg)" font-size="12">30-Day Journal</text>
+            <text x="110" y="140" fill="var(--fg)" font-size="12">Nightly check-ins with Allah</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 38 -->
+    <section class="slide slide--dark" data-phase="potential">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Potential</div>
+        <div class="slide-number">38 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Study</p>
+          <h1 class="title title--md">Book & Scholar Picks</h1>
+          <ul class="list" style="margin-top: 10px;">
+            <li><span class="list-dot"></span><span>God’s existence: Maurice Bucaille, Hamza Yusuf, Harun Yahya, Izhar-ul-Haq, Tolstoy’s Confession</span></li>
+            <li><span class="list-dot"></span><span>Connection: Seerah, Sahaba lives, Nouman Ali Khan</span></li>
+            <li><span class="list-dot"></span><span>Mindset: Muslim self-help, Dr. Bruce Lipton</span></li>
+            <li><span class="list-dot"></span><span>Method: don’t skim—study, reflect, apply</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Stack</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="120" y="140" width="120" height="20" fill="var(--card)" stroke="var(--border)" />
+            <rect x="110" y="120" width="140" height="20" fill="var(--accent-2)" opacity="0.2" />
+            <rect x="100" y="100" width="160" height="20" fill="var(--accent-3)" opacity="0.2" />
+            <rect x="90" y="80" width="180" height="20" fill="var(--accent-4)" opacity="0.2" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 39 -->
+    <section class="slide slide--muted" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Know Your Purpose</div>
+        <div class="slide-number">39 / 40</div>
+      </div>
+      <div class="content grid-2">
+        <div>
+          <p class="overline">Mission</p>
+          <h1 class="title title--md">You Are the Bright Future</h1>
+          <p class="subtitle">Darkness exists—Palestine, Sudan, oppression. Light will come through purpose-driven builders.</p>
+          <ul class="list">
+            <li><span class="list-dot"></span><span>Stop waiting for leaders; build systems</span></li>
+            <li><span class="list-dot"></span><span>History: darkness followed by light through purposeful individuals</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-meta">Dawn</div>
+          <svg class="diagram" viewBox="0 0 360 220" aria-hidden="true">
+            <rect x="40" y="140" width="280" height="40" fill="var(--card)" stroke="var(--border)" />
+            <polygon points="40,140 320,140 180,80" fill="var(--accent)" opacity="0.2" />
+            <text x="150" y="170" fill="var(--fg)" font-size="12">Light Rising</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 40 -->
+    <section class="slide slide--dark" data-phase="purpose">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+      <div class="accent-bar"></div>
+      <div class="slide-header">
+        <div class="brand"><span class="brand-badge">Dev Weekends</span><div class="brand-divider"></div><span class="brand-series">MindMaster</span></div>
+        <div class="phase-tag">Closing</div>
+        <div class="slide-number">40 / 40</div>
+      </div>
+      <div class="content">
+        <p class="overline">2026: Year of Purpose</p>
+        <h1 class="title title--xl">Commit. Ask to be Chosen.</h1>
+        <div class="grid-2" style="margin-top: 24px;">
+          <div class="card cta">
+            <div class="card-meta">Commitment Card</div>
+            <div class="checkbox-line"><span class="checkbox-box"></span><span>Daily connection: 15 minutes talking to Allah</span></div>
+            <div class="checkbox-line"><span class="checkbox-box"></span><span>Self-discovery journaling</span></div>
+            <div class="checkbox-line"><span class="checkbox-box"></span><span>Study role models and think bigger</span></div>
+            <div class="checkbox-line"><span class="checkbox-box"></span><span>Include ummah/humanity in plans</span></div>
+            <div class="checkbox-line"><span class="checkbox-box"></span><span>Trust process: more dua + sabr when unclear</span></div>
+            <div class="checkbox-line"><span class="checkbox-box"></span><span>Build systems, not just personal success</span></div>
+          </div>
+          <div class="card">
+            <div class="card-meta">Dua Together</div>
+            <p class="card-text">Ya Allah, we don’t see our purpose fully, but we know You choose and guide. Choose us for something big. Purify our intentions. Strengthen our connection. Make us among Your soldiers who uphold justice. Make this year the beginning of a purposeful life. Ameen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    let current = 0;
+    const counter = document.getElementById('counter');
+    const progress = document.getElementById('progress');
+    const toggle = document.getElementById('themeToggle');
+
+    const THEME_KEY = 'mindmaster_presentation_theme';
+
+    function applyTheme(theme) {
+      document.body.classList.toggle('theme--light', theme === 'light');
+      toggle.textContent = theme === 'light' ? 'Dark Theme' : 'Light Theme';
+      try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+    }
+
+    function setSlide(index) {
+      const clamped = Math.max(0, Math.min(slides.length - 1, index));
+      slides[current].classList.remove('is-active');
+      current = clamped;
+      slides[current].classList.add('is-active');
+      const label = String(current + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+      counter.textContent = label;
+      progress.style.width = ((current + 1) / slides.length) * 100 + '%';
+      slides[current].scrollTop = 0;
+    }
+
+    function next() { setSlide(current + 1); }
+    function prev() { setSlide(current - 1); }
+
+    document.addEventListener('keydown', (e) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); next(); }
+      if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+    });
+
+    toggle.addEventListener('click', () => {
+      const nextTheme = document.body.classList.contains('theme--light') ? 'dark' : 'light';
+      applyTheme(nextTheme);
+    });
+
+    // Init
+    (function init() {
+      let saved = 'dark';
+      try { saved = localStorage.getItem(THEME_KEY) || 'dark'; } catch (_) {}
+      applyTheme(saved);
+      setSlide(0);
+    })();
+  </script>
+</body>
+</html>

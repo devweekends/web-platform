@@ -4,7 +4,14 @@
       "Bash(npm run dev:*)",
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npx next:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx -p typescript tsc --noEmit --pretty)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(grep -c '```' \"D:/Projects - Community/web-platform/app/think-like-an-engineer/guide.md\")",
+      "Bash(awk ':*)",
+      "Bash(awk:*)"
     ],
     "deny": [],
     "ask": []

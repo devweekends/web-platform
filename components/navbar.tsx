@@ -24,6 +24,7 @@ export default function Navbar() {
     { href: "/fellowship", label: "Fellowship" },
     { href: "/mentorship", label: "Mentorship" },
     { href: "/ambassador-program", label: "Ambassadorship" },
+    { href: "/weekend-tech-grind", label: "Weekend Grind" },
   ];
 
   const isActive = (path: string) => pathname === path;
