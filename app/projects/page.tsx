@@ -4,6 +4,8 @@ import { Project } from '@/models/Project';
 import { SubmitProjectModal } from '@/components/submit-project-modal';
 import { ProjectCard } from '@/components/project-card';
 
+export const dynamic = 'force-dynamic';
+
 async function getProjects() {
   await connectDB();
   // Fetch only approved projects

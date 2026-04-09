@@ -1,10 +1,6 @@
 // JWT utility functions for Edge Runtime
 const JWT_SECRET = process.env.JWT_SECRET;
 
-if (!JWT_SECRET) {
-  throw new Error('JWT_SECRET environment variable is not defined');
-}
-
 interface JWTPayload {
   [key: string]: string | number | boolean | null | undefined;
   iat?: number;

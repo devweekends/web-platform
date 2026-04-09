@@ -5,6 +5,8 @@ import { SubmitTestimonialModal } from '@/components/submit-testimonial-modal';
 import { TestimonialCard } from '@/components/testimonial-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+export const dynamic = 'force-dynamic';
+
 async function getTestimonials() {
   await connectDB();
   const testimonials = await Testimonial.find({ isApproved: true }).sort({ createdAt: -1 });
