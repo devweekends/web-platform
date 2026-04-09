@@ -29,6 +29,7 @@ function preloadModels() {
     require('@/models/Mentor');
     require('@/models/Mentee');
     require('@/models/ActivityLog');
+    require('@/models/Job');
   } catch (error) {
     // Models will be loaded dynamically
   }

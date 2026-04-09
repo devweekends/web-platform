@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LogOut, Menu, X, LayoutDashboard, Users, Users2, CalendarDays, Network, PenToolIcon, Globe, BookOpen, Tag } from 'lucide-react';
+import { LogOut, Menu, X, LayoutDashboard, Users, Users2, CalendarDays, Network, Globe, BookOpen, Tag, Briefcase, Rocket, MessageSquareQuote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const menuItems = [
@@ -13,9 +13,12 @@ const menuItems = [
   { title: 'Sessions', href: '/admin/dashboard/sessions', icon: <CalendarDays className="w-5 h-5" /> },
   { title: 'Mentorship', href: '/admin/dashboard/mentorship', icon: <Network className="w-5 h-5" /> },
   { title: 'Network', href: '/admin/dashboard/add-mentorship', icon: <Globe className="w-5 h-5" /> },
+  { title: 'Jobs', href: '/admin/dashboard/jobs', icon: <Briefcase className="w-5 h-5" /> },
   { title: 'Tags', href: '/admin/dashboard/tags', icon: <Tag className="w-5 h-5" /> },
   { title: 'MindMaster', href: '/admin/dashboard/mindmaster', icon: <BookOpen className="w-5 h-5" /> },
   { title: 'Resources', href: '/admin/dashboard/resources', icon: <BookOpen className="w-5 h-5" /> },
+  { title: 'Projects', href: '/admin/dashboard/projects', icon: <Rocket className="w-5 h-5" /> },
+  { title: 'Testimonials', href: '/admin/dashboard/testimonials', icon: <MessageSquareQuote className="w-5 h-5" /> },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
