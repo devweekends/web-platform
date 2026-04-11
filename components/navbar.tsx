@@ -41,7 +41,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center">
             <Link href="/our-story" className="flex items-center space-x-2">
-              <span className="sm:inline-block text-xl font-black tracking-tight">
+              <span className="sm:inline-block text-[1.1rem] sm:text-[1.2rem] font-bold tracking-[-0.015em] leading-none">
                 Dev Weekends
               </span>
             </Link>

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Geist } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
@@ -9,7 +9,7 @@ import Script from 'next/script'
 import { Analytics } from "@/components/analytics"
 import { SocialModal } from "@/components/social-modal"
 
-const inter = Inter({ subsets: ["latin"] })
+const geist = Geist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://devweekends.com'),
@@ -108,7 +108,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={geist.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <div className="flex min-h-screen flex-col">
             <Navbar />

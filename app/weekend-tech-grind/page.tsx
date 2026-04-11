@@ -24,7 +24,7 @@ import {
   Zap,
 } from "lucide-react"
 
-const APPLICATION_URL = "https://forms.gle/YOUR_FORM_ID"
+const APPLICATION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfDzZHzI9nFGW22YxuuwK88dNCoT3imHKHsY2mtcVmOSWl5sg/viewform"
 
 const stats = [
   {
