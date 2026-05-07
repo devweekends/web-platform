@@ -4,6 +4,34 @@ import { verifyToken, verifyMentorToken, verifyAmbassadorToken } from '@/lib/jwt
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  const acceptHeader = request.headers.get('accept')?.toLowerCase() ?? '';
+
+  const wantsMarkdown = acceptHeader.includes('text/markdown');
+  const isStaticFileRequest = /\.[a-z0-9]+$/i.test(path);
+  const excludedMarkdownPaths = new Set([
+    '/agent-markdown',
+    '/robots.txt',
+    '/sitemap.xml',
+    '/llms.txt',
+    '/llms-full.txt',
+  ]);
+  const isPrivateOrApiPath =
+    path.startsWith('/api') ||
+    path.startsWith('/admin') ||
+    path.startsWith('/mentor') ||
+    path.startsWith('/ambassador') ||
+    path.startsWith('/.well-known');
+
+  if (
+    wantsMarkdown &&
+    !isStaticFileRequest &&
+    !excludedMarkdownPaths.has(path) &&
+    !isPrivateOrApiPath
+  ) {
+    const markdownUrl = new URL('/agent-markdown', request.url);
+    markdownUrl.searchParams.set('source', path);
+    return NextResponse.rewrite(markdownUrl);
+  }
 
   // Redirect root to our-story page
   if (path === '/') {
@@ -137,12 +165,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/',
-    '/admin/:path*',
-    '/api/admin/:path*',
-    '/mentor/:path*',
-    '/api/mentor/:path*',
-    '/ambassador/:path*',
-    '/api/ambassador/:path*'
+    '/((?!_next/static|_next/image|favicon.ico|favicons|images|.*\\..*).*)',
   ]
 }; 

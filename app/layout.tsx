@@ -13,6 +13,9 @@ const geist = Geist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://devweekends.com'),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: "Dev Weekends - Your Gateway to becoming a better Software Engineer",
     template: "%s | Dev Weekends"
@@ -78,6 +81,38 @@ export const metadata: Metadata = {
   },
 }
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      name: 'Dev Weekends',
+      url: 'https://devweekends.com',
+      logo: 'https://devweekends.com/favicons/android-chrome-512x512.png',
+      sameAs: [
+        'https://www.linkedin.com/company/devweekends/',
+        'https://www.instagram.com/devweekends',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      name: 'Dev Weekends',
+      url: 'https://devweekends.com',
+      description:
+        'Learning community for software engineers through events, mentorship, projects, and programs.',
+      publisher: {
+        '@type': 'Organization',
+        name: 'Dev Weekends',
+      },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://devweekends.com/sessions',
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  ],
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -91,6 +126,20 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
         <link rel="manifest" href="/favicons/site.webmanifest" />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLMs Full" />
+        <link
+          rel="alternate"
+          type="application/json"
+          href="/.well-known/agent-skills/index.json"
+          title="Agent Skills Index"
+        />
+        <link rel="service-desc" type="application/openapi+json" href="/openapi.json" />
+        <link rel="service-doc" type="text/html" href="/api-docs" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
