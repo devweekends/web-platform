@@ -1,20 +1,24 @@
 'use client';
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import { 
   ArrowLeft,
   Save,
   Plus,
-  Trash2
+  Trash2,
+  AlertCircle
 } from "lucide-react";
-import "../../../../dsoc/styles.css";
+import "../../../../../dsoc/styles.css";
 
-export default function NewProjectPage() {
+export default function EditProjectPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = use(params);
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
   
   const [formData, setFormData] = useState({
     title: '',
@@ -33,8 +37,51 @@ export default function NewProjectPage() {
     endDate: '',
     requirements: [''],
     learningOutcomes: [''],
-    season: '2025'
+    season: '2025',
+    status: 'draft'
   });
+
+  useEffect(() => {
+    fetchProject();
+  }, [resolvedParams.id]);
+
+  const fetchProject = async () => {
+    try {
+      const res = await fetch(`/api/dsoc/projects/${resolvedParams.id}`);
+      const data = await res.json();
+
+      if (data.success) {
+        const project = data.data;
+        setFormData({
+          title: project.title || '',
+          description: project.description || '',
+          longDescription: project.longDescription || '',
+          organization: project.organization || '',
+          repositoryUrl: project.repositoryUrl || '',
+          websiteUrl: project.websiteUrl || '',
+          difficulty: project.difficulty || 'intermediate',
+          duration: project.duration || '3 months',
+          technologies: Array.isArray(project.technologies) ? project.technologies.join(', ') : '',
+          tags: Array.isArray(project.tags) ? project.tags.join(', ') : '',
+          maxMentees: project.maxMentees || 3,
+          applicationDeadline: project.applicationDeadline ? new Date(project.applicationDeadline).toISOString().split('T')[0] : '',
+          startDate: project.startDate ? new Date(project.startDate).toISOString().split('T')[0] : '',
+          endDate: project.endDate ? new Date(project.endDate).toISOString().split('T')[0] : '',
+          requirements: project.requirements && project.requirements.length > 0 ? project.requirements : [''],
+          learningOutcomes: project.learningOutcomes && project.learningOutcomes.length > 0 ? project.learningOutcomes : [''],
+          season: project.season || '2025',
+          status: project.status || 'draft'
+        });
+      } else {
+        setError(data.error || 'Failed to load project');
+      }
+    } catch (err) {
+      console.error('Error fetching project:', err);
+      setError('Failed to load project. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -58,36 +105,63 @@ export default function NewProjectPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    setLoading(true);
+    setSuccess(false);
+    setSubmitting(true);
 
     try {
-      const res = await fetch('/api/dsoc/projects', {
-        method: 'POST',
+      const res = await fetch(`/api/dsoc/projects/${resolvedParams.id}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
+          title: formData.title,
+          description: formData.description,
+          longDescription: formData.longDescription,
+          organization: formData.organization,
+          repositoryUrl: formData.repositoryUrl,
+          websiteUrl: formData.websiteUrl,
+          difficulty: formData.difficulty,
+          duration: formData.duration,
           technologies: formData.technologies.split(',').map(s => s.trim()).filter(Boolean),
           tags: formData.tags.split(',').map(s => s.trim()).filter(Boolean),
+          maxMentees: parseInt(formData.maxMentees as unknown as string),
+          applicationDeadline: formData.applicationDeadline,
+          startDate: formData.startDate,
+          endDate: formData.endDate,
           requirements: formData.requirements.filter(Boolean),
           learningOutcomes: formData.learningOutcomes.filter(Boolean),
-          status: 'draft'
+          season: formData.season,
+          status: formData.status
         })
       });
 
       const data = await res.json();
 
       if (data.success) {
-        router.push('/admin/dsoc');
+        setSuccess(true);
+        setTimeout(() => {
+          router.push('/admin/dsoc');
+        }, 1500);
       } else {
-        setError(data.error || 'Failed to create project');
+        setError(data.error || 'Failed to update project');
       }
     } catch (err) {
-      console.error('Error creating project:', err);
+      console.error('Error updating project:', err);
       setError('Something went wrong. Please try again.');
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background py-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--dsoc-dark)] mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading project...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background py-8">
@@ -102,12 +176,19 @@ export default function NewProjectPage() {
           </Link>
 
           <div className="neo-brutal-card p-8">
-            <h1 className="text-3xl font-black mb-6">Create New Project</h1>
+            <h1 className="text-3xl font-black mb-6">Edit Project</h1>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="p-4 bg-[var(--dsoc-pink)]/10 border-4 border-[var(--dsoc-pink)] text-[var(--dsoc-pink)]">
-                  {error}
+                <div className="p-4 bg-[var(--dsoc-pink)]/10 border-4 border-[var(--dsoc-pink)] text-[var(--dsoc-pink)] flex gap-2">
+                  <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <span>{error}</span>
+                </div>
+              )}
+
+              {success && (
+                <div className="p-4 bg-[var(--dsoc-success)]/10 border-4 border-[var(--dsoc-success)] text-[var(--dsoc-success)]">
+                  ✓ Project updated successfully! Redirecting...
                 </div>
               )}
 
@@ -269,6 +350,22 @@ export default function NewProjectPage() {
                     placeholder="web, fullstack, api (comma separated)"
                   />
                 </div>
+
+                <div>
+                  <label className="block font-bold text-sm mb-2">Status</label>
+                  <select
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                    className="neo-brutal-input"
+                  >
+                    <option value="draft">Draft</option>
+                    <option value="open">Open for Applications</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="archived">Archived</option>
+                  </select>
+                </div>
               </div>
 
               {/* Timeline */}
@@ -349,12 +446,13 @@ export default function NewProjectPage() {
                     )}
                   </div>
                 ))}
+                
                 <button
                   type="button"
                   onClick={() => addArrayItem('requirements')}
-                  className="neo-brutal-btn neo-brutal-btn-secondary py-2"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--dsoc-success)] text-white font-bold border-4 border-[var(--dsoc-dark)] hover:translate-x-1 transition-transform"
                 >
-                  <Plus className="w-4 h-4 mr-2" />
+                  <Plus className="w-5 h-5" />
                   Add Requirement
                 </button>
               </div>
@@ -370,7 +468,7 @@ export default function NewProjectPage() {
                       value={outcome}
                       onChange={(e) => handleArrayChange('learningOutcomes', index, e.target.value)}
                       className="neo-brutal-input flex-1"
-                      placeholder="e.g., Understanding of microservices architecture"
+                      placeholder="e.g., Learn real-time communication patterns"
                     />
                     {formData.learningOutcomes.length > 1 && (
                       <button
@@ -383,24 +481,35 @@ export default function NewProjectPage() {
                     )}
                   </div>
                 ))}
+                
                 <button
                   type="button"
                   onClick={() => addArrayItem('learningOutcomes')}
-                  className="neo-brutal-btn neo-brutal-btn-secondary py-2"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--dsoc-success)] text-white font-bold border-4 border-[var(--dsoc-dark)] hover:translate-x-1 transition-transform"
                 >
-                  <Plus className="w-4 h-4 mr-2" />
+                  <Plus className="w-5 h-5" />
                   Add Learning Outcome
                 </button>
               </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="neo-brutal-btn neo-brutal-btn-primary w-full text-lg"
-              >
-                <Save className="w-5 h-5 mr-2" />
-                {loading ? 'Creating Project...' : 'Create Project'}
-              </button>
+              {/* Form Actions */}
+              <div className="flex gap-4 pt-6 border-t-2 border-[var(--dsoc-dark)]">
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="flex items-center gap-2 px-6 py-3 bg-[var(--dsoc-dark)] text-white font-bold border-4 border-[var(--dsoc-dark)] hover:translate-y-1 transition-transform disabled:opacity-50"
+                >
+                  <Save className="w-5 h-5" />
+                  {submitting ? 'Saving...' : 'Save Changes'}
+                </button>
+                
+                <Link
+                  href="/admin/dsoc"
+                  className="flex items-center gap-2 px-6 py-3 bg-gray-300 text-black font-bold border-4 border-[var(--dsoc-dark)] hover:translate-y-1 transition-transform"
+                >
+                  Cancel
+                </Link>
+              </div>
             </form>
           </div>
         </div>
