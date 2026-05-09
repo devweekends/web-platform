@@ -1,21 +1,35 @@
 'use client';
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { 
+import {
   ArrowLeft,
-  Save,
+  CheckCircle2,
   Plus,
-  Trash2
+  Save,
+  Trash2,
+  Users,
 } from "lucide-react";
 import "../../../../dsoc/styles.css";
+
+interface MentorOption {
+  _id: string;
+  name: string;
+  company?: string;
+  jobTitle?: string;
+  picture?: string;
+  expertise?: string[];
+}
 
 export default function NewProjectPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [mentorLoading, setMentorLoading] = useState(true);
+  const [mentorError, setMentorError] = useState('');
   const [error, setError] = useState('');
-  
+  const [availableMentors, setAvailableMentors] = useState<MentorOption[]>([]);
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -31,16 +45,50 @@ export default function NewProjectPage() {
     applicationDeadline: '',
     startDate: '',
     endDate: '',
+    mentors: [] as string[],
     requirements: [''],
     learningOutcomes: [''],
-    season: '2025'
+    season: '2025',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  useEffect(() => {
+    fetchMentors();
+  }, []);
+
+  const fetchMentors = async () => {
+    try {
+      const res = await fetch('/api/dsoc/mentors');
+      const data = await res.json();
+
+      if (data.success) {
+        setAvailableMentors(data.data || []);
+      } else {
+        setMentorError(data.error || 'Failed to load mentors');
+      }
+    } catch (err) {
+      console.error('Error fetching mentors:', err);
+      setMentorError('Failed to load mentors');
+    } finally {
+      setMentorLoading(false);
+    }
   };
 
-  const handleArrayChange = (field: 'requirements' | 'learningOutcomes', index: number, value: string) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = e.target;
+
+    setFormData((current) => ({
+      ...current,
+      [name]: name === 'maxMentees' ? Number(value) : value,
+    }));
+  };
+
+  const handleArrayChange = (
+    field: 'requirements' | 'learningOutcomes',
+    index: number,
+    value: string,
+  ) => {
     const updated = [...formData[field]];
     updated[index] = value;
     setFormData({ ...formData, [field]: updated });
@@ -55,6 +103,19 @@ export default function NewProjectPage() {
     setFormData({ ...formData, [field]: updated });
   };
 
+  const toggleMentor = (mentorId: string) => {
+    setFormData((current) => {
+      const isSelected = current.mentors.includes(mentorId);
+
+      return {
+        ...current,
+        mentors: isSelected
+          ? current.mentors.filter((id) => id !== mentorId)
+          : [...current.mentors, mentorId],
+      };
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -66,12 +127,13 @@ export default function NewProjectPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          technologies: formData.technologies.split(',').map(s => s.trim()).filter(Boolean),
-          tags: formData.tags.split(',').map(s => s.trim()).filter(Boolean),
+          technologies: formData.technologies.split(',').map((s) => s.trim()).filter(Boolean),
+          tags: formData.tags.split(',').map((s) => s.trim()).filter(Boolean),
+          mentors: formData.mentors,
           requirements: formData.requirements.filter(Boolean),
           learningOutcomes: formData.learningOutcomes.filter(Boolean),
-          status: 'draft'
-        })
+          status: 'draft',
+        }),
       });
 
       const data = await res.json();
@@ -93,7 +155,7 @@ export default function NewProjectPage() {
     <div className="min-h-screen bg-background py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          <Link 
+          <Link
             href="/admin/dsoc"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8"
           >
@@ -114,7 +176,7 @@ export default function NewProjectPage() {
               {/* Basic Info */}
               <div className="space-y-4">
                 <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2">Basic Information</h2>
-                
+
                 <div>
                   <label className="block font-bold text-sm mb-2">Project Title *</label>
                   <input
@@ -167,10 +229,94 @@ export default function NewProjectPage() {
                 </div>
               </div>
 
+              {/* Mentors */}
+              <div className="space-y-4">
+                <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2 flex items-center gap-2">
+                  <Users className="w-5 h-5" />
+                  Select Mentors
+                </h2>
+
+                {mentorLoading ? (
+                  <div className="p-4 border-2 border-dashed border-[var(--dsoc-dark)] text-sm text-muted-foreground">
+                    Loading mentors...
+                  </div>
+                ) : mentorError ? (
+                  <div className="p-4 bg-[var(--dsoc-pink)]/10 border-4 border-[var(--dsoc-pink)] text-[var(--dsoc-pink)]">
+                    {mentorError}
+                  </div>
+                ) : availableMentors.length === 0 ? (
+                  <div className="p-4 border-2 border-dashed border-[var(--dsoc-dark)] text-sm text-muted-foreground">
+                    No mentors found. Create and verify a mentor first.
+                  </div>
+                ) : (
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {availableMentors.map((mentor) => {
+                      const isSelected = formData.mentors.includes(mentor._id);
+
+                      return (
+                        <button
+                          key={mentor._id}
+                          type="button"
+                          onClick={() => toggleMentor(mentor._id)}
+                          className={`text-left p-4 border-4 transition-all ${
+                            isSelected
+                              ? 'border-[var(--dsoc-success)] bg-[var(--dsoc-success)]/10'
+                              : 'border-[var(--dsoc-dark)] bg-background hover:-translate-y-1'
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="w-12 h-12 rounded-full bg-[var(--dsoc-dark)] text-white flex items-center justify-center font-bold overflow-hidden shrink-0">
+                              {mentor.picture ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img src={mentor.picture} alt={mentor.name} className="w-full h-full object-cover" />
+                              ) : (
+                                mentor.name
+                                  .split(' ')
+                                  .map((part) => part[0])
+                                  .join('')
+                                  .slice(0, 2)
+                              )}
+                            </div>
+
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-start justify-between gap-2">
+                                <div>
+                                  <h3 className="font-bold text-lg leading-tight">{mentor.name}</h3>
+                                  <p className="text-sm text-muted-foreground">
+                                    {mentor.jobTitle || 'Mentor'}{mentor.company ? ` · ${mentor.company}` : ''}
+                                  </p>
+                                </div>
+                                {isSelected && <CheckCircle2 className="w-5 h-5 text-[var(--dsoc-success)] shrink-0" />}
+                              </div>
+
+                              {mentor.expertise && mentor.expertise.length > 0 && (
+                                <div className="flex flex-wrap gap-2 mt-3">
+                                  {mentor.expertise.slice(0, 3).map((skill) => (
+                                    <span key={skill} className="px-2 py-1 text-xs font-bold border-2 border-[var(--dsoc-dark)] bg-background">
+                                      {skill}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {formData.mentors.length > 0 && (
+                  <p className="text-sm font-medium text-[var(--dsoc-success)]">
+                    {formData.mentors.length} mentor{formData.mentors.length > 1 ? 's' : ''} selected
+                  </p>
+                )}
+              </div>
+
               {/* Links */}
               <div className="space-y-4">
                 <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2">Links</h2>
-                
+
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block font-bold text-sm mb-2">Repository URL *</label>
@@ -201,7 +347,7 @@ export default function NewProjectPage() {
               {/* Project Details */}
               <div className="space-y-4">
                 <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2">Project Details</h2>
-                
+
                 <div className="grid md:grid-cols-3 gap-4">
                   <div>
                     <label className="block font-bold text-sm mb-2">Difficulty *</label>
@@ -274,7 +420,7 @@ export default function NewProjectPage() {
               {/* Timeline */}
               <div className="space-y-4">
                 <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2">Timeline</h2>
-                
+
                 <div className="grid md:grid-cols-3 gap-4">
                   <div>
                     <label className="block font-bold text-sm mb-2">Application Deadline *</label>
@@ -328,7 +474,7 @@ export default function NewProjectPage() {
               {/* Requirements */}
               <div className="space-y-4">
                 <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2">Requirements</h2>
-                
+
                 {formData.requirements.map((req, index) => (
                   <div key={index} className="flex gap-2">
                     <input
@@ -349,12 +495,13 @@ export default function NewProjectPage() {
                     )}
                   </div>
                 ))}
+
                 <button
                   type="button"
                   onClick={() => addArrayItem('requirements')}
-                  className="neo-brutal-btn neo-brutal-btn-secondary py-2"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--dsoc-success)] text-white font-bold border-4 border-[var(--dsoc-dark)] hover:translate-x-1 transition-transform"
                 >
-                  <Plus className="w-4 h-4 mr-2" />
+                  <Plus className="w-5 h-5" />
                   Add Requirement
                 </button>
               </div>
@@ -362,7 +509,7 @@ export default function NewProjectPage() {
               {/* Learning Outcomes */}
               <div className="space-y-4">
                 <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2">Learning Outcomes</h2>
-                
+
                 {formData.learningOutcomes.map((outcome, index) => (
                   <div key={index} className="flex gap-2">
                     <input
@@ -383,12 +530,13 @@ export default function NewProjectPage() {
                     )}
                   </div>
                 ))}
+
                 <button
                   type="button"
                   onClick={() => addArrayItem('learningOutcomes')}
-                  className="neo-brutal-btn neo-brutal-btn-secondary py-2"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--dsoc-success)] text-white font-bold border-4 border-[var(--dsoc-dark)] hover:translate-x-1 transition-transform"
                 >
-                  <Plus className="w-4 h-4 mr-2" />
+                  <Plus className="w-5 h-5" />
                   Add Learning Outcome
                 </button>
               </div>
@@ -396,9 +544,9 @@ export default function NewProjectPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="neo-brutal-btn neo-brutal-btn-primary w-full text-lg"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--dsoc-dark)] text-white font-bold border-4 border-[var(--dsoc-dark)] hover:translate-y-1 transition-transform disabled:opacity-50 w-full"
               >
-                <Save className="w-5 h-5 mr-2" />
+                <Save className="w-5 h-5" />
                 {loading ? 'Creating Project...' : 'Create Project'}
               </button>
             </form>

@@ -8,17 +8,31 @@ import {
   Save,
   Plus,
   Trash2,
-  AlertCircle
+  AlertCircle,
+  CheckCircle2,
+  Users
 } from "lucide-react";
 import "../../../../../dsoc/styles.css";
+
+interface MentorOption {
+  _id: string;
+  name: string;
+  company?: string;
+  jobTitle?: string;
+  picture?: string;
+  expertise?: string[];
+}
 
 export default function EditProjectPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [mentorLoading, setMentorLoading] = useState(true);
+  const [mentorError, setMentorError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [availableMentors, setAvailableMentors] = useState<MentorOption[]>([]);
   
   const [formData, setFormData] = useState({
     title: '',
@@ -35,6 +49,7 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
     applicationDeadline: '',
     startDate: '',
     endDate: '',
+    mentors: [] as string[],
     requirements: [''],
     learningOutcomes: [''],
     season: '2025',
@@ -43,7 +58,26 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
 
   useEffect(() => {
     fetchProject();
+    fetchMentors();
   }, [resolvedParams.id]);
+
+  const fetchMentors = async () => {
+    try {
+      const res = await fetch('/api/dsoc/mentors');
+      const data = await res.json();
+
+      if (data.success) {
+        setAvailableMentors(data.data || []);
+      } else {
+        setMentorError(data.error || 'Failed to load mentors');
+      }
+    } catch (err) {
+      console.error('Error fetching mentors:', err);
+      setMentorError('Failed to load mentors');
+    } finally {
+      setMentorLoading(false);
+    }
+  };
 
   const fetchProject = async () => {
     try {
@@ -64,6 +98,9 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
           technologies: Array.isArray(project.technologies) ? project.technologies.join(', ') : '',
           tags: Array.isArray(project.tags) ? project.tags.join(', ') : '',
           maxMentees: project.maxMentees || 3,
+          mentors: Array.isArray(project.mentors)
+            ? project.mentors.map((mentor: any) => (typeof mentor === 'string' ? mentor : mentor?._id)).filter(Boolean)
+            : [],
           applicationDeadline: project.applicationDeadline ? new Date(project.applicationDeadline).toISOString().split('T')[0] : '',
           startDate: project.startDate ? new Date(project.startDate).toISOString().split('T')[0] : '',
           endDate: project.endDate ? new Date(project.endDate).toISOString().split('T')[0] : '',
@@ -91,6 +128,19 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
     const updated = [...formData[field]];
     updated[index] = value;
     setFormData({ ...formData, [field]: updated });
+  };
+
+  const toggleMentor = (mentorId: string) => {
+    setFormData((current) => {
+      const isSelected = current.mentors.includes(mentorId);
+
+      return {
+        ...current,
+        mentors: isSelected
+          ? current.mentors.filter((id) => id !== mentorId)
+          : [...current.mentors, mentorId]
+      };
+    });
   };
 
   const addArrayItem = (field: 'requirements' | 'learningOutcomes') => {
@@ -124,6 +174,7 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
           technologies: formData.technologies.split(',').map(s => s.trim()).filter(Boolean),
           tags: formData.tags.split(',').map(s => s.trim()).filter(Boolean),
           maxMentees: parseInt(formData.maxMentees as unknown as string),
+          mentors: formData.mentors,
           applicationDeadline: formData.applicationDeadline,
           startDate: formData.startDate,
           endDate: formData.endDate,
@@ -366,6 +417,90 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
                     <option value="archived">Archived</option>
                   </select>
                 </div>
+              </div>
+
+              {/* Mentors */}
+              <div className="space-y-4">
+                <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2 flex items-center gap-2">
+                  <Users className="w-5 h-5" />
+                  Select Mentors
+                </h2>
+
+                {mentorLoading ? (
+                  <div className="p-4 border-2 border-dashed border-[var(--dsoc-dark)] text-sm text-muted-foreground">
+                    Loading mentors...
+                  </div>
+                ) : mentorError ? (
+                  <div className="p-4 bg-[var(--dsoc-pink)]/10 border-4 border-[var(--dsoc-pink)] text-[var(--dsoc-pink)]">
+                    {mentorError}
+                  </div>
+                ) : availableMentors.length === 0 ? (
+                  <div className="p-4 border-2 border-dashed border-[var(--dsoc-dark)] text-sm text-muted-foreground">
+                    No mentors found. Create and verify a mentor first.
+                  </div>
+                ) : (
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {availableMentors.map((mentor) => {
+                      const isSelected = formData.mentors.includes(mentor._id);
+
+                      return (
+                        <button
+                          key={mentor._id}
+                          type="button"
+                          onClick={() => toggleMentor(mentor._id)}
+                          className={`text-left p-4 border-4 transition-all ${
+                            isSelected
+                              ? 'border-[var(--dsoc-success)] bg-[var(--dsoc-success)]/10'
+                              : 'border-[var(--dsoc-dark)] bg-background hover:-translate-y-1'
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="w-12 h-12 rounded-full bg-[var(--dsoc-dark)] text-white flex items-center justify-center font-bold overflow-hidden shrink-0">
+                              {mentor.picture ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img src={mentor.picture} alt={mentor.name} className="w-full h-full object-cover" />
+                              ) : (
+                                mentor.name
+                                  .split(' ')
+                                  .map((part) => part[0])
+                                  .join('')
+                                  .slice(0, 2)
+                              )}
+                            </div>
+
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-start justify-between gap-2">
+                                <div>
+                                  <h3 className="font-bold text-lg leading-tight">{mentor.name}</h3>
+                                  <p className="text-sm text-muted-foreground">
+                                    {mentor.jobTitle || 'Mentor'}{mentor.company ? ` · ${mentor.company}` : ''}
+                                  </p>
+                                </div>
+                                {isSelected && <CheckCircle2 className="w-5 h-5 text-[var(--dsoc-success)] shrink-0" />}
+                              </div>
+
+                              {mentor.expertise && mentor.expertise.length > 0 && (
+                                <div className="flex flex-wrap gap-2 mt-3">
+                                  {mentor.expertise.slice(0, 3).map((skill) => (
+                                    <span key={skill} className="px-2 py-1 text-xs font-bold border-2 border-[var(--dsoc-dark)] bg-background">
+                                      {skill}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {formData.mentors.length > 0 && (
+                  <p className="text-sm font-medium text-[var(--dsoc-success)]">
+                    {formData.mentors.length} mentor{formData.mentors.length > 1 ? 's' : ''} selected
+                  </p>
+                )}
               </div>
 
               {/* Timeline */}
