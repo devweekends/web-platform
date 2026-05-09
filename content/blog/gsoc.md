@@ -7,7 +7,7 @@ order: 1
 image: "/images/gsoc1.jpg"
 ---
 
-Google Summer of Code is not just a program.
+Google Summer of Code is'nt just a program.
 
 For many developers, it becomes the moment where learning finally turns into real-world contribution.
 
