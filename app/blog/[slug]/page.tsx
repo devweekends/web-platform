@@ -56,80 +56,108 @@ export default async function BlogPost({
       </header>
 
       {/* COVER IMAGE */}
-      {/* COVER IMAGE */}
-{data.image && (
-  <div className="relative w-full mb-16 overflow-hidden rounded-2xl bg-black">
-    <div className="relative aspect-[16/9] w-full">
-      <Image
-        src={data.image}
-        alt={data.title}
-        fill
-        priority
-        sizes="(max-width: 1024px) 100vw, 1200px"
-        className={`transition duration-700 hover:scale-105 ${
-          slug === "gsoc"
-            ? "object-contain"
-            : "object-cover object-center"
-        }`}
-      />
-    </div>
-  </div>
-)}
+      {data.image && (
+        (() => {
+          const fit: "cover" | "contain" =
+            data.imageFit ?? (slug === "gsoc" ? "contain" : "cover");
+          const aspect = fit === "contain" ? "aspect-[4/5]" : "aspect-[16/9]";
+          const fitClass =
+            fit === "contain" ? "object-contain" : "object-cover object-center";
+          return (
+            <div className="relative w-full mb-16 overflow-hidden rounded-2xl bg-neutral-950">
+              <div className={`relative ${aspect} w-full mx-auto max-w-3xl`}>
+                <Image
+                  src={data.image}
+                  alt={data.title}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  className={`transition duration-700 hover:scale-105 ${fitClass}`}
+                />
+              </div>
+            </div>
+          );
+        })()
+      )}
       {/* MARKDOWN */}
       <article className="mx-auto max-w-2xl">
-        <div
-          className="prose prose-lg prose-neutral max-w-none
-          prose-headings:font-serif
-          prose-h2:mt-12
-          prose-h3:mt-8
-          prose-p:text-gray-700 prose-p:leading-8
-          prose-img:rounded-xl prose-img:my-10"
-        >
+        <div className="prose prose-lg prose-neutral max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              /* ✅ Prevent <p> wrapping images */
               p({ node, children }) {
                 const hasImg = node?.children?.some(
                   (child: any) => child.tagName === "img"
                 );
 
                 if (hasImg) {
-                  return <div className="my-6">{children}</div>;
+                  return <div className="my-12">{children}</div>;
                 }
 
                 return (
-                  <p className="text-gray-700 leading-8 my-4">
+                  <p className="text-gray-800 leading-[1.85] my-6 text-[1.075rem]">
                     {children}
                   </p>
                 );
               },
 
-              /* ✅ Proper markdown images */
               img({ src = "", alt = "" }) {
                 return (
-                  <span className="block my-10">
+                  <span className="block my-14">
                     <Image
                       src={src}
                       alt={alt}
-                      width={1200}
-                      height={600}
-                      className="rounded-xl object-cover w-full h-auto"
+                      width={1600}
+                      height={2000}
+                      sizes="(max-width: 768px) 100vw, 768px"
+                      className="rounded-xl w-full h-auto"
                     />
                   </span>
                 );
               },
 
               h1: ({ children }) => (
-                <h1 className="text-4xl font-serif mt-10 mb-6">
+                <h1 className="text-4xl md:text-5xl font-serif tracking-tight mt-16 mb-8 text-black">
                   {children}
                 </h1>
               ),
 
               h2: ({ children }) => (
-                <h2 className="text-2xl font-serif mt-10 mb-4">
+                <h2 className="text-3xl font-serif tracking-tight mt-20 mb-6 text-black">
                   {children}
                 </h2>
+              ),
+
+              h3: ({ children }) => (
+                <h3 className="text-xl font-serif font-semibold mt-12 mb-3 text-black">
+                  {children}
+                </h3>
+              ),
+
+              ul: ({ children }) => (
+                <ul className="my-6 space-y-2 list-disc pl-6 text-gray-800 leading-[1.75]">
+                  {children}
+                </ul>
+              ),
+
+              ol: ({ children }) => (
+                <ol className="my-6 space-y-2 list-decimal pl-6 text-gray-800 leading-[1.75]">
+                  {children}
+                </ol>
+              ),
+
+              li: ({ children }) => (
+                <li className="pl-1">{children}</li>
+              ),
+
+              blockquote: ({ children }) => (
+                <blockquote className="my-8 border-l-2 border-black pl-6 italic text-gray-700">
+                  {children}
+                </blockquote>
+              ),
+
+              hr: () => (
+                <hr className="my-16 border-0 h-px bg-gray-200" />
               ),
 
               strong: ({ children }) => (
@@ -141,7 +169,7 @@ export default async function BlogPost({
               a: ({ href, children }) => (
                 <a
                   href={href}
-                  className="underline text-black hover:opacity-70"
+                  className="underline underline-offset-4 decoration-gray-300 text-black hover:decoration-black transition"
                 >
                   {children}
                 </a>

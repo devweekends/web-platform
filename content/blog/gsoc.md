@@ -1,414 +1,155 @@
 ---
-title: "14 Acceptances in Open Source Programs this 2026"
+title: "9 Dev Weekends contributors got into Google Summer of Code 2026, and 5 more into other open-source programs"
 date: "2026-05-06"
 category: "news"
 featured: true
 order: 1
-image: "/images/gsoc1.jpg"
+image: "/images/gsoc.jpg"
+description: "The acceptance emails came in over a few weeks. Apache Beam, NumFOCUS, EMBL-EBI, FLARE, BRL-CAD, FOSSASIA, and a handful of others. Here are the people behind them and the quiet road that led there."
 ---
 
-Google Summer of Code is'nt just a program.
+If you have ever stayed up late trying to read someone else's open-source repository and felt like you were drowning, this post is for you.
 
-For many developers, it becomes the moment where learning finally turns into real-world contribution.
+Most of the people you are about to meet started exactly there. Confused. Tired. Pretty sure they did not belong in a room with maintainers from Google, Apache, or the European Bioinformatics Institute. None of them had a recruiter friend at a FAANG company. None of them came from a school anyone had heard of. A few of them were the first person in their family to write a line of code.
 
-A moment where self-doubt slowly transforms into confidence.
+This year, 14 acceptances came in across 13 of them, into 5 different open-source mentorship programs. We wanted to introduce you to each of them properly, because the names matter more than the headline does.
 
-A moment where beginners realize they belong in global tech communities too.
+Here is the honest breakdown so nobody is left guessing:
 
-And this year, something extraordinary happened inside **Dev Weekends**.
+- **9** selections into **Google Summer of Code 2026**.
+- **1** into **Linux Foundation LFX Mentorship 2026**, as a mentor (not a mentee).
+- **2** into **Social Summer of Code 2026** (one of them, Talha, is doing GSoC and SSoC in parallel, which is why the acceptance count is 14 across 13 people).
+- **1** into **European Summer of Code 2026**.
+- **1** into **GirlScript Summer of Code 2026**.
 
-# 14 Contributors Selected Into Global Open Source Programs
+The host organizations include the Apache Software Foundation (Apache Beam), NumFOCUS (the nonprofit behind NumPy, matplotlib, and most of scientific Python), EMBL-EBI in Cambridge (the team that maintains Ensembl, the genome browser most working biologists keep in a tab somewhere), FLARE at Mandiant which is part of Google Cloud, BRL-CAD, FOSSASIA, InVesalius, C2SI, the Drupal Association, PyTorch Forecasting, and the Linux Foundation.
 
-What started as small weekend learning sessions turned into a global achievement.
+We will get to all of them. First, a little context.
 
-Developers from the Dev Weekends community were selected into some of the world’s most respected open-source programs including:
+## How most of these stories actually start
 
-- Google Summer of Code (GSoC)
-- Social Summer of Code (SSoC)
-- GirlScript Summer of Code (GSSoC)
-- European Summer of Code (ESoC)
-- Linux Foundation Mentorship (LFX)
+Pull requests get rejected. Mailing-list threads get ignored. You write a line of code that you are sure is right, and a maintainer points out, kindly or otherwise, that it is not. Some weeks pass with nothing visible to show. The repository you cloned 3 months ago still feels like it was written in a foreign language.
 
-But the real story is not the number.
+That is not a sign you are doing it wrong. That is the work.
 
-It’s the journey behind every selection.
+What separated the 14 people below from 100 others who started at the same place was not talent, and definitely not a head start. It was that they kept showing up on Saturday mornings even when no one would have noticed if they did not.
 
----
+## Google Summer of Code 2026 (9 selections)
 
-# Meet the Contributors
+![Muhammad Saqlain, Junaid Shaukat, and Kamran ul Haq, GSoC 2026](/images/gsoc.jpg)
 
-## Google Summer of Code (GSoC) 2026
+*Pictured above: Muhammad Saqlain (NumFOCUS), Muhammad Junaid Shaukat (Apache Software Foundation, Apache Beam), and Kamran ul Haq (FLARE).*
 
-### Muhammad Saqlain — NumFOCUS
+### Muhammad Saqlain at NumFOCUS
 
+[Saqlain](https://pk.linkedin.com/in/musaqlain) is contributing to a project under NumFOCUS, the nonprofit umbrella that supports much of the open-source scientific Python ecosystem (NumPy, matplotlib, PyMC, GRASS GIS, and around 24 others). If you have ever run a `pip install`, you have probably used software stewarded by this group. [Project page.](https://summerofcode.withgoogle.com/programs/2026/projects/jLoU4DCV)
 
-- **Program:** GSoC 2026
-- **Organization:** NumFOCUS
-- **LinkedIn:** [Muhammad Saqlain](https://pk.linkedin.com/in/musaqlain)
-- **Project Link:**  
-  https://summerofcode.withgoogle.com/programs/2026/projects/jLoU4DCV
+### Muhammad Junaid Shaukat at the Apache Software Foundation (Apache Beam)
 
----
+[Junaid](https://www.linkedin.com/in/junaiddshaukat) is working on Apache Beam, the unified model for batch and streaming data pipelines that runs on Flink, Spark, and Google Dataflow. Worth knowing: by the time he wrote his proposal, he already had pull requests merged into the Beam TypeScript SDK on the public dev list. The proposal was a continuation of work he was already doing. That is the version of "warming up" that actually counts. [Project page.](https://summerofcode.withgoogle.com/programs/2026/projects/x13a0jGL)
 
-### Muhammad Junaid Shaukat — Apache Software Foundation (Apache Beam)
+### Kamran ul Haq at FLARE
 
-- **Program:** GSoC 2026
-- **Organization:** Apache Software Foundation
-- **Project:** Apache Beam
-- **LinkedIn:** [Muhammad Junaid Shaukat](https://www.linkedin.com/in/junaiddshaukat)
-- **Project Link:**  
-  https://summerofcode.withgoogle.com/programs/2026/projects/x13a0jGL
+[Kamran](https://pk.linkedin.com/in/kamran-ul-haq) is contributing to FLARE, the reverse-engineering team at Mandiant (now part of Google Cloud) that ships open-source malware analysis tooling like `capa`, `FLOSS`, `GoReSym`, and `XRefer`. His co-mentors are people who reverse nation-state malware for a living. [Project page.](https://summerofcode.withgoogle.com/programs/2026/projects/MNBryJ8N)
 
----
+![Aqib Nawab, Talha Asif, and Mateeb Haider, GSoC 2026](/images/gsoc2.jpg)
 
-### Kamran ul Haq — FLARE
+*Pictured above: Aqib Nawab (C2SI), Talha Asif (Drupal Association, also Social Summer of Code 2026), and Mateeb Haider (FOSSASIA).*
 
-- **Program:** GSoC 2026
-- **Organization:** FLARE
-- **LinkedIn:** [Kamran ul Haq](https://pk.linkedin.com/in/kamran-ul-haq?trk=public_post-text)
-- **Project Link:**  
-  https://summerofcode.withgoogle.com/programs/2026/projects/MNBryJ8N
+### Aqib Nawab at C2SI
 
----
-![gsoc2](/images/gsoc2.jpg)
-### Aqib Nawab — C2SI
+[Aqib](https://pk.linkedin.com/in/m-aqib-nawab) is working with C2SI, an 11-year veteran GSoC organization that runs cybersecurity, AI, and developer-tooling open-source projects. The 2026 lineup leans into LLM threat-intelligence, Web3 cameras, and agentic firewall SDKs. [Project page.](https://summerofcode.withgoogle.com/programs/2026/projects/7sf7V0bk)
 
-- **Program:** GSoC 2026
-- **Organization:** C2SI
-- **LinkedIn:** [Aqib Nawab](https://pk.linkedin.com/in/m-aqib-nawab?trk=public_post-text)
-- **Project Link:**  
-  https://summerofcode.withgoogle.com/programs/2026/projects/7sf7V0bk
+### Talha Asif at the Drupal Association (also SSoC 2026)
 
----
+[Talha](https://pk.linkedin.com/in/talha-asif7) is contributing to Drupal, whose 2026 ideas list leans into AI inside the Drupal CMS. He is also doing Social Summer of Code in parallel, which is a real workload to carry through one summer. [Project page.](https://summerofcode.withgoogle.com/programs/2026/projects/C09HAZpF)
 
-### Talha Asif — Durapal Association
+### Mateeb Haider at FOSSASIA
 
-- **Programs:** GSoC 2026, SSoC 2026
-- **Organization:** Durapal Association
-- **LinkedIn:** [Talha Asif](https://pk.linkedin.com/in/talha-asif7?trk=public_post-text)
-- **Project Link:**  
-  https://summerofcode.withgoogle.com/programs/2026/projects/C09HAZpF
+[Mateeb](https://pk.linkedin.com/in/mateeb-haider) is shipping cross-platform support for the FOSSASIA Scrum Helper. The browser extension currently summarizes stand-up activity on GitHub. By the end of his summer, distributed teams should be able to run their daily reports across GitLab, Bitbucket, and other source-control platforms. [Project page.](https://summerofcode.withgoogle.com/programs/2026/projects/eyJnXkkA)
 
----
+![Abdullah Waleed Ahmed, Muneeb Ahmad, and Muhammad Ali Arif, GSoC 2026](/images/gsoc3.jpg)
 
-### Mateeb Haider — FOSSASIA
+*Pictured above: Abdullah Waleed Ahmed (BRL-CAD), Muneeb Ahmad (InVesalius), and Muhammad Ali Arif (EMBL-EBI, Genome Assembly and Annotation).*
 
-- **Program:** GSoC 2026
-- **Organization:** FOSSASIA
-- **LinkedIn:** [Mateeb Haider](https://pk.linkedin.com/in/mateeb-haider?trk=public_post-text)
-- **Project Link:**  
-  https://summerofcode.withgoogle.com/programs/2026/projects/eyJnXkkA
+### Abdullah Waleed Ahmed at BRL-CAD
 
----
+[Abdullah](https://www.linkedin.com/in/abdullah-waleed-ahmed-774890343) is contributing to BRL-CAD, the open-source solid modeling and CSG geometry system originally developed at the U.S. Army Research Laboratory. It is one of the longest-lived open-source codebases on the planet and a serious place to learn what mature C and C++ looks like in practice. [Project page.](https://summerofcode.withgoogle.com/programs/2026/projects/QdVvPjPX)
 
-![gsoc](/images/gsoc3.jpg)
+### Muneeb Ahmad at InVesalius
 
-### Abdullah Waleed Ahmed — BRL-CAD
+[Muneeb](https://www.linkedin.com/in/muneeb-ahmad-se/) is contributing to InVesalius, the open-source medical imaging suite developed by Brazil's CTI Renato Archer. It turns DICOM scans into 3D surface models for clinical and research use, including neuronavigation and TMS workflows. The code he writes will be used in real hospitals. [Project page.](https://summerofcode.withgoogle.com/programs/2026/projects/ipVIM23p)
 
-- **Program:** GSoC 2026
-- **Organization:** BRL-CAD
-- **LinkedIn:** [Abdullah Waleed Ahmed](https://www.linkedin.com/in/abdullah-waleed-ahmed-774890343)
-- **Project Link:**  
-  https://summerofcode.withgoogle.com/programs/2026/projects/QdVvPjPX
+### Muhammad Ali Arif at EMBL-EBI
 
----
+[Ali Arif](https://www.linkedin.com/in/aliarif-se28/) is working with EMBL-EBI's Genome Assembly and Annotation team in Cambridge, UK. They are the people behind Ensembl, the genome browser most working biologists keep in a tab somewhere. The pipelines he contributes to will be cited in research papers. [Project page.](https://summerofcode.withgoogle.com/programs/2026/projects/brBab9aI)
 
-### Muneeb Ahmad — InVesalius
+## The other 4 programs (5 selections)
 
-- **Program:** GSoC 2026
-- **Organization:** InVesalius
-- **LinkedIn:** [Muneeb Ahmad](https://www.linkedin.com/in/muneeb-ahmad-se/)
-- **Project Link:**  
-  https://summerofcode.withgoogle.com/programs/2026/projects/ipVIM23p
+![Memona Amir, Muhammad Rebaal, and Alisha Fatima, open-source acceptances 2026](/images/gsoc5.jpg)
 
----
+*Pictured above: Memona Amir (Social Summer of Code), Muhammad Rebaal (European Summer of Code at PyTorch Forecasting), and Alisha Fatima (GirlScript Summer of Code).*
 
-### Muhammad Ali Arif — Genome Assembly & Annotation (EMBL-EBI)
+### Memona Amir at Social Summer of Code
 
-- **Program:** GSoC 2026
-- **Organization:** EMBL-EBI
-- **Project:** Genome Assembly & Annotation
-- **LinkedIn:** [Muhammad Ali Arif](https://www.linkedin.com/in/aliarif-se28/)
-- **Project Link:**  
-  https://summerofcode.withgoogle.com/programs/2026/projects/brBab9aI
+[Memona](https://www.linkedin.com/in/memona-amir-8992052a4/) was selected into [SSoC Season 5](https://www.socialsummerofcode.com/projects.html), the India-based program that has rallied tens of thousands of contributors across its previous editions.
 
----
+### Muhammad Rebaal at PyTorch Forecasting (ESoC 2026)
 
-# Other Global Open Source Selections
-![gsoc](/images/gsoc7.jpg)
+[Rebaal](https://pk.linkedin.com/in/muhammad-rebaal-34936616a) is contributing to PyTorch Forecasting through the European Summer of Code. The library is maintained by the sktime community in collaboration with FBK and the GC.OS umbrella, which is the kind of place where time-series research and applied infrastructure meet.
 
-## Memona Amir — Social Summer of Code (SSoC)
+### Alisha Fatima at GirlScript Summer of Code
 
-- **Program:** SSoC 2026
-- **LinkedIn:** [Memona Amir](https://www.linkedin.com/in/memona-amir-8992052a4/)
-- **Project Link:**  
-  https://www.socialsummerofcode.com/projects.html
+Alisha is contributing through GSSoC 2026, India's flagship women-in-OSS program. The 2026 edition adds a new Open Source track and a separate AI Agents track running through the summer.
 
----
+![Yash Israni, mentor at LFX Mentorship 2026](/images/gsoc7.jpg)
 
-## Muhammad Rebaal — European Summer of Code (ESoC)
+*Pictured above: Yash Israni, mentor at the Linux Foundation LFX Mentorship 2026.*
 
-- **Program:** ESoC 2026
-- **Organization:** Pytorch Forecasting
-- **LinkedIn:** [Muhammad Rebaal](https://pk.linkedin.com/in/muhammad-rebaal-34936616a?trk=public_post-text)
+### Yash Israni at the Linux Foundation (LFX Mentorship)
 
----
+[Yash](https://www.linkedin.com/in/yashisrani/) joined LFX Mentorship 2026, but on the other side of the table. He is a mentor, not a mentee. That arc, from contributor to mentee to mentor, is the one Dev Weekends quietly cares about most. [Mentorship page.](https://mentorship.lfx.linuxfoundation.org/project/c5b8d1fa-b75a-4f88-a63b-e6487dc7e39b)
 
-## Alisha Fatima — GirlScript Summer of Code (GSSoC)
+## What the road actually looked like
 
-- **Program:** GSSoC 2026
-- **Organization:** GirlScript Summer of Code
-- **LinkedIn:** Alisha Fatima
-- **Contributor Profile:**  
-  GSSoC 2026 Contributor
+If you came expecting a tidy list of life hacks, you are going to be disappointed.
 
----
+The story for almost every name above is the same. They joined the [Dev Weekends Fellowship](/fellowship) at some point in the last 2 cohorts. They were placed in a small clan with 2 or 3 mentors. They picked one of 3 tracks (algorithmic, balanced engineer, or open source) and started showing up. Tuesday DSA. Thursday systems talks. Saturday or Sunday at an in-person Tech Grind, 12 hours each day, working on whatever they had committed to that weekend.
 
-![gsoc](/images/gsoc5.jpg)
+Most of them were quiet for the first month or two. A few got reviewed harshly on their first proposal and disappeared for a week before coming back. Some of the people who eventually got into GSoC had failed an internship interview the same year. The fellowship has structure, but it is not a script. It is a room of people doing real engineering, slowly, in front of each other.
 
-## Yash Israni — Linux Foundation Mentorship (LFX)
+The numbers, if you like numbers, look like this across recent cohorts:
 
-- **Program:** LFX Mentorship
-- **Role:** Mentor
-- **LinkedIn:** [Yash Israni](https://www.linkedin.com/in/yashisrani/)
-- **Mentorship Link:**  
-  https://mentorship.lfx.linuxfoundation.org/project/c5b8d1fa-b75a-4f88-a63b-e6487dc7e39b
+- 442 projects built
+- around 8,000 LeetCode problems solved across the cohort
+- 904 mindset talks
+- 999 spiritual and growth sessions
+- 2,500 hours of recorded learning
+- 800 engineers trained, of whom 74 became certified contributors, 13 took job placements, 17 took internships, 23 started freelancing, and 16 stayed active in open source
 
----
+Every one of those numbers is a person making coffee at 11pm and trying again.
 
-# Where the Journey Actually Started
+## DSOC, and the next cohort
 
-None of these contributors started as experts.
+One thing this year made obvious is that GSoC is, by design, narrow. There is 1 summer. There are limited slots. There is no good way to onboard a complete beginner into open-source work between January and the application deadline.
 
-Most began exactly where many developers are today:
+So we are launching our own program.
 
-- confused about open source
-- unsure how to contribute
-- intimidated by large repositories
-- struggling with consistency
-- doubting whether they were “good enough”
+[**DSOC**, Dev Weekends Summer of Code](/dsoc), is a 3-month, paid mentorship program built for people who are not yet ready for GSoC but want to be in 12 months. There is no geographic gatekeeping and no application gauntlet. The 2026 edition runs June 1 to August 31, with a monthly stipend and a milestone review at the end of each month.
 
-There were no elite resumes.
+A couple of the projects already in the DSOC 2026 pipeline:
 
-No perfect portfolios.
+- **VoiceyBill**, an AI finance tracker on Gemini and UpliftAI with a MERN/TypeScript stack
+- **Pathment**, a SaaS mentorship platform on Next.js, PostgreSQL, and Sequelize
 
-No shortcuts.
+The new [Dev Weekends Fellowship cohort](/fellowship) starts the same day. June 1.
 
-Just one simple decision:
+If you read all the way down to here, the most useful thing you can do is one of the following:
 
-**To keep showing up.**
+1. [Apply to the Fellowship.](/fellowship)
+2. [Look at DSOC and pick a project.](/dsoc)
+3. [Come hang out in the Discord.](https://discord.gg/Cy7Rgkf4Up) Most of the conversations that turned into a GSoC selection started there.
 
----
+You do not need a perfect resume to start. None of the 14 people above had one. They had time, a couple of mentors who had walked the same road 5 years earlier, and the willingness to be visibly bad at things in front of other people for a while. That is, more or less, the whole secret.
 
-# The Part Nobody Sees
-
-Open source is difficult when you begin.
-
-Repositories feel overwhelming.
-
-Documentation feels endless.
-
-Pull requests get rejected.
-
-Code reviews feel brutal.
-
-Sometimes weeks pass with almost no visible progress.
-
-But week after week, these contributors kept learning.
-
-They fixed tiny issues.
-
-Read unfamiliar codebases.
-
-Asked questions.
-
-Improved slowly.
-
-And over time, that consistency created transformation.
-
----
-
-# The Dev Weekends Fellowship — The Foundation Behind the Success
-
-Behind every contributor was a structured system designed for growth.
-
-The **Dev Weekends Fellowship** became the environment where developers learned not just technologies — but how real engineers grow.
-
-Many fellows joined knowing only:
-
-- HTML
-- CSS
-- Basic JavaScript
-
-Over time, they progressed toward:
-
-- Full-stack MERN development
-- Open-source contribution workflows
-- DSA & LeetCode problem solving
-- Real-world project development
-- Team collaboration
-- Engineering communication
-- Proposal writing
-- Global developer networking
-
-This was not tutorial-based learning.
-
-It was practical, uncomfortable, and real.
-
-And that’s exactly why it worked.
-
----
-
-# The Fellowship Impact
-
-The numbers tell a powerful story.
-
-## Dev Weekends Fellowship Impact
-
-- **442 Total Projects Built**
-- **8,000+ LeetCode Problems Solved**
-- **904 Mindset Talks**
-- **999 Spiritual & Growth Sessions**
-- **529 Articles Studied**
-- **583 Community Dinner Talks**
-- **2,500+ Learning Hours**
-
-## Average Per Fellow
-
-- **4.4 Projects Built**
-- **80 LeetCode Problems Solved**
-
-From **800 fellows**:
-
-- **74 became certified contributors**
-- **13 secured job placements**
-- **17 earned internships**
-- **23 started freelance careers**
-- **16 became active open-source contributors**
-
-The results proved something important:
-
-> Consistency beats talent when supported by the right environment.
-
----
-
-# More Than Technical Growth
-
-Inside Dev Weekends, growth was never only about code.
-
-The philosophy remained simple:
-
-# Holistic Growth = Skills + Mindset + Consistency
-
-## Technical Growth
-
-- Full-stack engineering
-- DSA mastery
-- Real production systems
-- Open-source contribution
-
-## Mindset Growth
-
-- Resilience
-- Discipline
-- Focus
-- Confidence
-- Problem solving
-
-## Consistency
-
-- Daily effort
-- Weekly accountability
-- Long-term learning habits
-
-This combination became the real engine behind the GSoC success stories.
-
----
-
-# Introducing DSOC — Dev Weekends Summer of Code
-
-This journey revealed something important:
-
-Talent exists everywhere.
-
-Opportunity does not.
-
-So Dev Weekends is officially launching:
-
-# DSOC — Dev Weekends Summer of Code
-
-DSOC is designed to:
-
-- help beginners enter open source
-- simulate real contribution environments
-- mentor future global contributors
-- prepare developers for GSoC and similar programs
-- build confidence through guided contribution
-
-The mission is simple:
-
-**Create contributors — not just learners.**
-
----
-
-# Dev Weekends Fellowship 2026 — Starting June 1
-
-With momentum growing and impact expanding,  
-**Dev Weekends Fellowship 2026 officially begins on June 1.**
-
-The upcoming cohort will focus on:
-
-- Open Source Readiness
-- Full-Stack Engineering
-- DSA Mastery
-- AI & Modern Development
-- Real Project Building
-- Collaboration & Communication Skills
-
-The goal is bigger than placements.
-
-The goal is long-term transformation.
-
----
-
-# Beyond Selection
-
-Getting selected into GSoC or any global program is a milestone.
-
-But the deeper impact goes beyond acceptance emails.
-
-It’s about:
-
-- confidence gained
-- learning how large systems work
-- solving real-world problems
-- collaborating globally
-- becoming part of something bigger than yourself
-
-Selection becomes proof.
-
-Growth becomes permanent.
-
----
-
-# The Real Takeaway
-
-You do not need perfect skills.
-
-You do not need to start ahead.
-
-You do not need to know everything.
-
-You only need to:
-
-**Start.  
-Stay consistent.  
-Keep building.**
-
-Because in the end:
-
-> Talent may open doors.  
-> But consistency builds the future.
-
-And with **DSOC** and **Dev Weekends Fellowship 2026**,  
-this journey is only getting started.
+Welcome.

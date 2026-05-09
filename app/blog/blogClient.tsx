@@ -13,6 +13,17 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+function imageClasses(post: Post) {
+  const fit = post.imageFit === "contain" ? "object-contain" : "object-cover";
+  const positionMap = {
+    top: "object-top",
+    center: "object-center",
+    bottom: "object-bottom",
+  } as const;
+  const position = positionMap[post.imagePosition ?? "center"];
+  return `${fit} ${position}`;
+}
+
 export default function BlogClient({ posts }: { posts: Post[] }) {
   const [activeTab, setActiveTab] = useState<"news" | "blog">("news");
 
@@ -106,25 +117,22 @@ export default function BlogClient({ posts }: { posts: Post[] }) {
                       className="block group"
                     >
                       {/* IMAGE */}
-                      <div className="relative w-full aspect-[16/9] mb-5 overflow-hidden rounded-xl bg-gray-100">
-
+                      <div
+                        className={`relative w-full aspect-[4/5] mb-5 overflow-hidden rounded-xl ${
+                          post.imageFit === "contain"
+                            ? "bg-neutral-950"
+                            : "bg-gray-100"
+                        }`}
+                      >
                         <Image
                           src={post.image || "/post1.jpg"}
                           alt={post.title}
                           fill
                           priority
                           sizes="(max-width:768px) 100vw, 33vw"
-
-                          /*
-                            FIX:
-                            gsoc image uses object-top
-                            others remain centered
-                          */
-                          className={`rounded-xl transition duration-500 group-hover:scale-[1.02] object-cover ${
-                            post.slug === "gsoc"
-                              ? "object-top"
-                              : "object-center"
-                          }`}
+                          className={`rounded-xl transition duration-500 group-hover:scale-[1.02] ${imageClasses(
+                            post
+                          )}`}
                         />
                       </div>
 
@@ -192,17 +200,21 @@ export default function BlogClient({ posts }: { posts: Post[] }) {
                 className="block group"
               >
                 {/* IMAGE */}
-                <div className="relative w-full aspect-[16/9] mb-6 overflow-hidden rounded-xl">
+                <div
+                  className={`relative w-full mb-6 overflow-hidden rounded-xl ${
+                    post.imageFit === "contain"
+                      ? "aspect-[4/5] bg-neutral-950"
+                      : "aspect-[16/9] bg-gray-100"
+                  }`}
+                >
                   <Image
                     src={post.image || "/post1.jpg"}
                     alt={post.title}
                     fill
                     sizes="100vw"
-                    className={`rounded-xl transition duration-500 group-hover:scale-[1.02] object-cover ${
-                      post.slug === "gsoc"
-                        ? "object-top"
-                        : "object-center"
-                    }`}
+                    className={`rounded-xl transition duration-500 group-hover:scale-[1.02] ${imageClasses(
+                      post
+                    )}`}
                   />
                 </div>
 
