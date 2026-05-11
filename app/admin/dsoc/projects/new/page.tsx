@@ -25,10 +25,13 @@ interface MentorOption {
 export default function NewProjectPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
   const [mentorLoading, setMentorLoading] = useState(true);
   const [mentorError, setMentorError] = useState('');
   const [error, setError] = useState('');
   const [availableMentors, setAvailableMentors] = useState<MentorOption[]>([]);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>('');
 
   const [formData, setFormData] = useState({
     title: '',
@@ -48,7 +51,8 @@ export default function NewProjectPage() {
     mentors: [] as string[],
     requirements: [''],
     learningOutcomes: [''],
-    season: '2025',
+    season: '2026',
+    featuredImage: '',
   });
 
   useEffect(() => {
@@ -116,12 +120,56 @@ export default function NewProjectPage() {
     });
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setImageFile(file);
+
+    if (!file) {
+      setImagePreview('');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const uploadImageToCloudinary = async (file: File) => {
+    const uploadFormData = new FormData();
+    uploadFormData.append('file', file);
+
+    const uploadRes = await fetch('/api/upload', {
+      method: 'POST',
+      body: uploadFormData,
+    });
+
+    if (!uploadRes.ok) {
+      throw new Error('Image upload failed');
+    }
+
+    const uploadData = await uploadRes.json();
+    return uploadData.url as string;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
     try {
+      let featuredImage = formData.featuredImage;
+
+      if (imageFile) {
+        setImageUploading(true);
+        featuredImage = await uploadImageToCloudinary(imageFile);
+      }
+
+      if (!featuredImage) {
+        throw new Error('Project image is required');
+      }
+
       const res = await fetch('/api/dsoc/projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -132,6 +180,8 @@ export default function NewProjectPage() {
           mentors: formData.mentors,
           requirements: formData.requirements.filter(Boolean),
           learningOutcomes: formData.learningOutcomes.filter(Boolean),
+          featuredImage,
+          imageUrl: featuredImage,
           status: 'draft',
         }),
       });
@@ -145,8 +195,9 @@ export default function NewProjectPage() {
       }
     } catch (err) {
       console.error('Error creating project:', err);
-      setError('Something went wrong. Please try again.');
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
+      setImageUploading(false);
       setLoading(false);
     }
   };
@@ -226,6 +277,27 @@ export default function NewProjectPage() {
                     className="neo-brutal-input resize-none"
                     placeholder="Detailed description (shown on project page)"
                   />
+                </div>
+
+                <div>
+                  <label className="block font-bold text-sm mb-2">Project Image *</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    required={!formData.featuredImage}
+                    className="neo-brutal-input"
+                  />
+                  {(imagePreview || formData.featuredImage) && (
+                    <div className="mt-3">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={imagePreview || formData.featuredImage}
+                        alt="Project preview"
+                        className="w-full max-w-md h-52 object-cover border-4 border-[var(--dsoc-dark)]"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -547,7 +619,7 @@ export default function NewProjectPage() {
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--dsoc-dark)] text-white font-bold border-4 border-[var(--dsoc-dark)] hover:translate-y-1 transition-transform disabled:opacity-50 w-full"
               >
                 <Save className="w-5 h-5" />
-                {loading ? 'Creating Project...' : 'Create Project'}
+                {imageUploading ? 'Uploading Image...' : loading ? 'Creating Project...' : 'Create Project'}
               </button>
             </form>
           </div>

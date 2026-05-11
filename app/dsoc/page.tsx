@@ -52,7 +52,7 @@ const SAMPLE_PROJECTS: Project[] = [
     title: 'VoiceyBill',
     description: 'VoiceyBill is an open source AI-powered finance tracker that lets people log income and expenses by voice, receipt scan, or manual entry.\nIt uses Gemini and UpliftAI to classify transactions, supports CSV imports and recurring entries, and keeps the experience fast for multilingual users.\nThe product is designed around a responsive, multi-theme UI with analytics and monthly reports.',
     organization: 'Dev Weekends',
-    difficulty: 'advanced',
+    difficulty: 'intermediate',
     technologies: ['MongoDB', 'Express.js', 'React', 'Node.js', 'TypeScript', 'Google Gemini AI', 'UpliftAI', 'Cloudinary', 'Redux Toolkit', 'RTK Query'],
     status: 'open',
     duration: '10-12 weeks',
@@ -64,7 +64,7 @@ const SAMPLE_PROJECTS: Project[] = [
     title: 'Pathment',
     description: 'Pathment is a SaaS mentorship platform for organizations that want structured, mentor-guided employee training.\nIt connects mentees with real mentors, uses task-based workflows and progress tracking, and adds gamification to boost engagement and measurable outcomes.',
     organization: 'Dev Weekends',
-    difficulty: 'advanced',
+    difficulty: 'intermediate',
     technologies: ['Next.js', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Sequelize', 'Socket.io', 'Tailwind CSS', 'Tiptap', 'Cloudinary'],
     status: 'open',
     duration: '10-12 weeks',
@@ -279,14 +279,14 @@ export default function DSOCPage() {
                 <Rocket className="w-5 h-5 mr-2" />
                 Apply as Mentee
               </Link>
-              <Link href="/dsoc/register/mentor" className="neo-brutal-btn neo-brutal-btn-secondary text-lg">
+              {/* <Link href="/dsoc/register/mentor" className="neo-brutal-btn neo-brutal-btn-secondary text-lg">
                 <Users className="w-5 h-5 mr-2" />
                 Become a Mentor
-              </Link>
+              </Link> */}
             </div>
             
             {/* Quick Links */}
-            <div className="flex flex-wrap gap-4 justify-center">
+            {/* <div className="flex flex-wrap gap-4 justify-center">
               <a 
                 href="https://github.com/devweekends" 
                 target="_blank" 
@@ -314,7 +314,7 @@ export default function DSOCPage() {
                 <MessageCircle className="w-5 h-5" />
                 Discord
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
         

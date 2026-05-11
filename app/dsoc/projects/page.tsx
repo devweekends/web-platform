@@ -40,6 +40,7 @@ interface Project {
     jobTitle?: string;
   }[];
   applicationDeadline: string;
+  featuredImage?: string;
   imageUrl?: string;
   wikiUrl?: string;
 }
@@ -53,7 +54,7 @@ const SAMPLE_PROJECTS: Project[] = [
     organization: 'Dev Weekends',
     repositoryUrl: 'https://github.com/Wajahat43/psxworth',
     websiteUrl: 'https://psxworth.com',
-    difficulty: 'advanced',
+    difficulty: 'intermediate',
     duration: '10-12 weeks',
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'Radix UI', 'Clerk', 'Drizzle ORM', 'PostgreSQL', 'TanStack Query', 'TanStack Table', 'PostHog', 'Upstash Redis', 'AI SDK', 'ApexCharts', 'Recharts', 'React Hook Form', 'Zod', 'NestJS'],
     tags: ['full-stack', 'fintech', 'portfolio-tracking', 'dashboard', 'open-source'],
@@ -79,7 +80,7 @@ const SAMPLE_PROJECTS: Project[] = [
     organization: 'Dev Weekends',
     repositoryUrl: 'https://github.com/voiceyBill/voiceyBill-web',
     websiteUrl: 'https://www.voiceybill.com/',
-    difficulty: 'advanced',
+    difficulty: 'intermediate',
     duration: '10-12 weeks',
     technologies: ['MongoDB', 'Express.js', 'React', 'Node.js', 'TypeScript', 'Google Gemini AI', 'UpliftAI', 'Cloudinary', 'Redux Toolkit', 'RTK Query'],
     tags: ['full-stack', 'ai', 'finance', 'voice-input', 'open-source'],
@@ -104,7 +105,7 @@ const SAMPLE_PROJECTS: Project[] = [
     organization: 'Dev Weekends',
     repositoryUrl: 'https://github.com/Sheryar-Ahmed/pathment.git',
     websiteUrl: 'https://pathment.me/',
-    difficulty: 'advanced',
+    difficulty: 'intermediate',
     duration: '10-12 weeks',
     technologies: ['Next.js', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Sequelize', 'Socket.io', 'Tailwind CSS', 'Tiptap', 'Cloudinary'],
     tags: ['full-stack', 'real-time', 'developer-tools', 'collaboration'],
@@ -121,6 +122,32 @@ const SAMPLE_PROJECTS: Project[] = [
     selectedMentees: [],
     applicationDeadline: '2026-05-25',
     imageUrl: '/images/dsoc/pathment.png',
+  },
+  {
+    _id: 'goalslot',
+    title: 'GoalSlot',
+    description: "GoalSlot connects your goals to your calendar and tracks every hour you work on them. Finally know if you're actually making progress.",
+    organization: 'Dev Weekends',
+    repositoryUrl: 'https://github.com/ZeeshanAdilButt/goal-slot-web',
+    websiteUrl: 'https://www.goalslot.io/',
+    difficulty: 'intermediate',
+    duration: '8-12 weeks',
+    technologies: ['Next.js', 'NestJS', 'TypeScript'],
+    tags: ['productivity', 'calendar', 'time-tracking', 'open-source'],
+    status: 'open',
+    maxMentees: 3,
+    selectedMentees: [],
+    mentors: [
+      {
+        _id: 'mentor-psx-1',
+        name: 'Wajahat Ali',
+        picture: undefined,
+        company: 'Nector Social',
+        jobTitle: 'Software Engineer'
+      }
+    ],
+    applicationDeadline: '2026-06-30',
+    imageUrl: '/images/dsoc/goalslot.png',
   },
 ];
 
@@ -355,14 +382,17 @@ export default function ProjectsPage() {
               </div>
               
               <div className="grid md:grid-cols-2 gap-8">
-                {projects.map((project) => (
+                {projects.map((project) => {
+                  const projectImage = project.featuredImage || project.imageUrl;
+
+                  return (
                   <Link key={project._id} href={`/dsoc/projects/${project._id}`}>
                     <div className="dsoc-project-card h-full flex flex-col group">
                       {/* Project Image */}
-                      {project.imageUrl && (
+                      {projectImage && (
                         <div className="relative overflow-hidden border-b-4 border-[var(--dsoc-dark)]">
                           <img 
-                            src={project.imageUrl} 
+                            src={projectImage} 
                             alt={project.title}
                             className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                           />
@@ -379,7 +409,7 @@ export default function ProjectsPage() {
                           <span className="font-bold uppercase text-sm tracking-wider text-[var(--dsoc-dark)]">
                             {project.organization}
                           </span>
-                          {!project.imageUrl && (
+                          {!projectImage && (
                             <div className="flex gap-2">
                               <span className={`neo-brutal-badge text-xs ${getStatusColor(project.status)} text-[var(--dsoc-dark)]`}>
                                 {project.status}
@@ -482,7 +512,8 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                   </Link>
-                ))}
+                  );
+                })}
               </div>
             </>
           )}

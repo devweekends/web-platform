@@ -246,7 +246,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
             <div className="grid lg:grid-cols-3 gap-8 mb-8">
               {/* Project Info Card */}
               <div className="lg:col-span-2">
-                <div className="neo-brutal-card p-6 bg-gradient-to-r from-[var(--dsoc-primary)] to-[var(--dsoc-secondary)] text-white">
+                <div className="neo-brutal-card p-6 bg-gradient-to-r from-[var(--dsoc-primary)] to-[var(--dsoc-secondary)] text-black">
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <span className="text-sm font-bold opacity-80 uppercase tracking-wider">

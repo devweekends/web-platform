@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
+import '@/models/DSOCMentor';
 import { DSOCProject } from '@/models/DSOCProject';
 
 // GET all projects with filtering
@@ -70,8 +71,14 @@ export async function POST(request: NextRequest) {
     
     // TODO: Add admin authentication check
     const body = await request.json();
-    
-    const project = new DSOCProject(body);
+
+    // Support both legacy imageUrl and schema-native featuredImage.
+    const normalizedBody = {
+      ...body,
+      featuredImage: body.featuredImage || body.imageUrl,
+    };
+
+    const project = new DSOCProject(normalizedBody);
     await project.save();
     
     return NextResponse.json({
