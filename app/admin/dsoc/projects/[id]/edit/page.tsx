@@ -30,9 +30,12 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
   const [mentorLoading, setMentorLoading] = useState(true);
   const [mentorError, setMentorError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [availableMentors, setAvailableMentors] = useState<MentorOption[]>([]);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>('');
   
   const [formData, setFormData] = useState({
     title: '',
@@ -52,8 +55,9 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
     mentors: [] as string[],
     requirements: [''],
     learningOutcomes: [''],
-    season: '2025',
-    status: 'draft'
+    season: '2026',
+    status: 'draft',
+    featuredImage: ''
   });
 
   useEffect(() => {
@@ -107,7 +111,8 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
           requirements: project.requirements && project.requirements.length > 0 ? project.requirements : [''],
           learningOutcomes: project.learningOutcomes && project.learningOutcomes.length > 0 ? project.learningOutcomes : [''],
           season: project.season || '2025',
-          status: project.status || 'draft'
+          status: project.status || 'draft',
+          featuredImage: project.featuredImage || project.imageUrl || ''
         });
       } else {
         setError(data.error || 'Failed to load project');
@@ -152,6 +157,39 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
     setFormData({ ...formData, [field]: updated });
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setImageFile(file);
+
+    if (!file) {
+      setImagePreview('');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const uploadImageToCloudinary = async (file: File) => {
+    const uploadFormData = new FormData();
+    uploadFormData.append('file', file);
+
+    const uploadRes = await fetch('/api/upload', {
+      method: 'POST',
+      body: uploadFormData,
+    });
+
+    if (!uploadRes.ok) {
+      throw new Error('Image upload failed');
+    }
+
+    const uploadData = await uploadRes.json();
+    return uploadData.url as string;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -159,6 +197,13 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
     setSubmitting(true);
 
     try {
+      let featuredImage = formData.featuredImage;
+
+      if (imageFile) {
+        setImageUploading(true);
+        featuredImage = await uploadImageToCloudinary(imageFile);
+      }
+
       const res = await fetch(`/api/dsoc/projects/${resolvedParams.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -181,7 +226,9 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
           requirements: formData.requirements.filter(Boolean),
           learningOutcomes: formData.learningOutcomes.filter(Boolean),
           season: formData.season,
-          status: formData.status
+          status: formData.status,
+          featuredImage,
+          imageUrl: featuredImage
         })
       });
 
@@ -197,8 +244,9 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
       }
     } catch (err) {
       console.error('Error updating project:', err);
-      setError('Something went wrong. Please try again.');
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
+      setImageUploading(false);
       setSubmitting(false);
     }
   };
@@ -296,6 +344,26 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
                     className="neo-brutal-input resize-none"
                     placeholder="Detailed description (shown on project page)"
                   />
+                </div>
+
+                <div>
+                  <label className="block font-bold text-sm mb-2">Project Image</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="neo-brutal-input"
+                  />
+                  {(imagePreview || formData.featuredImage) && (
+                    <div className="mt-3">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={imagePreview || formData.featuredImage}
+                        alt="Project preview"
+                        className="w-full max-w-md h-52 object-cover border-4 border-[var(--dsoc-dark)]"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -635,7 +703,7 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
                   className="flex items-center gap-2 px-6 py-3 bg-[var(--dsoc-dark)] text-white font-bold border-4 border-[var(--dsoc-dark)] hover:translate-y-1 transition-transform disabled:opacity-50"
                 >
                   <Save className="w-5 h-5" />
-                  {submitting ? 'Saving...' : 'Save Changes'}
+                  {imageUploading ? 'Uploading Image...' : submitting ? 'Saving...' : 'Save Changes'}
                 </button>
                 
                 <Link

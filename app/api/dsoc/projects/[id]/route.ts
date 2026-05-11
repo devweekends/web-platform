@@ -47,10 +47,16 @@ export async function PUT(
     
     // TODO: Add admin/mentor authentication check
     const body = await request.json();
+
+    // Support both legacy imageUrl and schema-native featuredImage.
+    const normalizedBody = {
+      ...body,
+      featuredImage: body.featuredImage || body.imageUrl,
+    };
     
     const project = await DSOCProject.findByIdAndUpdate(
       id,
-      { $set: body },
+      { $set: normalizedBody },
       { new: true, runValidators: true }
     );
     
