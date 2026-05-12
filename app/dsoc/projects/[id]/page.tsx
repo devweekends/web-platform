@@ -72,7 +72,7 @@ The goal is to help investors in Pakistan make better decisions and keep portfol
     organization: 'Dev Weekends',
     repositoryUrl: 'https://github.com/Wajahat43/psxworth',
     websiteUrl: 'https://psxworth.com',
-    difficulty: 'advanced',
+    difficulty: 'intermediate',
     duration: '10-12 weeks',
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'Radix UI', 'Clerk', 'Drizzle ORM', 'PostgreSQL', 'TanStack Query', 'TanStack Table', 'PostHog', 'Upstash Redis', 'AI SDK', 'ApexCharts', 'Recharts', 'React Hook Form', 'Zod'],
     tags: ['fintech', 'portfolio-tracking', 'dashboard', 'open-source', 'psx'],
@@ -128,7 +128,7 @@ The project is built on the MERN stack with TypeScript and integrates Google Gem
     organization: 'Dev Weekends',
     repositoryUrl: 'https://github.com/voiceyBill/voiceyBill-web',
     websiteUrl: 'https://www.voiceybill.com/',
-    difficulty: 'advanced',
+    difficulty: 'intermediate',
     duration: '10-12 weeks',
     technologies: ['MongoDB', 'Express.js', 'React', 'Node.js', 'TypeScript', 'Google Gemini AI', 'UpliftAI', 'Cloudinary', 'Redux Toolkit', 'RTK Query'],
     tags: ['full-stack', 'ai', 'finance', 'voice-input', 'open-source'],
@@ -180,7 +180,7 @@ The project is built on the MERN stack with TypeScript and integrates Google Gem
     organization: 'Dev Weekends',
     repositoryUrl: 'https://github.com/Sheryar-Ahmed/pathment.git',
     websiteUrl: 'https://pathment.me/',
-    difficulty: 'advanced',
+    difficulty: 'intermediate',
     duration: '10-12 weeks',
     technologies: ['Next.js', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Sequelize', 'Socket.io', 'Tailwind CSS', 'Tiptap', 'Cloudinary'],
     tags: ['full-stack', 'real-time', 'developer-tools', 'collaboration'],
@@ -232,6 +232,55 @@ The project is built on the MERN stack with TypeScript and integrates Google Gem
       { title: 'AI Roadmap Integration', description: 'Add AI-generated roadmap/task suggestions for program levels', dueDate: '2026-07-15', completed: false },
       { title: 'Real-time Messaging & Notifications', description: 'Enhance Socket.IO messaging and notification delivery', dueDate: '2026-07-31', completed: false },
       { title: 'Analytics & Deploy', description: 'Complete admin analytics, polish UI, and deploy the marketing site', dueDate: '2026-08-31', completed: false }
+    ],
+    season: 'DSOC 2026'
+  },
+  'goalslot': {
+    _id: 'goalslot',
+    title: 'GoalSlot',
+    description: "GoalSlot connects your goals to your calendar and tracks every hour you work on them. Finally know if you're actually making progress.",
+    longDescription: `GoalSlot helps users tie their goals directly to calendar events and measure the time spent working on them. Contributors will work on syncing calendar events, building time-tracking UX, improving analytics, and making the onboarding experience delightful. Project images and demo videos are available in the provided Drive links.
+
+Contributions range from frontend Next.js improvements to backend NestJS API work, integrations, and analytics features. This is a real-user product with an existing live site, so contributors should be cautious when touching production integrations and focus on well-scoped, testable changes.`,
+    organization: 'Dev Weekends',
+    repositoryUrl: 'https://github.com/ZeeshanAdilButt/goal-slot-web',
+    websiteUrl: 'https://www.goalslot.io/',
+    difficulty: 'intermediate',
+    duration: '8-12 weeks',
+    technologies: ['Next.js', 'NestJS', 'TypeScript'],
+    tags: ['productivity', 'calendar', 'time-tracking', 'open-source'],
+    mentors: [
+      {
+        _id: 'mentor-psx-1',
+        name: 'Wajahat Islam Gul',
+        email: 'amina@devweekends.org',
+        company: 'Nector Social',
+        jobTitle: 'Software Engineer',
+        linkedin: 'https://www.linkedin.com/in/wajahatx1/',
+        github: 'https://github.com/Wajahat43'
+      }
+    ],
+    selectedMentees: [],
+    maxMentees: 3,
+    status: 'open',
+    applicationDeadline: '2026-06-30',
+    startDate: '2026-07-01',
+    endDate: '2026-09-30',
+    requirements: [
+      'Familiarity with React and Next.js',
+      'Comfort with TypeScript',
+      'Willingness to work with calendar integrations and APIs',
+      'Ability to commit 8-12 hours per week'
+    ],
+    learningOutcomes: [
+      'Implement reliable calendar syncing and time-tracking features',
+      'Build end-to-end features across Next.js frontend and NestJS backend',
+      'Design analytics and reporting for goal progress'
+    ],
+    milestones: [
+      { title: 'Onboarding & Setup', description: 'Get the monorepo and local dev environment working', dueDate: '2026-07-07', completed: false },
+      { title: 'Calendar Sync', description: 'Implement calendar integration and event mapping', dueDate: '2026-08-01', completed: false },
+      { title: 'Time Tracking UI', description: 'Add time tracking flows and analytics dashboards', dueDate: '2026-08-31', completed: false }
     ],
     season: 'DSOC 2026'
   },
