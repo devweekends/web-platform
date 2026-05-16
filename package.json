@@ -45,6 +45,7 @@
     "pptxgenjs": "4.0.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-hook-form": "^7.53.0",
     "react-force-graph-2d": "1.27.1",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
