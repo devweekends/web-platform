@@ -105,7 +105,7 @@ export default function FellowshipPage() {
 
   const handleApplyClick = () => {
     window.open(
-      "https://docs.google.com/forms/d/e/1FAIpQLScrd5dnf_DU2ZsSuzwy9I6G7PjpGqts7RZJPK_oIC5cfpfsQg/viewform?usp=dialog",
+      "https://docs.google.com/forms/d/e/1FAIpQLSfjbM8MIEWTPe4PMjLOf8wCKbdjkjXYjH3nBNFoEEjO8CO08w/viewform",
       "_blank",
     )
   }
