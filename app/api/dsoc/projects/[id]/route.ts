@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
+import '@/models/DSOCMentor';
+import '@/models/DSOCMentee';
 import { DSOCProject } from '@/models/DSOCProject';
 
 // GET single project by ID

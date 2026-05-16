@@ -293,10 +293,23 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [isMentee, setIsMentee] = useState<boolean | null>(null);
 
   useEffect(() => {
     fetchProject();
+    checkMenteeSession();
   }, [projectId]);
+
+  const checkMenteeSession = async () => {
+    try {
+      const res = await fetch('/api/dsoc/mentee/me', { credentials: 'include' });
+      const data = await res.json();
+      setIsMentee(Boolean(data?.success));
+    } catch (err) {
+      console.error('Error checking mentee session:', err);
+      setIsMentee(false);
+    }
+  };
 
   const fetchProject = async () => {
     if (!projectId) {
@@ -356,6 +369,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
   const isDeadlinePassed = project ? new Date() > new Date(project.applicationDeadline) : false;
   const spotsRemaining = project ? project.maxMentees - (project.selectedMentees?.length || 0) : 0;
+  const canApply = project ? project.status === 'open' && !isDeadlinePassed && spotsRemaining > 0 : false;
 
   if (loading) {
     return (
@@ -657,13 +671,29 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                   </div>
                 </div>
 
-                {project.status === 'open' && !isDeadlinePassed && spotsRemaining > 0 ? (
-                  <Link 
-                    href={`/dsoc/apply/${project._id}`}
-                    className="neo-brutal-btn neo-brutal-btn-primary w-full"
-                  >
-                    Apply Now
-                  </Link>
+                {canApply ? (
+                  isMentee === null ? (
+                    <button
+                      disabled
+                      className="neo-brutal-btn bg-gray-300 text-gray-600 w-full cursor-not-allowed"
+                    >
+                      Checking eligibility...
+                    </button>
+                  ) : isMentee ? (
+                    <Link 
+                      href={`/dsoc/apply/${project._id}`}
+                      className="neo-brutal-btn neo-brutal-btn-primary w-full"
+                    >
+                      Apply Now
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/dsoc/register/mentee"
+                      className="neo-brutal-btn neo-brutal-btn-secondary w-full"
+                    >
+                      Apply as Mentee First
+                    </Link>
+                  )
                 ) : (
                   <button 
                     disabled 

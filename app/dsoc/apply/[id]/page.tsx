@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, use } from "react";
-import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import { 
   ArrowLeft,
   ArrowRight,
@@ -33,6 +33,24 @@ interface Project {
   mentors?: { name: string; company?: string }[];
 }
 
+type ApplicationFormValues = {
+  whyThisProject: string;
+  motivation: string;
+  relevantExperience: string;
+  technicalSkills: string;
+  portfolioLinks: string;
+  githubProfile: string;
+  previousContributions: string;
+  proposal: string;
+  timeline: string;
+  expectedLearnings: string;
+  challenges: string;
+  availability: string;
+  timezone: string;
+  startDate: string;
+  coverLetter: string;
+};
+
 const STEPS = [
   { id: 1, title: 'About You', icon: User, description: 'Your background' },
   { id: 2, title: 'Experience', icon: Briefcase, description: 'Skills & projects' },
@@ -42,35 +60,87 @@ const STEPS = [
 
 export default function ApplyPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
-  const router = useRouter();
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-
-  const [formData, setFormData] = useState({
-    whyThisProject: '',
-    motivation: '',
-    relevantExperience: '',
-    technicalSkills: '',
-    portfolioLinks: '',
-    githubProfile: '',
-    previousContributions: '',
-    proposal: '',
-    timeline: '',
-    expectedLearnings: '',
-    challenges: '',
-    availability: '',
-    timezone: '',
-    startDate: '',
-    coverLetter: ''
+  const [isMentee, setIsMentee] = useState<boolean | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    trigger,
+    watch,
+  } = useForm<ApplicationFormValues>({
+    defaultValues: {
+      whyThisProject: '',
+      motivation: '',
+      relevantExperience: '',
+      technicalSkills: '',
+      portfolioLinks: '',
+      githubProfile: '',
+      previousContributions: '',
+      proposal: '',
+      timeline: '',
+      expectedLearnings: '',
+      challenges: '',
+      availability: '',
+      timezone: '',
+      startDate: '',
+      coverLetter: '',
+    },
+    mode: 'onBlur',
   });
+
+  const availabilityValue = watch('availability');
+
+  const stepFields: Record<number, (keyof ApplicationFormValues)[]> = {
+    1: ['whyThisProject', 'motivation'],
+    2: ['relevantExperience', 'technicalSkills', 'githubProfile', 'portfolioLinks'],
+    3: ['proposal', 'timeline', 'expectedLearnings'],
+    4: ['availability', 'timezone'],
+  };
 
   useEffect(() => {
     fetchProject();
   }, [resolvedParams.id]);
+
+  useEffect(() => {
+    checkMenteeSession();
+  }, []);
+
+  const checkMenteeSession = async () => {
+    try {
+      const res = await fetch('/api/dsoc/mentee/me', { credentials: 'include' });
+      const data = await res.json();
+      setIsMentee(Boolean(data?.success));
+    } catch (err) {
+      console.error('Error checking mentee session:', err);
+      setIsMentee(false);
+    }
+  };
+
+  const validateUrl = (value: string) => {
+    if (!value) return true;
+    try {
+      new URL(value);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const validateUrlList = (value: string) => {
+    if (!value) return true;
+    const entries = value
+      .split(/[\n,]+/)
+      .map((entry) => entry.trim())
+      .filter(Boolean);
+    if (entries.length === 0) return true;
+    return entries.every(validateUrl) || 'Enter a valid URL.';
+  };
 
   const fetchProject = async () => {
     try {
@@ -90,12 +160,15 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const nextStep = () => {
+  const nextStep = async () => {
     if (currentStep < STEPS.length) {
+      const fields = stepFields[currentStep] || [];
+      const isValid = await trigger(fields);
+      if (!isValid) {
+        setError('Please fix the highlighted fields.');
+        return;
+      }
+      setError('');
       setCurrentStep(currentStep + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -108,10 +181,19 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (values: ApplicationFormValues) => {
     setError('');
     setSubmitting(true);
+
+    if (!isMentee) {
+      setError('Please login as a mentee to apply.');
+      setSubmitting(false);
+      return;
+    }
+
+    const portfolioLinks = values.portfolioLinks
+      ? values.portfolioLinks.split(/[\n,]+/).map((link) => link.trim()).filter(Boolean)
+      : [];
 
     try {
       const res = await fetch('/api/dsoc/applications', {
@@ -119,8 +201,8 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           projectId: resolvedParams.id,
-          ...formData,
-          portfolioLinks: formData.portfolioLinks.split('\n').map(s => s.trim()).filter(Boolean)
+          ...values,
+          portfolioLinks,
         })
       });
 
@@ -137,6 +219,10 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const onInvalid = () => {
+    setError('Please fix the highlighted fields.');
   };
 
   const formatDeadline = (date: string) => {
@@ -359,8 +445,21 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit, onInvalid)}>
               <div className="neo-brutal-card p-8">
+                {isMentee === false && (
+                  <div className="p-4 bg-[var(--dsoc-pink)]/10 border-4 border-[var(--dsoc-pink)] text-[var(--dsoc-pink)] mb-6">
+                    Please login as a mentee to apply.{' '}
+                    <Link href="/dsoc/login" className="font-bold underline">
+                      Login
+                    </Link>
+                    {' '}or{' '}
+                    <Link href="/dsoc/register/mentee" className="font-bold underline">
+                      apply as a mentee
+                    </Link>
+                    {' '}first.
+                  </div>
+                )}
                 {error && (
                   <div className="p-4 bg-[var(--dsoc-pink)]/10 border-4 border-[var(--dsoc-pink)] text-[var(--dsoc-pink)] mb-6">
                     {error}
@@ -388,14 +487,16 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         What specifically attracted you to this project? What problems does it solve that excite you?
                       </p>
                       <textarea
-                        name="whyThisProject"
-                        value={formData.whyThisProject}
-                        onChange={handleChange}
-                        required
+                        {...register('whyThisProject', { required: 'This field is required.' })}
                         rows={5}
                         className="neo-brutal-input resize-none"
                         placeholder="I'm drawn to this project because... The problem it solves is important to me since..."
                       />
+                      {errors.whyThisProject?.message && (
+                        <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                          {errors.whyThisProject.message}
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -406,14 +507,16 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         What do you hope to gain from this experience?
                       </p>
                       <textarea
-                        name="motivation"
-                        value={formData.motivation}
-                        onChange={handleChange}
-                        required
+                        {...register('motivation', { required: 'This field is required.' })}
                         rows={4}
                         className="neo-brutal-input resize-none"
                         placeholder="My main motivation is... I want to grow as a developer by..."
                       />
+                      {errors.motivation?.message && (
+                        <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                          {errors.motivation.message}
+                        </p>
+                      )}
                     </div>
                   </div>
                 )}
@@ -439,14 +542,16 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         Describe your experience with {project?.technologies.slice(0, 3).join(', ')} or similar technologies
                       </p>
                       <textarea
-                        name="relevantExperience"
-                        value={formData.relevantExperience}
-                        onChange={handleChange}
-                        required
+                        {...register('relevantExperience', { required: 'This field is required.' })}
                         rows={5}
                         className="neo-brutal-input resize-none"
                         placeholder="I have worked with these technologies on... My most relevant project was..."
                       />
+                      {errors.relevantExperience?.message && (
+                        <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                          {errors.relevantExperience.message}
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -457,30 +562,38 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         List your programming languages, frameworks, and tools (comma-separated)
                       </p>
                       <textarea
-                        name="technicalSkills"
-                        value={formData.technicalSkills}
-                        onChange={handleChange}
-                        required
+                        {...register('technicalSkills', { required: 'This field is required.' })}
                         rows={2}
                         className="neo-brutal-input resize-none"
                         placeholder="JavaScript, TypeScript, React, Node.js, PostgreSQL, Git..."
                       />
+                      {errors.technicalSkills?.message && (
+                        <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                          {errors.technicalSkills.message}
+                        </p>
+                      )}
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label className="block font-bold text-sm mb-2">
                           <Github className="w-4 h-4 inline mr-1" />
-                          GitHub Profile
+                          GitHub Profile *
                         </label>
                         <input
                           type="url"
-                          name="githubProfile"
-                          value={formData.githubProfile}
-                          onChange={handleChange}
+                          {...register('githubProfile', {
+                            required: 'This field is required.',
+                            validate: (value) => validateUrl(value) || 'Enter a valid URL.',
+                          })}
                           className="neo-brutal-input"
                           placeholder="https://github.com/username"
                         />
+                        {errors.githubProfile?.message && (
+                          <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                            {errors.githubProfile.message}
+                          </p>
+                        )}
                       </div>
                       <div>
                         <label className="block font-bold text-sm mb-2">
@@ -489,12 +602,15 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         </label>
                         <input
                           type="url"
-                          name="portfolioLinks"
-                          value={formData.portfolioLinks}
-                          onChange={handleChange}
+                          {...register('portfolioLinks', { validate: validateUrlList })}
                           className="neo-brutal-input"
                           placeholder="https://yourportfolio.com"
                         />
+                        {errors.portfolioLinks?.message && (
+                          <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                            {errors.portfolioLinks.message}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -506,9 +622,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         Have you contributed to open source before? Share links or describe your contributions.
                       </p>
                       <textarea
-                        name="previousContributions"
-                        value={formData.previousContributions}
-                        onChange={handleChange}
+                        {...register('previousContributions')}
                         rows={3}
                         className="neo-brutal-input resize-none"
                         placeholder="I contributed to... (or 'This will be my first open source contribution!')"
@@ -538,14 +652,16 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         How would you approach this project? Describe your understanding and planned implementation.
                       </p>
                       <textarea
-                        name="proposal"
-                        value={formData.proposal}
-                        onChange={handleChange}
-                        required
+                        {...register('proposal', { required: 'This field is required.' })}
                         rows={8}
                         className="neo-brutal-input resize-none"
                         placeholder="My understanding of this project is... I would approach it by... The key features I would implement are..."
                       />
+                      {errors.proposal?.message && (
+                        <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                          {errors.proposal.message}
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -556,14 +672,16 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         Break down the project into phases/milestones. Be realistic about what you can achieve.
                       </p>
                       <textarea
-                        name="timeline"
-                        value={formData.timeline}
-                        onChange={handleChange}
-                        required
+                        {...register('timeline', { required: 'This field is required.' })}
                         rows={6}
                         className="neo-brutal-input resize-none"
                         placeholder="Week 1-2: Setup and research...&#10;Week 3-4: Core feature implementation...&#10;Week 5-6: Testing and refinement..."
                       />
+                      {errors.timeline?.message && (
+                        <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                          {errors.timeline.message}
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -574,14 +692,16 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         What technical skills or knowledge do you hope to gain?
                       </p>
                       <textarea
-                        name="expectedLearnings"
-                        value={formData.expectedLearnings}
-                        onChange={handleChange}
-                        required
+                        {...register('expectedLearnings', { required: 'This field is required.' })}
                         rows={3}
                         className="neo-brutal-input resize-none"
                         placeholder="Through this project, I hope to learn... I want to improve my skills in..."
                       />
+                      {errors.expectedLearnings?.message && (
+                        <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                          {errors.expectedLearnings.message}
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -592,9 +712,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         What challenges do you anticipate? How would you overcome them?
                       </p>
                       <textarea
-                        name="challenges"
-                        value={formData.challenges}
-                        onChange={handleChange}
+                        {...register('challenges')}
                         rows={3}
                         className="neo-brutal-input resize-none"
                         placeholder="Some challenges I foresee are... I would address them by..."
@@ -625,10 +743,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                           Hours per week you can dedicate
                         </p>
                         <select
-                          name="availability"
-                          value={formData.availability}
-                          onChange={handleChange}
-                          required
+                          {...register('availability', { required: 'This field is required.' })}
                           className="neo-brutal-input"
                         >
                           <option value="">Select availability</option>
@@ -638,6 +753,11 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                           <option value="25-30 hours/week">25-30 hours/week</option>
                           <option value="30+ hours/week">30+ hours/week (Full-time)</option>
                         </select>
+                        {errors.availability?.message && (
+                          <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                            {errors.availability.message}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -648,10 +768,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                           For scheduling calls with mentors
                         </p>
                         <select
-                          name="timezone"
-                          value={formData.timezone}
-                          onChange={handleChange}
-                          required
+                          {...register('timezone', { required: 'This field is required.' })}
                           className="neo-brutal-input"
                         >
                           <option value="">Select timezone</option>
@@ -663,6 +780,11 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                           <option value="UTC+08:00">UTC+08:00 (Singapore/China)</option>
                           <option value="UTC+09:00">UTC+09:00 (Japan/Korea)</option>
                         </select>
+                        {errors.timezone?.message && (
+                          <p className="mt-2 text-sm font-bold text-[var(--dsoc-pink)]">
+                            {errors.timezone.message}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -675,9 +797,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                       </p>
                       <input
                         type="date"
-                        name="startDate"
-                        value={formData.startDate}
-                        onChange={handleChange}
+                        {...register('startDate')}
                         className="neo-brutal-input"
                       />
                     </div>
@@ -690,9 +810,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         Anything else you&apos;d like the mentors to know about you?
                       </p>
                       <textarea
-                        name="coverLetter"
-                        value={formData.coverLetter}
-                        onChange={handleChange}
+                        {...register('coverLetter')}
                         rows={4}
                         className="neo-brutal-input resize-none"
                         placeholder="I'd also like to mention that... Feel free to share your story!"
@@ -709,7 +827,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                         By submitting this application, you confirm that all information provided is accurate and you commit to actively participating in DSOC 2026 if selected.
                       </p>
                       <ul className="text-sm space-y-2 text-muted-foreground">
-                        <li>✓ You understand this is a commitment of {formData.availability || 'X hours/week'}</li>
+                          <li>✓ You understand this is a commitment of {availabilityValue || 'X hours/week'}</li>
                         <li>✓ You will communicate regularly with your mentor</li>
                         <li>✓ You agree to the DSOC Code of Conduct</li>
                       </ul>
@@ -744,7 +862,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                   ) : (
                     <button
                       type="submit"
-                      disabled={submitting}
+                      disabled={submitting || isMentee === false}
                       className="neo-brutal-btn neo-brutal-btn-accent text-lg px-8"
                     >
                       {submitting ? (
@@ -752,7 +870,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
                       ) : (
                         <>
                           <Send className="w-5 h-5 mr-2" />
-                          Submit Application
+                          {isMentee === false ? 'Login to Apply' : 'Submit Application'}
                         </>
                       )}
                     </button>
