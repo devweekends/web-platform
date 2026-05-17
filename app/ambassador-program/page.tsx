@@ -210,6 +210,7 @@ const journey = [
 ]
 
 export default function AmbassadorProgramPage() {
+  return null
   const [isHeroVisible, setIsHeroVisible] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const [statValues, setStatValues] = useState(stats.map(() => 0))
