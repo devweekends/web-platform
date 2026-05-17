@@ -2,12 +2,10 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { 
   User,
   FileText,
   Code2,
-  LogOut,
   Clock,
   CheckCircle,
   XCircle,
@@ -39,7 +37,6 @@ interface MenteeProfile {
 }
 
 export default function MenteeDashboard() {
-  const router = useRouter();
   const [profile, setProfile] = useState<MenteeProfile | null>(null);
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
@@ -64,10 +61,6 @@ export default function MenteeDashboard() {
     }
   };
 
-  const handleLogout = async () => {
-    await fetch('/api/dsoc/mentee/logout', { method: 'POST' });
-    router.push('/dsoc/login');
-  };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -124,13 +117,6 @@ export default function MenteeDashboard() {
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Discord
               </a>
-              <button 
-                onClick={handleLogout}
-                className="neo-brutal-btn bg-[var(--dsoc-dark)] text-white py-2 px-4 text-sm"
-              >
-                <LogOut className="w-4 h-4 mr-2" />
-                Logout
-              </button>
             </div>
           </div>
         </div>

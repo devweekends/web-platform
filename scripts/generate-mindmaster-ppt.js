@@ -888,7 +888,7 @@ function createMindMasterPresentation() {
   });
   const ecoStats = [
     { num: "20,000+", label: "Community Members" },
-    { num: "800+", label: "Engineers Trained" },
+    { num: "1600+", label: "Engineers Trained" },
     { num: "7", label: "Countries Reached" },
   ];
   ecoStats.forEach((stat, i) => {

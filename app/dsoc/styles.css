@@ -133,9 +133,30 @@
   box-shadow: 3px 3px 0px var(--dsoc-dark);
 }
 
+.dsoc-header-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border: 2px solid var(--dsoc-dark);
+  box-shadow: 2px 2px 0px var(--dsoc-dark);
+  background: var(--dsoc-purple);
+  color: white;
+}
+
 .dark .neo-brutal-badge {
   border-color: var(--dsoc-light);
   box-shadow: 3px 3px 0px var(--dsoc-light);
+}
+
+.dark .dsoc-header-chip {
+  border-color: var(--dsoc-light);
+  box-shadow: 2px 2px 0px var(--dsoc-light);
+  background: var(--dsoc-cyan);
+  color: var(--dsoc-dark);
 }
 
 /* DSOC Navbar */

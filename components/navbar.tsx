@@ -30,8 +30,8 @@ export default function Navbar() {
   const applyOptions = [
     { href: "/dsoc", label: "DSOC" },
     { href: "/fellowship", label: "Fellowship" },
-    { href: "/mentorship", label: "Mentorship" },
-    //{ href: "/ambassador-program", label: "Ambassadorship" },
+    // { href: "/mentorship", label: "Mentorship" },
+    // { href: "/ambassador-program", label: "Ambassadorship" },
     { href: "/weekend-tech-grind", label: "Weekend Grind" },
   ];
 

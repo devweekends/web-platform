@@ -122,7 +122,7 @@ export default function OurStoryPage() {
             </h1>
 
             <p className="text-[clamp(18px,2.5vw,24px)] text-muted-foreground max-w-[640px] mb-12 leading-relaxed">
-              Join 20,000+ students and 800+ successful engineers who transformed their careers through
+              Join 20,000+ students and 1600+ successful engineers who transformed their careers through
               FREE mentorship, world-class training, and a community that believes in giving back.
             </p>
 
@@ -147,7 +147,7 @@ export default function OurStoryPage() {
               {[
                 { number: '7', label: 'Countries' },
                 { number: '50+', label: 'Universities' },
-                { number: '800+', label: 'Engineers Trained' },
+                { number: '1600+', label: 'Engineers Trained' },
                 { number: '100%', label: 'Free Forever' },
               ].map((stat, i) => (
                 <div key={i} className="bg-background p-8 text-center">
@@ -536,7 +536,7 @@ export default function OurStoryPage() {
               Ready to Transform Your Career?
             </h2>
             <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-              Join the community that has helped 800+ engineers level up. It&apos;s free. It&apos;s intense. It works.
+              Join the community that has helped 1600+ engineers level up. It&apos;s free. It&apos;s intense. It works.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-16">

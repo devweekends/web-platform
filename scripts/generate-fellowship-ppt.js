@@ -798,7 +798,7 @@ function createFellowshipPresentation() {
     fill: { color: "2563EB" },
   });
   const bottomStats = [
-    { num: "800+", label: "Engineers Trained" },
+    { num: "1600+", label: "Engineers Trained" },
     { num: "1000+", label: "Job Placements" },
     { num: "67%", label: "Success Rate" },
     { num: "50+", label: "Universities Reached" },
@@ -1051,7 +1051,7 @@ function createFellowshipPresentation() {
     bold: true, color: colors.light, align: "center", lineSpacing: 58,
   });
 
-  slide15.addText("Join 800+ engineers who have transformed their careers\nthrough the Dev Weekends Fellowship.", {
+  slide15.addText("Join 1600+ engineers who have transformed their careers\nthrough the Dev Weekends Fellowship.", {
     x: 0.6, y: 2.5, w: 11.5, fontSize: 16, fontFace: "Arial",
     color: colors.lightGray, align: "center", lineSpacing: 24,
   });

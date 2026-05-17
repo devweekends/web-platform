@@ -2,12 +2,10 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { 
   Users,
   FileText,
   Code2,
-  LogOut,
   Plus,
   Clock,
   CheckCircle,
@@ -47,7 +45,6 @@ interface Application {
 }
 
 export default function MentorDashboard() {
-  const router = useRouter();
   const [projects, setProjects] = useState<Project[]>([]);
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
@@ -59,12 +56,21 @@ export default function MentorDashboard() {
 
   const fetchData = async () => {
     try {
-      // In a real implementation, this would fetch mentor's projects and their applications
-      const appsRes = await fetch('/api/dsoc/applications');
-      const appsData = await appsRes.json();
-      
+      // Fetch applications and projects scoped to the logged-in mentor
+      const [appsRes, projectsRes] = await Promise.all([
+        fetch('/api/dsoc/applications?mentor=true'),
+        fetch('/api/dsoc/projects?mentor=true&limit=100')
+      ]);
+      const [appsData, projectsData] = await Promise.all([
+        appsRes.json(),
+        projectsRes.json()
+      ]);
+
       if (appsData.success) {
         setApplications(appsData.data);
+      }
+      if (projectsData.success) {
+        setProjects(projectsData.data);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -73,10 +79,6 @@ export default function MentorDashboard() {
     }
   };
 
-  const handleLogout = async () => {
-    await fetch('/api/dsoc/mentor/logout', { method: 'POST' });
-    router.push('/dsoc/login');
-  };
 
   const handleApplicationAction = async (appId: string, status: 'accepted' | 'rejected') => {
     try {
@@ -149,13 +151,6 @@ export default function MentorDashboard() {
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Discord
               </a>
-              <button 
-                onClick={handleLogout}
-                className="neo-brutal-btn bg-[var(--dsoc-dark)] text-white py-2 px-4 text-sm"
-              >
-                <LogOut className="w-4 h-4 mr-2" />
-                Logout
-              </button>
             </div>
           </div>
         </div>
@@ -305,12 +300,12 @@ export default function MentorDashboard() {
         {/* Projects Tab */}
         {activeTab === 'projects' && (
           <div className="space-y-4">
-            <div className="flex justify-end mb-4">
+            {/* <div className="flex justify-end mb-4">
               <Link href="/dsoc/mentor/projects/new" className="neo-brutal-btn neo-brutal-btn-primary">
                 <Plus className="w-4 h-4 mr-2" />
                 Create New Project
               </Link>
-            </div>
+            </div> */}
             
             {projects.length === 0 ? (
               <div className="neo-brutal-card p-12 text-center">
@@ -319,10 +314,10 @@ export default function MentorDashboard() {
                 <p className="text-muted-foreground mb-6">
                   Create your first project to start receiving applications.
                 </p>
-                <Link href="/dsoc/mentor/projects/new" className="neo-brutal-btn neo-brutal-btn-primary">
+                {/* <Link href="/dsoc/mentor/projects/new" className="neo-brutal-btn neo-brutal-btn-primary">
                   <Plus className="w-4 h-4 mr-2" />
                   Create Project
-                </Link>
+                </Link> */}
               </div>
             ) : (
               projects.map((project) => (

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { 
   Code2, 
   Users, 
@@ -13,15 +14,19 @@ import {
   Menu,
   X,
   LogIn,
-  Home
+  Home,
+  LogOut
 } from "lucide-react";
 import { HeadlineBar } from "@/components/headline-bar";
 import "../styles.css";
 
 export default function DSOCNavbar() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [exploreOpen, setExploreOpen] = useState(false);
   const [joinOpen, setJoinOpen] = useState(false);
+  const [sessionRole, setSessionRole] = useState<'mentee' | 'mentor' | null>(null);
+  const [sessionChecked, setSessionChecked] = useState(false);
   const exploreRef = useRef<HTMLDivElement>(null);
   const joinRef = useRef<HTMLDivElement>(null);
 
@@ -38,10 +43,60 @@ export default function DSOCNavbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    checkSession();
+  }, []);
+
+  const checkSession = async () => {
+    try {
+      const [menteeRes, mentorRes] = await Promise.all([
+        fetch('/api/dsoc/mentee/me', { credentials: 'include' }),
+        fetch('/api/dsoc/mentor/me', { credentials: 'include' })
+      ]);
+      const [menteeData, mentorData] = await Promise.all([
+        menteeRes.json(),
+        mentorRes.json()
+      ]);
+
+      if (menteeData?.success) {
+        setSessionRole('mentee');
+      } else if (mentorData?.success) {
+        setSessionRole('mentor');
+      } else {
+        setSessionRole(null);
+      }
+    } catch (error) {
+      console.error('Error checking DSOC session:', error);
+      setSessionRole(null);
+    } finally {
+      setSessionChecked(true);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const endpoint = sessionRole === 'mentor'
+        ? '/api/dsoc/mentor/logout'
+        : '/api/dsoc/mentee/logout';
+
+      await fetch(endpoint, { method: 'POST' });
+    } catch (error) {
+      console.error('Error logging out:', error);
+    } finally {
+      setSessionRole(null);
+      setSessionChecked(true);
+      router.push('/dsoc/login');
+    }
+  };
+
+  const dashboardPath = sessionRole === 'mentor'
+    ? '/dsoc/mentor/dashboard'
+    : '/dsoc/mentee/dashboard';
+
   return (
     <>
       <HeadlineBar />
-      <nav className="dsoc-navbar fixed top-10 left-0 right-0 z-40">
+      <nav className="dsoc-navbar fixed top-10 left-0 right-0 z-60">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -117,28 +172,54 @@ export default function DSOCNavbar() {
               </button>
               {joinOpen && (
                 <div className="dsoc-dropdown">
-                  <Link href="/dsoc/register/mentee" className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
-                    <Rocket className="w-4 h-4" />
-                    <div>
-                      <div className="font-bold">Apply as Mentee</div>
-                      <div className="text-xs opacity-70">Start your journey</div>
-                    </div>
-                  </Link>
-                  <Link href="/dsoc/register/mentor" className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
-                    <Users className="w-4 h-4" />
-                    <div>
-                      <div className="font-bold">Become a Mentor</div>
-                      <div className="text-xs opacity-70">Guide the next generation</div>
-                    </div>
-                  </Link>
-                  <div className="border-t border-white/10 my-2" />
-                  <Link href="/dsoc/login" className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
-                    <LogIn className="w-4 h-4" />
-                    <div>
-                      <div className="font-bold">Login</div>
-                      <div className="text-xs opacity-70">Already registered?</div>
-                    </div>
-                  </Link>
+                  {sessionChecked && sessionRole ? (
+                    <>
+                      <Link href={dashboardPath} className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
+                        <Code2 className="w-4 h-4" />
+                        <div>
+                          <div className="font-bold">Dashboard</div>
+                          <div className="text-xs opacity-70">View your DSOC workspace</div>
+                        </div>
+                      </Link>
+                      <div className="border-t border-white/10 my-2" />
+                      <button
+                        type="button"
+                        onClick={() => { setJoinOpen(false); handleLogout(); }}
+                        className="dsoc-dropdown-item"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <div>
+                          <div className="font-bold">Logout</div>
+                          <div className="text-xs opacity-70">Sign out of DSOC</div>
+                        </div>
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <Link href="/dsoc/register/mentee" className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
+                        <Rocket className="w-4 h-4" />
+                        <div>
+                          <div className="font-bold">Apply as Mentee</div>
+                          <div className="text-xs opacity-70">Start your journey</div>
+                        </div>
+                      </Link>
+                      <Link href="/dsoc/register/mentor" className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
+                        <Users className="w-4 h-4" />
+                        <div>
+                          <div className="font-bold">Become a Mentor</div>
+                          <div className="text-xs opacity-70">Guide the next generation</div>
+                        </div>
+                      </Link>
+                      <div className="border-t border-white/10 my-2" />
+                      <Link href="/dsoc/login" className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
+                        <LogIn className="w-4 h-4" />
+                        <div>
+                          <div className="font-bold">Login</div>
+                          <div className="text-xs opacity-70">Already registered?</div>
+                        </div>
+                      </Link>
+                    </>
+                  )}
                 </div>
               )}
             </div>
@@ -153,13 +234,32 @@ export default function DSOCNavbar() {
             >
               <Home className="w-5 h-5" />
             </a>
-            <Link href="/dsoc/login" className="dsoc-nav-link">
-              <LogIn className="w-4 h-4 mr-1" />
-              Login
-            </Link>
-            <Link href="/dsoc/register/mentee" className="neo-brutal-btn neo-brutal-btn-accent py-2 px-4 text-sm">
-              Apply Now
-            </Link>
+            {sessionChecked && sessionRole ? (
+              <>
+                <Link href={dashboardPath} className="dsoc-nav-link">
+                  <Code2 className="w-4 h-4 mr-1" />
+                  Dashboard
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="dsoc-nav-link"
+                >
+                  <LogOut className="w-4 h-4 mr-1" />
+                  Logout
+                </button>
+              </>
+            ) : sessionChecked ? (
+              <>
+                <Link href="/dsoc/login" className="dsoc-nav-link">
+                  <LogIn className="w-4 h-4 mr-1" />
+                  Login
+                </Link>
+                <Link href="/dsoc/register/mentee" className="neo-brutal-btn neo-brutal-btn-accent py-2 px-4 text-sm">
+                  Apply Now
+                </Link>
+              </>
+            ) : null}
           </div>
 
           {/* Mobile Menu Button */}
@@ -187,15 +287,32 @@ export default function DSOCNavbar() {
                 <MessageCircle className="w-5 h-5" /> Community
               </a>
               <div className="border-t border-[var(--dsoc-dark)]/10 my-3" />
-              <Link href="/dsoc/register/mentee" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
-                <Rocket className="w-5 h-5" /> Apply as Mentee
-              </Link>
-              <Link href="/dsoc/register/mentor" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
-                <Users className="w-5 h-5" /> Become a Mentor
-              </Link>
-              <Link href="/dsoc/login" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
-                <LogIn className="w-5 h-5" /> Login
-              </Link>
+              {sessionChecked && sessionRole ? (
+                <>
+                  <Link href={dashboardPath} className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
+                    <Code2 className="w-5 h-5" /> Dashboard
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => { setIsOpen(false); handleLogout(); }}
+                    className="dsoc-mobile-link"
+                  >
+                    <LogOut className="w-5 h-5" /> Logout
+                  </button>
+                </>
+              ) : sessionChecked ? (
+                <>
+                  <Link href="/dsoc/register/mentee" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
+                    <Rocket className="w-5 h-5" /> Apply as Mentee
+                  </Link>
+                  <Link href="/dsoc/register/mentor" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
+                    <Users className="w-5 h-5" /> Become a Mentor
+                  </Link>
+                  <Link href="/dsoc/login" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
+                    <LogIn className="w-5 h-5" /> Login
+                  </Link>
+                </>
+              ) : null}
             </div>
           )}
         </div>

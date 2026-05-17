@@ -18,6 +18,20 @@ async function getMenteeFromToken(request: NextRequest) {
   }
 }
 
+// Helper to get mentor from token
+async function getMentorFromToken(request: NextRequest) {
+  const token = request.cookies.get('dsoc-mentor-token')?.value;
+  if (!token) return null;
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string; role: string };
+    if (decoded.role !== 'dsoc-mentor') return null;
+    return decoded.id;
+  } catch {
+    return null;
+  }
+}
+
 // GET all applications (with filters)
 export async function GET(request: NextRequest) {
   try {
@@ -26,15 +40,41 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const projectId = searchParams.get('project');
     const status = searchParams.get('status');
-    const menteeId = await getMenteeFromToken(request);
+    const mentorOnly = searchParams.get('mentor') === 'true';
+    const menteeOnly = searchParams.get('my') === 'true';
+    const menteeId = menteeOnly ? await getMenteeFromToken(request) : null;
     
     const query: any = {};
-    
-    if (projectId) query.project = projectId;
-    if (status) query.status = status;
-    if (menteeId && searchParams.get('my') === 'true') {
-      query.mentee = menteeId;
+
+    if (mentorOnly) {
+      const mentorId = await getMentorFromToken(request);
+      if (!mentorId) {
+        return NextResponse.json(
+          { success: false, error: 'Unauthorized' },
+          { status: 401 }
+        );
+      }
+
+      const mentorProjects = await DSOCProject.find({ mentors: mentorId })
+        .select('_id')
+        .lean();
+
+      const mentorProjectIds = mentorProjects.map((project) => project._id.toString());
+
+      if (projectId) {
+        if (!mentorProjectIds.includes(projectId)) {
+          return NextResponse.json({ success: true, data: [] });
+        }
+        query.project = projectId;
+      } else {
+        query.project = { $in: mentorProjectIds };
+      }
+    } else {
+      if (projectId) query.project = projectId;
+      if (menteeId) query.mentee = menteeId;
     }
+
+    if (status) query.status = status;
     
     const applications = await DSOCApplication.find(query)
       .populate('project', 'title organization status')
