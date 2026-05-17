@@ -33,6 +33,7 @@ import { useState, useEffect, useRef } from "react"
 export default function FellowshipPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [selectedLevel, setSelectedLevel] = useState(0)
+  const [selectedTrack, setSelectedTrack] = useState<'fullstack' | 'dataeng'>('fullstack')
   const [scrollY, setScrollY] = useState(0)
   const [animatedStats, setAnimatedStats] = useState([0, 0, 0, 0])
   const [timelineProgress, setTimelineProgress] = useState(0)
@@ -72,7 +73,7 @@ export default function FellowshipPage() {
   }, [hasAnimatedStats, hasAnimatedTimeline])
 
   const animateStats = () => {
-    const targets = [30, 12, 300, 3]
+    const targets = [60, 12, 300, 3]
     const duration = 2000
     const steps = 60
     const increment = duration / steps
@@ -112,63 +113,68 @@ export default function FellowshipPage() {
 
   const levels = [
     {
-      level: 0,
-      title: "Beginner Track",
-      subtitle: "All Foundations Covered",
-      description: "Perfect for absolute beginners starting their coding journey",
+      track: 'fullstack',
+      level: "01 - L0",
+      title: "Full Stack AI Engineering",
+      subtitle: "Track 01 - Level 0 Foundations",
+      description: "Master the fundamentals of full stack development with AI-first principles.",
       duration: "3 months",
-      intensity: "Beginner Friendly",
-      dsaSessions: "30 DSA Sessions",
-      engineeringSessions: "12 Engineering Grind Sessions",
+      intensity: "Foundation Level",
+      focus: "Full stack + AI fundamentals",
+      format: "Guided level (L0)",
       highlights: [
-        "Programming fundamentals",
-        "Web technologies fundamentals",
-        "Data structures & algorithms",
-        "First projects portfolio",
-        "Mentorship support"
+        "Frontend & backend fundamentals",
+        "Prompting and AI workflows",
+        "APIs, authentication & databases",
+        "Project-based learning with mentors",
+        "Capstone project development"
       ],
-      icon: <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" />,
-      achievement: "Mentee → Fellow (Bronze)"
+      icon: <Code2 className="h-5 w-5 sm:h-6 sm:w-6" />,
+      achievement: "Track 01: L0 -> L1 progression"
     },
     {
-      level: 1,
-      title: "Intermediate Track",
-      subtitle: "4 Advanced Sessions",
-      description: "For developers with some programming experience",
+      track: 'fullstack',
+      level: "01 - L1",
+      title: "Full Stack AI Engineering",
+      subtitle: "Track 01 - Level 1 Advanced",
+      description: "Build production-grade AI features and systems across the full stack.",
       duration: "3 months",
-      intensity: "Moderate Pace",
-      dsaSessions: "30 DSA Sessions",
-      engineeringSessions: "12 Engineering Grind Sessions",
+      intensity: "Advanced Level",
+      focus: "AI systems + production engineering",
+      format: "Advanced level (L1)",
       highlights: [
-        "Advanced data structures",
-        "Complex algorithms",
-        "System design fundamentals",
-        "Multiple tech stacks",
-        "Interview preparation"
+        "Agentic workflows and RAG systems",
+        "Scalable microservices architecture",
+        "LLM optimization and quality",
+        "MLOps and deployment pipelines",
+        "Industry-ready capstone project"
       ],
-      icon: <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6" />,
-      achievement: "Fellow (Bronze) → Fellow (Silver)"
+      icon: <Layers className="h-5 w-5 sm:h-6 sm:w-6" />,
+      achievement: "Track 01: L1 expert specialization"
     },
     {
-      level: 2,
-      title: "Advanced Track",
-      subtitle: "4 Expert Sessions",
-      description: "Intensive program for experienced developers",
+      track: 'dataeng',
+      level: "02 - L0",
+      title: "Data Engineering",
+      subtitle: "Track 02 - Level 0 Open Track",
+      description: "Design and build reliable data platforms, pipelines, and analytics solutions.",
       duration: "3 months",
-      intensity: "Expert Level",
-      dsaSessions: "30 DSA Sessions",
-      engineeringSessions: "12 Engineering Grind Sessions",
+      intensity: "Flexible Track",
+      focus: "Data pipelines & warehousing",
+      format: "Self-paced open track",
       highlights: [
-        "Complex system architecture",
-        "Advanced algorithms & optimization",
-        "Leadership & mentoring",
-        "Industry project collaboration",
-        "Expert-level certifications"
+        "Data modeling and warehouse design",
+        "Batch & streaming pipelines",
+        "Orchestration and monitoring",
+        "Cloud infrastructure (AWS, GCP)",
+        "Data quality and governance"
       ],
-      icon: <Briefcase className="h-5 w-5 sm:h-6 sm:w-6" />,
-      achievement: "Fellow (Silver) → Fellow (Gold)"
+      icon: <Database className="h-5 w-5 sm:h-6 sm:w-6" />,
+      achievement: "Track 02: data platform specialization"
     }
   ]
+
+  const filteredLevels = levels.filter(level => level.track === selectedTrack)
 
   const timelineData = [
     {
@@ -210,11 +216,16 @@ export default function FellowshipPage() {
       icon: <Code className="h-6 w-6 sm:h-8 sm:w-8" />,
       sessions: "12 Weekend Sessions",
       description: "Hands-on engineering and project development with 20+ hours of pre-recorded content",
-      details: [
+        details: [
         "Every weekend session",
         "20+ hours of pre-recorded content",
         "JS, React, Redux, Node.js",
         "Database design & architecture",
+        "Data Modeling & Warehousing",
+        "ETL / ELT pipelines & CDC",
+        "Spark & Structured Streaming",
+        "Apache Airflow orchestration",
+        "Airflow DAG design & modularization",        
         "Microservices & system design",
         "AWS, Docker, Kubernetes",
         "CI/CD & DevOps practices"
@@ -242,6 +253,10 @@ export default function FellowshipPage() {
     { name: "Redux", sessions: "2 hours", icon: <Database className="h-4 w-4 sm:h-5 sm:w-5" /> },
     { name: "Node.js", sessions: "2 hours", icon: <Server className="h-4 w-4 sm:h-5 sm:w-5" /> },
     { name: "Database Design", sessions: "2 hours", icon: <Database className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Data Modeling", sessions: "2 hours", icon: <Database className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Spark & Streaming", sessions: "2 hours", icon: <Sparkles className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Cloud Warehouses (BigQuery/Snowflake)", sessions: "2 hours", icon: <Globe className="h-4 w-4 sm:h-5 sm:w-5" /> },
+    { name: "Delta Lake / Lakehouse", sessions: "2 hours", icon: <Layers className="h-4 w-4 sm:h-5 sm:w-5" /> },
     { name: "System Architecture", sessions: "2 hours", icon: <Layers className="h-4 w-4 sm:h-5 sm:w-5" /> },
     { name: "Next.js", sessions: "2 hours", icon: <Rocket className="h-4 w-4 sm:h-5 sm:w-5" /> },
     { name: "Microservices", sessions: "3x HLD Design", icon: <Globe className="h-4 w-4 sm:h-5 sm:w-5" /> },
@@ -255,7 +270,7 @@ export default function FellowshipPage() {
     "Recommendations to Companies",
     "Personal Referral to Companies",
     "VIP Access to all Events",
-    "Personalized Mentorship",
+    "Personalized Guidance",
     "Mock Interviews",
   ]
 
@@ -270,8 +285,8 @@ export default function FellowshipPage() {
   const stats = [
     {
       number: animatedStats[0],
-      suffix: "",
-      label: "DSA Grind Sessions",
+      label: "Tech Sessions",
+      suffix: "+",
       icon: <Brain className="h-5 w-5 sm:h-6 sm:w-6" />,
     },
     {
@@ -299,6 +314,47 @@ export default function FellowshipPage() {
     { label: "Problem Solving", value: 88, icon: <Brain className="h-4 w-4 sm:h-5 sm:w-5" /> },
     { label: "System Design", value: 92, icon: <Layers className="h-4 w-4 sm:h-5 sm:w-5" /> },
     { label: "Interview Ready", value: 90, icon: <Trophy className="h-4 w-4 sm:h-5 sm:w-5" /> },
+  ]
+
+  const transformationSteps = [
+    {
+      number: "01",
+      title: "Join a Clan",
+      description: "Get assigned to one of 25 focused clans",
+    },
+    {
+      number: "02",
+      title: "Meet Your Mentors",
+      description: "2-3 mentors per clan tracking progress",
+    },
+    {
+      number: "03",
+      title: "Weekly Tracking",
+      description: "Progress reviews with accountability",
+    },
+    {
+      number: "04",
+      title: "Earn Certification",
+      description: "Bronze, Silver, or Gold",
+    },
+  ]
+
+  const transformationHighlights = [
+    {
+      title: "Personal Mentor",
+      description: "1:1 guidance from engineers at top companies.",
+      detail: "Direct support.",
+    },
+    {
+      title: "30+ Live Sessions",
+      description: "DSA deep dives, engineering grinds, and mock interviews.",
+      detail: "",
+    },
+    {
+      title: "Up to 5 Mock Interviews",
+      description: "Practice with real engineers. Get feedback. Land your job.",
+      detail: "",
+    },
   ]
 
   return (
@@ -355,28 +411,82 @@ export default function FellowshipPage() {
                   Apply for 2026 Fellowship
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <Button
+                {/* <Button
                   variant="outline"
                   size="lg"
                   onClick={() => window.open('/mentorship', '_self')}
                   className="flex-1 sm:flex-none border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
                 >
                   2026 Mentorship Program
-                </Button>
+                </Button> */}
               </div>
 
-              {/* Achievement Tags Preview */}
-              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-4xl mx-auto px-4">
-                {achievementTags.map((tag, index) => (
-                  <Badge
-                    key={index}
-                    variant="outline"
-                    className="border-primary text-primary px-2 sm:px-3 py-1 rounded-full font-medium text-xs sm:text-sm"
-                  >
-                    {tag.level}
-                  </Badge>
-                ))}
+              <p className="text-center text-xs sm:text-sm text-muted-foreground max-w-3xl mx-auto px-6">
+                Whether you're starting from scratch or already have experience and feel stuck, this fellowship is for you. Already building? Use our 1:1 guidance to level up and target better opportunities.
+              </p>
+
+              {/* Palestine Support Banner */}
+              <div className="mt-8 sm:mt-12 flex flex-col items-center justify-center gap-3">
+                <div className="flex items-center gap-4 px-6 py-3 bg-black border border-border">
+                  {/* Palestine Flag */}
+                  <div className="w-20 h-14 sm:w-24 sm:h-16 relative overflow-hidden flex-shrink-0 border border-white/20">
+                    {/* Black stripe */}
+                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-black"></div>
+                    {/* White stripe */}
+                    <div className="absolute top-1/3 left-0 right-0 h-1/3 bg-white"></div>
+                    {/* Green stripe */}
+                    <div className="absolute top-2/3 left-0 right-0 h-1/3 bg-[#009736]"></div>
+                    {/* Red triangle */}
+                    <div className="absolute top-0 left-0 w-0 h-0 border-t-[28px] sm:border-t-[32px] border-t-transparent border-b-[28px] sm:border-b-[32px] border-b-transparent border-l-[32px] sm:border-l-[40px] border-l-[#CE1126]"></div>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-sm sm:text-base font-semibold text-white">
+                      🇵🇸 We Stand With Palestine
+                    </span>
+                    <span className="text-xs sm:text-sm text-white/70 font-medium">
+                      Exclusive Access for Palestinians
+                    </span>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 3-Month Transformation Section */}
+        <section className="py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                Your 3-Month Transformation
+              </h2>
+              <p className="text-muted-foreground mt-3 text-sm sm:text-base md:text-lg">
+                A structured journey from wherever you are to wherever you want to be
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-border divide-y md:divide-y-0 md:divide-x rounded-2xl overflow-hidden bg-card">
+              {transformationSteps.map((step) => (
+                <div key={step.number} className="p-6 sm:p-8 text-center">
+                  <div className="text-4xl sm:text-5xl font-semibold text-muted-foreground/40 mb-3">
+                    {step.number}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-3 border border-border divide-y md:divide-y-0 md:divide-x rounded-2xl overflow-hidden bg-card">
+              {transformationHighlights.map((highlight) => (
+                <div key={highlight.title} className="p-6 sm:p-8">
+                  <h3 className="text-base sm:text-lg font-semibold mb-2">{highlight.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{highlight.description}</p>
+                  {highlight.detail ? (
+                    <p className="text-sm text-muted-foreground leading-relaxed mt-1">{highlight.detail}</p>
+                  ) : null}
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -668,18 +778,50 @@ export default function FellowshipPage() {
                 className="mb-4 sm:mb-6 border-primary text-primary px-3 sm:px-4 py-1 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
               >
                 <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Choose Your Level
+                Choose Your Track
               </Badge>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 tracking-tight">
-                DSA & Engineering Tracks
+                Fellowship Tracks
               </h2>
               <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Progress through our structured levels designed for different experience stages
+                Select your preferred learning track and level
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
-              {levels.map((level, index) => (
+            {/* Track Tabs */}
+            <div className="flex justify-center gap-4 mb-12 sm:mb-16 flex-wrap">
+              <Button
+                onClick={() => {
+                  setSelectedTrack('fullstack')
+                  setSelectedLevel(0)
+                }}
+                className={`px-6 sm:px-8 py-2 sm:py-3 font-bold text-sm sm:text-base rounded-lg transition-all ${
+                  selectedTrack === 'fullstack'
+                    ? 'bg-primary text-primary-foreground shadow-lg'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
+              >
+                Full Stack AI Engineering
+              </Button>
+              <Button
+                onClick={() => {
+                  setSelectedTrack('dataeng')
+                  setSelectedLevel(0)
+                }}
+                className={`px-6 sm:px-8 py-2 sm:py-3 font-bold text-sm sm:text-base rounded-lg transition-all ${
+                  selectedTrack === 'dataeng'
+                    ? 'bg-primary text-primary-foreground shadow-lg'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
+              >
+                Data Engineering
+              </Button>
+            </div>
+
+            <div className={`grid gap-6 sm:gap-8 max-w-7xl mx-auto ${
+              selectedTrack === 'fullstack' ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1'
+            }`}>
+              {filteredLevels.map((level, index) => (
                 <Card
                   key={index}
                   className={`relative overflow-hidden border-2 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer group ${
@@ -697,7 +839,7 @@ export default function FellowshipPage() {
                         <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary text-primary-foreground rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                           {level.icon}
                         </div>
-                        <div className="text-xs sm:text-sm font-bold text-muted-foreground">LEVEL {level.level}</div>
+                        <div className="text-xs sm:text-sm font-bold text-muted-foreground">TRACK {level.level}</div>
                       </div>
                     </div>
 
@@ -715,12 +857,12 @@ export default function FellowshipPage() {
                   <CardContent className="relative z-10">
                     <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
                       <div className="p-2.5 sm:p-3 bg-muted rounded-lg">
-                        <div className="text-xs sm:text-sm font-semibold text-muted-foreground">DSA Sessions</div>
-                        <div className="text-base sm:text-lg font-bold">{level.dsaSessions}</div>
+                        <div className="text-xs sm:text-sm font-semibold text-muted-foreground">Core Focus</div>
+                        <div className="text-base sm:text-lg font-bold">{level.focus}</div>
                       </div>
                       <div className="p-2.5 sm:p-3 bg-muted rounded-lg">
-                        <div className="text-xs sm:text-sm font-semibold text-muted-foreground">Engineering</div>
-                        <div className="text-base sm:text-lg font-bold">{level.engineeringSessions}</div>
+                        <div className="text-xs sm:text-sm font-semibold text-muted-foreground">Track Format</div>
+                        <div className="text-base sm:text-lg font-bold">{level.format}</div>
                       </div>
                     </div>
 
@@ -734,7 +876,7 @@ export default function FellowshipPage() {
                     </div>
 
                     <div className="mb-3 sm:mb-4 p-2.5 sm:p-3 bg-muted rounded-lg">
-                      <div className="text-xs sm:text-sm font-semibold text-muted-foreground">Achievement Path</div>
+                      <div className="text-xs sm:text-sm font-semibold text-muted-foreground">Track Path</div>
                       <div className="text-foreground font-bold text-sm sm:text-base">{level.achievement}</div>
                     </div>
 
@@ -798,7 +940,7 @@ export default function FellowshipPage() {
             <div className="mt-12 sm:mt-16 text-center">
               <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Plus Advanced Topics</h3>
               <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-                {["ORM (Prisma/TypeORM)", "Microservices", "System Design", "Interview Prep"].map((topic, index) => (
+                {["ORM (Prisma/TypeORM)", "Data Modeling", "ETL / ELT & CDC", "Spark & Streaming", "Airflow & Orchestration", "Microservices", "System Design", "Interview Prep"].map((topic, index) => (
                   <Badge
                     key={index}
                     variant="outline"

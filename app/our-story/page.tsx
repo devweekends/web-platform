@@ -127,7 +127,7 @@ export default function OurStoryPage() {
 
               {/* Subheadline */}
               <p className="text-muted-foreground max-w-[520px] mb-8 leading-relaxed">
-                Join 20,000+ members and 800+ successful engineers who transformed their careers through
+                Join 20,000+ members and 1600+ successful engineers who transformed their careers through
                 FREE mentorship, world-class training, and a community that believes in giving back.
               </p>
 
@@ -155,7 +155,7 @@ export default function OurStoryPage() {
                 {[
                   { number: "7", label: "Countries" },
                   { number: "50+", label: "Universities" },
-                  { number: "800+", label: "Engineers Trained" },
+                  { number: "1600+", label: "Engineers Trained" },
                   { number: "100%", label: "Free Forever" },
                 ].map((stat, i) => (
                   <div key={i}>
@@ -1056,7 +1056,7 @@ export default function OurStoryPage() {
             Ready to Transform Your Career?
           </h2>
           <p className="text-base text-muted-foreground mb-12 leading-relaxed max-w-[550px] mx-auto">
-            Join the community that has helped 800+ engineers level up. 
+            Join the community that has helped 1600+ engineers level up. 
             It&apos;s free. It&apos;s intense. It works.
           </p>
 

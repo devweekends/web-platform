@@ -137,7 +137,7 @@ This initiative leverages our existing infrastructure, mentor network, and prove
 
   const whyText = `Palestinian youth possess exceptional talent and determination. However, access to quality technical education and mentorship remains severely limited. Remote work opportunities in technology offer a pathway to economic independence that transcends geographical and political constraints.
 
-Dev Weekends has successfully trained 800+ engineers across Pakistan, achieving a 70% placement rate over 8+ years of operation. We are prepared to extend this proven model to serve Palestinian students immediately.`;
+Dev Weekends has successfully trained 1600+ engineers across Pakistan, achieving a 70% placement rate over 8+ years of operation. We are prepared to extend this proven model to serve Palestinian students immediately.`;
 
   doc.fontSize(11).fillColor(GRAY).text(whyText, 60, 525, {
     width: 475,
@@ -150,7 +150,7 @@ Dev Weekends has successfully trained 800+ engineers across Pakistan, achieving 
 
   doc.fontSize(10).fillColor(BLACK).text("OUR TRACK RECORD", 80, 665, { characterSpacing: 2 });
   
-  const stats = ["50+ Active Industry Mentors", "800+ Engineers Trained", "70% Placement Rate", "8+ Years of Operation"];
+  const stats = ["50+ Active Industry Mentors", "1600+ Engineers Trained", "70% Placement Rate", "8+ Years of Operation"];
   stats.forEach((stat, i) => {
     const xPos = 80 + (i % 2) * 220;
     const yPos = 690 + Math.floor(i / 2) * 20;

@@ -405,20 +405,23 @@ export default function ProjectsPage() {
                       )}
                       
                       <div className={`dsoc-project-card-header ${getDifficultyColor(project.difficulty)}`}>
-                        <div className="flex items-center justify-between">
-                          <span className="font-bold uppercase text-sm tracking-wider text-[var(--dsoc-dark)]">
-                            {project.organization}
-                          </span>
-                          {!projectImage && (
-                            <div className="flex gap-2">
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold uppercase text-sm tracking-wider text-[var(--dsoc-dark)]">
+                              {project.organization}
+                            </span>
+                            <span className="dsoc-header-chip">Paid</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {!projectImage && (
                               <span className={`neo-brutal-badge text-xs ${getStatusColor(project.status)} text-[var(--dsoc-dark)]`}>
                                 {project.status}
                               </span>
-                            </div>
-                          )}
-                          <span className={`neo-brutal-badge text-xs ${getDifficultyColor(project.difficulty)} text-[var(--dsoc-dark)] border-2 border-[var(--dsoc-dark)]`}>
-                            {project.difficulty}
-                          </span>
+                            )}
+                            <span className={`neo-brutal-badge text-xs ${getDifficultyColor(project.difficulty)} text-[var(--dsoc-dark)] border-2 border-[var(--dsoc-dark)]`}>
+                              {project.difficulty}
+                            </span>
+                          </div>
                         </div>
                       </div>
                       <div className="dsoc-project-card-body flex-1 flex flex-col">

@@ -2,6 +2,20 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import '@/models/DSOCMentor';
 import { DSOCProject } from '@/models/DSOCProject';
+import jwt from 'jsonwebtoken';
+
+async function getMentorFromToken(request: NextRequest) {
+  const token = request.cookies.get('dsoc-mentor-token')?.value;
+  if (!token) return null;
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string; role: string };
+    if (decoded.role !== 'dsoc-mentor') return null;
+    return decoded.id;
+  } catch {
+    return null;
+  }
+}
 
 // GET all projects with filtering
 export async function GET(request: NextRequest) {
@@ -16,10 +30,22 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search');
     const limit = parseInt(searchParams.get('limit') || '50');
     const page = parseInt(searchParams.get('page') || '1');
+    const mentorOnly = searchParams.get('mentor') === 'true';
     
     // Build query
     const query: any = { isActive: true };
     
+    if (mentorOnly) {
+      const mentorId = await getMentorFromToken(request);
+      if (!mentorId) {
+        return NextResponse.json(
+          { success: false, error: 'Unauthorized' },
+          { status: 401 }
+        );
+      }
+      query.mentors = mentorId;
+    }
+
     if (status) query.status = status;
     if (difficulty) query.difficulty = difficulty;
     if (technology) query.technologies = { $in: [technology] };
