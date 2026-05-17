@@ -251,11 +251,13 @@ export default function Footer() {
                   MindMaster
                 </Link>
               </li>
-              <li>
+             {/*  <li>
                 <Link href="/ambassador-program" className="text-background/70 hover:text-background transition-colors">
                   Ambassadorship
                 </Link>
               </li>
+
+              */}
             </ul>
           </div>
         </div>

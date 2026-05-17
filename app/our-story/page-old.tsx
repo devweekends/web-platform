@@ -134,9 +134,13 @@ export default function OurStoryPage() {
               <Link href="/mentorship" className="btn-secondary">
                 Explore Mentorship
               </Link>
+             {/* 
               <Link href="/ambassador-program" className="btn-secondary">
                 Become Ambassador
               </Link>
+
+              */}
+              
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[1px] bg-border border border-border">

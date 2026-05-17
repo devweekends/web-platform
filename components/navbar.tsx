@@ -31,7 +31,7 @@ export default function Navbar() {
     { href: "/dsoc", label: "DSOC" },
     { href: "/fellowship", label: "Fellowship" },
     // { href: "/mentorship", label: "Mentorship" },
-    { href: "/ambassador-program", label: "Ambassadorship" },
+    // { href: "/ambassador-program", label: "Ambassadorship" },
     { href: "/weekend-tech-grind", label: "Weekend Grind" },
   ];
 
