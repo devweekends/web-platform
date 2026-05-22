@@ -698,7 +698,7 @@ export default function DSOCPage() {
               },
               {
                 q: "Is there a stipend for participants?",
-                a: "Currently, DSOC is a volunteer program focused on learning and contribution. We're working on sponsorships for future seasons."
+                a: "Yes. DSOC is a paid program, and selected participants receive a stipend during the coding period."
               },
               {
                 q: "What's the time commitment?",
