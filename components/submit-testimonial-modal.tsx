@@ -151,24 +151,12 @@ export function SubmitTestimonialModal() {
               <Input
                 id="cta"
                 type="text"
-                required
                 placeholder="Join Dev Weekends to level up your skills"
+                required
                 value={formData.cta}
                 onChange={(e) => setFormData({...formData, cta: e.target.value})}
               />
               <p className="text-xs text-muted-foreground">Short call-to-action or closing thought.</p>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="before">What were you doing before? (Optional)</Label>
-              <Input
-                id="before"
-                type="text"
-                placeholder="Student, career switcher, freelancer..."
-                value={formData.before}
-                onChange={(e) => setFormData({...formData, before: e.target.value})}
-              />
-              <p className="text-xs text-muted-foreground">Share a short before/after context.</p>
             </div>
 
             <div className="space-y-2">
