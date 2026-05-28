@@ -46,6 +46,7 @@ export default function EditProjectPage() {
     organization: '',
     repositoryUrl: '',
     websiteUrl: '',
+    timelineUrl: '',
     difficulty: 'intermediate',
     duration: '3 months',
     technologies: '',
@@ -104,6 +105,7 @@ export default function EditProjectPage() {
           organization: project.organization || '',
           repositoryUrl: project.repositoryUrl || '',
           websiteUrl: project.websiteUrl || '',
+          timelineUrl: project.timelineUrl || '',
           difficulty: project.difficulty || 'intermediate',
           duration: project.duration || '3 months',
           technologies: Array.isArray(project.technologies) ? project.technologies.join(', ') : '',
@@ -221,6 +223,7 @@ export default function EditProjectPage() {
           organization: formData.organization,
           repositoryUrl: formData.repositoryUrl,
           websiteUrl: formData.websiteUrl,
+          timelineUrl: formData.timelineUrl,
           difficulty: formData.difficulty,
           duration: formData.duration,
           technologies: formData.technologies.split(',').map(s => s.trim()).filter(Boolean),
@@ -628,6 +631,18 @@ export default function EditProjectPage() {
                     required
                     className="neo-brutal-input"
                     placeholder="e.g., 2025, Summer 2025"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-bold text-sm mb-2">Timeline Link</label>
+                  <input
+                    type="url"
+                    name="timelineUrl"
+                    value={formData.timelineUrl}
+                    onChange={handleChange}
+                    className="neo-brutal-input"
+                    placeholder="https://example.com/timeline"
                   />
                 </div>
               </div>
