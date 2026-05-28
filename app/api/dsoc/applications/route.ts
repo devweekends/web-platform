@@ -43,7 +43,14 @@ export async function GET(request: NextRequest) {
     const mentorOnly = searchParams.get('mentor') === 'true';
     const menteeOnly = searchParams.get('my') === 'true';
     const menteeId = menteeOnly ? await getMenteeFromToken(request) : null;
-    
+
+    if (menteeOnly && !menteeId) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
     const query: any = {};
 
     if (mentorOnly) {
@@ -111,6 +118,14 @@ export async function POST(request: NextRequest) {
     
     const body = await request.json();
     const { projectId, ...applicationData } = body;
+
+    // Drop empty-string optional fields so mongoose doesn't try to cast them
+    // (empty string into a Date field throws CastError).
+    Object.keys(applicationData).forEach((key) => {
+      if (applicationData[key] === '' || applicationData[key] === null) {
+        delete applicationData[key];
+      }
+    });
     
     // Check if project exists and is open
     const project = await DSOCProject.findById(projectId);
