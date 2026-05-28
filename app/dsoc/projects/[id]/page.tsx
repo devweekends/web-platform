@@ -367,7 +367,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
     });
   };
 
-  const isDeadlinePassed = project ? new Date() > new Date(project.applicationDeadline) : false;
+  const isDeadlinePassed = project ? new Date() >= new Date(project.applicationDeadline) : false;
   const spotsRemaining = project ? project.maxMentees - (project.selectedMentees?.length || 0) : 0;
   const canApply = project ? project.status === 'open' && !isDeadlinePassed && spotsRemaining > 0 : false;
 
