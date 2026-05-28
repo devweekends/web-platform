@@ -18,6 +18,16 @@ async function getMenteeFromToken(request: NextRequest) {
   }
 }
 
+function getDeadlineEnd(dateString: string) {
+  const [year, month, day] = dateString.split('-').map(Number);
+
+  if (!year || !month || !day) {
+    return new Date(dateString);
+  }
+
+  return new Date(year, month - 1, day, 23, 59, 59, 999);
+}
+
 // Helper to get mentor from token
 async function getMentorFromToken(request: NextRequest) {
   const token = request.cookies.get('dsoc-mentor-token')?.value;
@@ -59,7 +69,7 @@ export async function GET(request: NextRequest) {
         .select('_id')
         .lean();
 
-      const mentorProjectIds = mentorProjects.map((project) => project._id.toString());
+      const mentorProjectIds = mentorProjects.map((project) => String(project._id));
 
       if (projectId) {
         if (!mentorProjectIds.includes(projectId)) {
@@ -129,7 +139,7 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    if (new Date() > new Date(project.applicationDeadline)) {
+    if (new Date() > getDeadlineEnd(project.applicationDeadline)) {
       return NextResponse.json(
         { success: false, error: 'Application deadline has passed' },
         { status: 400 }

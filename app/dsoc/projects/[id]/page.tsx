@@ -41,6 +41,7 @@ interface Project {
   organization: string;
   repositoryUrl: string;
   websiteUrl?: string;
+  timelineUrl?: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   duration: string;
   technologies: string[];
@@ -367,7 +368,17 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
     });
   };
 
-  const isDeadlinePassed = project ? new Date() >= new Date(project.applicationDeadline) : false;
+  const getDeadlineEnd = (dateString: string) => {
+    const [year, month, day] = dateString.split('-').map(Number);
+
+    if (!year || !month || !day) {
+      return new Date(dateString);
+    }
+
+    return new Date(year, month - 1, day, 23, 59, 59, 999);
+  };
+
+  const isDeadlinePassed = project ? new Date() > getDeadlineEnd(project.applicationDeadline) : false;
   const spotsRemaining = project ? project.maxMentees - (project.selectedMentees?.length || 0) : 0;
   const canApply = project ? project.status === 'open' && !isDeadlinePassed && spotsRemaining > 0 : false;
 
@@ -449,6 +460,17 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                 <Github className="w-5 h-5 mr-2" />
                 Repository
               </a>
+              {project.timelineUrl && (
+                <a 
+                  href={project.timelineUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="neo-brutal-btn bg-[var(--dsoc-secondary)] text-white"
+                >
+                  <Calendar className="w-5 h-5 mr-2" />
+                  Timeline
+                </a>
+              )}
               {project.websiteUrl && (
                 <a 
                   href={project.websiteUrl} 
@@ -709,6 +731,33 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                   By applying, you agree to commit {project.duration} to this project
                 </p>
               </div>
+
+              {project.timelineUrl && (
+                <div className="neo-brutal-card p-6 bg-[var(--dsoc-secondary)] text-white border-[var(--dsoc-dark)]">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-lg font-black flex items-center gap-2">
+                        <Calendar className="w-5 h-5" />
+                        Project Timeline
+                      </h3>
+                      <p className="text-sm mt-2 opacity-90">
+                        See the full schedule, milestones, and key dates before you apply.
+                      </p>
+                    </div>
+                    <span className="inline-flex items-center px-2 py-1 text-xs font-black bg-white text-[var(--dsoc-secondary)] border-2 border-[var(--dsoc-dark)]">
+                      New
+                    </span>
+                  </div>
+                  <a
+                    href={project.timelineUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="neo-brutal-btn bg-white text-[var(--dsoc-secondary)] w-full mt-4"
+                  >
+                    View Timeline
+                  </a>
+                </div>
+              )}
 
               {/* Discord Card */}
               <div className="neo-brutal-card p-6 dsoc-discord-card">
