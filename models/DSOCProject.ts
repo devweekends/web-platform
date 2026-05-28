@@ -7,6 +7,7 @@ export interface IDSOCProject extends Document {
   organization: string;
   repositoryUrl: string;
   websiteUrl?: string;
+  timelineUrl?: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   duration: string; // e.g., "3 months", "6 weeks"
   technologies: string[];
@@ -62,6 +63,10 @@ const DSOCProjectSchema = new Schema<IDSOCProject>(
       trim: true,
     },
     websiteUrl: {
+      type: String,
+      trim: true,
+    },
+    timelineUrl: {
       type: String,
       trim: true,
     },

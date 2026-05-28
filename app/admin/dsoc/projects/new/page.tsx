@@ -40,6 +40,7 @@ export default function NewProjectPage() {
     organization: '',
     repositoryUrl: '',
     websiteUrl: '',
+    timelineUrl: '',
     difficulty: 'intermediate',
     duration: '3 months',
     technologies: '',
@@ -539,6 +540,18 @@ export default function NewProjectPage() {
                     required
                     className="neo-brutal-input"
                     placeholder="e.g., 2025, Summer 2025"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-bold text-sm mb-2">Timeline Link</label>
+                  <input
+                    type="url"
+                    name="timelineUrl"
+                    value={formData.timelineUrl}
+                    onChange={handleChange}
+                    className="neo-brutal-input"
+                    placeholder="https://example.com/timeline"
                   />
                 </div>
               </div>
