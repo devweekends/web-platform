@@ -20,7 +20,13 @@ import {
   MessageCircle,
   X
 } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Keyboard } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "../../styles.css";
+import "./gallery.css";
 import DSOCNavbar from "../../components/DSOCNavbar";
 
 interface Mentor {
@@ -544,24 +550,36 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                     <ImageIcon className="w-6 h-6 text-[var(--dsoc-primary)]" />
                     Gallery
                   </h2>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    {project.gallery.map((url, i) => (
-                      <button
-                        key={url + i}
-                        type="button"
-                        onClick={() => setLightboxImage(url)}
-                        className="block border-4 border-[var(--dsoc-dark)] overflow-hidden hover:-translate-y-1 transition-transform"
-                        aria-label={`Open gallery image ${i + 1}`}
-                      >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={url}
-                          alt={`${project.title} image ${i + 1}`}
-                          className="w-full h-36 sm:h-44 object-cover"
-                          loading="lazy"
-                        />
-                      </button>
-                    ))}
+                  <div className="dsoc-gallery-slider border-4 border-[var(--dsoc-dark)] bg-[var(--dsoc-light)]">
+                    <Swiper
+                      modules={[Navigation, Pagination, Keyboard]}
+                      navigation
+                      pagination={{ clickable: true }}
+                      keyboard={{ enabled: true }}
+                      loop={project.gallery.length > 1}
+                      spaceBetween={0}
+                      slidesPerView={1}
+                      className="w-full"
+                    >
+                      {project.gallery.map((url, i) => (
+                        <SwiperSlide key={url + i}>
+                          <button
+                            type="button"
+                            onClick={() => setLightboxImage(url)}
+                            className="block w-full bg-transparent border-0 p-0 cursor-zoom-in"
+                            aria-label={`Open gallery image ${i + 1}`}
+                          >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={url}
+                              alt={`${project.title} image ${i + 1}`}
+                              className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                              loading={i === 0 ? 'eager' : 'lazy'}
+                            />
+                          </button>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
                   </div>
                 </div>
               )}
