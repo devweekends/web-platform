@@ -29,6 +29,7 @@ export interface IDSOCProject extends Document {
   discordChannelId?: string;
   discordRoleId?: string;
   featuredImage?: string;
+  gallery: string[];
   isActive: boolean;
   season: string; // e.g., "2025", "Summer 2025"
   createdAt: Date;
@@ -137,6 +138,10 @@ const DSOCProjectSchema = new Schema<IDSOCProject>(
     featuredImage: {
       type: String,
       trim: true,
+    },
+    gallery: {
+      type: [String],
+      default: [],
     },
     isActive: {
       type: Boolean,
