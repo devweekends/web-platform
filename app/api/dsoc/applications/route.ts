@@ -18,11 +18,27 @@ async function getMenteeFromToken(request: NextRequest) {
   }
 }
 
-function getDeadlineEnd(dateString: string) {
-  const [year, month, day] = dateString.split('-').map(Number);
+function getDeadlineEnd(dateValue: string | Date) {
+  if (dateValue instanceof Date) {
+    return new Date(
+      dateValue.getFullYear(),
+      dateValue.getMonth(),
+      dateValue.getDate(),
+      23,
+      59,
+      59,
+      999
+    );
+  }
+
+  if (typeof dateValue !== 'string') {
+    return new Date(dateValue as unknown as string);
+  }
+
+  const [year, month, day] = dateValue.split('-').map(Number);
 
   if (!year || !month || !day) {
-    return new Date(dateString);
+    return new Date(dateValue);
   }
 
   return new Date(year, month - 1, day, 23, 59, 59, 999);
