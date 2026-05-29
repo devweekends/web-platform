@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { 
+import {
   ArrowLeft,
-  Clock, 
-  Users, 
+  Clock,
+  Users,
   Calendar,
   Github,
   ExternalLink,
@@ -16,7 +16,9 @@ import {
   BookOpen,
   Target,
   Code2,
-  MessageCircle
+  ImageIcon,
+  MessageCircle,
+  X
 } from "lucide-react";
 import "../../styles.css";
 import DSOCNavbar from "../../components/DSOCNavbar";
@@ -58,6 +60,8 @@ interface Project {
   milestones: { title: string; description: string; dueDate: string; completed: boolean }[];
   discordChannelId?: string;
   season: string;
+  featuredImage?: string;
+  gallery?: string[];
 }
 
 // Sample projects for fallback when API is unavailable
@@ -295,6 +299,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isMentee, setIsMentee] = useState<boolean | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   useEffect(() => {
     fetchProject();
@@ -418,6 +423,30 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   return (
     <div className="min-h-screen bg-background">
       <DSOCNavbar />
+      {lightboxImage && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setLightboxImage(null)}
+          className="fixed inset-0 z-[200] bg-black/80 flex items-center justify-center p-4 cursor-zoom-out"
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxImage(null)}
+            aria-label="Close image"
+            className="absolute top-4 right-4 w-10 h-10 bg-white text-[var(--dsoc-dark)] border-4 border-[var(--dsoc-dark)] flex items-center justify-center"
+          >
+            <X className="w-5 h-5" />
+          </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={lightboxImage}
+            alt="Project image"
+            className="max-h-[90vh] max-w-[90vw] object-contain border-4 border-white"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
       {/* Header */}
       <section className={`pt-24 pb-12 ${getDifficultyColor(project.difficulty)}`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -507,6 +536,35 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                   ))}
                 </div>
               </div>
+
+              {/* Gallery */}
+              {Array.isArray(project.gallery) && project.gallery.length > 0 && (
+                <div className="neo-brutal-card p-6">
+                  <h2 className="text-xl font-black mb-4 flex items-center gap-2">
+                    <ImageIcon className="w-6 h-6 text-[var(--dsoc-primary)]" />
+                    Gallery
+                  </h2>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {project.gallery.map((url, i) => (
+                      <button
+                        key={url + i}
+                        type="button"
+                        onClick={() => setLightboxImage(url)}
+                        className="block border-4 border-[var(--dsoc-dark)] overflow-hidden hover:-translate-y-1 transition-transform"
+                        aria-label={`Open gallery image ${i + 1}`}
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={url}
+                          alt={`${project.title} image ${i + 1}`}
+                          className="w-full h-36 sm:h-44 object-cover"
+                          loading="lazy"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Long Description */}
               {project.longDescription && (
