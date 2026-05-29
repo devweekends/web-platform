@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import "../../../../../dsoc/styles.css";
 
+const GALLERY_MAX = 5;
+
 interface MentorOption {
   _id: string;
   name: string;
@@ -210,14 +212,28 @@ export default function EditProjectPage() {
     if (files.length === 0) return;
 
     setGalleryError('');
+
+    const remaining = GALLERY_MAX - formData.gallery.length;
+    if (remaining <= 0) {
+      setGalleryError(`Gallery is full. Remove an image to add a new one. Max ${GALLERY_MAX}.`);
+      e.target.value = '';
+      return;
+    }
+
+    const accepted = files.slice(0, remaining);
+    const dropped = files.length - accepted.length;
+
     setGalleryUploading(true);
 
     try {
-      const uploaded = await Promise.all(files.map(uploadImageToCloudinary));
+      const uploaded = await Promise.all(accepted.map(uploadImageToCloudinary));
       setFormData((current) => ({
         ...current,
-        gallery: [...current.gallery, ...uploaded],
+        gallery: [...current.gallery, ...uploaded].slice(0, GALLERY_MAX),
       }));
+      if (dropped > 0) {
+        setGalleryError(`Only added ${accepted.length}; gallery is capped at ${GALLERY_MAX} images.`);
+      }
     } catch (err) {
       console.error('Gallery upload failed:', err);
       setGalleryError(err instanceof Error ? err.message : 'Failed to upload one or more images');
@@ -415,17 +431,17 @@ export default function EditProjectPage() {
                 <div>
                   <label className="block font-bold text-sm mb-2 flex items-center gap-2">
                     <ImagePlus className="w-4 h-4" />
-                    Additional Images (Gallery)
+                    Additional Images (Gallery) — {formData.gallery.length}/{GALLERY_MAX}
                   </label>
                   <p className="text-xs text-muted-foreground mb-2">
-                    Optional. Shown on the project detail page below the cover.
+                    Optional. Shown on the project detail page as a slider. Up to {GALLERY_MAX} images.
                   </p>
                   <input
                     type="file"
                     accept="image/*"
                     multiple
                     onChange={handleGalleryAdd}
-                    disabled={galleryUploading}
+                    disabled={galleryUploading || formData.gallery.length >= GALLERY_MAX}
                     className="neo-brutal-input"
                   />
                   {galleryUploading && (
