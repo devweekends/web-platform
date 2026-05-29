@@ -733,7 +733,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               </div>
 
               {project.timelineUrl && (
-                <div className="neo-brutal-card p-6 bg-[var(--dsoc-secondary)] text-white border-[var(--dsoc-dark)]">
+                <div className="neo-brutal-card p-6">
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <h3 className="text-lg font-black flex items-center gap-2">
@@ -760,7 +760,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               )}
 
               {/* Discord Card */}
-              <div className="neo-brutal-card p-6 dsoc-discord-card">
+              <div className="neo-brutal-card p-6">
                 <div className="text-[var(--dsoc-dark)] dark:text-[var(--dsoc-light)]">
                   <MessageCircle className="w-8 h-8 mb-3" />
                   <h3 className="font-bold text-lg mb-2">Have Questions?</h3>
