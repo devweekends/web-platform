@@ -368,11 +368,23 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
     });
   };
 
-  const getDeadlineEnd = (dateString: string) => {
-    const [year, month, day] = dateString.split('-').map(Number);
+  const getDeadlineEnd = (dateValue: string | Date) => {
+    if (dateValue instanceof Date) {
+      return new Date(
+        dateValue.getUTCFullYear(),
+        dateValue.getUTCMonth(),
+        dateValue.getUTCDate(),
+        23,
+        59,
+        59,
+        999
+      );
+    }
+
+    const [year, month, day] = dateValue.slice(0, 10).split('-').map(Number);
 
     if (!year || !month || !day) {
-      return new Date(dateString);
+      return new Date(dateValue);
     }
 
     return new Date(year, month - 1, day, 23, 59, 59, 999);

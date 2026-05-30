@@ -20,10 +20,11 @@ async function getMenteeFromToken(request: NextRequest) {
 
 function getDeadlineEnd(dateValue: string | Date) {
   if (dateValue instanceof Date) {
+    // Treat stored date-only values as UTC calendar dates so we don't cut off early in local time zones.
     return new Date(
-      dateValue.getFullYear(),
-      dateValue.getMonth(),
-      dateValue.getDate(),
+      dateValue.getUTCFullYear(),
+      dateValue.getUTCMonth(),
+      dateValue.getUTCDate(),
       23,
       59,
       59,
@@ -35,7 +36,7 @@ function getDeadlineEnd(dateValue: string | Date) {
     return new Date(dateValue as unknown as string);
   }
 
-  const [year, month, day] = dateValue.split('-').map(Number);
+  const [year, month, day] = dateValue.slice(0, 10).split('-').map(Number);
 
   if (!year || !month || !day) {
     return new Date(dateValue);
