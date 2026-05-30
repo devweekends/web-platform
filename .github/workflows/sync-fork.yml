@@ -1,0 +1,24 @@
+name: Sync Fork & Deploy
+
+# Runs when code is pushed to main on devweekends/web-platform
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sync-fork:
+    name: Sync to deployment fork
+    runs-on: ubuntu-latest
+    # Only run on the upstream repo, not on forks
+    if: github.repository == 'devweekends/web-platform'
+
+    steps:
+      - name: Checkout upstream repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to fork
+        run: |
+          git remote add fork https://x-access-token:${{ secrets.FORK_SYNC_TOKEN }}@github.com/m-junaidd/web-platform.git
+          git push fork main --force
