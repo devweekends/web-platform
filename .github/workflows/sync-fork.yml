@@ -24,5 +24,12 @@ jobs:
 
       - name: Push to fork
         run: |
+          # Vercel's Hobby plan only deploys commits whose author is the
+          # account owner (m-junaidd). Upstream commits keep their original
+          # authors, so re-author the tip commit as m-junaidd before pushing,
+          # otherwise Vercel skips the deployment.
+          git config user.name "m-junaidd"
+          git config user.email "176620033+m-junaidd@users.noreply.github.com"
+          git commit --amend --no-edit --reset-author
           git remote add fork https://x-access-token:${{ secrets.FORK_SYNC_TOKEN }}@github.com/m-junaidd/web-platform.git
-          git push fork main --force
+          git push fork HEAD:main --force
