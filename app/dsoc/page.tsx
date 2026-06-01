@@ -43,6 +43,7 @@ interface Project {
   featuredImage?: string;
   imageUrl?: string;
   repositoryUrl?: string;
+  repositoryUrls?: string[];
   wikiUrl?: string;
 }
 
@@ -567,10 +568,15 @@ export default function DSOCPage() {
                           {project.duration}
                         </div>
                         <div className="flex gap-2">
-                          {project.repositoryUrl && (
+                          {(project.repositoryUrl || (project.repositoryUrls && project.repositoryUrls.length > 0)) && (
                             <button 
                               type="button"
-                              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.repositoryUrl, '_blank'); }}
+                              onClick={(e) => { 
+                                e.preventDefault(); 
+                                e.stopPropagation(); 
+                                const targetUrl = project.repositoryUrl || (project.repositoryUrls && project.repositoryUrls[0]);
+                                if (targetUrl) window.open(targetUrl, '_blank'); 
+                              }}
                               className="inline-flex items-center gap-1 text-sm font-bold text-[var(--dsoc-dark)] hover:text-[var(--dsoc-primary)] transition-colors"
                             >
                               <Github className="w-4 h-4" />

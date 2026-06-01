@@ -5,7 +5,7 @@ export interface IDSOCProject extends Document {
   description: string;
   longDescription?: string;
   organization: string;
-  repositoryUrl: string;
+  repositoryUrls: string[];
   websiteUrl?: string;
   timelineUrl?: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
@@ -57,11 +57,11 @@ const DSOCProjectSchema = new Schema<IDSOCProject>(
       required: [true, 'Organization name is required'],
       trim: true,
     },
-    repositoryUrl: {
+    repositoryUrls: [{
       type: String,
       required: [true, 'Repository URL is required'],
       trim: true,
-    },
+    }],
     websiteUrl: {
       type: String,
       trim: true,
