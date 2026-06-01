@@ -6,12 +6,16 @@ import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
   CheckCircle2,
+  ImagePlus,
   Plus,
   Save,
   Trash2,
   Users,
+  X,
 } from "lucide-react";
 import "../../../../dsoc/styles.css";
+
+const GALLERY_MAX = 5;
 
 interface MentorOption {
   _id: string;
@@ -32,6 +36,8 @@ export default function NewProjectPage() {
   const [availableMentors, setAvailableMentors] = useState<MentorOption[]>([]);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
+  const [galleryUploading, setGalleryUploading] = useState(false);
+  const [galleryError, setGalleryError] = useState('');
 
   const [formData, setFormData] = useState({
     title: '',
@@ -54,6 +60,7 @@ export default function NewProjectPage() {
     learningOutcomes: [''],
     season: '2026',
     featuredImage: '',
+    gallery: [] as string[],
   });
 
   useEffect(() => {
@@ -154,6 +161,49 @@ export default function NewProjectPage() {
     return uploadData.url as string;
   };
 
+  const handleGalleryAdd = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+
+    setGalleryError('');
+
+    const remaining = GALLERY_MAX - formData.gallery.length;
+    if (remaining <= 0) {
+      setGalleryError(`Gallery is full. Remove an image to add a new one. Max ${GALLERY_MAX}.`);
+      e.target.value = '';
+      return;
+    }
+
+    const accepted = files.slice(0, remaining);
+    const dropped = files.length - accepted.length;
+
+    setGalleryUploading(true);
+
+    try {
+      const uploaded = await Promise.all(accepted.map(uploadImageToCloudinary));
+      setFormData((current) => ({
+        ...current,
+        gallery: [...current.gallery, ...uploaded].slice(0, GALLERY_MAX),
+      }));
+      if (dropped > 0) {
+        setGalleryError(`Only added ${accepted.length}; gallery is capped at ${GALLERY_MAX} images.`);
+      }
+    } catch (err) {
+      console.error('Gallery upload failed:', err);
+      setGalleryError(err instanceof Error ? err.message : 'Failed to upload one or more images');
+    } finally {
+      setGalleryUploading(false);
+      e.target.value = '';
+    }
+  };
+
+  const handleGalleryRemove = (index: number) => {
+    setFormData((current) => ({
+      ...current,
+      gallery: current.gallery.filter((_, i) => i !== index),
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -184,6 +234,7 @@ export default function NewProjectPage() {
           learningOutcomes: formData.learningOutcomes.filter(Boolean),
           featuredImage,
           imageUrl: featuredImage,
+          gallery: formData.gallery,
           status: 'draft',
         }),
       });
@@ -298,6 +349,52 @@ export default function NewProjectPage() {
                         alt="Project preview"
                         className="w-full max-w-md h-52 object-cover border-4 border-[var(--dsoc-dark)]"
                       />
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block font-bold text-sm mb-2 flex items-center gap-2">
+                    <ImagePlus className="w-4 h-4" />
+                    Additional Images (Gallery) — {formData.gallery.length}/{GALLERY_MAX}
+                  </label>
+                  <p className="text-xs text-muted-foreground mb-2">
+                    Optional. Shown on the project detail page as a slider. Up to {GALLERY_MAX} images.
+                  </p>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleGalleryAdd}
+                    disabled={galleryUploading || formData.gallery.length >= GALLERY_MAX}
+                    className="neo-brutal-input"
+                  />
+                  {galleryUploading && (
+                    <p className="mt-2 text-sm text-muted-foreground">Uploading...</p>
+                  )}
+                  {galleryError && (
+                    <p className="mt-2 text-sm text-[var(--dsoc-pink)] font-bold">{galleryError}</p>
+                  )}
+                  {formData.gallery.length > 0 && (
+                    <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                      {formData.gallery.map((url, index) => (
+                        <div key={url + index} className="relative group">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={url}
+                            alt={`Gallery image ${index + 1}`}
+                            className="w-full h-28 object-cover border-4 border-[var(--dsoc-dark)]"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => handleGalleryRemove(index)}
+                            aria-label="Remove image"
+                            className="absolute -top-2 -right-2 w-7 h-7 bg-[var(--dsoc-pink)] text-white border-4 border-[var(--dsoc-dark)] flex items-center justify-center"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
