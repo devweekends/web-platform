@@ -17,9 +17,8 @@ import {
   Target,
   Code2,
   MessageCircle,
-  Star
+  Star,
   ImageIcon,
-  MessageCircle,
   X
 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
