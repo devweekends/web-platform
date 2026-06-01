@@ -16,8 +16,9 @@ import {
   BookOpen,
   Target,
   Code2,
-  ImageIcon,
   MessageCircle,
+  Star,
+  ImageIcon,
   X
 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -48,6 +49,7 @@ interface Project {
   longDescription?: string;
   organization: string;
   repositoryUrl: string;
+  repositoryUrls?: string[];
   websiteUrl?: string;
   timelineUrl?: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
@@ -307,6 +309,25 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const [isMentee, setIsMentee] = useState<boolean | null>(null);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
+  const getRepoLabel = (url: string) => {
+    try {
+      const path = new URL(url).pathname;
+      const parts = path.split('/').filter(Boolean);
+      if (parts.length >= 2) {
+        return parts.slice(-2).join('/');
+      }
+      return 'Repository';
+    } catch {
+      return 'Repository';
+    }
+  };
+
+  const repoUrls = project
+    ? Array.isArray(project.repositoryUrls) && project.repositoryUrls.length > 0
+      ? project.repositoryUrls
+      : (project.repositoryUrl ? [project.repositoryUrl] : [])
+    : [];
+
   useEffect(() => {
     fetchProject();
     checkMenteeSession();
@@ -497,16 +518,19 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               </p>
             </div>
             
-            <div className="flex gap-3">
-              <a 
-                href={project.repositoryUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="neo-brutal-btn bg-[var(--dsoc-dark)] text-white"
-              >
-                <Github className="w-5 h-5 mr-2" />
-                Repository
-              </a>
+            <div className="flex flex-wrap gap-3">
+              {repoUrls.map((url, i) => (
+                <a 
+                  key={i}
+                  href={url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="neo-brutal-btn bg-[var(--dsoc-dark)] text-white"
+                >
+                  <Github className="w-5 h-5 mr-2" />
+                  {getRepoLabel(url)}
+                </a>
+              ))}
               {project.timelineUrl && (
                 <a 
                   href={project.timelineUrl} 
@@ -820,6 +844,31 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                 </p>
               </div>
 
+              {/* Star Card */}
+              <div className="neo-brutal-card p-6 border-4 border-[var(--dsoc-dark)]">
+                <div className="flex items-center gap-2 mb-3">
+                  <Star className="w-6 h-6 fill-current text-[var(--dsoc-dark)] animate-pulse" />
+                  <h3 className="text-lg font-black">Support This Project</h3>
+                </div>
+                <p className="text-sm opacity-90 mb-4 leading-relaxed font-bold">
+                  Love this project? Show your support by starring the repository on GitHub! It helps increase visibility, motivates the mentors, and grows our open-source community. ⭐
+                </p>
+                <div className="space-y-3">
+                  {repoUrls.map((url, i) => (
+                    <a
+                      key={i}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="neo-brutal-btn bg-white text-[var(--dsoc-dark)] hover:bg-yellow-50 w-full flex items-center justify-center gap-2 border-4 border-[var(--dsoc-dark)]"
+                    >
+                      <Github className="w-4 h-4 text-[var(--dsoc-dark)]" />
+                      Star {getRepoLabel(url)}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
               {project.timelineUrl && (
                 <div className="neo-brutal-card p-6">
                   <div className="flex items-start justify-between gap-4">
@@ -849,7 +898,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
               {/* Discord Card */}
               <div className="neo-brutal-card p-6">
-                <div className="text-[var(--dsoc-dark)] dark:text-[var(--dsoc-light)]">
+                
                   <MessageCircle className="w-8 h-8 mb-3" />
                   <h3 className="font-bold text-lg mb-2">Have Questions?</h3>
                   <p className="text-sm opacity-90 mb-4">
@@ -863,7 +912,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                   >
                     Join Discord
                   </a>
-                </div>
+                
               </div>
 
               {/* Tags */}

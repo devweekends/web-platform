@@ -44,7 +44,7 @@ export default function NewProjectPage() {
     description: '',
     longDescription: '',
     organization: '',
-    repositoryUrl: '',
+    repositoryUrls: [''],
     websiteUrl: '',
     timelineUrl: '',
     difficulty: 'intermediate',
@@ -97,7 +97,7 @@ export default function NewProjectPage() {
   };
 
   const handleArrayChange = (
-    field: 'requirements' | 'learningOutcomes',
+    field: 'requirements' | 'learningOutcomes' | 'repositoryUrls',
     index: number,
     value: string,
   ) => {
@@ -106,11 +106,11 @@ export default function NewProjectPage() {
     setFormData({ ...formData, [field]: updated });
   };
 
-  const addArrayItem = (field: 'requirements' | 'learningOutcomes') => {
+  const addArrayItem = (field: 'requirements' | 'learningOutcomes' | 'repositoryUrls') => {
     setFormData({ ...formData, [field]: [...formData[field], ''] });
   };
 
-  const removeArrayItem = (field: 'requirements' | 'learningOutcomes', index: number) => {
+  const removeArrayItem = (field: 'requirements' | 'learningOutcomes' | 'repositoryUrls', index: number) => {
     const updated = formData[field].filter((_, i) => i !== index);
     setFormData({ ...formData, [field]: updated });
   };
@@ -226,6 +226,7 @@ export default function NewProjectPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          repositoryUrls: formData.repositoryUrls.filter(Boolean),
           technologies: formData.technologies.split(',').map((s) => s.trim()).filter(Boolean),
           tags: formData.tags.split(',').map((s) => s.trim()).filter(Boolean),
           mentors: formData.mentors,
@@ -485,32 +486,52 @@ export default function NewProjectPage() {
 
               {/* Links */}
               <div className="space-y-4">
-                <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2">Links</h2>
+                <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2">Links & Repositories</h2>
 
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block font-bold text-sm mb-2">Repository URL *</label>
-                    <input
-                      type="url"
-                      name="repositoryUrl"
-                      value={formData.repositoryUrl}
-                      onChange={handleChange}
-                      required
-                      className="neo-brutal-input"
-                      placeholder="https://github.com/org/repo"
-                    />
-                  </div>
-                  <div>
-                    <label className="block font-bold text-sm mb-2">Website URL</label>
-                    <input
-                      type="url"
-                      name="websiteUrl"
-                      value={formData.websiteUrl}
-                      onChange={handleChange}
-                      className="neo-brutal-input"
-                      placeholder="https://example.com"
-                    />
-                  </div>
+                <div className="space-y-3">
+                  <label className="block font-bold text-sm">Repository URLs * (At least one is required)</label>
+                  {formData.repositoryUrls.map((repoUrl, index) => (
+                    <div key={index} className="flex gap-2">
+                      <input
+                        type="url"
+                        value={repoUrl}
+                        onChange={(e) => handleArrayChange('repositoryUrls', index, e.target.value)}
+                        required={index === 0}
+                        className="neo-brutal-input flex-1"
+                        placeholder="https://github.com/org/repo"
+                      />
+                      {formData.repositoryUrls.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeArrayItem('repositoryUrls', index)}
+                          className="p-3 bg-[var(--dsoc-pink)] text-white border-4 border-[var(--dsoc-dark)]"
+                        >
+                          <Trash2 className="w-5 h-5" />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+
+                  <button
+                    type="button"
+                    onClick={() => addArrayItem('repositoryUrls')}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--dsoc-success)] text-white font-bold border-4 border-[var(--dsoc-dark)] hover:translate-x-1 transition-transform text-sm"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add Repository URL
+                  </button>
+                </div>
+
+                <div>
+                  <label className="block font-bold text-sm mb-2">Website URL</label>
+                  <input
+                    type="url"
+                    name="websiteUrl"
+                    value={formData.websiteUrl}
+                    onChange={handleChange}
+                    className="neo-brutal-input"
+                    placeholder="https://example.com"
+                  />
                 </div>
               </div>
 

@@ -24,6 +24,7 @@ interface Project {
   description: string;
   organization: string;
   repositoryUrl: string;
+  repositoryUrls?: string[];
   websiteUrl?: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   duration: string;
@@ -491,10 +492,15 @@ export default function ProjectsPage() {
                         
                         {/* GitHub and Wiki Links */}
                         <div className="mt-4 pt-4 border-t-2 border-[var(--dsoc-dark)]/20 flex gap-4">
-                          {project.repositoryUrl && (
+                          {(project.repositoryUrl || (project.repositoryUrls && project.repositoryUrls.length > 0)) && (
                             <button 
                               type="button"
-                              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.repositoryUrl, '_blank'); }}
+                              onClick={(e) => { 
+                                e.preventDefault(); 
+                                e.stopPropagation(); 
+                                const targetUrl = project.repositoryUrl || (project.repositoryUrls && project.repositoryUrls[0]);
+                                if (targetUrl) window.open(targetUrl, '_blank'); 
+                              }}
                               className="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--dsoc-dark)] hover:text-[var(--dsoc-primary)] transition-colors"
                             >
                               <Github className="w-4 h-4" />

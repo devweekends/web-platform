@@ -50,7 +50,7 @@ export default function EditProjectPage() {
     description: '',
     longDescription: '',
     organization: '',
-    repositoryUrl: '',
+    repositoryUrls: [''],
     websiteUrl: '',
     timelineUrl: '',
     difficulty: 'intermediate',
@@ -110,7 +110,9 @@ export default function EditProjectPage() {
           description: project.description || '',
           longDescription: project.longDescription || '',
           organization: project.organization || '',
-          repositoryUrl: project.repositoryUrl || '',
+          repositoryUrls: Array.isArray(project.repositoryUrls) && project.repositoryUrls.length > 0
+            ? project.repositoryUrls
+            : (project.repositoryUrl ? [project.repositoryUrl] : ['']),
           websiteUrl: project.websiteUrl || '',
           timelineUrl: project.timelineUrl || '',
           difficulty: project.difficulty || 'intermediate',
@@ -146,7 +148,7 @@ export default function EditProjectPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleArrayChange = (field: 'requirements' | 'learningOutcomes', index: number, value: string) => {
+  const handleArrayChange = (field: 'requirements' | 'learningOutcomes' | 'repositoryUrls', index: number, value: string) => {
     const updated = [...formData[field]];
     updated[index] = value;
     setFormData({ ...formData, [field]: updated });
@@ -165,11 +167,11 @@ export default function EditProjectPage() {
     });
   };
 
-  const addArrayItem = (field: 'requirements' | 'learningOutcomes') => {
+  const addArrayItem = (field: 'requirements' | 'learningOutcomes' | 'repositoryUrls') => {
     setFormData({ ...formData, [field]: [...formData[field], ''] });
   };
 
-  const removeArrayItem = (field: 'requirements' | 'learningOutcomes', index: number) => {
+  const removeArrayItem = (field: 'requirements' | 'learningOutcomes' | 'repositoryUrls', index: number) => {
     const updated = formData[field].filter((_, i) => i !== index);
     setFormData({ ...formData, [field]: updated });
   };
@@ -272,7 +274,7 @@ export default function EditProjectPage() {
           description: formData.description,
           longDescription: formData.longDescription,
           organization: formData.organization,
-          repositoryUrl: formData.repositoryUrl,
+          repositoryUrls: formData.repositoryUrls.filter(Boolean),
           websiteUrl: formData.websiteUrl,
           timelineUrl: formData.timelineUrl,
           difficulty: formData.difficulty,
@@ -477,32 +479,52 @@ export default function EditProjectPage() {
 
               {/* Links */}
               <div className="space-y-4">
-                <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2">Links</h2>
-                
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block font-bold text-sm mb-2">Repository URL *</label>
-                    <input
-                      type="url"
-                      name="repositoryUrl"
-                      value={formData.repositoryUrl}
-                      onChange={handleChange}
-                      required
-                      className="neo-brutal-input"
-                      placeholder="https://github.com/org/repo"
-                    />
-                  </div>
-                  <div>
-                    <label className="block font-bold text-sm mb-2">Website URL</label>
-                    <input
-                      type="url"
-                      name="websiteUrl"
-                      value={formData.websiteUrl}
-                      onChange={handleChange}
-                      className="neo-brutal-input"
-                      placeholder="https://example.com"
-                    />
-                  </div>
+                <h2 className="font-bold text-lg border-b-2 border-[var(--dsoc-dark)] pb-2">Links & Repositories</h2>
+
+                <div className="space-y-3">
+                  <label className="block font-bold text-sm">Repository URLs * (At least one is required)</label>
+                  {formData.repositoryUrls.map((repoUrl, index) => (
+                    <div key={index} className="flex gap-2">
+                      <input
+                        type="url"
+                        value={repoUrl}
+                        onChange={(e) => handleArrayChange('repositoryUrls', index, e.target.value)}
+                        required={index === 0}
+                        className="neo-brutal-input flex-1"
+                        placeholder="https://github.com/org/repo"
+                      />
+                      {formData.repositoryUrls.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeArrayItem('repositoryUrls', index)}
+                          className="p-3 bg-[var(--dsoc-pink)] text-white border-4 border-[var(--dsoc-dark)]"
+                        >
+                          <Trash2 className="w-5 h-5" />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+
+                  <button
+                    type="button"
+                    onClick={() => addArrayItem('repositoryUrls')}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--dsoc-success)] text-white font-bold border-4 border-[var(--dsoc-dark)] hover:translate-x-1 transition-transform text-sm"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add Repository URL
+                  </button>
+                </div>
+
+                <div>
+                  <label className="block font-bold text-sm mb-2">Website URL</label>
+                  <input
+                    type="url"
+                    name="websiteUrl"
+                    value={formData.websiteUrl}
+                    onChange={handleChange}
+                    className="neo-brutal-input"
+                    placeholder="https://example.com"
+                  />
                 </div>
               </div>
 
