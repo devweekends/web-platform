@@ -13,6 +13,27 @@ interface CoreTeamMember {
   linkedin: string;
 }
 
+// Orders the core team for the "Meet the People Behind" section:
+// Founder -> Moeez -> Abdul Moiz -> Chiefs/Officers -> Heads ->
+// Senior Leads -> Leads -> Mentors -> Managers -> everyone else.
+// Pinned people are matched by name; everyone else falls into a role tier.
+function rankMember(m: CoreTeamMember): number {
+  const name = (m.name || "").trim().toLowerCase();
+  const role = (m.role || "").toLowerCase();
+
+  if (name === "zeeshan adil" || role === "founder") return 0;
+  if (name.includes("moeez")) return 1;
+  if (name === "abdul moiz") return 2;
+
+  if (role.includes("chief") || role.includes("officer")) return 10;
+  if (role.includes("head")) return 20;
+  if ((role.includes("sr.") || role.includes("senior")) && role.includes("lead")) return 30;
+  if (role.includes("lead")) return 40;
+  if (role.includes("mentor")) return 50;
+  if (role.includes("manager")) return 60;
+  return 70;
+}
+
 export default function AboutPage() {
   const [coreTeam, setCoreTeam] = useState<CoreTeamMember[]>([]);
   const [loadingCore, setLoadingCore] = useState(true);
@@ -20,7 +41,10 @@ export default function AboutPage() {
   useEffect(() => {
     fetch('/api/core-team')
       .then(res => res.json())
-      .then(data => setCoreTeam(Array.isArray(data) ? data : []))
+      .then(data => {
+        const list: CoreTeamMember[] = Array.isArray(data) ? data : [];
+        setCoreTeam([...list].sort((a, b) => rankMember(a) - rankMember(b)));
+      })
       .finally(() => setLoadingCore(false));
   }, []);
 
