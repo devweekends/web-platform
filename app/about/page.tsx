@@ -13,9 +13,14 @@ interface CoreTeamMember {
   linkedin: string;
 }
 
+// Members hidden from the "Meet the People Behind" section (matched by
+// exact, trimmed, lower-cased name). The records still live in the DB.
+const HIDDEN_MEMBERS = new Set(["muhammad ali", "muhammad faraz"]);
+
 // Orders the core team for the "Meet the People Behind" section:
 // Founder -> Moeez -> Abdul Moiz -> Chiefs/Officers -> Heads ->
-// Senior Leads -> Leads -> Mentors -> Managers -> everyone else.
+// Senior Leads -> Program/Specialty Leads (GSOC, DevOps, etc.) ->
+// generic Technical Leads -> Mentors -> Managers -> everyone else.
 // Pinned people are matched by name; everyone else falls into a role tier.
 function rankMember(m: CoreTeamMember): number {
   const name = (m.name || "").trim().toLowerCase();
@@ -28,6 +33,9 @@ function rankMember(m: CoreTeamMember): number {
   if (role.includes("chief") || role.includes("officer")) return 10;
   if (role.includes("head")) return 20;
   if ((role.includes("sr.") || role.includes("senior")) && role.includes("lead")) return 30;
+  // Specialty / program leads (GSOC, DevOps, Research, etc.) sit above
+  // generic technical leads.
+  if (role.includes("lead") && role.includes("technical")) return 45;
   if (role.includes("lead")) return 40;
   if (role.includes("mentor")) return 50;
   if (role.includes("manager")) return 60;
@@ -43,7 +51,11 @@ export default function AboutPage() {
       .then(res => res.json())
       .then(data => {
         const list: CoreTeamMember[] = Array.isArray(data) ? data : [];
-        setCoreTeam([...list].sort((a, b) => rankMember(a) - rankMember(b)));
+        setCoreTeam(
+          list
+            .filter((m) => !HIDDEN_MEMBERS.has((m.name || "").trim().toLowerCase()))
+            .sort((a, b) => rankMember(a) - rankMember(b))
+        );
       })
       .finally(() => setLoadingCore(false));
   }, []);
