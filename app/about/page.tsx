@@ -11,6 +11,7 @@ interface CoreTeamMember {
   image: string;
   role: string;
   linkedin: string;
+  order?: number;
 }
 
 // Members hidden from the "Meet the People Behind" section (matched by
@@ -42,6 +43,19 @@ function rankMember(m: CoreTeamMember): number {
   return 70;
 }
 
+// Members with an admin-assigned order (> 0) come first, in that order.
+// Anyone without an explicit order falls back to the role hierarchy, so the
+// section stays sensible until orders are assigned in the admin dashboard.
+function compareMembers(a: CoreTeamMember, b: CoreTeamMember): number {
+  const oa = a.order && a.order > 0 ? a.order : null;
+  const ob = b.order && b.order > 0 ? b.order : null;
+
+  if (oa !== null && ob !== null) return oa - ob;
+  if (oa !== null) return -1;
+  if (ob !== null) return 1;
+  return rankMember(a) - rankMember(b);
+}
+
 export default function AboutPage() {
   const [coreTeam, setCoreTeam] = useState<CoreTeamMember[]>([]);
   const [loadingCore, setLoadingCore] = useState(true);
@@ -54,7 +68,7 @@ export default function AboutPage() {
         setCoreTeam(
           list
             .filter((m) => !HIDDEN_MEMBERS.has((m.name || "").trim().toLowerCase()))
-            .sort((a, b) => rankMember(a) - rankMember(b))
+            .sort(compareMembers)
         );
       })
       .finally(() => setLoadingCore(false));
