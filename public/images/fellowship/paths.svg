@@ -5,21 +5,21 @@
       <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect x="1" y="1" width="998" height="378" rx="18" fill="#0D0D0D" stroke="#262626" stroke-width="2"/>
+  <rect x="1" y="1" width="998" height="378" rx="18" fill="#0D0D0D" stroke="#2E2E2E" stroke-width="2"/>
   <rect x="1" y="1" width="998" height="378" rx="18" fill="url(#glowP)"/>
-  <text x="48" y="74" font-family="'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="-0.5" fill="#F5F5F5">Selected fellows by path</text>
+  <text x="48" y="74" font-family="'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="-0.5" fill="#FFFFFF">Selected fellows by path</text>
 
   <!-- FS -->
-  <text x="48" y="138" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="600" fill="#F5F5F5">Full Stack AI Engineering</text>
+  <text x="48" y="138" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="600" fill="#FFFFFF">Full Stack AI Engineering</text>
   <rect x="48" y="152" width="820" height="48" rx="8" fill="#F5F5F5"/>
   <text x="68" y="184" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="800" fill="#0A0A0A">878</text>
-  <text x="888" y="184" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#8C8C8C">82%</text>
+  <text x="888" y="184" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#C8C8C8">82%</text>
 
   <!-- DE -->
-  <text x="48" y="252" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="600" fill="#CFCFCF">Data Engineering</text>
-  <rect x="48" y="266" width="181" height="48" rx="8" fill="#5A5A5A"/>
-  <text x="68" y="298" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="800" fill="#F5F5F5">194</text>
-  <text x="888" y="298" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#8C8C8C">18%</text>
+  <text x="48" y="252" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="600" fill="#FFFFFF">Data Engineering</text>
+  <rect x="48" y="266" width="181" height="48" rx="8" fill="#777777"/>
+  <text x="68" y="298" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">194</text>
+  <text x="888" y="298" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#C8C8C8">18%</text>
 
-  <text x="48" y="358" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#8C8C8C">1,072 fellows across two tracks.</text>
+  <text x="48" y="358" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#B8B8B8">1,072 fellows across two tracks.</text>
 </svg>

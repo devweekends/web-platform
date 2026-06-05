@@ -5,54 +5,54 @@
       <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect x="1" y="1" width="998" height="758" rx="18" fill="#0D0D0D" stroke="#262626" stroke-width="2"/>
+  <rect x="1" y="1" width="998" height="758" rx="18" fill="#0D0D0D" stroke="#2E2E2E" stroke-width="2"/>
   <rect x="1" y="1" width="998" height="758" rx="18" fill="url(#glowU)"/>
-  <text x="48" y="66" font-family="'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="-0.5" fill="#F5F5F5">Where our fellows study</text>
-  <text x="48" y="100" font-family="'Helvetica Neue', Arial, sans-serif" font-size="19" fill="#8C8C8C">Top 10 universities by selected fellows (campuses merged)</text>
+  <text x="48" y="66" font-family="'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="-0.5" fill="#FFFFFF">Where our fellows study</text>
+  <text x="48" y="100" font-family="'Helvetica Neue', Arial, sans-serif" font-size="19" fill="#B8B8B8">Top 10 universities by selected fellows (campuses merged)</text>
 
-  <g font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#CFCFCF" font-weight="500">
+  <g font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#F0F0F0" font-weight="500">
     <!-- label x=48 (to 390), bar x=400 max 480 (val/105*480), value end x=950 -->
     <text x="48" y="191">FAST NUCES</text>
     <rect x="400" y="170" width="480" height="28" rx="5" fill="#F5F5F5"/>
-    <text x="950" y="191" text-anchor="end" fill="#F5F5F5" font-weight="800">105</text>
+    <text x="950" y="191" text-anchor="end" fill="#FFFFFF" font-weight="800">105</text>
 
     <text x="48" y="241">University of Education</text>
-    <rect x="400" y="220" width="475" height="28" rx="5" fill="#EDEDED"/>
-    <text x="950" y="241" text-anchor="end" fill="#F5F5F5" font-weight="800">104</text>
+    <rect x="400" y="220" width="475" height="28" rx="5" fill="#E0E0E0"/>
+    <text x="950" y="241" text-anchor="end" fill="#FFFFFF" font-weight="800">104</text>
 
     <text x="48" y="291">Punjab University (PUCIT)</text>
-    <rect x="400" y="270" width="325" height="28" rx="5" fill="#BDBDBD"/>
-    <text x="950" y="291" text-anchor="end" fill="#F5F5F5" font-weight="800">71</text>
+    <rect x="400" y="270" width="325" height="28" rx="5" fill="#C2C2C2"/>
+    <text x="950" y="291" text-anchor="end" fill="#FFFFFF" font-weight="800">71</text>
 
     <text x="48" y="341">COMSATS Islamabad</text>
-    <rect x="400" y="320" width="192" height="28" rx="5" fill="#9A9A9A"/>
-    <text x="950" y="341" text-anchor="end" fill="#F5F5F5" font-weight="800">42</text>
+    <rect x="400" y="320" width="192" height="28" rx="5" fill="#AAAAAA"/>
+    <text x="950" y="341" text-anchor="end" fill="#FFFFFF" font-weight="800">42</text>
 
     <text x="48" y="391">UET</text>
-    <rect x="400" y="370" width="169" height="28" rx="5" fill="#9A9A9A"/>
-    <text x="950" y="391" text-anchor="end" fill="#F5F5F5" font-weight="800">37</text>
+    <rect x="400" y="370" width="169" height="28" rx="5" fill="#AAAAAA"/>
+    <text x="950" y="391" text-anchor="end" fill="#FFFFFF" font-weight="800">37</text>
 
     <text x="48" y="441">Virtual University</text>
-    <rect x="400" y="420" width="146" height="28" rx="5" fill="#7A7A7A"/>
-    <text x="950" y="441" text-anchor="end" fill="#F5F5F5" font-weight="800">32</text>
+    <rect x="400" y="420" width="146" height="28" rx="5" fill="#949494"/>
+    <text x="950" y="441" text-anchor="end" fill="#FFFFFF" font-weight="800">32</text>
 
     <text x="48" y="491">NUML</text>
-    <rect x="400" y="470" width="142" height="28" rx="5" fill="#7A7A7A"/>
-    <text x="950" y="491" text-anchor="end" fill="#F5F5F5" font-weight="800">31</text>
+    <rect x="400" y="470" width="142" height="28" rx="5" fill="#949494"/>
+    <text x="950" y="491" text-anchor="end" fill="#FFFFFF" font-weight="800">31</text>
 
     <text x="48" y="541">UCP</text>
-    <rect x="400" y="520" width="110" height="28" rx="5" fill="#5A5A5A"/>
-    <text x="950" y="541" text-anchor="end" fill="#F5F5F5" font-weight="800">24</text>
+    <rect x="400" y="520" width="110" height="28" rx="5" fill="#808080"/>
+    <text x="950" y="541" text-anchor="end" fill="#FFFFFF" font-weight="800">24</text>
 
     <text x="48" y="591">NUST</text>
-    <rect x="400" y="570" width="105" height="28" rx="5" fill="#5A5A5A"/>
-    <text x="950" y="591" text-anchor="end" fill="#F5F5F5" font-weight="800">23</text>
+    <rect x="400" y="570" width="105" height="28" rx="5" fill="#808080"/>
+    <text x="950" y="591" text-anchor="end" fill="#FFFFFF" font-weight="800">23</text>
 
     <text x="48" y="641">UMT</text>
-    <rect x="400" y="620" width="91" height="28" rx="5" fill="#4A4A4A"/>
-    <text x="950" y="641" text-anchor="end" fill="#F5F5F5" font-weight="800">20</text>
+    <rect x="400" y="620" width="91" height="28" rx="5" fill="#707070"/>
+    <text x="950" y="641" text-anchor="end" fill="#FFFFFF" font-weight="800">20</text>
   </g>
 
-  <line x1="48" y1="688" x2="952" y2="688" stroke="#1A1A1A" stroke-width="1.5"/>
-  <text x="48" y="726" font-family="'Helvetica Neue', Arial, sans-serif" font-size="19" fill="#8C8C8C">The biggest feeders turned out across multiple campuses.</text>
+  <line x1="48" y1="688" x2="952" y2="688" stroke="#2A2A2A" stroke-width="1.5"/>
+  <text x="48" y="726" font-family="'Helvetica Neue', Arial, sans-serif" font-size="19" fill="#B8B8B8">The biggest feeders turned out across multiple campuses.</text>
 </svg>
