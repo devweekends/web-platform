@@ -77,7 +77,9 @@ export default function GuidesClient({
   guides: Guide[];
   categories: string[];
 }) {
-  const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
+  const ALL = "All";
+  const [activeCategory, setActiveCategory] = useState<string>(ALL);
+  const tabs = [ALL, ...categories];
 
   const featured = useMemo(
     () =>
@@ -88,12 +90,14 @@ export default function GuidesClient({
   );
 
   const countFor = (category: string) =>
-    guides.filter((g) => g.category === category).length;
+    category === ALL
+      ? guides.length
+      : guides.filter((g) => g.category === category).length;
 
   const visible = useMemo(
     () =>
       guides
-        .filter((g) => g.category === activeCategory)
+        .filter((g) => activeCategory === ALL || g.category === activeCategory)
         .sort((a, b) => (a.order ?? 999) - (b.order ?? 999)),
     [guides, activeCategory]
   );
@@ -169,7 +173,7 @@ export default function GuidesClient({
 
         {/* ================= TABS ================= */}
         <div className="mb-12 flex flex-wrap gap-x-8 gap-y-3 border-b border-gray-200">
-          {categories.map((category) => (
+          {tabs.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
