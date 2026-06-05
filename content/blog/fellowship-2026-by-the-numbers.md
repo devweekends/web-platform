@@ -1,39 +1,42 @@
 ---
-title: "Fellowship 2026 by the numbers: 1,072 applicants, 222 universities, 30 countries"
+title: "Fellowship 2026 by the numbers: 30,000+ applied, 1,072 selected"
 date: "2026-06-05"
 category: "news"
 featured: true
 order: 1
 image: "/images/fellowship-2026-stats.svg"
-imageFit: "cover"
-description: "One open call brought together 1,072 students from 222 universities across 30 countries. Here is the full picture of who showed up for Dev Weekends Fellowship 2026."
+imageFit: "contain"
+description: "More than 30,000 students applied to Dev Weekends Fellowship 2026. We selected 1,072, drawn from 222 universities across 30 countries. Here is the full picture."
 ---
 
-We opened one application. This is who showed up.
+More than **30,000 students applied** to Dev Weekends Fellowship 2026. We selected **1,072**.
 
-Dev Weekends Fellowship 2026 drew **1,072 applicants** from **222 universities** across **30 countries**, applying to two paths: **Full Stack AI Engineering** and **Data Engineering**. We merged campuses, deduplicated by institution, and sorted it all out so we could actually see the shape of this community. It is bigger and more global than we expected, and we wanted to share it with you.
+Those 1,072 fellows come from **222 universities** across **30 countries**, split across two paths: **Full Stack AI Engineering** and **Data Engineering**. We merged campuses, deduplicated by institution, and mapped the whole cohort so we could see exactly who is joining us. It is bigger and more global than we expected, and we wanted to share it with you.
 
 ## The headline
 
 | Metric | Count |
 | --- | --- |
-| Total applicants | 1,072 |
-| Full Stack AI Engineering | 878 (82%) |
-| Data Engineering | 194 (18%) |
-| Unique universities | 222 (campuses merged) |
+| Total applicants | 30,000+ |
+| **Selected fellows** | **1,072** |
+| Full Stack AI Engineering | 878 (82% of selected) |
+| Data Engineering | 194 (18% of selected) |
+| Universities represented | 222 (campuses merged) |
 | Countries represented | 30 |
-| From Pakistan | 893 (83.3%) |
-| International | 179 (16.7%) |
+| Fellows from Pakistan | 893 (83.3%) |
+| International fellows | 179 (16.7%) |
+
+Getting selected meant standing out in a pool of more than thirty thousand. If you are one of the 1,072, that is no small thing.
 
 ## Two paths, one community
 
-The vast majority chose **Full Stack AI Engineering** with 878 applicants, while **Data Engineering** drew a focused 194. Plenty of universities showed up across both paths, which tells us students are not picking a lane so much as picking a direction and going all in.
+Most selected fellows are on the **Full Stack AI Engineering** path with 878, while **Data Engineering** has a focused 194. Many universities show up across both paths, which tells us our fellows are picking a direction and going all in.
 
-## Top universities
+## Where our fellows study
 
-Ranked by total applicants across both paths.
+Ranked by number of selected fellows across both paths.
 
-| # | University | Total | Full Stack | Data Eng |
+| # | University | Fellows | Full Stack | Data Eng |
 | --- | --- | --- | --- | --- |
 | 1 | FAST NUCES | 105 | 88 | 17 |
 | 2 | University of Education | 104 | 91 | 13 |
@@ -50,9 +53,9 @@ University of Education, PUCIT, UET, and NUML all turned out across multiple cam
 
 ## Where in the world
 
-Pakistan led with **893 applicants**, but the reach went far beyond. Here are the top countries outside Pakistan.
+Pakistan leads with **893 selected fellows**, but the reach goes far beyond. Here are the top countries outside Pakistan.
 
-| Country | Applicants |
+| Country | Fellows |
 | --- | --- |
 | 🇮🇳 India | 117 |
 | 🇳🇵 Nepal | 11 |
@@ -61,17 +64,17 @@ Pakistan led with **893 applicants**, but the reach went far beyond. Here are th
 | 🇳🇬 Nigeria | 5 |
 | 🇪🇬 Egypt | 4 |
 
-Beyond these, applications came in from Morocco, Kenya, Palestine, Rwanda, Russia, Australia, Singapore, Spain, Italy, China, Turkey, Cameroon, Ethiopia, Sri Lanka, Myanmar, the UAE, Cyprus, South Africa, Algeria, Indonesia, Haiti, DR Congo, and more. Thirty countries in total, including names like King's College London, Politecnico di Milano, NYU Abu Dhabi, the University of Adelaide, and San Jose State University.
+Beyond these, fellows are joining from Morocco, Kenya, Palestine, Rwanda, Russia, Australia, Singapore, Spain, Italy, China, Turkey, Cameroon, Ethiopia, Sri Lanka, Myanmar, the UAE, Cyprus, South Africa, Algeria, Indonesia, Haiti, and DR Congo. Thirty countries in total, including names like King's College London, Politecnico di Milano, NYU Abu Dhabi, the University of Adelaide, and San Jose State University.
 
 ## A few things that stood out
 
-- **India brought 117 applicants** on its own, split across both paths (81 Full Stack, 36 Data Engineering).
-- The international cohort alone spanned **29 countries**, proof that the community is genuinely global.
-- Several universities appeared in **both paths**, and many of the largest had **multiple campuses** feeding in.
+- **India brought 117 fellows**, split across both paths (81 Full Stack, 36 Data Engineering).
+- The international cohort alone spans **29 countries**, proof that this community is genuinely global.
+- Several universities placed fellows in **both paths**, and many of the largest fed in from **multiple campuses**.
 
 ## Thank you, and what is next
 
-To every one of the 1,072 of you who applied: thank you. Numbers like these are really just people, late nights, and the decision to bet on yourself. That matters to us.
+To the 30,000+ of you who applied: thank you. Every application is a person, a stack of late nights, and a decision to bet on yourself, and that matters to us deeply. Being selected is a real achievement, and not being selected this round takes nothing away from you.
 
 Fellowship 2026 applications are now closed, but Dev Weekends is not closing any doors. Public sessions, DSOC contributions, and a self-paced mentorship track are all on the way. Read **[what comes next and how to stay involved](/blog/fellowship-2026-next-steps)**, and if you want to start building today, the open route right now is **[Dev Weekends Summer of Code](/dsoc)**.
 

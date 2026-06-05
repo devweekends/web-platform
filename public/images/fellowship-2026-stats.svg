@@ -1,29 +1,38 @@
-<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fellowship 2026 by the numbers: 1,072 applicants, 222 universities, 30 countries">
-  <rect width="1200" height="675" fill="#0A0A0A"/>
-  <circle cx="1040" cy="120" r="320" fill="#22C55E" opacity="0.08"/>
-  <circle cx="180" cy="600" r="240" fill="#22C55E" opacity="0.05"/>
+<svg width="1080" height="1350" viewBox="0 0 1080 1350" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fellowship 2026: over 30,000 applied, 1,072 selected, from 222 universities across 30 countries">
+  <rect width="1080" height="1350" fill="#0A0A0A"/>
+  <circle cx="960" cy="160" r="360" fill="#22C55E" opacity="0.08"/>
+  <circle cx="120" cy="1180" r="300" fill="#22C55E" opacity="0.05"/>
 
-  <text x="80" y="120" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="6" fill="#22C55E">DEV WEEKENDS · FELLOWSHIP 2026</text>
+  <text x="90" y="150" font-family="ui-sans-serif, system-ui, sans-serif" font-size="24" font-weight="700" letter-spacing="6" fill="#22C55E">DEV WEEKENDS</text>
+  <text x="90" y="190" font-family="ui-sans-serif, system-ui, sans-serif" font-size="24" font-weight="700" letter-spacing="6" fill="#6B7280">FELLOWSHIP 2026</text>
 
-  <text x="78" y="232" font-family="Georgia, 'Times New Roman', serif" font-size="86" font-weight="700" fill="#F5F5F5">By the numbers</text>
+  <text x="86" y="320" font-family="Georgia, 'Times New Roman', serif" font-size="104" font-weight="700" fill="#F5F5F5">By the</text>
+  <text x="86" y="430" font-family="Georgia, 'Times New Roman', serif" font-size="104" font-weight="700" fill="#F5F5F5">numbers</text>
 
-  <text x="80" y="290" font-family="ui-sans-serif, system-ui, sans-serif" font-size="24" fill="#9CA3AF">Who showed up for one open call</text>
+  <!-- applied -->
+  <text x="90" y="620" font-family="ui-sans-serif, system-ui, sans-serif" font-size="140" font-weight="800" fill="#F5F5F5">30,000+</text>
+  <text x="96" y="672" font-family="ui-sans-serif, system-ui, sans-serif" font-size="26" letter-spacing="4" fill="#9CA3AF">APPLIED</text>
 
-  <!-- stat columns -->
+  <!-- arrow -->
+  <text x="90" y="800" font-family="ui-sans-serif, system-ui, sans-serif" font-size="80" font-weight="700" fill="#22C55E">↓</text>
+
+  <!-- selected -->
+  <text x="90" y="930" font-family="ui-sans-serif, system-ui, sans-serif" font-size="160" font-weight="800" fill="#22C55E">1,072</text>
+  <text x="96" y="985" font-family="ui-sans-serif, system-ui, sans-serif" font-size="26" letter-spacing="4" fill="#9CA3AF">SELECTED FELLOWS</text>
+
+  <line x1="90" y1="1070" x2="990" y2="1070" stroke="#242424" stroke-width="2"/>
+
+  <!-- where they come from -->
   <g font-family="ui-sans-serif, system-ui, sans-serif">
-    <text x="80" y="470" font-size="96" font-weight="800" fill="#F5F5F5">1,072</text>
-    <text x="84" y="510" font-size="20" letter-spacing="2" fill="#22C55E">APPLICANTS</text>
+    <text x="90" y="1180" font-size="78" font-weight="800" fill="#F5F5F5">222</text>
+    <text x="94" y="1218" font-size="20" letter-spacing="2" fill="#22C55E">UNIVERSITIES</text>
 
-    <text x="470" y="470" font-size="96" font-weight="800" fill="#F5F5F5">222</text>
-    <text x="474" y="510" font-size="20" letter-spacing="2" fill="#22C55E">UNIVERSITIES</text>
+    <text x="470" y="1180" font-size="78" font-weight="800" fill="#F5F5F5">30</text>
+    <text x="474" y="1218" font-size="20" letter-spacing="2" fill="#22C55E">COUNTRIES</text>
 
-    <text x="730" y="470" font-size="96" font-weight="800" fill="#F5F5F5">30</text>
-    <text x="734" y="510" font-size="20" letter-spacing="2" fill="#22C55E">COUNTRIES</text>
-
-    <text x="900" y="470" font-size="96" font-weight="800" fill="#F5F5F5">2</text>
-    <text x="904" y="510" font-size="20" letter-spacing="2" fill="#22C55E">PATHS</text>
+    <text x="760" y="1180" font-size="78" font-weight="800" fill="#F5F5F5">2</text>
+    <text x="764" y="1218" font-size="20" letter-spacing="2" fill="#22C55E">PATHS</text>
   </g>
 
-  <line x1="80" y1="565" x2="1120" y2="565" stroke="#242424" stroke-width="2"/>
-  <text x="80" y="610" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" fill="#9CA3AF">Full Stack AI Engineering · Data Engineering</text>
+  <text x="90" y="1290" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" fill="#6B7280">Full Stack AI Engineering · Data Engineering</text>
 </svg>
