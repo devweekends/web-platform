@@ -38,30 +38,30 @@ function GuideCard({ guide }: { guide: Guide }) {
   return (
     <Link
       href={`/guides/${guide.slug}`}
-      className="group flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-7 transition hover:border-gray-900 hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
+      className="group flex h-full flex-col rounded-2xl border border-border bg-card p-7 transition hover:border-foreground hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
     >
       <div className="mb-6 flex items-center justify-between">
         <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#22C55E]/10 text-[#16A34A]">
           <Icon className="h-5 w-5" />
         </span>
-        <ArrowUpRight className="h-5 w-5 text-gray-300 transition group-hover:text-gray-900" />
+        <ArrowUpRight className="h-5 w-5 text-muted-foreground transition group-hover:text-foreground" />
       </div>
 
-      <p className="mb-3 text-xs uppercase tracking-[0.18em] text-gray-400">
+      <p className="mb-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
         {guide.category}
       </p>
 
-      <h3 className="mb-3 text-xl font-semibold leading-snug text-gray-900">
+      <h3 className="mb-3 text-xl font-semibold leading-snug text-foreground">
         {guide.title}
       </h3>
 
       {guide.description && (
-        <p className="mb-6 line-clamp-4 text-sm leading-relaxed text-gray-600">
+        <p className="mb-6 line-clamp-4 text-sm leading-relaxed text-muted-foreground">
           {guide.description}
         </p>
       )}
 
-      <div className="mt-auto flex items-center gap-2 text-xs text-gray-400">
+      <div className="mt-auto flex items-center gap-2 text-xs text-muted-foreground">
         {guide.readingTime && <span>{guide.readingTime}</span>}
         {guide.readingTime && guide.author && <span>•</span>}
         {guide.author && <span>{guide.author}</span>}
@@ -103,11 +103,11 @@ export default function GuidesClient({
   );
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-6xl px-6 py-24">
         {/* ================= HERO ================= */}
         <header className="mb-20 max-w-2xl">
-          <p className="mb-6 text-xs uppercase tracking-[0.25em] text-gray-400">
+          <p className="mb-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">
             Featured by Dev Weekends
           </p>
 
@@ -115,7 +115,7 @@ export default function GuidesClient({
             Guides
           </h1>
 
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-muted-foreground">
             Practical, honest guides written by Dev Weekends and used across the
             community. Pick a path, take it slow, and let small wins add up.
           </p>
@@ -124,7 +124,7 @@ export default function GuidesClient({
         {/* ================= FEATURED ================= */}
         {featured.length > 0 && (
           <section className="mb-24">
-            <h2 className="mb-10 text-sm uppercase tracking-widest text-gray-400">
+            <h2 className="mb-10 text-sm uppercase tracking-widest text-muted-foreground">
               Featured
             </h2>
 
@@ -157,13 +157,13 @@ export default function GuidesClient({
 
               <button
                 aria-label="Previous"
-                className="guides-prev absolute -left-5 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md transition group-hover:opacity-100 md:flex md:opacity-0"
+                className="guides-prev absolute -left-5 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background shadow-md transition group-hover:opacity-100 md:flex md:opacity-0"
               >
                 ‹
               </button>
               <button
                 aria-label="Next"
-                className="guides-next absolute -right-5 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md transition group-hover:opacity-100 md:flex md:opacity-0"
+                className="guides-next absolute -right-5 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background shadow-md transition group-hover:opacity-100 md:flex md:opacity-0"
               >
                 ›
               </button>
@@ -172,15 +172,15 @@ export default function GuidesClient({
         )}
 
         {/* ================= TABS ================= */}
-        <div className="mb-12 flex flex-wrap gap-x-8 gap-y-3 border-b border-gray-200">
+        <div className="mb-12 flex flex-wrap gap-x-8 gap-y-3 border-b border-border">
           {tabs.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`pb-3 text-sm uppercase tracking-wide transition ${
                 activeCategory === category
-                  ? "border-b-2 border-black text-black"
-                  : "text-gray-400 hover:text-black"
+                  ? "border-b-2 border-foreground text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {category} ({countFor(category)})
@@ -190,8 +190,8 @@ export default function GuidesClient({
 
         {/* ================= GRID ================= */}
         {visible.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-gray-200 px-6 py-16 text-center">
-            <p className="text-gray-500">
+          <div className="rounded-2xl border border-dashed border-border px-6 py-16 text-center">
+            <p className="text-muted-foreground">
               No guides here yet. New {activeCategory} guides are on the way.
             </p>
           </div>
@@ -219,7 +219,7 @@ export default function GuidesClient({
           width: 8px;
           height: 8px;
           opacity: 0.4;
-          background: #000;
+          background: hsl(var(--foreground));
         }
         .guides-swiper .swiper-pagination-bullet-active {
           opacity: 1;
