@@ -1,52 +1,51 @@
-<svg width="1000" height="600" viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top universities by selected fellows">
-  <rect x="1" y="1" width="998" height="598" rx="18" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
-  <text x="48" y="56" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="700" fill="#334155">Where our fellows study</text>
-  <text x="48" y="80" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#94A3B8">Top 10 universities by selected fellows (campuses merged)</text>
+<svg width="1000" height="760" viewBox="0 0 1000 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top universities by selected fellows">
+  <rect x="1" y="1" width="998" height="758" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+  <text x="48" y="66" font-family="ui-sans-serif, system-ui, sans-serif" font-size="34" font-weight="800" fill="#1E293B">Where our fellows study</text>
+  <text x="48" y="100" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" fill="#64748B">Top 10 universities by selected fellows (campuses merged)</text>
 
-  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#475569">
-    <!-- rows: label at x=48 (w260), bar from x=320 max 600px (val/105*600), value after -->
-    <!-- 1 FAST NUCES 105 -->
-    <text x="48" y="128">FAST NUCES</text>
-    <rect x="320" y="116" width="600" height="18" rx="5" fill="#22C55E"/>
-    <text x="930" y="130" text-anchor="end" fill="#16A34A" font-weight="700">105</text>
-    <!-- 2 University of Education 104 -->
-    <text x="48" y="166">University of Education</text>
-    <rect x="320" y="154" width="594" height="18" rx="5" fill="#22C55E"/>
-    <text x="930" y="168" text-anchor="end" fill="#16A34A" font-weight="700">104</text>
-    <!-- 3 PUCIT 71 -->
-    <text x="48" y="204">Punjab University (PUCIT)</text>
-    <rect x="320" y="192" width="406" height="18" rx="5" fill="#34D27F"/>
-    <text x="930" y="206" text-anchor="end" fill="#16A34A" font-weight="700">71</text>
-    <!-- 4 COMSATS 42 -->
-    <text x="48" y="242">COMSATS Islamabad</text>
-    <rect x="320" y="230" width="240" height="18" rx="5" fill="#5BD896"/>
-    <text x="930" y="244" text-anchor="end" fill="#16A34A" font-weight="700">42</text>
-    <!-- 5 UET 37 -->
-    <text x="48" y="280">UET</text>
-    <rect x="320" y="268" width="211" height="18" rx="5" fill="#5BD896"/>
-    <text x="930" y="282" text-anchor="end" fill="#16A34A" font-weight="700">37</text>
-    <!-- 6 Virtual University 32 -->
-    <text x="48" y="318">Virtual University</text>
-    <rect x="320" y="306" width="183" height="18" rx="5" fill="#86EFAC"/>
-    <text x="930" y="320" text-anchor="end" fill="#16A34A" font-weight="700">32</text>
-    <!-- 7 NUML 31 -->
-    <text x="48" y="356">NUML</text>
-    <rect x="320" y="344" width="177" height="18" rx="5" fill="#86EFAC"/>
-    <text x="930" y="358" text-anchor="end" fill="#16A34A" font-weight="700">31</text>
-    <!-- 8 UCP 24 -->
-    <text x="48" y="394">UCP</text>
-    <rect x="320" y="382" width="137" height="18" rx="5" fill="#86EFAC"/>
-    <text x="930" y="396" text-anchor="end" fill="#16A34A" font-weight="700">24</text>
-    <!-- 9 NUST 23 -->
-    <text x="48" y="432">NUST</text>
-    <rect x="320" y="420" width="131" height="18" rx="5" fill="#A7F3C8"/>
-    <text x="930" y="434" text-anchor="end" fill="#16A34A" font-weight="700">23</text>
-    <!-- 10 UMT 20 -->
-    <text x="48" y="470">UMT</text>
-    <rect x="320" y="458" width="114" height="18" rx="5" fill="#A7F3C8"/>
-    <text x="930" y="472" text-anchor="end" fill="#16A34A" font-weight="700">20</text>
+  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" fill="#334155">
+    <!-- label x=48 (col to 390), bar x=400 max 480 (val/105*480), value anchored at 950 -->
+    <text x="48" y="191">FAST NUCES</text>
+    <rect x="400" y="170" width="480" height="28" rx="6" fill="#22C55E"/>
+    <text x="950" y="191" text-anchor="end" fill="#16A34A" font-weight="800">105</text>
+
+    <text x="48" y="241">University of Education</text>
+    <rect x="400" y="220" width="475" height="28" rx="6" fill="#22C55E"/>
+    <text x="950" y="241" text-anchor="end" fill="#16A34A" font-weight="800">104</text>
+
+    <text x="48" y="291">Punjab University (PUCIT)</text>
+    <rect x="400" y="270" width="325" height="28" rx="6" fill="#34D27F"/>
+    <text x="950" y="291" text-anchor="end" fill="#16A34A" font-weight="800">71</text>
+
+    <text x="48" y="341">COMSATS Islamabad</text>
+    <rect x="400" y="320" width="192" height="28" rx="6" fill="#5BD896"/>
+    <text x="950" y="341" text-anchor="end" fill="#16A34A" font-weight="800">42</text>
+
+    <text x="48" y="391">UET</text>
+    <rect x="400" y="370" width="169" height="28" rx="6" fill="#5BD896"/>
+    <text x="950" y="391" text-anchor="end" fill="#16A34A" font-weight="800">37</text>
+
+    <text x="48" y="441">Virtual University</text>
+    <rect x="400" y="420" width="146" height="28" rx="6" fill="#86EFAC"/>
+    <text x="950" y="441" text-anchor="end" fill="#16A34A" font-weight="800">32</text>
+
+    <text x="48" y="491">NUML</text>
+    <rect x="400" y="470" width="142" height="28" rx="6" fill="#86EFAC"/>
+    <text x="950" y="491" text-anchor="end" fill="#16A34A" font-weight="800">31</text>
+
+    <text x="48" y="541">UCP</text>
+    <rect x="400" y="520" width="110" height="28" rx="6" fill="#86EFAC"/>
+    <text x="950" y="541" text-anchor="end" fill="#16A34A" font-weight="800">24</text>
+
+    <text x="48" y="591">NUST</text>
+    <rect x="400" y="570" width="105" height="28" rx="6" fill="#A7F3C8"/>
+    <text x="950" y="591" text-anchor="end" fill="#16A34A" font-weight="800">23</text>
+
+    <text x="48" y="641">UMT</text>
+    <rect x="400" y="620" width="91" height="28" rx="6" fill="#A7F3C8"/>
+    <text x="950" y="641" text-anchor="end" fill="#16A34A" font-weight="800">20</text>
   </g>
 
-  <line x1="48" y1="520" x2="952" y2="520" stroke="#E2E8F0" stroke-width="1.5"/>
-  <text x="48" y="552" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#94A3B8">The biggest feeders turned out across multiple campuses.</text>
+  <line x1="48" y1="688" x2="952" y2="688" stroke="#E2E8F0" stroke-width="1.5"/>
+  <text x="48" y="726" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" fill="#64748B">The biggest feeders turned out across multiple campuses.</text>
 </svg>

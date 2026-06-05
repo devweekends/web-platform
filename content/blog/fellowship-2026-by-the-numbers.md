@@ -1,15 +1,15 @@
 ---
-title: "Fellowship 2026 by the numbers: 30,000+ applied, 1,072 selected"
+title: "Fellowship 2026 by the numbers: 3,000+ applied, 1,072 selected"
 date: "2026-06-05"
 category: "news"
 featured: true
 order: 1
 image: "/images/fellowship-2026-stats.svg"
 imageFit: "contain"
-description: "More than 30,000 students applied to Dev Weekends Fellowship 2026. We selected 1,072, drawn from 222 universities across 30 countries. Here is the full picture."
+description: "More than 3,000 students applied to Dev Weekends Fellowship 2026. We selected 1,072, drawn from 222 universities across 30 countries. Here is the full picture."
 ---
 
-More than **30,000 students applied** to Dev Weekends Fellowship 2026. We selected **1,072**.
+More than **3,000 students applied** to Dev Weekends Fellowship 2026. We selected **1,072**.
 
 Those 1,072 fellows come from **222 universities** across **30 countries**, split across two paths: **Full Stack AI Engineering** and **Data Engineering**. We merged campuses, deduplicated by institution, and mapped the whole cohort so we could see exactly who is joining us. It is bigger and more global than we expected, and we wanted to share it with you.
 
@@ -17,7 +17,7 @@ Those 1,072 fellows come from **222 universities** across **30 countries**, spli
 
 | Metric | Count |
 | --- | --- |
-| Total applicants | 30,000+ |
+| Total applicants | 3,000+ |
 | **Selected fellows** | **1,072** |
 | Full Stack AI Engineering | 878 (82% of selected) |
 | Data Engineering | 194 (18% of selected) |
@@ -26,9 +26,9 @@ Those 1,072 fellows come from **222 universities** across **30 countries**, spli
 | Fellows from Pakistan | 893 (83.3%) |
 | International fellows | 179 (16.7%) |
 
-Getting selected meant standing out in a pool of more than thirty thousand. If you are one of the 1,072, that is no small thing.
+Getting selected meant standing out in a pool of more than three thousand. If you are one of the 1,072, that is no small thing.
 
-![From 30,000+ applicants to 1,072 selected, about 3.6 percent](/images/fellowship/selectivity.svg)
+![From 3,000+ applicants to 1,072 selected, about 36 percent](/images/fellowship/selectivity.svg)
 
 ## Two paths, one community
 
@@ -86,7 +86,7 @@ Beyond these, fellows are joining from Morocco, Kenya, Palestine, Rwanda, Russia
 
 ## Thank you, and what is next
 
-To the 30,000+ of you who applied: thank you. Every application is a person, a stack of late nights, and a decision to bet on yourself, and that matters to us deeply. Being selected is a real achievement, and not being selected this round takes nothing away from you.
+To the 3,000+ of you who applied: thank you. Every application is a person, a stack of late nights, and a decision to bet on yourself, and that matters to us deeply. Being selected is a real achievement, and not being selected this round takes nothing away from you.
 
 Fellowship 2026 applications are now closed, but Dev Weekends is not closing any doors. Public sessions, DSOC contributions, and a self-paced mentorship track are all on the way. Read **[what comes next and how to stay involved](/blog/fellowship-2026-next-steps)**, and if you want to start building today, the open route right now is **[Dev Weekends Summer of Code](/dsoc)**.
 
