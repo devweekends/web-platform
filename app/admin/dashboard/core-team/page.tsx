@@ -148,6 +148,30 @@ export default function CoreTeamPage() {
     }
   };
 
+  // Inline order edit straight from a card — commits on Enter/blur.
+  const updateOrder = async (id: string, raw: string) => {
+    const value = raw === '' ? 0 : Number(raw);
+    if (Number.isNaN(value)) return;
+    const current = members.find(m => m._id === id);
+    if (current && (current.order ?? 0) === value) {
+      setMembers(sortByOrder(members)); // no change, just re-sort
+      return;
+    }
+    setError('');
+    try {
+      const response = await fetch(`/api/admin/core-team?id=${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ order: value }),
+      });
+      if (!response.ok) throw new Error('Failed to update order');
+      const updated = await response.json();
+      setMembers(prev => sortByOrder(prev.map(m => m._id === updated._id ? updated : m)));
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
+
   const moveMember = async (index: number, direction: 'up' | 'down') => {
     const target = direction === 'up' ? index - 1 : index + 1;
     if (target < 0 || target >= members.length) return;
@@ -287,6 +311,22 @@ export default function CoreTeamPage() {
                 <h3 className="text-lg font-semibold mb-1">{member.name}</h3>
                 <p className="text-sm text-muted-foreground mb-1">{member.role}</p>
                 <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm mb-2">LinkedIn</a>
+                <div className="flex items-center gap-2 mt-1 mb-1">
+                  <Label htmlFor={`order-${member._id}`} className="text-xs text-muted-foreground">Order</Label>
+                  <Input
+                    id={`order-${member._id}`}
+                    type="number"
+                    min="0"
+                    value={member.order ?? 0}
+                    onChange={e => {
+                      const v = e.target.value === '' ? 0 : Number(e.target.value);
+                      setMembers(prev => prev.map(m => m._id === member._id ? { ...m, order: v } : m));
+                    }}
+                    onKeyDown={e => { if (e.key === 'Enter') (e.target as HTMLInputElement).blur(); }}
+                    onBlur={e => updateOrder(member._id, e.target.value)}
+                    className="w-16 h-8 text-center"
+                  />
+                </div>
                 <div className="flex space-x-2 mt-2">
                   <Button variant="outline" size="icon" onClick={() => handleEdit(member)}>
                     <Pencil className="w-4 h-4" />
