@@ -1,0 +1,24 @@
+<svg width="1000" height="360" viewBox="0 0 1000 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Selected fellows: Pakistan 893, International 179">
+  <rect x="1" y="1" width="998" height="358" rx="18" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
+  <text x="48" y="58" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="700" fill="#334155">Pakistan and beyond</text>
+
+  <!-- donut: 893/1072 = 83.3% -> dash. circumference r=110 = 691.15. PK = 0.833*691=575.6, gap rest -->
+  <g transform="translate(230,200)">
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#86EFAC" stroke-width="40"/>
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#22C55E" stroke-width="40"
+      stroke-dasharray="575.6 691.15" transform="rotate(-90)"/>
+    <text x="0" y="-4" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="34" font-weight="800" fill="#334155">1,072</text>
+    <text x="0" y="24" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#94A3B8">fellows</text>
+  </g>
+
+  <!-- legend -->
+  <g font-family="ui-sans-serif, system-ui, sans-serif">
+    <rect x="470" y="130" width="16" height="16" rx="4" fill="#22C55E"/>
+    <text x="498" y="143" font-size="17" font-weight="600" fill="#334155">Pakistan</text>
+    <text x="498" y="167" font-size="14" fill="#94A3B8">893 fellows · 83.3%</text>
+
+    <rect x="470" y="205" width="16" height="16" rx="4" fill="#86EFAC"/>
+    <text x="498" y="218" font-size="17" font-weight="600" fill="#334155">International</text>
+    <text x="498" y="242" font-size="14" fill="#94A3B8">179 fellows · 16.7% · 29 countries</text>
+  </g>
+</svg>

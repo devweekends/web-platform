@@ -102,10 +102,21 @@ export default async function BlogPost({
               },
 
               img({ src = "", alt = "" }) {
+                const url = typeof src === "string" ? src : "";
+                // SVG diagrams/charts keep their own aspect ratio, so render
+                // them with a plain img instead of forcing next/image's 4:5 box.
+                if (url.endsWith(".svg")) {
+                  return (
+                    <span className="block my-12 overflow-hidden rounded-xl border border-gray-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={url} alt={alt} loading="lazy" className="w-full h-auto" />
+                    </span>
+                  );
+                }
                 return (
                   <span className="block my-14">
                     <Image
-                      src={src}
+                      src={url}
                       alt={alt}
                       width={1600}
                       height={2000}
@@ -173,6 +184,29 @@ export default async function BlogPost({
                 >
                   {children}
                 </a>
+              ),
+
+              table: ({ children }) => (
+                <div className="my-10 overflow-x-auto">
+                  <table className="w-full border-collapse text-left text-[0.95rem]">
+                    {children}
+                  </table>
+                </div>
+              ),
+              thead: ({ children }) => (
+                <thead className="border-b-2 border-gray-900">{children}</thead>
+              ),
+              tbody: ({ children }) => (
+                <tbody className="divide-y divide-gray-200">{children}</tbody>
+              ),
+              tr: ({ children }) => <tr>{children}</tr>,
+              th: ({ children }) => (
+                <th className="py-3 pr-6 font-semibold text-black align-top">
+                  {children}
+                </th>
+              ),
+              td: ({ children }) => (
+                <td className="py-3 pr-6 text-gray-800 align-top">{children}</td>
               ),
             }}
           >

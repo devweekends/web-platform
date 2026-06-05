@@ -1,0 +1,21 @@
+<svg width="1000" height="360" viewBox="0 0 1000 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="From over 30,000 applicants to 1,072 selected, about 3.6 percent">
+  <rect x="1" y="1" width="998" height="358" rx="18" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
+  <text x="48" y="60" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="700" fill="#334155">From 30,000+ to 1,072</text>
+
+  <!-- applied -->
+  <text x="48" y="120" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="600" letter-spacing="1" fill="#94A3B8">APPLIED</text>
+  <rect x="48" y="132" width="800" height="34" rx="8" fill="#E2E8F0"/>
+  <text x="60" y="155" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" fill="#475569">30,000+</text>
+
+  <!-- selected -->
+  <text x="48" y="212" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="600" letter-spacing="1" fill="#16A34A">SELECTED</text>
+  <rect x="48" y="224" width="29" height="34" rx="8" fill="#22C55E"/>
+  <text x="90" y="247" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" fill="#16A34A">1,072</text>
+
+  <!-- selectivity callout -->
+  <text x="660" y="250" font-family="ui-sans-serif, system-ui, sans-serif" font-size="64" font-weight="800" fill="#22C55E">3.6%</text>
+  <text x="664" y="282" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#94A3B8">selected</text>
+
+  <line x1="48" y1="312" x2="952" y2="312" stroke="#E2E8F0" stroke-width="1.5"/>
+  <text x="48" y="340" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#94A3B8">Fewer than 4 in 100 applicants made it into the cohort.</text>
+</svg>

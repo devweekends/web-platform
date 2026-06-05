@@ -1,0 +1,20 @@
+<svg width="1000" height="320" viewBox="0 0 1000 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Selected fellows by path: Full Stack AI Engineering 878, Data Engineering 194">
+  <rect x="1" y="1" width="998" height="318" rx="18" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
+  <text x="48" y="58" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="700" fill="#334155">Selected fellows by path</text>
+
+  <!-- FS bar -->
+  <text x="48" y="110" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#475569">Full Stack AI Engineering</text>
+  <rect x="48" y="122" width="800" height="38" rx="8" fill="#E8F7EE"/>
+  <rect x="48" y="122" width="800" height="38" rx="8" fill="#22C55E"/>
+  <text x="64" y="147" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">878</text>
+  <text x="858" y="147" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#94A3B8">82%</text>
+
+  <!-- DE bar -->
+  <text x="48" y="210" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#475569">Data Engineering</text>
+  <rect x="48" y="222" width="800" height="38" rx="8" fill="#EFF6F1"/>
+  <rect x="48" y="222" width="177" height="38" rx="8" fill="#86EFAC"/>
+  <text x="64" y="247" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" fill="#166534">194</text>
+  <text x="858" y="247" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#94A3B8">18%</text>
+
+  <text x="48" y="298" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#94A3B8">1,072 fellows across two tracks.</text>
+</svg>

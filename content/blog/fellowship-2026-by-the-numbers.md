@@ -28,13 +28,19 @@ Those 1,072 fellows come from **222 universities** across **30 countries**, spli
 
 Getting selected meant standing out in a pool of more than thirty thousand. If you are one of the 1,072, that is no small thing.
 
+![From 30,000+ applicants to 1,072 selected, about 3.6 percent](/images/fellowship/selectivity.svg)
+
 ## Two paths, one community
 
 Most selected fellows are on the **Full Stack AI Engineering** path with 878, while **Data Engineering** has a focused 194. Many universities show up across both paths, which tells us our fellows are picking a direction and going all in.
 
+![Selected fellows by path: Full Stack AI Engineering 878, Data Engineering 194](/images/fellowship/paths.svg)
+
 ## Where our fellows study
 
 Ranked by number of selected fellows across both paths.
+
+![Top 10 universities by selected fellows](/images/fellowship/top-universities.svg)
 
 | # | University | Fellows | Full Stack | Data Eng |
 | --- | --- | --- | --- | --- |
@@ -53,7 +59,13 @@ University of Education, PUCIT, UET, and NUML all turned out across multiple cam
 
 ## Where in the world
 
-Pakistan leads with **893 selected fellows**, but the reach goes far beyond. Here are the top countries outside Pakistan.
+Pakistan leads with **893 selected fellows**, but the reach goes far beyond.
+
+![Pakistan 893 fellows and 179 international fellows across 29 countries](/images/fellowship/pk-vs-international.svg)
+
+Here are the top countries outside Pakistan.
+
+![Top countries outside Pakistan by selected fellows](/images/fellowship/top-countries.svg)
 
 | Country | Fellows |
 | --- | --- |
