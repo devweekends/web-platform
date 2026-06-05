@@ -1,25 +1,31 @@
 <svg width="1000" height="420" viewBox="0 0 1000 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Selected fellows: Pakistan 893, International 179">
-  <rect x="1" y="1" width="998" height="418" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
-  <text x="48" y="72" font-family="ui-sans-serif, system-ui, sans-serif" font-size="34" font-weight="800" fill="#1E293B">Pakistan and beyond</text>
+  <defs>
+    <radialGradient id="glowD" cx="50%" cy="0%" r="90%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.05"/>
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="1" y="1" width="998" height="418" rx="18" fill="#0D0D0D" stroke="#262626" stroke-width="2"/>
+  <rect x="1" y="1" width="998" height="418" rx="18" fill="url(#glowD)"/>
+  <text x="48" y="74" font-family="'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="-0.5" fill="#F5F5F5">Pakistan and beyond</text>
 
-  <!-- donut: 893/1072 = 83.3%. r=120, circumference=753.98. PK arc = 0.833*754=628.1 -->
+  <!-- donut: 893/1072 = 83.3%. r=120, circumference=753.98, arc=628.1 -->
   <g transform="translate(250,250)">
-    <circle cx="0" cy="0" r="120" fill="none" stroke="#86EFAC" stroke-width="44"/>
-    <circle cx="0" cy="0" r="120" fill="none" stroke="#22C55E" stroke-width="44"
+    <circle cx="0" cy="0" r="120" fill="none" stroke="#2E2E2E" stroke-width="44"/>
+    <circle cx="0" cy="0" r="120" fill="none" stroke="#F5F5F5" stroke-width="44"
       stroke-dasharray="628.1 753.98" transform="rotate(-90)"/>
-    <text x="0" y="-2" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="44" font-weight="800" fill="#1E293B">1,072</text>
-    <text x="0" y="34" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" fill="#64748B">fellows</text>
+    <text x="0" y="-2" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="46" font-weight="800" fill="#F5F5F5">1,072</text>
+    <text x="0" y="34" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="19" fill="#8C8C8C">fellows</text>
   </g>
 
-  <!-- legend -->
-  <g font-family="ui-sans-serif, system-ui, sans-serif">
-    <rect x="500" y="150" width="22" height="22" rx="5" fill="#22C55E"/>
-    <text x="536" y="169" font-size="26" font-weight="700" fill="#1E293B">Pakistan</text>
-    <text x="536" y="201" font-size="22" fill="#64748B">893 fellows · 83.3%</text>
+  <g font-family="'Helvetica Neue', Arial, sans-serif">
+    <rect x="500" y="150" width="22" height="22" rx="4" fill="#F5F5F5"/>
+    <text x="536" y="169" font-size="26" font-weight="700" fill="#F5F5F5">Pakistan</text>
+    <text x="536" y="201" font-size="21" fill="#8C8C8C">893 fellows &#183; 83.3%</text>
 
-    <rect x="500" y="248" width="22" height="22" rx="5" fill="#86EFAC"/>
-    <text x="536" y="267" font-size="26" font-weight="700" fill="#1E293B">International</text>
-    <text x="536" y="299" font-size="22" fill="#64748B">179 fellows · 16.7%</text>
-    <text x="536" y="329" font-size="22" fill="#64748B">across 29 countries</text>
+    <rect x="500" y="248" width="22" height="22" rx="4" fill="#5A5A5A"/>
+    <text x="536" y="267" font-size="26" font-weight="700" fill="#F5F5F5">International</text>
+    <text x="536" y="299" font-size="21" fill="#8C8C8C">179 fellows &#183; 16.7%</text>
+    <text x="536" y="329" font-size="21" fill="#8C8C8C">across 29 countries</text>
   </g>
 </svg>

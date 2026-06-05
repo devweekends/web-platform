@@ -1,38 +1,42 @@
 <svg width="1080" height="1350" viewBox="0 0 1080 1350" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fellowship 2026: over 3,000 applied, 1,072 selected, from 222 universities across 30 countries">
-  <rect width="1080" height="1350" fill="#0A0A0A"/>
-  <circle cx="960" cy="160" r="360" fill="#22C55E" opacity="0.10"/>
-  <circle cx="120" cy="1180" r="300" fill="#22C55E" opacity="0.06"/>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1350" fill="#070707"/>
+  <rect width="1080" height="1350" fill="url(#glow)"/>
 
-  <text x="90" y="150" font-family="ui-sans-serif, system-ui, sans-serif" font-size="26" font-weight="700" letter-spacing="6" fill="#22C55E">DEV WEEKENDS</text>
-  <text x="90" y="192" font-family="ui-sans-serif, system-ui, sans-serif" font-size="26" font-weight="700" letter-spacing="6" fill="#94A3B8">FELLOWSHIP 2026</text>
+  <text x="90" y="150" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="9" fill="#F5F5F5">DEV WEEKENDS</text>
+  <text x="90" y="192" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="9" fill="#5A5A5A">FELLOWSHIP 2026</text>
 
-  <text x="86" y="320" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" fill="#FFFFFF">By the</text>
-  <text x="86" y="432" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" fill="#FFFFFF">numbers</text>
+  <text x="84" y="332" font-family="'Helvetica Neue', Arial, sans-serif" font-size="120" font-weight="800" letter-spacing="-1" fill="#F5F5F5">BY THE</text>
+  <text x="84" y="452" font-family="'Helvetica Neue', Arial, sans-serif" font-size="120" font-weight="800" letter-spacing="-1" fill="#343434">NUMBERS</text>
 
   <!-- applied -->
-  <text x="90" y="628" font-family="ui-sans-serif, system-ui, sans-serif" font-size="150" font-weight="800" fill="#FFFFFF">3,000+</text>
-  <text x="96" y="682" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="600" letter-spacing="4" fill="#CBD5E1">APPLIED</text>
+  <text x="90" y="640" font-family="'Helvetica Neue', Arial, sans-serif" font-size="150" font-weight="800" letter-spacing="-2" fill="#5A5A5A">3,000+</text>
+  <text x="96" y="694" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="6" fill="#8C8C8C">APPLIED</text>
 
   <!-- arrow -->
-  <text x="92" y="812" font-family="ui-sans-serif, system-ui, sans-serif" font-size="84" font-weight="700" fill="#22C55E">↓</text>
+  <text x="92" y="820" font-family="'Helvetica Neue', Arial, sans-serif" font-size="80" font-weight="700" fill="#5A5A5A">↓</text>
 
-  <!-- selected -->
-  <text x="90" y="948" font-family="ui-sans-serif, system-ui, sans-serif" font-size="170" font-weight="800" fill="#22C55E">1,072</text>
-  <text x="96" y="1002" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="600" letter-spacing="4" fill="#CBD5E1">SELECTED FELLOWS</text>
+  <!-- selected (the hero) -->
+  <text x="88" y="960" font-family="'Helvetica Neue', Arial, sans-serif" font-size="180" font-weight="800" letter-spacing="-3" fill="#F5F5F5">1,072</text>
+  <text x="96" y="1014" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="6" fill="#8C8C8C">SELECTED FELLOWS</text>
 
-  <line x1="90" y1="1080" x2="990" y2="1080" stroke="#2E2E2E" stroke-width="2"/>
+  <line x1="90" y1="1092" x2="990" y2="1092" stroke="#262626" stroke-width="1.5"/>
 
-  <!-- where they come from -->
-  <g font-family="ui-sans-serif, system-ui, sans-serif">
-    <text x="90" y="1188" font-size="82" font-weight="800" fill="#FFFFFF">222</text>
-    <text x="94" y="1228" font-size="24" font-weight="600" letter-spacing="2" fill="#86EFAC">UNIVERSITIES</text>
+  <g font-family="'Helvetica Neue', Arial, sans-serif">
+    <text x="90" y="1196" font-size="84" font-weight="800" letter-spacing="-1" fill="#F5F5F5">222</text>
+    <text x="94" y="1234" font-size="22" font-weight="600" letter-spacing="3" fill="#8C8C8C">UNIVERSITIES</text>
 
-    <text x="490" y="1188" font-size="82" font-weight="800" fill="#FFFFFF">30</text>
-    <text x="494" y="1228" font-size="24" font-weight="600" letter-spacing="2" fill="#86EFAC">COUNTRIES</text>
+    <text x="490" y="1196" font-size="84" font-weight="800" letter-spacing="-1" fill="#F5F5F5">30</text>
+    <text x="494" y="1234" font-size="22" font-weight="600" letter-spacing="3" fill="#8C8C8C">COUNTRIES</text>
 
-    <text x="790" y="1188" font-size="82" font-weight="800" fill="#FFFFFF">2</text>
-    <text x="794" y="1228" font-size="24" font-weight="600" letter-spacing="2" fill="#86EFAC">PATHS</text>
+    <text x="790" y="1196" font-size="84" font-weight="800" letter-spacing="-1" fill="#F5F5F5">2</text>
+    <text x="794" y="1234" font-size="22" font-weight="600" letter-spacing="3" fill="#8C8C8C">PATHS</text>
   </g>
 
-  <text x="90" y="1298" font-family="ui-sans-serif, system-ui, sans-serif" font-size="24" fill="#94A3B8">Full Stack AI Engineering · Data Engineering</text>
+  <text x="90" y="1300" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#5A5A5A">Full Stack AI Engineering &#183; Data Engineering</text>
 </svg>
