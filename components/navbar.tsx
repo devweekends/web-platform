@@ -18,7 +18,8 @@ export default function Navbar() {
     { href: "/mindmaster", label: "MindMaster" },
     { href: "/careers", label: "Careers" },
     { href: "https://resources.devweekends.com", label: "Resources", external: true },
-    { href: "/blog", label: "News & Blog" }, 
+    { href: "/blog", label: "News & Blog" },
+    { href: "/guides", label: "Guides" },
 
   ];
 
