@@ -125,7 +125,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 border border-foreground/20 text-[0.7rem] font-semibold uppercase tracking-[1px] hover:bg-foreground hover:text-background transition-all"
             >
-              Join
+              Join Community
             </a>
 
             {/* Apply Dropdown */}
@@ -134,7 +134,7 @@ export default function Navbar() {
                 onClick={() => setIsApplyOpen(!isApplyOpen)}
                 className="h-8 px-3 py-1.5 uppercase tracking-[1px] text-[0.7rem] font-semibold flex items-center gap-1"
               >
-                Apply
+                Apply Now
                 <ChevronDown className={`w-3 h-3 transition-transform ${isApplyOpen ? 'rotate-180' : ''}`} />
               </Button>
 
