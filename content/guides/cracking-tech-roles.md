@@ -50,7 +50,7 @@ A note about international university courses: while courses from prestigious in
 
 Remember, every expert was once a beginner, and with consistent effort and the right guidance, you can achieve remarkable success in your tech journey!
 
-> Roadmap: [Data Structures RoadMap on GitHub](https://github.com/ZeeshanAdilButt/Data-Structures-RoadMap/blob/main/README.md)
+> Roadmap: [DW Fellowship DSA Roadmap on GitHub](https://github.com/devweekends/DW-Fellowship-DSA-Roadmap)
 
 **Some tips for beginners who are starting problem-solving:**
 
@@ -215,7 +215,7 @@ Here's a suggested schedule to balance all of these aspects effectively.
 - Namaz (prayer): end your day with spiritual activities
 - Relaxation and sleep: ensure you get enough rest to recharge for the next day
 
-> Make a copy of [this schedule sheet](https://docs.google.com/spreadsheets/d/1Ee4C4H_JOPYgNCK77f0CfTjwOxsDsjyxPKMNLnbVpog/edit?usp=drivesdk), fill it with your schedule, and share daily progress with me. I'll keep looking into it and suggest where you can do better.
+> Head over to [goaslot.io](https://goaslot.io), create an account, go to the Library, and import the schedule template by Dev Weekends called **"Winner Study Schedule by Dev Weekends"**. Fill it with your own schedule and share your daily progress with me. I'll keep looking into it and suggest where you can do better.
 
 ## Some Common Questions
 
