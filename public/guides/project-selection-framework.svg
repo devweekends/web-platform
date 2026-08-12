@@ -1,0 +1,41 @@
+<svg width="100%" viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Three pillars of choosing a project: depth, team, and users</title>
+  <desc>A diagram showing three connected pillars — technical depth, team, and users — that together make a project worth building.</desc>
+
+  <rect x="0" y="0" width="680" height="320" fill="none"/>
+
+  <line x1="150" y1="150" x2="340" y2="150" stroke="#22C55E" stroke-width="1.5" opacity="0.5"/>
+  <line x1="340" y1="150" x2="530" y2="150" stroke="#22C55E" stroke-width="1.5" opacity="0.5"/>
+
+  <g>
+    <rect x="70" y="80" width="160" height="140" rx="12" fill="#22C55E" fill-opacity="0.08" stroke="#16A34A" stroke-width="1"/>
+    <circle cx="150" cy="130" r="20" fill="#22C55E" fill-opacity="0.18"/>
+    <path d="M150 118 L150 142 M138 130 L162 130" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="150" y="172" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#16A34A">Depth</text>
+    <text x="150" y="194" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#16A34A" opacity="0.8">4-6 months of</text>
+    <text x="150" y="210" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#16A34A" opacity="0.8">real learning</text>
+  </g>
+
+  <g>
+    <rect x="260" y="80" width="160" height="140" rx="12" fill="#22C55E" fill-opacity="0.08" stroke="#16A34A" stroke-width="1"/>
+    <circle cx="325" cy="128" r="10" fill="#22C55E" fill-opacity="0.25"/>
+    <circle cx="355" cy="128" r="10" fill="#22C55E" fill-opacity="0.25"/>
+    <circle cx="340" cy="112" r="10" fill="#22C55E" fill-opacity="0.35"/>
+    <text x="340" y="172" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#16A34A">Team</text>
+    <text x="340" y="194" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#16A34A" opacity="0.8">Seniors and</text>
+    <text x="340" y="210" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#16A34A" opacity="0.8">juniors, together</text>
+  </g>
+
+  <g>
+    <rect x="450" y="80" width="160" height="140" rx="12" fill="#22C55E" fill-opacity="0.08" stroke="#16A34A" stroke-width="1"/>
+    <circle cx="530" cy="125" r="18" fill="#22C55E" fill-opacity="0.18"/>
+    <circle cx="518" cy="120" r="4" fill="#16A34A"/>
+    <circle cx="530" cy="115" r="4" fill="#16A34A"/>
+    <circle cx="542" cy="120" r="4" fill="#16A34A"/>
+    <text x="530" y="172" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#16A34A">Users</text>
+    <text x="530" y="194" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#16A34A" opacity="0.8">Real adoption,</text>
+    <text x="530" y="210" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#16A34A" opacity="0.8">not just a demo</text>
+  </g>
+
+  <text x="340" y="270" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#6b7280">A project worth building needs all three</text>
+</svg>
