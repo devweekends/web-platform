@@ -7,7 +7,7 @@ order: 1
 date: "2026-08-12"
 author: "Midhat Kazmi"
 icon: "Compass"
-readingTime: "8 min read"
+readingTime: "9 min read"
 image: "/guides/project-selection-framework.svg"
 ---
 
@@ -49,6 +49,17 @@ Infrastructure-heavy automation tools, systems that run headless agents or brows
 Personalized content or wellness tools,systems that combine a large, constantly growing dataset with fine tuned models to filter, personalize, or surface content for a specific community's needs. These look simple on the surface but hide serious data and ML engineering underneath.
 
 None of these need to be copied exactly, the point is the shape: pick something with enough surface area that "getting people to actually use it" becomes part of the engineering problem, not a footnote after you're done.
+
+
+## Where it's actually easier to get users
+
+Adoption difficulty is not the same for every kind of project, and it's worth thinking about before you commit, not after you've already built the thing and are wondering why nobody signed up.
+
+1. Two-sided marketplaces are one of the hardest patterns to get real users for. Anything shaped like Uber, where you need two different types of users, a service provider and a service receiver, to both show up at the same time for the product to have any value, runs into the classic chicken-and-egg problem. Riders won't open the app if there are no drivers nearby, and drivers won't sign up if there are no riders to pick up. This is solvable, but it usually takes serious capital, a specific city or niche to seed first, and a lot of manual, unscalable work in the early days, none of which fits a 4 to 6 month student project. Avoid this shape unless user acquisition itself is the thing you're trying to learn.
+
+2. Government and large institutional systems, think a government portal or a full university management system, are hard for a different reason. The engineering can be genuinely deep, but deployment depends on procurement processes, approvals, and politics that are completely outside your control. You can build something excellent and still have it sit unused because the actual decision makers never adopted it. If you're drawn to this space, it's usually smarter to build a smaller tool aimed at a specific department or a specific pain point, something a few real people can start using on their own, rather than the full official system that needs institutional buy-in to go anywhere.
+
+The easiest projects to get real users for are ones where a single, well-defined type of user can get value from day one without needing anyone else to also adopt it at the same time, students, developers, a specific hobbyist community, people already active in an online community you have access to. If you can picture yourself getting 10 real people to try it in the first week just by asking around, that's usually a strong signal you picked a shape with a realistic path to adoption.
 
 ## Putting it together
 
