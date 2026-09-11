@@ -137,7 +137,7 @@ export default function CarrersPage() {
         </Select>
         <div className="flex-1" />
         <Button asChild variant="outline">
-          <Link href="https://linktr.ee/DevWeekends" target="_blank" rel="noopener noreferrer">
+          <Link href="/links">
             Share a Job
           </Link>
         </Button>
