@@ -3,9 +3,16 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { DM_Sans } from "next/font/google"
-import { Facebook, Github, Instagram, Linkedin, Youtube } from "lucide-react"
+import { BookOpen, Facebook, Github, Instagram, Linkedin, Youtube } from "lucide-react"
 import { LinksShareButton } from "@/components/links-share-button"
-import { linkEntries, linksProfile, socialLinks, type LinkEntry, type SocialPlatform } from "@/lib/links-data"
+import {
+  linkEntries,
+  linksProfile,
+  socialLinks,
+  type LinkEntry,
+  type LinkIcon,
+  type SocialPlatform,
+} from "@/lib/links-data"
 
 const dmSans = DM_Sans({ subsets: ["latin"] })
 
@@ -41,21 +48,47 @@ const socialIcons: Record<SocialPlatform, ComponentType<{ className?: string }>>
   discord: DiscordIcon,
 }
 
+const linkIcons: Record<LinkIcon, ComponentType<{ className?: string }>> = {
+  ...socialIcons,
+  resources: BookOpen,
+}
+
+// Brand colors for the badges shown in place of a thumbnail.
+const linkIconStyles: Record<LinkIcon, string> = {
+  instagram: "bg-gradient-to-br from-[#feda75] via-[#d62976] to-[#4f5bd5] text-white",
+  youtube: "bg-[#ff0000] text-white",
+  linkedin: "bg-[#0a66c2] text-white",
+  facebook: "bg-[#1877f2] text-white",
+  github: "bg-[#24292f] text-white",
+  discord: "bg-[#5865f2] text-white",
+  resources: "bg-white text-[#040404]",
+}
+
 // Linktree "soft shadow, circular" button style on the dark Dev Weekends theme.
 const buttonClass =
   "relative flex min-h-[60px] w-full items-center justify-center rounded-full bg-[#444] px-16 py-3 text-center text-[15px] font-medium leading-snug text-white shadow-[0_2px_8px_rgba(0,0,0,0.6)] transition-transform duration-150 hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
 
 function LinkButton({ entry }: { entry: Extract<LinkEntry, { kind: "link" }> }) {
+  const BadgeIcon = entry.icon ? linkIcons[entry.icon] : null
   const content = (
     <>
-      {entry.thumbnail && (
-        <Image
-          src={entry.thumbnail}
-          alt=""
-          width={44}
-          height={44}
-          className="absolute left-2 top-1/2 h-11 w-11 -translate-y-1/2 rounded-full object-cover"
-        />
+      {entry.icon && BadgeIcon ? (
+        <span
+          className={`absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full ${linkIconStyles[entry.icon]}`}
+          aria-hidden="true"
+        >
+          <BadgeIcon className="h-6 w-6" />
+        </span>
+      ) : (
+        entry.thumbnail && (
+          <Image
+            src={entry.thumbnail}
+            alt=""
+            width={44}
+            height={44}
+            className="absolute left-2 top-1/2 h-11 w-11 -translate-y-1/2 rounded-full object-cover"
+          />
+        )
       )}
       <span>{entry.title}</span>
     </>

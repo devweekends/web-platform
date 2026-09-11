@@ -1,11 +1,14 @@
 // Mirrors https://linktr.ee/DevWeekends so every community link lives on
 // devweekends.com. Thumbnails are self-hosted under /public/links.
 
-export type LinkEntry =
-  | { kind: "link"; title: string; url: string; thumbnail?: string }
-  | { kind: "header"; title: string }
-
 export type SocialPlatform = "instagram" | "youtube" | "linkedin" | "facebook" | "github" | "discord"
+
+// Links to a platform rather than a community get a brand badge instead of a thumbnail.
+export type LinkIcon = SocialPlatform | "resources"
+
+export type LinkEntry =
+  | { kind: "link"; title: string; url: string; thumbnail?: string; icon?: LinkIcon }
+  | { kind: "header"; title: string }
 
 export const linksProfile = {
   name: "Dev Weekends",
@@ -24,16 +27,17 @@ export const socialLinks: { platform: SocialPlatform; label: string; url: string
 
 export const linkEntries: LinkEntry[] = [
   { kind: "link", title: "Dev Weekends", url: "/", thumbnail: "/links/dev-weekends.jpg" },
+  { kind: "link", title: "Resources: Docs & Courses", url: "https://resources.devweekends.com", icon: "resources" },
   { kind: "header", title: "Join our Communities" },
   { kind: "link", title: "Dev Weekends Calendar", url: "https://calendar.google.com/calendar/u/0?cid=YjA1ZmMyMGM2YjE5ZjNlMDBjNTgwMjA5MzZhNzAxODcwMTY2NzNiZTBiZjk3MWE4ZjM3OTgwMmE1M2YwY2U0M0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t", thumbnail: "/links/calendar.png" },
   { kind: "link", title: "Mock Interviews", url: "https://chat.whatsapp.com/J3iIn9tuoVtCD2sAPQyr9w" },
   { kind: "link", title: "Competitive Programming", url: "https://chat.whatsapp.com/EmYaLjCAEaHIDZBcbIJHh3?mode=wwt", thumbnail: "/links/competitive-programming.jpg" },
   { kind: "link", title: "LinkedIn Placement Group", url: "https://www.linkedin.com/groups/9077758", thumbnail: "/links/linkedin-placement-group.png" },
-  { kind: "link", title: "GSoC Preparation", url: "https://chat.whatsapp.com/F1VZ0oxsGxf55CPgrNHHxZ", thumbnail: "/links/gsoc-preparation.jpg" },
-  { kind: "link", title: "Instagram", url: "https://www.instagram.com/devweekends/", thumbnail: "/links/dw-social.png" },
-  { kind: "link", title: "YouTube", url: "https://www.youtube.com/@devweekends", thumbnail: "/links/dw-social.png" },
-  { kind: "link", title: "LinkedIn", url: "https://www.linkedin.com/company/dev-weekends/", thumbnail: "/links/linkedin.jpg" },
-  { kind: "link", title: "Facebook", url: "https://www.facebook.com/DevWeekends/", thumbnail: "/links/dw-social.png" },
+  { kind: "link", title: "GSoC Preparation", url: "https://chat.whatsapp.com/HGRGHwCOQ2z4A1aJXkicUx?mode=gi_t", thumbnail: "/links/gsoc-preparation.jpg" },
+  { kind: "link", title: "Instagram", url: "https://www.instagram.com/devweekends/", icon: "instagram" },
+  { kind: "link", title: "YouTube", url: "https://www.youtube.com/@devweekends", icon: "youtube" },
+  { kind: "link", title: "LinkedIn", url: "https://www.linkedin.com/company/dev-weekends/", icon: "linkedin" },
+  { kind: "link", title: "Facebook", url: "https://www.facebook.com/DevWeekends/", icon: "facebook" },
   { kind: "link", title: "Dev Weekends - Events and Hackathons", url: "https://chat.whatsapp.com/ILQGHC01BLZCTfySbaeZlP", thumbnail: "/links/events-hackathons.jpg" },
   { kind: "link", title: "Blood Donors Community", url: "https://chat.whatsapp.com/DrTEQ7c86xJ7eENUI73L4o", thumbnail: "/links/blood-donors.jpg" },
   { kind: "link", title: "Placement Community - 1", url: "https://chat.whatsapp.com/GK9uQTsyk8kJsn5l6vuorF", thumbnail: "/links/placement-community.png" },
