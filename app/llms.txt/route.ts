@@ -13,6 +13,7 @@ Robots: https://devweekends.com/robots.txt
 - About: https://devweekends.com/about
 - Sessions: https://devweekends.com/sessions
 - Community: https://devweekends.com/community
+- Links: https://devweekends.com/links
 - Projects: https://devweekends.com/projects
 - Mentorship: https://devweekends.com/mentorship
 - Careers: https://devweekends.com/careers
