@@ -449,7 +449,7 @@ We welcome contributions to improve our testing infrastructure!
 ### Communication
 
 - 💬 **Issues** – For bugs and feature requests
-- 🔗 **[Community](https://linktr.ee/DevWeekends)** – Join our community channels
+- 🔗 **[Community](https://devweekends.com/links)** – Join our community channels
 - 📧 **Email** – [devweekends@gmail.com](mailto:devweekends@gmail.com) for sensitive matters
 
 ### Tips

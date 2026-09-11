@@ -225,7 +225,7 @@ export default function Home() {
                   className="rounded-full"
                   onClick={() => trackEvent.joinCommunity('linktree')}
                 >
-                  <Link href="https://linktr.ee/DevWeekends">Join Community</Link>
+                  <Link href="/links">Join Community</Link>
                 </Button>
               </div>
 
@@ -544,7 +544,7 @@ export default function Home() {
                   </p>
                 </div>
                 <Button asChild className="rounded-full group">
-                  <Link href="https://linktr.ee/DevWeekends">
+                  <Link href="/links">
                     Join our community{" "}
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -741,9 +741,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" variant="secondary" className="rounded-full">
                   <Link
-                    href="https://linktr.ee/DevWeekends"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/links"
                   >
                     Join Community
                   </Link>

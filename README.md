@@ -191,7 +191,7 @@ Looking for a place to start? Check out issues labeled [`good first issue`](http
 Join our vibrant community of developers, mentors, and tech enthusiasts!
 
 - 🌐 **Website**: [devweekends.com](https://devweekends.com)
-- 🔗 **Linktree**: [linktr.ee/DevWeekends](https://linktr.ee/DevWeekends)
+- 🔗 **Community Links**: [devweekends.com/links](https://devweekends.com/links)
 - 📺 **YouTube**: [Dev Weekends](https://www.youtube.com/@DevWeekends)
 - 💼 **LinkedIn**: [Dev Weekends](https://www.linkedin.com/company/devweekends)
 - 🐦 **Twitter**: [@devweekends](https://twitter.com/devweekends)
