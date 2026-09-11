@@ -19,6 +19,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # The 2026 compromise hid loaders in build configs and in fake font files
+      # started by auto-run VS Code tasks. Check for both before npm runs.
+      - name: Guard against hidden code
+        run: |
+          status=0
+          flag() { echo "::error file=$1::$2"; status=1; }
+          for f in $(git ls-files '*.config.*' '.eslintrc*' middleware.ts); do
+            if ! awk 'length > 300 { exit 1 }' "$f"; then flag "$f" "Line longer than 300 characters (possible hidden code)"; fi
+            if grep -qE '[[:space:]]{40,}[^[:space:]]' "$f"; then flag "$f" "Code hidden after a long run of whitespace"; fi
+            if grep -qE 'child_process|createRequire|eval\(|new Function|fromCharCode|_0x[0-9a-f]{4}|global\[' "$f"; then flag "$f" "Suspicious runtime primitive in a build config"; fi
+          done
+          for f in $(git ls-files '*.woff' '*.woff2' '*.ttf' '*.otf' '*.eot'); do
+            if grep -Iq . "$f"; then flag "$f" "Font file is plain text (possible disguised script)"; fi
+          done
+          for f in $(git ls-files '.vscode/*.json'); do
+            if grep -qE 'folderOpen|allowAutomaticTasks' "$f"; then flag "$f" "VS Code task set to run automatically on folder open"; fi
+          done
+          if grep -qE '"(preinstall|install|postinstall|prepare)"[[:space:]]*:' package.json; then flag package.json "npm install lifecycle scripts are not allowed"; fi
+          exit $status
+
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:

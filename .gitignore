@@ -163,3 +163,6 @@ coverage/
 # Misc
 *.pem
 .env*.local
+
+# Claude Code personal settings (local permission allowlists)
+.claude/settings.local.json
