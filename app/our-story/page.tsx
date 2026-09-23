@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import HomeImpact from "@/components/home-impact"
 import { ArrowRight, ExternalLink, X, Mail, Linkedin, Sun, Sunset, Moon } from "lucide-react"
 
 export default function OurStoryPage() {
@@ -103,11 +104,6 @@ export default function OurStoryPage() {
           SECTION 1: HERO - THE EMOTIONAL HOOK
           ============================================ */}
       <section className="relative min-h-[90vh] flex items-center py-12 md:py-16 px-6 lg:px-12 overflow-hidden">
-        {/* Grid Background Pattern */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
-        </div>
-
         <div className="max-w-[1100px] mx-auto relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Content */}
@@ -116,19 +112,17 @@ export default function OurStoryPage() {
               <h1 className="text-[clamp(32px,5vw,56px)] font-bold leading-[1.1] tracking-tight mb-6">
                 We Don&apos;t Just Teach Code.
                 <br />
-                We Build{" "}
-                <span className="relative inline-block">
-                  Engineers
-                  <span className="absolute bottom-1 md:bottom-2 left-0 right-0 h-2 md:h-3 bg-yellow-300 -z-10"></span>
-                </span>
+                We Build Engineers
                 <br />
                 Who Change Lives.
               </h1>
 
               {/* Subheadline */}
-              <p className="text-muted-foreground max-w-[520px] mb-8 leading-relaxed">
-                Join 20,000+ members and 1600+ successful engineers who transformed their careers through
-                FREE mentorship, world-class training, and a community that believes in giving back.
+              <p className="text-muted-foreground max-w-[560px] mb-8 leading-relaxed">
+                Free mentorship, a structured fellowship, and a community of engineers
+                who walked the road before you. Our members have cracked Google Summer
+                of Code, landed remote jobs at Turing and Upwork, and built their own
+                startups. Join 30,000+ members. It costs nothing.
               </p>
 
               {/* CTAs */}
@@ -151,11 +145,11 @@ export default function OurStoryPage() {
               </div>
 
               {/* Stats Bar */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-foreground/10 pt-8">
                 {[
-                  { number: "7", label: "Countries" },
-                  { number: "50+", label: "Universities" },
-                  { number: "1600+", label: "Engineers Trained" },
+                  { number: "30", label: "Countries" },
+                  { number: "222", label: "Universities" },
+                  { number: "1,000+", label: "Engineers Trained" },
                   { number: "100%", label: "Free Forever" },
                 ].map((stat, i) => (
                   <div key={i}>
@@ -181,6 +175,11 @@ export default function OurStoryPage() {
           </div>
         </div>
       </section>
+
+      {/* ============================================
+          SECTION 1B: IMPACT + SCALE
+          ============================================ */}
+      <HomeImpact />
 
       {/* ============================================
           SECTION 2: OUR FOCUS AREAS
@@ -941,7 +940,7 @@ export default function OurStoryPage() {
               },
               {
                 name: "Zeeshan Adil",
-                role: "Lead Engineer | Top Rated Plus",
+                role: "Lead Engineer | Top 1% on Upwork, Expert-Vetted | ex-UN",
                 linkedin: "https://www.linkedin.com/in/zeeshanadilbutt/",
                 image: "/zee.png",
               },
