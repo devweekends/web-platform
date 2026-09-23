@@ -6,7 +6,7 @@ import Link from 'next/link'
 const messages = [
   {
     label: 'DSOC',
-    text: 'DSOC 2026 applications are open now. Start your open source journey today.',
+    text: 'DSOC 2026 has finished. Thank you to everyone who participated.',
     href: '/dsoc',
   },
   {
