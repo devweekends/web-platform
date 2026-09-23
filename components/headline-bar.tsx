@@ -3,18 +3,13 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-const messages = [
-  {
-    label: 'DSOC',
-    text: 'DSOC 2026 applications are open now. Start your open source journey today.',
-    href: '/dsoc',
-  },
-  {
-    label: 'Fellowship',
-    text: 'Fellowship 2026 applications are now closed. See what comes next and how to stay involved.',
-    href: '/blog/fellowship-2026-next-steps',
-  },
-]
+type HeadlineMessage = { label: string; text: string; href: string }
+
+// Add an entry here to show a banner. Leave the array empty to hide the bar.
+// Past entries, for reference:
+//   { label: 'DSOC', text: 'DSOC 2026 applications are open now. Start your open source journey today.', href: '/dsoc' }
+//   { label: 'Fellowship', text: 'Fellowship 2026 applications are now closed. See what comes next and how to stay involved.', href: '/blog/fellowship-2026-next-steps' }
+const messages: HeadlineMessage[] = []
 
 export function HeadlineBar() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -22,6 +17,7 @@ export function HeadlineBar() {
   const [slideDirection, setSlideDirection] = useState<1 | -1>(1)
 
   useEffect(() => {
+    if (messages.length < 2) return
     const interval = window.setInterval(() => {
       setActiveIndex((current) => {
         const nextIndex = (current + 1) % messages.length
@@ -38,6 +34,8 @@ export function HeadlineBar() {
 
     return () => window.clearInterval(interval)
   }, [])
+
+  if (messages.length === 0) return null
 
   const activeMessage = messages[activeIndex]
   const leavingMessage = leavingIndex !== null ? messages[leavingIndex] : null

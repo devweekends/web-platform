@@ -121,8 +121,9 @@ export default function OurStoryPage() {
               <p className="text-muted-foreground max-w-[560px] mb-8 leading-relaxed">
                 Free mentorship, a structured fellowship, and a community of engineers
                 who walked the road before you. Our members have cracked Google Summer
-                of Code, landed remote jobs at Turing and Upwork, and built their own
-                startups. Join 30,000+ members. It costs nothing.
+                of Code, been hired by Silicon Valley and billion-dollar companies like
+                Scale AI and Turing, built six-figure Upwork careers, and started
+                companies of their own. Join 30,000+ members. It costs nothing.
               </p>
 
               {/* CTAs */}
