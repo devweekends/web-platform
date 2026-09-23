@@ -45,7 +45,7 @@ const outcomes: Stat[] = [
     value: "100+",
     label: "Remote placements",
     detail:
-      "Engineers now working remotely for international teams through Upwork, Toptal, Turing, Arc and direct hires.",
+      "Engineers now working for Silicon Valley and billion-dollar companies, and for international teams through Upwork, Toptal, Turing, Arc and direct hires.",
     info: "Fellows and community members who reported an international remote role or contract to us after mentorship, mock interviews or referrals.",
   },
   {

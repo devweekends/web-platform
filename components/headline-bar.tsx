@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-const messages = [
+type HeadlineMessage = { label: string; text: string; href: string }
+
+const messages: HeadlineMessage[] = [
   {
     label: 'DSOC',
     text: 'DSOC 2026 has finished. Thank you to everyone who participated.',
@@ -22,6 +24,7 @@ export function HeadlineBar() {
   const [slideDirection, setSlideDirection] = useState<1 | -1>(1)
 
   useEffect(() => {
+    if (messages.length < 2) return
     const interval = window.setInterval(() => {
       setActiveIndex((current) => {
         const nextIndex = (current + 1) % messages.length
@@ -38,6 +41,8 @@ export function HeadlineBar() {
 
     return () => window.clearInterval(interval)
   }, [])
+
+  if (messages.length === 0) return null
 
   const activeMessage = messages[activeIndex]
   const leavingMessage = leavingIndex !== null ? messages[leavingIndex] : null

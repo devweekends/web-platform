@@ -18,21 +18,21 @@ export default function OurStoryPage() {
     placements: 0,
     views: 0,
     turing: 0,
-    success: 0,
+    projects: 0,
   })
   const statsRef = useRef<HTMLDivElement>(null)
   const [hasAnimatedStats, setHasAnimatedStats] = useState(false)
 
   const animateStats = () => {
     const targets = {
-      members: 20000,
-      engineers: 800,
+      members: 30000,
+      engineers: 1000,
       centurions: 500,
       sessions: 200,
-      placements: 1000,
-      views: 50000,
+      placements: 400,
+      views: 65000,
       turing: 20,
-      success: 67,
+      projects: 442,
     }
 
     const duration = 2000
@@ -53,7 +53,7 @@ export default function OurStoryPage() {
         placements: Math.floor(targets.placements * easeOut),
         views: Math.floor(targets.views * easeOut),
         turing: Math.floor(targets.turing * easeOut),
-        success: Math.floor(targets.success * easeOut),
+        projects: Math.floor(targets.projects * easeOut),
       })
 
       if (currentStep >= steps) {
@@ -121,8 +121,9 @@ export default function OurStoryPage() {
               <p className="text-muted-foreground max-w-[560px] mb-8 leading-relaxed">
                 Free mentorship, a structured fellowship, and a community of engineers
                 who walked the road before you. Our members have cracked Google Summer
-                of Code, landed remote jobs at Turing and Upwork, and built their own
-                startups. Join 30,000+ members. It costs nothing.
+                of Code, been hired by Silicon Valley and billion-dollar companies like
+                Scale AI and Turing, built six-figure Upwork careers, and started
+                companies of their own. Join 30,000+ members. It costs nothing.
               </p>
 
               {/* CTAs */}
@@ -817,10 +818,10 @@ export default function OurStoryPage() {
               { value: animatedStats.engineers, suffix: "+", label: "Engineers Trained", divisor: 1 },
               { value: animatedStats.centurions, suffix: "+", label: "LeetCode Centurions", divisor: 1 },
               { value: animatedStats.sessions, suffix: "+", label: "Sessions Delivered", divisor: 1 },
-              { value: animatedStats.placements, suffix: "+", label: "Job Placements", divisor: 1 },
+              { value: animatedStats.placements, suffix: "+", label: "Job Placements, Remote and Local", divisor: 1 },
               { value: animatedStats.views, suffix: "K+", label: "YouTube Views", divisor: 1000 },
               { value: animatedStats.turing, suffix: "+", label: "Engineers at Turing", divisor: 1 },
-              { value: animatedStats.success, suffix: "%", label: "Career Success Rate", divisor: 1 },
+              { value: animatedStats.projects, suffix: "", label: "Projects Shipped Last Cohort", divisor: 1 },
             ].map((stat, i) => (
               <div 
                 key={i} 
