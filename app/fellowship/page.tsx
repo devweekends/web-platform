@@ -104,11 +104,8 @@ export default function FellowshipPage() {
     }, 30)
   }
 
-  const handleApplyClick = () => {
-    window.open(
-      "https://docs.google.com/forms/d/e/1FAIpQLSfjbM8MIEWTPe4PMjLOf8wCKbdjkjXYjH3nBNFoEEjO8CO08w/viewform",
-      "_blank",
-    )
+  const handleLearnMoreClick = () => {
+    window.open("/blog/fellowship-2026-next-steps", "_self")
   }
 
   const levels = [
@@ -383,7 +380,7 @@ export default function FellowshipPage() {
                 className="mb-6 sm:mb-8 border-primary text-primary px-3 sm:px-4 py-1 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
               >
                 <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Fellowship 2026 - Applications Open
+                Fellowship 2026 - Applications Closed
               </Badge>
 
               <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-8 leading-[1.1] sm:leading-[0.9] tracking-tight">
@@ -391,24 +388,24 @@ export default function FellowshipPage() {
                 <br />
                 <span className="relative inline-block mt-2 sm:mt-0">
                   <span className="bg-black text-white px-3 sm:px-4 md:px-6 py-2 sm:py-3 inline-block transform -rotate-1 rounded-lg text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                    Fellowship 2026 Started
+                    Fellowship 2026
                   </span>
                 </span>
               </h1>
 
               <p className="text-sm sm:text-xl lg:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-                <strong>Fellowship 2026 is now live!</strong>
+                <strong>Fellowship 2026 applications are now closed.</strong>
                 <br className="hidden sm:block" />
-                Applications are open. Join now and start your 3-month transformation journey.
+                Thank you to everyone who applied. See what comes next and how to stay involved.
               </p>
 
               <div className="flex flex-row flex-wrap sm:flex-row gap-3 sm:gap-6 justify-center items-center mb-8 sm:mb-16 px-4">
                 <Button
                   size="lg"
-                  onClick={handleApplyClick}
+                  onClick={handleLearnMoreClick}
                   className="flex-1 sm:flex-none bg-black text-white hover:bg-gray-800 px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
                 >
-                  Apply for 2026 Fellowship
+                  What Comes Next
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 {/* <Button
@@ -881,10 +878,10 @@ export default function FellowshipPage() {
                     </div>
 
                     <Button
-                      onClick={handleApplyClick}
+                      disabled
                       className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 sm:py-4 rounded-lg font-semibold group text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
                     >
-                      Choose This Track
+                      Applications Closed
                       <ChevronRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </CardContent>
@@ -1004,23 +1001,23 @@ export default function FellowshipPage() {
               className="mb-6 sm:mb-8 border-primary-foreground text-primary-foreground px-3 sm:px-4 py-1 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
             >
               <Rocket className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-              Join the Fellowship
+              Fellowship 2026
             </Badge>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 tracking-tight">
-              Ready to Get Industry-Ready?
+              Applications are Closed
             </h2>
             <p className="text-lg sm:text-xl lg:text-2xl text-primary-foreground/70 mb-12 sm:mb-16 max-w-4xl mx-auto leading-relaxed">
-              Join our aggressive 3-month program and crack big companies this summer. Limited seats available -
-              applications reviewed on rolling basis.
+              Thank you to everyone who applied for Fellowship 2026. Follow along for public sessions, DSOC
+              contributions, and the upcoming self-paced mentorship track.
             </p>
 
             <div className="mb-12 sm:mb-16">
               <Button
                 size="lg"
-                onClick={handleApplyClick}
+                onClick={handleLearnMoreClick}
                 className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 px-10 sm:px-16 py-4 sm:py-5 rounded-lg text-lg sm:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
               >
-                Apply for Fellowship 2026
+                See What Comes Next
                 <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
