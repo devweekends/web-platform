@@ -43,7 +43,7 @@ export function HeadlineBar() {
   const leavingAnimation = slideDirection === 1 ? 'headlineExitToRight' : 'headlineExitToLeft'
 
   return (
-    <div className="sticky top-0 z-50 w-full border-b border-white/20 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-slate-950 shadow-[0_10px_30px_rgba(249,115,22,0.35)]">
+    <div className="w-full border-b border-white/20 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-slate-950 shadow-[0_10px_30px_rgba(249,115,22,0.35)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex min-h-10 items-center justify-center overflow-hidden py-2 text-center text-xs sm:text-sm font-semibold tracking-wide">
           {leavingMessage && (
