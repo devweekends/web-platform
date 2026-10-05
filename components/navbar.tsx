@@ -30,11 +30,7 @@ export default function Navbar() {
   ];
 
   const applyOptions = [
-    { href: "/dsoc", label: "DSOC" },
-    { href: "/fellowship", label: "Fellowship" },
-    // { href: "/mentorship", label: "Mentorship" },
-    // { href: "/ambassador-program", label: "Ambassadorship" },
-    { href: "/weekend-tech-grind", label: "Weekend Grind" },
+    { href: "/fyp-roadshow", label: "FYP Mentorship" },
   ];
 
   const isActive = (path: string) => pathname === path;
@@ -135,7 +131,7 @@ export default function Navbar() {
                 onClick={() => setIsApplyOpen(!isApplyOpen)}
                 className="h-8 px-3 py-1.5 uppercase tracking-[1px] text-[0.7rem] font-semibold flex items-center gap-1"
               >
-                Apply Now
+                Programs
                 <ChevronDown className={`w-3 h-3 transition-transform ${isApplyOpen ? 'rotate-180' : ''}`} />
               </Button>
 
@@ -224,7 +220,7 @@ export default function Navbar() {
               {/* Apply */}
               <div className="pt-2 border-t border-border">
                 <p className="text-xs font-semibold uppercase tracking-[2px] text-muted-foreground mb-3">
-                  Apply
+                  Programs
                 </p>
                 {applyOptions.map((option) => (
                   <Link

@@ -105,10 +105,7 @@ export default function FellowshipPage() {
   }
 
   const handleApplyClick = () => {
-    window.open(
-      "https://docs.google.com/forms/d/e/1FAIpQLSfjbM8MIEWTPe4PMjLOf8wCKbdjkjXYjH3nBNFoEEjO8CO08w/viewform",
-      "_blank",
-    )
+    window.open("/fyp-roadshow", "_self")
   }
 
   const levels = [
@@ -383,7 +380,7 @@ export default function FellowshipPage() {
                 className="mb-6 sm:mb-8 border-primary text-primary px-3 sm:px-4 py-1 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
               >
                 <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Fellowship 2026 - Applications Open
+                Fellowship 2026 - Applications Closed
               </Badge>
 
               <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-8 leading-[1.1] sm:leading-[0.9] tracking-tight">
@@ -391,15 +388,15 @@ export default function FellowshipPage() {
                 <br />
                 <span className="relative inline-block mt-2 sm:mt-0">
                   <span className="bg-black text-white px-3 sm:px-4 md:px-6 py-2 sm:py-3 inline-block transform -rotate-1 rounded-lg text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                    Fellowship 2026 Started
+                    Fellowship 2026
                   </span>
                 </span>
               </h1>
 
               <p className="text-sm sm:text-xl lg:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-                <strong>Fellowship 2026 is now live!</strong>
+                <strong>Fellowship 2026 applications are now closed.</strong>
                 <br className="hidden sm:block" />
-                Applications are open. Join now and start your 3-month transformation journey.
+                Explore FYP project guidance and upcoming mentorship opportunities with Dev Weekends.
               </p>
 
               <div className="flex flex-row flex-wrap sm:flex-row gap-3 sm:gap-6 justify-center items-center mb-8 sm:mb-16 px-4">
@@ -408,7 +405,7 @@ export default function FellowshipPage() {
                   onClick={handleApplyClick}
                   className="flex-1 sm:flex-none bg-black text-white hover:bg-gray-800 px-4 sm:px-12 py-2.5 sm:py-5 rounded-lg text-sm sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 min-w-[140px] sm:w-auto"
                 >
-                  Apply for 2026 Fellowship
+                  Explore FYP Mentorship
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 {/* <Button
@@ -422,7 +419,7 @@ export default function FellowshipPage() {
               </div>
 
               <p className="text-center text-xs sm:text-sm text-muted-foreground max-w-3xl mx-auto px-6">
-                Whether you're starting from scratch or already have experience and feel stuck, this fellowship is for you. Already building? Use our 1:1 guidance to level up and target better opportunities.
+                The Fellowship 2026 cohort is underway. If you are building a final-year project, start with practical project guidance and follow Dev Weekends for future mentorship opportunities.
               </p>
 
               {/* Palestine Support Banner */}
@@ -884,7 +881,7 @@ export default function FellowshipPage() {
                       onClick={handleApplyClick}
                       className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 sm:py-4 rounded-lg font-semibold group text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
                     >
-                      Choose This Track
+                      Explore FYP Mentorship
                       <ChevronRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </CardContent>
@@ -1004,14 +1001,13 @@ export default function FellowshipPage() {
               className="mb-6 sm:mb-8 border-primary-foreground text-primary-foreground px-3 sm:px-4 py-1 sm:py-2 rounded-full font-medium text-xs sm:text-sm"
             >
               <Rocket className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-              Join the Fellowship
+              Fellowship 2026 Is Closed
             </Badge>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 tracking-tight">
-              Ready to Get Industry-Ready?
+              Build an FYP Worth Showing
             </h2>
             <p className="text-lg sm:text-xl lg:text-2xl text-primary-foreground/70 mb-12 sm:mb-16 max-w-4xl mx-auto leading-relaxed">
-              Join our aggressive 3-month program and crack big companies this summer. Limited seats available -
-              applications reviewed on rolling basis.
+              Use practical guidance to choose a problem, plan the work, and build a final-year project that goes beyond the final presentation.
             </p>
 
             <div className="mb-12 sm:mb-16">
@@ -1020,7 +1016,7 @@ export default function FellowshipPage() {
                 onClick={handleApplyClick}
                 className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 px-10 sm:px-16 py-4 sm:py-5 rounded-lg text-lg sm:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
               >
-                Apply for Fellowship 2026
+                Explore FYP Mentorship
                 <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
@@ -1029,18 +1025,18 @@ export default function FellowshipPage() {
               {[
                 {
                   icon: <Lightbulb className="h-8 w-8 sm:h-10 sm:w-10" />,
-                  title: "Application",
-                  description: "Submit application with coding background",
+                  title: "Choose a problem",
+                  description: "Find a problem with real users and technical depth",
                 },
                 {
                   icon: <Users className="h-8 w-8 sm:h-10 sm:w-10" />,
-                  title: "Assessment",
-                  description: "Technical assessment and interview",
+                  title: "Plan the work",
+                  description: "Turn your idea into a focused execution plan",
                 },
                 {
                   icon: <Rocket className="h-8 w-8 sm:h-10 sm:w-10" />,
-                  title: "Start Grinding",
-                  description: "Begin your 3-month transformation",
+                  title: "Get guidance",
+                  description: "Follow the next FYP mentorship and submission updates",
                 },
               ].map((step, index) => (
                 <div key={index} className="text-center group">

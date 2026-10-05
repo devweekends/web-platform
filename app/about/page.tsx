@@ -369,10 +369,10 @@ export default function AboutPage() {
               <ArrowRight className="w-4 h-4" />
             </a>
             <Link 
-              href="/fellowship" 
+              href="/fyp-roadshow"
               className="inline-flex items-center gap-2 px-8 py-4 border border-foreground/20 font-semibold text-xs uppercase tracking-[2px] hover:bg-foreground hover:text-background transition-all"
             >
-              Apply for Fellowship
+              Explore FYP Mentorship
             </Link>
           </div>
         </div>
@@ -380,7 +380,5 @@ export default function AboutPage() {
     </div>
   )
 }
-
-
 
 

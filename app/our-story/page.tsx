@@ -129,10 +129,10 @@ export default function OurStoryPage() {
               {/* CTAs */}
               <div className="flex flex-wrap items-center gap-3 mb-12">
                 <Link 
-                  href="/fellowship" 
+                  href="/fyp-roadshow"
                   className="group inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background font-semibold text-xs uppercase tracking-[2px] hover:opacity-90 transition-all"
                 >
-                  Join the Fellowship
+                  Explore FYP Mentorship
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <a 
@@ -1062,17 +1062,17 @@ export default function OurStoryPage() {
 
           <div className="flex flex-wrap justify-center gap-3 mb-14">
             <Link 
-              href="/fellowship" 
+              href="/fyp-roadshow"
               className="group inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background font-semibold text-xs uppercase tracking-[2px] hover:opacity-90 transition-all"
             >
-              Apply for Fellowship
+              Explore FYP Mentorship
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link 
-              href="/mentorship" 
+              href="/fyp-roadshow"
               className="inline-flex items-center gap-2 px-8 py-4 border border-foreground/20 font-semibold text-xs uppercase tracking-[2px] hover:border-foreground hover:bg-foreground hover:text-background transition-all"
             >
-              Apply for Mentorship
+              FYP Project Guidance
             </Link>
           </div>
 
@@ -1244,8 +1244,6 @@ export default function OurStoryPage() {
     </div>
   )
 }
-
-
 
 
 

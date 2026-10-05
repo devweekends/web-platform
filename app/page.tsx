@@ -208,9 +208,15 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="rounded-full">
+                  <Link href="/fyp-roadshow">
+                    Explore FYP Mentorship <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
                 <Button 
                   asChild 
-                  size="lg" 
+                  variant="outline"
+                  size="lg"
                   className="rounded-full"
                   onClick={() => trackEvent.navigation('home', 'sessions')}
                 >

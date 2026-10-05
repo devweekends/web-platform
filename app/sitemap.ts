@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/sessions', changeFrequency: 'daily', priority: 0.9 },
     { path: '/projects', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/mentorship', changeFrequency: 'weekly', priority: 0.8 },
+    { path: '/fyp-roadshow', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/mentor', changeFrequency: 'weekly', priority: 0.7 },
     { path: '/testimonials', changeFrequency: 'weekly', priority: 0.6 },
     { path: '/careers', changeFrequency: 'daily', priority: 0.7 },
@@ -32,4 +33,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: entry.changeFrequency,
     priority: entry.priority,
   }))
-} 
+}

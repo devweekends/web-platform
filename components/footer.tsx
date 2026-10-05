@@ -79,35 +79,35 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Fellowship */}
+          {/* FYP mentorship */}
           <div>
             <h3 className="text-xs font-bold uppercase tracking-[2px] text-background/40 mb-5">
-              Fellowship
+              FYP Mentorship
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/fellowship" className="text-background/70 hover:text-background transition-colors">
-                  Apply Now
+                <Link href="/fyp-roadshow" className="text-background/70 hover:text-background transition-colors">
+                  FYP Roadshow
                 </Link>
               </li>
               <li>
-                <Link href="/our-story#tracks" className="text-background/70 hover:text-background transition-colors">
-                  DSA Track
+                <Link href="/guides/choosing-the-right-project" className="text-background/70 hover:text-background transition-colors">
+                  Project Selection Guide
                 </Link>
               </li>
               <li>
-                <Link href="/our-story#tracks" className="text-background/70 hover:text-background transition-colors">
-                  Engineering Track
+                <Link href="/mentorship" className="text-background/70 hover:text-background transition-colors">
+                  Mentorship
                 </Link>
               </li>
               <li>
-                <Link href="/our-story#tracks" className="text-background/70 hover:text-background transition-colors">
-                  Open Source
-                </Link>
+                <a href="https://discord.gg/Cy7Rgkf4Up" target="_blank" rel="noopener noreferrer" className="text-background/70 hover:text-background transition-colors">
+                  Get Updates on Discord
+                </a>
               </li>
               <li>
-                <Link href="/our-story#fellowship" className="text-background/70 hover:text-background transition-colors">
-                  Certifications
+                <Link href="/blog/fellowship-2026-next-steps" className="text-background/70 hover:text-background transition-colors">
+                  Fellowship 2026 Update
                 </Link>
               </li>
             </ul>
@@ -250,7 +250,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/fellowship" className="text-background/70 hover:text-background transition-colors">
-                  Fellowship
+                  Fellowship 2026 (Closed)
                 </Link>
               </li>
               <li>
@@ -381,4 +381,3 @@ export default function Footer() {
     </footer>
   )
 }
-

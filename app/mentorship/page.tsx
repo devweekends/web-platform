@@ -110,9 +110,7 @@ export default function MentorshipPage() {
   }
 
   const handleApplyClick = () => {
-    window.open(
-      "https://forms.gle/48tZYzJn2zzUQ1EC6","_blank",
-    )
+    window.open("/fyp-roadshow", "_self")
   }
 
   const levels = [
@@ -978,8 +976,7 @@ export default function MentorshipPage() {
               Ready to Get Industry-Ready?
             </h2>
             <p className="text-lg sm:text-xl lg:text-2xl text-primary-foreground/70 mb-12 sm:mb-16 max-w-4xl mx-auto leading-relaxed">
-              Join our comprehensive 3-month mentorship program and crack big companies. Limited seats available -
-              applications reviewed on rolling basis.
+              Build a stronger final-year project with practical project-selection guidance, community feedback, and upcoming mentor opportunities.
             </p>
 
             <div className="mb-12 sm:mb-16">
@@ -988,7 +985,7 @@ export default function MentorshipPage() {
                 onClick={handleApplyClick}
                 className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 px-10 sm:px-16 py-4 sm:py-5 rounded-lg text-lg sm:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
               >
-                Apply for Fellowship 2026
+                Explore FYP Mentorship
                 <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
@@ -997,18 +994,18 @@ export default function MentorshipPage() {
               {[
                 {
                   icon: <Lightbulb className="h-8 w-8 sm:h-10 sm:w-10" />,
-                  title: "Application",
-                  description: "Submit application with coding background",
+                  title: "Choose a problem",
+                  description: "Find a project with real users and technical depth",
                 },
                 {
                   icon: <Users className="h-8 w-8 sm:h-10 sm:w-10" />,
-                  title: "Assessment",
-                  description: "Technical assessment and interview",
+                  title: "Plan the work",
+                  description: "Turn your idea into a focused execution plan",
                 },
                 {
                   icon: <Rocket className="h-8 w-8 sm:h-10 sm:w-10" />,
-                  title: "Start Learning",
-                  description: "Begin your 3-month transformation",
+                  title: "Get guidance",
+                  description: "Follow upcoming FYP mentorship updates",
                 },
               ].map((step, index) => (
                 <div key={index} className="text-center group">
