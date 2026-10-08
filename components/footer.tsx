@@ -91,6 +91,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeJTkpAM6aTPpS6QcCO2iuB4VmKx537T84KBGlquqePwuuTfg/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-background/70 hover:text-background transition-colors"
+                >
+                  Submit Your FYP Idea
+                </a>
+              </li>
+              <li>
                 <Link href="/guides/choosing-the-right-project" className="text-background/70 hover:text-background transition-colors">
                   Project Selection Guide
                 </Link>

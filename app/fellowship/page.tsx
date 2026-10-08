@@ -399,6 +399,19 @@ export default function FellowshipPage() {
                 Explore FYP project guidance and upcoming mentorship opportunities with Dev Weekends.
               </p>
 
+              <div className="mx-auto mb-8 max-w-3xl border border-border bg-muted/40 p-5 text-left text-sm leading-relaxed text-muted-foreground sm:p-6">
+                <p>
+                  Fellowship applications will open next summer. We are always open to passionate talent who can demonstrate deep interest in technology and a strong willingness to get things done.
+                </p>
+                <p className="mt-3">
+                  We review exceptional cases at{" "}
+                  <a href="mailto:info@devweekends.com" className="font-semibold text-foreground underline underline-offset-4 hover:text-primary">
+                    info@devweekends.com
+                  </a>
+                  .
+                </p>
+              </div>
+
               <div className="flex flex-row flex-wrap sm:flex-row gap-3 sm:gap-6 justify-center items-center mb-8 sm:mb-16 px-4">
                 <Button
                   size="lg"

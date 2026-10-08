@@ -240,7 +240,7 @@ export default function DSOCPage() {
             <div className="inline-block mb-8">
               <div className="neo-brutal-badge bg-[var(--dsoc-primary)] text-white px-6 py-2 text-base font-bold">
                 <Zap className="w-5 h-5 mr-2" />
-                DSOC 2026 — Applications Open May 2026
+                DSOC 2026 — Applications Closed
               </div>
             </div>
             
@@ -277,6 +277,19 @@ export default function DSOCPage() {
                 Learn, build, and grow with the community. 🚀
               </p>
             </div>
+
+            <div className="mx-auto mb-8 max-w-3xl border-4 border-[var(--dsoc-dark)] bg-white p-5 text-left text-base font-semibold leading-relaxed text-[var(--dsoc-dark)] shadow-[6px_6px_0_var(--dsoc-dark)] sm:p-6">
+              <p>
+                DSOC applications will open next summer. We are always open to passionate talent who can demonstrate deep interest in technology and a strong willingness to get things done.
+              </p>
+              <p className="mt-3">
+                We review exceptional cases at{" "}
+                <a href="mailto:info@devweekends.com" className="underline decoration-2 underline-offset-4 hover:text-[var(--dsoc-primary)]">
+                  info@devweekends.com
+                </a>
+                .
+              </p>
+            </div>
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -284,10 +297,10 @@ export default function DSOCPage() {
                 <BookOpen className="w-5 h-5 mr-2" />
                 Explore Projects
               </Link>
-              <Link href="/dsoc/register/mentee" className="neo-brutal-btn neo-brutal-btn-primary text-lg">
+              <a href="mailto:info@devweekends.com?subject=DSOC%20Exceptional%20Case" className="neo-brutal-btn neo-brutal-btn-primary text-lg">
                 <Rocket className="w-5 h-5 mr-2" />
-                Apply as Mentee
-              </Link>
+                Contact Us
+              </a>
               {/* <Link href="/dsoc/register/mentor" className="neo-brutal-btn neo-brutal-btn-secondary text-lg">
                 <Users className="w-5 h-5 mr-2" />
                 Become a Mentor
@@ -656,9 +669,9 @@ export default function DSOCPage() {
                   </li>
                 ))}
               </ol>
-              <Link href="/dsoc/register/mentee" className="neo-brutal-btn neo-brutal-btn-primary w-full mt-6">
-                Apply as Mentee
-              </Link>
+              <a href="mailto:info@devweekends.com?subject=DSOC%20Exceptional%20Case" className="neo-brutal-btn neo-brutal-btn-primary w-full mt-6">
+                Contact Us About an Exceptional Case
+              </a>
             </div>
             
             {/* For Mentors */}
@@ -686,9 +699,9 @@ export default function DSOCPage() {
                   </li>
                 ))}
               </ol>
-              <Link href="/dsoc/register/mentor" className="neo-brutal-btn neo-brutal-btn-secondary w-full mt-6">
-                Become a Mentor
-              </Link>
+              <a href="mailto:info@devweekends.com?subject=DSOC%20Mentor%20Interest" className="neo-brutal-btn neo-brutal-btn-secondary w-full mt-6">
+                Contact Us About Mentoring
+              </a>
             </div>
           </div>
         </div>
@@ -741,14 +754,13 @@ export default function DSOCPage() {
             READY TO START YOUR JOURNEY?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Join hundreds of developers who&apos;ve launched their careers through DSOC. 
-            Applications for Season 2025 open January 15th!
+            DSOC 2026 applications are closed. The next application cycle opens next summer.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/dsoc/register/mentee" className="neo-brutal-btn neo-brutal-btn-accent text-lg">
+            <a href="mailto:info@devweekends.com?subject=DSOC%20Exceptional%20Case" className="neo-brutal-btn neo-brutal-btn-accent text-lg">
               <Rocket className="w-5 h-5 mr-2" />
-              Apply Now
-            </Link>
+              Contact Us
+            </a>
             <a 
               href="https://discord.com/invite/Cy7Rgkf4Up" 
               target="_blank" 
@@ -769,12 +781,9 @@ export default function DSOCPage() {
             <Link href="/dsoc/projects" className="font-bold hover:text-[var(--dsoc-primary)] transition-colors">
               Projects
             </Link>
-            <Link href="/dsoc/register/mentee" className="font-bold hover:text-[var(--dsoc-primary)] transition-colors">
-              Apply as Mentee
-            </Link>
-            <Link href="/dsoc/register/mentor" className="font-bold hover:text-[var(--dsoc-primary)] transition-colors">
-              Become a Mentor
-            </Link>
+            <a href="mailto:info@devweekends.com?subject=DSOC%20Exceptional%20Case" className="font-bold hover:text-[var(--dsoc-primary)] transition-colors">
+              Exceptional Cases
+            </a>
             <Link href="/dsoc/login" className="font-bold hover:text-[var(--dsoc-primary)] transition-colors">
               Login
             </Link>

@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 }
 
 const discordUrl = "https://discord.gg/Cy7Rgkf4Up"
+const fypMentorshipFormUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeJTkpAM6aTPpS6QcCO2iuB4VmKx537T84KBGlquqePwuuTfg/viewform"
 
 export default function FYPRoadshowPage() {
   return (
@@ -28,12 +30,12 @@ export default function FYPRoadshowPage() {
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <a
-                href={discordUrl}
+                href={fypMentorshipFormUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-foreground px-6 py-3 text-xs font-semibold uppercase tracking-[1.5px] text-background transition-opacity hover:opacity-85"
               >
-                Get FYP updates on Discord <ArrowRight className="h-4 w-4" />
+                Submit your FYP idea <ArrowRight className="h-4 w-4" />
               </a>
               <Link
                 href="/guides/choosing-the-right-project"
@@ -41,6 +43,14 @@ export default function FYPRoadshowPage() {
               >
                 Read the project guide
               </Link>
+              <a
+                href={discordUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-foreground/20 px-6 py-3 text-xs font-semibold uppercase tracking-[1.5px] transition-colors hover:bg-foreground hover:text-background"
+              >
+                Get updates on Discord
+              </a>
             </div>
           </div>
         </div>
@@ -90,8 +100,8 @@ export default function FYPRoadshowPage() {
             <ul className="space-y-4 text-sm leading-relaxed text-background/75">
               {[
                 "Use the project-selection guide to test your idea before building.",
-                "Join Discord to receive the next project-submission and roadshow announcements.",
-                "Shortlisted projects will be considered for focused mentor guidance.",
+                "Submit your FYP idea or project for consideration.",
+                "Strong submissions may be shortlisted for focused mentor guidance.",
               ].map((item) => (
                 <li key={item} className="flex gap-3">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-background" />
@@ -100,12 +110,12 @@ export default function FYPRoadshowPage() {
               ))}
             </ul>
             <a
-              href={discordUrl}
+              href={fypMentorshipFormUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex items-center gap-2 border border-background/30 px-6 py-3 text-xs font-semibold uppercase tracking-[1.5px] transition-colors hover:bg-background hover:text-foreground"
             >
-              Join the community <ArrowRight className="h-4 w-4" />
+              Submit your FYP idea <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </div>
