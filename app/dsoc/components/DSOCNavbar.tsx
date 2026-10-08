@@ -94,9 +94,9 @@ export default function DSOCNavbar() {
     : '/dsoc/mentee/dashboard';
 
   return (
-    <>
+    <header className="fixed top-0 left-0 right-0 z-60">
       <HeadlineBar />
-      <nav className="dsoc-navbar fixed top-10 left-0 right-0 z-60">
+      <nav className="dsoc-navbar">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -108,7 +108,7 @@ export default function DSOCNavbar() {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden xl:flex items-center gap-1">
             {/* Explore Dropdown */}
             <div ref={exploreRef} className="relative">
               <button
@@ -226,7 +226,7 @@ export default function DSOCNavbar() {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-3">
             <a 
               href="/our-story" 
               className="dsoc-nav-link" 
@@ -265,7 +265,7 @@ export default function DSOCNavbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-[var(--dsoc-dark)]"
+            className="xl:hidden p-2 text-[var(--dsoc-dark)]"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -273,7 +273,7 @@ export default function DSOCNavbar() {
 
           {/* Mobile Menu */}
           {isOpen && (
-            <div className="md:hidden dsoc-mobile-menu">
+            <div className="xl:hidden dsoc-mobile-menu">
               <a href="/our-story" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
                 <Home className="w-5 h-5" /> Dev Weekends
               </a>
@@ -317,6 +317,6 @@ export default function DSOCNavbar() {
           )}
         </div>
       </nav>
-    </>
+    </header>
   );
 }
