@@ -261,7 +261,6 @@
 .dsoc-hero-new {
   position: relative;
   background: var(--dsoc-light);
-  padding-top: 64px; /* Account for fixed navbar */
 }
 
 .dsoc-hero-grid {

@@ -94,9 +94,9 @@ export default function DSOCNavbar() {
     : '/dsoc/mentee/dashboard';
 
   return (
-    <>
+    <header className="sticky top-0 z-60">
       <HeadlineBar />
-      <nav className="dsoc-navbar fixed top-10 left-0 right-0 z-60">
+      <nav className="dsoc-navbar">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -317,6 +317,6 @@ export default function DSOCNavbar() {
           )}
         </div>
       </nav>
-    </>
+    </header>
   );
 }
