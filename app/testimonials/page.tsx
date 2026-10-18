@@ -1,16 +1,37 @@
-import { Suspense } from 'react';
 import connectDB from '@/lib/db';
+import connectImpactDB from '@/lib/impact-db';
 import { Testimonial } from '@/models/Testimonial';
-import { SubmitTestimonialModal } from '@/components/submit-testimonial-modal';
-import { TestimonialCard } from '@/components/testimonial-card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getImpactStoryModel } from '@/models/ImpactStory';
+import { SubmitImpactStoryModal } from '@/components/submit-impact-story-modal';
+import { TestimonialMarquee } from '@/components/testimonial-marquee';
 
 export const dynamic = 'force-dynamic';
 
 async function getTestimonials() {
   await connectDB();
-  const testimonials = await Testimonial.find({ isApproved: true }).sort({ createdAt: -1 });
+  const testimonials = await Testimonial.find({ isApproved: true })
+    .select('name role before content cta videoUrl imageUrl type createdAt')
+    .sort({ createdAt: -1 });
   return JSON.parse(JSON.stringify(testimonials));
+}
+
+async function getPublicImpactStories() {
+  try {
+    const connection = await connectImpactDB();
+    const ImpactStory = getImpactStoryModel(connection);
+    const stories = await ImpactStory.find({
+      isApproved: true,
+      visibility: { $in: ['public', 'featured'] },
+    })
+      .select('name role program cohort sponsor before content cta videoUrl imageUrl type visibility featuredRank createdAt')
+      .sort({ featuredRank: 1, createdAt: -1 })
+      .lean();
+
+    return JSON.parse(JSON.stringify(stories));
+  } catch (error) {
+    console.error('Unable to load public impact stories:', error);
+    return [];
+  }
 }
 
 export const metadata = {
@@ -19,7 +40,13 @@ export const metadata = {
 };
 
 export default async function TestimonialsPage() {
-  const testimonials = await getTestimonials();
+  const [legacyTestimonials, impactStories] = await Promise.all([
+    getTestimonials(),
+    getPublicImpactStories(),
+  ]);
+  const testimonials = [...legacyTestimonials, ...impactStories].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
   const videoTestimonials = testimonials.filter((t: any) => t.type === 'video');
   const textTestimonials = testimonials.filter((t: any) => t.type === 'text');
 
@@ -32,7 +59,7 @@ export default async function TestimonialsPage() {
             See what our Mentees, Fellows, and Mentors have to say about their journey.
           </p>
         </div>
-        <SubmitTestimonialModal />
+        <SubmitImpactStoryModal />
       </div>
 
       {testimonials.length === 0 ? (
@@ -40,52 +67,31 @@ export default async function TestimonialsPage() {
           <p className="text-xl">No stories shared yet. Be the first to share yours!</p>
         </div>
       ) : (
-        <Tabs defaultValue="all" className="w-full space-y-8">
-          <div className="flex justify-center md:justify-start">
-             <TabsList>
-                <TabsTrigger value="all">All Stories</TabsTrigger>
-                <TabsTrigger value="video">Video Testimonials</TabsTrigger>
-                <TabsTrigger value="text">Written Stories</TabsTrigger>
-              </TabsList>
-          </div>
+        <div className="space-y-12">
+          <section className="space-y-4">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Video stories</h2>
+              <p className="text-sm text-muted-foreground">Hear directly from our community.</p>
+            </div>
+            <TestimonialMarquee
+              stories={videoTestimonials}
+              label="Video testimonials"
+              emptyMessage="No video testimonials yet."
+            />
+          </section>
 
-          <TabsContent value="all" className="space-y-8">
-             {/* Featured / Mixed Grid */}
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {testimonials.map((t: any) => (
-                    <TestimonialCard key={t._id} testimonial={t} />
-                ))}
-             </div>
-          </TabsContent>
-
-          <TabsContent value="video">
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {videoTestimonials.length > 0 ? (
-                    videoTestimonials.map((t: any) => (
-                        <TestimonialCard key={t._id} testimonial={t} />
-                    ))
-                ) : (
-                    <div className="col-span-full text-center py-10 text-muted-foreground">
-                        No video testimonials yet.
-                    </div>
-                )}
-             </div>
-          </TabsContent>
-
-          <TabsContent value="text">
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {textTestimonials.length > 0 ? (
-                    textTestimonials.map((t: any) => (
-                        <TestimonialCard key={t._id} testimonial={t} />
-                    ))
-                ) : (
-                     <div className="col-span-full text-center py-10 text-muted-foreground">
-                        No written stories yet.
-                    </div>
-                )}
-             </div>
-          </TabsContent>
-        </Tabs>
+          <section className="space-y-4">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Written stories</h2>
+              <p className="text-sm text-muted-foreground">Read about the journeys behind the work.</p>
+            </div>
+            <TestimonialMarquee
+              stories={textTestimonials}
+              label="Written testimonials"
+              emptyMessage="No written stories yet."
+            />
+          </section>
+        </div>
       )}
     </div>
   );

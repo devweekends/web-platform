@@ -18,6 +18,7 @@ import {
   Briefcase,
   Rocket,
   MessageSquareQuote,
+  ChartNoAxesCombined,
   FileText // <-- added for Blog
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -35,6 +36,8 @@ const menuItems = [
   { title: 'Resources', href: '/admin/dashboard/resources', icon: <BookOpen className="w-5 h-5" /> },
   { title: 'Projects', href: '/admin/dashboard/projects', icon: <Rocket className="w-5 h-5" /> },
   { title: 'Testimonials', href: '/admin/dashboard/testimonials', icon: <MessageSquareQuote className="w-5 h-5" /> },
+  { title: 'Impact Stories', href: '/admin/dashboard/impact-stories', icon: <MessageSquareQuote className="w-5 h-5" /> },
+  { title: 'Fellowship Impact', href: '/admin/dashboard/fellowship-impact', icon: <ChartNoAxesCombined className="w-5 h-5" /> },
 
   //  New Blog Route
   { title: 'News & Blog', href: '/blog', icon: <FileText className="w-5 h-5" /> },

@@ -6,7 +6,9 @@ import { Testimonial } from '@/models/Testimonial';
 export async function GET() {
   try {
     await connectDB();
-    const testimonials = await Testimonial.find({ isApproved: true }).sort({ createdAt: -1 });
+    const testimonials = await Testimonial.find({ isApproved: true })
+      .select('name role before content cta videoUrl imageUrl type createdAt')
+      .sort({ createdAt: -1 });
     return NextResponse.json(testimonials);
   } catch (error) {
     console.error('Error fetching testimonials:', error);
