@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/fyp-roadshow', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/mentor', changeFrequency: 'weekly', priority: 0.7 },
     { path: '/testimonials', changeFrequency: 'weekly', priority: 0.6 },
+    { path: '/partners', changeFrequency: 'monthly', priority: 0.6 },
     { path: '/careers', changeFrequency: 'daily', priority: 0.7 },
     { path: '/ambassadors', changeFrequency: 'weekly', priority: 0.7 },
     { path: '/ambassador-program', changeFrequency: 'weekly', priority: 0.7 },

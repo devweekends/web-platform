@@ -26,6 +26,7 @@ export default function Navbar() {
   const communityOptions = [
     { href: "/projects", label: "Projects" },
     { href: "/testimonials", label: "Testimonials" },
+    { href: "/partners", label: "Partners" },
     { href: "/brand", label: "Brand Kit" },
   ];
 
@@ -55,7 +56,7 @@ export default function Navbar() {
               <button
                 onClick={() => setIsCommunityOpen(!isCommunityOpen)}
                 className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1 ${
-                  isActive('/projects') || isActive('/testimonials') || isActive('/brand')
+                  isActive('/projects') || isActive('/testimonials') || isActive('/partners') || isActive('/brand')
                     ? "text-primary"
                     : "text-muted-foreground"
                 }`}
