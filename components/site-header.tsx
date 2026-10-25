@@ -7,9 +7,10 @@ import { HeadlineBar } from "@/components/headline-bar"
 export function SiteHeader() {
   const pathname = usePathname()
   const isDsocRoute = pathname?.startsWith("/dsoc")
+  const isDwosiRoute = pathname?.startsWith("/dwosi")
   const isLinksRoute = pathname === "/links"
 
-  if (isDsocRoute || isLinksRoute) {
+  if (isDsocRoute || isDwosiRoute || isLinksRoute) {
     return null
   }
 

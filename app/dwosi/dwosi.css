@@ -1,0 +1,294 @@
+/*
+ * DWOSI design tokens.
+ *
+ * Scoped to pages that render [data-dwosi] so the rest of the site keeps its
+ * own theme. `html:has()` carries the tokens up to <html>, which lets the page
+ * background and portalled content (dropdown menus) use them too.
+ *
+ * Brand green is reserved for the primary action and links. Everything else
+ * uses neutrals.
+ *
+ * DWOSI is dark by default and ignores the site-wide theme. The DWOSI toggle
+ * sets html[data-dwosi-theme="light"] (see theme.ts) to switch to light.
+ */
+[data-dwosi],
+html:has([data-dwosi]) {
+  --background: 228 16% 5%;
+  --foreground: 220 14% 96%;
+  --card: 228 14% 7.5%;
+  --card-foreground: 220 14% 96%;
+  --popover: 228 14% 8%;
+  --popover-foreground: 220 14% 96%;
+  --primary: 220 14% 96%;
+  --primary-foreground: 228 16% 6%;
+  --secondary: 228 12% 12%;
+  --secondary-foreground: 220 14% 96%;
+  --muted: 228 12% 9%;
+  --muted-foreground: 220 9% 64%;
+  --accent: 228 12% 13%;
+  --accent-foreground: 220 14% 96%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 228 10% 16%;
+  --input: 228 10% 20%;
+  --ring: 158 72% 50%;
+  --radius: 0.75rem;
+  --brand: 158 72% 50%;
+  --brand-foreground: 228 16% 6%;
+  --shadow-color: 0 0% 0%;
+
+  --dw-shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.05);
+  --dw-shadow-md: 0 1px 2px hsl(var(--shadow-color) / 0.04), 0 12px 32px -16px hsl(var(--shadow-color) / 0.18);
+  --dw-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html[data-dwosi-theme="light"]:has([data-dwosi]),
+html[data-dwosi-theme="light"] [data-dwosi] {
+  --background: 0 0% 100%;
+  --foreground: 224 24% 9%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 24% 9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 24% 9%;
+  --primary: 224 24% 9%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 16% 96%;
+  --secondary-foreground: 224 24% 9%;
+  --muted: 220 16% 97%;
+  --muted-foreground: 220 9% 40%;
+  --accent: 220 16% 95%;
+  --accent-foreground: 224 24% 9%;
+  --border: 220 14% 91%;
+  --input: 220 14% 87%;
+  --ring: 158 84% 28%;
+  --brand: 158 84% 28%;
+  --brand-foreground: 0 0% 100%;
+  --shadow-color: 224 24% 9%;
+}
+
+/* Native controls and scrollbars follow the DWOSI theme, not the site theme */
+html:has([data-dwosi]) {
+  color-scheme: dark !important;
+  scroll-behavior: smooth;
+}
+
+html[data-dwosi-theme="light"]:has([data-dwosi]) {
+  color-scheme: light !important;
+}
+
+[data-dwosi] ::selection {
+  background: hsl(var(--brand) / 0.2);
+}
+
+/* ---------- Type scale ---------- */
+
+.dw-display {
+  font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.dw-title {
+  font-size: clamp(1.875rem, 1.5rem + 1.2vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.dw-heading {
+  font-size: 1rem;
+  line-height: 1.4;
+  letter-spacing: -0.011em;
+  font-weight: 600;
+}
+
+.dw-lead {
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.dw-body {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.dw-label {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.dw-stat {
+  font-size: clamp(2rem, 1.6rem + 1.2vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Surfaces ---------- */
+
+.dw-header {
+  background: hsl(var(--background) / 0.8);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+}
+
+.dw-shadow-sm {
+  box-shadow: var(--dw-shadow-sm);
+}
+
+.dw-shadow-md {
+  box-shadow: var(--dw-shadow-md);
+}
+
+/* Thin neutral outline so screenshots never blend into the background */
+.dw-img-outline {
+  outline: 1px solid hsl(var(--foreground) / 0.08);
+  outline-offset: -1px;
+}
+
+/* ---------- Interaction ---------- */
+
+[data-dwosi] :is(a, button, summary, [tabindex]):focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Expands small controls to a 44x44px hit area without changing their size */
+.dw-hit {
+  position: relative;
+}
+
+.dw-hit::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
+}
+
+/* Stacked text links get full-height rows on touch screens */
+@media (pointer: coarse) {
+  .dw-touch {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+.dw-arrow {
+  transition: transform 150ms var(--dw-ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dw-arrow-link:hover .dw-arrow {
+    transform: translateX(2px);
+  }
+
+  .dw-arrow-link:hover .dw-arrow-diagonal {
+    transform: translate(1px, -1px);
+  }
+}
+
+/* ---------- Motion ---------- */
+
+/* Hero entrance, first load only */
+.dw-stagger > * {
+  animation: dw-enter 300ms var(--dw-ease-out) both;
+}
+
+.dw-stagger > :nth-child(3) {
+  animation-delay: 100ms;
+}
+
+.dw-stagger > :nth-child(4) {
+  animation-delay: 200ms;
+}
+
+@keyframes dw-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Dropdown menu grows from its trigger */
+.dw-menu {
+  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
+}
+
+.dw-menu[data-state="open"] {
+  animation: dw-pop-in 180ms var(--dw-ease-out);
+}
+
+.dw-menu[data-state="closed"] {
+  animation: dw-pop-out 120ms var(--dw-ease-out);
+}
+
+@keyframes dw-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes dw-pop-out {
+  to {
+    opacity: 0;
+    transform: translateY(-2px) scale(0.98);
+  }
+}
+
+/* FAQ: content fades in instead of animating height */
+.dw-faq [role="region"] {
+  animation: none !important;
+}
+
+.dw-faq [role="region"][data-state="open"] > div {
+  animation: dw-fade-in 200ms var(--dw-ease-out);
+}
+
+.dw-faq button[data-state] > svg {
+  transition: transform 200ms var(--dw-ease-out);
+}
+
+@keyframes dw-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Theme toggle shows the icon for the current theme */
+.dwosi-icon-light {
+  display: none;
+}
+
+html[data-dwosi-theme="light"] .dwosi-icon-light {
+  display: block;
+}
+
+html[data-dwosi-theme="light"] .dwosi-icon-dark {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has([data-dwosi]) {
+    scroll-behavior: auto;
+  }
+
+  [data-dwosi] *,
+  [data-dwosi] *::before,
+  [data-dwosi] *::after,
+  .dw-menu {
+    animation: none !important;
+    transition: none !important;
+  }
+}
