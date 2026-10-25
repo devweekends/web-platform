@@ -38,8 +38,8 @@ export default function Footer() {
     },
   ]
 
-  // /links is a standalone Linktree-style page without site chrome
-  if (pathname === '/links') {
+  // /links and /dwosi are standalone pages with their own chrome
+  if (pathname === '/links' || pathname?.startsWith('/dwosi')) {
     return null
   }
 

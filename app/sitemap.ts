@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/network', changeFrequency: 'weekly', priority: 0.6 },
     { path: '/mindmaster', changeFrequency: 'weekly', priority: 0.6 },
     { path: '/weekend-tech-grind', changeFrequency: 'weekly', priority: 0.6 },
+    { path: '/dwosi', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/dsoc', changeFrequency: 'daily', priority: 0.8 },
     { path: '/dsoc/projects', changeFrequency: 'daily', priority: 0.7 },
     { path: '/dsoc/register', changeFrequency: 'daily', priority: 0.7 },

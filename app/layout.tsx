@@ -7,6 +7,7 @@ import Footer from "@/components/footer"
 import Script from 'next/script'
 import { Analytics } from "@/components/analytics"
 import { SiteHeader } from "@/components/site-header"
+import { dwosiThemeScript } from "@/app/dwosi/theme"
 
 const geist = Geist({ subsets: ["latin"] })
 
@@ -139,6 +140,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        {/* DWOSI pages keep their own theme; apply a saved choice before paint */}
+        <script dangerouslySetInnerHTML={{ __html: dwosiThemeScript }} />
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
