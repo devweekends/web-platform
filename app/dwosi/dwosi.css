@@ -5,65 +5,75 @@
  * own theme. `html:has()` carries the tokens up to <html>, which lets the page
  * background and portalled content (dropdown menus) use them too.
  *
- * Brand green is reserved for the primary action and links. Everything else
- * uses neutrals.
+ * Dev Weekends orange marks the primary action, links and section labels.
+ * Everything else uses warm neutrals.
  *
  * DWOSI is dark by default and ignores the site-wide theme. The DWOSI toggle
  * sets html[data-dwosi-theme="light"] (see theme.ts) to switch to light.
+ * `.dw-light` and `.dw-dark` pin a band or card to one theme either way.
  */
 [data-dwosi],
-html:has([data-dwosi]) {
-  --background: 228 16% 5%;
-  --foreground: 220 14% 96%;
-  --card: 228 14% 7.5%;
-  --card-foreground: 220 14% 96%;
-  --popover: 228 14% 8%;
-  --popover-foreground: 220 14% 96%;
-  --primary: 220 14% 96%;
-  --primary-foreground: 228 16% 6%;
-  --secondary: 228 12% 12%;
-  --secondary-foreground: 220 14% 96%;
-  --muted: 228 12% 9%;
-  --muted-foreground: 220 9% 64%;
-  --accent: 228 12% 13%;
-  --accent-foreground: 220 14% 96%;
+html:has([data-dwosi]),
+[data-dwosi] .dw-dark {
+  --background: 220 6% 7%;
+  --foreground: 45 14% 94%;
+  --card: 220 5% 9.5%;
+  --card-foreground: 45 14% 94%;
+  --popover: 220 5% 10%;
+  --popover-foreground: 45 14% 94%;
+  --primary: 45 14% 94%;
+  --primary-foreground: 220 6% 7%;
+  --secondary: 220 4% 13%;
+  --secondary-foreground: 45 14% 94%;
+  --muted: 220 5% 10.5%;
+  --muted-foreground: 40 4% 62%;
+  --accent: 220 4% 14%;
+  --accent-foreground: 45 14% 94%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-  --border: 228 10% 16%;
-  --input: 228 10% 20%;
-  --ring: 158 72% 50%;
-  --radius: 0.75rem;
-  --brand: 158 72% 50%;
-  --brand-foreground: 228 16% 6%;
-  --shadow-color: 0 0% 0%;
-
-  --dw-shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.05);
-  --dw-shadow-md: 0 1px 2px hsl(var(--shadow-color) / 0.04), 0 12px 32px -16px hsl(var(--shadow-color) / 0.18);
+  --border: 220 4% 16%;
+  --input: 220 4% 22%;
+  --ring: 16 100% 60%;
+  --radius: 0.5rem;
+  /* Dev Weekends orange, shared with DSOC (#FF6B35) */
+  --brand: 16 100% 60%;
+  --brand-foreground: 220 6% 7%;
+  /* Deeper orange for buttons and badges so white text passes WCAG AA (4.5:1) */
+  --cta: 16 90% 44%;
+  --cta-foreground: 0 0% 100%;
   --dw-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 html[data-dwosi-theme="light"]:has([data-dwosi]),
-html[data-dwosi-theme="light"] [data-dwosi] {
-  --background: 0 0% 100%;
-  --foreground: 224 24% 9%;
+html[data-dwosi-theme="light"] [data-dwosi],
+[data-dwosi] .dw-light {
+  --background: 45 14% 94%;
+  --foreground: 220 6% 7%;
   --card: 0 0% 100%;
-  --card-foreground: 224 24% 9%;
+  --card-foreground: 220 6% 7%;
   --popover: 0 0% 100%;
-  --popover-foreground: 224 24% 9%;
-  --primary: 224 24% 9%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 220 16% 96%;
-  --secondary-foreground: 224 24% 9%;
-  --muted: 220 16% 97%;
-  --muted-foreground: 220 9% 40%;
-  --accent: 220 16% 95%;
-  --accent-foreground: 224 24% 9%;
-  --border: 220 14% 91%;
-  --input: 220 14% 87%;
-  --ring: 158 84% 28%;
-  --brand: 158 84% 28%;
+  --popover-foreground: 220 6% 7%;
+  --primary: 220 6% 7%;
+  --primary-foreground: 45 14% 94%;
+  --secondary: 45 10% 90%;
+  --secondary-foreground: 220 6% 7%;
+  --muted: 45 12% 91%;
+  --muted-foreground: 40 5% 36%;
+  --accent: 45 10% 89%;
+  --accent-foreground: 220 6% 7%;
+  --border: 40 8% 84%;
+  --input: 40 8% 78%;
+  /* Darker orange so links and labels stay readable on the light background */
+  --ring: 16 85% 40%;
+  --brand: 16 85% 40%;
   --brand-foreground: 0 0% 100%;
-  --shadow-color: 224 24% 9%;
+  --cta: 16 85% 40%;
+  --cta-foreground: 0 0% 100%;
+}
+
+/* Text color is inherited as a computed value, so pinned surfaces set it again */
+[data-dwosi] :is(.dw-light, .dw-dark) {
+  color: hsl(var(--foreground));
 }
 
 /* Native controls and scrollbars follow the DWOSI theme, not the site theme */
@@ -83,18 +93,19 @@ html[data-dwosi-theme="light"]:has([data-dwosi]) {
 /* ---------- Type scale ---------- */
 
 .dw-display {
-  font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.045em;
-  font-weight: 600;
+  /* Scales with the viewport so the hero title stays on two lines from tablet up */
+  font-size: clamp(2.75rem, 6.2vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+  font-weight: 650;
   text-wrap: balance;
 }
 
 .dw-title {
-  font-size: clamp(1.875rem, 1.5rem + 1.2vw, 2.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.035em;
-  font-weight: 600;
+  font-size: clamp(2rem, 1.2rem + 2.4vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  font-weight: 650;
   text-wrap: balance;
 }
 
@@ -123,11 +134,19 @@ html[data-dwosi-theme="light"]:has([data-dwosi]) {
   line-height: 1.5;
 }
 
+.dw-wordmark {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
 .dw-stat {
-  font-size: clamp(2rem, 1.6rem + 1.2vw, 2.5rem);
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
   line-height: 1;
-  letter-spacing: -0.035em;
-  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
@@ -137,20 +156,6 @@ html[data-dwosi-theme="light"]:has([data-dwosi]) {
   background: hsl(var(--background) / 0.8);
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
-}
-
-.dw-shadow-sm {
-  box-shadow: var(--dw-shadow-sm);
-}
-
-.dw-shadow-md {
-  box-shadow: var(--dw-shadow-md);
-}
-
-/* Thin neutral outline so screenshots never blend into the background */
-.dw-img-outline {
-  outline: 1px solid hsl(var(--foreground) / 0.08);
-  outline-offset: -1px;
 }
 
 /* ---------- Interaction ---------- */
@@ -191,10 +196,6 @@ html[data-dwosi-theme="light"]:has([data-dwosi]) {
 @media (hover: hover) and (pointer: fine) {
   .dw-arrow-link:hover .dw-arrow {
     transform: translateX(2px);
-  }
-
-  .dw-arrow-link:hover .dw-arrow-diagonal {
-    transform: translate(1px, -1px);
   }
 }
 
@@ -244,25 +245,6 @@ html[data-dwosi-theme="light"]:has([data-dwosi]) {
   to {
     opacity: 0;
     transform: translateY(-2px) scale(0.98);
-  }
-}
-
-/* FAQ: content fades in instead of animating height */
-.dw-faq [role="region"] {
-  animation: none !important;
-}
-
-.dw-faq [role="region"][data-state="open"] > div {
-  animation: dw-fade-in 200ms var(--dw-ease-out);
-}
-
-.dw-faq button[data-state] > svg {
-  transition: transform 200ms var(--dw-ease-out);
-}
-
-@keyframes dw-fade-in {
-  from {
-    opacity: 0;
   }
 }
 

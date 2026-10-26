@@ -32,23 +32,13 @@ module.exports = {
           DEFAULT: "hsl(var(--brand) / <alpha-value>)",
           foreground: "hsl(var(--brand-foreground) / <alpha-value>)",
         },
+        cta: {
+          DEFAULT: "hsl(var(--cta) / <alpha-value>)",
+          foreground: "hsl(var(--cta-foreground) / <alpha-value>)",
+        },
       },
       borderRadius: {
         DEFAULT: "var(--radius)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },

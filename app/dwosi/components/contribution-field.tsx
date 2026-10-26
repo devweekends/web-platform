@@ -8,22 +8,28 @@ import { DWOSI_THEME_ATTR } from "../theme"
 /**
  * A living, pixel-art contribution graph drawn on a canvas. Cells "commit"
  * at random and fade out, and light up under the cursor on precise pointers.
- * Quiet behind the content (the `focus` ellipse), pauses when off-screen and
- * draws a single static frame for people who prefer reduced motion.
+ *
+ * - "background" fills a section behind its content, stays quiet inside the
+ *   `focus` ellipse and fades at the edges.
+ * - "panel" fills a box like a GitHub contribution graph: seven rows, one per
+ *   day of the week, revealed left to right like time passing.
+ *
+ * Pauses when off-screen and draws a single still frame for reduced motion.
  */
 
 interface ContributionFieldProps {
   className?: string
-  /** Quiet area behind the content, as fractions of the canvas size */
+  mode?: "background" | "panel"
+  /** Quiet area behind the content, as fractions of the canvas size (background mode) */
   focus?: { x: number; y: number; rx: number; ry: number }
-  /** Fade the top edge too (the bottom edge always fades) */
+  /** Fade the top edge too; the bottom edge always fades (background mode) */
   fadeTop?: boolean
 }
 
-const CELL = 10
-const GAP = 4
-const PITCH = CELL + GAP
-const COMMITS_PER_CELL_PER_SECOND = 0.01
+const BACKGROUND_CELL = 10
+const BACKGROUND_GAP = 4
+const PANEL_ROWS = 7
+const PANEL_GAP = 6
 const DECAY_SECONDS = 1.4
 const FRAME_MS = 1000 / 30
 
@@ -44,6 +50,7 @@ function seededRandom(seed: number) {
 
 export function ContributionField({
   className,
+  mode = "background",
   focus = { x: 0.5, y: 0.45, rx: 0.34, ry: 0.42 },
   fadeTop = false,
 }: ContributionFieldProps) {
@@ -56,14 +63,20 @@ export function ContributionField({
     const ctx = canvas?.getContext("2d")
     if (!canvas || !host || !ctx) return
 
+    const panel = mode === "panel"
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    const commitsPerCellPerSecond = panel ? 0.03 : 0.01
+    const roundCells = panel && typeof ctx.roundRect === "function"
 
     let width = 0
     let height = 0
+    let cell = BACKGROUND_CELL
+    let pitch = BACKGROUND_CELL + BACKGROUND_GAP
     let cols = 0
     let rows = 0
     let originX = 0
+    let originY = 0
     let quiet = new Float32Array(0)
     let edge = new Float32Array(0)
     let weight = new Float32Array(0)
@@ -81,9 +94,10 @@ export function ContributionField({
     const readColors = () => {
       const root = document.documentElement
       const styles = getComputedStyle(root)
+      const light = root.getAttribute(DWOSI_THEME_ATTR) === "light"
       brandColor = `hsl(${styles.getPropertyValue("--brand").trim()})`
       emptyColor = `hsl(${styles.getPropertyValue("--foreground").trim()})`
-      emptyAlpha = root.getAttribute(DWOSI_THEME_ATTR) === "light" ? 0.05 : 0.07
+      emptyAlpha = panel ? (light ? 0.08 : 0.1) : light ? 0.05 : 0.07
     }
 
     const layout = () => {
@@ -95,9 +109,22 @@ export function ContributionField({
       canvas.height = Math.round(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      cols = Math.ceil(width / PITCH)
-      rows = Math.ceil(height / PITCH)
-      originX = (width - (cols * PITCH - GAP)) / 2
+      if (panel) {
+        cell = Math.max(8, Math.floor((height - PANEL_GAP * (PANEL_ROWS - 1)) / PANEL_ROWS))
+        pitch = cell + PANEL_GAP
+        rows = PANEL_ROWS
+        cols = Math.max(1, Math.floor((width + PANEL_GAP) / pitch))
+        originY = (height - (rows * pitch - PANEL_GAP)) / 2
+        originX = (width - (cols * pitch - PANEL_GAP)) / 2
+      } else {
+        cell = BACKGROUND_CELL
+        pitch = BACKGROUND_CELL + BACKGROUND_GAP
+        cols = Math.ceil(width / pitch)
+        rows = Math.ceil(height / pitch)
+        originY = 0
+        originX = (width - (cols * pitch - BACKGROUND_GAP)) / 2
+      }
+
       const count = cols * rows
       quiet = new Float32Array(count)
       edge = new Float32Array(count)
@@ -112,19 +139,37 @@ export function ContributionField({
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
           const i = row * cols + col
-          const x = (originX + col * PITCH + CELL / 2) / width
-          const y = (row * PITCH + CELL / 2) / height
-          const distance = Math.hypot((x - focusX) / rx, (y - focusY) / focusRy)
-          // `quiet` dims cells behind the content, `edge` fades the section edges to nothing
-          quiet[i] = 0.06 + 0.94 * smoothstep(0.6, 1.25, distance)
-          edge[i] = smoothstep(1, 0.6, y) * (fadeTop ? smoothstep(0, 0.3, y) : 1)
-          weight[i] = quiet[i] * edge[i]
-
-          // Resting levels, like a contribution graph: mostly empty, a few busy days
           const roll = random()
-          rest[i] = roll > 0.975 ? 0.8 : roll > 0.94 ? 0.55 : roll > 0.88 ? 0.3 : 0
-          delay[i] = distance * 0.35 + random() * 0.15
+
+          if (panel) {
+            quiet[i] = 1
+            edge[i] = 1
+            // Busier than a background, like a real summer of contributions
+            rest[i] = roll > 0.88 ? 0.95 : roll > 0.72 ? 0.7 : roll > 0.52 ? 0.45 : roll > 0.34 ? 0.22 : 0
+            delay[i] = (col / cols) * 0.9 + random() * 0.1
+          } else {
+            const x = (originX + col * pitch + cell / 2) / width
+            const y = (row * pitch + cell / 2) / height
+            const distance = Math.hypot((x - focusX) / rx, (y - focusY) / focusRy)
+            // `quiet` dims cells behind the content, `edge` fades the section edges to nothing
+            quiet[i] = 0.06 + 0.94 * smoothstep(0.6, 1.25, distance)
+            edge[i] = smoothstep(1, 0.6, y) * (fadeTop ? smoothstep(0, 0.3, y) : 1)
+            // Resting levels, like a contribution graph: mostly empty, a few busy days
+            rest[i] = roll > 0.975 ? 0.8 : roll > 0.94 ? 0.55 : roll > 0.88 ? 0.3 : 0
+            delay[i] = distance * 0.35 + random() * 0.15
+          }
+          weight[i] = quiet[i] * edge[i]
         }
+      }
+    }
+
+    const fillCell = (x: number, y: number) => {
+      if (roundCells) {
+        ctx.beginPath()
+        ctx.roundRect(x, y, cell, cell, 3)
+        ctx.fill()
+      } else {
+        ctx.fillRect(x, y, cell, cell)
       }
     }
 
@@ -148,7 +193,7 @@ export function ContributionField({
             ctx.globalAlpha = lit
               ? (0.15 + 0.75 * level) * (0.25 + 0.75 * quiet[i]) * edge[i] * reveal
               : emptyAlpha * (0.4 + 0.6 * quiet[i]) * edge[i] * reveal
-            ctx.fillRect(originX + col * PITCH, row * PITCH, CELL, CELL)
+            fillCell(originX + col * pitch, originY + row * pitch)
           }
         }
       }
@@ -157,7 +202,7 @@ export function ContributionField({
 
     const step = (seconds: number) => {
       const decay = Math.exp(-seconds / DECAY_SECONDS)
-      const chance = COMMITS_PER_CELL_PER_SECOND * seconds
+      const chance = commitsPerCellPerSecond * seconds
       for (let i = 0; i < heat.length; i++) {
         heat[i] *= decay
         if (Math.random() < chance * weight[i]) heat[i] = Math.max(heat[i], 0.5 + Math.random() * 0.5)
@@ -174,8 +219,8 @@ export function ContributionField({
 
     const onPointerMove = (event: PointerEvent) => {
       const rect = canvas.getBoundingClientRect()
-      const col = Math.floor((event.clientX - rect.left - originX) / PITCH)
-      const row = Math.floor((event.clientY - rect.top) / PITCH)
+      const col = Math.floor((event.clientX - rect.left - originX) / pitch)
+      const row = Math.floor((event.clientY - rect.top - originY) / pitch)
       for (let dr = -1; dr <= 1; dr++) {
         for (let dc = -1; dc <= 1; dc++) {
           const r = row + dr
@@ -223,7 +268,7 @@ export function ContributionField({
       visibilityObserver.disconnect()
       host.removeEventListener("pointermove", onPointerMove)
     }
-  }, [focusX, focusY, focusRx, focusRy, fadeTop])
+  }, [mode, focusX, focusY, focusRx, focusRy, fadeTop])
 
   return (
     <canvas

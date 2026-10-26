@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 export function DwosiMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 28 28" aria-hidden="true" className={cn("h-7 w-7", className)}>
-      <rect width="28" height="28" rx="8" className="fill-brand" />
+      <rect width="28" height="28" rx="6" className="fill-brand" />
       <g className="stroke-brand-foreground" strokeWidth="2" strokeLinecap="round" fill="none">
         <path d="M10 9.5v9" />
         <path d="M18 11.5c0 3.5-3 4.5-8 6" />
@@ -23,10 +23,7 @@ export function DwosiLogo({ className }: { className?: string }) {
   return (
     <Link href="/dwosi" className={cn("flex items-center gap-2.5", className)} aria-label="DWOSI home">
       <DwosiMark />
-      <span className="flex items-baseline gap-2">
-        <span className="text-[15px] font-semibold tracking-[-0.02em]">DWOSI</span>
-        <span className="dw-label hidden text-muted-foreground sm:inline">by Dev Weekends</span>
-      </span>
+      <span className="dw-wordmark">dwosi</span>
     </Link>
   )
 }
