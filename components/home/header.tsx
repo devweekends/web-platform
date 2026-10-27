@@ -45,14 +45,12 @@ export function HomeHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#E6E6E6] bg-white/90 backdrop-blur">
       <div ref={wrapRef} className="relative mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-6">
-        <Link href="/" className="flex min-h-11 items-center gap-2.5" aria-label="Dev Weekends home">
-          <span className="text-[22px] font-bold tracking-[-0.03em]">Dev</span>
-          <span className="border-[1.5px] border-[#0A0A0A] px-1.5 py-[3px] text-[11px] font-semibold tracking-[0.18em]">
-            {"{WEEKENDS}"}
-          </span>
+        <Link href="/" className="flex min-h-11 items-center" aria-label="Dev Weekends home">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/dw-wordmark-black.png" alt="Dev Weekends" width={60} height={44} className="h-11 w-auto" />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 text-[15px] font-medium md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-8 text-[15px] font-medium lg:flex">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className="text-[#404040] transition-colors hover:text-black">
               {item.label}
@@ -75,7 +73,7 @@ export function HomeHeader() {
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((open) => !open)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-[10px] border border-[#E6E6E6] md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-[10px] border border-[#E6E6E6] lg:hidden"
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -83,7 +81,7 @@ export function HomeHeader() {
         {involvedOpen && (
           <div
             id="get-involved-menu"
-            className="absolute right-6 top-[68px] hidden w-[min(680px,calc(100%-48px))] overflow-hidden rounded-[18px] border border-[#E6E6E6] bg-white shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)] md:grid md:grid-cols-[1fr_1.1fr]"
+            className="absolute right-6 top-[68px] hidden w-[min(680px,calc(100%-48px))] overflow-hidden rounded-[18px] border border-[#E6E6E6] bg-white shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)] lg:grid lg:grid-cols-[1fr_1.1fr]"
           >
             <GetInvolvedPanel onNavigate={close} />
           </div>
@@ -91,7 +89,7 @@ export function HomeHeader() {
       </div>
 
       {mobileOpen && (
-        <div className="max-h-[calc(100vh-72px)] overflow-y-auto border-t border-[#E6E6E6] bg-white md:hidden">
+        <div className="max-h-[calc(100vh-72px)] overflow-y-auto border-t border-[#E6E6E6] bg-white lg:hidden">
           <nav aria-label="Mobile" className="flex flex-col px-6 py-2 text-[17px] font-medium">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} onClick={close} className="flex min-h-12 items-center border-b border-[#F0F0F0]">

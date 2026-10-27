@@ -42,7 +42,7 @@ export const mailto = (subject: string) => `mailto:${LINKS.email}?subject=${enco
 export const navItems = [
   { label: "Programs", href: "/#programs" },
   { label: "Impact", href: "/#impact" },
-  { label: "Communities", href: "/#communities" },
+  { label: "Community links", href: "/links" },
   { label: "Partners", href: "/#partners" },
   { label: "Resources", href: "/#resources" },
 ]
@@ -240,11 +240,11 @@ export type Circle = { name: string; text: string; href: string | null; note?: s
 export const circles: Circle[] = [
   { name: "LFX Mentorship", text: "Prepare for Linux Foundation (LFX) mentorships", href: "/links" },
   { name: "GSoC Prep", text: "Google Summer of Code proposals, organizations and practice", href: "/links#open-source" },
-  { name: "DSOC", text: "Dev Weekends Summer of Code, mentored open source", href: null, note: "Group link coming soon" },
-  { name: "DWOSI", text: "Dev Weekends Open Source Initiative", href: null, note: "Group link coming soon" },
+  { name: "DSOC", text: "Dev Weekends Summer of Code, mentored open source", href: LINKS.dsoc },
+  { name: "DWOSI", text: "Dev Weekends Open Source Initiative", href: LINKS.dwosi },
   { name: "Open Source", text: "First contributions to real projects", href: "/links#open-source" },
   { name: "Weekend Deep-Dives", text: "Topic-focused intensive sessions", href: LINKS.sessions },
-  { name: "2-Day Startup", text: "Onsite sprints to ship fast", href: null, note: "Invite only" },
+  { name: "2-Day Startup", text: "Onsite sprints to ship fast. Ask on Discord", href: LINKS.discord, note: "Invite only" },
   { name: "Remote Job Placement", text: "Landing international remote roles", href: "/links#placements" },
   { name: "Mock Interviews", text: "Practice with working engineers", href: "/links#competitive-programming" },
   { name: "ICPC Team", text: "Competitive programming for the ICPC contest", href: "/links#competitive-programming" },
@@ -329,6 +329,7 @@ export const footerColumns = [
     title: "Get involved",
     links: [
       { label: "Join the community", href: LINKS.discord },
+      { label: "All community links", href: LINKS.communities },
       { label: "Apply to a program", href: "/#get-involved" },
       { label: "Become a mentor", href: mailto("Becoming a Dev Weekends mentor") },
       { label: "Hire talent", href: mailto("Hiring from the Dev Weekends talent pool") },

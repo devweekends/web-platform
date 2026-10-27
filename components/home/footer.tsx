@@ -8,6 +8,8 @@ export function HomeFooter() {
         <div className="mx-auto max-w-[1200px] px-6 pb-10 pt-20">
           <div className="flex flex-wrap items-end justify-between gap-8 border-b border-[#262626] pb-14">
             <div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/brand/dw-wordmark-white.png" alt="Dev Weekends" width={82} height={60} className="mb-8 h-[60px] w-auto" />
               <p className="text-[clamp(40px,4.6vw,64px)] font-semibold leading-[1.02] tracking-[-0.045em]">
                 Built in Pakistan.
                 <br />
