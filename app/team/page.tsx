@@ -1,12 +1,14 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight, ExternalLink, Linkedin, Mail, X } from "lucide-react"
+import { ExternalLink, Linkedin } from "lucide-react"
 
 import HomeImpact from "@/components/home-impact"
 import { Button, Card, Section, SectionHeading, PageHero } from "@/components/site/page-kit"
-import { JoinCta } from "@/components/site/join-cta"
+import { Voices } from "@/components/home/sections-bottom"
+import { Slider } from "@/components/site/slider"
+import { StartHere } from "@/components/site/start-here"
 import { FounderStory } from "@/components/story/founder-story"
 
 const lift = "motion-safe:hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)]"
@@ -101,44 +103,6 @@ function PersonCard({ person, tone = "white", className = "" }: { person: TeamMe
   )
 }
 
-function MentorSlider({ people }: { people: TeamMember[] }) {
-  const track = useRef<HTMLUListElement>(null)
-  const scrollBy = (direction: 1 | -1) => {
-    const el = track.current
-    if (!el) return
-    el.scrollBy({ left: direction * Math.max(240, el.clientWidth * 0.8), behavior: "smooth" })
-  }
-
-  return (
-    <div>
-      <ul
-        ref={track}
-        aria-label="Top mentors"
-        className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {people.map((m) => (
-          <li key={m.name} className="flex w-[220px] shrink-0 snap-start">
-            <PersonCard person={m} className="w-full" />
-          </li>
-        ))}
-      </ul>
-      <div className="mt-2 flex gap-2">
-        {([-1, 1] as const).map((direction) => (
-          <button
-            key={direction}
-            type="button"
-            onClick={() => scrollBy(direction)}
-            aria-label={direction === 1 ? "Next mentors" : "Previous mentors"}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#D4D4D4] bg-white text-[#0A0A0A] transition-colors hover:bg-[#0A0A0A] hover:text-white"
-          >
-            {direction === 1 ? <ChevronRight className="h-5 w-5" aria-hidden="true" /> : <ChevronLeft className="h-5 w-5" aria-hidden="true" />}
-          </button>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 const resources = [
   { title: "LeetCode Templates", desc: "Battle-tested patterns for common interview problems", link: "https://resources.devweekends.com/resources/cp-dsa" },
   { title: "Study Schedules", desc: "Winner study schedule templates with productivity frameworks", link: "https://resources.devweekends.com/productivity-sheets/overview" },
@@ -155,11 +119,8 @@ const resources = [
   { title: "Case Studies", desc: "Learn from real engineering write-ups.", link: "https://resources.devweekends.com/case-studies" },
 ]
 
-const mentorMailto =
-  "mailto:info@devweekends.com?subject=I%20Want%20to%20Become%20a%20Mentor&body=Hi%20Dev%20Weekends%20Team%2C%0A%0AI%20would%20like%20to%20become%20a%20mentor.%20Here%20is%20my%20story%3A%0A%0A[Please%20share%20your%20background%2C%20experience%2C%20and%20why%20you%20want%20to%20help]%0A%0ABest%20regards"
 
 export default function TeamPage() {
-  const [showMentorModal, setShowMentorModal] = useState(false)
   const [coreTeam, setCoreTeam] = useState<TeamMember[]>([])
   const [loadingCore, setLoadingCore] = useState(true)
 
@@ -178,14 +139,6 @@ export default function TeamPage() {
       .finally(() => setLoadingCore(false))
   }, [])
 
-  useEffect(() => {
-    if (!showMentorModal) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setShowMentorModal(false)
-    }
-    window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
-  }, [showMentorModal])
 
   return (
     <div className="bg-white text-[#0A0A0A]">
@@ -201,7 +154,11 @@ export default function TeamPage() {
           eyebrow="Top mentors"
           title="Learn from people who did it"
         />
-        <MentorSlider people={mentors} />
+        <Slider label="Top mentors" itemClassName="w-[220px]">
+          {mentors.map((m) => (
+            <PersonCard key={m.name} person={m} className="w-full" />
+          ))}
+        </Slider>
       </Section>
 
       {/* Core team: the operational team that runs Dev Weekends */}
@@ -232,11 +189,13 @@ export default function TeamPage() {
         )}
       </Section>
 
+      <Voices />
+
+      {/* Impact: the proof comes right after the people */}
+      <HomeImpact />
+
       {/* The founder story is written separately and rendered here */}
       <FounderStory />
-
-      {/* Impact: outcomes (id="impact"), economy panel and scale */}
-      <HomeImpact />
 
       {/* Pillars */}
       <Section id="philosophy" tone="gray">
@@ -277,61 +236,7 @@ export default function TeamPage() {
         </div>
       </Section>
 
-      {/* Join */}
-      <Section id="apply" tone="gray">
-        <div className="mx-auto max-w-[720px] text-center">
-          <h2 className="text-[clamp(32px,4vw,52px)] font-semibold leading-[1.05] tracking-[-0.04em]">Start where you are.</h2>
-          <p className="mx-auto mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-[#5C5C5C]">
-            Free, and open to anyone who will do the work.
-          </p>
-          <div className="mt-8">
-            <JoinCta />
-          </div>
-          <div className="mt-10 border-t border-[#D4D4D4] pt-6">
-            <button
-              type="button"
-              onClick={() => setShowMentorModal(true)}
-              className="inline-flex min-h-11 items-center text-[15px] font-semibold underline underline-offset-4 hover:text-[#404040]"
-            >
-              Want to become a mentor?
-            </button>
-          </div>
-        </div>
-      </Section>
-
-      {showMentorModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="mentor-modal-title">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setShowMentorModal(false)} aria-hidden="true" />
-          <div className="relative w-full max-w-md rounded-[28px] bg-white p-8 shadow-2xl">
-            <button
-              type="button"
-              onClick={() => setShowMentorModal(false)}
-              aria-label="Close"
-              className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-full text-[#5C5C5C] transition-colors hover:bg-[#F7F7F7] hover:text-[#0A0A0A]"
-            >
-              <X className="h-5 w-5" aria-hidden="true" />
-            </button>
-            <div className="text-center">
-              <h3 id="mentor-modal-title" className="text-2xl font-semibold tracking-[-0.02em]">
-                Become a mentor
-              </h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-[#5C5C5C]">
-                Share why you want to help the next generation of engineers and how your experience can make a difference.
-              </p>
-              <a
-                href={mentorMailto}
-                className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-[#0A0A0A] px-7 py-4 text-base font-semibold text-white transition-colors hover:bg-[#262626]"
-              >
-                <Mail className="h-4 w-4" aria-hidden="true" />
-                Write to us
-              </a>
-              <p className="mt-4 text-sm text-[#5C5C5C]">
-                Email us at <span className="font-semibold text-[#0A0A0A]">info@devweekends.com</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+      <StartHere />
     </div>
   )
 }

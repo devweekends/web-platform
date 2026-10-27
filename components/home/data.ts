@@ -231,19 +231,6 @@ export const products: { name: string; tag: string; text: string; href: string |
   { name: "Content Control Platform", tag: "LEARNING", text: "Video and blog apps that guide each learner by background and goals.", href: null },
 ]
 
-export const fellowshipSteps = [
-  { title: "Join a clan", text: "One of 25 focused study groups, called clans, built around your level and goals." },
-  { title: "Meet your mentors", text: "Two to three working engineers per clan who track your progress." },
-  { title: "Weekly tracking", text: "Progress reviews with real accountability. No drifting, no hiding." },
-  { title: "Earn certification", text: "Bronze, Silver or Gold, backed by the work you shipped, not attendance." },
-]
-
-export const fellowshipPerks = [
-  { title: "Personal mentor", text: "1:1 guidance from engineers at top companies." },
-  { title: "30+ live sessions", text: "DSA deep dives, engineering grinds and mock interviews." },
-  { title: "Up to 5 mock interviews", text: "Practice with real engineers. Get feedback. Land the job." },
-]
-
 export type Circle = { name: string; text: string; href: string | null; note?: string }
 
 export const circles: Circle[] = [
@@ -261,12 +248,65 @@ export const circles: Circle[] = [
   { name: "Co-Working", text: "Virtual sessions for focused work", href: LINKS.discord },
 ]
 
-export const doors = [
-  { name: "Learners", text: "Join the community, then apply to any of our programs.", cta: "Apply to a program", href: "/#get-involved" },
-  { name: "Mentors", text: "Make your experience useful to someone next.", cta: "Become a mentor", href: mailto("Becoming a Dev Weekends mentor") },
-  { name: "Hiring teams", text: "Meet engineers through the work they have shipped.", cta: "Hire from the talent pool", href: mailto("Hiring from the Dev Weekends talent pool") },
-  { name: "Sponsors", text: "Fund stipends, equipment and moments that keep people building.", cta: "Support the mission", href: mailto("Sponsoring Dev Weekends") },
-  { name: "Partners", text: "Universities, companies and communities running programs with us.", cta: "Reach out to us", href: mailto("Partnering with Dev Weekends") },
+export type StartPath = {
+  id: string
+  label: string
+  heading: string
+  text: string
+  /** Shown instead of the program list for paths that are not applications */
+  detail?: string
+  showPrograms?: boolean
+  actions: { label: string; href: string }[]
+}
+
+/** "Start where you are": who the visitor is, and their way in */
+export const startPaths: StartPath[] = [
+  {
+    id: "learner",
+    label: "I want to learn",
+    heading: "Join, then apply.",
+    text: "Discord is home: sessions, circles, opportunities and 30,000+ people who have done it before. Free and open all year.",
+    showPrograms: true,
+    actions: [{ label: "Join on Discord", href: LINKS.discord }],
+  },
+  {
+    id: "mentor",
+    label: "I want to mentor",
+    heading: "Make your experience useful to someone next.",
+    text: "Tell us your background and why you want to help.",
+    detail: "Mentors join sessions, review work and guide people through programs. Say hello and we will take it from there.",
+    actions: [
+      { label: "Become a mentor", href: mailto("Becoming a Dev Weekends mentor") },
+      { label: "Join on Discord", href: LINKS.discord },
+    ],
+  },
+  {
+    id: "hiring",
+    label: "I am hiring",
+    heading: "Meet engineers through the work they have shipped.",
+    text: "Talk to us about hiring from the Dev Weekends talent pool.",
+    detail: "Our members build real projects, contribute to open source and mentor each other. Tell us what you are hiring for.",
+    actions: [{ label: "Hire from the talent pool", href: mailto("Hiring from the Dev Weekends talent pool") }],
+  },
+  {
+    id: "sponsor",
+    label: "I want to sponsor",
+    heading: "Keep people building.",
+    text: "Fund stipends, equipment and the moments that keep people going.",
+    detail: "Dev Weekends is free and nonprofit. Sponsorship goes to the people who cannot pay.",
+    actions: [{ label: "Support the mission", href: mailto("Sponsoring Dev Weekends") }],
+  },
+  {
+    id: "partner",
+    label: "I represent an organization",
+    heading: "Build a bridge with us.",
+    text: "Universities, companies and communities running programs with us.",
+    detail: "Tell us what you have in mind, or see how we already work with partners.",
+    actions: [
+      { label: "Reach out to us", href: mailto("Partnering with Dev Weekends") },
+      { label: "See our partners", href: LINKS.partners },
+    ],
+  },
 ]
 
 export const resourceGuides = [

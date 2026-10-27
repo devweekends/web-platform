@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { LINKS } from "@/components/home/data"
+import { Voices } from "@/components/home/sections-bottom"
 import { Button, Card, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
 import { CardText, CheckList, DarkSteps, StatRow } from "@/components/site/program-blocks"
 import { MentorshipDialog } from "@/components/site/mentorship-dialog"
@@ -128,9 +129,11 @@ export default function MentorshipPage() {
         <StatRow stats={stats} />
       </Section>
 
+      <Voices />
+
       <Section id="mentorship" tone="gray">
         <SectionHeading eyebrow="What you get" title="Personal mentorship that transforms." />
-        <div className="grid gap-5 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3">
           {features.map((feature) => (
             <Card key={feature.title}>
               <CardText title={feature.title}>

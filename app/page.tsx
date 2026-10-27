@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 
-import { Communities, Fellowship, Products, Programs } from "@/components/home/sections-mid"
-import { GetInvolved, Partnerships, Qantara, Resources, StartWhereYouAre, Voices } from "@/components/home/sections-bottom"
+import { Communities, Products, Programs } from "@/components/home/sections-mid"
+import { Partnerships, Qantara, Resources, Voices } from "@/components/home/sections-bottom"
+import { StartHere } from "@/components/site/start-here"
 import { Hero, Impact, Network, Outcomes, Reach } from "@/components/home/sections-top"
 import "./home.css"
 
@@ -20,16 +21,14 @@ export default function HomePage() {
       <Network />
       <Impact />
       <Outcomes />
+      <Voices />
       <Programs />
       <Products />
-      <Fellowship />
       <Communities />
-      <StartWhereYouAre />
       <Qantara />
       <Partnerships />
       <Resources />
-      <Voices />
-      <GetInvolved />
+      <StartHere />
     </div>
   )
 }

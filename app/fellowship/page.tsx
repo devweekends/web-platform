@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import { SmartLink } from "@/components/home/smart-link"
 import { LINKS } from "@/components/home/data"
+import { Voices } from "@/components/home/sections-bottom"
 import { Button, Card, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
 import { CardText, CheckList, Chip, DarkSteps, StatRow } from "@/components/site/program-blocks"
 
@@ -167,6 +168,8 @@ export default function FellowshipPage() {
         </div>
       </Panel>
 
+      <Voices />
+
       <Section>
         <SectionHeading eyebrow="How it works" title="A structured journey, start to finish." />
         <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -241,7 +244,7 @@ export default function FellowshipPage() {
 
       <Section tone="gray">
         <SectionHeading eyebrow="Perks" title="Fellowship perks." intro="For DW Certified Fellows (Bronze, Silver and Gold)." />
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {perks.map((perk) => (
             <li key={perk}>
               <Card className="h-full">

@@ -1,11 +1,10 @@
 import { ArrowUpRight } from "lucide-react"
 
+import { Slider } from "@/components/site/slider"
 import { SmartLink } from "./smart-link"
 import {
   LINKS,
   circles,
-  fellowshipPerks,
-  fellowshipSteps,
   platforms,
   products,
   programs,
@@ -30,9 +29,10 @@ export function Programs() {
           </a>
         </div>
 
-        <div className="mt-14 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
+        <div className="mt-14">
+          <Slider label="Programs" itemClassName="w-[300px] sm:w-[340px] lg:w-[calc((100%-2rem)/3)]">
           {programs.map((program) => (
-            <article key={program.name} className="flex min-h-[320px] flex-col rounded-[20px] bg-white p-8 transition duration-200 hover:shadow-[0_22px_44px_-26px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-1">
+            <article key={program.name} className="flex min-h-[320px] w-full flex-col rounded-[20px] bg-white p-8 transition duration-200 hover:shadow-[0_22px_44px_-26px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-1">
               <p className="flex items-center justify-between gap-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">
                 {program.label}
                 {"tag" in program && program.tag && (
@@ -51,6 +51,7 @@ export function Programs() {
               </SmartLink>
             </article>
           ))}
+          </Slider>
         </div>
 
         <div className="mt-5 flex flex-wrap items-center gap-8 rounded-[20px] bg-[#0A0A0A] p-8 text-white">
@@ -97,13 +98,14 @@ export function Products() {
             See DWOSI, our open source initiative →
           </SmartLink>
         </div>
-        <ul className="mt-10 grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] border-l border-t border-[#E6E6E6]">
+        <div className="mt-10">
+          <Slider label="Products" itemClassName="w-[270px]">
           {products.map((product) => (
-            <li key={product.name} className="border-b border-r border-[#E6E6E6]">
+            <div key={product.name} className="w-full rounded-[20px] border border-[#E6E6E6]">
               <SmartLink
                 href={product.href}
-                className="flex min-h-[150px] flex-col gap-1.5 p-6 hover:bg-[#FAFAFA]"
-                fallbackClassName="flex min-h-[150px] flex-col gap-1.5 p-6"
+                className="flex h-full min-h-[170px] flex-col gap-1.5 rounded-[20px] p-6 hover:bg-[#FAFAFA]"
+                fallbackClassName="flex h-full min-h-[170px] flex-col gap-1.5 p-6"
               >
                 <span className="flex items-center justify-between gap-3">
                   <span className="text-lg font-semibold">{product.name}</span>
@@ -113,44 +115,9 @@ export function Products() {
                 </span>
                 <span className="text-sm leading-[1.55] text-[#5C5C5C]">{product.text}</span>
               </SmartLink>
-            </li>
+            </div>
           ))}
-        </ul>
-      </div>
-    </section>
-  )
-}
-
-export function Fellowship() {
-  return (
-    <section>
-      <div className="mx-auto max-w-[1200px] px-6 pb-20 pt-16">
-        <p className={eyebrow}>The Fellowship</p>
-        <h2 className={`${h2} max-w-[16ch]`}>Structure does what motivation can&apos;t.</h2>
-        <ol className="mt-14 grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-8">
-          {fellowshipSteps.map((step, index) => (
-            <li key={step.title} className="border-t-2 border-[#0A0A0A] pt-5">
-              <p className="text-[13px] font-semibold text-[#8A8A8A]">{String(index + 1).padStart(2, "0")}</p>
-              <h3 className="mt-3 text-[19px] font-semibold">{step.title}</h3>
-              <p className="mt-2 text-[15px] leading-[1.6] text-[#5C5C5C]">{step.text}</p>
-            </li>
-          ))}
-        </ol>
-        <ul className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-5">
-          {fellowshipPerks.map((perk) => (
-            <li key={perk.title} className="rounded-2xl bg-[#F7F7F7] p-7 transition-colors duration-200 hover:bg-[#EFEFEF]">
-              <h3 className="text-[17px] font-semibold">{perk.title}</h3>
-              <p className="mt-2 text-[15px] text-[#5C5C5C]">{perk.text}</p>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-7 flex flex-wrap gap-7 text-[15px] font-semibold">
-          <SmartLink href={LINKS.fellowship} className="inline-flex min-h-11 items-center">
-            See the fellowship →
-          </SmartLink>
-          <SmartLink href={LINKS.fellowshipReport} className="inline-flex min-h-11 items-center">
-            Read the 2026 report: 3,000+ applied, 1,072 selected →
-          </SmartLink>
+          </Slider>
         </div>
       </div>
     </section>
@@ -174,23 +141,21 @@ export function Communities() {
             Find your community
           </SmartLink>
         </div>
-        <ul className="grid min-w-0 flex-[1.6_1_560px] grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-x-8 border-t border-[#E6E6E6]">
+        <ul className="grid min-w-0 flex-[1.6_1_560px] grid-cols-3 gap-2 sm:gap-3">
           {circles.map((circle) => (
-            <li key={circle.name} className="border-b border-[#E6E6E6]">
+            <li key={circle.name} className="flex">
               <SmartLink
                 href={circle.href}
-                className="flex min-h-[72px] flex-col gap-1 py-[18px] hover:text-black"
-                fallbackClassName="flex min-h-[72px] flex-col gap-1 py-[18px] text-[#5C5C5C]"
+                className="flex w-full min-w-0 flex-col gap-1 rounded-xl border border-[#E6E6E6] p-2.5 transition duration-200 hover:border-[#0A0A0A] sm:rounded-2xl sm:p-4"
+                fallbackClassName="flex w-full min-w-0 flex-col gap-1 rounded-xl border border-[#E6E6E6] p-2.5 text-[#5C5C5C] sm:rounded-2xl sm:p-4"
               >
-                <span className="flex items-center justify-between gap-3 text-[17px] font-semibold">
-                  {circle.name}
-                  {circle.note && (
-                    <span className="whitespace-nowrap rounded-full border border-[#D4D4D4] px-2 py-0.5 text-[11px] font-semibold tracking-[0.08em] text-[#5C5C5C]">
-                      {circle.note.toUpperCase()}
-                    </span>
-                  )}
-                </span>
-                <span className="text-sm text-[#5C5C5C]">{circle.text}</span>
+                <span className="text-[12px] font-semibold leading-snug sm:text-[17px]">{circle.name}</span>
+                {circle.note && (
+                  <span className="w-fit rounded-full border border-[#D4D4D4] px-1.5 py-px text-[9px] font-semibold tracking-[0.06em] text-[#5C5C5C] sm:px-2 sm:py-0.5 sm:text-[11px]">
+                    {circle.note.toUpperCase()}
+                  </span>
+                )}
+                <span className="text-[11px] leading-[1.4] text-[#5C5C5C] sm:text-sm">{circle.text}</span>
               </SmartLink>
             </li>
           ))}
