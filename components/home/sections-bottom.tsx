@@ -49,23 +49,14 @@ export function Qantara() {
             </div>
           </div>
           <div className="min-w-0 flex-[1_1_360px]">
-            <ul className="flex flex-col">
-              {qantaraStages.map((stage, index) => (
-                <li key={stage.name} className="flex items-baseline gap-4 border-t border-white/20 py-3.5 sm:gap-5 sm:py-5">
+            <ul className="grid grid-cols-2 gap-2 sm:gap-3">
+              {[...qantaraStages, { name: "Virtual Career Fair", text: "Graduates meet employers who are hiring. $0 cost, with a monthly stipend." }].map((stage, index) => (
+                <li key={stage.name} className="flex min-w-0 flex-col gap-1 rounded-xl border border-white/20 p-3 sm:gap-1.5 sm:rounded-2xl sm:p-5">
                   <span className="text-[13px] font-semibold text-[#CDE8D4]">{String(index + 1).padStart(2, "0")}</span>
-                  <span>
-                    <span className="block text-base font-semibold sm:text-lg">{stage.name}</span>
-                    <span className="mt-0.5 block text-sm text-[#CDE8D4] sm:mt-1 sm:text-[15px]">{stage.text}</span>
-                  </span>
+                  <span className="block text-sm font-semibold leading-snug sm:text-lg">{stage.name}</span>
+                  <span className="block text-xs leading-[1.45] text-[#CDE8D4] sm:text-[15px]">{stage.text}</span>
                 </li>
               ))}
-              <li className="flex items-baseline gap-4 border-y border-white/20 py-3.5 sm:gap-5 sm:py-5">
-                <span className="text-[13px] font-semibold text-[#CDE8D4]">04</span>
-                <span>
-                  <span className="block text-base font-semibold sm:text-lg">Virtual Career Fair</span>
-                  <span className="mt-0.5 block text-sm text-[#CDE8D4] sm:mt-1 sm:text-[15px]">Graduates meet employers who are hiring. $0 cost, with a monthly stipend.</span>
-                </span>
-              </li>
             </ul>
           </div>
         </div>
