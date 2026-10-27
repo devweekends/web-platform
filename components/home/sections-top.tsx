@@ -116,11 +116,11 @@ export function Reach() {
           ))}
         </div>
       </div>
-      <dl className="mx-auto grid max-w-[1200px] grid-cols-2 gap-x-4 gap-y-10 px-6 py-14 md:grid-cols-4 md:gap-8 md:py-16">
+      <dl className="mx-auto grid max-w-[1200px] grid-cols-4 gap-x-3 px-6 py-12 md:gap-8 md:py-16">
         {reach.map((item) => (
-          <div key={item.label} className="flex flex-col-reverse gap-1.5 border-l border-[#E6E6E6] pl-4 md:pl-6">
-            <dt className="text-sm text-[#5C5C5C] md:text-[15px]">{item.label}</dt>
-            <dd className="text-[40px] font-semibold leading-none tracking-[-0.04em] md:text-5xl">{item.value}</dd>
+          <div key={item.label} className="flex min-w-0 flex-col-reverse gap-1.5 border-l border-[#E6E6E6] pl-3 md:pl-6">
+            <dt className="text-[11px] leading-snug text-[#5C5C5C] sm:text-sm md:text-[15px]">{item.label}</dt>
+            <dd className="text-[clamp(22px,6.4vw,48px)] font-semibold leading-none tracking-[-0.04em]">{item.value}</dd>
           </div>
         ))}
       </dl>
@@ -148,7 +148,7 @@ export function Network() {
           <p className="text-center text-[13px] font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">
             Our community&apos;s journeys reach places like
           </p>
-          <ul className="mx-auto mt-10 grid max-w-[1000px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <ul className="mx-auto mt-10 grid max-w-[1100px] grid-cols-4 gap-2 sm:gap-3 md:grid-cols-7">
             {placesLike.map((org) => (
               <li key={org.name}>
                 <OrgTile org={org} />
@@ -164,7 +164,7 @@ export function Network() {
 /** Logo tile for an organization. Falls back to the name when there is no logo. */
 function OrgTile({ org }: { org: Org }) {
   const className =
-    "group flex h-20 items-center justify-center rounded-2xl border border-[#E6E6E6] px-4 text-center text-[15px] font-semibold tracking-[-0.01em] text-[#8A8A8A]"
+    "group flex h-14 items-center justify-center overflow-hidden rounded-xl border border-[#E6E6E6] px-1.5 text-center text-[15px] font-semibold tracking-[-0.01em] text-[#8A8A8A] sm:h-20 sm:rounded-2xl sm:px-4"
   return (
     <SmartLink
       href={org.href}
@@ -172,7 +172,7 @@ function OrgTile({ org }: { org: Org }) {
       className={`${className} transition duration-200 hover:border-[#0A0A0A] hover:text-[#0A0A0A] hover:shadow-[0_12px_26px_-16px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-0.5`}
       fallbackClassName={className}
     >
-      <LogoMark org={org} />
+      <LogoMark org={org} compact />
     </SmartLink>
   )
 }
@@ -224,14 +224,14 @@ export function Outcomes() {
             Most started with no network and no resume worth reading. Here is the receipt.
           </p>
         </div>
-        <ul className="mt-14 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] border-l border-t border-[#E6E6E6]">
+        <ul className="mt-10 grid grid-cols-3 border-l border-t border-[#E6E6E6] md:mt-14">
           {outcomes.map((item) => (
-            <li key={item.title} className="flex flex-col gap-2.5 border-b border-r border-[#E6E6E6] p-8 transition-colors duration-200 hover:bg-[#FAFAFA]">
-              <p className="text-[44px] font-semibold tracking-[-0.04em]">{item.value}</p>
-              <h3 className="text-[17px] font-semibold">{item.title}</h3>
-              <p className="text-[15px] leading-[1.6] text-[#5C5C5C]">{item.text}</p>
+            <li key={item.title} className="flex min-w-0 flex-col gap-1.5 border-b border-r border-[#E6E6E6] p-3 transition-colors duration-200 hover:bg-[#FAFAFA] sm:gap-2.5 sm:p-6 lg:p-8">
+              <p className="text-[clamp(22px,6vw,44px)] font-semibold leading-none tracking-[-0.04em]">{item.value}</p>
+              <h3 className="text-[12px] font-semibold leading-snug sm:text-[17px]">{item.title}</h3>
+              <p className="text-[11px] leading-[1.45] text-[#5C5C5C] sm:text-[15px] sm:leading-[1.6]">{item.text}</p>
               {item.link && (
-                <SmartLink href={item.link.href} className="mt-auto inline-flex min-h-11 items-center gap-1 pt-2 text-sm font-semibold">
+                <SmartLink href={item.link.href} className="mt-auto inline-flex min-h-11 items-center gap-1 pt-1 text-[11px] font-semibold sm:pt-2 sm:text-sm">
                   {item.link.label} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </SmartLink>
               )}

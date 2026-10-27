@@ -133,15 +133,15 @@ export default function HomeImpact() {
           title="What our members went on to do"
           intro="Most of them started as confused students with no network and no resume worth reading. Here is where the weekends took them."
         />
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-5">
           {outcomes.map((item) => (
-            <Card key={item.label} tone="bordered" className={`gap-3 ${lift}`}>
+            <Card key={item.label} tone="bordered" className={`min-w-0 gap-1.5 p-3 sm:gap-3 sm:p-7 ${lift}`}>
               <div className="flex items-start justify-between gap-3">
-                <div className="text-[44px] font-semibold leading-none tracking-[-0.04em]">{item.value}</div>
+                <div className="text-[clamp(22px,6vw,44px)] font-semibold leading-none tracking-[-0.04em]">{item.value}</div>
                 <InfoTip text={item.info} />
               </div>
-              <h3 className="text-lg font-semibold leading-snug">{item.label}</h3>
-              <p className="flex-1 text-[15px] leading-[1.65] text-[#404040]">{item.detail}</p>
+              <h3 className="text-[12px] font-semibold leading-snug sm:text-lg">{item.label}</h3>
+              <p className="flex-1 text-[11px] leading-[1.45] text-[#404040] sm:text-[15px] sm:leading-[1.65]">{item.detail}</p>
               {item.href && (
                 <SmartLink
                   href={item.href}
@@ -174,7 +174,7 @@ export default function HomeImpact() {
               grows every year.
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-7">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:col-span-7">
             {economy.map((e) => (
               <div key={e.label} className="rounded-[20px] bg-[#161616] p-6">
                 <div className="text-[36px] font-semibold leading-none tracking-[-0.04em]">{e.value}</div>

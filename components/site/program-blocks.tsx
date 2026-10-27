@@ -6,14 +6,14 @@ import { Check } from "lucide-react"
  * Same look as page-kit: fixed hex colors, rounded shapes, no accent colors.
  */
 
-/** Row of big numbers. Two columns on phones, four from md. */
+/** Row of big numbers, always one row. */
 export function StatRow({ stats }: { stats: { value: string; label: string }[] }) {
   return (
-    <dl className="grid grid-cols-2 gap-4 md:grid-cols-4">
+    <dl className="grid grid-cols-4 gap-2 sm:gap-4">
       {stats.map((stat) => (
-        <div key={stat.label} className="rounded-[20px] bg-[#F7F7F7] p-6">
-          <dd className="text-[clamp(32px,4vw,48px)] font-semibold leading-none tracking-[-0.04em]">{stat.value}</dd>
-          <dt className="mt-3 text-sm leading-snug text-[#5C5C5C]">{stat.label}</dt>
+        <div key={stat.label} className="min-w-0 rounded-[16px] bg-[#F7F7F7] p-3 sm:rounded-[20px] sm:p-6">
+          <dd className="text-[clamp(20px,5.4vw,48px)] font-semibold leading-none tracking-[-0.04em]">{stat.value}</dd>
+          <dt className="mt-2 text-[11px] leading-snug text-[#5C5C5C] sm:mt-3 sm:text-sm">{stat.label}</dt>
         </div>
       ))}
     </dl>

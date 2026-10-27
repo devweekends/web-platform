@@ -102,7 +102,7 @@ export default function AmbassadorProgramPage() {
           title="Every campus needs an ambassador"
           intro="Lead the tech heartbeat of your university with playbooks, resources, and expert backing."
         />
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {benefits.map((benefit) => (
             <Card key={benefit.title} className="h-full">
               <h3 className="text-[22px] font-semibold leading-[1.25] tracking-[-0.02em]">{benefit.title}</h3>
