@@ -23,7 +23,8 @@ export function FounderStory() {
 
           <div className="min-w-0 flex-[1.6_1_480px] space-y-6 text-[19px] leading-[1.7] text-[#262626]">
             <p>
-              We started in 2018, on weekends, because that is when working people could show up. We kept seeing the same gaps.
+              We started in 2018, on weekends, because that is when working people could show up. The name stayed; today
+              something runs almost every day. We kept seeing the same gaps.
               Universities teach syntax, not systems. Talented people have no roadmap. Learning alone burns people out. We made it
               free and nonprofit on purpose, because the people who need it most cannot pay. We began in Pakistan, and today our
               members come from 30 countries.

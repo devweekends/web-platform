@@ -1,6 +1,7 @@
 import connectDB from '@/lib/db';
 import connectImpactDB from '@/lib/impact-db';
 import { getVideoEmbed } from '@/lib/video-url';
+import { byStoryRank } from '@/lib/story-order';
 import { Testimonial as TestimonialModel } from '@/models/Testimonial';
 import { getImpactStoryModel } from '@/models/ImpactStory';
 import type { Testimonial } from '@/components/testimonial-card';
@@ -86,16 +87,11 @@ export async function withPreviews(stories: Testimonial[]): Promise<Testimonial[
 
 export type VideoStory = { name: string; role: string; url: string; previewUrl?: string };
 
-/** Open source stories (GSoC, LFX and similar) lead the video rail */
-function openSourceRank(role: string) {
-  return /gsoc|summer of code|lfx|esoc/i.test(role) ? 0 : 1;
-}
-
 export async function getVideoStories(): Promise<VideoStory[]> {
   const stories = await getPublicStories();
   const videos = stories.filter((story) => story.type === 'video' && getVideoEmbed(story.videoUrl));
   const withImages = await withPreviews(videos);
-  return withImages
-    .map((story) => ({ name: story.name, role: story.role, url: story.videoUrl as string, previewUrl: story.previewUrl }))
-    .sort((a, b) => openSourceRank(a.role) - openSourceRank(b.role));
+  return byStoryRank(
+    withImages.map((story) => ({ name: story.name, role: story.role, url: story.videoUrl as string, previewUrl: story.previewUrl })),
+  );
 }

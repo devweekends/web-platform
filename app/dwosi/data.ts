@@ -63,7 +63,7 @@ export const record: RecordEntry[] = [
   },
 ]
 
-/** Published Dev Weekends numbers. Keep in sync with components/home-impact.tsx. */
+/** Published Dev Weekends numbers. Keep in sync with components/home/data.ts. */
 export const communityStats = [
   { value: "1,000+", label: "Engineers trained since 2018" },
   { value: "$20K+", label: "Open source stipends" },
