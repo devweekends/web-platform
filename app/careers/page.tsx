@@ -1,277 +1,279 @@
-'use client';
+"use client"
 
-import { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { useEffect, useMemo, useState } from "react"
+
+import { Button, Card, PageHero, Section } from "@/components/site/page-kit"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 type JobDoc = {
-  _id: string;
-  title: string;
-  company: string;
-  location?: string;
-  workplaceType?: string;
-  employmentType?: string;
-  audience?: string;
-  description: string;
-  requirements?: string;
-  applyUrl?: string;
-  applyEmail?: string;
-  deadline?: string;
-  tags?: string[];
-  createdAt?: string;
-};
+  _id: string
+  title: string
+  company: string
+  location?: string
+  workplaceType?: string
+  employmentType?: string
+  audience?: string
+  description: string
+  requirements?: string
+  applyUrl?: string
+  applyEmail?: string
+  deadline?: string
+  tags?: string[]
+  createdAt?: string
+}
 
-export default function CarrersPage() {
-  const [jobs, setJobs] = useState<JobDoc[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState('');
-  const [audience, setAudience] = useState<'all' | 'Students' | 'Professionals' | 'Both'>('all');
-  const [workplace, setWorkplace] = useState<'all' | 'Remote' | 'Hybrid' | 'Onsite'>('all');
-  const [employment, setEmployment] = useState<'all' | 'Internship' | 'Full-time' | 'Part-time' | 'Contract'>('all');
-  const [applyOpen, setApplyOpen] = useState(false);
-  const [selectedJob, setSelectedJob] = useState<JobDoc | null>(null);
-  const [detailsOpen, setDetailsOpen] = useState(false);
-  const [detailsJob, setDetailsJob] = useState<JobDoc | null>(null);
+type Audience = "all" | "Students" | "Professionals" | "Both"
+type Workplace = "all" | "Remote" | "Hybrid" | "Onsite"
+type Employment = "all" | "Internship" | "Full-time" | "Part-time" | "Contract"
+
+const focusRing =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A0A0A]"
+
+const fieldClass = `h-12 rounded-xl border-[#D4D4D4] bg-white px-4 text-base text-[#0A0A0A] ${focusRing}`
+const triggerClass = `${fieldClass} w-full sm:w-[190px]`
+
+const primaryButton = `inline-flex min-h-[44px] w-full items-center justify-center rounded-xl bg-[#0A0A0A] px-5 text-[15px] font-semibold text-white transition-colors hover:bg-[#262626] disabled:cursor-not-allowed disabled:opacity-40 ${focusRing}`
+const secondaryButton = `inline-flex min-h-[44px] w-full items-center justify-center rounded-xl border border-[#D4D4D4] px-5 text-[15px] font-semibold text-[#0A0A0A] transition-colors hover:bg-[#F7F7F7] disabled:cursor-not-allowed disabled:opacity-40 ${focusRing}`
+
+function Tag({ children, solid }: { children: string; solid?: boolean }) {
+  return (
+    <span
+      className={`inline-flex items-center rounded-full px-3 py-1 text-[13px] font-semibold ${
+        solid ? "bg-[#0A0A0A] text-white" : "border border-[#D4D4D4] text-[#404040]"
+      }`}
+    >
+      {children}
+    </span>
+  )
+}
+
+function Fact({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex gap-2">
+      <dt className="font-semibold text-[#0A0A0A]">{label}:</dt>
+      <dd>{value}</dd>
+    </div>
+  )
+}
+
+function formatDeadline(deadline?: string) {
+  return deadline ? new Date(deadline).toLocaleDateString() : "Not specified"
+}
+
+export default function CareersPage() {
+  const [jobs, setJobs] = useState<JobDoc[]>([])
+  const [loading, setLoading] = useState(true)
+  const [search, setSearch] = useState("")
+  const [audience, setAudience] = useState<Audience>("all")
+  const [workplace, setWorkplace] = useState<Workplace>("all")
+  const [employment, setEmployment] = useState<Employment>("all")
+  const [applyOpen, setApplyOpen] = useState(false)
+  const [selectedJob, setSelectedJob] = useState<JobDoc | null>(null)
+  const [detailsOpen, setDetailsOpen] = useState(false)
+  const [detailsJob, setDetailsJob] = useState<JobDoc | null>(null)
 
   useEffect(() => {
-    fetch('/api/jobs')
+    fetch("/api/jobs")
       .then((res) => res.json())
       .then((data) => setJobs(Array.isArray(data) ? data : []))
-      .finally(() => setLoading(false));
-  }, []);
+      .finally(() => setLoading(false))
+  }, [])
 
   const filteredJobs = useMemo(() => {
-    const q = search.trim().toLowerCase();
+    const q = search.trim().toLowerCase()
     return jobs.filter((j) => {
-      if (audience !== 'all' && (j.audience || 'Both') !== audience) return false;
-      if (workplace !== 'all' && (j.workplaceType || 'Remote') !== workplace) return false;
-      if (employment !== 'all' && (j.employmentType || 'Full-time') !== employment) return false;
-      if (!q) return true;
+      if (audience !== "all" && (j.audience || "Both") !== audience) return false
+      if (workplace !== "all" && (j.workplaceType || "Remote") !== workplace) return false
+      if (employment !== "all" && (j.employmentType || "Full-time") !== employment) return false
+      if (!q) return true
       return (
         j.title?.toLowerCase().includes(q) ||
         j.company?.toLowerCase().includes(q) ||
-        (j.location || '').toLowerCase().includes(q) ||
-        (j.tags || []).join(' ').toLowerCase().includes(q)
-      );
-    });
-  }, [jobs, search, audience, workplace, employment]);
+        (j.location || "").toLowerCase().includes(q) ||
+        (j.tags || []).join(" ").toLowerCase().includes(q)
+      )
+    })
+  }, [jobs, search, audience, workplace, employment])
 
   const openApply = (job: JobDoc) => {
-    setSelectedJob(job);
-    setApplyOpen(true);
-  };
+    setSelectedJob(job)
+    setApplyOpen(true)
+  }
 
   const openDetails = (job: JobDoc) => {
-    setDetailsJob(job);
-    setDetailsOpen(true);
-  };
+    setDetailsJob(job)
+    setDetailsOpen(true)
+  }
 
   const copyToClipboard = async (text: string) => {
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(text)
     } catch {
-      // ignore
+      // Clipboard blocked; the value stays visible in the field.
     }
-  };
+  }
+
+  const applyUrl = selectedJob?.applyUrl?.trim()
+  const applyEmail = selectedJob?.applyEmail?.trim()
 
   return (
-    <div className="container mx-auto px-4 py-10">
-      <div className="max-w-3xl">
-        <h1 className="text-3xl sm:text-4xl font-bold">Careers</h1>
-        <p className="text-muted-foreground mt-3">
-          Hand-picked opportunities for students and professionals across Dev Weekends and Dev Weekends partner companies.
-        </p>
-      </div>
+    <>
+      <PageHero
+        eyebrow="Careers"
+        title="Careers"
+        intro="Hand-picked opportunities for students and professionals across Dev Weekends and Dev Weekends partner companies."
+        actions={<Button href="/links" variant="secondary">Share a Job</Button>}
+      />
 
-      <div className="flex flex-col sm:flex-row gap-3 mt-8">
-        <Input
-          placeholder="Search jobs (title, company, tags...)"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="sm:max-w-md"
-        />
-        <Select value={audience} onValueChange={(v) => setAudience(v as any)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Audience" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All</SelectItem>
-            <SelectItem value="Students">Students</SelectItem>
-            <SelectItem value="Professionals">Professionals</SelectItem>
-            <SelectItem value="Both">Both</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select value={workplace} onValueChange={(v) => setWorkplace(v as any)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Workplace" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Workplaces</SelectItem>
-            <SelectItem value="Remote">Remote</SelectItem>
-            <SelectItem value="Hybrid">Hybrid</SelectItem>
-            <SelectItem value="Onsite">Onsite</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select value={employment} onValueChange={(v) => setEmployment(v as any)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Employment" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Employment</SelectItem>
-            <SelectItem value="Internship">Internship</SelectItem>
-            <SelectItem value="Full-time">Full-time</SelectItem>
-            <SelectItem value="Part-time">Part-time</SelectItem>
-            <SelectItem value="Contract">Contract</SelectItem>
-          </SelectContent>
-        </Select>
-        <div className="flex-1" />
-        <Button asChild variant="outline">
-          <Link href="/links">
-            Share a Job
-          </Link>
-        </Button>
-      </div>
+      <Section tone="gray">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Input
+            aria-label="Search jobs"
+            placeholder="Search jobs (title, company, tags...)"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className={`${fieldClass} sm:max-w-md sm:flex-1`}
+          />
+          <Select value={audience} onValueChange={(v) => setAudience(v as Audience)}>
+            <SelectTrigger aria-label="Audience" className={triggerClass}>
+              <SelectValue placeholder="Audience" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="Students">Students</SelectItem>
+              <SelectItem value="Professionals">Professionals</SelectItem>
+              <SelectItem value="Both">Both</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select value={workplace} onValueChange={(v) => setWorkplace(v as Workplace)}>
+            <SelectTrigger aria-label="Workplace" className={triggerClass}>
+              <SelectValue placeholder="Workplace" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Workplaces</SelectItem>
+              <SelectItem value="Remote">Remote</SelectItem>
+              <SelectItem value="Hybrid">Hybrid</SelectItem>
+              <SelectItem value="Onsite">Onsite</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select value={employment} onValueChange={(v) => setEmployment(v as Employment)}>
+            <SelectTrigger aria-label="Employment" className={triggerClass}>
+              <SelectValue placeholder="Employment" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Employment</SelectItem>
+              <SelectItem value="Internship">Internship</SelectItem>
+              <SelectItem value="Full-time">Full-time</SelectItem>
+              <SelectItem value="Part-time">Part-time</SelectItem>
+              <SelectItem value="Contract">Contract</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
 
-      <div className="mt-8">
-        {loading ? (
-          <div className="text-muted-foreground">Loading jobs...</div>
-        ) : filteredJobs.length === 0 ? (
-          <Card>
-            <CardContent className="py-12 text-center">
-              <div className="text-lg font-medium">No jobs right now</div>
-              <div className="text-muted-foreground mt-2">Check back soon — we post opportunities regularly.</div>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredJobs.map((job) => {
-              return (
-                <Card key={job._id} className="flex flex-col">
-                  <CardHeader className="pb-3">
-                    <div className="flex flex-wrap gap-2 mb-2">
-                      {job.workplaceType ? <Badge variant="secondary">{job.workplaceType}</Badge> : null}
-                      {job.employmentType ? <Badge variant="secondary">{job.employmentType}</Badge> : null}
-                      {job.audience ? <Badge variant="outline">{job.audience}</Badge> : null}
+        <div className="mt-10">
+          {loading ? (
+            <p className="text-[17px] text-[#5C5C5C]" role="status">
+              Loading jobs...
+            </p>
+          ) : filteredJobs.length === 0 ? (
+            <Card tone="white" className="items-center px-6 py-14 text-center">
+              <p className="text-[20px] font-semibold tracking-[-0.02em]">No jobs right now</p>
+              <p className="mt-2 text-[17px] text-[#5C5C5C]">Check back soon. We post opportunities regularly.</p>
+            </Card>
+          ) : (
+            <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {filteredJobs.map((job) => (
+                <li key={job._id}>
+                  <Card tone="white" className="h-full">
+                    <div className="mb-4 flex flex-wrap gap-2">
+                      {job.workplaceType ? <Tag solid>{job.workplaceType}</Tag> : null}
+                      {job.employmentType ? <Tag solid>{job.employmentType}</Tag> : null}
+                      {job.audience ? <Tag>{job.audience}</Tag> : null}
                     </div>
-                    <CardTitle className="text-lg line-clamp-2">{job.title}</CardTitle>
-                    <div className="text-sm text-muted-foreground space-y-1">
-                      <div>
-                        <span className="text-foreground font-semibold">Company:</span>{' '}
-                        <span className="text-foreground">{job.company}</span>
-                      </div>
-                      <div>
-                        <span className="text-foreground font-semibold">Location:</span>{' '}
-                        <span>{job.location || 'Not specified'}</span>
-                      </div>
-                      <div>
-                        <span className="text-foreground font-semibold">Deadline:</span>{' '}
-                        <span>{job.deadline ? new Date(job.deadline).toLocaleDateString() : 'Not specified'}</span>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex-1 space-y-3">
-                    <p className="text-sm line-clamp-4">{job.description}</p>
+                    <h2 className="line-clamp-2 text-[22px] font-semibold leading-[1.2] tracking-[-0.03em]">{job.title}</h2>
+                    <dl className="mt-4 space-y-1 text-[15px] leading-[1.5] text-[#404040]">
+                      <Fact label="Company" value={job.company} />
+                      <Fact label="Location" value={job.location || "Not specified"} />
+                      <Fact label="Deadline" value={formatDeadline(job.deadline)} />
+                    </dl>
+                    <p className="mt-4 line-clamp-4 flex-1 text-[15px] leading-[1.6] text-[#404040]">{job.description}</p>
                     {Array.isArray(job.tags) && job.tags.length > 0 ? (
-                      <div className="flex flex-wrap gap-1">
+                      <ul className="mt-4 flex flex-wrap gap-2" aria-label="Tags">
                         {job.tags.slice(0, 6).map((t, idx) => (
-                          <Badge key={`${job._id}-${idx}`} variant="outline">
-                            {t}
-                          </Badge>
+                          <li key={`${job._id}-${idx}`}>
+                            <Tag>{t}</Tag>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     ) : null}
-                  </CardContent>
-                  <CardFooter className="pt-0">
-                    <div className="w-full flex flex-col sm:flex-row gap-2">
-                      <Button className="w-full" variant="outline" onClick={() => openDetails(job)}>
+                    <div className="mt-6 flex flex-col gap-2 sm:flex-row">
+                      <button type="button" className={secondaryButton} onClick={() => openDetails(job)}>
                         Read more
-                      </Button>
-                      <Button className="w-full" onClick={() => openApply(job)}>
+                      </button>
+                      <button type="button" className={primaryButton} onClick={() => openApply(job)}>
                         Apply
-                      </Button>
+                      </button>
                     </div>
-                  </CardFooter>
-                </Card>
-              );
-            })}
-          </div>
-        )}
-      </div>
+                  </Card>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </Section>
 
       <Dialog
         open={detailsOpen}
         onOpenChange={(open) => {
-          setDetailsOpen(open);
-          if (!open) setDetailsJob(null);
+          setDetailsOpen(open)
+          if (!open) setDetailsJob(null)
         }}
       >
-        <DialogContent className="w-[calc(100vw-1.5rem)] sm:w-full max-w-2xl max-h-[90vh] overflow-hidden p-4 sm:p-6 grid-rows-[auto,1fr]">
+        <DialogContent className="grid-rows-[auto,1fr] max-h-[90vh] w-[calc(100vw-1.5rem)] max-w-2xl overflow-hidden rounded-[20px] border-[#E6E6E6] bg-white p-5 sm:w-full sm:rounded-[20px] sm:p-7">
           <DialogHeader>
-            <DialogTitle>Job Details</DialogTitle>
-            <DialogDescription>
-              {detailsJob ? (
-                <>
-                  {detailsJob.title} @ {detailsJob.company}
-                </>
-              ) : (
-                'Job details'
-              )}
+            <DialogTitle className="text-[22px] font-semibold tracking-[-0.03em]">Job Details</DialogTitle>
+            <DialogDescription className="text-[15px] text-[#5C5C5C]">
+              {detailsJob ? `${detailsJob.title} @ ${detailsJob.company}` : "Job details"}
             </DialogDescription>
           </DialogHeader>
 
-          <div className="min-h-0 overflow-y-auto pr-1 space-y-4">
-            <div className="text-sm text-muted-foreground space-y-1">
-              <div>
-                <span className="text-foreground font-semibold">Company:</span>{' '}
-                <span className="text-foreground">{detailsJob?.company || ''}</span>
-              </div>
-              <div>
-                <span className="text-foreground font-semibold">Location:</span>{' '}
-                <span>{detailsJob?.location || 'Not specified'}</span>
-              </div>
-              <div>
-                <span className="text-foreground font-semibold">Deadline:</span>{' '}
-                <span>
-                  {detailsJob?.deadline ? new Date(detailsJob.deadline).toLocaleDateString() : 'Not specified'}
-                </span>
-              </div>
+          <div className="min-h-0 space-y-5 overflow-y-auto pr-1 text-[15px] leading-[1.6] text-[#404040]">
+            <dl className="space-y-1">
+              <Fact label="Company" value={detailsJob?.company || ""} />
+              <Fact label="Location" value={detailsJob?.location || "Not specified"} />
+              <Fact label="Deadline" value={formatDeadline(detailsJob?.deadline)} />
+            </dl>
+
+            <div className="space-y-2">
+              <h3 className="font-semibold text-[#0A0A0A]">Description</h3>
+              <p className="whitespace-pre-wrap">{detailsJob?.description || ""}</p>
             </div>
 
             <div className="space-y-2">
-              <div className="text-sm font-semibold">Description</div>
-              <div className="text-sm whitespace-pre-wrap">{detailsJob?.description || ''}</div>
+              <h3 className="font-semibold text-[#0A0A0A]">Requirements</h3>
+              <p className="whitespace-pre-wrap">
+                {detailsJob?.requirements?.trim() ? detailsJob.requirements : "Not provided"}
+              </p>
             </div>
 
-            <div className="space-y-2">
-              <div className="text-sm font-semibold">Requirements</div>
-              <div className="text-sm whitespace-pre-wrap">
-                {detailsJob?.requirements?.trim() ? detailsJob.requirements : 'Not provided'}
-              </div>
-            </div>
-
-            {Array.isArray(detailsJob?.tags) && detailsJob!.tags!.length > 0 ? (
+            {Array.isArray(detailsJob?.tags) && detailsJob.tags.length > 0 ? (
               <div className="space-y-2">
-                <div className="text-sm font-semibold">Tags</div>
-                <div className="flex flex-wrap gap-1">
-                  {detailsJob!.tags!.map((t, idx) => (
-                    <Badge key={`details-${detailsJob!._id}-${idx}`} variant="outline">
-                      {t}
-                    </Badge>
+                <h3 className="font-semibold text-[#0A0A0A]">Tags</h3>
+                <ul className="flex flex-wrap gap-2">
+                  {detailsJob.tags.map((t, idx) => (
+                    <li key={`details-${detailsJob._id}-${idx}`}>
+                      <Tag>{t}</Tag>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             ) : null}
+
+            <button type="button" className={secondaryButton} onClick={() => setDetailsOpen(false)}>
+              Close
+            </button>
           </div>
         </DialogContent>
       </Dialog>
@@ -279,80 +281,76 @@ export default function CarrersPage() {
       <Dialog
         open={applyOpen}
         onOpenChange={(open) => {
-          setApplyOpen(open);
-          if (!open) setSelectedJob(null);
+          setApplyOpen(open)
+          if (!open) setSelectedJob(null)
         }}
       >
-        <DialogContent className="w-[calc(100vw-1.5rem)] sm:w-full max-w-lg">
+        <DialogContent className="w-[calc(100vw-1.5rem)] max-w-lg rounded-[20px] border-[#E6E6E6] bg-white p-5 sm:w-full sm:rounded-[20px] sm:p-7">
           <DialogHeader>
-            <DialogTitle>Apply Details</DialogTitle>
-            <DialogDescription>
-              {selectedJob ? (
-                <>
-                  {selectedJob.title} @ {selectedJob.company}
-                </>
-              ) : (
-                'Job apply details'
-              )}
+            <DialogTitle className="text-[22px] font-semibold tracking-[-0.03em]">Apply Details</DialogTitle>
+            <DialogDescription className="text-[15px] text-[#5C5C5C]">
+              {selectedJob ? `${selectedJob.title} @ ${selectedJob.company}` : "Job apply details"}
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div className="space-y-2">
-              <div className="text-sm font-semibold">Apply URL</div>
+              <label htmlFor="apply-url" className="text-[15px] font-semibold">
+                Apply URL
+              </label>
               <div className="flex items-center gap-2">
-                <Input readOnly value={selectedJob?.applyUrl?.trim() || 'Not provided'} />
-                <Button
+                <Input id="apply-url" readOnly value={applyUrl || "Not provided"} className={fieldClass} />
+                <button
                   type="button"
-                  variant="outline"
-                  onClick={() => copyToClipboard(selectedJob?.applyUrl?.trim() || '')}
-                  disabled={!selectedJob?.applyUrl?.trim()}
+                  className={`${secondaryButton} !w-auto shrink-0`}
+                  onClick={() => copyToClipboard(applyUrl || "")}
+                  disabled={!applyUrl}
                 >
                   Copy
-                </Button>
+                </button>
               </div>
-              {selectedJob?.applyUrl?.trim() ? (
-                <div className="text-xs text-muted-foreground">
+              {applyUrl ? (
+                <p className="text-[14px] text-[#5C5C5C]">
                   You can also open it in a new tab:{" "}
                   <a
-                    className="underline"
-                    href={selectedJob.applyUrl.trim()}
+                    className={`underline underline-offset-4 ${focusRing}`}
+                    href={applyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     Open link
                   </a>
-                </div>
+                </p>
               ) : null}
             </div>
 
             <div className="space-y-2">
-              <div className="text-sm font-semibold">Apply Email</div>
+              <label htmlFor="apply-email" className="text-[15px] font-semibold">
+                Apply Email
+              </label>
               <div className="flex items-center gap-2">
-                <Input readOnly value={selectedJob?.applyEmail?.trim() || 'Not provided'} />
-                <Button
+                <Input id="apply-email" readOnly value={applyEmail || "Not provided"} className={fieldClass} />
+                <button
                   type="button"
-                  variant="outline"
-                  onClick={() => copyToClipboard(selectedJob?.applyEmail?.trim() || '')}
-                  disabled={!selectedJob?.applyEmail?.trim()}
+                  className={`${secondaryButton} !w-auto shrink-0`}
+                  onClick={() => copyToClipboard(applyEmail || "")}
+                  disabled={!applyEmail}
                 >
                   Copy
-                </Button>
+                </button>
               </div>
-              {selectedJob?.applyEmail?.trim() ? (
-                <div className="text-xs text-muted-foreground">
+              {applyEmail ? (
+                <p className="text-[14px] text-[#5C5C5C]">
                   You can email directly:{" "}
-                  <a className="underline" href={`mailto:${selectedJob.applyEmail.trim()}`}>
+                  <a className={`underline underline-offset-4 ${focusRing}`} href={`mailto:${applyEmail}`}>
                     Open email
                   </a>
-                </div>
+                </p>
               ) : null}
             </div>
           </div>
         </DialogContent>
       </Dialog>
-    </div>
-  );
+    </>
+  )
 }
-
-
