@@ -252,10 +252,10 @@ export const platforms = [
 export const products: { name: string; tag: string; text: string; href: string; soon?: boolean }[] = [
   { name: "Pathment", tag: "PLATFORM", text: "Runs our fellowships: clans, mentors, tasks and progress tracking.", href: LINKS.pathment },
   { name: "Buildment", tag: "PLATFORM", text: "Our courses, MindMaster included, are coming here. Learn engineering by building.", href: LINKS.buildment ?? LINKS.github, soon: !LINKS.buildment },
-  { name: "Community Cloud", tag: "FREE COMPUTE", text: "Shared Kubernetes from contributed compute for members' workloads.", href: "/dwosi#projects" },
+  { name: "Meshly Cloud", tag: "FREE COMPUTE", text: "Our community cloud: shared Kubernetes from contributed compute for members' workloads.", href: "/dwosi#projects" },
   { name: "Inroad", tag: "CAREERS", text: "Finds companies that fit you and drafts a note to the person who can hire you.", href: LINKS.inroad },
   { name: "GoalSlot", tag: "PRODUCTIVITY", text: "Goals on your calendar, deep work on a timer, progress in reports.", href: LINKS.goalslot },
-  { name: "Content Control Platform", tag: "LEARNING", text: "Video and blog apps that guide each learner by background and goals.", href: LINKS.github, soon: true },
+  { name: "SafeStream", tag: "LEARNING", text: "Ask a question and get the video moments that answer it, filtered by your own rules.", href: LINKS.github, soon: true },
 ]
 
 export type Circle = { name: string; text: string; href: string | null; note?: string }
@@ -426,7 +426,7 @@ export const footerColumns = [
     title: "Platforms",
     links: [
       { label: "Pathment", href: LINKS.pathment },
-      { label: "Community Cloud", href: "/dwosi#projects" },
+      { label: "Meshly Cloud", href: "/dwosi#projects" },
       { label: "All products", href: LINKS.dwosi },
     ],
   },
