@@ -45,7 +45,7 @@ export const mailto = (subject: string) => `mailto:${LINKS.email}?subject=${enco
  */
 export const navItems = [
   { label: "Impact", href: "/#impact" },
-  { label: "Programs", href: "/#programs" },
+  { label: "Programs", href: "/#get-involved" },
   { label: "Partners", href: "/#partners" },
   { label: "Resources", href: "/#resources" },
   { label: "Community links", href: "/links" },
@@ -56,7 +56,7 @@ export const navItems = [
 export type ApplyProgram = {
   name: string
   when: string
-  status: "OPEN" | "CLOSED" | "GROUP"
+  status: "OPEN" | "CLOSED" | "GROUP" | "INVITE"
   cta: string
   href: string
 }
@@ -96,6 +96,13 @@ export const applyPrograms: ApplyProgram[] = [
     status: "OPEN",
     cta: "Learn more",
     href: "/ambassador-program",
+  },
+  {
+    name: "MindMaster",
+    when: "Invite only. Ask your mentor, or email info@devweekends.com",
+    status: "INVITE",
+    cta: "Ask for an invite",
+    href: mailto("Invitation to MindMaster"),
   },
   {
     name: "GSoC prep",
@@ -216,36 +223,6 @@ export const outcomes = [
     title: "Companies founded",
     text: "Startups built through the X-Team builder community and 2-Day Startup sprints.",
   },
-]
-
-export const programs = [
-  {
-    label: "Learn and build",
-    name: "Engineering Fellowship",
-    text: "A structured four-month journey. Real projects, focused study groups (clans), mentor guidance and the accountability to keep growing.",
-    link: { label: "Explore the fellowship", href: LINKS.fellowship },
-    dark: false,
-  },
-  {
-    label: "Contribute and grow",
-    name: "Open Source and GSoC",
-    text: "DWOSI products, DSOC cohorts and GSoC and LFX preparation. Work with maintainers and build a public record.",
-    link: { label: "Explore open source", href: LINKS.dwosi },
-    dark: false,
-  },
-  {
-    label: "Think and thrive",
-    name: "MindMaster",
-    text: "Human skills that make great engineers: growth mindset, communication, adaptability, teamwork, personal development and purpose.",
-    tag: "Invite only",
-    link: { label: "Courses coming soon on Buildment", href: null as string | null },
-    dark: false,
-  },
-]
-
-export const platforms = [
-  { name: "Pathment", text: "Where fellowships run: clans, mentors, tasks and progress.", href: LINKS.pathment },
-  { name: "Buildment", text: "Where our courses will live, MindMaster included. Coming soon.", href: LINKS.buildment },
 ]
 
 /** Products not live yet link to our GitHub and keep a Coming soon tag */

@@ -30,7 +30,7 @@ export default function MindMasterPage() {
             Join the community
           </a>
           <Link
-            href="/#programs"
+            href="/#get-involved"
             className="inline-flex min-h-[52px] items-center rounded-xl border border-[#D4D4D4] px-7 py-4 text-base font-medium"
           >
             See our programs
