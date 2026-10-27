@@ -5,8 +5,8 @@
  */
 const timeline = [
   { year: "2018", text: "Weekend sessions begin at university in Pakistan." },
-  { year: "2025", text: "The Fellowship launches, with tracks, milestones and accountability." },
-  { year: "2026", text: "1,072 fellows selected from 3,000+ applicants, and 9 Google Summer of Code selections." },
+  { year: "2025", text: "The Fellowship launches: 300+ fellows trained in Q1, then 800 more." },
+  { year: "2026", text: "One Fellowship a year from here: 1,072 trained from 3,000+ applicants, and 9 Google Summer of Code selections." },
 ]
 
 export function FounderStory() {
@@ -31,10 +31,12 @@ export function FounderStory() {
             <p>
               Some things did not work. Recorded lectures did not. Promising a job in three months did not, so we do not promise
               placement. Learning together did work, so in early 2025 we launched the Fellowship, with tracks, milestones and
-              accountability. In 2026, more than 3,000 people applied and we selected 1,072 fellows.
+              accountability. In 2025, 300+ fellows trained in the first quarter and 800 more after that. Since then we run one
+              Fellowship a year. In 2026, more than 3,000 people applied and 1,072 were trained.
             </p>
             <p className="font-semibold text-[#0A0A0A]">
-              More than 30,000 people are part of Dev Weekends today, and 2026 brought nine Google Summer of Code selections.
+              More than 30,000 people are part of Dev Weekends today, 2,100+ of them trained through the Fellowship, and 2026
+              brought nine Google Summer of Code selections.
             </p>
           </div>
         </div>

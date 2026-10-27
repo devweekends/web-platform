@@ -111,7 +111,7 @@ export const countries = [
 export const reach = [
   { value: "30", label: "Countries" },
   { value: "222", label: "Universities" },
-  { value: "1,072", label: "Fellows selected in 2026" },
+  { value: "2,100+", label: "Fellows trained" },
   { value: "100%", label: "Free, always" },
 ]
 
