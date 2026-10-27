@@ -200,7 +200,6 @@ export default function TeamPage() {
         <SectionHeading
           eyebrow="Top mentors"
           title="Learn from people who did it"
-          intro="Working engineers who volunteer 10 to 15 hours a week. Each of them was a mentee first."
         />
         <MentorSlider people={mentors} />
       </Section>
