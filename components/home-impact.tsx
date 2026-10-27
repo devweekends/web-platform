@@ -1,26 +1,30 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowUpRight, Info } from "lucide-react";
+import Image from "next/image"
+import { ArrowUpRight, Info } from "lucide-react"
+
+import { SmartLink } from "@/components/home/smart-link"
+import { Card, Eyebrow, Panel, Section, SectionHeading } from "@/components/site/page-kit"
 
 /**
- * Homepage impact block. Three parts:
+ * Impact block for /our-story. Three parts:
  * 1. "What our members went on to do": the outcomes that prove the value.
  * 2. "Value added to the economy": what those outcomes are worth in dollars.
- * 3. "One of the best engineering communities in Pakistan": scale numbers
- *    plus what an AI assistant says when a student asks where to go.
+ * 3. "Who shows up, and where they end up": scale numbers plus what an AI
+ *    assistant says when a student asks where to go.
  *
  * Every number lives in the arrays below, each with an `info` note that
- * shows on the (i) icon so readers can see where it comes from.
+ * shows on the (i) icon or under the number, so readers can see where it
+ * comes from. Used only by app/our-story/page.tsx. Keep in sync with
+ * app/dwosi/data.ts.
  */
 
 type Stat = {
-  value: string;
-  label: string;
-  info: string;
-  detail?: string;
-  href?: string;
-  cta?: string;
-};
+  value: string
+  label: string
+  info: string
+  detail?: string
+  href?: string
+  cta?: string
+}
 
 const outcomes: Stat[] = [
   {
@@ -58,18 +62,16 @@ const outcomes: Stat[] = [
   {
     value: "50+",
     label: "Top-rated freelancers",
-    detail:
-      "Members who built a profile, landed their first client and earned top-rated status on global freelance platforms.",
+    detail: "Members who built a profile, landed their first client and earned top-rated status on global freelance platforms.",
     info: "Members holding Top Rated or equivalent status on Upwork and similar platforms. 23 fellows started freelancing in the last cohort alone.",
   },
   {
     value: "5",
     label: "Startups born on weekends",
-    detail:
-      "Founded by members and mentored by our team, from first idea at a Tech Grind to real products with real users.",
+    detail: "Founded by members and mentored by our team, from first idea at a Tech Grind to real products with real users.",
     info: "Companies founded by members through the X Team builder community and 2-Day Startup weekends, with ongoing mentorship from the core team.",
   },
-];
+]
 
 // Money our members earned because of the skills and referrals they picked
 // up here. Every line is a conservative estimate from reported numbers.
@@ -94,7 +96,7 @@ const economy: Stat[] = [
     label: "Remote salaries, every year",
     info: "50+ members in remote jobs paying $20,000 to $90,000 a year. The median is about $20,000, and 10 of them earn $50,000 to $90,000. This one recurs annually.",
   },
-];
+]
 
 const scale: Stat[] = [
   {
@@ -137,7 +139,7 @@ const scale: Stat[] = [
     label: "Free, forever",
     info: "No fees, no paid tiers. Mentors volunteer 10 to 15 hours a week.",
   },
-];
+]
 
 // Verbatim answers from AI assistants, captured on the date shown.
 // Only add an entry here when you have the exact text and a screenshot.
@@ -152,244 +154,177 @@ const aiMentions = [
     // Drop a screenshot at public/images/ai-chatgpt-dev-weekends.png and
     // set `image` to "/images/ai-chatgpt-dev-weekends.png" to show it.
     image: "",
-    imageAlt:
-      "Screenshot of ChatGPT recommending Dev Weekends as its first choice for a CS student in Pakistan",
+    imageAlt: "Screenshot of ChatGPT recommending Dev Weekends as its first choice for a CS student in Pakistan",
   },
-];
+]
 
-function InfoTip({ text, dark = false }: { text: string; dark?: boolean }) {
+/**
+ * Small (i) button with a tooltip. The tooltip is positioned against the
+ * nearest `relative` ancestor (the card), so it stays on screen.
+ */
+function InfoTip({ text, onDark = false, align = "right" }: { text: string; onDark?: boolean; align?: "left" | "right" }) {
+  const button = onDark
+    ? "border-[#3D3D3D] text-[#A3A3A3] hover:border-white hover:text-white focus-visible:outline-white"
+    : "border-[#D4D4D4] text-[#5C5C5C] hover:border-[#0A0A0A] hover:text-[#0A0A0A] focus-visible:outline-[#0A0A0A]"
+  const tip = onDark ? "bg-white text-[#0A0A0A]" : "bg-[#0A0A0A] text-white"
   return (
-    <span className="relative inline-flex group/tip">
+    <span className="group/tip inline-flex shrink-0">
       <button
         type="button"
         aria-label="How this number is counted"
-        className={`inline-flex h-5 w-5 items-center justify-center rounded-full border transition-colors ${
-          dark
-            ? "border-background/30 text-background/60 hover:text-background hover:border-background"
-            : "border-foreground/25 text-foreground/50 hover:text-foreground hover:border-foreground"
-        }`}
+        className={`relative inline-flex h-6 w-6 items-center justify-center rounded-full border transition-colors before:absolute before:-inset-2.5 before:content-[''] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${button}`}
       >
-        <Info className="h-3 w-3" />
+        <Info className="h-3.5 w-3.5" aria-hidden="true" />
       </button>
       <span
         role="tooltip"
-        className={`pointer-events-none absolute right-0 top-full z-20 mt-2 w-64 p-3 text-xs leading-relaxed normal-case tracking-normal font-normal text-left opacity-0 shadow-lg transition-opacity group-hover/tip:opacity-100 group-focus-within/tip:opacity-100 ${
-          dark
-            ? "bg-background text-foreground"
-            : "bg-foreground text-background"
-        }`}
+        className={`pointer-events-none absolute top-full z-20 mt-1 w-[min(16rem,calc(100vw-3rem))] rounded-xl p-3 text-left text-xs font-normal normal-case leading-relaxed tracking-normal opacity-0 shadow-lg transition-opacity group-focus-within/tip:opacity-100 group-hover/tip:opacity-100 ${
+          align === "right" ? "right-3" : "left-3"
+        } ${tip}`}
       >
         {text}
       </span>
     </span>
-  );
+  )
 }
+
+const lift = "relative motion-safe:hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)]"
 
 export default function HomeImpact() {
   return (
     <>
-      {/* Outcomes */}
-      <section id="impact" className="py-12 md:py-16 px-6 lg:px-12 bg-background">
-        <div className="max-w-[1100px] mx-auto">
-          <div className="text-center mb-12 reveal">
-            <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
-              Proof, not promises
-            </p>
-            <h2 className="text-[clamp(28px,4vw,42px)] font-bold tracking-tight mb-5">
-              What our members went on to do
+      {/* Outcomes. Other pages link to /our-story#impact, so keep this id. */}
+      <Section id="impact">
+        <SectionHeading
+          eyebrow="Proof, not promises"
+          title="What our members went on to do"
+          intro="Most of them started as confused students with no network and no resume worth reading. Here is where the weekends took them."
+        />
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {outcomes.map((item) => (
+            <Card key={item.label} tone="bordered" className={`gap-3 ${lift}`}>
+              <div className="flex items-start justify-between gap-3">
+                <div className="text-[44px] font-semibold leading-none tracking-[-0.04em]">{item.value}</div>
+                <InfoTip text={item.info} />
+              </div>
+              <h3 className="text-lg font-semibold leading-snug">{item.label}</h3>
+              <p className="flex-1 text-[15px] leading-[1.65] text-[#404040]">{item.detail}</p>
+              {item.href && (
+                <SmartLink
+                  href={item.href}
+                  className="mt-2 inline-flex min-h-11 items-center gap-1 self-start text-[15px] font-semibold underline-offset-4 hover:underline"
+                >
+                  {item.cta}
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </SmartLink>
+              )}
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* Economic value: the first of two black panels on the page */}
+      <Panel>
+        <div id="economy" className="grid scroll-mt-24 grid-cols-1 items-start gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <Eyebrow onDark>Value added to the economy</Eyebrow>
+            <p className="mt-4 text-[clamp(56px,8vw,96px)] font-semibold leading-none tracking-[-0.045em]">$2.5M+</p>
+            <h2 className="mt-4 text-[clamp(24px,2.6vw,32px)] font-semibold leading-tight tracking-[-0.03em]">
+              earned by our members
             </h2>
-            <p className="text-base text-muted-foreground max-w-[560px] mx-auto">
-              Most of them started as confused students with no network and no
-              resume worth reading. Here is where the weekends took them.
+            <p className="mt-4 max-w-[46ch] text-[17px] leading-[1.65] text-[#C7C7C7]">
+              Free mentorship is not charity when it turns into income. This is what the placements, stipends and freelance
+              contracts on this page add up to, using conservative numbers our members reported back to us.
+            </p>
+            <p className="mt-4 max-w-[46ch] text-sm leading-relaxed text-[#A3A3A3]">
+              Sum of the four lines on the right, rounded down. Remote salaries are counted for one year only, so the true figure
+              grows every year.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border">
-            {outcomes.map((item) => (
-              <div
-                key={item.label}
-                className="group relative bg-background p-7 md:p-8 flex flex-col gap-3 hover:bg-muted/40 transition-colors"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="text-4xl md:text-5xl font-bold tracking-tight">
-                    {item.value}
-                  </div>
-                  <InfoTip text={item.info} />
-                </div>
-                <div className="text-lg font-semibold leading-snug">
-                  {item.label}
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                  {item.detail}
-                </p>
-                {item.href && (
-                  <Link
-                    href={item.href}
-                    className="inline-flex items-center gap-1 text-sm font-medium mt-2"
-                  >
-                    {item.cta}
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                )}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-7">
+            {economy.map((e) => (
+              <div key={e.label} className="rounded-[20px] bg-[#161616] p-6">
+                <div className="text-[36px] font-semibold leading-none tracking-[-0.04em]">{e.value}</div>
+                <h3 className="mt-3 text-base font-semibold">{e.label}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#A3A3A3]">{e.info}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Economic value */}
-      <section id="economy" className="py-12 md:py-16 px-6 lg:px-12 bg-muted/20">
-        <div className="max-w-[1100px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            <div className="lg:col-span-5">
-              <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-4">
-                Value added to the economy
-              </p>
-              <div className="flex items-start gap-3">
-                <h2 className="text-[clamp(40px,7vw,80px)] font-bold tracking-tight leading-none">
-                  $2.5M+
-                </h2>
-                <InfoTip text="Sum of the four lines on the right, rounded down. Remote salaries are counted for one year only, so the true figure grows every year." />
-              </div>
-              <p className="text-lg font-semibold mt-3 mb-4">
-                earned by our members and brought home to Pakistan
-              </p>
-              <p className="text-muted-foreground leading-relaxed max-w-[460px]">
-                Free mentorship is not charity when it turns into income. This
-                is what the placements, stipends and freelance contracts on this
-                page add up to, using conservative numbers our members reported
-                back to us.
-              </p>
-            </div>
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-[1px] bg-border border">
-              {economy.map((e) => (
-                <div key={e.label} className="bg-background p-6 md:p-7">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="text-3xl md:text-4xl font-bold tracking-tight">
-                      {e.value}
-                    </div>
-                    <InfoTip text={e.info} />
-                  </div>
-                  <div className="text-sm font-semibold mt-2">{e.label}</div>
-                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                    {e.info}
-                  </p>
+            <div className="relative rounded-[20px] bg-[#161616] p-6 sm:col-span-2">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <Eyebrow onDark>Value added for companies</Eyebrow>
+                  <div className="mt-3 text-[36px] font-semibold leading-none tracking-[-0.04em]">300+</div>
+                  <h3 className="mt-3 text-base font-semibold">Placements in the local market</h3>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* For companies: local market placements */}
-          <div className="mt-10 border bg-background p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            <div className="md:col-span-4">
-              <p className="text-[11px] font-semibold tracking-[3px] uppercase text-muted-foreground mb-3">
-                Value added for companies
-              </p>
-              <div className="flex items-start gap-3">
-                <div className="text-4xl md:text-5xl font-bold tracking-tight">
-                  300+
-                </div>
-                <InfoTip text="Members hired by Pakistani software houses, startups and product companies after training here, counted from what they reported back to us." />
+                <InfoTip
+                  onDark
+                  text="Members hired by Pakistani software houses, startups and product companies after training here, counted from what they reported back to us."
+                />
               </div>
-              <div className="text-sm font-semibold mt-1">
-                Placements in the local market
-              </div>
-            </div>
-            <div className="md:col-span-8">
-              <p className="text-muted-foreground leading-relaxed">
-                Engineers who trained here now build for companies across Pakistan.
-                They arrive with shipped projects, reviewed code and interview
-                practice already behind them, so teams spend less time on hiring
-                and ramp-up and more time building.
+              <p className="mt-3 max-w-[60ch] text-sm leading-relaxed text-[#C7C7C7]">
+                Engineers who trained here now build for companies across Pakistan. They arrive with shipped projects, reviewed
+                code and interview practice already behind them, so teams spend less time on hiring and ramp-up and more time
+                building.
               </p>
-              <Link
+              <SmartLink
                 href="/blog/fellowship-2026-by-the-numbers"
-                className="inline-flex items-center gap-1 text-sm font-medium mt-4 group"
+                className="mt-2 inline-flex min-h-11 items-center gap-1 text-[15px] font-semibold text-white underline-offset-4 hover:underline"
               >
                 Read the fellowship report
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </SmartLink>
             </div>
           </div>
         </div>
-      </section>
+      </Panel>
 
-      {/* Scale + AI mentions */}
-      <section id="scale" className="py-12 md:py-16 px-6 lg:px-12 bg-foreground text-background">
-        <div className="max-w-[1100px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5 space-y-5">
-              <p className="text-[11px] font-semibold tracking-[3px] uppercase text-background/60">
-                Why people call us one of the best
-              </p>
-              <h2 className="text-[clamp(28px,4vw,42px)] font-bold tracking-tight">
-                One of the best software engineering communities in Pakistan
-              </h2>
-              <p className="text-background/70 md:text-lg leading-relaxed">
-                Not because we say so. Because of who shows up, and where they
-                end up. More than 3,000 students applied to a single fellowship
-                cohort this year, from 222 universities across 30 countries,
-                and every session, review and mock interview is still free.
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-[1px] bg-background/15 border border-background/15">
-                {scale.map((s) => (
-                  <div key={s.label} className="bg-foreground p-5">
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="text-2xl md:text-3xl font-bold tracking-tighter">
-                        {s.value}
-                      </div>
-                      <InfoTip text={s.info} dark />
-                    </div>
-                    <div className="text-xs md:text-sm text-background/60 mt-1">
-                      {s.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Scale and AI mentions */}
+      <Section id="scale" tone="gray">
+        <SectionHeading
+          eyebrow="Why people call us one of the best"
+          title="One of the best software engineering communities"
+          intro="Not because we say so. Because of who shows up, and where they end up. More than 3,000 students applied to a single fellowship cohort this year, from 222 universities across 30 countries, and every session, review and mock interview is still free."
+        />
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:col-span-7 lg:grid-cols-2">
+            {scale.map((s, i) => (
+              <Card key={s.label} tone="white" className="relative p-5">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="text-[28px] font-semibold leading-none tracking-[-0.04em]">{s.value}</div>
+                  <InfoTip text={s.info} align={i % 2 === 0 ? "left" : "right"} />
+                </div>
+                <div className="mt-2 text-sm text-[#5C5C5C]">{s.label}</div>
+              </Card>
+            ))}
+          </div>
 
-            <div className="lg:col-span-7 space-y-4">
-              <p className="text-[11px] font-semibold tracking-[3px] uppercase text-background/60">
-                Ask an AI assistant
-              </p>
-              {aiMentions.map((m) => (
-                <figure
-                  key={m.source}
-                  className="border border-background/15 bg-background/[0.04]"
-                >
-                  <div className="p-6 md:p-8">
-                    <figcaption className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-3">
+          <div className="space-y-4 lg:col-span-5">
+            <Eyebrow>Ask an AI assistant</Eyebrow>
+            {aiMentions.map((m) => (
+              <Card key={m.source} tone="white" className="p-0">
+                <figure>
+                  <div className="p-7">
+                    <figcaption className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                       <span className="text-lg font-semibold">{m.source}</span>
-                      <span className="text-xs text-background/50">{m.date}</span>
+                      <span className="text-xs text-[#5C5C5C]">{m.date}</span>
                     </figcaption>
-                    <p className="text-xs text-background/50 mb-4">
-                      We asked: &ldquo;{m.prompt}&rdquo;
-                    </p>
-                    <blockquote className="text-base md:text-lg leading-relaxed text-background/85">
-                      &ldquo;{m.quote}&rdquo;
-                    </blockquote>
+                    <p className="mb-4 text-xs leading-relaxed text-[#5C5C5C]">We asked: &ldquo;{m.prompt}&rdquo;</p>
+                    <blockquote className="text-base leading-relaxed text-[#404040]">&ldquo;{m.quote}&rdquo;</blockquote>
                   </div>
                   {m.image && (
-                    <div className="relative aspect-[800/127] border-t border-background/15 bg-white">
-                      <Image
-                        src={m.image}
-                        alt={m.imageAlt}
-                        fill
-                        className="object-contain"
-                        sizes="(min-width: 1024px) 640px, 100vw"
-                      />
+                    <div className="relative aspect-[800/127] border-t border-[#E6E6E6] bg-white">
+                      <Image src={m.image} alt={m.imageAlt} fill className="object-contain" sizes="(min-width: 1024px) 480px, 100vw" />
                     </div>
                   )}
                 </figure>
-              ))}
-              <p className="text-xs text-background/45">
-                Quoted word for word from the assistant named, on the date
-                shown. Answers change over time, so ask it yourself.
-              </p>
-            </div>
+              </Card>
+            ))}
+            <p className="text-xs leading-relaxed text-[#5C5C5C]">
+              Quoted word for word from the assistant named, on the date shown. Answers change over time, so ask it yourself.
+            </p>
           </div>
         </div>
-      </section>
+      </Section>
     </>
-  );
+  )
 }
