@@ -48,33 +48,6 @@ const timeline = [
   },
 ]
 
-const sessions = [
-  {
-    label: "30 deep sessions",
-    title: "DSA grind sessions",
-    text: "Intensive data structures and algorithms training.",
-    items: ["3 sessions a week, 2 hours each", "LeetCode practice from 100 up to 1000+", "MERN stack integration"],
-  },
-  {
-    label: "12 weekend sessions",
-    title: "Engineering grind sessions",
-    text: "Hands-on engineering and project development.",
-    items: [
-      "JS, React, Redux and Node.js",
-      "Database design, data modeling and warehousing",
-      "ETL / ELT pipelines, Spark and Airflow",
-      "Microservices, system design, AWS, Docker and Kubernetes",
-      "CI/CD and DevOps practices",
-    ],
-  },
-  {
-    label: "12 major projects",
-    title: "Deep grind projects",
-    text: "Real-world projects with expert guidance, one per weekend.",
-    items: ["Industry-standard practices", "Portfolio-ready applications", "Deployment and optimization"],
-  },
-]
-
 const tracks = [
   {
     label: "Track 01, Level 0",
@@ -121,26 +94,6 @@ const tracks = [
       "Data quality and governance",
     ],
   },
-]
-
-const topics = [
-  "JavaScript",
-  "React",
-  "Redux",
-  "Node.js",
-  "Next.js",
-  "Database design",
-  "Data modeling",
-  "Spark and streaming",
-  "Cloud warehouses (BigQuery, Snowflake)",
-  "Delta Lake and lakehouse",
-  "System architecture",
-  "Microservices (3 HLD design sessions)",
-  "ORM (Prisma, TypeORM)",
-  "ETL / ELT and CDC",
-  "Airflow and orchestration",
-  "System design",
-  "Interview prep",
 ]
 
 const perks = [
@@ -259,34 +212,6 @@ export default function FellowshipPage() {
         </ol>
       </Section>
 
-      <Section id="program">
-        <SectionHeading
-          eyebrow="The program"
-          title="Intensive training, real projects, expert mentors."
-          intro="Every session type comes with 20+ hours of pre-recorded content."
-        />
-        <div className="grid gap-5 lg:grid-cols-3">
-          {sessions.map((session) => (
-            <Card key={session.title} tone="gray">
-              <CardText label={session.label} title={session.title}>
-                <p className={body}>{session.text}</p>
-                <div className="mt-5">
-                  <CheckList items={session.items} />
-                </div>
-              </CardText>
-            </Card>
-          ))}
-        </div>
-        <Card tone="bordered" className="mt-5 gap-6 md:flex-row md:items-center md:justify-between">
-          <div className="max-w-[60ch]">
-            <CardText label="Mega capstone project" title="One industry-level project, guided by 2 expert mentors">
-              <p className={body}>The crown jewel of your portfolio: full-stack development, industry-standard practices, and deployment and scaling strategies.</p>
-            </CardText>
-          </div>
-          <p className="text-[clamp(32px,4vw,48px)] font-semibold leading-none tracking-[-0.04em]">1 project</p>
-        </Card>
-      </Section>
-
       <Section id="levels" tone="gray">
         <SectionHeading
           eyebrow="Tracks"
@@ -311,21 +236,6 @@ export default function FellowshipPage() {
             </Card>
           ))}
         </div>
-      </Section>
-
-      <Section>
-        <SectionHeading
-          eyebrow="Technology"
-          title="What the engineering sessions cover."
-          intro="Dedicated 2-hour sessions each weekend, plus pre-recorded content to work through first."
-        />
-        <ul className="flex flex-wrap gap-2.5">
-          {topics.map((topic) => (
-            <li key={topic}>
-              <Chip>{topic}</Chip>
-            </li>
-          ))}
-        </ul>
       </Section>
 
       <Section tone="gray">

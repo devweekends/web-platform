@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { Button, Card, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
-import { CardText, CheckList, Chip, DarkSteps, StatRow } from "@/components/site/program-blocks"
+import { CardText, CheckList, DarkSteps, StatRow } from "@/components/site/program-blocks"
 import { MentorshipDialog } from "@/components/site/mentorship-dialog"
 
 export const metadata: Metadata = {
@@ -48,62 +48,6 @@ const features = [
   },
 ]
 
-const timeline = [
-  {
-    month: "Month 1",
-    title: "Foundation and core skills",
-    text: "Master programming fundamentals, DSA basics and web development essentials. Build your first portfolio projects with expert mentor guidance.",
-    milestone: "Core foundations and first projects",
-    items: ["8+ 1:1 mentor sessions", "LeetCode 100-200", "MERN stack fundamentals"],
-  },
-  {
-    month: "Month 2",
-    title: "Advanced DSA and system design",
-    text: "Go deep on complex algorithms, advanced data structures and system design patterns. Work on real-world projects and prepare for technical interviews.",
-    milestone: "Advanced problem solving and system design",
-    items: ["4+ 1:1 mentor sessions", "LeetCode 300-400", "System design fundamentals", "Open source contributions"],
-  },
-  {
-    month: "Month 3",
-    title: "Industry readiness and job preparation",
-    text: "Master advanced system design, build capstone projects, practice with mock interviews and get ready for job applications.",
-    milestone: "Industry ready and job placement",
-    items: [
-      "4+ 1:1 mentor sessions",
-      "LeetCode 400+",
-      "Mock interviews and feedback",
-      "Resume and LinkedIn optimization",
-      "Job application strategy",
-    ],
-  },
-]
-
-const sessions = [
-  {
-    label: "30 deep sessions",
-    title: "DSA grind sessions",
-    text: "Intensive data structures and algorithms training.",
-    items: ["3 sessions a week, 2 hours each", "LeetCode practice from 100 up to 1000+", "MERN stack integration"],
-  },
-  {
-    label: "12 weekend sessions",
-    title: "Engineering grind sessions",
-    text: "Hands-on engineering and project development.",
-    items: [
-      "JS, React, Redux and Node.js",
-      "Database design and architecture",
-      "Microservices and system design",
-      "AWS, Docker, Kubernetes, CI/CD and DevOps",
-    ],
-  },
-  {
-    label: "12 major projects",
-    title: "Deep grind projects",
-    text: "Real-world projects with expert guidance, one per weekend.",
-    items: ["Industry-standard practices", "Portfolio-ready applications", "Deployment and optimization"],
-  },
-]
-
 const levels = [
   {
     label: "Level 0",
@@ -135,20 +79,6 @@ const levels = [
     ],
     path: "Foundation to Professional level",
   },
-]
-
-const topics = [
-  "JavaScript",
-  "React",
-  "Redux",
-  "Node.js",
-  "Next.js",
-  "Database design",
-  "System architecture",
-  "Microservices (3 HLD design sessions)",
-  "ORM (Prisma, TypeORM)",
-  "System design",
-  "Interview prep",
 ]
 
 const perks = [
@@ -213,53 +143,6 @@ export default function MentorshipPage() {
         </div>
       </Section>
 
-      <Section id="timeline">
-        <SectionHeading
-          eyebrow="Timeline"
-          title="Your three months."
-          intro="Suitable for all levels, with Foundation and Professional tracks."
-        />
-        <ol className="grid gap-5 lg:grid-cols-3">
-          {timeline.map((item) => (
-            <li key={item.month}>
-              <Card tone="gray" className="h-full">
-                <CardText label={item.month} title={item.title}>
-                  <p className={body}>{item.text}</p>
-                  <p className="mt-5 text-sm font-semibold">{item.milestone}</p>
-                  <ul className="mt-4 flex flex-wrap gap-2">
-                    {item.items.map((entry) => (
-                      <li key={entry}>
-                        <Chip>{entry}</Chip>
-                      </li>
-                    ))}
-                  </ul>
-                </CardText>
-              </Card>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
-      <Section id="program" tone="gray">
-        <SectionHeading
-          eyebrow="The program"
-          title="Intensive training, real projects, expert mentors."
-          intro="Every session type comes with 20+ hours of pre-recorded content."
-        />
-        <div className="grid gap-5 lg:grid-cols-3">
-          {sessions.map((session) => (
-            <Card key={session.title}>
-              <CardText label={session.label} title={session.title}>
-                <p className={body}>{session.text}</p>
-                <div className="mt-5">
-                  <CheckList items={session.items} />
-                </div>
-              </CardText>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
       <Section id="levels">
         <SectionHeading
           eyebrow="Tracks"
@@ -281,21 +164,6 @@ export default function MentorshipPage() {
             </Card>
           ))}
         </div>
-      </Section>
-
-      <Section tone="gray">
-        <SectionHeading
-          eyebrow="Technology"
-          title="What the engineering sessions cover."
-          intro="Dedicated 2-hour sessions each weekend, plus pre-recorded content to work through first."
-        />
-        <ul className="flex flex-wrap gap-2.5">
-          {topics.map((topic) => (
-            <li key={topic}>
-              <Chip>{topic}</Chip>
-            </li>
-          ))}
-        </ul>
       </Section>
 
       <Section>

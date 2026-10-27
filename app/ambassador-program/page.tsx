@@ -50,48 +50,6 @@ const exclusivePerks = [
   "Spotlight features and recommendation letters from Dev Weekends leadership",
 ]
 
-const responsibilities = [
-  {
-    title: "Lead local chapters",
-    items: [
-      "Host at least two learning circles per month",
-      "Onboard 50+ active learners every quarter",
-      "Share campus stories and wins with the Dev Weekends marketing team",
-    ],
-  },
-  {
-    title: "Grow real opportunities",
-    items: [
-      "Coordinate mentor AMAs and placement clinics",
-      "Nominate standout students for scholarships",
-      "Manage the campus ambassador task board and KPIs",
-    ],
-  },
-  {
-    title: "Champion the brand",
-    items: [
-      "Curate a monthly highlight recap",
-      "Collaborate on reels, blogs, and newsletter features",
-      "Drive social media growth with authentic narratives",
-    ],
-  },
-]
-
-const support = [
-  {
-    title: "Dedicated playbooks",
-    description: "Plug-and-play templates for event planning, partner outreach, and storytelling, so you never start from scratch.",
-  },
-  {
-    title: "Monthly strategy labs",
-    description: "Live sync-ups with the Dev Weekends core team to review KPIs, unlock blockers, and double down on what works.",
-  },
-  {
-    title: "Always-on support desk",
-    description: "A Slack channel with mentors, designers, and marketing coaches ready to help with your next campus event.",
-  },
-]
-
 const journey = [
   {
     timeline: "Week 1",
@@ -178,41 +136,6 @@ export default function AmbassadorProgramPage() {
           ))}
         </ul>
       </Panel>
-
-      <Section>
-        <SectionHeading
-          eyebrow="Your mission"
-          title="What you will drive every quarter"
-          intro="Focus on real outcomes for students: community building, skill development, and career breakthroughs. An OKR model keeps you aligned."
-        />
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {responsibilities.map((item) => (
-            <Card key={item.title} tone="bordered" className="h-full">
-              <h3 className="text-[22px] font-semibold leading-[1.25] tracking-[-0.02em]">{item.title}</h3>
-              <ul className="mt-5 space-y-3 text-[15px] leading-[1.6] text-[#404040]">
-                {item.items.map((entry) => (
-                  <li key={entry} className="flex gap-3">
-                    <Bullet />
-                    <span>{entry}</span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          ))}
-        </div>
-
-        <div className="mt-16">
-          <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">Support from the core team</h3>
-          <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {support.map((resource) => (
-              <div key={resource.title} className="border-t border-[#0A0A0A] pt-5">
-                <h4 className="text-[18px] font-semibold tracking-[-0.01em]">{resource.title}</h4>
-                <p className="mt-2 text-[15px] leading-[1.65] text-[#5C5C5C]">{resource.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
 
       <Section id="journey" tone="gray">
         <SectionHeading
