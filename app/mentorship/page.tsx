@@ -112,7 +112,7 @@ export default function MentorshipPage() {
               Mentorship runs all year, except while a fellowship is running. Get a personal mentor, join live coding sessions and
               become job-ready, whether you are starting from scratch or already have experience and feel stuck.
             </p>
-            <p className="mt-4">Final year project (FYP) students can apply through the FYP Roadshow.</p>
+            <p className="mt-4">Final year project (FYP) mentorship is closed for now. The next round is announced on Discord.</p>
           </>
         }
         actions={

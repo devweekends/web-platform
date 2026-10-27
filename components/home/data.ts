@@ -85,9 +85,9 @@ export const applyPrograms: ApplyProgram[] = [
   },
   {
     name: "Final year project (FYP) mentorship",
-    when: "Guidance on your university final year project. All year, except while a fellowship is running",
-    status: "OPEN",
-    cta: "Apply",
+    when: "Closed for now. The next round is announced on Discord",
+    status: "CLOSED",
+    cta: "Learn more",
     href: LINKS.fyp,
   },
   {

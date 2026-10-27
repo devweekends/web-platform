@@ -12,8 +12,6 @@ export const metadata: Metadata = {
 }
 
 const discordUrl = "https://discord.gg/Cy7Rgkf4Up"
-const fypMentorshipFormUrl =
-  "https://docs.google.com/forms/d/e/1FAIpQLSeJTkpAM6aTPpS6QcCO2iuB4VmKx537T84KBGlquqePwuuTfg/viewform"
 
 const covers = [
   {
@@ -39,15 +37,12 @@ export default function FYPRoadshowPage() {
       <PageHero
         eyebrow="Final year project (FYP) roadshow"
         title="Build an FYP worth showing after graduation."
-        intro="Your final year project can be more than a last-minute submission. Learn how to choose a problem, plan the work, and build something with real technical depth and real users."
+        intro="Your final year project can be more than a last-minute submission. Learn how to choose a problem, plan the work, and build something with real technical depth and real users. FYP mentorship is closed for now; the next round is announced on Discord."
         actions={
           <>
-            <Button href={fypMentorshipFormUrl}>Submit your FYP idea</Button>
+            <Button href={discordUrl}>Get updates on Discord</Button>
             <Button href="/guides/choosing-the-right-project" variant="secondary">
               Read the project guide
-            </Button>
-            <Button href={discordUrl} variant="secondary">
-              Get updates on Discord
             </Button>
           </>
         }
@@ -80,13 +75,13 @@ export default function FYPRoadshowPage() {
               onDark
               items={[
                 "Use the project-selection guide to test your idea before building.",
-                "Submit your FYP idea or project for consideration.",
-                "Strong submissions may be shortlisted for focused mentor guidance.",
+                "Submissions are closed for now. Join Discord to hear when the next round opens.",
+                "In each round, strong submissions may be shortlisted for focused mentor guidance.",
               ]}
             />
             <div className="mt-8">
-              <Button href={fypMentorshipFormUrl} variant="onDark">
-                Submit your FYP idea
+              <Button href={discordUrl} variant="onDark">
+                Get updates on Discord
               </Button>
             </div>
           </div>
