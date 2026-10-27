@@ -214,12 +214,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="/our-story#impact" className="text-background/70 hover:text-background transition-colors">
+                <Link href="/team#impact" className="text-background/70 hover:text-background transition-colors">
                   Success Stories
                 </Link>
               </li>
               <li>
-                <Link href="/our-story#apply" className="text-background/70 hover:text-background transition-colors">
+                <Link href="/team#apply" className="text-background/70 hover:text-background transition-colors">
                   Become a Mentor
                 </Link>
               </li>
@@ -249,7 +249,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/about" className="text-background/70 hover:text-background transition-colors">
+                <Link href="/team" className="text-background/70 hover:text-background transition-colors">
                   About
                 </Link>
               </li>

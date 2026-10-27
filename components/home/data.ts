@@ -25,8 +25,8 @@ export const LINKS = {
   stories: "/testimonials",
   guides: "/guides",
   blog: "/blog",
-  ourStory: "/our-story",
-  impactNumbers: "/our-story#impact",
+  ourStory: "/team",
+  impactNumbers: "/team#impact",
   fellowshipReport: "/blog/fellowship-2026-by-the-numbers",
   gsocPost: "/blog/gsoc",
   lfxPost: "/blog/lfx-mentorship-2026-talha-amjad",
@@ -374,8 +374,7 @@ export const footerColumns = [
   {
     title: "About",
     links: [
-      { label: "Our story", href: LINKS.ourStory },
-      { label: "About", href: "/about" },
+      { label: "Team and story", href: LINKS.ourStory },
       { label: "Impact", href: LINKS.impactNumbers },
       { label: "Stories", href: LINKS.stories },
       { label: "Partners", href: LINKS.partners },

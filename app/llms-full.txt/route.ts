@@ -10,8 +10,7 @@ Description: Community-driven software engineering education through weekend ses
 
 ## Public Website URLs
 - https://devweekends.com/
-- https://devweekends.com/about
-- https://devweekends.com/our-story
+- https://devweekends.com/team
 - https://devweekends.com/community
 - https://devweekends.com/sessions
 - https://devweekends.com/projects

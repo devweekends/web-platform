@@ -1,19 +1,16 @@
-import Image from "next/image"
 import { ArrowUpRight, Info } from "lucide-react"
 
 import { SmartLink } from "@/components/home/smart-link"
 import { Card, Eyebrow, Panel, Section, SectionHeading } from "@/components/site/page-kit"
 
 /**
- * Impact block for /our-story. Three parts:
+ * Impact block for /team. Two parts:
  * 1. "What our members went on to do": the outcomes that prove the value.
  * 2. "Value added to the economy": what those outcomes are worth in dollars.
- * 3. "Who shows up, and where they end up": scale numbers plus what an AI
- *    assistant says when a student asks where to go.
  *
  * Every number lives in the arrays below, each with an `info` note that
  * shows on the (i) icon or under the number, so readers can see where it
- * comes from. Used only by app/our-story/page.tsx. Keep in sync with
+ * comes from. Used only by app/team/page.tsx. Keep in sync with
  * app/dwosi/data.ts.
  */
 
@@ -98,70 +95,6 @@ const economy: Stat[] = [
   },
 ]
 
-const scale: Stat[] = [
-  {
-    value: "30K+",
-    label: "Community members",
-    info: "Across Discord, WhatsApp, LinkedIn, YouTube, Instagram and Facebook, deduplicated where we can.",
-  },
-  {
-    value: "60+",
-    label: "Active channels",
-    info: "60+ WhatsApp groups for placement, MERN, competitive programming and mock interviews, plus a 2,800+ member Discord.",
-  },
-  {
-    value: "6",
-    label: "Specialized communities",
-    info: "Fellowship, Mentorship, DSoC (our summer of code), Open Source Prep, MindMaster, and X Team for builders and founders.",
-  },
-  {
-    value: "30+",
-    label: "Countries reached",
-    info: "Fellowship 2026 selected fellows from 30 countries. 179 of the 1,072 fellows are outside Pakistan.",
-  },
-  {
-    value: "222",
-    label: "Universities",
-    info: "Universities represented in the Fellowship 2026 cohort, with campuses merged.",
-  },
-  {
-    value: "3,000+",
-    label: "Fellowship applicants",
-    info: "Applications received for Fellowship 2026. 1,072 were selected, about 36 percent.",
-  },
-  {
-    value: "1,000+",
-    label: "Engineers trained",
-    info: "Fellows who completed a full cohort, across all cohorts since 2018.",
-  },
-  {
-    value: "100%",
-    label: "Free, forever",
-    info: "No fees, no paid tiers. Mentors volunteer 10 to 15 hours a week.",
-  },
-]
-
-// Verbatim answers from AI assistants, captured on the date shown.
-// Only add an entry here when you have the exact text and a screenshot.
-const aiMentions = [
-  {
-    source: "ChatGPT",
-    date: "23 September 2026",
-    prompt:
-      "I am a CS student in Pakistan with no network. Which communities offer free mentorship to help me get into Google Summer of Code, LFX, or remote jobs?",
-    quote:
-      "My first choice for your specific situation would be Dev Weekends. There is unusually strong evidence behind that recommendation: public accounts from 2026 participants report 7 GSoC selections from the Dev Weekends community in 2026, versus 2 in 2025, and describe its mentorship as free and structured.",
-    // Drop a screenshot at public/images/ai-chatgpt-dev-weekends.png and
-    // set `image` to "/images/ai-chatgpt-dev-weekends.png" to show it.
-    image: "",
-    imageAlt: "Screenshot of ChatGPT recommending Dev Weekends as its first choice for a CS student in Pakistan",
-  },
-]
-
-/**
- * Small (i) button with a tooltip. The tooltip is positioned against the
- * nearest `relative` ancestor (the card), so it stays on screen.
- */
 function InfoTip({ text, onDark = false, align = "right" }: { text: string; onDark?: boolean; align?: "left" | "right" }) {
   const button = onDark
     ? "border-[#3D3D3D] text-[#A3A3A3] hover:border-white hover:text-white focus-visible:outline-white"
@@ -193,7 +126,7 @@ const lift = "relative motion-safe:hover:-translate-y-1 hover:shadow-[0_20px_40p
 export default function HomeImpact() {
   return (
     <>
-      {/* Outcomes. Other pages link to /our-story#impact, so keep this id. */}
+      {/* Outcomes. Other pages link to /team#impact, so keep this id. */}
       <Section id="impact">
         <SectionHeading
           eyebrow="Proof, not promises"
@@ -278,53 +211,6 @@ export default function HomeImpact() {
         </div>
       </Panel>
 
-      {/* Scale and AI mentions */}
-      <Section id="scale" tone="gray">
-        <SectionHeading
-          eyebrow="Why people call us one of the best"
-          title="One of the best software engineering communities"
-          intro="Not because we say so. Because of who shows up, and where they end up. More than 3,000 students applied to a single fellowship cohort this year, from 222 universities across 30 countries, and every session, review and mock interview is still free."
-        />
-        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:col-span-7 lg:grid-cols-2">
-            {scale.map((s, i) => (
-              <Card key={s.label} tone="white" className="relative p-5">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="text-[28px] font-semibold leading-none tracking-[-0.04em]">{s.value}</div>
-                  <InfoTip text={s.info} align={i % 2 === 0 ? "left" : "right"} />
-                </div>
-                <div className="mt-2 text-sm text-[#5C5C5C]">{s.label}</div>
-              </Card>
-            ))}
-          </div>
-
-          <div className="space-y-4 lg:col-span-5">
-            <Eyebrow>Ask an AI assistant</Eyebrow>
-            {aiMentions.map((m) => (
-              <Card key={m.source} tone="white" className="p-0">
-                <figure>
-                  <div className="p-7">
-                    <figcaption className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                      <span className="text-lg font-semibold">{m.source}</span>
-                      <span className="text-xs text-[#5C5C5C]">{m.date}</span>
-                    </figcaption>
-                    <p className="mb-4 text-xs leading-relaxed text-[#5C5C5C]">We asked: &ldquo;{m.prompt}&rdquo;</p>
-                    <blockquote className="text-base leading-relaxed text-[#404040]">&ldquo;{m.quote}&rdquo;</blockquote>
-                  </div>
-                  {m.image && (
-                    <div className="relative aspect-[800/127] border-t border-[#E6E6E6] bg-white">
-                      <Image src={m.image} alt={m.imageAlt} fill className="object-contain" sizes="(min-width: 1024px) 480px, 100vw" />
-                    </div>
-                  )}
-                </figure>
-              </Card>
-            ))}
-            <p className="text-xs leading-relaxed text-[#5C5C5C]">
-              Quoted word for word from the assistant named, on the date shown. Answers change over time, so ask it yourself.
-            </p>
-          </div>
-        </div>
-      </Section>
     </>
   )
 }

@@ -11,7 +11,7 @@ export const metadata = {
 
 // The old page showed sample discussions, events and groups (invented names,
 // dates and member counts) with buttons that did nothing. This version only
-// points to places that exist and numbers that are published on /our-story.
+// points to places that exist and numbers that are published on /team.
 
 const ways = [
   {
@@ -67,7 +67,7 @@ export default function CommunityPage() {
         actions={
           <>
             <Button href={LINKS.discord}>Join Discord</Button>
-            <Button href="/our-story" variant="secondary">
+            <Button href="/team" variant="secondary">
               Read our story
             </Button>
           </>
@@ -104,7 +104,7 @@ export default function CommunityPage() {
             <Button href={LINKS.discord} variant="onDark">
               Join Discord
             </Button>
-            <Button href="/our-story" variant="onDarkSecondary">
+            <Button href="/team" variant="onDarkSecondary">
               Learn more
             </Button>
           </div>
@@ -117,7 +117,7 @@ export default function CommunityPage() {
           title="Find your group"
           intro="Focused groups for different goals. Looking for something narrower? The circles are listed on the About page."
           action={
-            <Button href="/about#circles" variant="secondary">
+            <Button href="/links" variant="secondary">
               See the circles
             </Button>
           }

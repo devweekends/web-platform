@@ -18,8 +18,7 @@ type Entry = {
  */
 const pages: Entry[] = [
   { path: '', changeFrequency: 'weekly', priority: 1 },
-  { path: '/our-story', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/about', changeFrequency: 'monthly', priority: 0.6 },
+  { path: '/team', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/fellowship', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/dsoc', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/dwosi', changeFrequency: 'weekly', priority: 0.8 },
