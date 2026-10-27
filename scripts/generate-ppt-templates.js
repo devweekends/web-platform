@@ -43,7 +43,7 @@ function createDWTemplate1() {
     charSpacing: 4,
   });
 
-  slide1.addText("EMPOWERING ENGINEERS SINCE 2020", {
+  slide1.addText("EMPOWERING ENGINEERS SINCE 2018", {
     x: 0.5,
     y: 0.55,
     fontSize: 8,

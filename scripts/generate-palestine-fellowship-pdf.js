@@ -68,7 +68,7 @@ function page1Cover() {
   doc.rect(0, 0, 8, 842).fill(BLACK);
 
   doc.fontSize(10).fillColor(BLACK).text("DEV WEEKENDS", 60, 60, { characterSpacing: 3 });
-  doc.fontSize(8).fillColor(GRAY).text("EMPOWERING ENGINEERS SINCE 2017", 60, 78, { characterSpacing: 1 });
+  doc.fontSize(8).fillColor(GRAY).text("EMPOWERING ENGINEERS SINCE 2018", 60, 78, { characterSpacing: 1 });
 
   drawPalestineFlag(doc, 60, 160, 120, 80);
 
@@ -104,7 +104,7 @@ function page2ExecutiveSummary() {
   doc.fontSize(28).fillColor(BLACK).text("The Opportunity", 60, 130);
   doc.rect(60, 170, 60, 2).fill(BLACK);
 
-  const summaryText = `Dev Weekends, a volunteer-driven tech community operating since 2017, proposes a dedicated technical fellowship program for Palestinian engineers and students affected by the ongoing crisis.
+  const summaryText = `Dev Weekends, a volunteer-driven tech community operating since 2018, proposes a dedicated technical fellowship program for Palestinian engineers and students affected by the ongoing crisis.
 
 This initiative leverages our existing infrastructure, mentor network, and proven curriculum to provide world-class technical training at zero cost to participants and zero external funding requirement.`;
 
