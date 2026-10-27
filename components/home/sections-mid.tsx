@@ -105,12 +105,11 @@ export function Products() {
               <SmartLink
                 href={product.href}
                 className="flex h-full min-h-[170px] flex-col gap-1.5 rounded-[20px] p-6 hover:bg-[#FAFAFA]"
-                fallbackClassName="flex h-full min-h-[170px] flex-col gap-1.5 p-6"
               >
                 <span className="flex items-center justify-between gap-3">
                   <span className="text-lg font-semibold">{product.name}</span>
                   <span className="whitespace-nowrap rounded-full border border-[#D4D4D4] px-2 py-[3px] text-[11px] font-semibold tracking-[0.1em] text-[#5C5C5C]">
-                    {product.href ? product.tag : "COMING SOON"}
+                    {product.soon ? "COMING SOON" : product.tag}
                   </span>
                 </span>
                 <span className="text-sm leading-[1.55] text-[#5C5C5C]">{product.text}</span>
