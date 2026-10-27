@@ -139,6 +139,7 @@ export const placesLike: Org[] = [
   { name: "Salla", href: "https://salla.sa", logo: "/logos/salla.png", iconOnly: true, tall: true },
   { name: "Unanime Planet", href: null, logo: null },
   { name: "Nectar Social", href: "https://www.nectarsocial.com", logo: "/logos/nectar-social.svg" },
+  { name: "Olostep", href: "https://www.olostep.com", logo: "/logos/olostep.svg" },
 ]
 
 export const impactBreakdown = [
