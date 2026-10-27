@@ -13,6 +13,8 @@ export interface Testimonial {
   content: string;
   cta?: string;
   videoUrl?: string;
+  /** Preview image resolved on the server, for providers without a fixed thumbnail URL */
+  previewUrl?: string;
   imageUrl?: string;
   type: 'text' | 'video';
   program?: string;
@@ -53,7 +55,7 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   const program = formatProgram(testimonial.program);
 
   const video = getVideoEmbed(testimonial.videoUrl);
-  const thumbnailUrl = video?.thumbnailUrl ?? '/avatar.svg';
+  const thumbnailUrl = testimonial.previewUrl ?? video?.thumbnailUrl ?? '/avatar.svg';
 
   if (testimonial.type === 'video' && video) {
     return (
