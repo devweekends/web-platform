@@ -106,6 +106,10 @@ export const applyPrograms: ApplyProgram[] = [
   },
 ]
 
+/**
+ * Only countries named in content/blog/fellowship-2026-by-the-numbers.md. The post
+ * counts 30 countries but names 29, so the 30th is left out until we know it.
+ */
 export const countries = [
   "Pakistan", "India", "Nepal", "USA", "UK", "Nigeria", "Egypt", "Morocco", "Kenya", "Palestine",
   "Rwanda", "Russia", "Australia", "Singapore", "Spain", "Italy", "China", "Turkey", "Cameroon",
