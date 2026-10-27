@@ -38,14 +38,18 @@ export const LINKS = {
 
 export const mailto = (subject: string) => `mailto:${LINKS.email}?subject=${encodeURIComponent(subject)}`
 
-/** Root-relative so the same header works on every page of the site */
+/**
+ * Root-relative so the same header works on every page of the site. Links follow
+ * the homepage section order (Community links sits where the communities section
+ * is, last); Team and Blog are pages of their own and come after.
+ */
 export const navItems = [
-  { label: "Programs", href: "/#programs" },
   { label: "Impact", href: "/#impact" },
-  { label: "Team", href: LINKS.ourStory },
-  { label: "Community links", href: "/links" },
+  { label: "Programs", href: "/#programs" },
   { label: "Partners", href: "/#partners" },
   { label: "Resources", href: "/#resources" },
+  { label: "Community links", href: "/links" },
+  { label: "Team", href: LINKS.ourStory },
   { label: "Blog", href: "/blog" },
 ]
 
