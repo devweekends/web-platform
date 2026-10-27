@@ -24,11 +24,11 @@ export default function HomePage() {
       <Voices />
       <Programs />
       <Products />
-      <Communities />
+      <StartHere />
       <Qantara />
       <Partnerships />
       <Resources />
-      <StartHere />
+      <Communities />
     </div>
   )
 }
