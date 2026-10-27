@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation"
 import { HeadlineBar } from "@/components/headline-bar"
 import { HomeHeader } from "@/components/home/header"
 
-/** Sections with their own header: DSOC, DWOSI and the links page */
+/** Sections with their own header: DSOC and DWOSI */
 export function hasOwnChrome(pathname: string | null) {
-  return Boolean(pathname?.startsWith("/dsoc") || pathname?.startsWith("/dwosi") || pathname === "/links")
+  return Boolean(pathname?.startsWith("/dsoc") || pathname?.startsWith("/dwosi"))
 }
 
 export function SiteHeader() {

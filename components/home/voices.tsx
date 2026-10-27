@@ -51,7 +51,9 @@ export function VoicesRail() {
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-end justify-between gap-6 px-6">
         <div>
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">Fellow voices</p>
-          <h2 className="mt-3.5 text-[clamp(36px,4.4vw,56px)] font-semibold leading-[1.05] tracking-[-0.04em]">What they say about us.</h2>
+          <h2 data-reveal className="mt-3.5 text-[clamp(36px,4.4vw,56px)] font-semibold leading-[1.05] tracking-[-0.04em]">
+            What they say about us.
+          </h2>
           <p className="mt-4 max-w-[42ch] text-[17px] leading-[1.6] text-[#5C5C5C]">Most started with no network and no resume worth reading. Here is the receipt.</p>
         </div>
         <div className="flex items-center gap-3">
@@ -108,6 +110,7 @@ export function VoicesRail() {
                       src={video.preview}
                       alt=""
                       loading="lazy"
+                      decoding="async"
                       className="absolute inset-0 h-full w-full object-cover opacity-80 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
                     />
                   )}

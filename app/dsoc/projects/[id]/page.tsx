@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import type { ReactNode } from "react";
 import {
   ArrowLeft,
   Clock,
@@ -21,13 +22,13 @@ import {
   ImageIcon,
   X
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "../../styles.css";
-import "./gallery.css";
+import { Card, container } from "@/components/site/page-kit";
 import DSOCNavbar from "../../components/DSOCNavbar";
 
 interface Mentor {
@@ -188,7 +189,7 @@ The project is built on the MERN stack with TypeScript and integrates Google Gem
     _id: 'pathment',
     title: 'Pathment',
     description: 'Pathment is a SaaS mentorship platform for organizations that want structured, mentor-guided employee training.\nIt connects mentees with real mentors, uses task-based workflows and progress tracking, and adds gamification to boost engagement and measurable outcomes.',
-    longDescription: `Pathment is a SaaS-based mentorship platform built for organizations and learning teams that want to run structured, mentor-guided programs. The platform centers on three roles — Admin, Mentor, and Mentee — and supports multi-level programs, mentor matching, task submission with feedback, gamification, and analytics to measure learning outcomes.
+    longDescription: `Pathment is a SaaS-based mentorship platform built for organizations and learning teams that want to run structured, mentor-guided programs. The platform centers on three roles (Admin, Mentor, and Mentee) and supports multi-level programs, mentor matching, task submission with feedback, gamification, and analytics to measure learning outcomes.
 
   The codebase is a monorepo consisting of a public marketing site, a backend server (Node.js + Express + PostgreSQL with Sequelize), and a Next.js + TypeScript client interface. An AI layer (Groq/OpenAI) can generate personalized roadmaps and weekly task breakdowns, saving curriculum design time for admins. Real-time messaging is implemented with Socket.IO, and media is handled via Cloudinary. The project is contributor-friendly with many beginner-friendly issues: UI polish, accessibility, email templates, stricter API validation, test coverage, seed/demo data, and analytics improvements.`,
     organization: 'Dev Weekends',
@@ -374,21 +375,20 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
     }
   };
 
+  /** Difficulty in black and white: outline for beginner, grey fill for intermediate, black fill for advanced. */
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'beginner': return 'bg-[var(--dsoc-success)]';
-      case 'intermediate': return 'bg-[var(--dsoc-accent)]';
-      case 'advanced': return 'bg-[var(--dsoc-pink)]';
-      default: return 'bg-gray-400';
+      case 'beginner': return 'border border-[#D4D4D4] bg-white text-[#404040]';
+      case 'advanced': return 'border border-[#0A0A0A] bg-[#0A0A0A] text-white';
+      default: return 'border border-[#E6E6E6] bg-[#E6E6E6] text-[#262626]';
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'open': return 'bg-[var(--dsoc-success)]';
-      case 'in-progress': return 'bg-[var(--dsoc-accent)]';
-      case 'completed': return 'bg-[var(--dsoc-purple)]';
-      default: return 'bg-gray-400';
+      case 'open': return 'border border-[#0A0A0A] bg-[#0A0A0A] text-white';
+      case 'in-progress': return 'border border-[#E6E6E6] bg-[#E6E6E6] text-[#262626]';
+      default: return 'border border-[#D4D4D4] bg-white text-[#404040]';
     }
   };
 
@@ -426,15 +426,15 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const spotsRemaining = project ? project.maxMentees - (project.selectedMentees?.length || 0) : 0;
   const canApply = project ? project.status === 'open' && !isDeadlinePassed && spotsRemaining > 0 : false;
 
+
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-white text-[#0A0A0A]">
         <DSOCNavbar />
-        <div className="flex items-center justify-center pt-32">
-          <div className="text-center">
-            <div className="inline-block w-12 h-12 border-4 border-[var(--dsoc-primary)] border-t-transparent animate-spin" />
-            <p className="mt-4 text-muted-foreground">Loading project...</p>
-          </div>
+        <div role="status" className="py-32 text-center">
+          <div aria-hidden="true" className="inline-block h-10 w-10 animate-spin rounded-full border-[3px] border-[#E6E6E6] border-t-[#0A0A0A]" />
+          <p className="mt-4 text-[#5C5C5C]">Loading project...</p>
         </div>
       </div>
     );
@@ -442,151 +442,141 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
   if (error || !project) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-white text-[#0A0A0A]">
         <DSOCNavbar />
-        <div className="flex items-center justify-center pt-32">
-          <div className="text-center">
-            <AlertCircle className="w-16 h-16 mx-auto text-[var(--dsoc-pink)] mb-4" />
-            <h1 className="text-2xl font-bold mb-2">Project Not Found</h1>
-            <p className="text-muted-foreground mb-6">{error || 'The project you\'re looking for doesn\'t exist.'}</p>
-            <Link href="/dsoc/projects" className="neo-brutal-btn neo-brutal-btn-primary">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Projects
-            </Link>
-          </div>
+        <div className={`${container} py-24 text-center`}>
+          <AlertCircle aria-hidden="true" className="mx-auto mb-5 h-14 w-14 text-[#8A8A8A]" />
+          <h1 className="mb-3 text-[clamp(32px,4vw,48px)] font-semibold leading-[1.05] tracking-[-0.04em]">Project Not Found</h1>
+          <p className="mx-auto mb-8 max-w-[48ch] text-[17px] leading-[1.6] text-[#5C5C5C]">{error || 'The project you\'re looking for doesn\'t exist.'}</p>
+          <Link href="/dsoc/projects" className={primaryButton}>
+            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
+            Back to Projects
+          </Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white text-[#0A0A0A]">
       <DSOCNavbar />
       {lightboxImage && (
         <div
           role="dialog"
           aria-modal="true"
+          aria-label="Project image"
           onClick={() => setLightboxImage(null)}
-          className="fixed inset-0 z-[200] bg-black/80 flex items-center justify-center p-4 cursor-zoom-out"
+          className="fixed inset-0 z-[200] flex cursor-zoom-out items-center justify-center bg-black/80 p-4"
         >
           <button
             type="button"
             onClick={() => setLightboxImage(null)}
             aria-label="Close image"
-            className="absolute top-4 right-4 w-10 h-10 bg-white text-[var(--dsoc-dark)] border-4 border-[var(--dsoc-dark)] flex items-center justify-center"
+            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#0A0A0A] transition-colors hover:bg-[#E6E6E6]"
           >
-            <X className="w-5 h-5" />
+            <X aria-hidden="true" className="h-5 w-5" />
           </button>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={lightboxImage}
             alt="Project image"
-            className="max-h-[90vh] max-w-[90vw] object-contain border-4 border-white"
+            className="max-h-[90vh] max-w-[90vw] rounded-[14px] object-contain"
             onClick={(e) => e.stopPropagation()}
           />
         </div>
       )}
+
       {/* Header */}
-      <section className={`pt-24 pb-12 ${getDifficultyColor(project.difficulty)}`}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Link 
-            href="/dsoc/projects" 
-            className="inline-flex items-center gap-2 text-[var(--dsoc-dark)] font-bold mb-6 hover:opacity-70 transition-opacity"
+      <section className="border-b border-[#E6E6E6] bg-white">
+        <div className={`${container} py-10 md:py-16`}>
+          <Link
+            href="/dsoc/projects"
+            className="-ml-3 inline-flex min-h-11 items-center gap-2 rounded-[10px] px-3 text-[15px] font-medium text-[#404040] transition-colors hover:text-black"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
             Back to Projects
           </Link>
-          
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <div className="flex flex-wrap items-center gap-3 mb-4">
-                <span className="neo-brutal-badge bg-white text-[var(--dsoc-dark)]">
-                  {project.organization}
-                </span>
-                <span className={`neo-brutal-badge ${getStatusColor(project.status)} text-[var(--dsoc-dark)]`}>
-                  {project.status}
-                </span>
-                <span className="neo-brutal-badge bg-[var(--dsoc-secondary)] text-white">
-                  {project.difficulty}
-                </span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[var(--dsoc-dark)] mb-4">
-                {project.title}
-              </h1>
-              <p className="text-lg text-[var(--dsoc-dark)] opacity-80 max-w-3xl">
-                {project.description}
-              </p>
-            </div>
-            
-            <div className="flex flex-wrap gap-3">
-              {repoUrls.map((url, i) => (
-                <a 
-                  key={i}
-                  href={url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="neo-brutal-btn bg-[var(--dsoc-dark)] text-white"
-                >
-                  <Github className="w-5 h-5 mr-2" />
-                  {getRepoLabel(url)}
-                </a>
-              ))}
-              {project.timelineUrl && (
-                <a 
-                  href={project.timelineUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="neo-brutal-btn bg-[var(--dsoc-secondary)] text-white"
-                >
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Timeline
-                </a>
-              )}
-              {project.websiteUrl && (
-                <a 
-                  href={project.websiteUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="neo-brutal-btn bg-white text-[var(--dsoc-dark)]"
-                >
-                  <ExternalLink className="w-5 h-5 mr-2" />
-                  Website
-                </a>
-              )}
-            </div>
+
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            <span className="mr-1 text-[13px] font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">
+              {project.organization}
+            </span>
+            <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${getStatusColor(project.status)}`}>
+              {project.status}
+            </span>
+            <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${getDifficultyColor(project.difficulty)}`}>
+              {project.difficulty}
+            </span>
+          </div>
+          <h1 className="mt-5 max-w-[22ch] text-[clamp(36px,5.5vw,64px)] font-semibold leading-[1.04] tracking-[-0.04em]">
+            {project.title}
+          </h1>
+          <p className="mt-6 max-w-[62ch] text-[19px] leading-[1.65] text-[#404040]">
+            {project.description}
+          </p>
+
+          <div className="mt-9 flex flex-wrap gap-3">
+            {repoUrls.map((url, i) => (
+              <a
+                key={i}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={primaryButton}
+              >
+                <Github aria-hidden="true" className="h-5 w-5" />
+                {getRepoLabel(url)}
+              </a>
+            ))}
+            {project.timelineUrl && (
+              <a
+                href={project.timelineUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={secondaryButton}
+              >
+                <Calendar aria-hidden="true" className="h-5 w-5" />
+                Timeline
+              </a>
+            )}
+            {project.websiteUrl && (
+              <a
+                href={project.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={secondaryButton}
+              >
+                <ExternalLink aria-hidden="true" className="h-5 w-5" />
+                Website
+              </a>
+            )}
           </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-8">
+      <section className="bg-[#F7F7F7]">
+        <div className={`${container} py-12 md:py-16`}>
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
             {/* Left Column - Main Content */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="min-w-0 space-y-6">
               {/* Technologies */}
-              <div className="neo-brutal-card p-6">
-                <h2 className="text-xl font-black mb-4 flex items-center gap-2">
-                  <Code2 className="w-6 h-6 text-[var(--dsoc-primary)]" />
-                  Technologies
-                </h2>
+              <Card>
+                <BlockTitle icon={Code2}>Technologies</BlockTitle>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, i) => (
-                    <span key={i} className="neo-brutal-badge bg-[var(--dsoc-secondary)] text-white">
+                    <span key={i} className="inline-flex items-center rounded-full bg-[#F7F7F7] px-3.5 py-1.5 text-sm font-medium text-[#404040]">
                       {tech}
                     </span>
                   ))}
                 </div>
-              </div>
+              </Card>
 
               {/* Gallery */}
               {Array.isArray(project.gallery) && project.gallery.length > 0 && (
-                <div className="neo-brutal-card p-6">
-                  <h2 className="text-xl font-black mb-4 flex items-center gap-2">
-                    <ImageIcon className="w-6 h-6 text-[var(--dsoc-primary)]" />
-                    Gallery
-                  </h2>
-                  <div className="dsoc-gallery-slider border-4 border-[var(--dsoc-dark)] bg-[var(--dsoc-light)]">
+                <Card>
+                  <BlockTitle icon={ImageIcon}>Gallery</BlockTitle>
+                  <div className={galleryClasses}>
                     <Swiper
                       modules={[Navigation, Pagination, Keyboard]}
                       navigation
@@ -602,14 +592,14 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                           <button
                             type="button"
                             onClick={() => setLightboxImage(url)}
-                            className="block w-full bg-transparent border-0 p-0 cursor-zoom-in"
+                            className="block w-full cursor-zoom-in border-0 bg-transparent p-0"
                             aria-label={`Open gallery image ${i + 1}`}
                           >
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                               src={url}
                               alt={`${project.title} image ${i + 1}`}
-                              className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                              className="h-64 w-full object-cover sm:h-80 md:h-96"
                               loading={i === 0 ? 'eager' : 'lazy'}
                             />
                           </button>
@@ -617,241 +607,217 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                       ))}
                     </Swiper>
                   </div>
-                </div>
+                </Card>
               )}
 
               {/* Long Description */}
               {project.longDescription && (
-                <div className="neo-brutal-card p-6">
-                  <h2 className="text-xl font-black mb-4 flex items-center gap-2">
-                    <BookOpen className="w-6 h-6 text-[var(--dsoc-primary)]" />
-                    About This Project
-                  </h2>
-                  <div className="prose dark:prose-invert max-w-none">
-                    <p className="whitespace-pre-line">{project.longDescription}</p>
-                  </div>
-                </div>
+                <Card>
+                  <BlockTitle icon={BookOpen}>About This Project</BlockTitle>
+                  <p className="whitespace-pre-line text-[16px] leading-[1.7] text-[#404040]">{project.longDescription}</p>
+                </Card>
               )}
 
               {/* Requirements */}
               {project.requirements && project.requirements.length > 0 && (
-                <div className="neo-brutal-card p-6">
-                  <h2 className="text-xl font-black mb-4 flex items-center gap-2">
-                    <CheckCircle className="w-6 h-6 text-[var(--dsoc-success)]" />
-                    Requirements
-                  </h2>
+                <Card>
+                  <BlockTitle icon={CheckCircle}>Requirements</BlockTitle>
                   <ul className="space-y-3">
                     {project.requirements.map((req, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-[var(--dsoc-success)] border-2 border-[var(--dsoc-dark)] flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <CheckCircle className="w-4 h-4 text-[var(--dsoc-dark)]" />
-                        </div>
+                      <li key={i} className="flex items-start gap-3 text-[16px] leading-[1.55] text-[#404040]">
+                        <CheckCircle aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#0A0A0A]" />
                         <span>{req}</span>
                       </li>
                     ))}
                   </ul>
-                </div>
+                </Card>
               )}
 
               {/* Learning Outcomes */}
               {project.learningOutcomes && project.learningOutcomes.length > 0 && (
-                <div className="neo-brutal-card p-6">
-                  <h2 className="text-xl font-black mb-4 flex items-center gap-2">
-                    <Target className="w-6 h-6 text-[var(--dsoc-purple)]" />
-                    What You&apos;ll Learn
-                  </h2>
-                  <ul className="space-y-3">
+                <Card>
+                  <BlockTitle icon={Target}>What You&apos;ll Learn</BlockTitle>
+                  <ol className="space-y-3">
                     {project.learningOutcomes.map((outcome, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-[var(--dsoc-purple)] border-2 border-[var(--dsoc-dark)] flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <span className="text-white font-bold text-xs">{i + 1}</span>
-                        </div>
+                      <li key={i} className="flex items-start gap-3 text-[16px] leading-[1.55] text-[#404040]">
+                        <span aria-hidden="true" className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#F7F7F7] text-xs font-semibold text-[#0A0A0A]">
+                          {i + 1}
+                        </span>
                         <span>{outcome}</span>
                       </li>
                     ))}
-                  </ul>
-                </div>
+                  </ol>
+                </Card>
               )}
 
               {/* Milestones */}
               {project.milestones && project.milestones.length > 0 && (
-                <div className="neo-brutal-card p-6">
-                  <h2 className="text-xl font-black mb-4 flex items-center gap-2">
-                    <Calendar className="w-6 h-6 text-[var(--dsoc-accent)]" />
-                    Project Milestones
-                  </h2>
-                  <div className="space-y-4">
+                <Card>
+                  <BlockTitle icon={Calendar}>Project Milestones</BlockTitle>
+                  <ol className="space-y-3">
                     {project.milestones.map((milestone, i) => (
-                      <div 
-                        key={i} 
-                        className={`p-4 border-4 border-[var(--dsoc-dark)] dark:border-[var(--dsoc-light)] ${
-                          milestone.completed ? 'bg-[var(--dsoc-success)]/20' : 'bg-background'
-                        }`}
+                      <li
+                        key={i}
+                        className={`rounded-[14px] border border-[#E6E6E6] p-4 ${milestone.completed ? 'bg-[#F7F7F7]' : 'bg-white'}`}
                       >
-                        <div className="flex items-start justify-between gap-4">
+                        <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                           <div>
-                            <h3 className="font-bold flex items-center gap-2">
+                            <h3 className="flex items-center gap-2 font-semibold">
                               {milestone.completed && (
-                                <CheckCircle className="w-5 h-5 text-[var(--dsoc-success)]" />
+                                <CheckCircle aria-hidden="true" className="h-5 w-5 flex-shrink-0" />
                               )}
                               {milestone.title}
                             </h3>
-                            <p className="text-muted-foreground text-sm mt-1">{milestone.description}</p>
+                            <p className="mt-1 text-sm leading-[1.55] text-[#5C5C5C]">{milestone.description}</p>
                           </div>
                           {milestone.dueDate && (
-                            <span className="text-xs font-bold text-muted-foreground whitespace-nowrap">
+                            <span className="text-xs font-semibold text-[#5C5C5C] sm:whitespace-nowrap">
                               {formatDate(milestone.dueDate)}
                             </span>
                           )}
                         </div>
-                      </div>
+                      </li>
                     ))}
-                  </div>
-                </div>
+                  </ol>
+                </Card>
               )}
 
               {/* Mentors */}
-              <div className="neo-brutal-card p-6">
-                <h2 className="text-xl font-black mb-4 flex items-center gap-2">
-                  <Users className="w-6 h-6 text-[var(--dsoc-secondary)]" />
-                  Mentors
-                </h2>
-                <div className="grid sm:grid-cols-2 gap-4">
+              <Card>
+                <BlockTitle icon={Users}>Mentors</BlockTitle>
+                <ul className="grid gap-4 sm:grid-cols-2">
                   {project.mentors.map((mentor) => (
-                    <div key={mentor._id} className="p-4 border-4 border-[var(--dsoc-dark)] dark:border-[var(--dsoc-light)] bg-background">
+                    <li key={mentor._id} className="rounded-[14px] border border-[#E6E6E6] p-4">
                       <div className="flex items-start gap-4">
-                        <div className="w-16 h-16 bg-[var(--dsoc-primary)] border-4 border-[var(--dsoc-dark)] flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
+                        <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#0A0A0A] text-xl font-semibold text-white">
                           {mentor.picture ? (
-                            <img src={mentor.picture} alt={mentor.name} className="w-full h-full object-cover" />
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img src={mentor.picture} alt={mentor.name} className="h-full w-full object-cover" />
                           ) : (
                             mentor.name.charAt(0)
                           )}
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-bold text-lg">{mentor.name}</h3>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-lg font-semibold tracking-[-0.02em]">{mentor.name}</h3>
                           {mentor.jobTitle && (
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-sm text-[#5C5C5C]">
                               {mentor.jobTitle}
                               {mentor.company && ` @ ${mentor.company}`}
                             </p>
                           )}
                           {mentor.bio && (
-                            <p className="text-sm mt-2 line-clamp-2">{mentor.bio}</p>
+                            <p className="mt-2 line-clamp-2 text-sm leading-[1.55] text-[#404040]">{mentor.bio}</p>
                           )}
-                          <div className="flex gap-2 mt-3">
+                          <div className="-mb-1 mt-2 flex gap-2">
                             {mentor.github && (
-                              <a 
-                                href={mentor.github} 
-                                target="_blank" 
+                              <a
+                                href={mentor.github}
+                                target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-8 h-8 bg-[var(--dsoc-dark)] dark:bg-[var(--dsoc-light)] flex items-center justify-center hover:opacity-70 transition-opacity"
+                                aria-label={`${mentor.name} on GitHub`}
+                                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#D4D4D4] transition-colors hover:bg-[#F7F7F7]"
                               >
-                                <Github className="w-4 h-4 text-white dark:text-[var(--dsoc-dark)]" />
+                                <Github aria-hidden="true" className="h-4 w-4" />
                               </a>
                             )}
                             {mentor.linkedin && (
-                              <a 
-                                href={mentor.linkedin} 
-                                target="_blank" 
+                              <a
+                                href={mentor.linkedin}
+                                target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-8 h-8 bg-[var(--dsoc-secondary)] flex items-center justify-center hover:opacity-70 transition-opacity"
+                                aria-label={`${mentor.name} on LinkedIn`}
+                                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#D4D4D4] transition-colors hover:bg-[#F7F7F7]"
                               >
-                                <Linkedin className="w-4 h-4 text-white" />
+                                <Linkedin aria-hidden="true" className="h-4 w-4" />
                               </a>
                             )}
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </li>
                   ))}
-                </div>
-              </div>
+                </ul>
+              </Card>
             </div>
 
             {/* Right Column - Sidebar */}
-            <div className="space-y-6">
+            <div className="min-w-0 space-y-6">
               {/* Apply Card */}
-              <div className="neo-brutal-card p-6 sticky top-24 z-10">
-                <h2 className="text-xl font-black mb-4">Apply to This Project</h2>
-                
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Duration</span>
-                    <span className="font-bold flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
+              <div className="rounded-[20px] bg-[#0A0A0A] p-7 text-white">
+                <h2 className="mb-5 text-[22px] font-semibold tracking-[-0.02em]">Apply to This Project</h2>
+
+                <dl className="mb-6 divide-y divide-[#262626] text-[15px]">
+                  <div className="flex items-center justify-between gap-4 py-3">
+                    <dt className="text-[#A3A3A3]">Duration</dt>
+                    <dd className="flex items-center gap-1.5 font-semibold">
+                      <Clock aria-hidden="true" className="h-4 w-4" />
                       {project.duration}
-                    </span>
+                    </dd>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Spots Available</span>
-                    <span className="font-bold flex items-center gap-1">
-                      <Users className="w-4 h-4" />
+                  <div className="flex items-center justify-between gap-4 py-3">
+                    <dt className="text-[#A3A3A3]">Spots Available</dt>
+                    <dd className="flex items-center gap-1.5 font-semibold">
+                      <Users aria-hidden="true" className="h-4 w-4" />
                       {spotsRemaining} / {project.maxMentees}
-                    </span>
+                    </dd>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Deadline</span>
-                    <span className={`font-bold ${isDeadlinePassed ? 'text-[var(--dsoc-pink)]' : ''}`}>
+                  <div className="flex items-center justify-between gap-4 py-3">
+                    <dt className="text-[#A3A3A3]">Deadline</dt>
+                    <dd className={`font-semibold ${isDeadlinePassed ? 'text-[#A3A3A3] line-through' : ''}`}>
                       {formatDate(project.applicationDeadline)}
-                    </span>
+                    </dd>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Start Date</span>
-                    <span className="font-bold">{formatDate(project.startDate)}</span>
+                  <div className="flex items-center justify-between gap-4 py-3">
+                    <dt className="text-[#A3A3A3]">Start Date</dt>
+                    <dd className="font-semibold">{formatDate(project.startDate)}</dd>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">End Date</span>
-                    <span className="font-bold">{formatDate(project.endDate)}</span>
+                  <div className="flex items-center justify-between gap-4 py-3">
+                    <dt className="text-[#A3A3A3]">End Date</dt>
+                    <dd className="font-semibold">{formatDate(project.endDate)}</dd>
                   </div>
-                </div>
+                </dl>
 
                 {canApply ? (
                   isMentee === null ? (
-                    <button
-                      disabled
-                      className="neo-brutal-btn bg-gray-300 text-gray-600 w-full cursor-not-allowed"
-                    >
+                    <button disabled className={`${sidebarButton} cursor-not-allowed bg-[#262626] text-[#8A8A8A]`}>
                       Checking eligibility...
                     </button>
                   ) : isMentee ? (
-                    <Link 
+                    <Link
                       href={`/dsoc/apply/${project._id}`}
-                      className="neo-brutal-btn neo-brutal-btn-primary w-full"
+                      className={`${sidebarButton} bg-white text-[#0A0A0A] hover:bg-[#E6E6E6]`}
                     >
                       Apply Now
                     </Link>
                   ) : (
                     <Link
                       href="/dsoc/register/mentee"
-                      className="neo-brutal-btn neo-brutal-btn-secondary w-full"
+                      className={`${sidebarButton} bg-white text-[#0A0A0A] hover:bg-[#E6E6E6]`}
                     >
                       Apply as Mentee First
                     </Link>
                   )
                 ) : (
-                  <button 
-                    disabled 
-                    className="neo-brutal-btn bg-gray-300 text-gray-600 w-full cursor-not-allowed"
-                  >
-                    {isDeadlinePassed ? 'Deadline Passed' : 
-                     spotsRemaining <= 0 ? 'No Spots Available' : 
+                  <button disabled className={`${sidebarButton} cursor-not-allowed bg-[#262626] text-[#8A8A8A]`}>
+                    {isDeadlinePassed ? 'Deadline Passed' :
+                     spotsRemaining <= 0 ? 'No Spots Available' :
                      'Applications Closed'}
                   </button>
                 )}
 
-                <p className="text-xs text-muted-foreground text-center mt-4">
+                <p className="mt-4 text-center text-[13px] leading-[1.5] text-[#A3A3A3]">
                   By applying, you agree to commit {project.duration} to this project
                 </p>
               </div>
 
               {/* Star Card */}
-              <div className="neo-brutal-card p-6 border-4 border-[var(--dsoc-dark)]">
-                <div className="flex items-center gap-2 mb-3">
-                  <Star className="w-6 h-6 fill-current text-[var(--dsoc-dark)] animate-pulse" />
-                  <h3 className="text-lg font-black">Support This Project</h3>
+              <Card>
+                <div className="mb-3 flex items-center gap-3">
+                  <IconTile icon={Star} />
+                  <h3 className="text-lg font-semibold tracking-[-0.02em]">Support This Project</h3>
                 </div>
-                <p className="text-sm opacity-90 mb-4 leading-relaxed font-bold">
-                  Love this project? Show your support by starring the repository on GitHub! It helps increase visibility, motivates the mentors, and grows our open-source community. ⭐
+                <p className="mb-5 text-[15px] leading-[1.6] text-[#5C5C5C]">
+                  Love this project? Show your support by starring the repository on GitHub! It helps increase visibility, motivates the mentors, and grows our open-source community.
                 </p>
                 <div className="space-y-3">
                   {repoUrls.map((url, i) => (
@@ -860,28 +826,28 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="neo-brutal-btn bg-white text-[var(--dsoc-dark)] hover:bg-yellow-50 w-full flex items-center justify-center gap-2 border-4 border-[var(--dsoc-dark)]"
+                      className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-[#D4D4D4] px-4 py-3 text-[15px] font-semibold transition-colors hover:bg-[#F7F7F7]"
                     >
-                      <Github className="w-4 h-4 text-[var(--dsoc-dark)]" />
+                      <Github aria-hidden="true" className="h-4 w-4" />
                       Star {getRepoLabel(url)}
                     </a>
                   ))}
                 </div>
-              </div>
+              </Card>
 
               {project.timelineUrl && (
-                <div className="neo-brutal-card p-6">
+                <Card>
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <h3 className="text-lg font-black flex items-center gap-2">
-                        <Calendar className="w-5 h-5" />
+                      <h3 className="flex items-center gap-2 text-lg font-semibold tracking-[-0.02em]">
+                        <Calendar aria-hidden="true" className="h-5 w-5" />
                         Project Timeline
                       </h3>
-                      <p className="text-sm mt-2 opacity-90">
+                      <p className="mt-2 text-[15px] leading-[1.6] text-[#5C5C5C]">
                         See the full schedule, milestones, and key dates before you apply.
                       </p>
                     </div>
-                    <span className="inline-flex items-center px-2 py-1 text-xs font-black bg-white text-[var(--dsoc-secondary)] border-2 border-[var(--dsoc-dark)]">
+                    <span className="inline-flex items-center rounded-full bg-[#0A0A0A] px-2.5 py-1 text-xs font-semibold text-white">
                       New
                     </span>
                   </div>
@@ -889,49 +855,82 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                     href={project.timelineUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="neo-brutal-btn bg-white text-[var(--dsoc-secondary)] w-full mt-4"
+                    className="mt-5 flex min-h-11 w-full items-center justify-center rounded-xl border border-[#D4D4D4] px-4 py-3 text-[15px] font-semibold transition-colors hover:bg-[#F7F7F7]"
                   >
                     View Timeline
                   </a>
-                </div>
+                </Card>
               )}
 
               {/* Discord Card */}
-              <div className="neo-brutal-card p-6">
-                
-                  <MessageCircle className="w-8 h-8 mb-3" />
-                  <h3 className="font-bold text-lg mb-2">Have Questions?</h3>
-                  <p className="text-sm opacity-90 mb-4">
-                    Join our Discord to chat with mentors and other mentees
-                  </p>
-                  <a 
-                    href="https://discord.com/invite/Cy7Rgkf4Up" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="neo-brutal-btn bg-white text-[var(--dsoc-purple)] w-full dsoc-discord-btn"
-                  >
-                    Join Discord
-                  </a>
-                
-              </div>
+              <Card>
+                <IconTile icon={MessageCircle} />
+                <h3 className="mb-2 mt-4 text-lg font-semibold tracking-[-0.02em]">Have Questions?</h3>
+                <p className="mb-5 text-[15px] leading-[1.6] text-[#5C5C5C]">
+                  Join our Discord to chat with mentors and other mentees
+                </p>
+                <a
+                  href="https://discord.com/invite/Cy7Rgkf4Up"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-11 w-full items-center justify-center rounded-xl bg-[#0A0A0A] px-4 py-3 text-[15px] font-semibold text-white transition-colors hover:bg-[#262626]"
+                >
+                  Join Discord
+                </a>
+              </Card>
 
               {/* Tags */}
               {project.tags && project.tags.length > 0 && (
-                <div className="neo-brutal-card p-6">
-                  <h3 className="font-bold mb-3">Tags</h3>
+                <Card>
+                  <h3 className="mb-4 text-lg font-semibold tracking-[-0.02em]">Tags</h3>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
-                      <span key={i} className="neo-brutal-badge dsoc-tag-badge bg-[var(--dsoc-light)] text-[var(--dsoc-dark)] text-xs">
+                      <span key={i} className="inline-flex items-center rounded-full border border-[#E6E6E6] px-3 py-1 text-xs font-medium text-[#404040]">
                         #{tag}
                       </span>
                     ))}
                   </div>
-                </div>
+                </Card>
               )}
             </div>
           </div>
         </div>
       </section>
     </div>
+  );
+}
+
+const primaryButton =
+  "inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#0A0A0A] px-7 py-4 text-base font-semibold text-white transition-colors hover:bg-[#262626]";
+
+const secondaryButton =
+  "inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-[#D4D4D4] px-7 py-4 text-base font-semibold text-[#0A0A0A] transition-colors hover:bg-[#F7F7F7]";
+
+const sidebarButton =
+  "flex min-h-[52px] w-full items-center justify-center rounded-xl px-7 py-4 text-base font-semibold transition-colors";
+
+/** Swiper is themed through its own CSS variables and class names, so the black and white overrides live here. */
+const galleryClasses = [
+  "overflow-hidden rounded-[14px] border border-[#E6E6E6] bg-white",
+  "[--swiper-theme-color:#0A0A0A] [--swiper-navigation-size:16px]",
+  "[&_.swiper-button-prev]:!h-11 [&_.swiper-button-prev]:!w-11 [&_.swiper-button-prev]:rounded-full [&_.swiper-button-prev]:bg-white [&_.swiper-button-prev]:shadow-md",
+  "[&_.swiper-button-next]:!h-11 [&_.swiper-button-next]:!w-11 [&_.swiper-button-next]:rounded-full [&_.swiper-button-next]:bg-white [&_.swiper-button-next]:shadow-md",
+  "[&_.swiper-pagination]:!relative [&_.swiper-pagination]:!bottom-auto [&_.swiper-pagination]:!py-3 [&_.swiper-pagination]:bg-white",
+].join(" ");
+
+function BlockTitle({ icon: Icon, children }: { icon: LucideIcon; children: ReactNode }) {
+  return (
+    <h2 className="mb-5 flex items-center gap-3 text-[22px] font-semibold tracking-[-0.02em]">
+      <IconTile icon={Icon} />
+      {children}
+    </h2>
+  );
+}
+
+function IconTile({ icon: Icon }: { icon: LucideIcon }) {
+  return (
+    <span aria-hidden="true" className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-[12px] bg-[#0A0A0A] text-white">
+      <Icon className="h-5 w-5" />
+    </span>
   );
 }

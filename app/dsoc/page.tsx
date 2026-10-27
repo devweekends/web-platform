@@ -2,24 +2,23 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { 
-  ArrowRight, 
-  Code2, 
-  Users, 
-  Calendar, 
-  GitBranch, 
-  Rocket, 
+import {
+  ArrowRight,
+  Code2,
+  Users,
+  Calendar,
+  GitBranch,
+  Rocket,
   Trophy,
   Github,
   MessageCircle,
-  CheckCircle,
   Clock,
-  Zap,
   Target,
-  BookOpen,
-  Star
+  BookOpen
 } from "lucide-react";
-import "./styles.css";
+import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
+import { Button, Card, Panel, PageHero, Section, SectionHeading, container } from "@/components/site/page-kit";
 import DSOCNavbar from "./components/DSOCNavbar";
 
 interface Stats {
@@ -180,635 +179,447 @@ export default function DSOCPage() {
     {
       icon: Code2,
       title: "Real-World Experience",
-      description: "Work on production-level open source projects that make a difference.",
-      color: "bg-[var(--dsoc-primary)]"
+      description: "Work on production-level open source projects that make a difference."
     },
     {
       icon: Users,
       title: "Expert Mentorship",
       description: "Learn directly from industry professionals and open source maintainers.",
-      color: "bg-[var(--dsoc-secondary)]"
     },
     {
       icon: GitBranch,
       title: "Portfolio Building",
       description: "Build an impressive portfolio with real contributions to open source.",
-      color: "bg-[var(--dsoc-purple)]"
     },
     {
       icon: MessageCircle,
       title: "Community Support",
       description: "Join our Discord community for networking and peer support.",
-      color: "bg-[var(--dsoc-success)]"
     },
     {
       icon: Trophy,
       title: "Recognition",
       description: "Get certificates, swag, and recognition for your contributions.",
-      color: "bg-[var(--dsoc-pink)]"
     },
     {
       icon: Rocket,
       title: "Career Launch",
       description: "Many past participants have landed jobs at top tech companies.",
-      color: "bg-[var(--dsoc-accent)]"
     }
   ];
 
+  const liveStats = [
+    { value: stats?.projects.total, label: "Projects" },
+    { value: stats?.mentors, label: "Mentors" },
+    { value: stats?.mentees, label: "Mentees" },
+    { value: stats?.technologies, label: "Technologies" },
+  ]
+    .filter((stat): stat is { value: number; label: string } => typeof stat.value === "number" && stat.value > 0)
+    .map((stat) => ({ value: String(stat.value), label: stat.label }));
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white text-[#0A0A0A]">
       {/* DSOC Navigation */}
       <DSOCNavbar />
 
-      {/* Hero Section */}
-      <section className="dsoc-hero-new min-h-[90vh] flex items-center justify-center relative overflow-hidden">
-        {/* Animated Grid Background */}
-        <div className="dsoc-hero-grid" />
-        
-        {/* Geometric Shapes */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="dsoc-shape dsoc-shape-1" />
-          <div className="dsoc-shape dsoc-shape-2" />
-          <div className="dsoc-shape dsoc-shape-3" />
-          <div className="dsoc-shape dsoc-shape-4" />
-          <div className="dsoc-shape dsoc-shape-5" />
-        </div>
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Badge */}
-            <div className="inline-block mb-8">
-              <div className="neo-brutal-badge bg-[var(--dsoc-primary)] text-white px-6 py-2 text-base font-bold">
-                <Zap className="w-5 h-5 mr-2" />
-                DSOC 2026 — Applications Closed
-              </div>
-            </div>
-            
-            {/* Main Title */}
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black mb-6 leading-tight">
-              <span 
-                className="block text-[var(--dsoc-dark)]"
-                style={{
-                  textShadow: '2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 3px 3px 0 var(--dsoc-dark)'
-                }}
-              >
-                DEV WEEKENDS
-              </span>
-              <span className="block text-[var(--dsoc-primary)]" style={{textShadow: '3px 3px 0 var(--dsoc-dark)'}}>SUMMER OF CODE</span>
-            </h1>
-            
-            {/* Subtitle with text outline for readability */}
-            <div className="mb-8 max-w-2xl mx-auto">
-              <p 
-                className="text-xl sm:text-2xl font-black text-[var(--dsoc-dark)]"
-                style={{
-                  textShadow: '1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 2px 2px 0 rgba(0,0,0,0.1)'
-                }}
-              >
-                An intensive open source program connecting aspiring developers with expert mentors 
-                on real-world projects.
-              </p>
-              <p 
-                className="text-xl sm:text-2xl font-black text-[var(--dsoc-dark)]"
-                style={{
-                  textShadow: '1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 2px 2px 0 rgba(0,0,0,0.1)'
-                }}
-              >
-                Learn, build, and grow with the community. 🚀
-              </p>
-            </div>
+      <PageHero
+        eyebrow="DSOC 2026, applications closed"
+        title="Dev Weekends Summer of Code"
+        intro="An intensive open source program connecting aspiring developers with expert mentors on real-world projects. Learn, build, and grow with the community."
+        actions={
+          <>
+            <Button href="/dsoc/projects">Explore Projects</Button>
+            <Button href={CONTACT_HREF} variant="secondary">Contact Us</Button>
+          </>
+        }
+      />
 
-            <div className="mx-auto mb-8 max-w-3xl border-4 border-[var(--dsoc-dark)] bg-white p-5 text-left text-base font-semibold leading-relaxed text-[var(--dsoc-dark)] shadow-[6px_6px_0_var(--dsoc-dark)] sm:p-6">
-              <p>
-                DSOC applications will open next summer. We are always open to passionate talent who can demonstrate deep interest in technology and a strong willingness to get things done.
-              </p>
-              <p className="mt-3">
-                We review exceptional cases at{" "}
-                <a href="mailto:info@devweekends.com" className="underline decoration-2 underline-offset-4 hover:text-[var(--dsoc-primary)]">
-                  info@devweekends.com
-                </a>
-                .
-              </p>
-            </div>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Link href="/dsoc/projects" className="neo-brutal-btn neo-brutal-btn-accent text-lg">
-                <BookOpen className="w-5 h-5 mr-2" />
-                Explore Projects
-              </Link>
-              <a href="mailto:info@devweekends.com?subject=DSOC%20Exceptional%20Case" className="neo-brutal-btn neo-brutal-btn-primary text-lg">
-                <Rocket className="w-5 h-5 mr-2" />
-                Contact Us
-              </a>
-              {/* <Link href="/dsoc/register/mentor" className="neo-brutal-btn neo-brutal-btn-secondary text-lg">
-                <Users className="w-5 h-5 mr-2" />
-                Become a Mentor
-              </Link> */}
-            </div>
-            
-            {/* Quick Links */}
-            {/* <div className="flex flex-wrap gap-4 justify-center">
-              <a 
-                href="https://github.com/devweekends" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[var(--dsoc-dark)] text-white px-4 py-2 font-bold border-3 border-[var(--dsoc-dark)] hover:bg-[var(--dsoc-dark)]/90 transition-colors"
-              >
-                <Github className="w-5 h-5" />
-                GitHub
-              </a>
-              <a 
-                href="https://github.com/devweekends/dsoc/wiki" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[var(--dsoc-purple)] text-white px-4 py-2 font-bold border-3 border-[var(--dsoc-dark)] hover:bg-[var(--dsoc-purple)]/90 transition-colors"
-              >
-                <BookOpen className="w-5 h-5" />
-                Wiki & Docs
-              </a>
-              <a 
-                href="https://discord.com/invite/Cy7Rgkf4Up" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[var(--dsoc-secondary)] text-white px-4 py-2 font-bold border-3 border-[var(--dsoc-dark)] hover:bg-[var(--dsoc-secondary)]/90 transition-colors"
-              >
-                <MessageCircle className="w-5 h-5" />
-                Discord
-              </a>
-            </div> */}
-          </div>
+      {/* Application status */}
+      <Panel>
+        <div className="max-w-[62ch]">
+          <span className="inline-flex min-h-9 items-center rounded-full border border-[#3D3D3D] px-4 text-sm font-medium text-[#C7C7C7]">
+            Closed
+          </span>
+          <h2 className="mt-5 text-[clamp(32px,4vw,52px)] font-semibold leading-[1.05] tracking-[-0.04em]">
+            DSOC 2026 applications are closed.
+          </h2>
+          <p className="mt-5 text-[17px] leading-[1.65] text-[#C7C7C7]">
+            DSOC applications will open next summer. We are always open to passionate talent who can demonstrate deep interest in technology and a strong willingness to get things done.
+          </p>
+          <p className="mt-4 text-[17px] leading-[1.65] text-[#C7C7C7]">
+            We review exceptional cases at{" "}
+            <a href="mailto:info@devweekends.com" className="font-semibold text-white underline underline-offset-4 hover:text-[#E6E6E6]">
+              info@devweekends.com
+            </a>
+            .
+          </p>
         </div>
-        
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-8 h-12 border-4 border-[var(--dsoc-dark)] rounded-full flex justify-center bg-white/50">
-            <div className="w-2 h-3 bg-[var(--dsoc-primary)] rounded-full mt-2 animate-pulse" />
-          </div>
-        </div>
-      </section>
+      </Panel>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-[var(--dsoc-light)] dark:bg-[var(--dsoc-dark)] dsoc-grid-pattern">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="dsoc-stat-card text-center">
-              <div className="text-4xl sm:text-5xl font-black text-[var(--dsoc-primary)]">
-                {stats?.projects.total || '20+'}
-              </div>
-              <div className="dsoc-stat-label text-sm font-bold uppercase tracking-wider mt-2">
-                Projects
-              </div>
+      {/* Stats: only real numbers from the API, so nothing is shown before data loads */}
+      {liveStats.length > 0 && (
+      <Section>
+        <dl className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {liveStats.map((stat) => (
+            <div key={stat.label} className="min-w-0 rounded-[20px] bg-[#F7F7F7] p-5 sm:p-7">
+              <dd className="text-[clamp(32px,6vw,52px)] font-semibold leading-none tracking-[-0.04em]">{stat.value}</dd>
+              <dt className="mt-3 text-sm text-[#5C5C5C]">{stat.label}</dt>
             </div>
-            <div className="dsoc-stat-card text-center">
-              <div className="text-4xl sm:text-5xl font-black text-[var(--dsoc-secondary)]">
-                {stats?.mentors || '15+'}
-              </div>
-              <div className="dsoc-stat-label text-sm font-bold uppercase tracking-wider mt-2">
-                Mentors
-              </div>
-            </div>
-            <div className="dsoc-stat-card text-center">
-              <div className="text-4xl sm:text-5xl font-black text-[var(--dsoc-purple)]">
-                {stats?.mentees || '50+'}
-              </div>
-              <div className="dsoc-stat-label text-sm font-bold uppercase tracking-wider mt-2">
-                Mentees
-              </div>
-            </div>
-            <div className="dsoc-stat-card text-center">
-              <div className="text-4xl sm:text-5xl font-black text-[var(--dsoc-success)]">
-                {stats?.technologies || '30+'}
-              </div>
-              <div className="dsoc-stat-label text-sm font-bold uppercase tracking-wider mt-2">
-                Technologies
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+          ))}
+        </dl>
+      </Section>
+      )}
 
       {/* What is DSOC Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="dsoc-section-title dsoc-what-title text-4xl sm:text-5xl font-black mb-6 text-[var(--dsoc-dark)]">
-                WHAT IS DSOC?
-              </h2>
-              <div className="space-y-4 text-lg">
-                <p className="text-muted-foreground">
-                  <strong className="text-foreground">Dev Weekends Summer of Code (DSOC)</strong> is a 
-                  community-driven program inspired by Google Summer of Code and LFX Mentorship.
-                </p>
-                <p className="text-muted-foreground">
-                  We connect passionate student developers with experienced mentors to work on 
-                  meaningful open source projects. Whether you&apos;re looking to build your first 
-                  open source contribution or mentor the next generation of developers, DSOC 
-                  has a place for you.
-                </p>
-                <p className="text-muted-foreground">
-                  Unlike traditional programs, we focus on accessibility - no complex application 
-                  processes, no geographic restrictions, just pure learning and contribution.
-                </p>
-              </div>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link href="/dsoc/projects" className="neo-brutal-btn neo-brutal-btn-primary">
-                  Explore Projects
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </div>
+      <Section tone="gray">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+          <div>
+            <SectionHeading eyebrow="About" title="What is DSOC?" />
+            <div className="-mt-4 max-w-[56ch] space-y-4 text-[17px] leading-[1.65] text-[#404040]">
+              <p>
+                <strong className="font-semibold text-[#0A0A0A]">Dev Weekends Summer of Code (DSOC)</strong> is a
+                community-driven program inspired by Google Summer of Code and LFX Mentorship.
+              </p>
+              <p>
+                We connect passionate student developers with experienced mentors to work on
+                meaningful open source projects. Whether you&apos;re looking to build your first
+                open source contribution or mentor the next generation of developers, DSOC
+                has a place for you.
+              </p>
+              <p>
+                Unlike traditional programs, we focus on accessibility: no complex application
+                processes, no geographic restrictions, just pure learning and contribution.
+              </p>
             </div>
-            <div className="relative">
-              <div className="neo-brutal-card p-8">
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[var(--dsoc-primary)] border-4 border-[var(--dsoc-dark)] flex items-center justify-center">
-                      <Target className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg">Project-Based Learning</h3>
-                      <p className="text-muted-foreground">Work on real projects with real impact</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[var(--dsoc-secondary)] border-4 border-[var(--dsoc-dark)] flex items-center justify-center">
-                      <Users className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg">1-on-1 Mentorship</h3>
-                      <p className="text-muted-foreground">Direct guidance from industry experts</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[var(--dsoc-purple)] border-4 border-[var(--dsoc-dark)] flex items-center justify-center">
-                      <MessageCircle className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg">Discord Community</h3>
-                      <p className="text-muted-foreground">24/7 peer support and networking</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="mt-8">
+              <Button href="/dsoc/projects">
+                Explore Projects
+                <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" />
+              </Button>
             </div>
           </div>
+          <ul className="space-y-4">
+            {[
+              { icon: Target, title: "Project-Based Learning", text: "Work on real projects with real impact" },
+              { icon: Users, title: "1-on-1 Mentorship", text: "Direct guidance from industry experts" },
+              { icon: MessageCircle, title: "Discord Community", text: "24/7 peer support and networking" },
+            ].map((item) => (
+              <li key={item.title}>
+                <Card className="flex-row items-start gap-5">
+                  <IconTile icon={item.icon} />
+                  <div>
+                    <h3 className="text-[19px] font-semibold tracking-[-0.02em]">{item.title}</h3>
+                    <p className="mt-1.5 text-[15px] leading-[1.6] text-[#5C5C5C]">{item.text}</p>
+                  </div>
+                </Card>
+              </li>
+            ))}
+          </ul>
         </div>
-      </section>
+      </Section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-[var(--dsoc-light)] dark:bg-[var(--dsoc-dark)] dsoc-grid-pattern">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="dsoc-section-title text-4xl sm:text-5xl font-black mb-4 text-[var(--dsoc-dark)] dark:text-white">
-              WHY JOIN DSOC?
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              More than just coding - it&apos;s a launchpad for your tech career
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="neo-brutal-card p-6">
-                <div className={`w-14 h-14 ${benefit.color} border-4 border-[var(--dsoc-dark)] dark:border-[var(--dsoc-light)] flex items-center justify-center mb-4`}>
-                  <benefit.icon className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                <p className="text-muted-foreground">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Section>
+        <SectionHeading
+          eyebrow="Benefits"
+          title="Why join DSOC?"
+          intro="More than just coding: it's a launchpad for your tech career."
+        />
+        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {benefits.map((benefit) => (
+            <li key={benefit.title}>
+              <Card tone="gray" className="h-full">
+                <IconTile icon={benefit.icon} />
+                <h3 className="mt-5 text-[21px] font-semibold tracking-[-0.02em]">{benefit.title}</h3>
+                <p className="mt-2 text-[15px] leading-[1.6] text-[#5C5C5C]">{benefit.description}</p>
+              </Card>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
       {/* Timeline Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="dsoc-section-title text-4xl sm:text-5xl font-black mb-4">
-              PROGRAM TIMELINE
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Mark your calendars for DSOC 2026
-            </p>
-          </div>
-          
-          <div className="max-w-4xl mx-auto">
-            {timeline.map((item, index) => (
-              <div key={index} className="relative pl-8 pb-12 border-l-4 border-[var(--dsoc-dark)] dark:border-[var(--dsoc-light)] last:pb-0">
-                <div className="absolute -left-4 top-0 w-8 h-8 bg-[var(--dsoc-primary)] border-4 border-[var(--dsoc-dark)] dark:border-[var(--dsoc-light)] flex items-center justify-center">
-                  <span className="text-white font-bold text-xs">{index + 1}</span>
-                </div>
-                <div className="neo-brutal-card p-6 ml-4">
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <span className="neo-brutal-badge bg-[var(--dsoc-accent)]">{item.phase}</span>
-                    <span className="flex items-center text-sm text-muted-foreground">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      {item.date}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.description}</p>
-                </div>
+      <Section id="timeline" tone="gray">
+        <SectionHeading eyebrow="Timeline" title="Program timeline." intro="The schedule for DSOC 2026." />
+        <ol className="divide-y divide-[#D4D4D4] border-y border-[#D4D4D4]">
+          {timeline.map((item) => (
+            <li key={item.phase} className="grid gap-3 py-7 md:grid-cols-[240px_1fr] md:gap-10">
+              <div>
+                <p className="text-sm font-semibold text-[#5C5C5C]">{item.phase}</p>
+                <p className="mt-1.5 flex items-center gap-2 text-[15px] font-semibold">
+                  <Calendar aria-hidden="true" className="h-4 w-4 flex-shrink-0" />
+                  {item.date}
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <div>
+                <h3 className="text-[22px] font-semibold tracking-[-0.02em]">{item.title}</h3>
+                <p className="mt-2 max-w-[60ch] text-[15px] leading-[1.6] text-[#5C5C5C]">{item.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Section>
 
       {/* Featured Projects Section */}
       {featuredProjects.length > 0 && (
-        <section className="py-20 bg-[var(--dsoc-light)] dark:bg-[var(--dsoc-dark)] dsoc-grid-pattern">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="dsoc-section-title text-4xl sm:text-5xl font-black mb-4 text-[var(--dsoc-dark)] dark:text-white">
-                FEATURED PROJECTS
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Check out some of the exciting projects waiting for contributors
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {featuredProjects.map((project) => (
-                <Link key={project._id} href={`/dsoc/projects/${project._id}`}>
-                  <div className="dsoc-project-card h-full group">
-                    {/* Project Image */}
-                    {(project.featuredImage || project.imageUrl) && (
-                      <div className="relative overflow-hidden border-b-4 border-[var(--dsoc-dark)]">
-                        <img 
-                          src={project.featuredImage || project.imageUrl} 
+        <Section>
+          <SectionHeading
+            eyebrow="Projects"
+            title="Featured projects."
+            intro="Check out some of the exciting projects waiting for contributors."
+          />
+          <ul className="grid gap-5 md:grid-cols-2">
+            {featuredProjects.map((project) => {
+              const image = project.featuredImage || project.imageUrl;
+              const repoUrl = project.repositoryUrl || (project.repositoryUrls && project.repositoryUrls[0]);
+              return (
+                <li key={project._id}>
+                  <Card
+                    tone="bordered"
+                    className="group relative h-full overflow-hidden hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-1"
+                  >
+                    {image && (
+                      <div className="relative -mx-7 -mt-7 mb-6 overflow-hidden bg-[#F7F7F7]">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={image}
                           alt={project.title}
-                          className="w-full h-52 object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="h-52 w-full object-cover transition-transform duration-300 motion-safe:group-hover:scale-105"
                         />
-                        <div className="absolute top-3 left-3">
-                          <span className="neo-brutal-badge bg-[var(--dsoc-success)] text-[var(--dsoc-dark)] text-xs font-bold">
-                            OPEN FOR APPLICATIONS
-                          </span>
-                        </div>
+                        <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-[#0A0A0A] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-white">
+                          Applications closed
+                        </span>
                       </div>
                     )}
-                    <div className={`dsoc-project-card-header ${
-                      project.difficulty === 'beginner' ? 'bg-[var(--dsoc-success)]' :
-                      project.difficulty === 'intermediate' ? 'bg-[var(--dsoc-accent)]' :
-                      'bg-[var(--dsoc-pink)]'
-                    }`}>
-                      <div className="flex items-center justify-between">
-                        <span className="font-bold uppercase text-sm tracking-wider text-[var(--dsoc-dark)]">
-                          {project.organization}
-                        </span>
-                        <span className={`neo-brutal-badge text-xs border-2 border-[var(--dsoc-dark)] ${
-                          project.difficulty === 'beginner' ? 'bg-[var(--dsoc-success)]' :
-                          project.difficulty === 'intermediate' ? 'bg-[var(--dsoc-accent)]' :
-                          'bg-[var(--dsoc-pink)]'
-                        } text-[var(--dsoc-dark)]`}>
-                          {project.difficulty}
-                        </span>
-                      </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">{project.organization}</span>
+                      <span className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold capitalize ${difficultyStyle(project.difficulty)}`}>
+                        {project.difficulty}
+                      </span>
                     </div>
-                    <div className="dsoc-project-card-body">
-                      <h3 className="text-xl font-bold mb-3 group-hover:text-[var(--dsoc-primary)] transition-colors">{project.title}</h3>
-                      <p className="text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 5).map((tech, i) => (
-                          <span key={i} className="neo-brutal-badge bg-[var(--dsoc-secondary)] text-white text-xs">
-                            {tech}
-                          </span>
-                        ))}
-                        {project.technologies.length > 5 && (
-                          <span className="neo-brutal-badge bg-gray-200 dark:bg-gray-700 text-xs">
-                            +{project.technologies.length - 5}
-                          </span>
-                        )}
-                      </div>
-                      <div className="flex items-center justify-between border-t-2 border-[var(--dsoc-dark)]/20 pt-4 mt-auto">
-                        <div className="flex items-center text-sm text-muted-foreground">
-                          <Clock className="w-4 h-4 mr-1" />
+                    <h3 className="mt-3 text-[24px] font-semibold tracking-[-0.03em]">
+                      <Link href={`/dsoc/projects/${project._id}`} className="after:absolute after:inset-0 after:content-['']">
+                        {project.title}
+                      </Link>
+                    </h3>
+                    <p className="mt-3 line-clamp-2 text-[15px] leading-[1.6] text-[#5C5C5C]">{project.description}</p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 5).map((tech) => (
+                        <Tag key={tech}>{tech}</Tag>
+                      ))}
+                      {project.technologies.length > 5 && <Tag>+{project.technologies.length - 5}</Tag>}
+                    </div>
+                    <div className="mt-auto pt-6">
+                      <div className="flex flex-wrap items-center justify-between gap-x-4 border-t border-[#E6E6E6] pt-2">
+                        <span className="flex min-h-11 items-center gap-1.5 text-sm text-[#5C5C5C]">
+                          <Clock aria-hidden="true" className="h-4 w-4" />
                           {project.duration}
-                        </div>
-                        <div className="flex gap-2">
-                          {(project.repositoryUrl || (project.repositoryUrls && project.repositoryUrls.length > 0)) && (
-                            <button 
-                              type="button"
-                              onClick={(e) => { 
-                                e.preventDefault(); 
-                                e.stopPropagation(); 
-                                const targetUrl = project.repositoryUrl || (project.repositoryUrls && project.repositoryUrls[0]);
-                                if (targetUrl) window.open(targetUrl, '_blank'); 
-                              }}
-                              className="inline-flex items-center gap-1 text-sm font-bold text-[var(--dsoc-dark)] hover:text-[var(--dsoc-primary)] transition-colors"
+                        </span>
+                        <div className="flex flex-wrap gap-x-4">
+                          {repoUrl && (
+                            <a
+                              href={repoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="relative z-10 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold hover:text-[#5C5C5C]"
                             >
-                              <Github className="w-4 h-4" />
+                              <Github aria-hidden="true" className="h-4 w-4" />
                               GitHub
-                            </button>
+                            </a>
                           )}
                           {project.wikiUrl && (
-                            <button 
-                              type="button"
-                              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.wikiUrl, '_blank'); }}
-                              className="inline-flex items-center gap-1 text-sm font-bold text-[var(--dsoc-purple)] hover:text-[var(--dsoc-primary)] transition-colors"
+                            <a
+                              href={project.wikiUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="relative z-10 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold hover:text-[#5C5C5C]"
                             >
-                              <BookOpen className="w-4 h-4" />
+                              <BookOpen aria-hidden="true" className="h-4 w-4" />
                               Wiki
-                            </button>
+                            </a>
                           )}
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            
-            <div className="text-center mt-12">
-              <Link href="/dsoc/projects" className="neo-brutal-btn neo-brutal-btn-primary text-lg">
-                View All Projects
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
+                  </Card>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="mt-10">
+            <Button href="/dsoc/projects" variant="secondary">
+              View All Projects
+              <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5" />
+            </Button>
           </div>
-        </section>
+        </Section>
       )}
 
       {/* How It Works Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="dsoc-section-title text-4xl sm:text-5xl font-black mb-4">
-              HOW IT WORKS
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Simple steps to start your open source journey
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            {/* For Mentees */}
-            <div className="neo-brutal-card p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-[var(--dsoc-primary)] border-4 border-[var(--dsoc-dark)] flex items-center justify-center">
-                  <Code2 className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-2xl font-black">FOR MENTEES</h3>
-              </div>
-              <ol className="space-y-4">
-                {[
-                  "Create your profile and join our Discord",
-                  "Browse projects and find one that excites you",
-                  "Submit your application with a proposal",
-                  "Get selected and bond with your mentor",
-                  "Code, learn, and contribute for 3 months",
-                  "Complete your project and get certified"
-                ].map((step, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-[var(--dsoc-accent)] border-3 border-[var(--dsoc-dark)] flex items-center justify-center flex-shrink-0">
-                      <span className="font-bold text-sm">{i + 1}</span>
-                    </div>
-                    <span className="pt-1">{step}</span>
-                  </li>
-                ))}
-              </ol>
-              <a href="mailto:info@devweekends.com?subject=DSOC%20Exceptional%20Case" className="neo-brutal-btn neo-brutal-btn-primary w-full mt-6">
-                Contact Us About an Exceptional Case
-              </a>
+      <Section tone="gray">
+        <SectionHeading eyebrow="How it works" title="Simple steps to start." intro="Your open source journey, for mentees and mentors." />
+        <div className="grid gap-5 lg:grid-cols-2">
+          {/* For Mentees */}
+          <div className="flex flex-col rounded-[20px] bg-[#0A0A0A] p-7 text-white sm:p-9">
+            <div className="flex items-center gap-4">
+              <span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-[12px] bg-white text-[#0A0A0A]">
+                <Code2 className="h-5 w-5" />
+              </span>
+              <h3 className="text-2xl font-semibold tracking-[-0.03em]">For mentees</h3>
             </div>
-            
-            {/* For Mentors */}
-            <div className="neo-brutal-card p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-[var(--dsoc-secondary)] border-4 border-[var(--dsoc-dark)] flex items-center justify-center">
-                  <Users className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-2xl font-black">FOR MENTORS</h3>
-              </div>
-              <ol className="space-y-4">
-                {[
-                  "Register and get verified as a mentor",
-                  "Submit your project idea with details",
-                  "Review applications from mentees",
-                  "Select your mentee(s) for the project",
-                  "Guide them through weekly check-ins",
-                  "Evaluate and celebrate their success"
-                ].map((step, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-[var(--dsoc-success)] border-3 border-[var(--dsoc-dark)] flex items-center justify-center flex-shrink-0">
-                      <span className="font-bold text-sm">{i + 1}</span>
-                    </div>
-                    <span className="pt-1">{step}</span>
-                  </li>
-                ))}
-              </ol>
-              <a href="mailto:info@devweekends.com?subject=DSOC%20Mentor%20Interest" className="neo-brutal-btn neo-brutal-btn-secondary w-full mt-6">
-                Contact Us About Mentoring
-              </a>
+            <StepList
+              onDark
+              steps={[
+                "Create your profile and join our Discord",
+                "Browse projects and find one that excites you",
+                "Submit your application with a proposal",
+                "Get selected and bond with your mentor",
+                "Code, learn, and contribute for 3 months",
+                "Complete your project and get certified"
+              ]}
+            />
+            <div className="mt-auto pt-8 text-center sm:text-left">
+              <Button href={CONTACT_HREF} variant="onDark">Contact Us About an Exceptional Case</Button>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* FAQ Preview */}
-      <section className="py-20 bg-[var(--dsoc-light)] dark:bg-[var(--dsoc-dark)]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="dsoc-section-title text-4xl sm:text-5xl font-black mb-4 text-[var(--dsoc-dark)] dark:text-white">
-              FAQ
-            </h2>
-          </div>
-          
-          <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              {
-                q: "Who can participate in DSOC?",
-                a: "Anyone! Students, professionals, and hobbyists from anywhere in the world can apply as mentees. We especially encourage underrepresented groups in tech."
-              },
-              {
-                q: "Is there a stipend for participants?",
-                a: "Yes. DSOC is a paid program, and selected participants receive a stipend during the coding period."
-              },
-              {
-                q: "What's the time commitment?",
-                a: "Mentees should expect to dedicate 15-20 hours per week. Mentors typically spend 3-5 hours per week on guidance and code reviews."
-              },
-              {
-                q: "Do I need prior open source experience?",
-                a: "Not at all! We have projects for all skill levels. Beginner projects are specifically designed for first-time contributors."
-              }
-            ].map((faq, i) => (
-              <div key={i} className="neo-brutal-card p-6">
-                <h3 className="font-bold text-lg mb-2 flex items-start gap-3">
-                  <Star className="w-5 h-5 text-[var(--dsoc-primary)] flex-shrink-0 mt-1" />
-                  {faq.q}
-                </h3>
-                <p className="text-muted-foreground pl-8">{faq.a}</p>
-              </div>
-            ))}
+          {/* For Mentors */}
+          <div className="flex flex-col rounded-[20px] bg-white p-7 sm:p-9">
+            <div className="flex items-center gap-4">
+              <span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-[12px] bg-[#0A0A0A] text-white">
+                <Users className="h-5 w-5" />
+              </span>
+              <h3 className="text-2xl font-semibold tracking-[-0.03em]">For mentors</h3>
+            </div>
+            <StepList
+              steps={[
+                "Register and get verified as a mentor",
+                "Submit your project idea with details",
+                "Review applications from mentees",
+                "Select your mentee(s) for the project",
+                "Guide them through weekly check-ins",
+                "Evaluate and celebrate their success"
+              ]}
+            />
+            <div className="mt-auto pt-8 text-center sm:text-left">
+              <Button href="mailto:info@devweekends.com?subject=DSOC%20Mentor%20Interest">Contact Us About Mentoring</Button>
+            </div>
           </div>
         </div>
-      </section>
+      </Section>
+
+      {/* FAQ */}
+      <Section>
+        <SectionHeading eyebrow="FAQ" title="Common questions." />
+        <dl className="grid gap-5 md:grid-cols-2">
+          {[
+            {
+              q: "Who can participate in DSOC?",
+              a: "Anyone! Students, professionals, and hobbyists from anywhere in the world can apply as mentees. We especially encourage underrepresented groups in tech."
+            },
+            {
+              q: "Is there a stipend for participants?",
+              a: "Yes. DSOC is a paid program, and selected participants receive a stipend during the coding period."
+            },
+            {
+              q: "What's the time commitment?",
+              a: "Mentees should expect to dedicate 15-20 hours per week. Mentors typically spend 3-5 hours per week on guidance and code reviews."
+            },
+            {
+              q: "Do I need prior open source experience?",
+              a: "Not at all! We have projects for all skill levels. Beginner projects are specifically designed for first-time contributors."
+            }
+          ].map((faq) => (
+            <Card key={faq.q} tone="gray">
+              <dt className="text-[19px] font-semibold tracking-[-0.02em]">{faq.q}</dt>
+              <dd className="mt-3 text-[15px] leading-[1.6] text-[#5C5C5C]">{faq.a}</dd>
+            </Card>
+          ))}
+        </dl>
+      </Section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[var(--dsoc-primary)] to-[var(--dsoc-secondary)]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h2 className="text-4xl sm:text-5xl font-black mb-6">
-            READY TO START YOUR JOURNEY?
-          </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+      <Panel>
+        <div className="max-w-[60ch]">
+          <h2 className="text-[clamp(32px,4vw,52px)] font-semibold leading-[1.05] tracking-[-0.04em]">Ready to start your journey?</h2>
+          <p className="mt-5 text-[17px] leading-[1.65] text-[#C7C7C7]">
             DSOC 2026 applications are closed. The next application cycle opens next summer.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:info@devweekends.com?subject=DSOC%20Exceptional%20Case" className="neo-brutal-btn neo-brutal-btn-accent text-lg">
-              <Rocket className="w-5 h-5 mr-2" />
-              Contact Us
-            </a>
-            <a 
-              href="https://discord.com/invite/Cy7Rgkf4Up" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="neo-brutal-btn bg-white text-[var(--dsoc-dark)] text-lg"
-            >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Join Discord
-            </a>
-          </div>
         </div>
-      </section>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <Button href={CONTACT_HREF} variant="onDark">Contact Us</Button>
+          <Button href="https://discord.com/invite/Cy7Rgkf4Up" variant="onDarkSecondary">Join Discord</Button>
+        </div>
+      </Panel>
 
       {/* Footer Links */}
-      <section className="py-12 border-t-4 border-[var(--dsoc-dark)] dark:border-[var(--dsoc-light)]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
-            <Link href="/dsoc/projects" className="font-bold hover:text-[var(--dsoc-primary)] transition-colors">
-              Projects
-            </Link>
-            <a href="mailto:info@devweekends.com?subject=DSOC%20Exceptional%20Case" className="font-bold hover:text-[var(--dsoc-primary)] transition-colors">
-              Exceptional Cases
+      <footer className="border-t border-[#E6E6E6] bg-white">
+        <div className={`${container} py-10`}>
+          <nav aria-label="DSOC footer" className="flex flex-wrap justify-center gap-x-2 text-[15px] font-medium">
+            <Link href="/dsoc/projects" className={footerLink}>Projects</Link>
+            <a href={CONTACT_HREF} className={footerLink}>Exceptional Cases</a>
+            <Link href="/dsoc/login" className={footerLink}>Login</Link>
+            <a href="https://github.com/devweekends" target="_blank" rel="noopener noreferrer" className={`${footerLink} gap-1.5`}>
+              <Github aria-hidden="true" className="h-4 w-4" /> GitHub
             </a>
-            <Link href="/dsoc/login" className="font-bold hover:text-[var(--dsoc-primary)] transition-colors">
-              Login
-            </Link>
-            <a 
-              href="https://github.com/devweekends" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="font-bold hover:text-[var(--dsoc-primary)] transition-colors flex items-center gap-1"
-            >
-              <Github className="w-4 h-4" /> GitHub
+            <a href="https://discord.com/invite/Cy7Rgkf4Up" target="_blank" rel="noopener noreferrer" className={`${footerLink} gap-1.5`}>
+              <MessageCircle aria-hidden="true" className="h-4 w-4" /> Discord
             </a>
-            <a 
-              href="https://discord.com/invite/Cy7Rgkf4Up" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="font-bold hover:text-[var(--dsoc-primary)] transition-colors flex items-center gap-1"
-            >
-              <MessageCircle className="w-4 h-4" /> Discord
-            </a>
-          </div>
-          <p className="text-center text-muted-foreground mt-6">
-            DSOC is a program by <Link href="/team" className="font-bold text-foreground hover:text-[var(--dsoc-primary)]">Dev Weekends</Link>
+          </nav>
+          <p className="mt-4 text-center text-[15px] text-[#5C5C5C]">
+            DSOC is a program by <Link href="/team" className="inline-flex min-h-11 items-center font-semibold text-[#0A0A0A] hover:text-[#5C5C5C]">Dev Weekends</Link>
           </p>
         </div>
-      </section>
+      </footer>
     </div>
+  );
+}
+
+const CONTACT_HREF = "mailto:info@devweekends.com?subject=DSOC%20Exceptional%20Case";
+
+const footerLink = "inline-flex min-h-11 items-center px-3 text-[#404040] transition-colors hover:text-black";
+
+/** Difficulty in black and white: outline for beginner, grey fill for intermediate, black fill for advanced. */
+function difficultyStyle(difficulty: string) {
+  switch (difficulty) {
+    case 'beginner': return 'border-[#D4D4D4] bg-white text-[#404040]';
+    case 'advanced': return 'border-[#0A0A0A] bg-[#0A0A0A] text-white';
+    default: return 'border-[#E6E6E6] bg-[#E6E6E6] text-[#262626]';
+  }
+}
+
+function IconTile({ icon: Icon }: { icon: LucideIcon }) {
+  return (
+    <span aria-hidden="true" className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-[12px] bg-[#0A0A0A] text-white">
+      <Icon className="h-5 w-5" />
+    </span>
+  );
+}
+
+function Tag({ children }: { children: ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full bg-[#F7F7F7] px-3 py-1 text-xs font-medium text-[#404040]">
+      {children}
+    </span>
+  );
+}
+
+function StepList({ steps, onDark }: { steps: string[]; onDark?: boolean }) {
+  return (
+    <ol className="mt-7 space-y-4">
+      {steps.map((step, i) => (
+        <li key={step} className="flex items-start gap-3.5">
+          <span
+            aria-hidden="true"
+            className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-semibold ${
+              onDark ? 'bg-[#262626] text-white' : 'bg-[#F7F7F7] text-[#0A0A0A]'
+            }`}
+          >
+            {i + 1}
+          </span>
+          <span className={`pt-1 text-base leading-[1.5] ${onDark ? 'text-[#E6E6E6]' : 'text-[#404040]'}`}>{step}</span>
+        </li>
+      ))}
+    </ol>
   );
 }

@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import type { ReactNode } from "react";
 import { useRouter } from "next/navigation";
-import { 
-  Code2, 
-  Users, 
-  Rocket, 
+import {
+  Code2,
+  Users,
+  Rocket,
   MessageCircle,
   Zap,
   Star,
@@ -18,7 +19,36 @@ import {
   LogOut
 } from "lucide-react";
 import { HeadlineBar } from "@/components/headline-bar";
-import "../styles.css";
+
+const DISCORD_URL = "https://discord.com/invite/Cy7Rgkf4Up";
+
+const navLink =
+  "inline-flex min-h-11 items-center gap-1.5 rounded-[10px] px-3 text-[15px] font-medium text-[#404040] transition-colors hover:text-black";
+const dropdownPanel =
+  "absolute left-0 top-full z-50 mt-2 w-[290px] rounded-[18px] border border-[#E6E6E6] bg-white p-2 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]";
+const dropdownItem =
+  "flex min-h-11 w-full items-start gap-3 rounded-[10px] p-3 text-left transition-colors hover:bg-[#F7F7F7]";
+const mobileLink =
+  "flex min-h-12 w-full items-center gap-3 border-b border-[#E6E6E6] text-left";
+const primaryButton =
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-[10px] bg-[#0A0A0A] px-[18px] py-3 text-[15px] font-semibold text-white transition-colors hover:bg-[#262626]";
+
+function ItemText({ title, hint }: { title: string; hint: string }) {
+  return (
+    <span>
+      <span className="block text-[15px] font-semibold text-[#0A0A0A]">{title}</span>
+      <span className="mt-0.5 block text-[13px] text-[#5C5C5C]">{hint}</span>
+    </span>
+  );
+}
+
+function ItemIcon({ children }: { children: ReactNode }) {
+  return (
+    <span aria-hidden="true" className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[8px] bg-[#F7F7F7] text-[#0A0A0A]">
+      {children}
+    </span>
+  );
+}
 
 export default function DSOCNavbar() {
   const router = useRouter();
@@ -39,8 +69,19 @@ export default function DSOCNavbar() {
         setJoinOpen(false);
       }
     };
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setExploreOpen(false);
+        setJoinOpen(false);
+        setIsOpen(false);
+      }
+    };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKey);
+    };
   }, []);
 
   useEffect(() => {
@@ -94,168 +135,145 @@ export default function DSOCNavbar() {
     : '/dsoc/mentee/dashboard';
 
   return (
-    <header className="sticky top-0 z-60">
+    <div className="sticky top-0 z-50 w-full">
       <HeadlineBar />
-      <nav className="dsoc-navbar">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+      <header className="border-b border-[#E6E6E6] bg-white/90 backdrop-blur">
+        <div className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-6">
           {/* Logo */}
-          <a href="/dsoc" className="flex items-center gap-2 no-underline">
-            <div className="w-10 h-10 bg-[var(--dsoc-primary)] border-3 border-[var(--dsoc-dark)] flex items-center justify-center shadow-[3px_3px_0_var(--dsoc-dark)]">
-              <Code2 className="w-6 h-6 text-white" />
-            </div>
-            <span className="font-black text-xl text-[var(--dsoc-dark)]">DSOC</span>
-          </a>
+          <Link href="/dsoc" className="flex min-h-11 items-center gap-3" aria-label="DSOC home">
+            <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-[#0A0A0A] text-white">
+              <Code2 className="h-5 w-5" />
+            </span>
+            <span className="text-xl font-semibold tracking-[-0.03em] text-[#0A0A0A]">DSOC</span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <nav aria-label="DSOC" className="hidden items-center gap-2 lg:flex">
             {/* Explore Dropdown */}
             <div ref={exploreRef} className="relative">
               <button
+                type="button"
+                aria-expanded={exploreOpen}
+                aria-haspopup="true"
+                aria-controls="dsoc-explore-menu"
                 onClick={() => { setExploreOpen(!exploreOpen); setJoinOpen(false); }}
-                className="dsoc-nav-link flex items-center gap-1"
+                className={navLink}
               >
                 Explore
-                <ChevronDown className={`w-4 h-4 transition-transform ${exploreOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform ${exploreOpen ? 'rotate-180' : ''}`} />
               </button>
               {exploreOpen && (
-                <div className="dsoc-dropdown">
-                  <Link href="/dsoc/projects" className="dsoc-dropdown-item" onClick={() => setExploreOpen(false)}>
-                    <Code2 className="w-4 h-4" />
-                    <div>
-                      <div className="font-bold">Projects</div>
-                      <div className="text-xs opacity-70">Browse open source projects</div>
-                    </div>
+                <div id="dsoc-explore-menu" className={dropdownPanel}>
+                  <Link href="/dsoc/projects" className={dropdownItem} onClick={() => setExploreOpen(false)}>
+                    <ItemIcon><Code2 className="h-4 w-4" /></ItemIcon>
+                    <ItemText title="Projects" hint="Browse open source projects" />
                   </Link>
-                  <Link href="/dsoc/projects?difficulty=beginner" className="dsoc-dropdown-item" onClick={() => setExploreOpen(false)}>
-                    <Star className="w-4 h-4" />
-                    <div>
-                      <div className="font-bold">Beginner Friendly</div>
-                      <div className="text-xs opacity-70">Perfect for first-timers</div>
-                    </div>
+                  <Link href="/dsoc/projects?difficulty=beginner" className={dropdownItem} onClick={() => setExploreOpen(false)}>
+                    <ItemIcon><Star className="h-4 w-4" /></ItemIcon>
+                    <ItemText title="Beginner Friendly" hint="Perfect for first-timers" />
                   </Link>
-                  <Link href="/dsoc/projects?status=open" className="dsoc-dropdown-item" onClick={() => setExploreOpen(false)}>
-                    <Zap className="w-4 h-4" />
-                    <div>
-                      <div className="font-bold">Open Now</div>
-                      <div className="text-xs opacity-70">Accepting applications</div>
-                    </div>
+                  <Link href="/dsoc/projects?status=open" className={dropdownItem} onClick={() => setExploreOpen(false)}>
+                    <ItemIcon><Zap className="h-4 w-4" /></ItemIcon>
+                    <ItemText title="Open Now" hint="Accepting applications" />
                   </Link>
-                  <div className="border-t border-white/10 my-2" />
-                  <a href="https://discord.com/invite/Cy7Rgkf4Up" target="_blank" rel="noopener noreferrer" className="dsoc-dropdown-item">
-                    <MessageCircle className="w-4 h-4" />
-                    <div>
-                      <div className="font-bold">Community</div>
-                      <div className="text-xs opacity-70">Join our Discord</div>
-                    </div>
+                  <div className="my-2 border-t border-[#E6E6E6]" />
+                  <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className={dropdownItem}>
+                    <ItemIcon><MessageCircle className="h-4 w-4" /></ItemIcon>
+                    <ItemText title="Community" hint="Join our Discord" />
                   </a>
                 </div>
               )}
             </div>
 
-            <Link href="/dsoc/projects" className="dsoc-nav-link">
+            <Link href="/dsoc/projects" className={navLink}>
               Projects
             </Link>
 
-            <a href="https://discord.com/invite/Cy7Rgkf4Up" target="_blank" rel="noopener noreferrer" className="dsoc-nav-link">
+            <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className={navLink}>
               Community
             </a>
 
             {/* Join Dropdown */}
             <div ref={joinRef} className="relative">
               <button
+                type="button"
+                aria-expanded={joinOpen}
+                aria-haspopup="true"
+                aria-controls="dsoc-join-menu"
                 onClick={() => { setJoinOpen(!joinOpen); setExploreOpen(false); }}
-                className="dsoc-nav-link flex items-center gap-1"
+                className={navLink}
               >
                 Join
-                <ChevronDown className={`w-4 h-4 transition-transform ${joinOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform ${joinOpen ? 'rotate-180' : ''}`} />
               </button>
               {joinOpen && (
-                <div className="dsoc-dropdown">
+                <div id="dsoc-join-menu" className={dropdownPanel}>
                   {sessionChecked && sessionRole ? (
                     <>
-                      <Link href={dashboardPath} className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
-                        <Code2 className="w-4 h-4" />
-                        <div>
-                          <div className="font-bold">Dashboard</div>
-                          <div className="text-xs opacity-70">View your DSOC workspace</div>
-                        </div>
+                      <Link href={dashboardPath} className={dropdownItem} onClick={() => setJoinOpen(false)}>
+                        <ItemIcon><Code2 className="h-4 w-4" /></ItemIcon>
+                        <ItemText title="Dashboard" hint="View your DSOC workspace" />
                       </Link>
-                      <div className="border-t border-white/10 my-2" />
+                      <div className="my-2 border-t border-[#E6E6E6]" />
                       <button
                         type="button"
                         onClick={() => { setJoinOpen(false); handleLogout(); }}
-                        className="dsoc-dropdown-item"
+                        className={dropdownItem}
                       >
-                        <LogOut className="w-4 h-4" />
-                        <div>
-                          <div className="font-bold">Logout</div>
-                          <div className="text-xs opacity-70">Sign out of DSOC</div>
-                        </div>
+                        <ItemIcon><LogOut className="h-4 w-4" /></ItemIcon>
+                        <ItemText title="Logout" hint="Sign out of DSOC" />
                       </button>
                     </>
                   ) : (
                     <>
-                      <Link href="/dsoc/register/mentee" className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
-                        <Rocket className="w-4 h-4" />
-                        <div>
-                          <div className="font-bold">Apply as Mentee</div>
-                          <div className="text-xs opacity-70">Start your journey</div>
-                        </div>
+                      <Link href="/dsoc/register/mentee" className={dropdownItem} onClick={() => setJoinOpen(false)}>
+                        <ItemIcon><Rocket className="h-4 w-4" /></ItemIcon>
+                        <ItemText title="Apply as Mentee" hint="Start your journey" />
                       </Link>
-                      <Link href="/dsoc/register/mentor" className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
-                        <Users className="w-4 h-4" />
-                        <div>
-                          <div className="font-bold">Become a Mentor</div>
-                          <div className="text-xs opacity-70">Guide the next generation</div>
-                        </div>
+                      <Link href="/dsoc/register/mentor" className={dropdownItem} onClick={() => setJoinOpen(false)}>
+                        <ItemIcon><Users className="h-4 w-4" /></ItemIcon>
+                        <ItemText title="Become a Mentor" hint="Guide the next generation" />
                       </Link>
-                      <div className="border-t border-white/10 my-2" />
-                      <Link href="/dsoc/login" className="dsoc-dropdown-item" onClick={() => setJoinOpen(false)}>
-                        <LogIn className="w-4 h-4" />
-                        <div>
-                          <div className="font-bold">Login</div>
-                          <div className="text-xs opacity-70">Already registered?</div>
-                        </div>
+                      <div className="my-2 border-t border-[#E6E6E6]" />
+                      <Link href="/dsoc/login" className={dropdownItem} onClick={() => setJoinOpen(false)}>
+                        <ItemIcon><LogIn className="h-4 w-4" /></ItemIcon>
+                        <ItemText title="Login" hint="Already registered?" />
                       </Link>
                     </>
                   )}
                 </div>
               )}
             </div>
-          </div>
+          </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-3">
-            <a 
-              href="/team" 
-              className="dsoc-nav-link" 
+          {/* Account actions */}
+          <div className="hidden items-center gap-2 lg:flex">
+            <Link
+              href="/team"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[10px] text-[#404040] transition-colors hover:bg-[#F7F7F7] hover:text-black"
               title="Dev Weekends"
+              aria-label="Dev Weekends"
             >
-              <Home className="w-5 h-5" />
-            </a>
+              <Home aria-hidden="true" className="h-5 w-5" />
+            </Link>
             {sessionChecked && sessionRole ? (
               <>
-                <Link href={dashboardPath} className="dsoc-nav-link">
-                  <Code2 className="w-4 h-4 mr-1" />
+                <Link href={dashboardPath} className={navLink}>
+                  <Code2 aria-hidden="true" className="h-4 w-4" />
                   Dashboard
                 </Link>
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="dsoc-nav-link"
-                >
-                  <LogOut className="w-4 h-4 mr-1" />
+                <button type="button" onClick={handleLogout} className={navLink}>
+                  <LogOut aria-hidden="true" className="h-4 w-4" />
                   Logout
                 </button>
               </>
             ) : sessionChecked ? (
               <>
-                <Link href="/dsoc/login" className="dsoc-nav-link">
-                  <LogIn className="w-4 h-4 mr-1" />
+                <Link href="/dsoc/login" className={navLink}>
+                  <LogIn aria-hidden="true" className="h-4 w-4" />
                   Login
                 </Link>
-                <Link href="/dsoc/register/mentee" className="neo-brutal-btn neo-brutal-btn-accent py-2 px-4 text-sm">
+                <Link href="/dsoc/register/mentee" className={primaryButton}>
                   Apply Now
                 </Link>
               </>
@@ -264,59 +282,62 @@ export default function DSOCNavbar() {
 
           {/* Mobile Menu Button */}
           <button
+            type="button"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-[var(--dsoc-dark)]"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-[10px] border border-[#E6E6E6] text-[#0A0A0A] lg:hidden"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X aria-hidden="true" className="h-5 w-5" /> : <Menu aria-hidden="true" className="h-5 w-5" />}
           </button>
-          </div>
+        </div>
 
-          {/* Mobile Menu */}
-          {isOpen && (
-            <div className="md:hidden dsoc-mobile-menu">
-              <a href="/team" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
-                <Home className="w-5 h-5" /> Dev Weekends
-              </a>
-              <Link href="/dsoc/projects" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
-                <Code2 className="w-5 h-5" /> Projects
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="max-h-[calc(100vh-72px)] overflow-y-auto border-t border-[#E6E6E6] bg-white lg:hidden">
+            <nav aria-label="DSOC mobile" className="flex flex-col px-6 py-2 text-[17px] font-medium">
+              <Link href="/team" className={mobileLink} onClick={() => setIsOpen(false)}>
+                <Home aria-hidden="true" className="h-5 w-5" /> Dev Weekends
               </Link>
-              <Link href="/dsoc/projects?difficulty=beginner" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
-                <Star className="w-5 h-5" /> Beginner Friendly
+              <Link href="/dsoc/projects" className={mobileLink} onClick={() => setIsOpen(false)}>
+                <Code2 aria-hidden="true" className="h-5 w-5" /> Projects
               </Link>
-              <a href="https://discord.com/invite/Cy7Rgkf4Up" target="_blank" rel="noopener noreferrer" className="dsoc-mobile-link">
-                <MessageCircle className="w-5 h-5" /> Community
+              <Link href="/dsoc/projects?difficulty=beginner" className={mobileLink} onClick={() => setIsOpen(false)}>
+                <Star aria-hidden="true" className="h-5 w-5" /> Beginner Friendly
+              </Link>
+              <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className={mobileLink}>
+                <MessageCircle aria-hidden="true" className="h-5 w-5" /> Community
               </a>
-              <div className="border-t border-[var(--dsoc-dark)]/10 my-3" />
               {sessionChecked && sessionRole ? (
                 <>
-                  <Link href={dashboardPath} className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
-                    <Code2 className="w-5 h-5" /> Dashboard
+                  <Link href={dashboardPath} className={mobileLink} onClick={() => setIsOpen(false)}>
+                    <Code2 aria-hidden="true" className="h-5 w-5" /> Dashboard
                   </Link>
                   <button
                     type="button"
                     onClick={() => { setIsOpen(false); handleLogout(); }}
-                    className="dsoc-mobile-link"
+                    className={mobileLink}
                   >
-                    <LogOut className="w-5 h-5" /> Logout
+                    <LogOut aria-hidden="true" className="h-5 w-5" /> Logout
                   </button>
                 </>
               ) : sessionChecked ? (
                 <>
-                  <Link href="/dsoc/register/mentee" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
-                    <Rocket className="w-5 h-5" /> Apply as Mentee
+                  <Link href="/dsoc/register/mentee" className={mobileLink} onClick={() => setIsOpen(false)}>
+                    <Rocket aria-hidden="true" className="h-5 w-5" /> Apply as Mentee
                   </Link>
-                  <Link href="/dsoc/register/mentor" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
-                    <Users className="w-5 h-5" /> Become a Mentor
+                  <Link href="/dsoc/register/mentor" className={mobileLink} onClick={() => setIsOpen(false)}>
+                    <Users aria-hidden="true" className="h-5 w-5" /> Become a Mentor
                   </Link>
-                  <Link href="/dsoc/login" className="dsoc-mobile-link" onClick={() => setIsOpen(false)}>
-                    <LogIn className="w-5 h-5" /> Login
+                  <Link href="/dsoc/login" className={mobileLink} onClick={() => setIsOpen(false)}>
+                    <LogIn aria-hidden="true" className="h-5 w-5" /> Login
                   </Link>
                 </>
               ) : null}
-            </div>
-          )}
-        </div>
-      </nav>
-    </header>
+            </nav>
+          </div>
+        )}
+      </header>
+    </div>
   );
 }

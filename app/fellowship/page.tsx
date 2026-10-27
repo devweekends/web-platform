@@ -5,13 +5,14 @@ import { LINKS } from "@/components/home/data"
 import { Voices } from "@/components/home/sections-bottom"
 import { Button, Card, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
 import { CardText, CheckList, Chip, DarkSteps, StatRow } from "@/components/site/program-blocks"
+import { withSocial } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   alternates: { canonical: "/fellowship" },
   title: "Fellowship 2026",
   description:
     "Dev Weekends Fellowship 2026: three months of DSA training, weekend engineering projects and mentorship. Applications are closed.",
-}
+})
 
 const body = "mt-3 text-[15px] leading-[1.6] text-[#5C5C5C]"
 

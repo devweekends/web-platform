@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 
+import { CountUp } from "./count-up"
 import { LogoMark } from "./logo-mark"
 import { PartnersStrip } from "./partners-strip"
 import { SmartLink } from "./smart-link"
@@ -33,12 +34,12 @@ export function Hero() {
         <div className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-16 px-6 py-20 lg:py-24">
           <div className="min-w-0 flex-[1.1_1_520px]">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#A3A3A3]">A community, not just a classroom</p>
-            <h1 className="mt-6 text-[clamp(52px,6.4vw,92px)] font-semibold leading-none tracking-[-0.045em]">
+            <h1 className="dw-rise mt-6 text-[clamp(52px,6.4vw,92px)] font-semibold leading-none tracking-[-0.045em]">
               Great engineers.
               <br />
               <span className="text-[#8A8A8A]">Greater impact.</span>
             </h1>
-            <p className="mt-7 max-w-[52ch] text-[19px] leading-[1.65] text-[#C7C7C7]">
+            <p className="dw-rise-late mt-7 max-w-[52ch] text-[19px] leading-[1.65] text-[#C7C7C7]">
               Talent is everywhere. Opportunity should be too. Dev Weekends is a free community helping engineers learn, build and
               open doors to the world.
             </p>
@@ -118,9 +119,11 @@ export function Reach() {
       </div>
       <dl className="mx-auto grid max-w-[1200px] grid-cols-4 gap-x-3 px-6 py-12 md:gap-8 md:py-16">
         {reach.map((item) => (
-          <div key={item.label} className="flex min-w-0 flex-col-reverse gap-1.5 border-l border-[#E6E6E6] pl-3 md:pl-6">
+          <div key={item.label} data-reveal className="flex min-w-0 flex-col-reverse gap-1.5 border-l border-[#E6E6E6] pl-3 md:pl-6">
             <dt className="text-[11px] leading-snug text-[#5C5C5C] sm:text-sm md:text-[15px]">{item.label}</dt>
-            <dd className="text-[clamp(22px,6.4vw,48px)] font-semibold leading-none tracking-[-0.04em]">{item.value}</dd>
+            <dd className="text-[clamp(22px,6.4vw,48px)] font-semibold leading-none tracking-[-0.04em]">
+              <CountUp value={item.value} />
+            </dd>
           </div>
         ))}
       </dl>
@@ -150,7 +153,7 @@ export function Network() {
           </p>
           <ul className="mx-auto mt-10 grid max-w-[1100px] grid-cols-4 gap-2 sm:gap-3 md:grid-cols-7">
             {placesLike.map((org) => (
-              <li key={org.name}>
+              <li key={org.name} data-reveal>
                 <OrgTile org={org} />
               </li>
             ))}
@@ -180,11 +183,13 @@ function OrgTile({ org }: { org: Org }) {
 export function Impact() {
   return (
     <section id="impact" className="px-6">
-      <div className="mx-auto max-w-[1392px] rounded-[28px] bg-[#0A0A0A] text-white">
+      <div data-reveal className="mx-auto max-w-[1392px] rounded-[28px] bg-[#0A0A0A] text-white">
         <div className="mx-auto flex max-w-[1200px] flex-wrap items-end gap-14 px-6 py-24">
           <div className="min-w-0 flex-[1.2_1_480px]">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#A3A3A3]">Value created</p>
-            <p className="mt-5 text-[clamp(88px,12vw,176px)] font-semibold leading-[0.9] tracking-[-0.06em]">$2.5M+</p>
+            <p className="mt-5 text-[clamp(88px,12vw,176px)] font-semibold leading-[0.9] tracking-[-0.06em]">
+              <CountUp value="$2.5M+" />
+            </p>
             <p className="mt-5 max-w-[30ch] text-[22px] leading-[1.5] text-[#C7C7C7]">
               earned by our members. Free to join, life-changing to finish.
             </p>
@@ -232,12 +237,14 @@ export function Outcomes() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className={eyebrow}>Outcomes</p>
-            <h2 className={h2}>Where the work led them.</h2>
+            <h2 data-reveal className={h2}>
+              Where the work led them.
+            </h2>
           </div>
         </div>
         <ul className="mt-10 grid grid-cols-3 border-l border-t border-[#E6E6E6] md:mt-14 xl:grid-cols-6">
           {outcomes.map((item) => (
-            <li key={item.title} className="flex min-w-0 flex-col gap-1.5 border-b border-r border-[#E6E6E6] p-3 transition-colors duration-200 hover:bg-[#FAFAFA] sm:gap-2.5 sm:p-6 lg:p-8 xl:p-5">
+            <li key={item.title} data-reveal className="flex min-w-0 flex-col gap-1.5 border-b border-r border-[#E6E6E6] p-3 transition-colors duration-200 hover:bg-[#FAFAFA] sm:gap-2.5 sm:p-6 lg:p-8 xl:p-5">
               <p className="text-[clamp(22px,6vw,44px)] font-semibold leading-none tracking-[-0.04em] xl:text-[36px]">{item.value}</p>
               <h3 className="text-[12px] font-semibold leading-snug sm:text-[17px] xl:text-[15px]">{item.title}</h3>
               <p className="text-[11px] leading-[1.45] text-[#5C5C5C] sm:text-[15px] sm:leading-[1.6] xl:text-[13px] xl:leading-[1.5]">{item.text}</p>

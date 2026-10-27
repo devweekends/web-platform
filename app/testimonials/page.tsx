@@ -4,14 +4,15 @@ import { SubmitImpactStoryModal } from '@/components/submit-impact-story-modal';
 import { TestimonialRail } from '@/components/testimonial-rail';
 import type { Testimonial } from '@/components/testimonial-card';
 import { Card, Eyebrow, PageHero, Panel, Section } from '@/components/site/page-kit';
+import { withSocial } from "@/lib/seo";
 
 export const dynamic = 'force-dynamic';
 
-export const metadata = {
+export const metadata = withSocial({
   alternates: { canonical: "/testimonials" },
   title: 'Stories from our community',
   description: 'Hear from our community members about their experience with DevWeekends.',
-};
+});
 
 export default async function TestimonialsPage() {
   const testimonials: Testimonial[] = await getPublicStories();

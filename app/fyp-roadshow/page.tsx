@@ -3,13 +3,14 @@ import { Compass, Users, Wrench } from "lucide-react"
 
 import { Button, Card, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
 import { CardText, CheckList } from "@/components/site/program-blocks"
+import { withSocial } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   alternates: { canonical: "/fyp-roadshow" },
   title: "FYP Roadshow",
   description:
     "Practical guidance for final-year students choosing, planning, and building a final year project (FYP) worth showing after graduation.",
-}
+})
 
 const discordUrl = "https://discord.gg/Cy7Rgkf4Up"
 

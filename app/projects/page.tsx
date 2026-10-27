@@ -3,6 +3,7 @@ import { Project } from '@/models/Project';
 import { SubmitProjectDialog } from '@/components/projects/submit-project-dialog';
 import { ProjectTile, type ProjectItem } from '@/components/projects/project-tile';
 import { Card, Eyebrow, PageHero, Panel, Section } from '@/components/site/page-kit';
+import { withSocial } from "@/lib/seo";
 
 export const dynamic = 'force-dynamic';
 
@@ -18,11 +19,11 @@ async function getProjects(): Promise<ProjectItem[]> {
   }
 }
 
-export const metadata = {
+export const metadata = withSocial({
   alternates: { canonical: "/projects" },
   title: 'Community projects',
   description: 'Showcase of projects built by the DevWeekends community.',
-};
+});
 
 export default async function ProjectsPage() {
   const projects = await getProjects();

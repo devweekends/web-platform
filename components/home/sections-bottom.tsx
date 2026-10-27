@@ -29,7 +29,7 @@ export function Qantara() {
             <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-[#CDE8D4]">
               <span aria-hidden="true" className="h-[3px] w-8 bg-[#F80000]" />A program we are proud of
             </p>
-            <h2 className="mt-3 text-[clamp(38px,5.6vw,80px)] font-semibold leading-none tracking-[-0.045em]">
+            <h2 data-reveal className="mt-3 text-[clamp(38px,5.6vw,80px)] font-semibold leading-none tracking-[-0.045em]">
               Qantara
               <br />
               <span className="text-[#CDE8D4]">The Palestinian AI Fellowship.</span>
@@ -51,7 +51,7 @@ export function Qantara() {
           <div className="min-w-0 flex-[1_1_360px]">
             <ul className="grid grid-cols-2 gap-2 sm:gap-3">
               {[...qantaraStages, { name: "Virtual Career Fair", text: "Graduates meet employers who are hiring. $0 cost, with a monthly stipend." }].map((stage, index) => (
-                <li key={stage.name} className="flex min-w-0 flex-col gap-1 rounded-xl border border-white/20 p-3 sm:gap-1.5 sm:rounded-2xl sm:p-5">
+                <li key={stage.name} data-reveal className="flex min-w-0 flex-col gap-1 rounded-xl border border-white/20 p-3 sm:gap-1.5 sm:rounded-2xl sm:p-5">
                   <span className="text-[13px] font-semibold text-[#CDE8D4]">{String(index + 1).padStart(2, "0")}</span>
                   <span className="block text-sm font-semibold leading-snug sm:text-lg">{stage.name}</span>
                   <span className="block text-xs leading-[1.45] text-[#CDE8D4] sm:text-[15px]">{stage.text}</span>
@@ -64,7 +64,7 @@ export function Qantara() {
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#CDE8D4]">Partners on Qantara</p>
           <ul className="mt-4 grid grid-cols-3 gap-2 sm:mt-5 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
             {qantaraPartners.map((partner) => (
-              <li key={partner.name}>
+              <li key={partner.name} data-reveal>
                 <SmartLink
                   href={partner.href}
                   aria-label={partner.name}
@@ -88,13 +88,15 @@ export function Partnerships() {
       <div className="mx-auto max-w-[1392px] rounded-[28px] bg-[#0A0A0A] text-white">
         <div className="mx-auto max-w-[1200px] px-6 py-24">
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#A3A3A3]">Partnerships</p>
-          <h2 className="mt-3.5 text-[clamp(44px,5.6vw,80px)] font-semibold leading-none tracking-[-0.045em]">Build the bridge with us.</h2>
+          <h2 data-reveal className="mt-3.5 text-[clamp(44px,5.6vw,80px)] font-semibold leading-none tracking-[-0.045em]">
+            Build the bridge with us.
+          </h2>
           <p className="mt-6 max-w-[62ch] text-[19px] leading-[1.65] text-[#C7C7C7]">
             Great engineers grow up everywhere. The teams that need them cannot find them fast enough. Dev Weekends sits in the middle.
           </p>
           <ul className="mt-14 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
             {partnerCards.map((card) => (
-              <li key={card.title} className="flex flex-col gap-3 rounded-[20px] bg-[#161616] p-8 transition-colors duration-200 hover:bg-[#1F1F1F]">
+              <li key={card.title} data-reveal className="flex flex-col gap-3 rounded-[20px] bg-[#161616] p-8 transition-colors duration-200 hover:bg-[#1F1F1F]">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A3A3A3]">{card.label}</p>
                 <h3 className="text-2xl font-semibold tracking-[-0.02em]">{card.title}</h3>
                 <p className="text-[15px] leading-[1.6] text-[#C7C7C7]">{card.text}</p>
@@ -132,7 +134,9 @@ export function Resources() {
     <section id="resources" className="bg-[#F7F7F7]">
       <div className="mx-auto max-w-[1200px] px-6 py-20">
         <p className={eyebrow}>Resources</p>
-        <h2 className={h2}>Learn with us, free.</h2>
+        <h2 data-reveal className={h2}>
+          Learn with us, free.
+        </h2>
         <p className="mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-[#5C5C5C]">
           Guides, courses and recordings from the community. Some live here, some on our other platforms.
         </p>

@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
 import { Button, Card, Eyebrow, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
+import { withSocial } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   alternates: { canonical: "/ambassador-program" },
   title: "Campus Ambassador Program",
   description:
     "Lead Dev Weekends on your campus. Activate your university community, unlock mentor access and deliver career outcomes with playbooks, support and recognition.",
-}
+})
 
 const APPLICATION_URL = "https://forms.gle/k8JtSqSh2SWVMwJ4A"
 const CONTACT_EMAIL = "info@devweekends.com"

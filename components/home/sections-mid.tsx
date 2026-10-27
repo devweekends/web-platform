@@ -16,7 +16,7 @@ export function Products() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className={eyebrow}>Built in the open</p>
-            <h2 className="mt-3.5 max-w-[22ch] text-[clamp(32px,3.6vw,44px)] font-semibold leading-[1.08] tracking-[-0.035em]">
+            <h2 data-reveal className="mt-3.5 max-w-[22ch] text-[clamp(32px,3.6vw,44px)] font-semibold leading-[1.08] tracking-[-0.035em]">
               Products we build, and tools we give the community for free.
             </h2>
           </div>
@@ -55,7 +55,9 @@ export function Communities() {
       <div className="mx-auto flex max-w-[1200px] flex-wrap gap-14 px-6 py-20">
         <div className="min-w-0 flex-[1_1_320px]">
           <p className={eyebrow}>Communities</p>
-          <h2 className={h2}>Specialized communities within.</h2>
+          <h2 data-reveal className={h2}>
+            Specialized communities within.
+          </h2>
           <p className="mt-[18px] text-[17px] leading-[1.6] text-[#5C5C5C]">
             Smaller circles, each with its own focus and people. Find yours on our community page.
           </p>
@@ -68,7 +70,7 @@ export function Communities() {
         </div>
         <ul className="grid min-w-0 flex-[1.6_1_560px] grid-cols-3 gap-2 sm:gap-3">
           {circles.map((circle) => (
-            <li key={circle.name} className="flex">
+            <li key={circle.name} data-reveal className="flex">
               <SmartLink
                 href={circle.href}
                 className="flex w-full min-w-0 flex-col gap-1 rounded-xl border border-[#E6E6E6] p-2.5 transition duration-200 hover:border-[#0A0A0A] sm:rounded-2xl sm:p-4"

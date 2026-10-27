@@ -2,12 +2,13 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import BlogClient from "./blogClient";
+import { withSocial } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = withSocial({
   title: "Blog",
   description: "News and stories from Dev Weekends: fellowship updates, Google Summer of Code results and community highlights.",
   alternates: { canonical: "/blog" },
-}
+})
 
 export type Post = {
   slug: string;
