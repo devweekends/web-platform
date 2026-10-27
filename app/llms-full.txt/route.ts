@@ -18,12 +18,10 @@ Description: Community-driven software engineering education through weekend ses
 - https://devweekends.com/mentorship
 - https://devweekends.com/mentor
 - https://devweekends.com/testimonials
-- https://devweekends.com/careers
 - https://devweekends.com/ambassadors
 - https://devweekends.com/ambassador-program
 - https://devweekends.com/fellowship
 - https://devweekends.com/network
-- https://devweekends.com/mindmaster
 
 ## Program URLs
 - https://devweekends.com/dsoc

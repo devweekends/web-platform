@@ -16,7 +16,6 @@ Robots: https://devweekends.com/robots.txt
 - Links: https://devweekends.com/links
 - Projects: https://devweekends.com/projects
 - Mentorship: https://devweekends.com/mentorship
-- Careers: https://devweekends.com/careers
 
 ## Machine-Readable Discovery
 - API Catalog (RFC 9727): https://devweekends.com/.well-known/api-catalog

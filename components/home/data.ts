@@ -371,7 +371,6 @@ export const footerColumns = [
       { label: "Impact", href: LINKS.impactNumbers },
       { label: "Stories", href: LINKS.stories },
       { label: "Partners", href: LINKS.partners },
-      { label: "Careers", href: "/careers" },
       { label: "Projects", href: "/projects" },
       { label: "Brand kit", href: "/brand" },
       { label: LINKS.email, href: `mailto:${LINKS.email}` },
