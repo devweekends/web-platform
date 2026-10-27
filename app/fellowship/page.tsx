@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { SmartLink } from "@/components/home/smart-link"
+import { LINKS } from "@/components/home/data"
 import { Button, Card, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
 import { CardText, CheckList, Chip, DarkSteps, StatRow } from "@/components/site/program-blocks"
 
@@ -148,8 +149,8 @@ export default function FellowshipPage() {
               <Button href="/blog/fellowship-2026-next-steps" variant="onDark">
                 See what comes next
               </Button>
-              <Button href="/fyp-roadshow" variant="onDarkSecondary">
-                Explore FYP mentorship
+              <Button href={LINKS.getInvolved} variant="onDarkSecondary">
+                Apply to a program
               </Button>
             </div>
           </div>
@@ -272,8 +273,8 @@ export default function FellowshipPage() {
           />
         </div>
         <div className="mt-10">
-          <Button href="/fyp-roadshow" variant="onDark">
-            Explore FYP mentorship
+          <Button href={LINKS.getInvolved} variant="onDark">
+            Apply to a program
           </Button>
         </div>
       </Panel>

@@ -21,6 +21,7 @@ export const LINKS = {
   dsoc: "/dsoc",
   dwosi: "/dwosi",
   fyp: "/fyp-roadshow",
+  getInvolved: "/#get-involved",
   partners: "/partners",
   stories: "/testimonials",
   guides: "/guides",

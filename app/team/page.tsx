@@ -5,8 +5,8 @@ import Image from "next/image"
 import { ExternalLink, Linkedin, Mail, X } from "lucide-react"
 
 import HomeImpact from "@/components/home-impact"
-import { LINKS } from "@/components/home/data"
 import { Button, Card, Section, SectionHeading, PageHero } from "@/components/site/page-kit"
+import { JoinCta } from "@/components/site/join-cta"
 import { FounderStory } from "@/components/story/founder-story"
 
 const lift = "motion-safe:hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)]"
@@ -22,10 +22,9 @@ interface TeamMember {
 // The records still live in the database.
 const HIDDEN_MEMBERS = new Set(["muhammad ali", "muhammad faraz"])
 
-// Fallback people shown when the team list cannot be loaded.
-const fallbackTeam: TeamMember[] = [
+// Mentors on board: working engineers who volunteer. The operational core team is loaded from the database.
+const mentors: TeamMember[] = [
   { name: "Usman Sheikh", role: "Sr. Cloud Architect @ Microsoft", linkedin: "https://www.linkedin.com/in/usmanikramsheikh/", image: "/usman.jpg" },
-  { name: "Zeeshan Adil", role: "Lead Engineer | Top 1% on Upwork, Expert-Vetted | ex-UN", linkedin: "https://www.linkedin.com/in/zeeshanadilbutt/", image: "/zee.png" },
   { name: "Moeez Ahmad", role: "SWE @ Calo", linkedin: "https://www.linkedin.com/in/moeezahmad01/", image: "/m3.png" },
   { name: "Tanzeel Saleem", role: "Founder @ DevNexus", linkedin: "https://www.linkedin.com/in/tanzeel-saleem/", image: "/tanzeel.jpg" },
   { name: "Fiaz Ahmad", role: "Top Rated Plus @ Upwork", linkedin: "https://www.linkedin.com/in/fiazahmad/", image: "/m5.jpeg" },
@@ -75,6 +74,30 @@ const pillars = [
   },
 ]
 
+function PersonCard({ person }: { person: TeamMember }) {
+  return (
+    <Card tone="white" className={`items-center p-6 text-center ${lift}`}>
+      <div className="relative h-20 w-20 overflow-hidden rounded-full bg-[#F7F7F7]">
+        <Image src={person.image} alt={person.name} fill sizes="80px" className="object-cover object-top grayscale" />
+      </div>
+      <h3 className="mt-4 text-[15px] font-semibold">{person.name}</h3>
+      <p className="mt-1 flex-1 text-[13px] leading-snug text-[#5C5C5C]">{person.role}</p>
+      {person.linkedin && (
+        <a
+          href={person.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Connect with ${person.name} on LinkedIn`}
+          className="mt-2 inline-flex min-h-11 items-center gap-1.5 text-[13px] font-semibold text-[#404040] underline-offset-4 hover:text-[#0A0A0A] hover:underline"
+        >
+          <Linkedin className="h-3.5 w-3.5" aria-hidden="true" />
+          Connect
+        </a>
+      )}
+    </Card>
+  )
+}
+
 const resources = [
   { title: "LeetCode Templates", desc: "Battle-tested patterns for common interview problems", link: "https://resources.devweekends.com/resources/cp-dsa" },
   { title: "Study Schedules", desc: "Winner study schedule templates with productivity frameworks", link: "https://resources.devweekends.com/productivity-sheets/overview" },
@@ -96,7 +119,8 @@ const mentorMailto =
 
 export default function TeamPage() {
   const [showMentorModal, setShowMentorModal] = useState(false)
-  const [team, setTeam] = useState<TeamMember[]>(fallbackTeam)
+  const [coreTeam, setCoreTeam] = useState<TeamMember[]>([])
+  const [loadingCore, setLoadingCore] = useState(true)
 
   useEffect(() => {
     fetch("/api/core-team")
@@ -107,9 +131,10 @@ export default function TeamPage() {
           .filter((m) => m && m.name && !HIDDEN_MEMBERS.has(String(m.name).trim().toLowerCase()))
           .sort(compareMembers)
           .map((m) => ({ name: m.name, role: m.role || "", linkedin: m.linkedin || "", image: m.image || "/placeholder-avatar.jpg" }))
-        if (list.length > 0) setTeam(list)
+        setCoreTeam(list)
       })
       .catch(() => {})
+      .finally(() => setLoadingCore(false))
   }, [])
 
   useEffect(() => {
@@ -126,37 +151,47 @@ export default function TeamPage() {
       <PageHero
         eyebrow="Team"
         title="Built by people who learned here first"
-        intro="Dev Weekends is a free, nonprofit community of engineers in 30 countries. Meet the team, then read how we got here."
+        intro="A free, nonprofit community of engineers in 30 countries. Meet the team and the mentors, then read how we got here."
       />
 
-      {/* The team */}
+      {/* Core team: the operational team that runs Dev Weekends */}
       <Section id="team" tone="gray">
         <SectionHeading
-          eyebrow="The team"
-          title="The people behind Dev Weekends"
-          intro="Our mentors are working engineers who volunteer 10 to 15 hours a week. Each of them was a mentee first."
+          eyebrow="Core team"
+          title="The team that runs Dev Weekends"
+          intro="The people who keep programs, sessions and platforms running, week after week."
+        />
+        {loadingCore ? (
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4" aria-busy="true" aria-label="Loading the core team">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="flex animate-pulse flex-col items-center rounded-[20px] bg-white p-6">
+                <div className="h-20 w-20 rounded-full bg-[#E6E6E6]" />
+                <div className="mt-4 h-4 w-24 rounded bg-[#E6E6E6]" />
+                <div className="mt-2 h-3 w-16 rounded bg-[#E6E6E6]" />
+              </div>
+            ))}
+          </div>
+        ) : coreTeam.length === 0 ? (
+          <p className="text-[17px] text-[#5C5C5C]">The team list is not available right now. Please check back soon.</p>
+        ) : (
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            {coreTeam.map((m) => (
+              <PersonCard key={m.name + m.role} person={m} />
+            ))}
+          </div>
+        )}
+      </Section>
+
+      {/* Mentors on board */}
+      <Section id="mentors">
+        <SectionHeading
+          eyebrow="Mentors"
+          title="Mentors on board"
+          intro="Working engineers who volunteer 10 to 15 hours a week. Each of them was a mentee first."
         />
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {team.map((m) => (
-            <Card key={m.name + m.role} tone="white" className={`items-center p-6 text-center ${lift}`}>
-              <div className="relative h-20 w-20 overflow-hidden rounded-full bg-[#F7F7F7]">
-                <Image src={m.image} alt={m.name} fill sizes="80px" className="object-cover object-top grayscale" />
-              </div>
-              <h3 className="mt-4 text-[15px] font-semibold">{m.name}</h3>
-              <p className="mt-1 flex-1 text-[13px] leading-snug text-[#5C5C5C]">{m.role}</p>
-              {m.linkedin && (
-              <a
-                href={m.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Connect with ${m.name} on LinkedIn`}
-                className="mt-2 inline-flex min-h-11 items-center gap-1.5 text-[13px] font-semibold text-[#404040] underline-offset-4 hover:text-[#0A0A0A] hover:underline"
-              >
-                <Linkedin className="h-3.5 w-3.5" aria-hidden="true" />
-                Connect
-              </a>
-              )}
-            </Card>
+          {mentors.map((m) => (
+            <PersonCard key={m.name} person={m} />
           ))}
         </div>
       </Section>
@@ -213,11 +248,8 @@ export default function TeamPage() {
           <p className="mx-auto mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-[#5C5C5C]">
             Free, and open to anyone who will do the work.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href={LINKS.fyp}>Explore FYP Mentorship</Button>
-            <Button href={LINKS.discord} variant="secondary">
-              Join Discord
-            </Button>
+          <div className="mt-8">
+            <JoinCta />
           </div>
           <div className="mt-10 border-t border-[#D4D4D4] pt-6">
             <button

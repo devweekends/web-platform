@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 
+import { LINKS } from "@/components/home/data"
 import { Button, Card, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
 import { CardText, CheckList, DarkSteps, StatRow } from "@/components/site/program-blocks"
 import { MentorshipDialog } from "@/components/site/mentorship-dialog"
@@ -115,7 +116,7 @@ export default function MentorshipPage() {
         }
         actions={
           <>
-            <Button href="/fyp-roadshow">Apply for FYP mentorship</Button>
+            <Button href={LINKS.getInvolved}>Apply to a program</Button>
             <Button href="#timeline" variant="secondary">
               See the 3-month plan
             </Button>
@@ -199,8 +200,8 @@ export default function MentorshipPage() {
           />
         </div>
         <div className="mt-10 flex flex-wrap gap-3">
-          <Button href="/fyp-roadshow" variant="onDark">
-            Explore FYP mentorship
+          <Button href={LINKS.getInvolved} variant="onDark">
+            Apply to a program
           </Button>
           <Button href="/blog/fellowship-2026-next-steps" variant="onDarkSecondary">
             Fellowship 2026 next steps
