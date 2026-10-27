@@ -42,6 +42,7 @@ export const mailto = (subject: string) => `mailto:${LINKS.email}?subject=${enco
 export const navItems = [
   { label: "Programs", href: "/#programs" },
   { label: "Impact", href: "/#impact" },
+  { label: "Team", href: LINKS.ourStory },
   { label: "Community links", href: "/links" },
   { label: "Partners", href: "/#partners" },
   { label: "Resources", href: "/#resources" },
