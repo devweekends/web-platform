@@ -13,9 +13,6 @@ const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://devweekends.com'),
-  alternates: {
-    canonical: '/',
-  },
   title: {
     default: "Dev Weekends - Your Gateway to becoming a better Software Engineer",
     template: "%s | Dev Weekends"
