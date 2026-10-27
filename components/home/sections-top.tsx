@@ -201,10 +201,24 @@ export function Impact() {
                 <dd className="text-[28px] font-semibold tracking-[-0.03em]">{item.value}</dd>
               </div>
             ))}
-            <SmartLink href={LINKS.impactNumbers} className="mt-5 inline-flex min-h-11 items-center text-sm font-medium text-white">
-              How we count these numbers →
-            </SmartLink>
           </dl>
+          <details className="group min-w-0 basis-full border-t border-[#262626] pt-2 text-white">
+            <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2 text-sm font-medium [&::-webkit-details-marker]:hidden">
+              How we count these numbers
+              <span aria-hidden="true" className="transition-transform group-open:rotate-90">→</span>
+            </summary>
+            <ul className="mt-2 grid grid-cols-1 gap-x-10 gap-y-4 pb-2 md:grid-cols-2">
+              {impactBreakdown.map((item) => (
+                <li key={item.label} className="text-sm leading-[1.6] text-[#A3A3A3]">
+                  <span className="font-semibold text-white">{item.label}, {item.value}.</span> {item.info}
+                </li>
+              ))}
+              <li className="text-sm leading-[1.6] text-[#A3A3A3]">
+                The total is the sum of these lines, rounded down. Remote salaries are counted for one year only, so the real
+                figure grows every year.
+              </li>
+            </ul>
+          </details>
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import { ExternalLink, Linkedin } from "lucide-react"
 
-import HomeImpact from "@/components/home-impact"
+import { Impact, Outcomes } from "@/components/home/sections-top"
 import { Button, Card, Section, SectionHeading, PageHero } from "@/components/site/page-kit"
 import { Voices } from "@/components/home/sections-bottom"
 import { Slider } from "@/components/site/slider"
@@ -198,8 +198,9 @@ export default function TeamPage() {
 
       <Voices />
 
-      {/* Impact: the proof comes right after the people */}
-      <HomeImpact />
+      {/* Impact and outcomes: the same sections as the homepage */}
+      <Impact />
+      <Outcomes />
 
       {/* The founder story is written separately and rendered here */}
       <FounderStory />

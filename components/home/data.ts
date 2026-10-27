@@ -27,7 +27,7 @@ export const LINKS = {
   guides: "/guides",
   blog: "/blog",
   ourStory: "/team",
-  impactNumbers: "/team#impact",
+  impactNumbers: "/#impact",
   fellowshipReport: "/blog/fellowship-2026-by-the-numbers",
   gsocPost: "/blog/gsoc",
   lfxPost: "/blog/lfx-mentorship-2026-talha-amjad",
@@ -155,11 +155,28 @@ export const placesLike: Org[] = [
   { name: "Olostep", href: "https://www.olostep.com", logo: "/logos/olostep.svg" },
 ]
 
+/** Every line is a conservative estimate from numbers members reported; `info` says how it is counted */
 export const impactBreakdown = [
-  { label: "Remote salaries, every year", value: "$1.3M+" },
-  { label: "Earned on Upwork", value: "$1M+" },
-  { label: "Earned at Turing and Scale AI", value: "$250K+" },
-  { label: "Open source stipends", value: "$20K+" },
+  {
+    label: "Remote salaries, every year",
+    value: "$1.3M+",
+    info: "50+ members in remote jobs paying $20,000 to $90,000 a year. The median is about $20,000, and 10 of them earn $50,000 to $90,000. This one recurs every year.",
+  },
+  {
+    label: "Earned on Upwork",
+    value: "$1M+",
+    info: "20 freelancers averaging about $50,000 in lifetime earnings each, with several past $100,000, $200,000 and $300,000.",
+  },
+  {
+    label: "Earned at Turing and Scale AI",
+    value: "$250K+",
+    info: "20+ engineers on full-time Turing engagements of 3 to 4 months each, plus members paid by Scale AI for competitive programming challenges used to train and test top LLMs.",
+  },
+  {
+    label: "Open source stipends",
+    value: "$20K+",
+    info: "11 Google Summer of Code stipends (9 in 2026, 2 in 2025) at about $1,500 each, plus the LFX Mentorship stipend.",
+  },
 ]
 
 export const outcomes = [
