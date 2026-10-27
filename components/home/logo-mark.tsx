@@ -28,7 +28,7 @@ export function LogoMark({ org, size = "md", muted = true }: { org: Org; size?: 
         alt={org.iconOnly ? "" : org.name}
         loading="lazy"
         decoding="async"
-        className={`${(org.tall ? TALL : SIZES)[size]} w-auto object-contain brightness-0 ${muted ? "opacity-60" : "opacity-90"}`}
+        className={`${(org.tall ? TALL : SIZES)[size]} w-auto object-contain brightness-0 transition duration-200 group-hover:scale-105 group-hover:opacity-100 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${muted ? "opacity-60" : "opacity-90"}`}
       />
       {org.iconOnly && <span className="font-semibold tracking-[-0.01em]">{org.name}</span>}
     </span>

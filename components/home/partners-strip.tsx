@@ -153,7 +153,7 @@ export function PartnersStrip({ partners, communities }: Props) {
             href={org.href}
             aria-label={org.name}
             draggable={false}
-            className="flex shrink-0 items-center whitespace-nowrap px-9 text-[26px] font-bold tracking-[-0.03em] text-[#0A0A0A]"
+            className="group flex shrink-0 items-center whitespace-nowrap px-9 text-[26px] font-bold tracking-[-0.03em] text-[#0A0A0A] transition-transform duration-200 motion-safe:hover:-translate-y-0.5"
           >
             <LogoMark org={org} size="lg" muted={false} />
           </SmartLink>

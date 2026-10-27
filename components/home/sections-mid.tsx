@@ -17,7 +17,7 @@ const h2 = "mt-3.5 text-[clamp(36px,4.4vw,56px)] font-semibold leading-[1.05] tr
 export function Programs() {
   return (
     <section id="programs" className="bg-[#F7F7F7]">
-      <div className="mx-auto max-w-[1200px] px-6 py-28">
+      <div className="mx-auto max-w-[1200px] px-6 py-20">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className={eyebrow}>Programs</p>
@@ -32,12 +32,22 @@ export function Programs() {
 
         <div className="mt-14 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
           {programs.map((program) => (
-            <article key={program.name} className="flex min-h-[320px] flex-col rounded-[20px] bg-white p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">{program.label}</p>
+            <article key={program.name} className="flex min-h-[320px] flex-col rounded-[20px] bg-white p-8 transition duration-200 hover:shadow-[0_22px_44px_-26px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-1">
+              <p className="flex items-center justify-between gap-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">
+                {program.label}
+                {"tag" in program && program.tag && (
+                  <span className="rounded-full border border-[#D4D4D4] px-2.5 py-0.5 text-[11px] tracking-[0.1em]">{program.tag}</span>
+                )}
+              </p>
               <h3 className="mt-3.5 text-[22px] font-semibold tracking-[-0.02em]">{program.name}</h3>
               <p className="mt-2.5 text-[15px] leading-[1.6] text-[#5C5C5C]">{program.text}</p>
-              <SmartLink href={program.link.href} className="mt-auto inline-flex min-h-11 items-end pt-5 text-[15px] font-semibold">
-                {program.link.label} →
+              <SmartLink
+                href={program.link.href}
+                className="mt-auto inline-flex min-h-11 items-end pt-5 text-[15px] font-semibold"
+                fallbackClassName="mt-auto inline-flex min-h-11 items-end pt-5 text-[15px] font-medium text-[#5C5C5C]"
+              >
+                {program.link.label}
+                {program.link.href && " →"}
               </SmartLink>
             </article>
           ))}
@@ -75,7 +85,7 @@ export function Programs() {
 export function Products() {
   return (
     <section aria-label="Products we build">
-      <div className="mx-auto max-w-[1200px] px-6 pt-24">
+      <div className="mx-auto max-w-[1200px] px-6 pt-16">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className={eyebrow}>Built in the open</p>
@@ -114,7 +124,7 @@ export function Products() {
 export function Fellowship() {
   return (
     <section>
-      <div className="mx-auto max-w-[1200px] px-6 py-28">
+      <div className="mx-auto max-w-[1200px] px-6 pb-20 pt-16">
         <p className={eyebrow}>The Fellowship</p>
         <h2 className={`${h2} max-w-[16ch]`}>Structure does what motivation can&apos;t.</h2>
         <ol className="mt-14 grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-8">
@@ -128,7 +138,7 @@ export function Fellowship() {
         </ol>
         <ul className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-5">
           {fellowshipPerks.map((perk) => (
-            <li key={perk.title} className="rounded-2xl bg-[#F7F7F7] p-7">
+            <li key={perk.title} className="rounded-2xl bg-[#F7F7F7] p-7 transition-colors duration-200 hover:bg-[#EFEFEF]">
               <h3 className="text-[17px] font-semibold">{perk.title}</h3>
               <p className="mt-2 text-[15px] text-[#5C5C5C]">{perk.text}</p>
             </li>
@@ -150,7 +160,7 @@ export function Fellowship() {
 export function Communities() {
   return (
     <section id="communities" className="border-t border-[#E6E6E6]">
-      <div className="mx-auto flex max-w-[1200px] flex-wrap gap-14 px-6 py-28">
+      <div className="mx-auto flex max-w-[1200px] flex-wrap gap-14 px-6 py-20">
         <div className="min-w-0 flex-[1_1_320px]">
           <p className={eyebrow}>Communities</p>
           <h2 className={h2}>Specialized communities within.</h2>
@@ -159,7 +169,7 @@ export function Communities() {
           </p>
           <SmartLink
             href={LINKS.communities}
-            className="mt-7 inline-flex min-h-[52px] items-center rounded-xl bg-[#0A0A0A] px-6 py-4 text-[15px] font-semibold text-white"
+            className="mt-7 inline-flex min-h-[52px] items-center rounded-xl bg-[#0A0A0A] px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-[#262626]"
           >
             Find your community
           </SmartLink>

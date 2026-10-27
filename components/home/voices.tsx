@@ -105,7 +105,7 @@ export function VoicesRail() {
         ))}
 
         {voices.map((voice) => (
-          <article key={voice.name} className="flex min-h-[320px] w-[360px] shrink-0 snap-start flex-col rounded-[20px] border border-[#E6E6E6] p-7">
+          <article key={voice.name} className="flex min-h-[320px] w-[360px] shrink-0 snap-start flex-col rounded-[20px] border border-[#E6E6E6] p-7 transition-shadow duration-200 hover:shadow-[0_18px_36px_-24px_rgba(0,0,0,0.3)]">
             <p className="text-[17px] leading-[1.6] text-[#262626]">&ldquo;{voice.quote}&rdquo;</p>
             <div className="mt-auto border-t border-[#E6E6E6] pt-[18px]">
               <p className="text-[15px] font-semibold">{voice.name}</p>

@@ -45,13 +45,13 @@ export function Hero() {
             <div className="mt-9 flex flex-wrap gap-3">
               <SmartLink
                 href={LINKS.discord}
-                className="inline-flex min-h-[52px] items-center rounded-xl bg-white px-[26px] py-4 text-base font-semibold text-[#0A0A0A]"
+                className="inline-flex min-h-[52px] items-center rounded-xl bg-white px-[26px] py-4 text-base font-semibold text-[#0A0A0A] transition-colors hover:bg-[#E6E6E6]"
               >
                 Join the community
               </SmartLink>
               <SmartLink
                 href="#get-involved"
-                className="inline-flex min-h-[52px] items-center rounded-xl border border-[#3D3D3D] px-[26px] py-4 text-base font-medium"
+                className="inline-flex min-h-[52px] items-center rounded-xl border border-[#3D3D3D] px-[26px] py-4 text-base font-medium transition-colors hover:bg-white/10"
               >
                 Apply to a program
               </SmartLink>
@@ -164,12 +164,12 @@ export function Network() {
 /** Logo tile for an organization. Falls back to the name when there is no logo. */
 function OrgTile({ org }: { org: Org }) {
   const className =
-    "flex h-20 items-center justify-center rounded-2xl border border-[#E6E6E6] px-4 text-center text-[15px] font-semibold tracking-[-0.01em] text-[#8A8A8A]"
+    "group flex h-20 items-center justify-center rounded-2xl border border-[#E6E6E6] px-4 text-center text-[15px] font-semibold tracking-[-0.01em] text-[#8A8A8A]"
   return (
     <SmartLink
       href={org.href}
       aria-label={org.name}
-      className={`${className} transition-colors hover:border-[#0A0A0A] hover:text-[#0A0A0A]`}
+      className={`${className} transition duration-200 hover:border-[#0A0A0A] hover:text-[#0A0A0A] hover:shadow-[0_12px_26px_-16px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-0.5`}
       fallbackClassName={className}
     >
       <LogoMark org={org} />
@@ -214,7 +214,7 @@ export function Impact() {
 export function Outcomes() {
   return (
     <section>
-      <div className="mx-auto max-w-[1200px] px-6 py-28">
+      <div className="mx-auto max-w-[1200px] px-6 py-20">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className={eyebrow}>Outcomes</p>
@@ -226,7 +226,7 @@ export function Outcomes() {
         </div>
         <ul className="mt-14 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] border-l border-t border-[#E6E6E6]">
           {outcomes.map((item) => (
-            <li key={item.title} className="flex flex-col gap-2.5 border-b border-r border-[#E6E6E6] p-8">
+            <li key={item.title} className="flex flex-col gap-2.5 border-b border-r border-[#E6E6E6] p-8 transition-colors duration-200 hover:bg-[#FAFAFA]">
               <p className="text-[44px] font-semibold tracking-[-0.04em]">{item.value}</p>
               <h3 className="text-[17px] font-semibold">{item.title}</h3>
               <p className="text-[15px] leading-[1.6] text-[#5C5C5C]">{item.text}</p>

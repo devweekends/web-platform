@@ -24,7 +24,7 @@ const statusClass = (status: string) =>
 export function StartWhereYouAre() {
   return (
     <section id="start" className="bg-[#F7F7F7]">
-      <div className="mx-auto max-w-[1200px] px-6 py-28">
+      <div className="mx-auto max-w-[1200px] px-6 py-20">
         <p className={eyebrow}>Get involved</p>
         <h2 className={h2}>Start where you are.</h2>
         <ul className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
@@ -34,7 +34,7 @@ export function StartWhereYouAre() {
               <li key={door.name}>
                 <SmartLink
                   href={door.href}
-                  className={`flex min-h-[240px] flex-col gap-2.5 rounded-[18px] p-[26px] ${
+                  className={`flex min-h-[240px] flex-col gap-2.5 rounded-[18px] p-[26px] transition duration-200 hover:shadow-[0_20px_38px_-24px_rgba(0,0,0,0.4)] motion-safe:hover:-translate-y-1 ${
                     dark ? "bg-[#0A0A0A] text-white" : "bg-white text-[#0A0A0A]"
                   }`}
                 >
@@ -115,7 +115,7 @@ export function Qantara() {
                 <SmartLink
                   href={partner.href}
                   aria-label={partner.name}
-                  className="flex h-14 min-w-[120px] items-center justify-center rounded-xl bg-white px-5 text-[15px] font-semibold text-[#0A4A1D]"
+                  className="group flex h-14 min-w-[120px] items-center justify-center rounded-xl bg-white px-5 text-[15px] font-semibold text-[#0A4A1D] transition duration-200 hover:ring-2 hover:ring-white/70 hover:shadow-[0_16px_32px_-14px_rgba(0,0,0,0.6)] motion-safe:hover:-translate-y-1"
                   fallbackClassName="flex h-14 min-w-[120px] items-center justify-center rounded-xl bg-white px-5 text-[15px] font-semibold text-[#0A4A1D]"
                 >
                   <LogoMark org={partner} muted={false} />
@@ -141,7 +141,7 @@ export function Partnerships() {
           </p>
           <ul className="mt-14 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
             {partnerCards.map((card) => (
-              <li key={card.title} className="flex flex-col gap-3 rounded-[20px] bg-[#161616] p-8">
+              <li key={card.title} className="flex flex-col gap-3 rounded-[20px] bg-[#161616] p-8 transition-colors duration-200 hover:bg-[#1F1F1F]">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A3A3A3]">{card.label}</p>
                 <h3 className="text-2xl font-semibold tracking-[-0.02em]">{card.title}</h3>
                 <p className="text-[15px] leading-[1.6] text-[#C7C7C7]">{card.text}</p>
@@ -151,13 +151,13 @@ export function Partnerships() {
           <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-4">
             <SmartLink
               href={mailto("Partnering with Dev Weekends")}
-              className="inline-flex min-h-[52px] items-center rounded-xl bg-white px-7 py-4 text-base font-semibold text-[#0A0A0A]"
+              className="inline-flex min-h-[52px] items-center rounded-xl bg-white px-7 py-4 text-base font-semibold text-[#0A0A0A] transition-colors hover:bg-[#E6E6E6]"
             >
               Start a partnership
             </SmartLink>
             <SmartLink
               href={mailto("Becoming a Dev Weekends mentor")}
-              className="inline-flex min-h-[52px] items-center rounded-xl border border-[#3D3D3D] px-7 py-4 text-base font-medium"
+              className="inline-flex min-h-[52px] items-center rounded-xl border border-[#3D3D3D] px-7 py-4 text-base font-medium transition-colors hover:bg-white/10"
             >
               Become a mentor
             </SmartLink>
@@ -175,7 +175,7 @@ export function Partnerships() {
 export function Resources() {
   return (
     <section id="resources" className="bg-[#F7F7F7]">
-      <div className="mx-auto max-w-[1200px] px-6 py-28">
+      <div className="mx-auto max-w-[1200px] px-6 py-20">
         <p className={eyebrow}>Resources</p>
         <h2 className={h2}>Learn with us, free.</h2>
         <p className="mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-[#5C5C5C]">
@@ -185,7 +185,7 @@ export function Resources() {
           <ResourceList title="Guides" items={resourceGuides} more={{ label: "All guides →", href: LINKS.guides }} />
           <ResourceList title="From the blog" items={resourcePosts} more={{ label: "All posts →", href: LINKS.blog }} />
           <div className="flex flex-col gap-5">
-            <ResourceTile href={LINKS.mindmaster} kicker="MindMaster" title="Human skills" text="Mindset, communication and purpose." dark />
+            <ResourceTile href={null} kicker="MindMaster · Invite only" title="Human skills" text="Courses coming soon on Buildment." dark />
             <ResourceTile href={LINKS.resources} kicker="Docs and courses ↗" title="Free learning hub" text="resources.devweekends.com: interview prep, sheets and curated learning." />
           </div>
           <div className="flex flex-col gap-5">
@@ -214,11 +214,11 @@ function ResourceList({ title, items, more }: { title: string; items: { title: s
   )
 }
 
-function ResourceTile({ href, kicker, title, text, dark }: { href: string; kicker: string; title: string; text: string; dark?: boolean }) {
+function ResourceTile({ href, kicker, title, text, dark }: { href: string | null; kicker: string; title: string; text: string; dark?: boolean }) {
   return (
     <SmartLink
       href={href}
-      className={`flex flex-1 flex-col gap-2 rounded-[20px] p-7 ${dark ? "bg-[#0A0A0A] text-white" : "bg-white"}`}
+      className={`flex flex-1 flex-col gap-2 rounded-[20px] p-7 transition duration-200 ${href ? "hover:shadow-[0_18px_36px_-24px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-0.5" : ""} ${dark ? "bg-[#0A0A0A] text-white" : "bg-white"}`}
     >
       <span className={`text-xs font-semibold uppercase tracking-[0.14em] ${dark ? "text-[#A3A3A3]" : "text-[#5C5C5C]"}`}>{kicker}</span>
       <span className="break-words text-xl font-semibold tracking-[-0.02em]">{title}</span>
@@ -229,7 +229,7 @@ function ResourceTile({ href, kicker, title, text, dark }: { href: string; kicke
 
 export function Voices() {
   return (
-    <section id="voices" className="py-24">
+    <section id="voices" className="py-20">
       <VoicesRail />
     </section>
   )
@@ -238,7 +238,7 @@ export function Voices() {
 export function GetInvolved() {
   return (
     <section id="get-involved" className="border-t border-[#E6E6E6]">
-      <div className="mx-auto max-w-[1200px] px-6 py-28">
+      <div className="mx-auto max-w-[1200px] px-6 py-20">
         <p className={eyebrow}>Get involved</p>
         <h2 className={h2}>
           Two ways in. <span className="text-[#8A8A8A]">Join, then apply.</span>
