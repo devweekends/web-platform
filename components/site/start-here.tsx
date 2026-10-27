@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { Eye } from "lucide-react"
 
 import { SmartLink } from "@/components/home/smart-link"
 import { LINKS, applyPrograms, startPaths } from "@/components/home/data"
@@ -96,7 +97,15 @@ export function StartHere() {
                         >
                           {program.status}
                         </span>
-                        <span className="text-sm font-semibold">{program.cta} →</span>
+                        {program.status === "CLOSED" ? (
+                          // Closed programs still have a page worth reading: say so
+                          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#5C5C5C]">
+                            <Eye className="h-3.5 w-3.5" aria-hidden="true" />
+                            View details →
+                          </span>
+                        ) : (
+                          <span className="text-sm font-semibold">{program.cta} →</span>
+                        )}
                       </SmartLink>
                     </li>
                   ))}
