@@ -60,6 +60,7 @@ export function getVideoEmbed(value?: string): VideoEmbed | null {
       ? {
           provider: 'Google Drive',
           embedUrl: `https://drive.google.com/file/d/${id}/preview`,
+          thumbnailUrl: `https://drive.google.com/thumbnail?id=${id}&sz=w800`,
         }
       : null;
   }

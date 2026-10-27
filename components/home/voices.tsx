@@ -1,24 +1,42 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, Play } from "lucide-react"
 
 import { getVideoEmbed } from "@/lib/video-url"
 import { LINKS, videoStories, voices } from "./data"
 
+type LiveVideo = { name: string; role: string; url: string; previewUrl?: string }
+
 /**
- * Stories rail: videos first, then written quotes. It does not move by itself.
- * People scroll it with the arrows, a swipe or the trackpad.
+ * Stories rail: video stories, loaded from the same approved stories as the
+ * stories page (GSoC and LFX first), after the videos listed in data.ts.
+ * Written quotes only fill in when there are too few videos. It does not move
+ * by itself: people scroll it with the arrows, a swipe or the trackpad.
  */
 export function VoicesRail() {
   const rail = useRef<HTMLDivElement>(null)
   const [playing, setPlaying] = useState<string | null>(null)
+  const [live, setLive] = useState<LiveVideo[]>([])
 
-  const videos = videoStories.flatMap((story) => {
+  useEffect(() => {
+    fetch("/api/stories/videos")
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setLive(Array.isArray(data) ? data : []))
+      .catch(() => setLive([]))
+  }, [])
+
+  const seen = new Set<string>()
+  const listed: { name: string; role: string; url: string | null; previewUrl?: string }[] = [...videoStories, ...live]
+  const videos = listed.flatMap((story) => {
     const embed = getVideoEmbed(story.url ?? undefined)
-    return embed ? [{ ...story, embed }] : []
+    if (!embed || seen.has(embed.embedUrl)) return []
+    seen.add(embed.embedUrl)
+    const preview = story.previewUrl ?? embed.thumbnailUrl
+    return [{ name: story.name, role: story.role, embed, preview }]
   })
+  const quotes = videos.length < 3 ? voices : []
 
   const scrollBy = (direction: 1 | -1) => {
     const el = rail.current
@@ -64,9 +82,9 @@ export function VoicesRail() {
         className="hm-scroll mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-[max(24px,calc((100%-1200px)/2+24px))] scroll-px-[max(24px,calc((100%-1200px)/2+24px))] pb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0A0A0A]"
       >
         {videos.map((video) => (
-          <article key={video.name} className="w-[360px] shrink-0 snap-start overflow-hidden rounded-[20px] border border-[#E6E6E6]">
+          <article key={video.embed.embedUrl} className="w-[360px] shrink-0 snap-start overflow-hidden rounded-[20px] border border-[#E6E6E6]">
             <div className="relative aspect-video bg-[#0A0A0A]">
-              {playing === video.name ? (
+              {playing === video.embed.embedUrl ? (
                 <iframe
                   src={video.embed.embedUrl}
                   title={`${video.name}: video story`}
@@ -77,14 +95,14 @@ export function VoicesRail() {
               ) : (
                 <button
                   type="button"
-                  onClick={() => setPlaying(video.name)}
+                  onClick={() => setPlaying(video.embed.embedUrl)}
                   aria-label={`Play video: ${video.name}`}
                   className="group absolute inset-0 flex items-center justify-center"
                 >
-                  {video.embed.thumbnailUrl && (
+                  {video.preview && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={video.embed.thumbnailUrl}
+                      src={video.preview}
                       alt=""
                       loading="lazy"
                       className="absolute inset-0 h-full w-full object-cover opacity-80 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
@@ -104,7 +122,7 @@ export function VoicesRail() {
           </article>
         ))}
 
-        {voices.map((voice) => (
+        {quotes.map((voice) => (
           <article key={voice.name} className="flex min-h-[320px] w-[360px] shrink-0 snap-start flex-col rounded-[20px] border border-[#E6E6E6] p-7 transition-shadow duration-200 hover:shadow-[0_18px_36px_-24px_rgba(0,0,0,0.3)]">
             <p className="text-[17px] leading-[1.6] text-[#262626]">&ldquo;{voice.quote}&rdquo;</p>
             <div className="mt-auto border-t border-[#E6E6E6] pt-[18px]">
