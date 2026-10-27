@@ -1,21 +1,19 @@
 'use client';
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect } from "react";
-import { 
-  Search, 
-  Filter, 
-  Clock, 
-  Users, 
+import {
+  Search,
+  Filter,
+  Clock,
+  Users,
   Code2,
-  ArrowRight,
   Github,
-  ExternalLink,
   X,
   BookOpen
 } from "lucide-react";
-import "../styles.css";
+import type { ReactNode } from "react";
+import { Button, Card, Panel, PageHero, container } from "@/components/site/page-kit";
 import DSOCNavbar from "../components/DSOCNavbar";
 
 interface Project {
@@ -152,6 +150,9 @@ const SAMPLE_PROJECTS: Project[] = [
   },
 ];
 
+const inputClass =
+  "min-h-[52px] w-full rounded-xl border border-[#D4D4D4] bg-white px-4 text-base text-[#0A0A0A] placeholder:text-[#8A8A8A] focus:border-[#0A0A0A] focus:outline-none focus:ring-2 focus:ring-[#0A0A0A]/10";
+
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>(SAMPLE_PROJECTS);
   const [loading, setLoading] = useState(true);
@@ -180,7 +181,7 @@ export default function ProjectsPage() {
 
       const res = await fetch(`/api/dsoc/projects?${params.toString()}`);
       const data = await res.json();
-      
+
       if (data.success && data.data.length > 0) {
         setProjects(data.data);
         setUsingSampleData(false);
@@ -214,21 +215,20 @@ export default function ProjectsPage() {
     fetchProjects();
   };
 
+  /** Difficulty in black and white: outline for beginner, grey fill for intermediate, black fill for advanced. */
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'beginner': return 'bg-[var(--dsoc-success)]';
-      case 'intermediate': return 'bg-[var(--dsoc-accent)]';
-      case 'advanced': return 'bg-[var(--dsoc-pink)]';
-      default: return 'bg-gray-400';
+      case 'beginner': return 'border border-[#D4D4D4] bg-white text-[#404040]';
+      case 'advanced': return 'border border-[#0A0A0A] bg-[#0A0A0A] text-white';
+      default: return 'border border-[#E6E6E6] bg-[#E6E6E6] text-[#262626]';
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'open': return 'bg-[var(--dsoc-success)]';
-      case 'in-progress': return 'bg-[var(--dsoc-accent)]';
-      case 'completed': return 'bg-[var(--dsoc-purple)]';
-      default: return 'bg-gray-400';
+      case 'open': return 'border border-[#0A0A0A] bg-[#0A0A0A] text-white';
+      case 'in-progress': return 'border border-[#E6E6E6] bg-[#E6E6E6] text-[#262626]';
+      default: return 'border border-[#D4D4D4] bg-white text-[#404040]';
     }
   };
 
@@ -249,54 +249,60 @@ export default function ProjectsPage() {
     return project.repositoryUrl ? [project.repositoryUrl] : [];
   };
 
+  const activeFilters = (filters.difficulty ? 1 : 0) + (filters.technology ? 1 : 0);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white text-[#0A0A0A]">
       {/* DSOC Navigation */}
       <DSOCNavbar />
-      
+
       {/* Header */}
-      <section className="pt-24 pb-16 bg-gradient-to-r from-[var(--dsoc-secondary)] to-[var(--dsoc-purple)]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-4">
-              DSOC PROJECTS
-            </h1>
-            <p className="text-xl opacity-90">
-              Find the perfect project to kickstart your open source journey
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="DSOC 2026"
+        title="DSOC projects"
+        intro={
+          <>
+            Find the perfect project to kickstart your open source journey.
+            <span className="mt-3 block text-base text-[#5C5C5C]">
+              DSOC 2026 applications are closed. They open again next summer.
+            </span>
+          </>
+        }
+      />
 
       {/* Search & Filters */}
-      <section className="py-8 border-b-4 border-[var(--dsoc-dark)] dark:border-[var(--dsoc-light)] bg-[var(--dsoc-light)] dark:bg-[var(--dsoc-dark)]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+      <section className="border-b border-[#E6E6E6] bg-[#F7F7F7]">
+        <div className={`${container} py-8`}>
+          <form onSubmit={handleSearch} className="flex flex-col gap-3 md:flex-row">
+            <div className="relative flex-1">
+              <Search aria-hidden="true" className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#8A8A8A]" />
               <input
                 type="text"
+                aria-label="Search projects"
                 placeholder="Search projects, technologies, organizations..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="neo-brutal-input"
-                style={{ paddingLeft: '3rem' }}
+                className={`${inputClass} pl-12`}
               />
             </div>
-            <button type="submit" className="neo-brutal-btn neo-brutal-btn-primary">
-              <Search className="w-5 h-5 mr-2" />
+            <button
+              type="submit"
+              className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#0A0A0A] px-7 text-base font-semibold text-white transition-colors hover:bg-[#262626]"
+            >
+              <Search aria-hidden="true" className="h-5 w-5" />
               Search
             </button>
-            <button 
+            <button
               type="button"
+              aria-expanded={showFilters}
               onClick={() => setShowFilters(!showFilters)}
-              className="neo-brutal-btn neo-brutal-btn-secondary"
+              className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-[#D4D4D4] bg-white px-7 text-base font-semibold text-[#0A0A0A] transition-colors hover:bg-[#F7F7F7]"
             >
-              <Filter className="w-5 h-5 mr-2" />
+              <Filter aria-hidden="true" className="h-5 w-5" />
               Filters
-              {(filters.difficulty || filters.technology) && (
-                <span className="ml-2 w-6 h-6 bg-[var(--dsoc-accent)] text-[var(--dsoc-dark)] rounded-full text-xs flex items-center justify-center font-bold">
-                  {(filters.difficulty ? 1 : 0) + (filters.technology ? 1 : 0)}
+              {activeFilters > 0 && (
+                <span className="ml-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#0A0A0A] text-xs font-semibold text-white">
+                  {activeFilters}
                 </span>
               )}
             </button>
@@ -304,27 +310,29 @@ export default function ProjectsPage() {
 
           {/* Filter Panel */}
           {showFilters && (
-            <div className="mt-4 neo-brutal-card p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-bold text-lg">Filter Projects</h3>
+            <Card className="mt-4">
+              <div className="mb-5 flex items-center justify-between gap-4">
+                <h2 className="text-lg font-semibold tracking-[-0.02em]">Filter projects</h2>
                 <button
+                  type="button"
                   onClick={() => {
                     setFilters({ difficulty: '', technology: '', status: 'open' });
                     setShowFilters(false);
                   }}
-                  className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1"
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-[10px] px-3 text-sm font-medium text-[#5C5C5C] hover:text-black"
                 >
-                  <X className="w-4 h-4" />
+                  <X aria-hidden="true" className="h-4 w-4" />
                   Clear All
                 </button>
               </div>
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid gap-4 md:grid-cols-3">
                 <div>
-                  <label className="block font-bold text-sm mb-2">Status</label>
+                  <label htmlFor="dsoc-filter-status" className="mb-2 block text-sm font-semibold">Status</label>
                   <select
+                    id="dsoc-filter-status"
                     value={filters.status}
                     onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-                    className="neo-brutal-input"
+                    className={inputClass}
                   >
                     <option value="">All Status</option>
                     <option value="open">Open for Applications</option>
@@ -333,11 +341,12 @@ export default function ProjectsPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block font-bold text-sm mb-2">Difficulty</label>
+                  <label htmlFor="dsoc-filter-difficulty" className="mb-2 block text-sm font-semibold">Difficulty</label>
                   <select
+                    id="dsoc-filter-difficulty"
                     value={filters.difficulty}
                     onChange={(e) => setFilters({ ...filters, difficulty: e.target.value })}
-                    className="neo-brutal-input"
+                    className={inputClass}
                   >
                     <option value="">All Levels</option>
                     <option value="beginner">Beginner</option>
@@ -346,11 +355,12 @@ export default function ProjectsPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block font-bold text-sm mb-2">Technology</label>
+                  <label htmlFor="dsoc-filter-technology" className="mb-2 block text-sm font-semibold">Technology</label>
                   <select
+                    id="dsoc-filter-technology"
                     value={filters.technology}
                     onChange={(e) => setFilters({ ...filters, technology: e.target.value })}
-                    className="neo-brutal-input"
+                    className={inputClass}
                   >
                     <option value="">All Technologies</option>
                     {allTechnologies.map((tech) => (
@@ -359,32 +369,33 @@ export default function ProjectsPage() {
                   </select>
                 </div>
               </div>
-            </div>
+            </Card>
           )}
         </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-white">
+        <div className={`${container} py-12 md:py-16`}>
           {loading ? (
-            <div className="text-center py-20">
-              <div className="inline-block w-12 h-12 border-4 border-[var(--dsoc-primary)] border-t-transparent animate-spin" />
-              <p className="mt-4 text-muted-foreground">Loading projects...</p>
+            <div role="status" className="py-20 text-center">
+              <div aria-hidden="true" className="inline-block h-10 w-10 animate-spin rounded-full border-[3px] border-[#E6E6E6] border-t-[#0A0A0A]" />
+              <p className="mt-4 text-[#5C5C5C]">Loading projects...</p>
             </div>
           ) : projects.length === 0 ? (
-            <div className="text-center py-20">
-              <Code2 className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-              <h3 className="text-2xl font-bold mb-2">No Projects Found</h3>
-              <p className="text-muted-foreground mb-6">
+            <div className="py-20 text-center">
+              <Code2 aria-hidden="true" className="mx-auto mb-4 h-14 w-14 text-[#8A8A8A]" />
+              <h2 className="mb-2 text-2xl font-semibold tracking-[-0.03em]">No Projects Found</h2>
+              <p className="mb-6 text-[#5C5C5C]">
                 Try adjusting your filters or search query
               </p>
               <button
+                type="button"
                 onClick={() => {
                   setSearch('');
                   setFilters({ difficulty: '', technology: '', status: '' });
                 }}
-                className="neo-brutal-btn neo-brutal-btn-primary"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-[#0A0A0A] px-7 text-base font-semibold text-white transition-colors hover:bg-[#262626]"
               >
                 Clear Filters
               </button>
@@ -392,108 +403,102 @@ export default function ProjectsPage() {
           ) : (
             <>
               <div className="mb-6 flex items-center justify-between">
-                <p className="text-muted-foreground">
-                  Showing <span className="font-bold text-foreground">{projects.length}</span> projects
+                <p className="text-[#5C5C5C]">
+                  Showing <span className="font-semibold text-[#0A0A0A]">{projects.length}</span> projects
                   {usingSampleData && (
-                    <span className="ml-2 text-sm text-[var(--dsoc-primary)]">(Sample Projects)</span>
+                    <span className="ml-2 text-sm text-[#8A8A8A]">(Sample Projects)</span>
                   )}
                 </p>
               </div>
-              
-              <div className="grid md:grid-cols-2 gap-8">
+
+              <ul className="grid gap-5 md:grid-cols-2">
                 {projects.map((project) => {
                   const projectImage = project.featuredImage || project.imageUrl;
+                  const repoUrls = getProjectRepoUrls(project);
+                  const hasRepos = repoUrls.length > 0;
 
                   return (
-                  <Link key={project._id} href={`/dsoc/projects/${project._id}`}>
-                    <div className="dsoc-project-card h-full flex flex-col group">
-                      {/* Project Image */}
-                      {projectImage && (
-                        <div className="relative overflow-hidden border-b-4 border-[var(--dsoc-dark)]">
-                          <img 
-                            src={projectImage} 
-                            alt={project.title}
-                            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                          <div className="absolute top-3 right-3 flex gap-2">
-                            <span className={`neo-brutal-badge text-xs ${getStatusColor(project.status)} text-[var(--dsoc-dark)]`}>
+                    <li key={project._id}>
+                      <Card
+                        tone="bordered"
+                        className="group relative h-full overflow-hidden hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-1"
+                      >
+                        {/* Project Image */}
+                        {projectImage && (
+                          <div className="relative -mx-7 -mt-7 mb-6 overflow-hidden bg-[#F7F7F7]">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={projectImage}
+                              alt={project.title}
+                              className="h-48 w-full object-cover transition-transform duration-300 motion-safe:group-hover:scale-105"
+                            />
+                            <span className={`absolute right-4 top-4 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${getStatusColor(project.status)}`}>
                               {project.status}
                             </span>
                           </div>
-                        </div>
-                      )}
-                      
-                      <div className={`dsoc-project-card-header ${getDifficultyColor(project.difficulty)}`}>
-                        <div className="flex items-center justify-between gap-3">
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold uppercase text-sm tracking-wider text-[var(--dsoc-dark)]">
-                              {project.organization}
-                            </span>
-                            <span className="dsoc-header-chip">Paid</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            {!projectImage && (
-                              <span className={`neo-brutal-badge text-xs ${getStatusColor(project.status)} text-[var(--dsoc-dark)]`}>
-                                {project.status}
-                              </span>
-                            )}
-                            <span className={`neo-brutal-badge text-xs ${getDifficultyColor(project.difficulty)} text-[var(--dsoc-dark)] border-2 border-[var(--dsoc-dark)]`}>
-                              {project.difficulty}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="dsoc-project-card-body flex-1 flex flex-col">
-                        <h3 className="text-xl font-bold mb-3 group-hover:text-[var(--dsoc-primary)] transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-muted-foreground mb-4 line-clamp-3 flex-1">
-                          {project.description}
-                        </p>
-                        
-                        {/* Technologies */}
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {project.technologies.slice(0, 5).map((tech, i) => (
-                            <span key={i} className="neo-brutal-badge bg-[var(--dsoc-secondary)] text-white text-xs">
-                              {tech}
-                            </span>
-                          ))}
-                          {project.technologies.length > 5 && (
-                            <span className="neo-brutal-badge bg-[var(--dsoc-secondary)] text-white text-xs">
-                              +{project.technologies.length - 5}
+                        )}
+
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">
+                            {project.organization}
+                          </span>
+                          <span className="inline-flex items-center rounded-full bg-[#F7F7F7] px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#404040]">
+                            Paid
+                          </span>
+                          {!projectImage && (
+                            <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${getStatusColor(project.status)}`}>
+                              {project.status}
                             </span>
                           )}
+                          <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${getDifficultyColor(project.difficulty)}`}>
+                            {project.difficulty}
+                          </span>
                         </div>
-                        
+
+                        <h3 className="mt-3 text-[24px] font-semibold tracking-[-0.03em]">
+                          <Link href={`/dsoc/projects/${project._id}`} className="after:absolute after:inset-0 after:content-['']">
+                            {project.title}
+                          </Link>
+                        </h3>
+                        <p className="mt-3 line-clamp-3 flex-1 text-[15px] leading-[1.6] text-[#5C5C5C]">
+                          {project.description}
+                        </p>
+
+                        {/* Technologies */}
+                        <div className="mt-5 flex flex-wrap gap-2">
+                          {project.technologies.slice(0, 5).map((tech, i) => (
+                            <Tag key={i}>{tech}</Tag>
+                          ))}
+                          {project.technologies.length > 5 && (
+                            <Tag>+{project.technologies.length - 5}</Tag>
+                          )}
+                        </div>
+
                         {/* Meta Info */}
-                        <div className="flex items-center justify-between text-sm text-muted-foreground border-t-2 border-[var(--dsoc-dark)] dark:border-[var(--dsoc-light)] pt-4 mt-auto">
-                          <div className="flex items-center gap-4">
-                            <span className="flex items-center gap-1">
-                              <Clock className="w-4 h-4" />
-                              {project.duration}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <Users className="w-4 h-4" />
-                              {project.selectedMentees?.length || 0}/{project.maxMentees} spots
-                            </span>
-                          </div>
+                        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[#E6E6E6] pt-4 text-sm text-[#5C5C5C]">
+                          <span className="flex items-center gap-1.5">
+                            <Clock aria-hidden="true" className="h-4 w-4" />
+                            {project.duration}
+                          </span>
+                          <span className="flex items-center gap-1.5">
+                            <Users aria-hidden="true" className="h-4 w-4" />
+                            {project.selectedMentees?.length || 0}/{project.maxMentees} spots
+                          </span>
                         </div>
-                        
+
                         {/* Mentors */}
                         {project.mentors && project.mentors.length > 0 && (
-                          <div className="mt-4 flex items-center gap-3">
-                            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                              Mentors:
+                          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+                            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">
+                              Mentors
                             </span>
-                            <div className="flex items-center gap-2">
+                            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                               {project.mentors.slice(0, 3).map((mentor) => (
-                                <div
-                                  key={mentor._id}
-                                  className="flex items-center gap-1.5"
-                                >
-                                  <div className="w-6 h-6 bg-[var(--dsoc-primary)] border-2 border-[var(--dsoc-dark)] flex items-center justify-center text-white font-bold text-xs rounded-full">
+                                <div key={mentor._id} className="flex items-center gap-1.5">
+                                  <div className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-full bg-[#0A0A0A] text-xs font-semibold text-white">
                                     {mentor.picture ? (
-                                      <img src={mentor.picture} alt={mentor.name} className="w-full h-full object-cover rounded-full" />
+                                      // eslint-disable-next-line @next/next/no-img-element
+                                      <img src={mentor.picture} alt={mentor.name} className="h-full w-full object-cover" />
                                     ) : (
                                       mentor.name.charAt(0)
                                     )}
@@ -502,106 +507,93 @@ export default function ProjectsPage() {
                                 </div>
                               ))}
                               {project.mentors.length > 3 && (
-                                <span className="text-xs text-muted-foreground">+{project.mentors.length - 3} more</span>
+                                <span className="text-xs text-[#5C5C5C]">+{project.mentors.length - 3} more</span>
                               )}
                             </div>
                           </div>
                         )}
-                        
-                        {/* GitHub and Wiki Links */}
-                        {(() => {
-                          const repoUrls = getProjectRepoUrls(project);
-                          const hasRepos = repoUrls.length > 0;
-                          if (!hasRepos && !project.wikiUrl) return null;
 
-                          return (
-                            <div className="mt-4 pt-4 border-t-2 border-[var(--dsoc-dark)]/20 flex flex-wrap items-center gap-x-4 gap-y-3">
-                              {hasRepos && (
-                                repoUrls.length === 1 ? (
-                                  <button
-                                    type="button"
-                                    onClick={(e) => {
-                                      e.preventDefault();
-                                      e.stopPropagation();
-                                      window.open(repoUrls[0], '_blank');
-                                    }}
-                                    className="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--dsoc-dark)] hover:text-[var(--dsoc-primary)] transition-colors"
-                                  >
-                                    <Github className="w-4 h-4" />
-                                    GitHub
-                                  </button>
-                                ) : (
-                                  <div className="flex flex-wrap items-center gap-2">
-                                    <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                                      <Github className="w-4 h-4 text-[var(--dsoc-dark)]" />
-                                      Repos
-                                    </span>
-                                    {repoUrls.map((url, i) => (
-                                      <button
-                                        key={i}
-                                        type="button"
-                                        title={url}
-                                        onClick={(e) => {
-                                          e.preventDefault();
-                                          e.stopPropagation();
-                                          window.open(url, '_blank');
-                                        }}
-                                        className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold bg-[var(--dsoc-dark)] text-white border-2 border-[var(--dsoc-dark)] shadow-[2px_2px_0_0_var(--dsoc-dark)] hover:bg-[var(--dsoc-primary)] hover:text-[var(--dsoc-dark)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0_0_var(--dsoc-dark)] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0_0_var(--dsoc-dark)] transition-all"
-                                      >
-                                        <Github className="w-3 h-3" />
-                                        {getRepoName(url)}
-                                      </button>
-                                    ))}
-                                  </div>
-                                )
-                              )}
-                              {project.wikiUrl && (
-                                <button
-                                  type="button"
-                                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.wikiUrl, '_blank'); }}
-                                  className="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--dsoc-purple)] hover:text-[var(--dsoc-primary)] transition-colors"
+                        {/* GitHub and Wiki Links */}
+                        {(hasRepos || project.wikiUrl) && (
+                          <div className="mt-4 flex flex-wrap items-center gap-x-4 border-t border-[#E6E6E6] pt-2">
+                            {hasRepos && (
+                              repoUrls.length === 1 ? (
+                                <a
+                                  href={repoUrls[0]}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="relative z-10 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold hover:text-[#5C5C5C]"
                                 >
-                                  <BookOpen className="w-4 h-4" />
-                                  Wiki
-                                </button>
-                              )}
-                            </div>
-                          );
-                        })()}
-                      </div>
-                    </div>
-                  </Link>
+                                  <Github aria-hidden="true" className="h-4 w-4" />
+                                  GitHub
+                                </a>
+                              ) : (
+                                <div className="flex flex-wrap items-center gap-2 py-1">
+                                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">
+                                    <Github aria-hidden="true" className="h-4 w-4 text-[#0A0A0A]" />
+                                    Repos
+                                  </span>
+                                  {repoUrls.map((url, i) => (
+                                    <a
+                                      key={i}
+                                      href={url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      title={url}
+                                      className="relative z-10 inline-flex min-h-11 items-center gap-1.5 rounded-full border border-[#D4D4D4] bg-white px-4 text-xs font-semibold transition-colors hover:bg-[#F7F7F7]"
+                                    >
+                                      <Github aria-hidden="true" className="h-3 w-3" />
+                                      {getRepoName(url)}
+                                    </a>
+                                  ))}
+                                </div>
+                              )
+                            )}
+                            {project.wikiUrl && (
+                              <a
+                                href={project.wikiUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative z-10 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold hover:text-[#5C5C5C]"
+                              >
+                                <BookOpen aria-hidden="true" className="h-4 w-4" />
+                                Wiki
+                              </a>
+                            )}
+                          </div>
+                        )}
+                      </Card>
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
             </>
           )}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-[var(--dsoc-light)] dark:bg-[var(--dsoc-dark)] border-t-4 border-[var(--dsoc-dark)] dark:border-[var(--dsoc-light)]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-black mb-4 text-black">Don&apos;t see what you&apos;re looking for?</h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            We&apos;re always adding new projects. Join our Discord to get notified when new projects are added, 
+      <Panel>
+        <div className="max-w-[60ch]">
+          <h2 className="text-[clamp(32px,4vw,52px)] font-semibold leading-[1.05] tracking-[-0.04em]">Don&apos;t see what you&apos;re looking for?</h2>
+          <p className="mt-5 text-[17px] leading-[1.65] text-[#C7C7C7]">
+            We&apos;re always adding new projects. Join our Discord to get notified when new projects are added,
             or become a mentor and propose your own project!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="https://discord.com/invite/Cy7Rgkf4Up" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="neo-brutal-btn neo-brutal-btn-primary"
-            >
-              Join Discord
-            </a>
-            <Link href="/dsoc/register/mentor" className="neo-brutal-btn neo-brutal-btn-secondary">
-              Propose a Project
-            </Link>
-          </div>
         </div>
-      </section>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <Button href="https://discord.com/invite/Cy7Rgkf4Up" variant="onDark">Join Discord</Button>
+          <Button href="/dsoc/register/mentor" variant="onDarkSecondary">Propose a Project</Button>
+        </div>
+      </Panel>
     </div>
+  );
+}
+
+function Tag({ children }: { children: ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full bg-[#F7F7F7] px-3 py-1 text-xs font-medium text-[#404040]">
+      {children}
+    </span>
   );
 }
