@@ -1,203 +1,248 @@
-'use client';
+"use client"
 
-import { useEffect, useState } from 'react';
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Calendar, Clock, Users, Filter } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useCallback, useEffect, useMemo, useState } from "react"
+import { Calendar, Clock, Search, Users } from "lucide-react"
 
-function getCategoryValue(sessionCategory: string) {
-  switch (sessionCategory.toLowerCase()) {
-    case 'web': return 'web';
-    case 'devops': return 'devops';
-    case 'cloud': return 'cloud';
-    case 'ai/ml':
-    case 'ai':
-    case 'ml': return 'ai';
-    case 'cp & dsa': return 'cp';
-    case 'remote job': return 'remote';
-    case 'open source': return 'opensource';
-    case 'other': return 'other';
-    default: return sessionCategory.toLowerCase();
+import { LINKS } from "@/components/home/data"
+import { Button, Card, PageHero, Section } from "@/components/site/page-kit"
+
+const WHATSAPP_CHANNEL = "https://whatsapp.com/channel/0029VaEDHjV3rZZYUHRj2B1S"
+
+type Session = {
+  _id?: string
+  name?: string
+  description?: string
+  category?: string
+  date?: string
+  time?: string
+  speaker?: string
+}
+
+function getCategoryValue(sessionCategory?: string) {
+  const category = (sessionCategory ?? "").toLowerCase()
+  switch (category) {
+    case "ai/ml":
+    case "ai":
+    case "ml":
+      return "ai"
+    case "cp & dsa":
+      return "cp"
+    case "remote job":
+      return "remote"
+    case "open source":
+      return "opensource"
+    default:
+      return category
   }
 }
 
-export default function SessionsPage() {
-  const [sessions, setSessions] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState('');
-  const [selectedTopic, setSelectedTopic] = useState('all');
-
-  useEffect(() => {
-    fetch('/api/sessions')
-      .then(res => res.json())
-      .then(data => setSessions(Array.isArray(data) ? data : []))
-      .finally(() => setLoading(false));
-  }, []);
-
-  // Get unique categories from session data
-  const uniqueCategories = Array.from(
-    new Set(sessions.map(s => getCategoryValue(s.category)))
-  ).filter(Boolean);
-
-  // Build dropdown options
-  const topicOptions = [
-    { value: 'all', label: 'All Topics' },
-    ...uniqueCategories.map(cat => ({
-      value: cat,
-      label:
-        cat === 'web' ? 'Web Development' :
-        cat === 'devops' ? 'DevOps' :
-        cat === 'cloud' ? 'Cloud Computing' :
-        cat === 'ai' ? 'Machine Learning/AI' :
-        cat === 'cp' ? 'CP & DSA' :
-        cat === 'remote' ? 'Remote Job' :
-        cat === 'opensource' ? 'Open Source' :
-        cat.charAt(0).toUpperCase() + cat.slice(1)
-    }))
-  ];
-
-  // Tabs to show (first 5, always include 'all')
-  const tabCategories = ['all', ...uniqueCategories.slice(0, 4)];
-
-  const filteredSessions = (cat: string) => {
-    let filtered = sessions;
-    if (cat !== 'all') {
-      filtered = sessions.filter(s => getCategoryValue(s.category) === cat);
-    }
-    if (search.trim()) {
-      filtered = filtered.filter(s =>
-        s.name.toLowerCase().includes(search.toLowerCase()) ||
-        s.description.toLowerCase().includes(search.toLowerCase()) ||
-        s.speaker.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-    return filtered;
-  };
-
-  return (
-    <div className="container mx-auto px-4 py-6 sm:py-10">
-      <div className="flex flex-col space-y-4 mb-6 sm:mb-10">
-        <h1 className="text-2xl sm:text-4xl font-bold">Upcoming Sessions</h1>
-        <p className="text-muted-foreground text-base sm:text-lg">
-          Browse and register for our upcoming mentorship sessions led by industry experts. Filter by topic, date, or
-          mentor to find the perfect session for your learning journey.
-        </p>
-      </div>
-
-      {/* Search and Filter */}
-      <div className="flex flex-col gap-4 mb-6 sm:mb-8">
-        <div className="flex w-full gap-2">
-          <Input 
-            placeholder="Search sessions..." 
-            value={search} 
-            onChange={e => setSearch(e.target.value)}
-            className="w-1/2"
-          />
-          <div className="flex-grow"></div>
-          <Select value={selectedTopic} onValueChange={setSelectedTopic}>
-            <SelectTrigger className="w-[120px]">
-              <SelectValue placeholder="Topic" />
-            </SelectTrigger>
-            <SelectContent>
-              {topicOptions.map(opt => (
-                <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select defaultValue="upcoming">
-            <SelectTrigger className="w-[120px]">
-              <SelectValue placeholder="Time" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="upcoming">Upcoming</SelectItem>
-              <SelectItem value="this-week">This Week</SelectItem>
-              <SelectItem value="this-month">This Month</SelectItem>
-              <SelectItem value="past">Past Sessions</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      {/* Sessions Tabs */}
-      <Tabs defaultValue="all" className="space-y-4 sm:space-y-6">
-        <div className="overflow-x-auto">
-          <TabsList className="mb-4 sm:mb-6 flex w-max sm:w-auto">
-            {tabCategories.map(cat => (
-              <TabsTrigger key={cat} value={cat} className="text-xs sm:text-sm whitespace-nowrap px-2 sm:px-4">
-                {cat === 'all'
-                  ? 'All Sessions'
-                  : topicOptions.find(opt => opt.value === cat)?.label || cat.charAt(0).toUpperCase() + cat.slice(1)}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </div>
-        {tabCategories.map(cat => (
-          <TabsContent key={cat} value={cat} className="space-y-6 sm:space-y-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {loading ? (
-                // Loading skeleton
-                Array.from({ length: 6 }).map((_, i) => (
-                  <Card key={i} className="animate-pulse">
-                    <CardHeader>
-                      <div className="h-4 w-20 bg-muted rounded mb-2"></div>
-                      <div className="h-6 w-3/4 bg-muted rounded mb-2"></div>
-                      <div className="h-4 w-full bg-muted rounded"></div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2">
-                        <div className="h-4 w-1/2 bg-muted rounded"></div>
-                        <div className="h-4 w-1/3 bg-muted rounded"></div>
-                        <div className="h-4 w-2/3 bg-muted rounded"></div>
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <div className="h-10 w-full bg-muted rounded"></div>
-                    </CardFooter>
-                  </Card>
-                ))
-              ) : filteredSessions(cat).length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-8 sm:py-12 text-center col-span-full">
-                  <p className="text-muted-foreground text-sm sm:text-base">No sessions found matching your criteria</p>
-                </div>
-              ) : (
-                filteredSessions(cat).map((session, idx) => (
-                  <Card key={session._id || idx} className="flex flex-col">
-                    <CardHeader className="pb-3">
-                      <Badge className="w-fit mb-2 text-xs">{session.category}</Badge>
-                      <CardTitle className="text-lg sm:text-xl line-clamp-2">{session.name}</CardTitle>
-                      <CardDescription className="text-sm line-clamp-3">{session.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-1 pb-3">
-                      <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                        <Calendar className="h-4 w-4 flex-shrink-0" />
-                        <span className="truncate">{session.date}</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                        <Clock className="h-4 w-4 flex-shrink-0" />
-                        <span className="truncate">{session.time}</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm">
-                        <Users className="h-4 w-4 flex-shrink-0" />
-                        <span className="truncate font-medium">{session.speaker}</span>
-                      </div>
-                    </CardContent>
-                    <CardFooter className="pt-3">
-                      <Button variant="outline" className="w-full text-xs sm:text-sm">
-                        View Calendar on Home Page to Join
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                ))
-              )}
-            </div>
-          </TabsContent>
-        ))}
-      </Tabs>
-    </div>
-  );
+const categoryLabels: Record<string, string> = {
+  web: "Web development",
+  devops: "DevOps",
+  cloud: "Cloud computing",
+  ai: "Machine learning and AI",
+  cp: "CP and DSA",
+  remote: "Remote job",
+  opensource: "Open source",
 }
 
+function categoryLabel(value: string) {
+  return categoryLabels[value] ?? value.charAt(0).toUpperCase() + value.slice(1)
+}
+
+const inputClass =
+  "min-h-11 w-full rounded-xl border border-[#D4D4D4] bg-white px-4 text-base text-[#0A0A0A] placeholder:text-[#8A8A8A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A0A0A]"
+
+export default function SessionsPage() {
+  const [sessions, setSessions] = useState<Session[]>([])
+  const [loading, setLoading] = useState(true)
+  const [failed, setFailed] = useState(false)
+  const [search, setSearch] = useState("")
+  const [topic, setTopic] = useState("all")
+
+  const load = useCallback(async () => {
+    setLoading(true)
+    setFailed(false)
+    try {
+      const res = await fetch("/api/sessions")
+      if (!res.ok) throw new Error(`Sessions request failed with ${res.status}`)
+      const data = await res.json()
+      setSessions(Array.isArray(data) ? data : [])
+    } catch (error) {
+      console.error("Could not load sessions:", error)
+      setSessions([])
+      setFailed(true)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    load()
+  }, [load])
+
+  const topics = useMemo(
+    () => Array.from(new Set(sessions.map((s) => getCategoryValue(s.category)))).filter(Boolean),
+    [sessions],
+  )
+
+  const visible = useMemo(() => {
+    const query = search.trim().toLowerCase()
+    return sessions.filter((s) => {
+      if (topic !== "all" && getCategoryValue(s.category) !== topic) return false
+      if (!query) return true
+      return [s.name, s.description, s.speaker].some((field) => (field ?? "").toLowerCase().includes(query))
+    })
+  }, [sessions, search, topic])
+
+  const chip = (active: boolean) =>
+    `inline-flex min-h-11 items-center rounded-full border px-5 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A0A0A] ${
+      active ? "border-[#0A0A0A] bg-[#0A0A0A] text-white" : "border-[#D4D4D4] bg-white text-[#404040] hover:bg-[#F7F7F7]"
+    }`
+
+  return (
+    <main>
+      <PageHero
+        eyebrow="Sessions"
+        title="Upcoming sessions."
+        intro="Public sessions led by industry experts. Search by name, topic or speaker. Join links are shared on our WhatsApp channel, and recordings are published on YouTube."
+        actions={
+          <>
+            <Button href={WHATSAPP_CHANNEL}>Join the WhatsApp channel</Button>
+            <Button href={LINKS.youtube} variant="secondary">
+              Watch on YouTube
+            </Button>
+          </>
+        }
+      />
+
+      <Section tone="gray">
+        <div className="max-w-[420px]">
+          <label htmlFor="session-search" className="sr-only">
+            Search sessions
+          </label>
+          <div className="relative">
+            <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8A8A8A]" aria-hidden="true" />
+            <input
+              id="session-search"
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search sessions"
+              className={`${inputClass} pl-11`}
+            />
+          </div>
+        </div>
+
+        {topics.length > 0 && (
+          <div className="mt-5 flex flex-wrap gap-2" role="group" aria-label="Filter by topic">
+            <button type="button" aria-pressed={topic === "all"} onClick={() => setTopic("all")} className={chip(topic === "all")}>
+              All sessions
+            </button>
+            {topics.map((value) => (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={topic === value}
+                onClick={() => setTopic(value)}
+                className={chip(topic === value)}
+              >
+                {categoryLabel(value)}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite">
+          {loading ? (
+            Array.from({ length: 6 }).map((_, i) => (
+              <Card key={i} className="motion-safe:animate-pulse">
+                <div className="h-3 w-20 rounded bg-[#E6E6E6]" />
+                <div className="mt-4 h-6 w-3/4 rounded bg-[#E6E6E6]" />
+                <div className="mt-3 h-4 w-full rounded bg-[#E6E6E6]" />
+                <div className="mt-6 h-4 w-1/2 rounded bg-[#E6E6E6]" />
+                <div className="mt-2 h-4 w-1/3 rounded bg-[#E6E6E6]" />
+              </Card>
+            ))
+          ) : visible.length === 0 ? (
+            <div className="col-span-full rounded-[20px] border border-[#E6E6E6] bg-white p-8 text-center sm:p-12">
+              <h2 className="text-[22px] font-semibold tracking-[-0.02em]">
+                {failed
+                  ? "Sessions could not be loaded"
+                  : sessions.length === 0
+                    ? "No upcoming sessions right now"
+                    : "No sessions match your search"}
+              </h2>
+              <p className="mx-auto mt-3 max-w-[48ch] text-[15px] leading-[1.6] text-[#5C5C5C]">
+                {failed
+                  ? "Something went wrong on our side. Try again in a moment."
+                  : sessions.length === 0
+                    ? "New sessions are announced on our WhatsApp channel, and past sessions are on YouTube."
+                    : "Try a different search or topic."}
+              </p>
+              <div className="mt-6 flex flex-wrap justify-center gap-3">
+                {failed ? (
+                  <button
+                    type="button"
+                    onClick={load}
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-[#0A0A0A] px-7 text-base font-semibold text-white transition-colors hover:bg-[#262626] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A0A0A]"
+                  >
+                    Try again
+                  </button>
+                ) : sessions.length > 0 ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearch("")
+                      setTopic("all")
+                    }}
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-[#D4D4D4] px-7 text-base font-semibold text-[#0A0A0A] transition-colors hover:bg-[#F7F7F7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A0A0A]"
+                  >
+                    Clear filters
+                  </button>
+                ) : (
+                  <Button href={WHATSAPP_CHANNEL}>Join the WhatsApp channel</Button>
+                )}
+              </div>
+            </div>
+          ) : (
+            visible.map((session, idx) => (
+              <Card key={session._id || idx} className="h-full motion-safe:hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)]">
+                {session.category && (
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">{session.category}</p>
+                )}
+                <h2 className="mt-3 line-clamp-2 text-[22px] font-semibold leading-tight tracking-[-0.02em]">{session.name}</h2>
+                {session.description && (
+                  <p className="mt-3 line-clamp-3 text-[15px] leading-[1.6] text-[#5C5C5C]">{session.description}</p>
+                )}
+                <dl className="mt-auto space-y-2 pt-6 text-sm text-[#404040]">
+                  {session.date && (
+                    <div className="flex items-center gap-2.5">
+                      <dt className="sr-only">Date</dt>
+                      <Calendar className="h-4 w-4 shrink-0 text-[#5C5C5C]" aria-hidden="true" />
+                      <dd>{session.date}</dd>
+                    </div>
+                  )}
+                  {session.time && (
+                    <div className="flex items-center gap-2.5">
+                      <dt className="sr-only">Time</dt>
+                      <Clock className="h-4 w-4 shrink-0 text-[#5C5C5C]" aria-hidden="true" />
+                      <dd>{session.time}</dd>
+                    </div>
+                  )}
+                  {session.speaker && (
+                    <div className="flex items-center gap-2.5 font-semibold text-[#0A0A0A]">
+                      <dt className="sr-only">Speaker</dt>
+                      <Users className="h-4 w-4 shrink-0 text-[#5C5C5C]" aria-hidden="true" />
+                      <dd>{session.speaker}</dd>
+                    </div>
+                  )}
+                </dl>
+              </Card>
+            ))
+          )}
+        </div>
+      </Section>
+    </main>
+  )
+}
