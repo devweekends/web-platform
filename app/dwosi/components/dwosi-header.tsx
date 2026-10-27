@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Menu } from "lucide-react"
+import { ArrowLeft, Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -32,6 +32,13 @@ export function DwosiHeader() {
 
         <div className="flex items-center gap-2">
           <nav aria-label="DWOSI" className="mr-2 hidden items-center gap-1 md:flex">
+            <Link
+              href="/"
+              className="dw-hit mr-2 inline-flex items-center gap-1.5 rounded-md border px-3 py-2 text-sm text-muted-foreground can-hover:bg-accent can-hover:text-foreground"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+              Dev Weekends
+            </Link>
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -54,6 +61,13 @@ export function DwosiHeader() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" sideOffset={8} className="dw-menu w-56 rounded-lg p-1">
+              <DropdownMenuItem asChild className={menuItemClass}>
+                <Link href="/" className="flex items-center gap-2">
+                  <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+                  Dev Weekends home
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
               {navItems.map((item) => (
                 <DropdownMenuItem key={item.href} asChild className={menuItemClass}>
                   <Link href={item.href}>{item.label}</Link>
