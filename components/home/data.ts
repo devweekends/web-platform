@@ -45,6 +45,7 @@ export const navItems = [
   { label: "Community links", href: "/links" },
   { label: "Partners", href: "/#partners" },
   { label: "Resources", href: "/#resources" },
+  { label: "Blog", href: "/blog" },
 ]
 
 export type ApplyProgram = {
