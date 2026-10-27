@@ -5,13 +5,15 @@ import Link from "next/link"
 import { ArrowLeft, ArrowRight, Play } from "lucide-react"
 
 import { getVideoEmbed } from "@/lib/video-url"
+import { byStoryRank } from "@/lib/story-order"
 import { LINKS, videoStories, voices } from "./data"
 
 type LiveVideo = { name: string; role: string; url: string; previewUrl?: string }
 
 /**
  * Stories rail: video stories, loaded from the same approved stories as the
- * stories page (GSoC and LFX first), after the videos listed in data.ts.
+ * stories page, merged with the videos listed in data.ts and ordered by
+ * lib/story-order.ts (LFX, then GSoC, then senior engineers, then the rest).
  * Written quotes only fill in when there are too few videos. It does not move
  * by itself: people scroll it with the arrows, a swipe or the trackpad.
  */
@@ -29,7 +31,7 @@ export function VoicesRail() {
 
   const seen = new Set<string>()
   const listed: { name: string; role: string; url: string | null; previewUrl?: string }[] = [...videoStories, ...live]
-  const videos = listed.flatMap((story) => {
+  const videos = byStoryRank(listed).flatMap((story) => {
     const embed = getVideoEmbed(story.url ?? undefined)
     if (!embed || seen.has(embed.embedUrl)) return []
     seen.add(embed.embedUrl)
