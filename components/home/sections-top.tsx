@@ -234,9 +234,6 @@ export function Outcomes() {
             <p className={eyebrow}>Outcomes</p>
             <h2 className={h2}>Where the work led them.</h2>
           </div>
-          <p className="max-w-[42ch] text-[17px] leading-[1.6] text-[#5C5C5C]">
-            Most started with no network and no resume worth reading. Here is the receipt.
-          </p>
         </div>
         <ul className="mt-10 grid grid-cols-3 border-l border-t border-[#E6E6E6] md:mt-14 xl:grid-cols-6">
           {outcomes.map((item) => (
