@@ -326,7 +326,7 @@ export default function Footer() {
               </div>
               
               <a 
-                href="mailto:devweekends@gmail.com?subject=I%20Want%20to%20Sponsor%20a%20Student&body=Hi%20Dev%20Weekends%20Team%2C%0A%0AI%20would%20like%20to%20sponsor%20a%20student.%20Please%20share%20more%20details%20about%20how%20I%20can%20help.%0A%0ABest%20regards"
+                href="mailto:info@devweekends.com?subject=I%20Want%20to%20Sponsor%20a%20Student&body=Hi%20Dev%20Weekends%20Team%2C%0A%0AI%20would%20like%20to%20sponsor%20a%20student.%20Please%20share%20more%20details%20about%20how%20I%20can%20help.%0A%0ABest%20regards"
                 className="group inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-semibold text-xs uppercase tracking-[1px] hover:opacity-90 transition-all w-full justify-center mb-4"
               >
                 <Mail className="w-4 h-4" />
@@ -368,13 +368,13 @@ export default function Footer() {
                   <Mail className="w-4 h-4 text-muted-foreground" />
                   <div>
                     <div className="text-xs text-muted-foreground">Email</div>
-                    <div className="text-sm font-medium">devweekends@gmail.com</div>
+                    <div className="text-sm font-medium">info@devweekends.com</div>
                   </div>
                 </div>
               </div>
               
               <a 
-                href="mailto:devweekends@gmail.com?subject=General%20Inquiry&body=Hi%20Dev%20Weekends%20Team%2C%0A%0A"
+                href="mailto:info@devweekends.com?subject=General%20Inquiry&body=Hi%20Dev%20Weekends%20Team%2C%0A%0A"
                 className="group inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-semibold text-xs uppercase tracking-[1px] hover:opacity-90 transition-all w-full justify-center mb-4"
               >
                 <Mail className="w-4 h-4" />

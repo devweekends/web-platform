@@ -174,10 +174,10 @@ export default function BrandKitPage() {
         <p className="mt-8 text-[17px] text-[#404040]">
           Questions about brand usage? Write to{" "}
           <a
-            href="mailto:devweekends@gmail.com"
+            href="mailto:info@devweekends.com"
             className={`font-semibold text-[#0A0A0A] underline underline-offset-4 hover:text-[#404040] ${focusRing}`}
           >
-            devweekends@gmail.com
+            info@devweekends.com
           </a>
           .
         </p>

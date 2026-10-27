@@ -16,7 +16,7 @@ We take the security of the Dev Weekends platform seriously. If you believe you 
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-Instead, please report them via email to **devweekends@gmail.com** with the subject line: `[SECURITY] Vulnerability Report`.
+Instead, please report them via email to **info@devweekends.com** with the subject line: `[SECURITY] Vulnerability Report`.
 
 Please include the following information in your report:
 
@@ -88,6 +88,6 @@ This project implements the following security measures:
 
 ## Contact
 
-For any security-related questions or concerns, please contact us at **devweekends@gmail.com**.
+For any security-related questions or concerns, please contact us at **info@devweekends.com**.
 
 

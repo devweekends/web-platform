@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 const APPLICATION_URL = "https://forms.gle/k8JtSqSh2SWVMwJ4A"
-const CONTACT_EMAIL = "devweekends@gmail.com"
+const CONTACT_EMAIL = "info@devweekends.com"
 
 const benefits = [
   {

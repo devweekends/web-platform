@@ -156,7 +156,7 @@ const resources = [
 ]
 
 const mentorMailto =
-  "mailto:devweekends@gmail.com?subject=I%20Want%20to%20Become%20a%20Mentor&body=Hi%20Dev%20Weekends%20Team%2C%0A%0AI%20would%20like%20to%20become%20a%20mentor.%20Here%20is%20my%20story%3A%0A%0A[Please%20share%20your%20background%2C%20experience%2C%20and%20why%20you%20want%20to%20help]%0A%0ABest%20regards"
+  "mailto:info@devweekends.com?subject=I%20Want%20to%20Become%20a%20Mentor&body=Hi%20Dev%20Weekends%20Team%2C%0A%0AI%20would%20like%20to%20become%20a%20mentor.%20Here%20is%20my%20story%3A%0A%0A[Please%20share%20your%20background%2C%20experience%2C%20and%20why%20you%20want%20to%20help]%0A%0ABest%20regards"
 
 export default function TeamPage() {
   const [showMentorModal, setShowMentorModal] = useState(false)
@@ -326,7 +326,7 @@ export default function TeamPage() {
                 Write to us
               </a>
               <p className="mt-4 text-sm text-[#5C5C5C]">
-                Email us at <span className="font-semibold text-[#0A0A0A]">devweekends@gmail.com</span>
+                Email us at <span className="font-semibold text-[#0A0A0A]">info@devweekends.com</span>
               </p>
             </div>
           </div>
