@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Weekends Fellowship 2025 Report</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        @media (min-width: 769px) {
+            .container {
+                padding: 0 40px;
+            }
+        }
+
+        .v-space-l { margin: 80px 0; }
+        .v-space-xl { margin: 120px 0; }
+
+        @media (max-width: 768px) {
+            .v-space-l { margin: 60px 0; }
+            .v-space-xl { margin: 80px 0; }
+        }
+
+        .card {
+            background: #111111;
+            border: 1px solid #333333;
+            padding: 20px;
+        }
+
+        @media (min-width: 769px) {
+            .card {
+                padding: 30px;
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-top: 60px;
+            padding-bottom: 30px;
+        }
+
+        .header-left {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .header-number {
+            font-size: 48px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .header-sub {
+            font-size: 14px;
+            font-weight: 300;
+            text-transform: uppercase;
+            color: #CCCCCC;
+        }
+
+        @media (max-width: 768px) {
+            .header-number {
+                font-size: 36px;
+            }
+        }
+
+        .monument-title {
+            font-size: 64px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: -0.03em;
+            margin: 60px 0;
+        }
+
+        @media (max-width: 768px) {
+            .monument-title {
+                font-size: 40px;
+                margin: 40px 0;
+            }
+        }
+
+        .metric-triad {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 769px) {
+            .metric-triad {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .metric-card {
+            background: #111111;
+            border: 1px solid #333333;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .metric-card.middle {
+            border: 2px solid #FFFFFF;
+        }
+
+        .metric-number {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #CCCCCC;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .metric-number {
+                font-size: 36px;
+            }
+        }
+
+        .progress-bar {
+            height: 36px;
+            background: #111111;
+            border: 1px solid #333333;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+        }
+
+        .success-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .success-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111111;
+            border: 1px solid #333333;
+            padding: 20px;
+        }
+
+        .success-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            color: #000000;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .success-desc {
+            flex: 1;
+            margin: 0 20px;
+            font-size: 16px;
+        }
+
+        .success-percent {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .testimonial {
+            background: #111111;
+            border: 1px solid #333333;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial {
+                padding: 20px;
+                margin: 20px 0;
+            }
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .testimonial-attrib {
+            font-style: italic;
+            font-size: 14px;
+            color: #CCCCCC;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .collective-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 769px) {
+            .collective-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .collective-card {
+            text-align: center;
+        }
+
+        .collective-number {
+            font-size: 80px;
+            font-weight: bold;
+        }
+
+        .collective-label {
+            font-size: 14px;
+            font-weight: 300;
+            text-transform: uppercase;
+            color: #CCCCCC;
+        }
+
+        @media (max-width: 768px) {
+            .collective-number {
+                font-size: 60px;
+            }
+        }
+
+        .collective-summary {
+            background: #111111;
+            border: 1px solid #333333;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .summary-number {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .summary-sub {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .journey-pair {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 769px) {
+            .journey-pair {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0;
+            }
+        }
+
+        .journey-dark {
+            background: #111111;
+            color: #FFFFFF;
+            border: 1px solid #333333;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .journey-light {
+            background: #FFFFFF;
+            color: #000000;
+            border: 1px solid #333333;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .journey-number {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .journey-label {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .journey-number {
+                font-size: 36px;
+            }
+        }
+
+        .monument-success {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .monument-number {
+            font-size: 128px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        .monument-subhead {
+            font-size: 32px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 30px;
+        }
+
+        .monument-support {
+            font-size: 16px;
+            font-weight: 300;
+            margin-top: 40px;
+        }
+
+        .success-breakdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .success-breakdown {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .breakdown-card {
+            text-align: center;
+        }
+
+        .breakdown-number {
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .breakdown-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #CCCCCC;
+        }
+
+        .monument-note {
+            font-size: 14px;
+            font-weight: 300;
+            color: #CCCCCC;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .monument-number {
+                font-size: 80px;
+            }
+            .monument-subhead {
+                font-size: 24px;
+            }
+            .breakdown-number {
+                font-size: 32px;
+            }
+        }
+
+        .cta {
+            border: 1px solid #FFFFFF;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 80px 0 120px;
+        }
+
+        .cta-title {
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .cta-sub {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        .cta-link {
+            font-size: 16px;
+            font-weight: 300;
+            color: #CCCCCC;
+            margin-top: 30px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .cta {
+                padding: 40px 20px;
+                margin: 60px 0 80px;
+            }
+            .cta-title {
+                font-size: 24px;
+            }
+            .cta-sub {
+                font-size: 16px;
+            }
+        }
+
+        .micro-footer {
+            text-align: center;
+            font-size: 14px;
+            color: #CCCCCC;
+            padding: 40px 0;
+        }
+
+        .transformation-card {
+            background: #111111;
+            border: 1px solid #333333;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .transformation-before, .transformation-after {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .transformation-quote {
+            font-style: italic;
+            color: #CCCCCC;
+        }
+
+        .transformation-attrib {
+            font-size: 14px;
+            color: #CCCCCC;
+            margin-top: 10px;
+        }
+
+        .featured-projects {
+            list-style: none;
+            padding: 0;
+        }
+
+        .featured-project {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .industry-benchmark {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .placement-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .placement-item {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Block -->
+        <header class="header">
+            <div class="header-left">DEV WEEKENDS</div>
+            <div class="header-right">
+                <span class="header-number">800</span>
+                <span class="header-sub">CERTIFIED 100</span>
+            </div>
+        </header>
+
+        <!-- Monument Title -->
+        <h1 class="monument-title">FELLOWSHIP IMPACT REPORT</h1>
+
+        <!-- Metric Triad -->
+        <div class="metric-triad">
+            <div class="metric-card">
+                <div class="metric-number">442</div>
+                <div class="metric-label">PROJECTS BUILT</div>
+            </div>
+            <div class="metric-card middle">
+                <div class="metric-number">8K</div>
+                <div class="metric-label">LEETCODE SOLVED</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">59%</div>
+                <div class="metric-label">SUCCESS PATHWAYS</div>
+            </div>
+        </div>
+
+        <!-- Progress Bars -->
+        <div class="v-space-l"></div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 13%;">JOBS 13%</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 17%;">INTERNSHIPS 17%</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 16%;">INTERVIEWS 16%</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 13%;">FREELANCE 13%</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 16%;">OPEN SOURCE 16%</div>
+        </div>
+
+        <!-- Success Cards -->
+        <div class="v-space-l"></div>
+        <div class="success-cards">
+            <div class="success-card">
+                <div class="success-number">13</div>
+                <div class="success-desc">Fellows<br>Landed Full-Time Jobs</div>
+                <div class="success-percent">13%</div>
+            </div>
+            <div class="success-card">
+                <div class="success-number">17</div>
+                <div class="success-desc">Fellows<br>Secured Internships</div>
+                <div class="success-percent">17%</div>
+            </div>
+            <div class="success-card">
+                <div class="success-number">16</div>
+                <div class="success-desc">Fellows<br>Cleared Interviews</div>
+                <div class="success-percent">16%</div>
+            </div>
+            <div class="success-card">
+                <div class="success-number">13</div>
+                <div class="success-desc">Fellows<br>Working on Freelance</div>
+                <div class="success-percent">13%</div>
+            </div>
+            <div class="success-card">
+                <div class="success-number">16</div>
+                <div class="success-desc">Fellows<br>Contributing to Open Source</div>
+                <div class="success-percent">16%</div>
+            </div>
+        </div>
+
+        <!-- Testimonial Blocks -->
+        <div class="v-space-l"></div>
+        <div class="testimonial">
+            <p class="testimonial-quote">Before joining the fellowship, my technical knowledge was limited to HTML, CSS, and JavaScript. Through the mentorship, resources, and structured guidance provided, I gained proficiency in React, Node.js, and the MERN stack as a whole. The fellowship also played a significant role in improving my confidence: I would previously have rated it at 1/10, but today I can confidently place it at 6/10, with steady progress still underway.
+
+In addition, the fellowship introduced me to Data Structures and Algorithms (DSA), an area where I had no prior experience. I am proud to have now solved over 100 problems. Although I initially faced challenges, particularly due to a language barrier that made attending live sessions difficult, I was able to adapt by leveraging recorded sessions, sub-storm discussions, and supplementary resources such as YouTube tutorials.
+
+Overall, the fellowship has been transformative, equipping me not only with technical expertise but also with the resilience and mindset required to continue advancing as a better software engineer.</p>
+            <p class="testimonial-attrib">- Henry Anomah Yeboah</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">At first, I thought that to grow in this field you just need to go deep into one technology and keep pushing until you become a pro. But through this fellowship, I understood that real growth means understanding concepts, applying them by building projects, and then moving on to new challenges. Along the way, I also realized the importance of consistency in coding practice and effective problem-solving strategies like LeetCode. Beyond technical skills, the fellowship introduced me to books and ideas about how the human mind works, how dopamine affects focus, and how mental health impacts our daily routines. Overall, this fellowship not only strengthened my technical knowledge but also gave me valuable insights into personal growth and mental well-being. The way it was designed provided a perfect balance between professional learning and self-development</p>
+            <p class="testimonial-attrib">- Alisha Fatima</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">The fellowship has been one of the best experiences of my career. It not only enhanced my technical skills but also helped me grow professionally and personally. The biggest highlight was my moderator, Sir Shaheer. He's very nice and helpful, like he guides me on every single step. Whenever I need his help, he was always there, and I really appreciate it. whose constant support and guidance motivated me at every step. Because of his mentorship, I now feel confident to work on my own AI-powered project.</p>
+            <p class="testimonial-attrib">- Momina kanwal</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">In this fellowship I have learned a lot of things in which I want to add that I learned web development for which I learned JavaScript, REACTJS and I also learned DSA and solved multiple leet code problems that helps me a lot to clear my concepts of programming and from this fellowship I learned a most important and necessary thing which is scheduling that helps a lot.I shall be very thankful to all the fellowship faculty members and especially Zeshan bahi and my mentor Faisal Misbah bahi who helped a lot throughout this fellowship. It's an amazing journey for me.</p>
+            <p class="testimonial-attrib">- Abdul Rehman</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">This fellowship has been a transformative experience for me. It not only gave me access to valuable knowledge and mentorship but also pushed me out of my comfort zone to apply what I’ve learned in real-world situations. I’ve built meaningful connections with peers and mentors who constantly inspire me to aim higher. Most importantly, it helped me grow both personally and professionally—enhancing my confidence, sharpening my skills, and giving me a clearer sense of direction for my future goals.</p>
+            <p class="testimonial-attrib">- Ali Asad</p>
+        </div>
+
+        <!-- Transformation Stories -->
+        <div class="v-space-l"></div>
+        <div class="transformation-card">
+            <p class="transformation-before">Lacked consistency and discipline in learning.</p>
+            <p class="transformation-after">Strengthened DSA skills, learned JavaScript and React, built habits of continuous learning.</p>
+            <p class="transformation-quote">The fellowship has been a great turning point for me. It helped me strengthen my Data Structures and Algorithms (DSA) skills through solving LeetCode problems, which boosted my problem-solving abilities. On the technical side, I got the chance to learn JavaScript and have also started learning React, which has expanded my skill set as a developer. Beyond the technical growth, the fellowship played a key role in helping me stay consistent, build discipline, and develop the habit of continuous learning.
+
+I also acknowledge that I could have made it even more beneficial and successful for myself, but at the end of the day, I can proudly say that at least I tried and gave my best effort — and that journey itself has been a big learning experience.</p>
+            <p class="transformation-attrib">- Muhammad Osama Khan</p>
+        </div>
+        <div class="transformation-card">
+            <p class="transformation-before">Knew MERN but lacked confidence and direction.</p>
+            <p class="transformation-after">Gained confidence through large projects and mentor guidance.</p>
+            <p class="transformation-quote">Fellowship helped me gain confidence in my skills. For example, before the fellowship I knew the MERN stack and had made some projects, but I wasn’t confident in my skills. After working on larger projects like the multivendor during the fellowship, my confidence in my skills increased a lot.
+
+Also, the guidance of a mentor really helped, because I didn’t have to waste time figuring out what to do next. For instance, after finishing the multivendor project, I didn't struggle with deciding what to learn/build next since the LMS project was already lined up. So yeah, mentor guidance also helped a lot.</p>
+            <p class="transformation-attrib">- Ehtesham Zahid</p>
+        </div>
+        <div class="transformation-card">
+            <p class="transformation-before">Low confidence in tech and DSA.</p>
+            <p class="transformation-after">Boosted confidence, reflected on life goals, learned MERN consistently.</p>
+            <p class="transformation-quote">This fellowship has had a very positive impact on my overall personality. It has been a great opportunity for me to work on myself and boost my confidence in tech and DSA. Moreover, it has allowed me to reflect on my goals in life and discover the hidden potential within me the belief that I can achieve anything if I truly want to. Overall, it has been a wonderful experience where I have learned many things about the MERN stack. It has also helped me become more consistent. A special thanks to my mentors, Memona and Zeeshan Bhai, for supervising my progress and keeping me motivated.</p>
+            <p class="transformation-attrib">- Hamna Tanveer</p>
+        </div>
+        <div class="transformation-card">
+            <p class="transformation-before">Fear and confusion starting LeetCode.</p>
+            <p class="transformation-after">Learned gradual approach, prioritized understanding over speed.</p>
+            <p class="transformation-quote">this fellowship has a great role in starting me up. I wanted to start leetcode but there was some confusion or fear I was unable to start things. but from sessions I learnt how to start gradually and in first it was difficult to think on my own but later I priotized my problem understanding and writing it's solution over my time. it sometime took 2 hrs even for some problems but I learned a lot.. 
+
+and I would definitely remember this summer.</p>
+            <p class="transformation-attrib">- Pakeeza Khalid</p>
+        </div>
+
+        <!-- Collective Stat Grid -->
+        <div class="v-space-l"></div>
+        <div class="collective-grid">
+            <div class="collective-card">
+                <div class="collective-number">442</div>
+                <div class="collective-label">TOTAL PROJECTS</div>
+            </div>
+            <div class="collective-card">
+                <div class="collective-number">8K</div>
+                <div class="collective-label">TOTAL LEETCODE</div>
+            </div>
+            <div class="collective-card">
+                <div class="collective-number">904</div>
+                <div class="collective-label">MINDSET TALKS</div>
+            </div>
+            <div class="collective-card">
+                <div class="collective-number">999</div>
+                <div class="collective-label">SPIRITUAL TALKS</div>
+            </div>
+        </div>
+        <div class="collective-summary">
+            <div class="summary-number">4.4</div>
+            <div class="summary-sub">Projects Per Fellow<br>100 Certified Fellows × Consistent Effort = Real Results</div>
+        </div>
+
+        <!-- Journey Pair -->
+        <div class="v-space-l"></div>
+        <div class="journey-pair">
+            <div class="journey-dark">
+                <div class="journey-number">529</div>
+                <div class="journey-label">ARTICLES READ</div>
+            </div>
+            <div class="journey-light">
+                <div class="journey-number">583</div>
+                <div class="journey-label">DINNER TALKS</div>
+            </div>
+        </div>
+        <div class="journey-pair">
+            <div class="journey-dark">
+                <div class="journey-number">999</div>
+                <div class="journey-label">SPIRITUAL TALKS</div>
+            </div>
+            <div class="journey-light">
+                <div class="journey-number">1,398</div>
+                <div class="journey-label">MOMENTS OF REFLECTION</div>
+            </div>
+        </div>
+
+        <!-- MERN Mastery -->
+        <div class="v-space-l"></div>
+        <div class="card">
+            <ul class="featured-projects">
+                <li class="featured-project">Real Estate Apps (Multiple Fellows): Full-stack with authentication, listings, and search.</li>
+                <li class="featured-project">Multivendor E-Commerce: Vendor management, payments, and real-time updates.</li>
+                <li class="featured-project">LMS Platforms: Course management, user roles, and progress tracking.</li>
+            </ul>
+        </div>
+
+        <!-- More Triumphs -->
+        <div class="v-space-l"></div>
+        <div class="testimonial">
+            <p class="testimonial-quote">I am very grateful to Dev Weekends and my senior mentors for providing this kind of learning, trust building, being confident and overall to be a better software engineer. This fellowship helped me a lot in my understanding and grinding skills. Better exposure to things to open up new ways. I am also very happy to remain in contact with my mentors for further any kind of help in life and this happens due to Dev Weekend Fellowship.</p>
+            <p class="testimonial-attrib">- Allah Rakha</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">This fellowship has been a transformative experience for me. It not only gave me access to valuable knowledge and mentorship but also pushed me out of my comfort zone to apply what I’ve learned in real-world situations. I’ve built meaningful connections with peers and mentors who constantly inspire me to aim higher. Most importantly, it helped me grow both personally and professionally—enhancing my confidence, sharpening my skills, and giving me a clearer sense of direction for my future goals.</p>
+            <p class="testimonial-attrib">- Ali Asad</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">1 - Because of weekly reporting I have now build discipline and now know how to plan my week.
+
+2 - I have a purpose now because of listening to Zeeshan Bhai , Ustad Nouman Ali Khan and daily thought writing and analyzing.
+
+3 - Finally got rid of some pretty bad habits.</p>
+            <p class="testimonial-attrib">- Jawad Ali</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">This fellowship has helped me grow from just knowing React to building complete projects with Next.js and MERN. It gave me structured learning, mentorship, and consistency in problem-solving. I also improved a lot in Data Structures & Algorithms, moving from 20 solved problems to over 120 on LeetCode.</p>
+            <p class="testimonial-attrib">- Marryam Abid</p>
+        </div>
+
+        <!-- Diverse Paths -->
+        <div class="v-space-l"></div>
+        <div class="testimonial">
+            <p class="testimonial-quote">This fellowship was really amazing but it didn't helped me because of my inconsistency and laziness.</p>
+            <p class="testimonial-attrib">- Zainab Gull</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">This fellowship helped me strengthen both my technical and problem-solving skills. I improved my understanding of Data Structures and Algorithms through regular LeetCode practice, and I also worked on real-world projects like a CRUD app, Real Estate platform, and LMS. Apart from technical growth, it also improved my consistency, discipline, and ability to learn new concepts faster</p>
+            <p class="testimonial-attrib">- Abdul Kreem Shah</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">It allowed me to solve DSA questions pattern wise. I did Full stack development. I learned about Engineering Mindset. Cleared a lot of doubts about tech in general but the most important thing this fellowship helped me with is It should me what I can be Remote Jobs, Software Engineering Roles, freelance etc</p>
+            <p class="testimonial-attrib">- Ali Abdullah</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">This fellowship has been a transformative journey for me. Working on the projects gave me hands-on learning, the mindful talks and mind writing sessions helped me gain clarity and focus, and solving Leetcode problems truly sharpened my problem-solving skills. Altogether, these experiences have not only strengthened my technical abilities but also boosted my confidence, resilience, and personal growth.</p>
+            <p class="testimonial-attrib">- Riha Shahzadi</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">A lot, This fellowship didn't just motivate me but also help me learn so much that i wouldn't have touched otherwise</p>
+            <p class="testimonial-attrib">- Sehrish Zarin</p>
+        </div>
+
+        <!-- Monument Success Rate -->
+        <div class="v-space-l"></div>
+        <div class="monument-success">
+            <div class="monument-number">59%</div>
+            <div class="monument-subhead">FELLOWSHIP SUCCESS PATHWAYS</div>
+            <div class="monument-support">From 800 Fellows → 100 Certified → Real Impact</div>
+            <div class="success-breakdown">
+                <div class="breakdown-card">
+                    <div class="breakdown-number">13</div>
+                    <div class="breakdown-label">JOBS</div>
+                </div>
+                <div class="breakdown-card">
+                    <div class="breakdown-number">17</div>
+                    <div class="breakdown-label">INTERNSHIPS</div>
+                </div>
+                <div class="breakdown-card">
+                    <div class="breakdown-number">16</div>
+                    <div class="breakdown-label">INTERVIEWS</div>
+                </div>
+                <div class="breakdown-card">
+                    <div class="breakdown-number">13</div>
+                    <div class="breakdown-label">FREELANCE</div>
+                </div>
+                <div class="breakdown-card">
+                    <div class="breakdown-number">16</div>
+                    <div class="breakdown-label">OPEN SOURCE</div>
+                </div>
+            </div>
+            <div class="monument-note">All metrics derived from 100 verified fellow responses. No exaggeration — pure authenticity.</div>
+        </div>
+
+        <!-- Placement Highlights -->
+        <div class="v-space-l"></div>
+        <div class="card">
+            <ul class="placement-list">
+                <li class="placement-item">Jobs: Asif Raza, Hussain Intzar, Muhammad Talha Waqar, Nimra Tariq, Fatima Zahid, Muhammad Usman Subhani, Syed Tabasum Ali Shah, Kamran haq, Zulkifal, Falak sher, Waseem Khan</li>
+                <li class="placement-item">Internships: Ghulame Bilal, Aiza Gazyani, Nimra Tariq, Pakeeza Khalid, Muhammad Usman Subhani, Nabeel Ahmed, Mahnoor Aslam, Shafiq Ur Rehman, Henry Anomah Yeboah, Yashfa, Kamran haq, Fatima Butt, Waseem Khan, Falak sher</li>
+                <li class="placement-item">Interviews: Asif Raza, Ghulame Bilal, Muhammad Abdullah, Abdul Rehman, Hussain Intzar, Muhammad Talha Waqar, Muhammad Ali Khan, Muhammad Usman Subhani, M TOQEER ZIA, Mahnoor Aslam, Yashfa, Raza Ur Rehman, Faisal Misbah, Muhamad Talha Waqar, Momina Bilal, Waseem Khan</li>
+            </ul>
+        </div>
+
+        <!-- Industry Benchmarks -->
+        <div class="v-space-l"></div>
+        <div class="card">
+            <p class="industry-benchmark">Fellows' 80 average sets a strong base; pros aim for 300-500 for top interviews.</p>
+            <p class="industry-benchmark">Against bootcamp norms of 79-96%, our 25% highlights genuine progress amid market realities.</p>
+            <p class="industry-benchmark">MERN mastery offers career flexibility, high demand, and problem-solving edge for full-stack roles.</p>
+        </div>
+
+        <!-- CTA Footer -->
+        <div class="cta">
+            <div class="cta-title">FELLOWSHIP 2026</div>
+            <div class="cta-sub">Applications Opening Soon</div>
+            <a class="cta-link" href="https://devweekends.com">devweekends.com</a>
+        </div>
+    </div>
+
+    <!-- Micro Footer -->
+    <footer class="micro-footer">
+        All metrics derived from 100 verified fellow responses. No exaggeration — pure authenticity.
+    </footer>
+</body>
+</html>
