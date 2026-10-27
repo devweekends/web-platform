@@ -358,11 +358,11 @@ export const videoStories: { name: string; role: string; url: string | null }[] 
     role: "How Dev Weekends members cracked GSoC, ESoC and more",
     url: "https://www.youtube.com/watch?v=eP25H9HX8D8",
   },
-  { name: "Muhammad Saqlain", role: "GSoC 2026, NumFOCUS", url: null },
-  { name: "Mateeb Haider", role: "GSoC 2026, FOSSASIA", url: null },
-  { name: "Muhammad Junaid Shaukat", role: "GSoC 2026, Apache Beam", url: null },
-  { name: "Aqib Nawab", role: "GSoC 2026, C2SI", url: null },
-  { name: "Kamran ul Haq", role: "GSoC 2026, FLARE", url: null },
+  { name: "Muhammad Saqlain", role: "GSoC 2026, NumFOCUS", url: "https://youtu.be/7mtCxDtcYvA" },
+  { name: "Mateeb Haider", role: "GSoC 2026, FOSSASIA", url: "https://youtu.be/VQHqeFUKvF8" },
+  { name: "Muhammad Junaid Shaukat", role: "GSoC 2026, Apache Beam", url: "https://youtu.be/6SfzvbiRspg" },
+  { name: "Aqib Nawab", role: "GSoC 2026, C2SI", url: "https://youtu.be/N_PP62MsaEE" },
+  { name: "Kamran ul Haq", role: "GSoC 2026, FLARE", url: "https://youtu.be/v01zfRuV9Vw" },
 ]
 
 export const voices = [
