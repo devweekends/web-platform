@@ -2,13 +2,14 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import GuidesClient from "./guidesClient";
+import { withSocial } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = withSocial({
   alternates: { canonical: "/guides" },
   title: "Guides",
   description:
     "Curated, practical guides by Dev Weekends on cracking tech roles, building habits, open source, and growing as an engineer.",
-};
+});
 
 export type Guide = {
   slug: string;

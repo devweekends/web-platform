@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
+import { blogPostingJsonLd, jsonLdString, withSocial } from "@/lib/seo";
 
 const guidesDir = path.join(process.cwd(), "content", "guides");
 
@@ -32,11 +33,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const guide = readGuide(slug);
   if (!guide) return { title: "Guide not found", robots: { index: false } };
-  return {
+  return withSocial({
     title: guide.data.title,
     description: guide.data.description ?? "",
     alternates: { canonical: `/guides/${slug}` },
-  };
+  });
 }
 
 const backLink =
@@ -72,9 +73,19 @@ export default async function GuidePage({
   const { data, content } = guide;
   const date = formatDate(data.date instanceof Date ? data.date.toISOString() : data.date);
   const meta = [data.author, data.readingTime, date].filter(Boolean);
+  const jsonLd = blogPostingJsonLd({
+    slug,
+    title: data.title,
+    description: data.description,
+    date: data.date,
+    image: data.image,
+    author: data.author,
+    folder: "guides",
+  });
 
   return (
     <main className="bg-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
       <div className={`${container} pb-20 pt-8 md:pb-24`}>
         <Link href="/guides" className={backLink}>
           <span aria-hidden="true" className="mr-2">&larr;</span>

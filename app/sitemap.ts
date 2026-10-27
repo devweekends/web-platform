@@ -35,6 +35,7 @@ const pages: Entry[] = [
   { path: '/ambassadors', changeFrequency: 'monthly', priority: 0.5 },
   { path: '/blog', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/guides', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/brand', changeFrequency: 'monthly', priority: 0.4 },
   { path: '/dsoc/projects', changeFrequency: 'weekly', priority: 0.6 },
 ]
 

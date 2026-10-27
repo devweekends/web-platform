@@ -2,12 +2,13 @@ import { ArrowUpRight } from "lucide-react"
 
 import { LINKS } from "@/components/home/data"
 import { Button, Card, Eyebrow, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
+import { withSocial } from "@/lib/seo"
 
-export const metadata = {
+export const metadata = withSocial({
   title: "Community",
   description: "Join the Dev Weekends community: Discord, WhatsApp groups, live sessions and the people who have done it before.",
   alternates: { canonical: "/community" },
-}
+})
 
 // The old page showed sample discussions, events and groups (invented names,
 // dates and member counts) with buttons that did nothing. This version only

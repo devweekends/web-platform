@@ -4,12 +4,13 @@ import { communityPartners, mailto, partners } from "@/components/home/data"
 import { LogoMark } from "@/components/home/logo-mark"
 import { SmartLink } from "@/components/home/smart-link"
 import { Button, Card, Eyebrow, PageHero, Panel, Section } from "@/components/site/page-kit"
+import { withSocial } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   alternates: { canonical: "/partners" },
   title: "Partners",
   description: "The organisations and communities helping Dev Weekends create access to meaningful learning opportunities.",
-}
+})
 
 const cyberiadRegistrationUrl =
   "https://cyberiadlabs.com/partner/ums1e7vdj3w8lm080hzlcr7xujrc0lyh5mvdot"

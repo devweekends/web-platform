@@ -1,3 +1,12 @@
+import type { Metadata } from "next"
+import { withSocial } from "@/lib/seo"
+
+export const metadata: Metadata = withSocial({
+  title: "API documentation",
+  description: "Where to find the machine-readable API description and health status for devweekends.com.",
+  alternates: { canonical: "/api-docs" },
+})
+
 export default function ApiDocsPage() {
   return (
     <section className="mx-auto max-w-3xl px-4 py-16">

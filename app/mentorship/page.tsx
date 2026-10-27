@@ -5,13 +5,14 @@ import { Voices } from "@/components/home/sections-bottom"
 import { Button, Card, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
 import { CardText, CheckList, DarkSteps, StatRow } from "@/components/site/program-blocks"
 import { MentorshipDialog } from "@/components/site/mentorship-dialog"
+import { withSocial } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   alternates: { canonical: "/mentorship" },
   title: "Mentorship",
   description:
     "Dev Weekends mentorship: a free 3-month program with a personal mentor, live coding sessions and job preparation. It runs all year, except while a fellowship is running.",
-}
+})
 
 const body = "mt-3 text-[15px] leading-[1.6] text-[#5C5C5C]"
 

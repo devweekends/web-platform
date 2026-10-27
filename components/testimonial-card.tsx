@@ -68,6 +68,7 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
                 src={thumbnailUrl}
                 alt=""
                 loading="lazy"
+                decoding="async"
                 className="absolute inset-0 h-full w-full object-cover opacity-80 grayscale transition group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none"
               />
               <span className="absolute inset-0 flex items-center justify-center">

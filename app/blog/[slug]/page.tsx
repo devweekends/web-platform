@@ -7,9 +7,19 @@ import Link from "next/link";
 import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
+import { SITE_NAME, blogPostingJsonLd, jsonLdString, withSocial } from "@/lib/seo";
 
 const backLink =
   "inline-flex min-h-11 items-center text-[15px] font-medium text-[#5C5C5C] transition-colors hover:text-[#0A0A0A]";
+
+export function generateStaticParams() {
+  const dir = path.join(process.cwd(), "content", "blog");
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => ({ slug: f.replace(/\.md$/, "") }));
+}
 
 export async function generateMetadata({
   params,
@@ -21,19 +31,22 @@ export async function generateMetadata({
   if (!fs.existsSync(filePath)) return { title: "Post not found", robots: { index: false } };
   const { data } = matter(fs.readFileSync(filePath, "utf-8"));
   const date = data.date ? new Date(data.date) : undefined;
-  return {
+  return withSocial({
     title: data.title,
     description: data.description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       type: "article",
+      siteName: SITE_NAME,
+      locale: "en_US",
       title: data.title,
       description: data.description,
       url: `/blog/${slug}`,
       publishedTime: date && !Number.isNaN(date.getTime()) ? date.toISOString() : undefined,
       images: data.image ? [{ url: data.image }] : undefined,
     },
-  };
+    twitter: data.image ? { images: [data.image] } : undefined,
+  });
 }
 
 export default async function BlogPost({
@@ -76,8 +89,17 @@ export default async function BlogPost({
   const fit: "cover" | "contain" =
     data.imageFit ?? (slug === "gsoc" ? "contain" : "cover");
 
+  const jsonLd = blogPostingJsonLd({
+    slug,
+    title: data.title,
+    description: data.description,
+    date: data.date,
+    image: data.image,
+  });
+
   return (
     <main className="bg-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
       <div className={`${container} pb-20 pt-8 md:pb-24`}>
         <Link href="/blog" className={backLink}>
           <span aria-hidden="true" className="mr-2">&larr;</span>

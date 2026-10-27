@@ -8,8 +8,12 @@ import Script from 'next/script'
 import { Analytics } from "@/components/analytics"
 import { SiteHeader } from "@/components/site-header"
 import { dwosiThemeScript } from "@/app/dwosi/theme"
+import { jsonLdString, siteJsonLd } from "@/lib/seo"
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
+
+// Without an id the tag would request gtag.js?id=undefined on every page view
+const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://devweekends.com'),
@@ -42,24 +46,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://devweekends.com",
     title: "Dev Weekends - Your Gateway to becoming a better Software Engineer",
     description: "Join a thriving community of students and tech enthusiasts learning, building, and growing together through weekend events and bootcamps.",
     siteName: "Dev Weekends",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Dev Weekends Community",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Dev Weekends - Your Gateway to becoming a better Software Engineer",
     description: "Join a thriving community of students and tech enthusiasts learning, building, and growing together through weekend events and bootcamps.",
-    images: ["/og-image.jpg"],
     creator: "@devweekends",
   },
   robots: {
@@ -73,41 +67,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: "your-google-site-verification",
-  },
-}
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Organization',
-      name: 'Dev Weekends',
-      url: 'https://devweekends.com',
-      logo: 'https://devweekends.com/favicons/android-chrome-512x512.png',
-      sameAs: [
-        'https://www.linkedin.com/company/devweekends/',
-        'https://www.instagram.com/devweekends',
-      ],
-    },
-    {
-      '@type': 'WebSite',
-      name: 'Dev Weekends',
-      url: 'https://devweekends.com',
-      description:
-        'Learning community for software engineers through events, mentorship, projects, and programs.',
-      publisher: {
-        '@type': 'Organization',
-        name: 'Dev Weekends',
-      },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: 'https://devweekends.com/sessions',
-        'query-input': 'required name=search_term_string',
-      },
-    },
-  ],
 }
 
 export default function RootLayout({
@@ -135,26 +94,30 @@ export default function RootLayout({
         <link rel="service-doc" type="text/html" href="/api-docs" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdString(siteJsonLd) }}
         />
         {/* DWOSI pages keep their own theme; apply a saved choice before paint */}
         <script dangerouslySetInnerHTML={{ __html: dwosiThemeScript }} />
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-            `,
-          }}
-        />
+        {gaId && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            />
+            <Script
+              id="google-analytics"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}');
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body className={inter.className}>
         {/* The site is white with black panels. Light is forced so a visitor's dark mode does not change it. */}
