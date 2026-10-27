@@ -1,177 +1,187 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Download, ExternalLink, FileCode, Presentation } from "lucide-react";
+import { Download, ExternalLink } from "lucide-react";
+
+import { Card, Eyebrow, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit";
 
 export const metadata = {
+  alternates: { canonical: "/brand" },
   title: "Brand Kit & Speaker Resources",
   description:
     "Download Dev Weekends logos and the official session slide template. Designed for speakers, mentors, and community partners.",
 };
 
-const logos = [
+type Logo = {
+  name: string;
+  description: string;
+  file: string;
+  download: string;
+  /** JPG files are square with plenty of white space, so they are zoomed to fill the tile */
+  kind: "jpg" | "png";
+  tile: string;
+};
+
+const logos: Logo[] = [
   {
-    name: "Logo on Dark Badge",
-    description: "White wordmark on a black circle. Use on light or dark backgrounds.",
+    name: "Logo on dark badge",
+    description: "White wordmark on a black circle. Works on light or dark backgrounds.",
     file: "/brand/dw-logo-white.jpg",
     download: "dev-weekends-logo-white.jpg",
-    previewClass: "bg-muted/40",
+    kind: "jpg",
+    tile: "bg-white",
   },
   {
-    name: "Black Wordmark",
-    description: "Solid black wordmark on a transparent background. Use on light surfaces only.",
+    name: "Black wordmark",
+    description: "Black wordmark on white. For light surfaces.",
     file: "/brand/dw-logo-black.jpg",
     download: "dev-weekends-logo-black.jpg",
-    previewClass: "bg-background border",
+    kind: "jpg",
+    tile: "bg-white",
+  },
+  {
+    name: "Black wordmark, transparent",
+    description: "Black wordmark with no background. For light surfaces.",
+    file: "/brand/dw-wordmark-black.png",
+    download: "dev-weekends-wordmark-black.png",
+    kind: "png",
+    tile: "bg-[#F7F7F7]",
+  },
+  {
+    name: "White wordmark, transparent",
+    description: "White wordmark with no background. For dark surfaces.",
+    file: "/brand/dw-wordmark-white.png",
+    download: "dev-weekends-wordmark-white.png",
+    kind: "png",
+    tile: "bg-[#0A0A0A]",
   },
 ];
 
+const guidelines = [
+  "Keep clear space around the logo equal to the height of the wordmark.",
+  "Do not stretch, recolor, or add effects to the logo.",
+  "Use the dark badge version when the background is busy or photographic.",
+];
+
+const focusRing =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A0A0A]";
+const outlineBtn = `inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[#D4D4D4] px-5 text-[15px] font-semibold text-[#0A0A0A] transition-colors hover:bg-[#F7F7F7] ${focusRing}`;
+
 export default function BrandKitPage() {
   return (
-    <div className="container mx-auto px-4 py-16 lg:py-24 max-w-6xl">
-      <div className="mb-14">
-        <p className="text-xs font-bold uppercase tracking-[3px] text-muted-foreground mb-3">
-          Artifacts
-        </p>
-        <h1 className="text-4xl lg:text-5xl font-black tracking-tight mb-4">
-          Brand Kit & Speaker Resources
-        </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-          Everything you need to represent Dev Weekends consistently. Logos for posts and
-          decks, plus the official slide template for community sessions.
-        </p>
-      </div>
+    <>
+      <PageHero
+        eyebrow="Brand kit"
+        title="Brand kit and speaker resources."
+        intro="Logos for posts and decks, plus the official slide template for community sessions. Made for speakers, mentors and partners."
+      />
 
-      <section className="mb-20">
-        <div className="flex items-end justify-between mb-6">
-          <div>
-            <h2 className="text-2xl font-bold">Logos</h2>
-            <p className="text-sm text-muted-foreground mt-1">
-              Right-click to copy, or use the download button.
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <Section>
+        <SectionHeading
+          eyebrow="Logos"
+          title="Download the logo."
+          intro="Pick the version that fits your background."
+        />
+        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {logos.map((logo) => (
-            <div
-              key={logo.name}
-              className="border border-border bg-card overflow-hidden flex flex-col"
-            >
-              <div
-                className={`relative h-64 flex items-center justify-center ${logo.previewClass}`}
-              >
-                <Image
-                  src={logo.file}
-                  alt={logo.name}
-                  width={220}
-                  height={220}
-                  className="object-contain max-h-48 w-auto"
-                />
-              </div>
-              <div className="p-6 border-t border-border flex flex-col gap-4">
-                <div>
-                  <h3 className="font-bold mb-1">{logo.name}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {logo.description}
-                  </p>
+            <li key={logo.file}>
+              <Card tone="bordered" className="h-full overflow-hidden !p-0">
+                <div className={`relative flex h-52 items-center justify-center overflow-hidden ${logo.tile}`}>
+                  {logo.kind === "jpg" ? (
+                    <Image
+                      src={logo.file}
+                      alt={logo.name}
+                      fill
+                      sizes="(min-width: 1024px) 285px, (min-width: 640px) 50vw, 100vw"
+                      className="scale-[1.6] object-contain"
+                    />
+                  ) : (
+                    <Image src={logo.file} alt={logo.name} width={246} height={180} className="h-28 w-auto" />
+                  )}
                 </div>
-                <a
-                  href={logo.file}
-                  download={logo.download}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-foreground text-background text-xs font-semibold uppercase tracking-[1px] hover:opacity-90 transition-opacity"
-                >
-                  <Download className="w-4 h-4" />
-                  Download
-                </a>
-              </div>
-            </div>
+                <div className="flex flex-1 flex-col gap-4 border-t border-[#E6E6E6] p-6">
+                  <div>
+                    <h3 className="text-[17px] font-semibold tracking-[-0.01em]">{logo.name}</h3>
+                    <p className="mt-1.5 text-sm leading-[1.6] text-[#5C5C5C]">{logo.description}</p>
+                  </div>
+                  <a href={logo.file} download={logo.download} className={`${outlineBtn} mt-auto`}>
+                    <Download className="h-4 w-4" aria-hidden="true" />
+                    Download
+                  </a>
+                </div>
+              </Card>
+            </li>
           ))}
-        </div>
-      </section>
+        </ul>
+      </Section>
 
-      <section className="mb-20">
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold">Session Slide Template</h2>
-          <p className="text-sm text-muted-foreground mt-1">
-            The official deck speakers use for community sessions. Open in a browser to
-            preview, then duplicate into Google Slides, Keynote, or PowerPoint.
-          </p>
-        </div>
-
-        <div className="border border-border bg-card grid grid-cols-1 lg:grid-cols-5 overflow-hidden">
-          <div className="lg:col-span-3 bg-[#070707] flex items-center justify-center p-10 min-h-[280px]">
-            <div className="text-center text-white/90 max-w-sm">
-              <Presentation className="w-12 h-12 mx-auto mb-4 text-white/70" />
-              <p className="text-sm uppercase tracking-[3px] text-white/50 mb-2">
-                Dev Weekends
-              </p>
-              <p className="text-2xl font-black mb-3">Session Template v2</p>
-              <p className="text-sm text-white/60 leading-relaxed">
-                16:9 dark deck with cover, agenda, two-column, full-bleed, and Q&amp;A
-                slides ready to use.
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:col-span-2 p-8 flex flex-col gap-5 border-t lg:border-t-0 lg:border-l border-border">
-            <div>
-              <h3 className="font-bold mb-2 flex items-center gap-2">
-                <FileCode className="w-4 h-4" />
-                session-template.html
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Self-contained HTML deck. Open in any modern browser. No build step
-                needed.
-              </p>
-            </div>
-
-            <ul className="text-sm space-y-2 text-muted-foreground">
-              <li>9 pre-built slide layouts</li>
-              <li>Inter + Anton typography baked in</li>
-              <li>Edit text directly in the HTML</li>
+      <Panel>
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <Eyebrow onDark>Session slide template</Eyebrow>
+            <h2 className="mt-3.5 text-[clamp(32px,4vw,52px)] font-semibold leading-[1.05] tracking-[-0.04em]">
+              Session Template v2.
+            </h2>
+            <p className="mt-4 max-w-[46ch] text-[17px] leading-[1.6] text-[#C7C7C7]">
+              The official deck speakers use for community sessions. Preview it in a browser, then duplicate it into Google
+              Slides, Keynote, or PowerPoint.
+            </p>
+            <ul className="mt-6 max-w-[46ch] divide-y divide-[#262626] border-y border-[#262626] text-[15px] text-[#C7C7C7]">
+              <li className="py-3">9 pre-built slide layouts</li>
+              <li className="py-3">Inter and Anton typography baked in</li>
+              <li className="py-3">Self-contained HTML. Edit text directly, no build step</li>
             </ul>
-
-            <div className="flex flex-col gap-3 mt-auto">
+            <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="/brand/session-template.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-foreground text-background text-xs font-semibold uppercase tracking-[1px] hover:opacity-90 transition-opacity"
+                className={`inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-white px-7 py-4 text-base font-semibold text-[#0A0A0A] transition-colors hover:bg-[#E6E6E6] ${focusRing} focus-visible:outline-white`}
               >
-                <ExternalLink className="w-4 h-4" />
-                Preview in Browser
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                Preview in browser
               </a>
               <a
                 href="/brand/session-template.html"
                 download="devweekends-session-template.html"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-border text-xs font-semibold uppercase tracking-[1px] hover:bg-muted transition-colors"
+                className={`inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-[#3D3D3D] px-7 py-4 text-base font-semibold text-white transition-colors hover:bg-white/10 ${focusRing} focus-visible:outline-white`}
               >
-                <Download className="w-4 h-4" />
+                <Download className="h-4 w-4" aria-hidden="true" />
                 Download HTML
               </a>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="border-t border-border pt-10">
-        <h2 className="text-lg font-bold mb-3">Usage Guidelines</h2>
-        <ul className="text-sm text-muted-foreground space-y-2 max-w-2xl leading-relaxed">
-          <li>Keep clear space around the logo equal to the height of the wordmark.</li>
-          <li>Do not stretch, recolor, or add effects to the logo.</li>
-          <li>Use the dark badge version when the background is busy or photographic.</li>
-          <li>
-            Questions about brand usage? Reach out at{" "}
-            <Link
-              href="mailto:devweekends@gmail.com"
-              className="underline hover:text-foreground"
-            >
-              devweekends@gmail.com
-            </Link>
-            .
-          </li>
+          <div className="flex aspect-video flex-col items-center justify-center rounded-[20px] border border-[#262626] bg-[#161616] p-8 text-center">
+            <Image src="/brand/dw-wordmark-white.png" alt="Dev Weekends" width={246} height={180} className="h-24 w-auto" />
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-[#A3A3A3]">
+              16:9 dark deck. Cover, agenda, two-column, full-bleed and Q&amp;A slides.
+            </p>
+          </div>
+        </div>
+      </Panel>
+
+      <Section>
+        <SectionHeading eyebrow="Usage" title="Usage guidelines." />
+        <ul className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {guidelines.map((rule, index) => (
+            <li key={rule}>
+              <Card tone="gray" className="h-full">
+                <span className="text-[13px] font-semibold tracking-[0.14em] text-[#5C5C5C]">0{index + 1}</span>
+                <p className="mt-3 text-[17px] leading-[1.6] text-[#262626]">{rule}</p>
+              </Card>
+            </li>
+          ))}
         </ul>
-      </section>
-    </div>
+        <p className="mt-8 text-[17px] text-[#404040]">
+          Questions about brand usage? Write to{" "}
+          <a
+            href="mailto:info@devweekends.com"
+            className={`font-semibold text-[#0A0A0A] underline underline-offset-4 hover:text-[#404040] ${focusRing}`}
+          >
+            info@devweekends.com
+          </a>
+          .
+        </p>
+      </Section>
+    </>
   );
 }

@@ -19,7 +19,7 @@ This project powers the public site and internal portals for the Dev Weekends co
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [devweekends@gmail.com](mailto:devweekends@gmail.com).
+This project and everyone participating in it is governed by our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [info@devweekends.com](mailto:info@devweekends.com).
 
 ## Getting Started
 
@@ -450,7 +450,7 @@ We welcome contributions to improve our testing infrastructure!
 
 - 💬 **Issues** – For bugs and feature requests
 - 🔗 **[Community](https://devweekends.com/links)** – Join our community channels
-- 📧 **Email** – [devweekends@gmail.com](mailto:devweekends@gmail.com) for sensitive matters
+- 📧 **Email** – [info@devweekends.com](mailto:info@devweekends.com) for sensitive matters
 
 ### Tips
 

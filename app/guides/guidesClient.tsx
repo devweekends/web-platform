@@ -3,68 +3,62 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import type { Guide } from "./page";
-import {
-  BookOpen,
-  Rocket,
-  Sparkles,
-  GitBranch,
-  Brain,
-  ArrowUpRight,
-  type LucideIcon,
-} from "lucide-react";
+import { formatDate } from "@/components/content/format-date";
+import { Eyebrow, PageHero, Section } from "@/components/site/page-kit";
 
-/* ---------------- SWIPER ---------------- */
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+const cardHover =
+  "transition duration-200 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-1";
+const focusRing =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A0A0A]";
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-const ICONS: Record<string, LucideIcon> = {
-  BookOpen,
-  Rocket,
-  Sparkles,
-  GitBranch,
-  Brain,
-};
-
-function iconFor(name?: string): LucideIcon {
-  return (name && ICONS[name]) || BookOpen;
+function metaFor(guide: Guide) {
+  return [guide.readingTime, formatDate(guide.date)].filter(Boolean).join(" · ");
 }
 
 function GuideCard({ guide }: { guide: Guide }) {
-  const Icon = iconFor(guide.icon);
+  const meta = metaFor(guide);
   return (
     <Link
       href={`/guides/${guide.slug}`}
-      className="group flex h-full flex-col rounded-2xl border border-border bg-card p-7 transition hover:border-foreground hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
+      className={`group flex h-full flex-col rounded-[20px] border border-[#E6E6E6] bg-white p-7 ${cardHover} ${focusRing}`}
     >
-      <div className="mb-6 flex items-center justify-between">
-        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#22C55E]/10 text-[#16A34A]">
-          <Icon className="h-5 w-5" />
-        </span>
-        <ArrowUpRight className="h-5 w-5 text-muted-foreground transition group-hover:text-foreground" />
-      </div>
-
-      <p className="mb-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-        {guide.category}
-      </p>
-
-      <h3 className="mb-3 text-xl font-semibold leading-snug text-foreground">
+      <Eyebrow>{guide.category}</Eyebrow>
+      <h2 className="mt-4 text-[22px] font-semibold leading-[1.25] tracking-[-0.02em] text-[#0A0A0A]">
         {guide.title}
-      </h3>
-
+      </h2>
       {guide.description && (
-        <p className="mb-6 line-clamp-4 text-sm leading-relaxed text-muted-foreground">
-          {guide.description}
-        </p>
+        <p className="mt-3 line-clamp-3 text-[15px] leading-[1.65] text-[#5C5C5C]">{guide.description}</p>
       )}
+      <div className="mt-auto pt-6">
+        {meta && <p className="mb-3 text-[13px] text-[#8A8A8A]">{meta}</p>}
+        <span className="inline-flex min-h-11 items-center text-[15px] font-semibold text-[#0A0A0A]">
+          Read guide
+          <span aria-hidden="true" className="ml-2 transition-transform motion-safe:group-hover:translate-x-1">&rarr;</span>
+        </span>
+      </div>
+    </Link>
+  );
+}
 
-      <div className="mt-auto flex items-center gap-2 text-xs text-muted-foreground">
-        {guide.readingTime && <span>{guide.readingTime}</span>}
-        {guide.readingTime && guide.author && <span>•</span>}
-        {guide.author && <span>{guide.author}</span>}
+function FeaturedGuide({ guide }: { guide: Guide }) {
+  const meta = metaFor(guide);
+  return (
+    <Link
+      href={`/guides/${guide.slug}`}
+      className={`group block rounded-[28px] bg-[#F7F7F7] p-8 md:p-12 ${cardHover} ${focusRing}`}
+    >
+      <Eyebrow>Featured guide</Eyebrow>
+      <h2 className="mt-4 max-w-[24ch] text-[clamp(28px,3.6vw,44px)] font-semibold leading-[1.1] tracking-[-0.04em] text-[#0A0A0A]">
+        {guide.title}
+      </h2>
+      {guide.description && (
+        <p className="mt-5 max-w-[62ch] text-[17px] leading-[1.65] text-[#404040]">{guide.description}</p>
+      )}
+      <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
+        <span className="inline-flex min-h-[52px] items-center rounded-xl bg-[#0A0A0A] px-7 text-base font-semibold text-white transition-colors group-hover:bg-[#262626]">
+          Read the guide
+        </span>
+        {meta && <span className="text-[14px] text-[#5C5C5C]">{meta}</span>}
       </div>
     </Link>
   );
@@ -81,151 +75,78 @@ export default function GuidesClient({
   const [activeCategory, setActiveCategory] = useState<string>(ALL);
   const tabs = [ALL, ...categories];
 
-  const featured = useMemo(
-    () =>
-      guides
-        .filter((g) => g.featured)
-        .sort((a, b) => (a.order ?? 999) - (b.order ?? 999)),
+  const sorted = useMemo(
+    () => [...guides].sort((a, b) => (a.order ?? 999) - (b.order ?? 999)),
     [guides]
   );
+
+  const featured = useMemo(() => sorted.find((g) => g.featured), [sorted]);
 
   const countFor = (category: string) =>
     category === ALL
       ? guides.length
       : guides.filter((g) => g.category === category).length;
 
+  const showFeatured = activeCategory === ALL && Boolean(featured);
+
   const visible = useMemo(
     () =>
-      guides
-        .filter((g) => activeCategory === ALL || g.category === activeCategory)
-        .sort((a, b) => (a.order ?? 999) - (b.order ?? 999)),
-    [guides, activeCategory]
+      sorted.filter(
+        (g) =>
+          (activeCategory === ALL || g.category === activeCategory) &&
+          !(showFeatured && g.slug === featured?.slug)
+      ),
+    [sorted, activeCategory, showFeatured, featured]
   );
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-6xl px-6 py-24">
-        {/* ================= HERO ================= */}
-        <header className="mb-20 max-w-2xl">
-          <p className="mb-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            Featured by Dev Weekends
-          </p>
+    <main className="bg-white text-[#0A0A0A]">
+      <PageHero
+        eyebrow="By Dev Weekends"
+        title="Guides"
+        intro="Practical, honest guides written by Dev Weekends and used across the community. Pick a path, take it slow, and let small wins add up."
+      />
 
-          <h1 className="mb-8 font-serif text-6xl leading-tight md:text-7xl">
-            Guides
-          </h1>
+      <Section className="space-y-10">
+        {showFeatured && featured && <FeaturedGuide guide={featured} />}
 
-          <p className="text-lg text-muted-foreground">
-            Practical, honest guides written by Dev Weekends and used across the
-            community. Pick a path, take it slow, and let small wins add up.
-          </p>
-        </header>
-
-        {/* ================= FEATURED ================= */}
-        {featured.length > 0 && (
-          <section className="mb-24">
-            <h2 className="mb-10 text-sm uppercase tracking-widest text-muted-foreground">
-              Featured
-            </h2>
-
-            <div className="group relative">
-              <Swiper
-                modules={[Navigation, Pagination]}
-                spaceBetween={20}
-                slidesPerView={1}
-                loop={featured.length > 2}
-                navigation={{
-                  nextEl: ".guides-next",
-                  prevEl: ".guides-prev",
-                }}
-                pagination={{ clickable: true }}
-                breakpoints={{
-                  640: { slidesPerView: 1 },
-                  768: { slidesPerView: 2 },
-                  1024: { slidesPerView: 3 },
-                }}
-                className="guides-swiper"
-              >
-                {featured.map((guide) => (
-                  <SwiperSlide key={guide.slug} className="h-auto">
-                    <div className="h-full pb-2">
-                      <GuideCard guide={guide} />
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
+        <div role="group" aria-label="Filter guides by category" className="flex flex-wrap gap-2">
+          {tabs.map((category) => {
+            const active = activeCategory === category;
+            return (
               <button
-                aria-label="Previous"
-                className="guides-prev absolute -left-5 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background shadow-md transition group-hover:opacity-100 md:flex md:opacity-0"
+                key={category}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setActiveCategory(category)}
+                className={`min-h-11 rounded-full border px-5 text-[14px] font-semibold transition-colors ${focusRing} ${
+                  active
+                    ? "border-[#0A0A0A] bg-[#0A0A0A] text-white"
+                    : "border-[#D4D4D4] bg-white text-[#404040] hover:bg-[#F7F7F7]"
+                }`}
               >
-                ‹
+                {category} ({countFor(category)})
               </button>
-              <button
-                aria-label="Next"
-                className="guides-next absolute -right-5 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background shadow-md transition group-hover:opacity-100 md:flex md:opacity-0"
-              >
-                ›
-              </button>
-            </div>
-          </section>
-        )}
-
-        {/* ================= TABS ================= */}
-        <div className="mb-12 flex flex-wrap gap-x-8 gap-y-3 border-b border-border">
-          {tabs.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`pb-3 text-sm uppercase tracking-wide transition ${
-                activeCategory === category
-                  ? "border-b-2 border-foreground text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {category} ({countFor(category)})
-            </button>
-          ))}
+            );
+          })}
         </div>
 
-        {/* ================= GRID ================= */}
         {visible.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-border px-6 py-16 text-center">
-            <p className="text-muted-foreground">
-              No guides here yet. New {activeCategory} guides are on the way.
-            </p>
-          </div>
+          showFeatured ? null : (
+            <div className="rounded-[20px] border border-dashed border-[#D4D4D4] px-6 py-16 text-center">
+              <p className="text-[#5C5C5C]">
+                No guides here yet. New {activeCategory === ALL ? "" : `${activeCategory} `}guides are on the way.
+              </p>
+            </div>
+          )
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {visible.map((guide) => (
               <GuideCard key={guide.slug} guide={guide} />
             ))}
           </div>
         )}
-      </div>
-
-      {/* ================= SWIPER FIX ================= */}
-      <style jsx global>{`
-        .guides-swiper {
-          padding-bottom: 70px !important;
-        }
-        .guides-swiper .swiper-slide {
-          height: auto;
-        }
-        .guides-swiper .swiper-pagination {
-          bottom: 10px !important;
-        }
-        .guides-swiper .swiper-pagination-bullet {
-          width: 8px;
-          height: 8px;
-          opacity: 0.4;
-          background: hsl(var(--foreground));
-        }
-        .guides-swiper .swiper-pagination-bullet-active {
-          opacity: 1;
-          background: #22c55e;
-        }
-      `}</style>
-    </div>
+      </Section>
+    </main>
   );
 }

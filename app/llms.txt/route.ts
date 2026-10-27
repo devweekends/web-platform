@@ -10,13 +10,12 @@ Robots: https://devweekends.com/robots.txt
 
 ## Primary Pages
 - Home: https://devweekends.com/
-- About: https://devweekends.com/about
+- Team and story: https://devweekends.com/team
 - Sessions: https://devweekends.com/sessions
 - Community: https://devweekends.com/community
 - Links: https://devweekends.com/links
 - Projects: https://devweekends.com/projects
 - Mentorship: https://devweekends.com/mentorship
-- Careers: https://devweekends.com/careers
 
 ## Machine-Readable Discovery
 - API Catalog (RFC 9727): https://devweekends.com/.well-known/api-catalog

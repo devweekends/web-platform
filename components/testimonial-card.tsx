@@ -1,13 +1,11 @@
 'use client';
 
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { PlayCircle, Quote } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from 'react';
+import { Play } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { getVideoEmbed } from '@/lib/video-url';
 
-interface Testimonial {
+export interface Testimonial {
   _id: string;
   name: string;
   role: string;
@@ -18,6 +16,7 @@ interface Testimonial {
   imageUrl?: string;
   type: 'text' | 'video';
   program?: string;
+  createdAt?: string;
 }
 
 function formatProgram(program?: string) {
@@ -28,13 +27,27 @@ function formatProgram(program?: string) {
     .join(' ');
 }
 
-export function TestimonialCard({
-  testimonial,
-  onDialogOpenChange,
-}: {
-  testimonial: Testimonial;
-  onDialogOpenChange?: (open: boolean) => void;
-}) {
+const cardBase =
+  'group flex h-full min-h-[340px] w-full flex-col overflow-hidden rounded-[20px] border border-[#E6E6E6] bg-white text-left transition duration-200 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0A0A0A]';
+const label = 'text-xs font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]';
+const dialogShell =
+  'block max-h-[90vh] overflow-y-auto rounded-[24px] border-[#E6E6E6] bg-white p-0 text-[#0A0A0A] sm:rounded-[24px]';
+
+/** Name, role, program and "before" lines, shared by the card and its dialog */
+function Person({ testimonial, program }: { testimonial: Testimonial; program: string | null }) {
+  return (
+    <span className="block">
+      {program && <span className={`${label} block`}>{program}</span>}
+      <span className={`${program ? 'mt-1.5' : ''} block text-[17px] font-semibold tracking-[-0.01em] text-[#0A0A0A]`}>
+        {testimonial.name}
+      </span>
+      <span className="mt-0.5 block text-sm text-[#5C5C5C]">{testimonial.role}</span>
+      {testimonial.before && <span className="mt-1 block text-sm text-[#5C5C5C]">Before: {testimonial.before}</span>}
+    </span>
+  );
+}
+
+export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isTextOpen, setIsTextOpen] = useState(false);
   const program = formatProgram(testimonial.program);
@@ -44,44 +57,32 @@ export function TestimonialCard({
 
   if (testimonial.type === 'video' && video) {
     return (
-      <Dialog open={isVideoOpen} onOpenChange={(open) => {
-        setIsVideoOpen(open);
-        onDialogOpenChange?.(open);
-      }}>
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
         <DialogTrigger asChild>
-          <Card className="group h-[350px] cursor-pointer overflow-hidden border-muted/60 transition-all duration-300 hover:shadow-lg">
-            <div className="relative aspect-video w-full overflow-hidden bg-black">
+          <button type="button" className={cardBase} aria-label={`Play video story: ${testimonial.name}`}>
+            <span className="relative block aspect-video w-full overflow-hidden bg-[#0A0A0A]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={thumbnailUrl}
-                alt={testimonial.name}
-                className="h-full w-full object-cover opacity-80 transition-opacity group-hover:opacity-60"
+                alt=""
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover opacity-80 grayscale transition group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <PlayCircle className="w-12 h-12 text-white opacity-80 group-hover:scale-110 transition-transform duration-300" />
-              </div>
-              <Badge className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 border-none text-white">
-                {video.provider}
-              </Badge>
-            </div>
-            <CardHeader className="p-4 pb-2 space-y-1">
-              <div>
-                <h3 className="font-semibold leading-tight">{testimonial.name}</h3>
-                <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-                {program && <Badge variant="secondary" className="mt-2 text-[10px]">{program}</Badge>}
-                {testimonial.before && (
-                  <p className="text-xs text-muted-foreground">Before: {testimonial.before}</p>
-                )}
-              </div>
-            </CardHeader>
-            <CardContent className="p-4 pt-2">
-              <p className="text-sm text-muted-foreground line-clamp-2 italic">
-                "{testimonial.content}"
-              </p>
-            </CardContent>
-          </Card>
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#0A0A0A] shadow-lg">
+                  <Play className="ml-0.5 h-5 w-5 fill-current" aria-hidden="true" />
+                </span>
+              </span>
+            </span>
+            <span className="flex flex-1 flex-col gap-3 p-5">
+              <Person testimonial={testimonial} program={program} />
+              <span className="line-clamp-2 text-[15px] leading-[1.6] text-[#404040]">&ldquo;{testimonial.content}&rdquo;</span>
+            </span>
+          </button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-3xl p-0 overflow-hidden bg-black border-none">
-          <div className="relative aspect-video w-full">
+        <DialogContent className={`${dialogShell} sm:max-w-3xl`}>
+          <DialogTitle className="sr-only">{`${testimonial.name}'s ${video.provider} video`}</DialogTitle>
+          <div className="relative aspect-video w-full bg-[#0A0A0A]">
             <iframe
               width="100%"
               height="100%"
@@ -93,21 +94,12 @@ export function TestimonialCard({
               className="absolute inset-0"
             />
           </div>
-          <div className="p-4 bg-background">
-            <div className="mb-2">
-              <h3 className="font-semibold">{testimonial.name}</h3>
-              <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-              {program && <Badge variant="secondary" className="mt-2 text-[10px]">{program}</Badge>}
-              {testimonial.before && (
-                <p className="text-xs text-muted-foreground">Before: {testimonial.before}</p>
-              )}
-            </div>
-            <p className="text-sm text-muted-foreground italic">"{testimonial.content}"</p>
-            {testimonial.cta && (
-              <p className="mt-3 text-sm font-semibold text-foreground">
-                {testimonial.cta}
-              </p>
-            )}
+          <div className="space-y-4 p-6 sm:p-8">
+            <Person testimonial={testimonial} program={program} />
+            <DialogDescription className="whitespace-pre-wrap text-[15px] leading-[1.7] text-[#404040]">
+              &ldquo;{testimonial.content}&rdquo;
+            </DialogDescription>
+            {testimonial.cta && <p className="text-[15px] font-semibold text-[#0A0A0A]">{testimonial.cta}</p>}
           </div>
         </DialogContent>
       </Dialog>
@@ -115,39 +107,30 @@ export function TestimonialCard({
   }
 
   return (
-    <Dialog open={isTextOpen} onOpenChange={(open) => {
-      setIsTextOpen(open);
-      onDialogOpenChange?.(open);
-    }}>
+    <Dialog open={isTextOpen} onOpenChange={setIsTextOpen}>
       <DialogTrigger asChild>
-        <button type="button" className="block w-full rounded-lg border-0 bg-transparent p-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" aria-label={`Read ${testimonial.name}'s full story`}>
-          <Card className="h-[350px] overflow-hidden border-muted/60 transition-all duration-300 hover:shadow-lg">
-            <CardContent className="flex h-full flex-col gap-3 p-5">
-              <Quote className="w-8 h-8 text-primary/20" />
-              <p className="line-clamp-5 flex-1 text-muted-foreground italic leading-relaxed">
-                "{testimonial.content}"
-              </p>
-              <div className="mt-auto border-t pt-4">
-                <h3 className="text-sm font-semibold">{testimonial.name}</h3>
-                <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-                {program && <Badge variant="secondary" className="mt-2 text-[10px]">{program}</Badge>}
-                {testimonial.before && (
-                  <p className="text-xs text-muted-foreground">Before: {testimonial.before}</p>
-                )}
-              </div>
-            </CardContent>
-          </Card>
+        <button type="button" className={`${cardBase} p-7`} aria-label={`Read ${testimonial.name}'s full story`}>
+          <span className="mb-5 line-clamp-[8] text-[17px] leading-[1.6] text-[#262626]">&ldquo;{testimonial.content}&rdquo;</span>
+          <span className="mt-auto block w-full border-t border-[#E6E6E6] pt-[18px]">
+            <Person testimonial={testimonial} program={program} />
+          </span>
         </button>
       </DialogTrigger>
-      <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-xl">
-        <DialogHeader>
-          <DialogTitle>{testimonial.name}</DialogTitle>
-          <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-        </DialogHeader>
-        {program && <Badge variant="secondary" className="w-fit">{program}</Badge>}
-        {testimonial.before && <p className="text-sm text-muted-foreground">Before: {testimonial.before}</p>}
-        <p className="whitespace-pre-wrap leading-relaxed">"{testimonial.content}"</p>
-        {testimonial.cta && <p className="font-semibold">{testimonial.cta}</p>}
+      <DialogContent className={`${dialogShell} p-6 sm:max-w-xl sm:p-8`}>
+        <div className="space-y-5">
+          <div>
+            <DialogTitle className="text-[26px] font-semibold leading-tight tracking-[-0.03em] text-[#0A0A0A]">
+              {testimonial.name}
+            </DialogTitle>
+            <p className="mt-1 text-sm text-[#5C5C5C]">{testimonial.role}</p>
+            {program && <p className={`${label} mt-3`}>{program}</p>}
+            {testimonial.before && <p className="mt-1 text-sm text-[#5C5C5C]">Before: {testimonial.before}</p>}
+          </div>
+          <DialogDescription className="whitespace-pre-wrap text-[17px] leading-[1.7] text-[#262626]">
+            &ldquo;{testimonial.content}&rdquo;
+          </DialogDescription>
+          {testimonial.cta && <p className="text-[15px] font-semibold text-[#0A0A0A]">{testimonial.cta}</p>}
+        </div>
       </DialogContent>
     </Dialog>
   );

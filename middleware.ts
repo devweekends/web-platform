@@ -46,11 +46,9 @@ export async function middleware(request: NextRequest) {
     return NextResponse.rewrite(markdownUrl);
   }
 
-  // Redirect root to our-story page
-  if (path === '/') {
-    return withDiscoveryHeaders(
-      NextResponse.redirect(new URL('/our-story', request.url)),
-    );
+  // About and Our story are now one page
+  if (path === '/about' || path === '/our-story') {
+    return NextResponse.redirect(new URL('/team', request.url), 308);
   }
 
   const token = request.cookies.get('admin-token')?.value;
@@ -175,7 +173,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (path === '/our-story') {
+  if (path === '/team') {
     return withDiscoveryHeaders(NextResponse.next());
   }
 

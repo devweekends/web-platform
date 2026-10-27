@@ -14,7 +14,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const routes = [
-    { href: "/about", label: "About" },
+    { href: "/team", label: "Team" },
     { href: "/mindmaster", label: "MindMaster" },
     { href: "/careers", label: "Careers" },
     { href: "https://resources.devweekends.com", label: "Resources", external: true },
@@ -43,7 +43,7 @@ export default function Navbar() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center">
-            <Link href="/our-story" className="flex items-center space-x-2">
+            <Link href="/team" className="flex items-center space-x-2">
               <span className="sm:inline-block text-[1.1rem] sm:text-[1.2rem] font-bold tracking-[-0.015em] leading-none">
                 Dev Weekends
               </span>

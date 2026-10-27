@@ -15,7 +15,7 @@
   
   <!-- Branding -->
   <text x="60" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#18181B" letter-spacing="3">DEV WEEKENDS</text>
-  <text x="60" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="2">EMPOWERING ENGINEERS SINCE 2017</text>
+  <text x="60" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#71717A" letter-spacing="2">EMPOWERING ENGINEERS SINCE 2018</text>
   
   <!-- Palestine Flag -->
   <rect x="60" y="120" width="100" height="22" fill="#000000"/>

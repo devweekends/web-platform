@@ -805,7 +805,7 @@ export default function DSOCPage() {
             </a>
           </div>
           <p className="text-center text-muted-foreground mt-6">
-            DSOC is a program by <Link href="/our-story" className="font-bold text-foreground hover:text-[var(--dsoc-primary)]">Dev Weekends</Link>
+            DSOC is a program by <Link href="/team" className="font-bold text-foreground hover:text-[var(--dsoc-primary)]">Dev Weekends</Link>
           </p>
         </div>
       </section>

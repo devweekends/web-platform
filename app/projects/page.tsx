@@ -1,20 +1,26 @@
-import { Suspense } from 'react';
 import connectDB from '@/lib/db';
 import { Project } from '@/models/Project';
-import { SubmitProjectModal } from '@/components/submit-project-modal';
-import { ProjectCard } from '@/components/project-card';
+import { SubmitProjectDialog } from '@/components/projects/submit-project-dialog';
+import { ProjectTile, type ProjectItem } from '@/components/projects/project-tile';
+import { Card, Eyebrow, PageHero, Panel, Section } from '@/components/site/page-kit';
 
 export const dynamic = 'force-dynamic';
 
-async function getProjects() {
-  await connectDB();
-  // Fetch only approved projects
-  const projects = await Project.find({ isApproved: true }).sort({ createdAt: -1 });
-  return JSON.parse(JSON.stringify(projects));
+async function getProjects(): Promise<ProjectItem[]> {
+  try {
+    await connectDB();
+    // Fetch only approved projects
+    const projects = await Project.find({ isApproved: true }).sort({ createdAt: -1 });
+    return JSON.parse(JSON.stringify(projects));
+  } catch (error) {
+    console.error('Unable to load community projects:', error);
+    return [];
+  }
 }
 
 export const metadata = {
-  title: 'Community Projects | DevWeekends',
+  alternates: { canonical: "/projects" },
+  title: 'Community projects',
   description: 'Showcase of projects built by the DevWeekends community.',
 };
 
@@ -22,28 +28,43 @@ export default async function ProjectsPage() {
   const projects = await getProjects();
 
   return (
-    <div className="container mx-auto py-12 px-4 space-y-12">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div className="space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight">Community Projects</h1>
-          <p className="text-muted-foreground text-lg max-w-2xl">
-            Check out what our amazing community members have built. Submit your own project to be featured!
-          </p>
-        </div>
-        <SubmitProjectModal />
-      </div>
+    <>
+      <PageHero
+        eyebrow="Community projects"
+        title="Built by our community."
+        intro="See what our members have built. Submit your own project to be featured."
+        actions={<SubmitProjectDialog />}
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Section>
         {projects.length === 0 ? (
-          <div className="col-span-full text-center py-20 text-muted-foreground">
-            <p className="text-xl">No projects found yet. Be the first to submit!</p>
-          </div>
+          <Card tone="gray" className="items-center py-16 text-center">
+            <p className="text-[19px] font-semibold tracking-[-0.01em]">No projects yet.</p>
+            <p className="mt-2 text-[17px] text-[#5C5C5C]">Be the first to submit one.</p>
+          </Card>
         ) : (
-          projects.map((project: any) => (
-            <ProjectCard key={project._id} project={project} />
-          ))
+          <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <li key={project._id}>
+                <ProjectTile project={project} />
+              </li>
+            ))}
+          </ul>
         )}
-      </div>
-    </div>
+      </Section>
+
+      <Panel>
+        <Eyebrow onDark>Your turn</Eyebrow>
+        <h2 className="mt-3.5 max-w-[20ch] text-[clamp(32px,4vw,52px)] font-semibold leading-[1.05] tracking-[-0.04em]">
+          Built something? Show it here.
+        </h2>
+        <p className="mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-[#C7C7C7]">
+          Every project is reviewed before it is published.
+        </p>
+        <div className="mt-9">
+          <SubmitProjectDialog variant="onDark" />
+        </div>
+      </Panel>
+    </>
   );
 }

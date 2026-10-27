@@ -1,282 +1,136 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { MessageSquare, Users, Calendar, ArrowRight } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
+
+import { LINKS } from "@/components/home/data"
+import { Button, Card, Eyebrow, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
+
+export const metadata = {
+  title: "Community",
+  description: "Join the Dev Weekends community: Discord, WhatsApp groups, live sessions and the people who have done it before.",
+  alternates: { canonical: "/community" },
+}
+
+// The old page showed sample discussions, events and groups (invented names,
+// dates and member counts) with buttons that did nothing. This version only
+// points to places that exist and numbers that are published on /team.
+
+const ways = [
+  {
+    title: "Discord",
+    text: "Chat with mentors and peers. Our Discord has 2,800+ members.",
+    href: LINKS.discord,
+  },
+  {
+    title: "Community links",
+    text: "60+ WhatsApp groups for placement, MERN, competitive programming and mock interviews, all in one place.",
+    href: LINKS.communities,
+  },
+  {
+    title: "Live sessions",
+    text: "DSA deep dives, system design talks, mock interviews, and mindset workshops, every week.",
+    href: LINKS.sessions,
+  },
+  {
+    title: "Mentorship network",
+    text: "See how mentors and mentees connect across the community.",
+    href: "/network",
+  },
+  {
+    title: "Projects",
+    text: "See what members have built.",
+    href: "/projects",
+  },
+  {
+    title: "Stories",
+    text: "Hear from members about what changed for them.",
+    href: LINKS.stories,
+  },
+]
+
+const groups = [
+  { title: "Fellowship", href: LINKS.fellowship },
+  { title: "Mentorship", href: "/mentorship" },
+  { title: "DSoC, our summer of code", href: LINKS.dsoc },
+  { title: "Open Source Prep", href: "/links#open-source" },
+  { title: "MindMaster", href: "/mindmaster" },
+  { title: "X Team, for builders and founders", href: LINKS.communities },
+]
+
+const lift = "motion-safe:hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)]"
 
 export default function CommunityPage() {
   return (
-    <div className="container py-10">
-      <div className="flex flex-col space-y-4 mb-10">
-        <h1 className="text-4xl font-bold">Community</h1>
-        <p className="text-muted-foreground text-lg">
-          Connect with fellow developers, share experiences, and grow together.
-        </p>
-      </div>
+    <div className="bg-white text-[#0A0A0A]">
+      <PageHero
+        eyebrow="Community"
+        title="Grow together with 30,000+ engineers."
+        intro="Connect with fellow developers, share experiences, and grow together. Dev Weekends is an international community, founded in 2018, and every part of it is free."
+        actions={
+          <>
+            <Button href={LINKS.discord}>Join Discord</Button>
+            <Button href="/team" variant="secondary">
+              Read our story
+            </Button>
+          </>
+        }
+      />
 
-      <Tabs defaultValue="discussions" className="w-full">
-        <TabsList className="mb-6">
-          <TabsTrigger value="discussions">Discussions</TabsTrigger>
-          <TabsTrigger value="events">Events</TabsTrigger>
-          <TabsTrigger value="groups">Groups</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="discussions" className="space-y-8">
-          <div className="grid grid-cols-1 gap-6">
-            {/* Discussion 1 */}
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle>Best practices for CI/CD in small teams</CardTitle>
-                    <CardDescription>Started by Michael Chen • 2 days ago</CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <MessageSquare className="h-4 w-4" />
-                    <span>24 replies</span>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  I&apos;m working with a small team of 5 developers and we&apos;re looking to improve our CI/CD pipeline. What
-                  are some best practices that have worked well for other small teams?
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">Join Discussion</Button>
-              </CardFooter>
+      <Section>
+        <SectionHeading eyebrow="Ways to take part" title="Where the community lives" />
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {ways.map((w) => (
+            <Card key={w.title} href={w.href} tone="bordered" className={lift}>
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-lg font-semibold">{w.title}</h3>
+                <ArrowUpRight className="h-5 w-5 shrink-0 text-[#5C5C5C]" aria-hidden="true" />
+              </div>
+              <p className="mt-3 text-[15px] leading-[1.65] text-[#404040]">{w.text}</p>
             </Card>
+          ))}
+        </div>
+      </Section>
 
-            {/* Discussion 2 */}
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle>Transitioning from traditional ML to LLMs</CardTitle>
-                    <CardDescription>Started by Dr. Priya Patel • 1 week ago</CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <MessageSquare className="h-4 w-4" />
-                    <span>42 replies</span>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  For those who have been working with traditional ML models, what was your experience transitioning to
-                  working with LLMs? What were the biggest challenges and learning curves?
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">Join Discussion</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Discussion 3 */}
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle>React Server Components: Experiences and Patterns</CardTitle>
-                    <CardDescription>Started by Sarah Johnson • 3 days ago</CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <MessageSquare className="h-4 w-4" />
-                    <span>18 replies</span>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  I&apos;ve been using React Server Components in production for a few months now. Let&apos;s share experiences,
-                  patterns, and challenges we&apos;ve encountered.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">Join Discussion</Button>
-              </CardFooter>
-            </Card>
-          </div>
-
-          <div className="flex justify-center mt-8">
-            <Button variant="outline">View All Discussions</Button>
-          </div>
-        </TabsContent>
-
-        <TabsContent value="events" className="space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Event 1 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Virtual Coffee & Code</CardTitle>
-                <CardDescription>Weekly casual coding session</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>Every Wednesday • 7:00 PM - 8:30 PM EST</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                  <Users className="h-4 w-4" />
-                  <span>32 attending</span>
-                </div>
-                <p className="text-muted-foreground">
-                  Bring your laptop and a coffee for this casual weekly coding session. Work on personal projects, ask
-                  for help, or just hang out with fellow developers.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">RSVP</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Event 2 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Tech Talk: The Future of Web Development</CardTitle>
-                <CardDescription>Special guest speaker event</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>April 15, 2025 • 6:00 PM - 8:00 PM EST</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-                  <Users className="h-4 w-4" />
-                  <span>87 attending</span>
-                </div>
-                <p className="text-muted-foreground">
-                  Join us for an exciting talk about the future of web development with special guest speaker Alex
-                  Thompson, CTO of WebTech Inc.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">RSVP</Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </TabsContent>
-
-        <TabsContent value="groups" className="space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Group 1 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Frontend Developers</CardTitle>
-                <CardDescription>246 members</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  A group for frontend developers to discuss the latest frameworks, tools, and best practices in UI/UX
-                  development.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">Join Group</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Group 2 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>DevOps Enthusiasts</CardTitle>
-                <CardDescription>189 members</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Share knowledge about CI/CD, infrastructure as code, containerization, and all things DevOps.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">Join Group</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Group 3 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>AI & ML Practitioners</CardTitle>
-                <CardDescription>173 members</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Discuss machine learning algorithms, AI applications, and the latest research in the field.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">Join Group</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Group 4 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Cloud Computing</CardTitle>
-                <CardDescription>215 members</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  For professionals working with AWS, Azure, GCP, and other cloud platforms to share experiences and
-                  solutions.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">Join Group</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Group 5 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Career Changers</CardTitle>
-                <CardDescription>128 members</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Support group for those transitioning into tech from other fields, sharing resources and advice.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">Join Group</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Group 6 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Open Source Contributors</CardTitle>
-                <CardDescription>97 members</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Collaborate on open source projects, find contributors, and discuss open source development.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline">Join Group</Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </TabsContent>
-      </Tabs>
-
-      <section className="mt-16 py-8 px-6 bg-muted rounded-lg">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-4 text-center md:text-left">
-            <h2 className="text-2xl font-bold">Join Our Community Today</h2>
-            <p className="text-muted-foreground">
+      <Panel>
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
+          <div>
+            <Eyebrow onDark>Join us</Eyebrow>
+            <h2 className="mt-3.5 text-[clamp(32px,4vw,52px)] font-semibold leading-[1.05] tracking-[-0.04em]">
+              Join our community today
+            </h2>
+            <p className="mt-5 max-w-[52ch] text-[17px] leading-[1.65] text-[#C7C7C7]">
               Connect with mentors and peers, attend sessions, and accelerate your tech career.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Button>Sign Up</Button>
-            <Button variant="outline">
-              Learn More <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            <Button href={LINKS.discord} variant="onDark">
+              Join Discord
+            </Button>
+            <Button href="/team" variant="onDarkSecondary">
+              Learn more
             </Button>
           </div>
         </div>
-      </section>
+      </Panel>
+
+      <Section tone="gray">
+        <SectionHeading
+          eyebrow="Specialized communities"
+          title="Find your group"
+          intro="Focused groups for different goals. Looking for something narrower? The circles are listed on the About page."
+          action={
+            <Button href="/links" variant="secondary">
+              See the circles
+            </Button>
+          }
+        />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {groups.map((g) => (
+            <Card key={g.title} href={g.href} tone="white" className={`min-h-[88px] !flex-row items-center justify-between gap-3 p-6 ${lift}`}>
+              <h3 className="text-base font-semibold">{g.title}</h3>
+              <ArrowUpRight className="h-5 w-5 shrink-0 text-[#5C5C5C]" aria-hidden="true" />
+            </Card>
+          ))}
+        </div>
+      </Section>
     </div>
   )
 }
-

@@ -1,10 +1,11 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { ArticleBody } from "@/components/content/article-body";
+import { formatDate } from "@/components/content/format-date";
+import { Button, Eyebrow, container } from "@/components/site/page-kit";
 
 const guidesDir = path.join(process.cwd(), "content", "guides");
 
@@ -30,12 +31,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const guide = readGuide(slug);
-  if (!guide) return { title: "Guide not found | Dev Weekends" };
+  if (!guide) return { title: "Guide not found", robots: { index: false } };
   return {
-    title: `${guide.data.title} | Dev Weekends Guides`,
+    title: guide.data.title,
     description: guide.data.description ?? "",
+    alternates: { canonical: `/guides/${slug}` },
   };
 }
+
+const backLink =
+  "inline-flex min-h-11 items-center text-[15px] font-medium text-[#5C5C5C] transition-colors hover:text-[#0A0A0A]";
 
 export default async function GuidePage({
   params,
@@ -47,162 +52,77 @@ export default async function GuidePage({
 
   if (!guide) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
-        <div className="text-center">
-          <h1 className="mb-3 text-3xl">Guide not found</h1>
-          <Link href="/guides" className="underline">
-            Back to guides
-          </Link>
+      <main className="bg-white">
+        <div className={`${container} py-24 md:py-32`}>
+          <Eyebrow>Guides</Eyebrow>
+          <h1 className="mt-4 text-[clamp(32px,5vw,56px)] font-semibold leading-[1.05] tracking-[-0.04em]">
+            Guide not found
+          </h1>
+          <p className="mt-5 max-w-[48ch] text-[18px] leading-[1.65] text-[#404040]">
+            This guide does not exist or has moved.
+          </p>
+          <div className="mt-8">
+            <Button href="/guides">Back to guides</Button>
+          </div>
         </div>
-      </div>
+      </main>
     );
   }
 
   const { data, content } = guide;
+  const date = formatDate(data.date instanceof Date ? data.date.toISOString() : data.date);
+  const meta = [data.author, data.readingTime, date].filter(Boolean);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-5xl px-6 py-16">
-        <Link
-          href="/guides"
-          className="text-sm text-muted-foreground transition hover:text-foreground"
-        >
-          ← Back to guides
+    <main className="bg-white">
+      <div className={`${container} pb-20 pt-8 md:pb-24`}>
+        <Link href="/guides" className={backLink}>
+          <span aria-hidden="true" className="mr-2">&larr;</span>
+          All guides
         </Link>
 
         {/* HEADER */}
-        <header className="mb-12 mt-10 max-w-3xl">
-          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#16A34A]">
-            {data.category}
-          </p>
-
-          <h1 className="mb-6 font-serif text-4xl leading-tight md:text-5xl">
+        <header className="mx-auto mt-8 max-w-[720px]">
+          {data.category && <Eyebrow>{data.category}</Eyebrow>}
+          <h1 className="mt-4 text-[clamp(34px,5vw,56px)] font-semibold leading-[1.05] tracking-[-0.045em] text-[#0A0A0A]">
             {data.title}
           </h1>
-
-          <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-            {data.author && <span>{data.author}</span>}
-            {data.author && data.readingTime && <span>•</span>}
-            {data.readingTime && <span>{data.readingTime}</span>}
-            {data.date && <span>•</span>}
-            {data.date && <span>{data.date}</span>}
-          </div>
+          {data.description && (
+            <p className="mt-5 text-[19px] leading-[1.6] text-[#5C5C5C]">{data.description}</p>
+          )}
+          {meta.length > 0 && (
+            <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-[#8A8A8A]">
+              {meta.map((item, i) => (
+                <span key={`${item}-${i}`} className="flex items-center gap-3">
+                  {i > 0 && <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[#D4D4D4]" />}
+                  <span className="text-[#5C5C5C]">{item}</span>
+                </span>
+              ))}
+            </p>
+          )}
         </header>
 
         {/* COVER */}
         {data.image && (
-          <div className="mb-14 overflow-hidden rounded-2xl border border-border">
+          <div className="mx-auto mt-12 max-w-[720px] overflow-hidden rounded-[20px] border border-[#E6E6E6]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={data.image}
-              alt={data.title}
-              className="h-auto w-full"
-            />
+            <img src={data.image} alt={data.title} className="block h-auto w-full" />
           </div>
         )}
 
         {/* MARKDOWN */}
-        <article className="mx-auto max-w-2xl">
-          <div className="prose prose-lg prose-neutral max-w-none">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              components={{
-                p({ node, children }) {
-                  const hasImg = node?.children?.some(
-                    (child: any) => child.tagName === "img"
-                  );
-                  if (hasImg) {
-                    return <div className="my-12">{children}</div>;
-                  }
-                  return (
-                    <p className="my-6 text-[1.075rem] leading-[1.85] text-foreground/80">
-                      {children}
-                    </p>
-                  );
-                },
-
-                img({ src = "", alt = "" }) {
-                  return (
-                    <span className="my-12 block overflow-hidden rounded-2xl border border-border">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={typeof src === "string" ? src : ""}
-                        alt={alt}
-                        className="h-auto w-full"
-                        loading="lazy"
-                      />
-                    </span>
-                  );
-                },
-
-                h1: ({ children }) => (
-                  <h1 className="mb-8 mt-16 font-serif text-4xl tracking-tight text-foreground md:text-5xl">
-                    {children}
-                  </h1>
-                ),
-                h2: ({ children }) => (
-                  <h2 className="mb-6 mt-16 font-serif text-3xl tracking-tight text-foreground">
-                    {children}
-                  </h2>
-                ),
-                h3: ({ children }) => (
-                  <h3 className="mb-3 mt-10 font-serif text-xl font-semibold text-foreground">
-                    {children}
-                  </h3>
-                ),
-                ul: ({ children }) => (
-                  <ul className="my-6 list-disc space-y-2 pl-6 leading-[1.75] text-foreground/80">
-                    {children}
-                  </ul>
-                ),
-                ol: ({ children }) => (
-                  <ol className="my-6 list-decimal space-y-2 pl-6 leading-[1.75] text-foreground/80">
-                    {children}
-                  </ol>
-                ),
-                li: ({ children }) => <li className="pl-1">{children}</li>,
-                blockquote: ({ children }) => (
-                  <blockquote className="my-8 rounded-r-lg border-l-2 border-[#22C55E] bg-[#22C55E]/5 py-2 pl-6 pr-4 italic text-foreground/70">
-                    {children}
-                  </blockquote>
-                ),
-                hr: () => <hr className="my-16 h-px border-0 bg-border" />,
-                strong: ({ children }) => (
-                  <strong className="font-semibold text-foreground">
-                    {children}
-                  </strong>
-                ),
-                a: ({ href, children }) => (
-                  <a
-                    href={href}
-                    target={href?.startsWith("http") ? "_blank" : undefined}
-                    rel={
-                      href?.startsWith("http")
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
-                    className="text-foreground underline decoration-muted-foreground underline-offset-4 transition hover:decoration-foreground"
-                  >
-                    {children}
-                  </a>
-                ),
-              }}
-            >
-              {content}
-            </ReactMarkdown>
-          </div>
+        <article className="mt-12">
+          <ArticleBody content={content} />
         </article>
 
-        {/* FOOTER CTA */}
-        <div className="mx-auto mt-20 max-w-2xl border-t border-border pt-10">
-          <Link
-            href="/guides"
-            className="text-sm font-medium text-muted-foreground transition hover:text-foreground"
-          >
-            ← Explore more guides
+        {/* FOOTER */}
+        <div className="mx-auto mt-16 max-w-[720px] border-t border-[#E6E6E6] pt-6">
+          <Link href="/guides" className={backLink}>
+            <span aria-hidden="true" className="mr-2">&larr;</span>
+            Explore more guides
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

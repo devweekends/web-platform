@@ -1,0 +1,26 @@
+/*
+ * Homepage motion. The site theme is not used here: the homepage is always
+ * white with black panels, whatever the visitor's theme is.
+ */
+@keyframes hm-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.hm-track { display: flex; width: max-content; animation: hm-marquee 90s linear infinite; }
+.hm-track-slow { display: flex; width: max-content; animation: hm-marquee 140s linear infinite; }
+.hm-marquee:hover .hm-track,
+.hm-marquee:hover .hm-track-slow,
+.hm-marquee:focus-within .hm-track,
+.hm-marquee:focus-within .hm-track-slow { animation-play-state: paused; }
+
+.hm-scroll { scrollbar-width: none; }
+.hm-scroll::-webkit-scrollbar { display: none; }
+
+html:has([data-home]) { scroll-behavior: smooth; color-scheme: light; }
+[data-home] [id] { scroll-margin-top: 88px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-track, .hm-track-slow { animation: none; }
+  html:has([data-home]) { scroll-behavior: auto; }
+}
