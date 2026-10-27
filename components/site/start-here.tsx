@@ -30,7 +30,7 @@ export function StartHere() {
         <div
           role="tablist"
           aria-label="Who are you"
-          className="-mx-6 mt-8 flex snap-x gap-2 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden"
+          className="-mx-6 mt-8 flex snap-x scroll-px-6 gap-2 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden"
         >
           {startPaths.map((p) => {
             const active = p.id === selected
