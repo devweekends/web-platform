@@ -46,13 +46,6 @@ export async function middleware(request: NextRequest) {
     return NextResponse.rewrite(markdownUrl);
   }
 
-  // Redirect root to our-story page
-  if (path === '/') {
-    return withDiscoveryHeaders(
-      NextResponse.redirect(new URL('/our-story', request.url)),
-    );
-  }
-
   const token = request.cookies.get('admin-token')?.value;
   const adminCodeVerified = request.cookies.get('admin-code-verified')?.value;
   const mentorToken = request.cookies.get('mentor-token')?.value;
