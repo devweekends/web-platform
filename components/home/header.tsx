@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { ChevronDown, Menu, X } from "lucide-react"
 
+import { BrandLogo } from "./brand-logo"
 import { SmartLink } from "./smart-link"
 import { LINKS, applyPrograms, navItems } from "./data"
 
@@ -46,8 +47,7 @@ export function HomeHeader() {
     <header className="sticky top-0 z-50 border-b border-[#E6E6E6] bg-white/90 backdrop-blur">
       <div ref={wrapRef} className="relative mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-6">
         <Link href="/" className="flex min-h-11 items-center" aria-label="Dev Weekends home">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/dw-wordmark-black.png" alt="Dev Weekends" width={60} height={44} className="h-11 w-auto" />
+          <BrandLogo height={48} />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 text-[15px] font-medium lg:flex">
