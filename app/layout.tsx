@@ -1,15 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist } from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import Footer from "@/components/footer"
+import { SiteFooter } from "@/components/site-footer"
 import Script from 'next/script'
 import { Analytics } from "@/components/analytics"
 import { SiteHeader } from "@/components/site-header"
 import { dwosiThemeScript } from "@/app/dwosi/theme"
 
-const geist = Geist({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://devweekends.com'),
@@ -159,15 +159,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={geist.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <body className={inter.className}>
+        {/* The site is white with black panels. Light is forced so a visitor's dark mode does not change it. */}
+        <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false} disableTransitionOnChange>
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
             <main className="flex-1">
               <Analytics />
               {children}
             </main>
-            <Footer />
+            <SiteFooter />
           </div>
         </ThemeProvider>
       </body>
