@@ -44,7 +44,7 @@ export function Slider({
       <ul
         ref={track}
         aria-label={label}
-        className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {children.map((child, index) => (
           <li key={index} className={`flex shrink-0 snap-start ${itemClassName}`}>

@@ -61,7 +61,7 @@ export function VoicesRail() {
         tabIndex={0}
         role="region"
         aria-label="Stories from our community. Scroll sideways to see more."
-        className="hm-scroll mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-[max(24px,calc((100vw-1200px)/2+24px))] pb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0A0A0A]"
+        className="hm-scroll mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-[max(24px,calc((100%-1200px)/2+24px))] scroll-px-[max(24px,calc((100%-1200px)/2+24px))] pb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0A0A0A]"
       >
         {videos.map((video) => (
           <article key={video.name} className="w-[360px] shrink-0 snap-start overflow-hidden rounded-[20px] border border-[#E6E6E6]">
