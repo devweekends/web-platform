@@ -1,0 +1,280 @@
+[
+  {
+    "name": "Olostep",
+    "slug": "olostep",
+    "website": "https://www.olostep.com/",
+    "file": "olostep.svg",
+    "format": "svg",
+    "source": "Official site header logo (/images/olostep-logo-cropped.svg)",
+    "width": 341,
+    "height": 102,
+    "notes": "Dark navy wordmark on transparent."
+  },
+  {
+    "name": "MicroTechX",
+    "slug": "microtechx",
+    "website": "https://www.microtechx.com/",
+    "file": "microtechx.png",
+    "format": "png",
+    "source": "Official site asset (logo-dark PNG from the site bundle)",
+    "width": 1920,
+    "height": 284,
+    "notes": "Black and blue wordmark, transparent background. Identity inferred: microtechx.com is a Lahore, Pakistan Microsoft engineering partner; no page confirms it is the same org as the partner listed on the DW site. microtechx.org does not resolve."
+  },
+  {
+    "name": "Cyberiad Labs",
+    "slug": "cyberiad-labs",
+    "website": "https://cyberiadlabs.com/",
+    "file": "cyberiad-labs.svg",
+    "format": "svg",
+    "source": "Official site favicon SVG (cyberiad-favicon.svg)",
+    "width": 76,
+    "height": 76,
+    "notes": "Icon mark only (two pills), no wordmark file available. Adapts to dark mode via a prefers-color-scheme style rule."
+  },
+  {
+    "name": "MAX (Muslims Achieving Excellence)",
+    "slug": "max",
+    "website": "https://onemax.org/",
+    "file": "max.png",
+    "format": "png",
+    "source": "Official site header logo (2022-MAX-Logo-Transparent-1.png)",
+    "width": 568,
+    "height": 439,
+    "notes": "Transparent PNG, 568px wide."
+  },
+  {
+    "name": "Hoopo",
+    "slug": "hoopo",
+    "website": "https://www.gohoopo.com/",
+    "file": "hoopo.svg",
+    "format": "svg",
+    "source": "Official site header logo (/logo-white.svg)",
+    "width": 1292,
+    "height": 288,
+    "notes": "WHITE wordmark on transparent: needs a dark background. No dark variant found on the site."
+  },
+  {
+    "name": "EmpactUs",
+    "slug": "empactus",
+    "website": "https://empactus.org.uk/",
+    "file": "empactus.png",
+    "format": "png",
+    "source": "Official site logo (wp-content/uploads/2025/06/empactus-logo-bg.png)",
+    "width": 634,
+    "height": 192,
+    "notes": "Colour wordmark, navy and cyan, works on light backgrounds. 634px wide."
+  },
+  {
+    "name": "MLSA (Microsoft Learn Student Ambassadors)",
+    "slug": "mlsa",
+    "website": "https://mvp.microsoft.com/studentambassadors",
+    "file": null,
+    "format": null,
+    "source": null,
+    "width": null,
+    "height": null,
+    "notes": "No logo file found. The official page (redirect from studentambassadors.microsoft.com, HTTP 200) exposes no logo asset and Commons has none. Microsoft brand assets are restricted; ask the chapter lead for the official badge."
+  },
+  {
+    "name": "AWS Cloud Clubs",
+    "slug": "aws-cloud-clubs",
+    "website": "https://builder.aws.com/community/student-builder-groups",
+    "file": null,
+    "format": null,
+    "source": null,
+    "width": null,
+    "height": null,
+    "notes": "No logo file found. Program was renamed AWS Student Builder Groups; the official page only exposes banner artwork, not a logo. Not substituting the generic AWS logo."
+  },
+  {
+    "name": "GDG on Campus",
+    "slug": "gdg-on-campus",
+    "website": "https://gdg.community.dev/",
+    "file": "gdg-on-campus.svg",
+    "format": "svg",
+    "source": "Official site header logo (gdg-logo-dark SVG, Cloudinary)",
+    "width": 3003,
+    "height": 300,
+    "notes": "Dark-mode variant: the 'Google Developer Groups' text is WHITE with coloured brackets, so it needs a dark background. No light variant found."
+  },
+  {
+    "name": "Google Summer of Code",
+    "slug": "google-summer-of-code",
+    "website": "https://summerofcode.withgoogle.com/",
+    "file": "google-summer-of-code.svg",
+    "format": "svg",
+    "source": "Official site header logo (/assets/media/logo.svg)",
+    "width": 205,
+    "height": 26,
+    "notes": "Horizontal logo with dark text, works on light backgrounds."
+  },
+  {
+    "name": "Linux Foundation",
+    "slug": "linux-foundation",
+    "website": "https://www.linuxfoundation.org/",
+    "file": "linux-foundation.svg",
+    "format": "svg",
+    "source": "Wikimedia Commons: File:Linux Foundation Logo.svg",
+    "width": 500,
+    "height": 500,
+    "notes": "Colour logo for light backgrounds. May be an older version of the mark; the official site only publishes a white version, saved as linux-foundation-white.svg.",
+    "alt_files": [
+      "linux-foundation-white.svg"
+    ]
+  },
+  {
+    "name": "CNCF",
+    "slug": "cncf",
+    "website": "https://www.cncf.io/",
+    "file": "cncf.svg",
+    "format": "svg",
+    "source": "Official CNCF artwork repo (github.com/cncf/artwork, other/cncf/horizontal/color/cncf-color.svg)",
+    "width": 399,
+    "height": 76,
+    "notes": "Horizontal colour logo."
+  },
+  {
+    "name": "Apache Software Foundation",
+    "slug": "apache-software-foundation",
+    "website": "https://apache.org/",
+    "file": "apache-software-foundation.svg",
+    "format": "svg",
+    "source": "Official site header logo (/images/asflogo_horizontal_color.svg)",
+    "width": 1000,
+    "height": 525,
+    "notes": "Horizontal colour logo."
+  },
+  {
+    "name": "Microsoft",
+    "slug": "microsoft",
+    "website": "https://www.microsoft.com/",
+    "file": "microsoft.svg",
+    "format": "svg",
+    "source": "Wikimedia Commons: File:Microsoft logo (2012).svg",
+    "width": 338,
+    "height": 72,
+    "notes": "Four-square logo with wordmark, for light backgrounds. Site returns HTTP 403 to scripted clients (bot protection); it is the real site."
+  },
+  {
+    "name": "Turing",
+    "slug": "turing",
+    "website": "https://www.turing.com/",
+    "file": "turing.svg",
+    "format": "svg",
+    "source": "Official site header logo (/assets/Turing_Logo_Full_White.svg)",
+    "width": 796,
+    "height": 125,
+    "notes": "WHITE wordmark on transparent: needs a dark background. No dark variant found. Plain curl gets a bot challenge page; the real page loads in a browser."
+  },
+  {
+    "name": "Scale AI",
+    "slug": "scale-ai",
+    "website": "https://scale.com/",
+    "file": "scale-ai.svg",
+    "format": "svg",
+    "source": "Wikimedia Commons: File:Scale AI.svg",
+    "width": 2177,
+    "height": 700,
+    "notes": "Black wordmark on transparent. The official site only offers an icon favicon as SVG."
+  },
+  {
+    "name": "Upwork",
+    "slug": "upwork",
+    "website": "https://www.upwork.com/",
+    "file": "upwork.svg",
+    "format": "svg",
+    "source": "Wikimedia Commons: File:Upwork-logo.svg",
+    "width": 120,
+    "height": 60,
+    "notes": "Green and grey wordmark. Site returns HTTP 403 to scripted clients (bot protection); it is the real site."
+  },
+  {
+    "name": "Toptal",
+    "slug": "toptal",
+    "website": "https://www.toptal.com/",
+    "file": "toptal.png",
+    "format": "png",
+    "source": "Wikimedia Commons: File:Toptal-Logo-Main-Colors RGB.png (2019 rebrand)",
+    "width": 1969,
+    "height": 559,
+    "notes": "Current-rebrand logo as PNG, 1969px wide. The Commons SVG is the pre-2019 logo, so not used. Site returns HTTP 403 to scripted clients (bot protection); it is the real site."
+  },
+  {
+    "name": "Calo",
+    "slug": "calo",
+    "website": "https://calo.app/en",
+    "file": "calo.svg",
+    "format": "svg",
+    "source": "Official site header logo, extracted from the inline SVG on calo.app/en",
+    "width": 169,
+    "height": 96,
+    "notes": "Green icon mark only (as shown in the site header), transparent."
+  },
+  {
+    "name": "Salla",
+    "slug": "salla",
+    "website": "https://salla.sa/",
+    "file": "salla.png",
+    "format": "png",
+    "source": "Official Salla developer site (salla.dev) icon: wp-content/uploads/2023/03/cropped-logo_512_512.png",
+    "width": 512,
+    "height": 512,
+    "notes": "512x512 square icon, not the wordmark. Site returns HTTP 403 to scripted clients (bot protection); it is the real site. salla.sa is not reachable to scripts, so the wordmark could not be fetched."
+  },
+  {
+    "name": "Unanime Planet",
+    "slug": "unanime-planet",
+    "website": null,
+    "file": null,
+    "format": null,
+    "source": null,
+    "width": null,
+    "height": null,
+    "notes": "Could not find a real site or logo. unanime.com is a parked domain for sale and unanimeplanet.* do not resolve; a search only found an unrelated anime site (Unaniime). Not guessing."
+  },
+  {
+    "name": "Ruhcare",
+    "slug": "ruhcare",
+    "website": "https://www.ruhcare.com/",
+    "file": "ruhcare.png",
+    "format": "png",
+    "source": "Official site main logo (Webflow CDN, 1080px PNG variant)",
+    "width": 1080,
+    "height": 593,
+    "notes": "Instagram link on the site is instagram.com/ruhcare, matching the handle. Check dark/light on a real background."
+  },
+  {
+    "name": "The CollectV",
+    "slug": "the-collectv",
+    "website": "https://www.thecollectv.ca/",
+    "file": "the-collectv.png",
+    "format": "png",
+    "source": "Official site logo (Squarespace, original PNG)",
+    "width": 2500,
+    "height": 650,
+    "notes": "2500px wide original PNG."
+  },
+  {
+    "name": "iSource Professionals",
+    "slug": "isource-professionals",
+    "website": "https://isourceprofessionals.com/",
+    "file": "isource-professionals.png",
+    "format": "png",
+    "source": "Official site header logo (wp-content/uploads/2021/07/Isourceprofessional-logo, 1024px)",
+    "width": 1024,
+    "height": 612,
+    "notes": "1024px wide PNG."
+  },
+  {
+    "name": "Nectar Social",
+    "slug": "nectar-social",
+    "website": "https://www.nectarsocial.com/",
+    "file": "nectar-social.svg",
+    "format": "svg",
+    "source": "Official site header logo (/_astro/logo-on-dark.*.svg)",
+    "width": 66,
+    "height": 16,
+    "notes": "WHITE wordmark on transparent, needs a dark background; no light variant found. Site title: 'Nectar | AI-native OS for social'. Note nectar.social redirects to my.brandhives.com (BrandHives, a different product), so nectarsocial.com is used."
+  }
+]
