@@ -4,13 +4,15 @@ import { usePathname } from "next/navigation"
 
 import { HomeFooter } from "@/components/home/footer"
 import { hasOwnChrome } from "@/components/site-header"
+import { RevealObserver } from "@/components/site/reveal"
 
 export function SiteFooter() {
   const pathname = usePathname()
 
-  if (hasOwnChrome(pathname)) {
-    return null
-  }
-
-  return <HomeFooter />
+  return (
+    <>
+      <RevealObserver />
+      {hasOwnChrome(pathname) ? null : <HomeFooter />}
+    </>
+  )
 }

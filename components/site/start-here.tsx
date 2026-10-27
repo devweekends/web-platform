@@ -24,7 +24,7 @@ export function StartHere() {
     <section id="get-involved" className="scroll-mt-24 border-t border-[#E6E6E6] bg-[#F7F7F7]">
       <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-20">
         <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">Get involved</p>
-        <h2 className="mt-3.5 text-[clamp(36px,4.4vw,56px)] font-semibold leading-[1.05] tracking-[-0.04em]">
+        <h2 data-reveal className="mt-3.5 text-[clamp(36px,4.4vw,56px)] font-semibold leading-[1.05] tracking-[-0.04em]">
           Start where you are. <span className="text-[#8A8A8A]">Who are you?</span>
         </h2>
 
@@ -86,7 +86,7 @@ export function StartHere() {
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">Apply to a program</p>
                 <ul className="mt-3">
                   {applyPrograms.map((program) => (
-                    <li key={program.name} className="border-b border-[#E6E6E6] last:border-b-0">
+                    <li key={program.name} data-reveal className="border-b border-[#E6E6E6] last:border-b-0">
                       <SmartLink href={program.href} className="flex flex-wrap items-center gap-x-4 gap-y-1 py-4 hover:bg-[#FAFAFA]">
                         <span className="min-w-0 flex-1 basis-[200px]">
                           <span className="block text-base font-semibold sm:text-lg">{program.name}</span>

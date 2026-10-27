@@ -110,3 +110,31 @@
   animation: heroFadeIn 0.8s cubic-bezier(0.4,0,0.2,1) both;
 }
 
+
+/* Scroll reveal (components/site/reveal.tsx). Hidden only once the observer is
+   running, so pages without JavaScript or with reduced motion show everything. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready [data-reveal]:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  .reveal-ready [data-reveal] {
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  }
+
+  /* Page titles rise in on first paint. Transform only, so the text is painted
+     (and counted for loading metrics) straight away. */
+  @keyframes dw-rise {
+    from {
+      transform: translateY(14px);
+    }
+  }
+  .dw-rise {
+    animation: dw-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .dw-rise-late {
+    animation: dw-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+  }
+}
