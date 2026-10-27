@@ -95,7 +95,7 @@ export function StartHere() {
                         <span
                           className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold tracking-[0.1em] ${statusClass(program.status)}`}
                         >
-                          {program.status}
+                          {program.status === "INVITE" ? "INVITE ONLY" : program.status}
                         </span>
                         {program.status === "CLOSED" ? (
                           // Closed programs still have a page worth reading: say so

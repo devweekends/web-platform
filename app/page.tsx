@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { Communities, Products, Programs } from "@/components/home/sections-mid"
+import { Communities, Products } from "@/components/home/sections-mid"
 import { Partnerships, Qantara, Resources, Voices } from "@/components/home/sections-bottom"
 import { StartHere } from "@/components/site/start-here"
 import { Hero, Impact, Network, Outcomes, Reach } from "@/components/home/sections-top"
@@ -22,9 +22,8 @@ export default function HomePage() {
       <Impact />
       <Outcomes />
       <Voices />
-      <Programs />
-      <Products />
       <StartHere />
+      <Products />
       <Qantara />
       <Partnerships />
       <Resources />
