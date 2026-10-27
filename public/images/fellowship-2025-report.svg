@@ -1,0 +1,23 @@
+<svg width="1080" height="1350" viewBox="0 0 1080 1350" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fellowship 2025 impact report: 800 fellows, 100 certified, 442 projects built, 8,000 LeetCode problems solved">
+  <rect width="1080" height="1350" fill="#070707"/>
+  <text x="90" y="140" font-family="'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="600" letter-spacing="6" fill="#8A8A8A">DEV WEEKENDS · FELLOWSHIP 2025</text>
+  <text x="90" y="250" font-family="'Helvetica Neue', Arial, sans-serif" font-size="76" font-weight="700" fill="#FFFFFF">Impact report</text>
+
+  <line x1="90" y1="330" x2="990" y2="330" stroke="#262626" stroke-width="2"/>
+
+  <text x="90" y="520" font-family="'Helvetica Neue', Arial, sans-serif" font-size="190" font-weight="700" fill="#FFFFFF">800</text>
+  <text x="96" y="580" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" fill="#A3A3A3">fellows, 100 certified</text>
+
+  <text x="90" y="790" font-family="'Helvetica Neue', Arial, sans-serif" font-size="150" font-weight="700" fill="#FFFFFF">442</text>
+  <text x="96" y="845" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" fill="#A3A3A3">projects built</text>
+
+  <text x="560" y="790" font-family="'Helvetica Neue', Arial, sans-serif" font-size="150" font-weight="700" fill="#FFFFFF">8K</text>
+  <text x="566" y="845" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" fill="#A3A3A3">LeetCode problems solved</text>
+
+  <line x1="90" y1="940" x2="990" y2="940" stroke="#262626" stroke-width="2"/>
+
+  <text x="90" y="1030" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" fill="#C7C7C7">Of 100 certified fellows: 13 jobs, 17 internships,</text>
+  <text x="90" y="1080" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" fill="#C7C7C7">16 cleared interviews, 13 freelancing, 16 in open source.</text>
+
+  <text x="90" y="1250" font-family="'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="600" fill="#FFFFFF">devweekends.com</text>
+</svg>
