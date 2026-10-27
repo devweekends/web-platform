@@ -11,7 +11,7 @@ const timeline = [
 
 export function FounderStory() {
   return (
-    <section id="story" className="bg-white">
+    <section id="story" className="bg-[#F7F7F7]">
       <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-20">
         <div className="flex flex-wrap gap-x-16 gap-y-8">
           <div className="min-w-0 flex-[1_1_320px] lg:max-w-[420px]">

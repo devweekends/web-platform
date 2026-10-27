@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { ExternalLink, Linkedin, Mail, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, ExternalLink, Linkedin, Mail, X } from "lucide-react"
 
 import HomeImpact from "@/components/home-impact"
 import { Button, Card, Section, SectionHeading, PageHero } from "@/components/site/page-kit"
@@ -22,9 +22,10 @@ interface TeamMember {
 // The records still live in the database.
 const HIDDEN_MEMBERS = new Set(["muhammad ali", "muhammad faraz"])
 
-// Mentors on board: working engineers who volunteer. The operational core team is loaded from the database.
+// Top mentors, in the order they are shown. The operational core team is loaded from the database.
 const mentors: TeamMember[] = [
   { name: "Usman Sheikh", role: "Sr. Cloud Architect @ Microsoft", linkedin: "https://www.linkedin.com/in/usmanikramsheikh/", image: "/usman.jpg" },
+  { name: "Zeeshan Adil", role: "Lead Engineer | Top 1% on Upwork, Expert-Vetted | ex-UN", linkedin: "https://www.linkedin.com/in/zeeshanadilbutt/", image: "/zee.png" },
   { name: "Moeez Ahmad", role: "SWE @ Calo", linkedin: "https://www.linkedin.com/in/moeezahmad01/", image: "/m3.png" },
   { name: "Tanzeel Saleem", role: "Founder @ DevNexus", linkedin: "https://www.linkedin.com/in/tanzeel-saleem/", image: "/tanzeel.jpg" },
   { name: "Fiaz Ahmad", role: "Top Rated Plus @ Upwork", linkedin: "https://www.linkedin.com/in/fiazahmad/", image: "/m5.jpeg" },
@@ -32,6 +33,8 @@ const mentors: TeamMember[] = [
   { name: "Abu Bakar", role: "SWE @ Salla Ecommerce", linkedin: "https://www.linkedin.com/in/iamaboubakar/", image: "/bakar.png" },
   { name: "Farooq Tahir", role: "Top Rated Plus @ Upwork", linkedin: "https://www.linkedin.com/in/farooqtahir/", image: "/farooq.png" },
 ]
+
+const mentorNames = new Set(mentors.map((m) => m.name.trim().toLowerCase()))
 
 // Orders the team: the admin-assigned order first, then by role tier.
 function rankMember(m: { name?: string; role?: string }): number {
@@ -74,9 +77,9 @@ const pillars = [
   },
 ]
 
-function PersonCard({ person }: { person: TeamMember }) {
+function PersonCard({ person, tone = "white", className = "" }: { person: TeamMember; tone?: "white" | "gray"; className?: string }) {
   return (
-    <Card tone="white" className={`items-center p-6 text-center ${lift}`}>
+    <Card tone={tone} className={`items-center p-6 text-center ${lift} ${className}`}>
       <div className="relative h-20 w-20 overflow-hidden rounded-full bg-[#F7F7F7]">
         <Image src={person.image} alt={person.name} fill sizes="80px" className="object-cover object-top grayscale" />
       </div>
@@ -95,6 +98,44 @@ function PersonCard({ person }: { person: TeamMember }) {
         </a>
       )}
     </Card>
+  )
+}
+
+function MentorSlider({ people }: { people: TeamMember[] }) {
+  const track = useRef<HTMLUListElement>(null)
+  const scrollBy = (direction: 1 | -1) => {
+    const el = track.current
+    if (!el) return
+    el.scrollBy({ left: direction * Math.max(240, el.clientWidth * 0.8), behavior: "smooth" })
+  }
+
+  return (
+    <div>
+      <ul
+        ref={track}
+        aria-label="Top mentors"
+        className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {people.map((m) => (
+          <li key={m.name} className="flex w-[220px] shrink-0 snap-start">
+            <PersonCard person={m} className="w-full" />
+          </li>
+        ))}
+      </ul>
+      <div className="mt-2 flex gap-2">
+        {([-1, 1] as const).map((direction) => (
+          <button
+            key={direction}
+            type="button"
+            onClick={() => scrollBy(direction)}
+            aria-label={direction === 1 ? "Next mentors" : "Previous mentors"}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#D4D4D4] bg-white text-[#0A0A0A] transition-colors hover:bg-[#0A0A0A] hover:text-white"
+          >
+            {direction === 1 ? <ChevronRight className="h-5 w-5" aria-hidden="true" /> : <ChevronLeft className="h-5 w-5" aria-hidden="true" />}
+          </button>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -131,7 +172,7 @@ export default function TeamPage() {
           .filter((m) => m && m.name && !HIDDEN_MEMBERS.has(String(m.name).trim().toLowerCase()))
           .sort(compareMembers)
           .map((m) => ({ name: m.name, role: m.role || "", linkedin: m.linkedin || "", image: m.image || "/placeholder-avatar.jpg" }))
-        setCoreTeam(list)
+        setCoreTeam(list.filter((m) => !mentorNames.has(m.name.trim().toLowerCase())))
       })
       .catch(() => {})
       .finally(() => setLoadingCore(false))
@@ -151,11 +192,21 @@ export default function TeamPage() {
       <PageHero
         eyebrow="Team"
         title="Built by people who learned here first"
-        intro="A free, nonprofit community of engineers in 30 countries. Meet the team and the mentors, then read how we got here."
+        intro="A free, nonprofit community of engineers in 30 countries. Meet the mentors and the team, then read how we got here."
       />
 
+      {/* Top mentors: one hand-scrolled row, in the order they are listed */}
+      <Section id="mentors" tone="gray">
+        <SectionHeading
+          eyebrow="Top mentors"
+          title="Learn from people who did it"
+          intro="Working engineers who volunteer 10 to 15 hours a week. Each of them was a mentee first."
+        />
+        <MentorSlider people={mentors} />
+      </Section>
+
       {/* Core team: the operational team that runs Dev Weekends */}
-      <Section id="team" tone="gray">
+      <Section id="team">
         <SectionHeading
           eyebrow="Core team"
           title="The team that runs Dev Weekends"
@@ -164,7 +215,7 @@ export default function TeamPage() {
         {loadingCore ? (
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4" aria-busy="true" aria-label="Loading the core team">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="flex animate-pulse flex-col items-center rounded-[20px] bg-white p-6">
+              <div key={i} className="flex animate-pulse flex-col items-center rounded-[20px] bg-[#F7F7F7] p-6">
                 <div className="h-20 w-20 rounded-full bg-[#E6E6E6]" />
                 <div className="mt-4 h-4 w-24 rounded bg-[#E6E6E6]" />
                 <div className="mt-2 h-3 w-16 rounded bg-[#E6E6E6]" />
@@ -176,24 +227,10 @@ export default function TeamPage() {
         ) : (
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {coreTeam.map((m) => (
-              <PersonCard key={m.name + m.role} person={m} />
+              <PersonCard key={m.name + m.role} person={m} tone="gray" />
             ))}
           </div>
         )}
-      </Section>
-
-      {/* Mentors on board */}
-      <Section id="mentors">
-        <SectionHeading
-          eyebrow="Mentors"
-          title="Mentors on board"
-          intro="Working engineers who volunteer 10 to 15 hours a week. Each of them was a mentee first."
-        />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {mentors.map((m) => (
-            <PersonCard key={m.name} person={m} />
-          ))}
-        </div>
       </Section>
 
       {/* The founder story is written separately and rendered here */}
