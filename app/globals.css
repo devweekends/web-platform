@@ -110,39 +110,3 @@
   animation: heroFadeIn 0.8s cubic-bezier(0.4,0,0.2,1) both;
 }
 
-@keyframes testimonialsMoveRight {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-
-.testimonial-marquee {
-  overflow: hidden;
-  padding: 0.25rem;
-  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-}
-
-.testimonial-marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 1.5rem;
-}
-
-.testimonial-marquee-track--moving {
-  animation: testimonialsMoveRight 40s linear infinite;
-}
-
-.testimonial-marquee:hover .testimonial-marquee-track--moving,
-.testimonial-marquee:focus-within .testimonial-marquee-track--moving {
-  animation-play-state: paused;
-}
-
-.testimonial-marquee-track--paused {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .testimonial-marquee-track--moving {
-    animation: none;
-    transform: none;
-  }
-}
