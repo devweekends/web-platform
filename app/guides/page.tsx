@@ -4,7 +4,8 @@ import matter from "gray-matter";
 import GuidesClient from "./guidesClient";
 
 export const metadata = {
-  title: "Guides | Dev Weekends",
+  alternates: { canonical: "/guides" },
+  title: "Guides",
   description:
     "Curated, practical guides by Dev Weekends on cracking tech roles, building habits, open source, and growing as an engineer.",
 };
@@ -35,8 +36,12 @@ export default function GuidesPage() {
   const guidesDir = path.join(process.cwd(), "content", "guides");
 
   let files: string[] = [];
-  if (fs.existsSync(guidesDir)) {
-    files = fs.readdirSync(guidesDir).filter((f) => f.endsWith(".md"));
+  try {
+    if (fs.existsSync(guidesDir)) {
+      files = fs.readdirSync(guidesDir).filter((f) => f.endsWith(".md"));
+    }
+  } catch (error) {
+    console.error("Could not read guides:", error);
   }
 
   const guides: Guide[] = files.map((file) => {
@@ -52,7 +57,7 @@ export default function GuidesPage() {
       category: data.category ?? "Mindset & Growth",
       featured: data.featured ?? false,
       order: data.order ?? 999,
-      date: data.date ?? "",
+      date: data.date instanceof Date ? data.date.toISOString().slice(0, 10) : (data.date ?? ""),
       author: data.author ?? "Dev Weekends",
       icon: data.icon ?? "BookOpen",
       readingTime: data.readingTime ?? "",

@@ -4,14 +4,13 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Post } from "./page";
+import { formatDate } from "@/components/content/format-date";
+import { Eyebrow, PageHero, Section } from "@/components/site/page-kit";
 
-/* ---------------- SWIPER ---------------- */
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+const cardHover =
+  "transition duration-200 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-1";
+const focusRing =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A0A0A]";
 
 function imageClasses(post: Post) {
   const fit = post.imageFit === "contain" ? "object-contain" : "object-cover";
@@ -24,257 +23,169 @@ function imageClasses(post: Post) {
   return `${fit} ${position}`;
 }
 
+function PostImage({ post, priority, sizes }: { post: Post; priority?: boolean; sizes: string }) {
+  return (
+    <div
+      className={`relative aspect-[16/10] w-full overflow-hidden ${
+        post.imageFit === "contain" ? "bg-[#0A0A0A]" : "bg-[#F7F7F7]"
+      }`}
+    >
+      <Image
+        src={post.image || "/post1.jpg"}
+        alt={post.title}
+        fill
+        priority={priority}
+        sizes={sizes}
+        className={imageClasses(post)}
+      />
+    </div>
+  );
+}
+
+function PostCard({ post }: { post: Post }) {
+  return (
+    <Link
+      href={`/blog/${post.slug}`}
+      className={`group flex h-full flex-col overflow-hidden rounded-[20px] border border-[#E6E6E6] bg-white ${cardHover} ${focusRing}`}
+    >
+      <PostImage post={post} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 384px" />
+      <div className="flex flex-1 flex-col p-7">
+        <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">
+          {[post.category, formatDate(post.date)].filter(Boolean).join(" · ")}
+        </p>
+        <h2 className="mt-3 text-[22px] font-semibold leading-[1.25] tracking-[-0.02em] text-[#0A0A0A]">
+          {post.title}
+        </h2>
+        {post.description && (
+          <p className="mt-3 line-clamp-3 text-[15px] leading-[1.65] text-[#5C5C5C]">{post.description}</p>
+        )}
+        <span className="mt-auto inline-flex min-h-11 items-center pt-5 text-[15px] font-semibold text-[#0A0A0A]">
+          Read post
+          <span aria-hidden="true" className="ml-2 transition-transform motion-safe:group-hover:translate-x-1">&rarr;</span>
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+function FeaturedPost({ post }: { post: Post }) {
+  return (
+    <Link
+      href={`/blog/${post.slug}`}
+      className={`group grid overflow-hidden rounded-[28px] bg-[#F7F7F7] md:grid-cols-2 ${cardHover} ${focusRing}`}
+    >
+      <div
+        className={`relative aspect-[16/10] w-full md:aspect-auto md:min-h-[360px] ${
+          post.imageFit === "contain" ? "bg-[#0A0A0A]" : "bg-[#E6E6E6]"
+        }`}
+      >
+        <Image
+          src={post.image || "/post1.jpg"}
+          alt={post.title}
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 600px"
+          className={imageClasses(post)}
+        />
+      </div>
+      <div className="flex flex-col justify-center p-8 md:p-12">
+        <Eyebrow>{["Featured", formatDate(post.date)].filter(Boolean).join(" · ")}</Eyebrow>
+        <h2 className="mt-4 text-[clamp(26px,3vw,38px)] font-semibold leading-[1.12] tracking-[-0.035em] text-[#0A0A0A]">
+          {post.title}
+        </h2>
+        {post.description && (
+          <p className="mt-5 line-clamp-4 text-[16px] leading-[1.65] text-[#404040]">{post.description}</p>
+        )}
+        <span className="mt-8 inline-flex min-h-[52px] w-fit items-center rounded-xl bg-[#0A0A0A] px-7 text-base font-semibold text-white transition-colors group-hover:bg-[#262626]">
+          Read the post
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 export default function BlogClient({ posts }: { posts: Post[] }) {
   const [activeTab, setActiveTab] = useState<"news" | "blog">("news");
-
-  /* ---------------- FILTERED DATA ---------------- */
 
   const filteredPosts = useMemo(
     () =>
       posts
-        .filter(
-          (post) => post.category?.toLowerCase() === activeTab
-        )
+        .filter((post) => post.category?.toLowerCase() === activeTab)
         .sort((a, b) => (a.order ?? 999) - (b.order ?? 999)),
     [posts, activeTab]
   );
 
-  const featuredPosts = useMemo(
-    () => filteredPosts.filter((post) => post.featured),
+  const featuredPost = useMemo(
+    () => filteredPosts.find((post) => post.featured),
     [filteredPosts]
   );
 
-  /* ---------------- COUNTS ---------------- */
+  const gridPosts = useMemo(
+    () => filteredPosts.filter((post) => post.slug !== featuredPost?.slug),
+    [filteredPosts, featuredPost]
+  );
 
   const newsCount = useMemo(
-    () =>
-      posts.filter(
-        (p) => p.category?.toLowerCase() === "news"
-      ).length,
+    () => posts.filter((p) => p.category?.toLowerCase() === "news").length,
     [posts]
   );
 
   const blogCount = useMemo(
-    () =>
-      posts.filter(
-        (p) => p.category?.toLowerCase() === "blog"
-      ).length,
+    () => posts.filter((p) => p.category?.toLowerCase() === "blog").length,
     [posts]
   );
 
+  const tabs = [
+    { key: "news", label: `News (${newsCount})` },
+    { key: "blog", label: `Blog (${blogCount})` },
+  ] as const;
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-4xl mx-auto px-6 py-24">
+    <main className="bg-white text-[#0A0A0A]">
+      <PageHero
+        eyebrow="Stay updated"
+        title="News & Blog"
+        intro="Insights, updates, and deep dives into engineering, open source, and growth."
+      />
 
-        {/* ================= HERO ================= */}
-        <header className="mb-20 max-w-2xl">
-          <p className="uppercase text-xs tracking-[0.25em] text-muted-foreground mb-6">
-            Stay updated
-          </p>
-
-          <h1 className="text-6xl md:text-7xl font-serif leading-tight mb-8">
-            News & Blog
-          </h1>
-
-          <p className="text-muted-foreground text-lg">
-            Insights, updates, and deep dives into engineering,
-            open source, and growth.
-          </p>
-        </header>
-
-        {/* ================= FEATURED ================= */}
-        {featuredPosts.length > 0 && (
-          <section className="mb-24">
-            <h2 className="text-sm uppercase tracking-widest text-muted-foreground mb-10">
-              Featured
-            </h2>
-
-            <div className="relative group">
-
-              <Swiper
-                modules={[Navigation, Pagination]}
-                spaceBetween={20}
-                slidesPerView={1}
-                loop={featuredPosts.length > 2}
-                navigation={{
-                  nextEl: ".custom-next",
-                  prevEl: ".custom-prev",
-                }}
-                pagination={{
-                  clickable: true,
-                }}
-                breakpoints={{
-                  640: { slidesPerView: 1 },
-                  768: { slidesPerView: 2 },
-                  1024: { slidesPerView: 3 },
-                }}
-                className="featured-swiper"
+      <Section className="space-y-10">
+        <div role="group" aria-label="Filter posts by category" className="flex flex-wrap gap-2">
+          {tabs.map((tab) => {
+            const active = activeTab === tab.key;
+            return (
+              <button
+                key={tab.key}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setActiveTab(tab.key)}
+                className={`min-h-11 rounded-full border px-5 text-[14px] font-semibold transition-colors ${focusRing} ${
+                  active
+                    ? "border-[#0A0A0A] bg-[#0A0A0A] text-white"
+                    : "border-[#D4D4D4] bg-white text-[#404040] hover:bg-[#F7F7F7]"
+                }`}
               >
-                {featuredPosts.map((post) => (
-                  <SwiperSlide key={post.slug}>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="block group"
-                    >
-                      {/* IMAGE */}
-                      <div
-                        className={`relative w-full aspect-[4/5] mb-5 overflow-hidden rounded-xl ${
-                          post.imageFit === "contain"
-                            ? "bg-neutral-950"
-                            : "bg-muted"
-                        }`}
-                      >
-                        <Image
-                          src={post.image || "/post1.jpg"}
-                          alt={post.title}
-                          fill
-                          priority
-                          sizes="(max-width:768px) 100vw, 33vw"
-                          className={`rounded-xl transition duration-500 group-hover:scale-[1.02] ${imageClasses(
-                            post
-                          )}`}
-                        />
-                      </div>
-
-                      {/* META */}
-                      <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground mb-3">
-                        <span>{post.category}</span>
-                        <span>•</span>
-                        <span>{post.date}</span>
-                      </div>
-
-                      {/* TITLE */}
-                      <h3 className="text-lg font-semibold leading-snug group-hover:opacity-70 transition">
-                        {post.title}
-                      </h3>
-                    </Link>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-              {/* NAVIGATION ARROWS */}
-              <button className="custom-prev absolute top-1/2 -left-5 -translate-y-1/2 z-10 bg-background shadow-md rounded-full w-10 h-10 hidden md:flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                ‹
+                {tab.label}
               </button>
+            );
+          })}
+        </div>
 
-              <button className="custom-next absolute top-1/2 -right-5 -translate-y-1/2 z-10 bg-background shadow-md rounded-full w-10 h-10 hidden md:flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                ›
-              </button>
+        {featuredPost && <FeaturedPost post={featuredPost} />}
+
+        {filteredPosts.length === 0 ? (
+          <div className="rounded-[20px] border border-dashed border-[#D4D4D4] px-6 py-16 text-center">
+            <p className="text-[#5C5C5C]">No posts in this category.</p>
+          </div>
+        ) : (
+          gridPosts.length > 0 && (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {gridPosts.map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
             </div>
-          </section>
+          )
         )}
-
-        {/* ================= TABS ================= */}
-        <div className="flex gap-10 border-b border-border mb-16">
-          {[
-            { key: "news", label: `News (${newsCount})` },
-            { key: "blog", label: `Blog (${blogCount})` },
-          ].map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() =>
-                setActiveTab(tab.key as "news" | "blog")
-              }
-              className={`pb-3 text-sm uppercase tracking-wide transition ${
-                activeTab === tab.key
-                  ? "border-b-2 border-foreground text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* ================= POSTS ================= */}
-        <div className="space-y-20">
-          {filteredPosts.length === 0 ? (
-            <p className="text-muted-foreground">
-              No posts in this category.
-            </p>
-          ) : (
-            filteredPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="block group"
-              >
-                {/* IMAGE */}
-                <div
-                  className={`relative w-full mb-6 overflow-hidden rounded-xl ${
-                    post.imageFit === "contain"
-                      ? "aspect-[4/5] bg-neutral-950"
-                      : "aspect-[16/9] bg-muted"
-                  }`}
-                >
-                  <Image
-                    src={post.image || "/post1.jpg"}
-                    alt={post.title}
-                    fill
-                    sizes="100vw"
-                    className={`rounded-xl transition duration-500 group-hover:scale-[1.02] ${imageClasses(
-                      post
-                    )}`}
-                  />
-                </div>
-
-                {/* META */}
-                <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-muted-foreground mb-4">
-                  <span>{post.category}</span>
-                  <span>•</span>
-                  <span>{post.date}</span>
-                </div>
-
-                {/* TITLE */}
-                <h2 className="text-4xl md:text-5xl font-serif leading-tight mb-6 group-hover:opacity-70 transition">
-                  {post.title}
-                </h2>
-
-                {/* DESCRIPTION */}
-                {post.description && (
-                  <p className="text-foreground/80 leading-8 max-w-2xl mb-8 text-lg">
-                    {post.description}
-                  </p>
-                )}
-
-                <div className="mt-14 border-b border-border" />
-              </Link>
-            ))
-          )}
-        </div>
-      </div>
-
-      {/* ================= SWIPER FIX ================= */}
-      <style jsx global>{`
-        .featured-swiper {
-          padding-bottom: 80px !important;
-        }
-
-        .featured-swiper .swiper-pagination {
-          bottom: 15px !important;
-        }
-
-        .featured-swiper .swiper-pagination-bullet {
-          width: 8px;
-          height: 8px;
-          opacity: 0.4;
-          background: hsl(var(--foreground));
-        }
-
-        .featured-swiper .swiper-pagination-bullet-active {
-          opacity: 1;
-        }
-
-        @media (max-width: 640px) {
-          .featured-swiper {
-            padding-bottom: 100px !important;
-          }
-
-          .featured-swiper .swiper-pagination {
-            bottom: 35px !important;
-          }
-        }
-      `}</style>
-    </div>
+      </Section>
+    </main>
   );
 }

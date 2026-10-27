@@ -3,6 +3,12 @@ import path from "path";
 import matter from "gray-matter";
 import BlogClient from "./blogClient";
 
+export const metadata = {
+  title: "Blog",
+  description: "News and stories from Dev Weekends: fellowship updates, Google Summer of Code results and community highlights.",
+  alternates: { canonical: "/blog" },
+}
+
 export type Post = {
   slug: string;
   title: string;
@@ -20,7 +26,12 @@ const PORTRAIT_POSTER_SLUGS = new Set(["gsoc"]);
 
 export default function BlogPage() {
   const blogDir = path.join(process.cwd(), "content", "blog");
-  const files = fs.readdirSync(blogDir);
+  let files: string[] = [];
+  try {
+    files = fs.readdirSync(blogDir).filter((f) => f.endsWith(".md"));
+  } catch (error) {
+    console.error("Could not read blog posts:", error);
+  }
 
   const posts: Post[] = files.map((file) => {
     const filePath = path.join(blogDir, file);
@@ -31,7 +42,7 @@ export default function BlogPage() {
     return {
       slug,
       title: data.title,
-      date: data.date,
+      date: data.date instanceof Date ? data.date.toISOString().slice(0, 10) : data.date,
       category: data.category,
       description: data.description || "",
       image: data.image || "/post1.jpg",

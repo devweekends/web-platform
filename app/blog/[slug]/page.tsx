@@ -1,10 +1,40 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ArticleBody } from "@/components/content/article-body";
+import { formatDate } from "@/components/content/format-date";
+import { Button, Eyebrow, container } from "@/components/site/page-kit";
+
+const backLink =
+  "inline-flex min-h-11 items-center text-[15px] font-medium text-[#5C5C5C] transition-colors hover:text-[#0A0A0A]";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const filePath = path.join(process.cwd(), "content", "blog", `${slug}.md`);
+  if (!fs.existsSync(filePath)) return { title: "Post not found", robots: { index: false } };
+  const { data } = matter(fs.readFileSync(filePath, "utf-8"));
+  const date = data.date ? new Date(data.date) : undefined;
+  return {
+    title: data.title,
+    description: data.description,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      type: "article",
+      title: data.title,
+      description: data.description,
+      url: `/blog/${slug}`,
+      publishedTime: date && !Number.isNaN(date.getTime()) ? date.toISOString() : undefined,
+      images: data.image ? [{ url: data.image }] : undefined,
+    },
+  };
+}
 
 export default async function BlogPost({
   params,
@@ -22,201 +52,76 @@ export default async function BlogPost({
 
   if (!fs.existsSync(filePath)) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-3xl mb-3">Post not found</h1>
-          <Link href="/blog" className="underline">
-            Back to blog
-          </Link>
+      <main className="bg-white">
+        <div className={`${container} py-24 md:py-32`}>
+          <Eyebrow>Blog</Eyebrow>
+          <h1 className="mt-4 text-[clamp(32px,5vw,56px)] font-semibold leading-[1.05] tracking-[-0.04em]">
+            Post not found
+          </h1>
+          <p className="mt-5 max-w-[48ch] text-[18px] leading-[1.65] text-[#404040]">
+            This post does not exist or has moved.
+          </p>
+          <div className="mt-8">
+            <Button href="/blog">Back to blog</Button>
+          </div>
         </div>
-      </div>
+      </main>
     );
   }
 
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
+  const date = formatDate(data.date instanceof Date ? data.date.toISOString() : data.date);
+
+  const fit: "cover" | "contain" =
+    data.imageFit ?? (slug === "gsoc" ? "contain" : "cover");
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
-      <Link
-        href="/blog"
-        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-      >
-        ← Back
-      </Link>
+    <main className="bg-white">
+      <div className={`${container} pb-20 pt-8 md:pb-24`}>
+        <Link href="/blog" className={backLink}>
+          <span aria-hidden="true" className="mr-2">&larr;</span>
+          All posts
+        </Link>
 
-      {/* HEADER */}
-      <header className="mt-10 mb-14 max-w-3xl">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
-          {data.category}
-        </p>
+        {/* HEADER */}
+        <header className="mx-auto mt-8 max-w-[720px]">
+          {data.category && <Eyebrow>{data.category}</Eyebrow>}
+          <h1 className="mt-4 text-[clamp(34px,5vw,56px)] font-semibold leading-[1.05] tracking-[-0.045em] text-[#0A0A0A]">
+            {data.title}
+          </h1>
+          {date && <p className="mt-6 text-[14px] text-[#5C5C5C]">{date}</p>}
+        </header>
 
-        <h1 className="text-4xl md:text-5xl font-serif leading-tight mb-6 text-foreground">
-          {data.title}
-        </h1>
-
-        <p className="text-muted-foreground text-sm">{data.date}</p>
-      </header>
-
-      {/* COVER IMAGE */}
-      {data.image && (
-        (() => {
-          const fit: "cover" | "contain" =
-            data.imageFit ?? (slug === "gsoc" ? "contain" : "cover");
-          const aspect = fit === "contain" ? "aspect-[4/5]" : "aspect-[16/9]";
-          const fitClass =
-            fit === "contain" ? "object-contain" : "object-cover object-center";
-          return (
-            <div className="relative w-full mb-16 overflow-hidden rounded-2xl bg-neutral-950">
-              <div className={`relative ${aspect} w-full mx-auto max-w-3xl`}>
-                <Image
-                  src={data.image}
-                  alt={data.title}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 1024px"
-                  className={`transition duration-700 hover:scale-105 ${fitClass}`}
-                />
-              </div>
+        {/* COVER IMAGE */}
+        {data.image && (
+          <div className="mx-auto mt-12 max-w-[720px] overflow-hidden rounded-[20px] bg-[#0A0A0A]">
+            <div className={`relative w-full ${fit === "contain" ? "aspect-[4/5]" : "aspect-[16/9]"}`}>
+              <Image
+                src={data.image}
+                alt={data.title}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 720px"
+                className={fit === "contain" ? "object-contain" : "object-cover object-center"}
+              />
             </div>
-          );
-        })()
-      )}
-      {/* MARKDOWN */}
-      <article className="mx-auto max-w-2xl">
-        <div className="max-w-none">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={{
-              p({ node, children }) {
-                const hasImg = node?.children?.some(
-                  (child: any) => child.tagName === "img"
-                );
+          </div>
+        )}
 
-                if (hasImg) {
-                  return <div className="my-12">{children}</div>;
-                }
+        {/* MARKDOWN */}
+        <article className="mt-12">
+          <ArticleBody content={content} optimizeImages />
+        </article>
 
-                return (
-                  <p className="text-foreground/80 leading-[1.85] my-6 text-[1.075rem]">
-                    {children}
-                  </p>
-                );
-              },
-
-              img({ src = "", alt = "" }) {
-                const url = typeof src === "string" ? src : "";
-                // SVG diagrams/charts keep their own aspect ratio, so render
-                // them with a plain img instead of forcing next/image's 4:5 box.
-                if (url.endsWith(".svg")) {
-                  return (
-                    <span className="block my-12 overflow-hidden rounded-xl border border-border">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={url} alt={alt} loading="lazy" className="w-full h-auto" />
-                    </span>
-                  );
-                }
-                return (
-                  <span className="block my-14">
-                    <Image
-                      src={url}
-                      alt={alt}
-                      width={1600}
-                      height={2000}
-                      sizes="(max-width: 768px) 100vw, 768px"
-                      className="rounded-xl w-full h-auto"
-                    />
-                  </span>
-                );
-              },
-
-              h1: ({ children }) => (
-                <h1 className="text-4xl md:text-5xl font-serif tracking-tight mt-16 mb-8 text-foreground">
-                  {children}
-                </h1>
-              ),
-
-              h2: ({ children }) => (
-                <h2 className="text-3xl font-serif tracking-tight mt-20 mb-6 text-foreground">
-                  {children}
-                </h2>
-              ),
-
-              h3: ({ children }) => (
-                <h3 className="text-xl font-serif font-semibold mt-12 mb-3 text-foreground">
-                  {children}
-                </h3>
-              ),
-
-              ul: ({ children }) => (
-                <ul className="my-6 space-y-2 list-disc pl-6 text-foreground/80 leading-[1.75]">
-                  {children}
-                </ul>
-              ),
-
-              ol: ({ children }) => (
-                <ol className="my-6 space-y-2 list-decimal pl-6 text-foreground/80 leading-[1.75]">
-                  {children}
-                </ol>
-              ),
-
-              li: ({ children }) => (
-                <li className="pl-1">{children}</li>
-              ),
-
-              blockquote: ({ children }) => (
-                <blockquote className="my-8 rounded-r-lg border-l-2 border-[#22C55E] bg-[#22C55E]/5 py-2 pl-6 pr-4 italic text-foreground/70">
-                  {children}
-                </blockquote>
-              ),
-
-              hr: () => (
-                <hr className="my-16 border-0 h-px bg-border" />
-              ),
-
-              strong: ({ children }) => (
-                <strong className="font-semibold text-foreground">
-                  {children}
-                </strong>
-              ),
-
-              a: ({ href, children }) => (
-                <a
-                  href={href}
-                  className="underline underline-offset-4 decoration-muted-foreground text-foreground hover:decoration-foreground transition"
-                >
-                  {children}
-                </a>
-              ),
-
-              table: ({ children }) => (
-                <div className="my-10 overflow-x-auto">
-                  <table className="w-full border-collapse text-left text-[0.95rem]">
-                    {children}
-                  </table>
-                </div>
-              ),
-              thead: ({ children }) => (
-                <thead className="border-b-2 border-foreground">{children}</thead>
-              ),
-              tbody: ({ children }) => (
-                <tbody className="divide-y divide-border">{children}</tbody>
-              ),
-              tr: ({ children }) => <tr>{children}</tr>,
-              th: ({ children }) => (
-                <th className="py-3 pr-6 font-semibold text-foreground align-top">
-                  {children}
-                </th>
-              ),
-              td: ({ children }) => (
-                <td className="py-3 pr-6 text-foreground/80 align-top">{children}</td>
-              ),
-            }}
-          >
-            {content}
-          </ReactMarkdown>
+        {/* FOOTER */}
+        <div className="mx-auto mt-16 max-w-[720px] border-t border-[#E6E6E6] pt-6">
+          <Link href="/blog" className={backLink}>
+            <span aria-hidden="true" className="mr-2">&larr;</span>
+            More from the blog
+          </Link>
         </div>
-      </article>
-    </div>
+      </div>
+    </main>
   );
 }
