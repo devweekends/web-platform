@@ -85,6 +85,13 @@ export const applyPrograms: ApplyProgram[] = [
     href: LINKS.fyp,
   },
   {
+    name: "Campus Ambassador Program",
+    when: "Lead Dev Weekends on your university campus",
+    status: "OPEN",
+    cta: "Learn more",
+    href: "/ambassador-program",
+  },
+  {
     name: "GSoC prep",
     when: "Join the prep group on WhatsApp and Discord",
     status: "GROUP",
@@ -344,6 +351,7 @@ export const footerColumns = [
       { label: "DSOC", href: LINKS.dsoc },
       { label: "DWOSI", href: LINKS.dwosi },
       { label: "FYP mentorship", href: LINKS.fyp },
+      { label: "Campus ambassadors", href: "/ambassador-program" },
     ],
   },
   {

@@ -189,7 +189,7 @@ export function Resources() {
             <ResourceTile href={LINKS.resources} kicker="Docs and courses ↗" title="Free learning hub" text="resources.devweekends.com: interview prep, sheets and curated learning." />
           </div>
           <div className="flex flex-col gap-5">
-            <ResourceTile href={LINKS.youtube} kicker="YouTube ↗" title="326 free videos" text="Sessions, talks and series, recorded." />
+            <ResourceTile href={LINKS.youtube} kicker="YouTube ↗" title="300+ free videos" text="Sessions, talks and series, recorded." />
             <ResourceTile href={LINKS.github} kicker="GitHub ↗" title="Our open source code" text="Every Dev Weekends open source product, public." />
           </div>
         </div>
