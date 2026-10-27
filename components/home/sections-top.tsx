@@ -224,14 +224,14 @@ export function Outcomes() {
             Most started with no network and no resume worth reading. Here is the receipt.
           </p>
         </div>
-        <ul className="mt-10 grid grid-cols-3 border-l border-t border-[#E6E6E6] md:mt-14">
+        <ul className="mt-10 grid grid-cols-3 border-l border-t border-[#E6E6E6] md:mt-14 xl:grid-cols-6">
           {outcomes.map((item) => (
-            <li key={item.title} className="flex min-w-0 flex-col gap-1.5 border-b border-r border-[#E6E6E6] p-3 transition-colors duration-200 hover:bg-[#FAFAFA] sm:gap-2.5 sm:p-6 lg:p-8">
-              <p className="text-[clamp(22px,6vw,44px)] font-semibold leading-none tracking-[-0.04em]">{item.value}</p>
-              <h3 className="text-[12px] font-semibold leading-snug sm:text-[17px]">{item.title}</h3>
-              <p className="text-[11px] leading-[1.45] text-[#5C5C5C] sm:text-[15px] sm:leading-[1.6]">{item.text}</p>
+            <li key={item.title} className="flex min-w-0 flex-col gap-1.5 border-b border-r border-[#E6E6E6] p-3 transition-colors duration-200 hover:bg-[#FAFAFA] sm:gap-2.5 sm:p-6 lg:p-8 xl:p-5">
+              <p className="text-[clamp(22px,6vw,44px)] font-semibold leading-none tracking-[-0.04em] xl:text-[36px]">{item.value}</p>
+              <h3 className="text-[12px] font-semibold leading-snug sm:text-[17px] xl:text-[15px]">{item.title}</h3>
+              <p className="text-[11px] leading-[1.45] text-[#5C5C5C] sm:text-[15px] sm:leading-[1.6] xl:text-[13px] xl:leading-[1.5]">{item.text}</p>
               {item.link && (
-                <SmartLink href={item.link.href} className="mt-auto inline-flex min-h-11 items-center gap-1 pt-1 text-[11px] font-semibold sm:pt-2 sm:text-sm">
+                <SmartLink href={item.link.href} className="mt-auto inline-flex min-h-11 items-center gap-1 pt-1 text-[11px] font-semibold sm:pt-2 sm:text-sm xl:text-[13px]">
                   {item.link.label} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </SmartLink>
               )}
