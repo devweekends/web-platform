@@ -22,7 +22,16 @@ interface TeamMember {
 
 // Members hidden from the page (matched by exact, trimmed, lower-cased name).
 // The records still live in the database.
-const HIDDEN_MEMBERS = new Set(["muhammad ali", "muhammad faraz"])
+const HIDDEN_MEMBERS = new Set([
+  "muhammad ali",
+  "muhammad faraz",
+  "ahsaan ullah",
+  "falak sher",
+  "zulkifal",
+  "muhammad junaid raza",
+  "usama razzaq",
+  "haris baig",
+])
 
 // Top mentors, in the order they are shown. The operational core team is loaded from the database.
 const mentors: TeamMember[] = [
@@ -35,8 +44,6 @@ const mentors: TeamMember[] = [
   { name: "Abu Bakar", role: "SWE @ Salla Ecommerce", linkedin: "https://www.linkedin.com/in/iamaboubakar/", image: "/bakar.png" },
   { name: "Farooq Tahir", role: "Top Rated Plus @ Upwork", linkedin: "https://www.linkedin.com/in/farooqtahir/", image: "/farooq.png" },
 ]
-
-const mentorNames = new Set(mentors.map((m) => m.name.trim().toLowerCase()))
 
 // Orders the team: the admin-assigned order first, then by role tier.
 function rankMember(m: { name?: string; role?: string }): number {
@@ -133,7 +140,7 @@ export default function TeamPage() {
           .filter((m) => m && m.name && !HIDDEN_MEMBERS.has(String(m.name).trim().toLowerCase()))
           .sort(compareMembers)
           .map((m) => ({ name: m.name, role: m.role || "", linkedin: m.linkedin || "", image: m.image || "/placeholder-avatar.jpg" }))
-        setCoreTeam(list.filter((m) => !mentorNames.has(m.name.trim().toLowerCase())))
+        setCoreTeam(list)
       })
       .catch(() => {})
       .finally(() => setLoadingCore(false))
