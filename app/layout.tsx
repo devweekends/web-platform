@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/site-footer"
 import Script from 'next/script'
 import { Analytics } from "@/components/analytics"
 import { SiteHeader } from "@/components/site-header"
+import { EmailChooser } from "@/components/email-chooser"
 import { dwosiThemeScript } from "@/app/dwosi/theme"
 import { SITE_URL, jsonLdString, siteJsonLd } from "@/lib/seo"
 
@@ -130,6 +131,7 @@ export default function RootLayout({
             </main>
             <SiteFooter />
           </div>
+          <EmailChooser />
         </ThemeProvider>
       </body>
     </html>
