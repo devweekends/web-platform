@@ -30,18 +30,18 @@ Everything at Dev Weekends is free for the community. Our core mission is to mak
 
 ## Primary links
 
-- Website: https://devweekends.com
-- Sessions: https://devweekends.com/sessions
-- Community: https://devweekends.com/community
-- Mentorship: https://devweekends.com/mentorship
-- Projects: https://devweekends.com/projects
+- Website: https://www.devweekends.com
+- Sessions: https://www.devweekends.com/sessions
+- Community: https://www.devweekends.com/community
+- Mentorship: https://www.devweekends.com/mentorship
+- Projects: https://www.devweekends.com/projects
 
 ## Agent and machine-readable discovery
 
 - Requested path: ${sourcePath}
-- llms.txt: https://devweekends.com/llms.txt
-- API catalog: https://devweekends.com/.well-known/api-catalog
-- Agent skills index: https://devweekends.com/.well-known/agent-skills/index.json
+- llms.txt: https://www.devweekends.com/llms.txt
+- API catalog: https://www.devweekends.com/.well-known/api-catalog
+- Agent skills index: https://www.devweekends.com/.well-known/agent-skills/index.json
 `
 
   return new NextResponse(markdown, {

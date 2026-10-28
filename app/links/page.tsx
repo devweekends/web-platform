@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dev Weekends | Links",
     description: "Find and join the right Dev Weekends community in one tap.",
-    url: "https://devweekends.com/links",
+    url: "https://www.devweekends.com/links",
     images: ["/og-image.jpg"],
   },
 }

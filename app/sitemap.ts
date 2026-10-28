@@ -3,7 +3,9 @@ import path from 'path'
 import matter from 'gray-matter'
 import { MetadataRoute } from 'next'
 
-const baseUrl = 'https://devweekends.com'
+import { SITE_URL } from '@/lib/seo'
+
+const baseUrl = SITE_URL
 
 type Entry = {
   path: string
