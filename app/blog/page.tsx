@@ -5,55 +5,77 @@ import BlogClient from "./blogClient";
 import { withSocial } from "@/lib/seo";
 
 export const metadata = withSocial({
-  title: "Blog",
-  description: "News and stories from Dev Weekends: fellowship updates, Google Summer of Code results and community highlights.",
+  title: "News, guides and blog",
+  description:
+    "News, practical guides and stories from Dev Weekends: fellowship updates, Google Summer of Code results, career guides and community highlights.",
   alternates: { canonical: "/blog" },
 })
 
+export type ReadKind = "news" | "guides" | "blog";
+
+/** One readable item on /blog: a news post, a guide or a blog post */
 export type Post = {
   slug: string;
+  href: string;
+  kind: ReadKind;
   title: string;
   date: string;
-  category: string;
   description?: string;
   image?: string;
   imageFit?: "cover" | "contain";
   imagePosition?: "top" | "center" | "bottom";
   featured?: boolean;
-  order?: number;
+  readingTime?: string;
 };
 
 const PORTRAIT_POSTER_SLUGS = new Set(["gsoc"]);
 
-export default function BlogPage() {
-  const blogDir = path.join(process.cwd(), "content", "blog");
-  let files: string[] = [];
+function readFolder(folder: "blog" | "guides") {
+  const dir = path.join(process.cwd(), "content", folder);
   try {
-    files = fs.readdirSync(blogDir).filter((f) => f.endsWith(".md"));
+    return fs
+      .readdirSync(dir)
+      .filter((f) => f.endsWith(".md"))
+      .map((file) => ({ slug: file.replace(/\.md$/, ""), data: matter(fs.readFileSync(path.join(dir, file), "utf-8")).data }));
   } catch (error) {
-    console.error("Could not read blog posts:", error);
+    console.error(`Could not read ${folder}:`, error);
+    return [];
   }
+}
 
-  const posts: Post[] = files.map((file) => {
-    const filePath = path.join(blogDir, file);
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    const { data } = matter(fileContent);
-    const slug = file.replace(".md", "");
+const isoDate = (value: unknown) => (value instanceof Date ? value.toISOString().slice(0, 10) : String(value ?? ""));
 
-    return {
+export default function BlogPage() {
+  // Posts tagged "news" go under News; every other post (no category, or "blog") under Blog
+  const posts: Post[] = readFolder("blog")
+    .filter(({ data }) => data.draft !== true)
+    .map(({ slug, data }) => ({
       slug,
+      href: `/blog/${slug}`,
+      kind: String(data.category ?? "").toLowerCase() === "news" ? "news" : "blog",
       title: data.title,
-      date: data.date instanceof Date ? data.date.toISOString().slice(0, 10) : data.date,
-      category: data.category,
+      date: isoDate(data.date),
       description: data.description || "",
       image: data.image || "/post1.jpg",
-      imageFit:
-        data.imageFit ?? (PORTRAIT_POSTER_SLUGS.has(slug) ? "contain" : "cover"),
+      imageFit: data.imageFit ?? (PORTRAIT_POSTER_SLUGS.has(slug) ? "contain" : "cover"),
       imagePosition: data.imagePosition ?? "center",
       featured: data.featured || false,
-      order: data.order ?? 999,
-    };
-  });
+    }));
 
-  return <BlogClient posts={posts} />;
+  const guides: Post[] = readFolder("guides")
+    .filter(({ data }) => data.draft !== true)
+    .map(({ slug, data }) => ({
+      slug,
+      href: `/guides/${slug}`,
+      kind: "guides",
+      title: data.title ?? slug,
+      date: isoDate(data.date),
+      description: data.description ?? "",
+      image: data.image,
+      imageFit: "contain",
+      featured: data.featured ?? false,
+      readingTime: data.readingTime ?? "",
+    }));
+
+  return <BlogClient items={[...posts, ...guides]} />;
 }
