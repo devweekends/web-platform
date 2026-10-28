@@ -64,7 +64,7 @@ export function Hero() {
               </a>
             </p>
             <div className="mt-11 flex items-center gap-4 border-t border-[#262626] pt-7">
-              <div className="flex" aria-hidden="true">
+              <div className="flex shrink-0" aria-hidden="true">
                 {faces.map((face, index) => (
                   <Image
                     key={face.src}
@@ -76,7 +76,7 @@ export function Hero() {
                   />
                 ))}
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-[15px] font-semibold">30,000+ people. One shared purpose.</p>
                 <p className="mt-0.5 text-sm text-[#A3A3A3]">From your first line of code to your next big leap.</p>
               </div>
