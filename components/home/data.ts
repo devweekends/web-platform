@@ -132,7 +132,6 @@ export const reach = [
 
 /** Our direct partners, in display order */
 export const partners: Org[] = [
-  { name: "Olostep", href: "https://www.olostep.com", logo: "/logos/olostep.svg" },
   { name: "MicroTechX", href: "https://www.microtechx.com", logo: "/logos/microtechx.png" },
   { name: "EmpactUs", href: "https://empactus.org.uk", logo: "/logos/empactus.png" },
   { name: "MAX Circles", href: "https://onemax.org", logo: "/logos/max.png", tall: true },
