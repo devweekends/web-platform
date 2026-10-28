@@ -32,8 +32,7 @@ export const LINKS = {
   gsocPost: "/blog/gsoc",
   lfxPost: "/blog/lfx-mentorship-2026-talha-amjad",
   sessions: "/sessions",
-  /** Buildment has no public production URL yet */
-  buildment: null as string | null,
+  edorax: "https://edorax.com",
 }
 
 export const mailto = (subject: string) => `mailto:${LINKS.email}?subject=${encodeURIComponent(subject)}`
@@ -228,7 +227,7 @@ export const outcomes = [
 /** Products not live yet link to our GitHub and keep a Coming soon tag */
 export const products: { name: string; tag: string; text: string; href: string; soon?: boolean }[] = [
   { name: "Pathment", tag: "PLATFORM", text: "Runs our fellowships: clans, mentors, tasks and progress tracking.", href: LINKS.pathment },
-  { name: "Buildment", tag: "PLATFORM", text: "Our courses, MindMaster included, are coming here. Learn engineering by building.", href: LINKS.buildment ?? LINKS.github, soon: !LINKS.buildment },
+  { name: "Edorax", tag: "PLATFORM", text: "Our courses, MindMaster included, are coming here. Learn engineering by building.", href: LINKS.edorax },
   { name: "Meshly Cloud", tag: "FREE COMPUTE", text: "Our community cloud: shared Kubernetes from contributed compute for members' workloads.", href: "/dwosi#projects" },
   { name: "Inroad", tag: "CAREERS", text: "Finds companies that fit you and drafts a note to the person who can hire you.", href: LINKS.inroad },
   { name: "GoalSlot", tag: "PRODUCTIVITY", text: "Goals on your calendar, deep work on a timer, progress in reports.", href: LINKS.goalslot },
