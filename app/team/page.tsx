@@ -88,9 +88,16 @@ const pillars = [
 
 function PersonCard({ person, tone = "white", className = "" }: { person: TeamMember; tone?: "white" | "gray"; className?: string }) {
   return (
-    <Card tone={tone} className={`items-center p-6 text-center ${lift} ${className}`}>
+    <Card tone={tone} className={`group items-center p-6 text-center ${lift} ${className}`}>
       <div className="relative h-20 w-20 overflow-hidden rounded-full bg-[#F7F7F7]">
-        <Image src={person.image} alt={person.name} fill sizes="80px" className="object-cover object-top grayscale" />
+        {/* Grey until the card is hovered or its link has focus, like the home hero */}
+        <Image
+          src={person.image}
+          alt={person.name}
+          fill
+          sizes="80px"
+          className="object-cover object-top grayscale transition-[filter] duration-500 group-hover:grayscale-0 group-focus-within:grayscale-0"
+        />
       </div>
       <h3 className="mt-4 text-[15px] font-semibold">{person.name}</h3>
       <p className="mt-1 flex-1 text-[13px] leading-snug text-[#5C5C5C]">{person.role}</p>
