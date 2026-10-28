@@ -5,7 +5,8 @@
 
 import type { Metadata } from 'next'
 
-export const SITE_URL = 'https://devweekends.com'
+// The live site answers on www; the bare domain redirects there
+export const SITE_URL = 'https://www.devweekends.com'
 export const SITE_NAME = 'Dev Weekends'
 export const SITE_TAGLINE = 'Great engineers. Greater impact.'
 
