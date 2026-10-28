@@ -8,7 +8,7 @@ import Script from 'next/script'
 import { Analytics } from "@/components/analytics"
 import { SiteHeader } from "@/components/site-header"
 import { dwosiThemeScript } from "@/app/dwosi/theme"
-import { jsonLdString, siteJsonLd } from "@/lib/seo"
+import { SITE_URL, jsonLdString, siteJsonLd } from "@/lib/seo"
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
@@ -16,12 +16,12 @@ const inter = Inter({ subsets: ["latin"], display: "swap" })
 const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://devweekends.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Dev Weekends - Your Gateway to becoming a better Software Engineer",
+    default: "Dev Weekends | Great engineers. Greater impact.",
     template: "%s | Dev Weekends"
   },
-  description: "Join a thriving community of students and tech enthusiasts learning, building, and growing together through weekend events and bootcamps. Learn from industry experts and enhance your skills in various tech domains.",
+  description: "Great engineers. Greater impact. Dev Weekends is a free community of engineers with programs, mentorship, open source and partnerships that open doors to the world.",
   keywords: ["software engineering", "tech community", "coding bootcamp", "mentorship", "tech events", "developer community", "programming", "software development", "tech learning", "career development"],
   authors: [{ name: "Dev Weekends Team" }],
   creator: "Dev Weekends",
@@ -46,14 +46,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Dev Weekends - Your Gateway to becoming a better Software Engineer",
-    description: "Join a thriving community of students and tech enthusiasts learning, building, and growing together through weekend events and bootcamps.",
+    title: "Dev Weekends | Great engineers. Greater impact.",
+    description: "Great engineers. Greater impact. Dev Weekends is a free community of engineers with programs, mentorship, open source and partnerships that open doors to the world.",
     siteName: "Dev Weekends",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dev Weekends - Your Gateway to becoming a better Software Engineer",
-    description: "Join a thriving community of students and tech enthusiasts learning, building, and growing together through weekend events and bootcamps.",
+    title: "Dev Weekends | Great engineers. Greater impact.",
+    description: "Great engineers. Greater impact. Dev Weekends is a free community of engineers with programs, mentorship, open source and partnerships that open doors to the world.",
     creator: "@devweekends",
   },
   robots: {
