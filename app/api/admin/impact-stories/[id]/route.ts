@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { verify } from 'jsonwebtoken';
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
@@ -76,6 +77,8 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     }
 
     await connectDB();
+    // The public page is cached; refresh it now so the change shows at once
+    revalidatePath('/testimonials');
     await ActivityLog.create({
       entityType: 'ImpactStory',
       entityId: String(story._id),
@@ -107,6 +110,8 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
     }
 
     await connectDB();
+    // The public page is cached; refresh it now so the change shows at once
+    revalidatePath('/testimonials');
     await ActivityLog.create({
       entityType: 'ImpactStory',
       entityId: id,
