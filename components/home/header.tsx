@@ -50,7 +50,8 @@ export function HomeHeader() {
           <BrandLogo height={48} />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 text-[15px] font-medium lg:flex">
+        {/* Seven links and the button only fit from about 1,100px, so smaller screens get the menu button */}
+        <nav aria-label="Primary" className="hidden items-center gap-8 text-[15px] font-medium xl:flex">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className="text-[#404040] transition-colors hover:text-black">
               {item.label}
@@ -73,7 +74,7 @@ export function HomeHeader() {
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((open) => !open)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-[10px] border border-[#E6E6E6] lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-[10px] border border-[#E6E6E6] xl:hidden"
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -81,7 +82,8 @@ export function HomeHeader() {
         {involvedOpen && (
           <div
             id="get-involved-menu"
-            className="absolute right-6 top-[68px] hidden w-[min(680px,calc(100%-48px))] overflow-hidden rounded-[18px] border border-[#E6E6E6] bg-white shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)] lg:grid lg:grid-cols-[1fr_1.1fr]"
+            // Never taller than the screen below the headline bar (40px) and header (72px)
+            className="absolute right-6 top-[68px] hidden max-h-[calc(100dvh-128px)] w-[min(680px,calc(100%-48px))] overflow-y-auto overscroll-contain rounded-[18px] border border-[#E6E6E6] bg-white shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)] xl:grid xl:grid-cols-[1fr_1.1fr]"
           >
             <GetInvolvedPanel onNavigate={close} />
           </div>
@@ -89,7 +91,7 @@ export function HomeHeader() {
       </div>
 
       {mobileOpen && (
-        <div className="max-h-[calc(100vh-72px)] overflow-y-auto border-t border-[#E6E6E6] bg-white lg:hidden">
+        <div className="max-h-[calc(100dvh-112px)] overflow-y-auto overscroll-contain border-t border-[#E6E6E6] bg-white xl:hidden">
           <nav aria-label="Mobile" className="flex flex-col px-6 py-2 text-[17px] font-medium">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} onClick={close} className="flex min-h-12 items-center border-b border-[#F0F0F0]">
@@ -116,7 +118,7 @@ function GetInvolvedPanel({ onNavigate }: { onNavigate: () => void }) {
         <SmartLink
           href={LINKS.discord}
           onClick={onNavigate}
-          className="mt-auto flex min-h-11 items-center justify-between rounded-[10px] bg-white px-4 py-3 text-[15px] font-semibold text-[#0A0A0A]"
+          className="mt-3 flex min-h-11 items-center justify-between rounded-[10px] bg-white px-4 py-3 text-[15px] font-semibold text-[#0A0A0A]"
         >
           Join on Discord <span aria-hidden="true">→</span>
         </SmartLink>
