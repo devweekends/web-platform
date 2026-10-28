@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "DSOC: Dev Weekends Summer of Code",
   description:
     "Dev Weekends Summer of Code (DSOC) is a mentored open source program with a monthly stipend per milestone. 2026 applications are closed.",
+  alternates: { canonical: "/dsoc" },
 }
 
 export default function DsocLayout({ children }: { children: ReactNode }) {
