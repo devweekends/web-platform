@@ -144,7 +144,7 @@ export function Resources() {
           <ResourceList title="Guides" items={resourceGuides} more={{ label: "All guides →", href: LINKS.guides }} />
           <ResourceList title="From the blog" items={resourcePosts} more={{ label: "All posts →", href: LINKS.blog }} />
           <div className="flex flex-col gap-3 sm:gap-5">
-            <ResourceTile href={null} kicker="MindMaster · Invite only" title="Human skills" text="Courses coming soon on Buildment." dark />
+            <ResourceTile href={null} kicker="MindMaster · Invite only" title="Human skills" text="Courses coming soon on Edorax." dark />
             <ResourceTile href={LINKS.resources} kicker="Docs and courses ↗" title="Free learning hub" text="resources.devweekends.com: interview prep, sheets and curated learning." />
           </div>
           <div className="flex flex-col gap-3 sm:gap-5">

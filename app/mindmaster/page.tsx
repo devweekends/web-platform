@@ -1,12 +1,12 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-// MindMaster is invite only for now and its content is moving to Buildment.
+// MindMaster is invite only for now and its content is moving to Edorax.
 // The previous public page (talks, books and recommendations) is intentionally
 // not shown. Admins still manage the content from the dashboard.
 export const metadata: Metadata = {
   title: "MindMaster",
-  description: "MindMaster is invite only. Course content is coming soon on Buildment.",
+  description: "MindMaster is invite only. Course content is coming soon on Edorax.",
   robots: { index: false, follow: true },
 }
 
@@ -18,7 +18,7 @@ export default function MindMasterPage() {
         <h1 className="mt-4 text-[clamp(40px,6vw,64px)] font-semibold leading-[1.02] tracking-[-0.045em]">MindMaster is invite only.</h1>
         <p className="mt-6 text-[19px] leading-[1.65] text-[#404040]">
           It is our program for the human side of engineering: growth mindset, communication, adaptability, teamwork, personal
-          development and purpose. It runs with invited groups for now, and the course content is coming soon on Buildment.
+          development and purpose. It runs with invited groups for now, and the course content is coming soon on Edorax.
         </p>
         <div className="mt-10 flex flex-wrap gap-3">
           <a

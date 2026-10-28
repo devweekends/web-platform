@@ -81,8 +81,9 @@ export interface Repository {
 
 export const repositories: Repository[] = [
   {
-    // devweekends/Buildment is private for now
-    slug: "devweekends/buildment",
+    // Repository devweekends/Buildment is private for now
+    slug: "edorax",
+    href: "https://edorax.com",
     description: "Learn engineering by building projects, with several variants per course.",
   },
   {
