@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import connectDB from '@/lib/db';
 import { Project } from '@/models/Project';
 import { ActivityLog } from '@/models/ActivityLog';
@@ -51,6 +52,8 @@ export async function PATCH(
     }
 
     // Log activity
+    // The public page is cached; refresh it now so the change shows at once
+    revalidatePath('/projects');
     await ActivityLog.create({
       entityType: 'Project',
       entityId: project._id.toString(),
@@ -93,6 +96,8 @@ export async function DELETE(
     }
 
     // Log activity
+    // The public page is cached; refresh it now so the change shows at once
+    revalidatePath('/projects');
     await ActivityLog.create({
       entityType: 'Project',
       entityId: id,

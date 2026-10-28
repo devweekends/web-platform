@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import connectDB from '@/lib/db';
 import { Testimonial } from '@/models/Testimonial';
 import { ActivityLog } from '@/models/ActivityLog';
@@ -62,6 +63,8 @@ export async function POST(request: Request) {
     });
 
     // Log activity
+    // The public page is cached; refresh it now so the change shows at once
+    revalidatePath('/testimonials');
     await ActivityLog.create({
       entityType: 'Testimonial',
       entityId: testimonial._id.toString(),

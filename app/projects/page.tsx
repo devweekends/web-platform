@@ -5,7 +5,9 @@ import { ProjectTile, type ProjectItem } from '@/components/projects/project-til
 import { Card, Eyebrow, PageHero, Panel, Section } from '@/components/site/page-kit';
 import { withSocial } from "@/lib/seo";
 
-export const dynamic = 'force-dynamic';
+// Served from cache and rebuilt at most every five minutes. Admin changes to
+// approved projects refresh it straight away through revalidatePath.
+export const revalidate = 300;
 
 async function getProjects(): Promise<ProjectItem[]> {
   try {

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { verify } from 'jsonwebtoken';
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
@@ -69,6 +70,8 @@ export async function POST(request: Request) {
     });
 
     await connectDB();
+    // The public page is cached; refresh it now so the change shows at once
+    revalidatePath('/testimonials');
     await ActivityLog.create({
       entityType: 'ImpactStory',
       entityId: String(story._id),

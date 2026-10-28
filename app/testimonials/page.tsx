@@ -6,7 +6,9 @@ import type { Testimonial } from '@/components/testimonial-card';
 import { Card, Eyebrow, PageHero, Panel, Section } from '@/components/site/page-kit';
 import { withSocial } from "@/lib/seo";
 
-export const dynamic = 'force-dynamic';
+// Served from cache and rebuilt at most every five minutes. Admin changes to
+// approved stories refresh it straight away through revalidatePath.
+export const revalidate = 300;
 
 export const metadata = withSocial({
   alternates: { canonical: "/testimonials" },
