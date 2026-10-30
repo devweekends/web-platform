@@ -190,8 +190,8 @@ function Repositories() {
           })}
           <a
             href={`mailto:${DWOSI_LINKS.email}?subject=DWOSI%20project%20proposal`}
-            // Spans two columns so six repositories plus this tile fill the grid evenly
-            className={cn(cellClass, "can-hover:bg-accent sm:col-span-2")}
+            // Five repositories plus this tile fill the grid evenly: one cell at sm, three at lg
+            className={cn(cellClass, "can-hover:bg-accent lg:col-span-3")}
           >
             <span className="flex items-start justify-between gap-3">
               <span className="dw-label text-brand">your-project</span>
