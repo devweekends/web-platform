@@ -99,11 +99,6 @@ export const repositories: Repository[] = [
     href: "https://github.com/orgs/devweekends/repositories?q=meshly-cloud",
   },
   {
-    slug: "inroad",
-    description: "Finds companies that fit you and drafts a note to the person who can hire you.",
-    href: "https://inroad-web.vercel.app/",
-  },
-  {
     slug: "devweekends/codehands",
     description: "A local-first coding agent that plans, implements, tests in a sandbox and hands you a change to approve.",
     href: "https://github.com/orgs/devweekends/repositories?q=codehands",
