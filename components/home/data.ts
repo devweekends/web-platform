@@ -12,6 +12,7 @@ export const LINKS = {
   facebook: "https://www.facebook.com/DevWeekends/",
   resources: "https://resources.devweekends.com",
   pathment: "https://pathment.me/",
+  inroad: "https://inroad-web.vercel.app/",
   goalslot: "https://www.goalslot.io/",
   qantara: "https://empactus.org.uk/qantara-the-palestinian-ai-fellowship/",
   email: "info@devweekends.com",
@@ -227,6 +228,7 @@ export const products: { name: string; tag: string; text: string; href: string; 
   { name: "Pathment", tag: "PLATFORM", text: "Runs our fellowships: clans, mentors, tasks and progress tracking.", href: LINKS.pathment },
   { name: "Edorax", tag: "PLATFORM", text: "Our courses, MindMaster included, are coming here. Learn engineering by building.", href: LINKS.edorax },
   { name: "Meshly Cloud", tag: "FREE COMPUTE", text: "Our community cloud: shared Kubernetes from contributed compute for members' workloads.", href: "/dwosi#projects" },
+  { name: "Inroad", tag: "CAREERS", text: "Finds companies that fit you and drafts a note to the person who can hire you.", href: LINKS.inroad },
   { name: "GoalSlot", tag: "PRODUCTIVITY", text: "Goals on your calendar, deep work on a timer, progress in reports.", href: LINKS.goalslot },
   { name: "SafeStream", tag: "LEARNING", text: "Ask a question and get the video moments that answer it, filtered by your own rules.", href: LINKS.github, soon: true },
 ]
