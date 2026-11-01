@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
-import { canonicalize, makePost } from '@/lib/linkedin-feed';
+import { makePost, resolvePostLink } from '@/lib/linkedin-feed';
 import { LinkedInPost } from '@/models/LinkedInPost';
 
 const MAX_BODY_BYTES = 2048;
@@ -13,10 +13,11 @@ export async function POST(request: Request) {
     }
 
     const data = await request.json().catch(() => null);
-    const parsed = canonicalize(data?.url);
+    // Accepts any post link copied from LinkedIn, including lnkd.in short links
+    const parsed = await resolvePostLink(data?.url);
     if (!parsed) {
       return NextResponse.json(
-        { error: 'Please paste a public LinkedIn post link, like https://www.linkedin.com/posts/...-activity-...' },
+        { error: "That doesn't look like a public LinkedIn post. Use \"Copy link to post\" on LinkedIn and paste it here." },
         { status: 400 }
       );
     }
@@ -27,15 +28,13 @@ export async function POST(request: Request) {
       const message =
         existing.status === 'approved'
           ? 'This post is already on the feed.'
-          : 'This post is already waiting for review.';
+          : existing.status === 'pending'
+            ? 'This post is already waiting for review.'
+            : 'Our team has already reviewed this post.';
       return NextResponse.json({ ok: true, message });
     }
 
-    const post = makePost(parsed.url, '', '', 'community-submission');
-    if (!post) {
-      return NextResponse.json({ error: 'Unable to read that LinkedIn link.' }, { status: 400 });
-    }
-    await LinkedInPost.create({ ...post, status: 'pending' });
+    await LinkedInPost.create({ ...makePost(parsed, '', '', 'community-submission'), status: 'pending' });
 
     return NextResponse.json({ ok: true, message: 'Thanks! Your post will appear on the feed once our team reviews it.' }, { status: 201 });
   } catch (error) {

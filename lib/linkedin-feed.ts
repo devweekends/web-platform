@@ -12,7 +12,16 @@ import { LinkedInPost, type LinkedInPostSource, type LinkedInPostStatus } from '
 import starterPosts from '@/data/linkedin-posts.json'
 import { OFFICIAL_HANDLES, linkedInEmbedUrl, type FeedPost } from './linkedin-feed-shared'
 
-const ACTIVITY_RE = /(?:^|[-_/])activity-(\d{16,21})(?:-|$)/
+/** LinkedIn post IDs in /posts/ links: activity-123, ugcPost-123 or share-123 */
+const POST_ID_RE = /(?:^|[-_/])(activity|ugcPost|share)-(\d{16,21})(?:-|$)/
+/** Post IDs in /feed/update/ links and LinkedIn pages, e.g. urn:li:activity:123 */
+const URN_RE = /urn:li:(activity|ugcPost|share):(\d{16,21})/
+const ACTIVITY_URN_RE = /urn:li:activity:(\d{16,21})/g
+
+const BROWSER_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
+  'Accept-Language': 'en-US,en;q=0.9',
+}
 
 const TOPIC_TERMS: [string, string[]][] = [
   ['fellowship', ['fellowship', 'fellow', 'cohort', 'certificate', 'bronze', 'summer']],
@@ -100,8 +109,28 @@ function searchQueries(memberNames: string[]) {
   ].map((terms) => `site:linkedin.com/posts ${terms}`)
 }
 
-/** Returns the canonical post URL and activity ID, or null for anything that isn't a public LinkedIn post URL */
-export function canonicalize(raw: unknown): { url: string; activityId: string } | null {
+type PostIdKind = 'activity' | 'ugcPost' | 'share'
+
+/** A LinkedIn post link resolved to the activity ID that /feed embeds */
+export interface PostLink {
+  url: string
+  activityId: string
+}
+
+function safeDecode(text: string) {
+  try {
+    return decodeURIComponent(text)
+  } catch {
+    return text
+  }
+}
+
+/**
+ * Reads a linkedin.com post link without fetching anything. Handles
+ * /posts/... links (with an activity, ugcPost or share ID) and
+ * /feed/update/urn:li:... links. Query strings like ?utm_source are dropped.
+ */
+function parsePostLink(raw: unknown) {
   let parsed: URL
   try {
     parsed = new URL(String(raw ?? '').trim())
@@ -110,10 +139,91 @@ export function canonicalize(raw: unknown): { url: string; activityId: string } 
   }
   if (parsed.protocol !== 'https:') return null
   if (parsed.hostname !== 'www.linkedin.com' && parsed.hostname !== 'linkedin.com') return null
-  if (!parsed.pathname.startsWith('/posts/')) return null
-  const match = parsed.pathname.match(ACTIVITY_RE)
-  if (!match) return null
-  return { url: `https://www.linkedin.com${parsed.pathname.replace(/\/$/, '')}`, activityId: match[1] }
+  const path = parsed.pathname.replace(/\/+$/, '')
+  // LinkedIn's share links point at the post's activity here, e.g. after an lnkd.in redirect
+  const highlighted = safeDecode(parsed.searchParams.get('highlightedUpdateUrn') ?? '').match(/^urn:li:activity:(\d{16,21})$/)?.[1]
+
+  if (path.startsWith('/posts/')) {
+    const match = path.match(POST_ID_RE)
+    if (!match) return null
+    return { url: `https://www.linkedin.com${path}`, kind: match[1] as PostIdKind, id: match[2], highlighted }
+  }
+  if (path.startsWith('/feed/update/')) {
+    const match = safeDecode(path).match(URN_RE)
+    if (!match) return null
+    const [, kind, id] = match
+    return { url: `https://www.linkedin.com/feed/update/urn:li:${kind}:${id}`, kind: kind as PostIdKind, id, highlighted }
+  }
+  return null
+}
+
+/** Returns the canonical post URL and activity ID for a link that already contains the activity ID, else null */
+export function canonicalize(raw: unknown): PostLink | null {
+  const link = parsePostLink(raw)
+  return link?.kind === 'activity' ? { url: link.url, activityId: link.id } : null
+}
+
+function isShortLink(raw: string) {
+  try {
+    const url = new URL(raw)
+    return url.protocol === 'https:' && url.hostname === 'lnkd.in'
+  } catch {
+    return false
+  }
+}
+
+/** Where an lnkd.in short link points, without following it any further */
+async function followShortLink(link: string) {
+  try {
+    const response = await fetch(link, {
+      redirect: 'manual',
+      headers: BROWSER_HEADERS,
+      signal: AbortSignal.timeout(10_000),
+      cache: 'no-store',
+    })
+    const location = response.headers.get('location')
+    return location ? new URL(location, link).toString() : null
+  } catch {
+    return null
+  }
+}
+
+/** Finds the activity ID behind a ugcPost or share ID, from the post's public embed */
+async function activityIdFor(kind: PostIdKind, id: string) {
+  try {
+    const response = await fetch(`https://www.linkedin.com/embed/feed/update/urn:li:${kind}:${id}`, {
+      headers: BROWSER_HEADERS,
+      signal: AbortSignal.timeout(15_000),
+      cache: 'no-store',
+    })
+    if (!response.ok) return null
+    const page = await response.text()
+    // The post's own activity appears many times; take the most frequent in case another post is quoted
+    const counts = new Map<string, number>()
+    for (const [, activityId] of page.matchAll(ACTIVITY_URN_RE)) counts.set(activityId, (counts.get(activityId) ?? 0) + 1)
+    return [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? null
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Turns any link people copy from LinkedIn into the post's activity ID:
+ * /posts/ links with activity, ugcPost or share IDs, /feed/update/ links, and
+ * lnkd.in short links from the share button. Returns null if it isn't a post.
+ */
+export async function resolvePostLink(raw: unknown): Promise<PostLink | null> {
+  let link = String(raw ?? '').trim()
+  for (let hop = 0; hop < 3 && isShortLink(link); hop++) {
+    const next = await followShortLink(link)
+    if (!next) return null
+    link = next
+  }
+  const parsed = parsePostLink(link)
+  if (!parsed) return null
+  if (parsed.kind === 'activity') return { url: parsed.url, activityId: parsed.id }
+  const activityId = (await activityIdFor(parsed.kind, parsed.id)) ?? parsed.highlighted
+  return activityId ? { url: parsed.url, activityId } : null
 }
 
 function topicFor(slug: string) {
@@ -162,13 +272,12 @@ interface NewPost extends PostInput {
   hiddenReason?: string
 }
 
-/** Builds a post record from a LinkedIn post URL and optional search title and snippet */
-export function makePost(url: string, title = '', description = '', source: LinkedInPostSource): PostInput | null {
-  const parsed = canonicalize(url)
-  if (!parsed) return null
-  const slug = decodeURIComponent(parsed.url.split('/').pop() ?? '')
-  const [handle, ...rest] = slug.split('_')
-  const fragments = rest.join('_').split('-activity-')[0]
+/** Builds a post record from a resolved LinkedIn post link and optional search title and snippet */
+export function makePost(link: PostLink, title = '', description = '', source: LinkedInPostSource): PostInput {
+  // /posts/<handle>_<words>-activity-<id>-xxxx links name the author; /feed/update/ links don't
+  const slug = link.url.includes('/posts/') ? safeDecode(link.url.split('/').pop() ?? '') : ''
+  const [handle = '', ...rest] = slug.split('_')
+  const fragments = rest.join('_').split(/-(?:activity|ugcPost|share)-/)[0]
   const tags = fragments.split(/[-_]/).filter((tag) => tag.length > 2).slice(0, 5)
 
   let cleanTitle = String(title).trim()
@@ -181,15 +290,15 @@ export function makePost(url: string, title = '', description = '', source: Link
   }
 
   return {
-    activityId: parsed.activityId,
-    url: parsed.url,
+    activityId: link.activityId,
+    url: link.url,
     author: friendlyAuthor(handle),
     handle,
     title: cleanTitle.slice(0, 160),
     excerpt: String(description).replace(/\s+/g, ' ').trim().slice(0, 360),
     topic: topicFor(fragments),
     tags,
-    postedAt: postedAtFrom(parsed.activityId),
+    postedAt: postedAtFrom(link.activityId),
     source,
   }
 }
@@ -203,19 +312,18 @@ interface OlostepLink {
 }
 
 /**
+ * Any way people write it, typos included: "Dev Weekends", "dev weekend",
+ * "DevWeekends", "#devweekend", "dev-weekends", "dev_weekends".
+ */
+const MENTION_RE = /dev[\s_-]*weekends?/i
+
+/**
  * Cheap first filter on search results. Snippets can quote text from around the
  * post (comments, the author's headline, "more posts" boxes), so a match here is
  * only a lead; checkPost decides.
  */
 function mentionsDevWeekends(hit: OlostepLink) {
-  const link = String(hit.url ?? hit.link ?? '').toLowerCase()
-  const text = [hit.title, hit.description, hit.snippet].join(' ').toLowerCase()
-  return (
-    link.includes('devweekends') ||
-    link.includes('dev-weekends') ||
-    text.includes('#devweekends') ||
-    text.includes('dev weekends fellowship')
-  )
+  return MENTION_RE.test([hit.url ?? hit.link, hit.title, hit.description, hit.snippet].join(' '))
 }
 
 async function searchOlostep(apiKey: string, query: string): Promise<OlostepLink[]> {
@@ -231,7 +339,6 @@ async function searchOlostep(apiKey: string, query: string): Promise<OlostepLink
   return data?.result?.links ?? []
 }
 
-const MENTION_RE = /dev\s*-?\s*weekends/i
 const POST_TEXT_RE = /class="[^"]*attributed-text-segment-list__content[^"]*"[^>]*>([\s\S]*?)<\/p>/g
 const META_TEXT_RE = /<meta (?:property|name)="(?:og|twitter):(?:title|description)" content="([^"]*)"/g
 
@@ -270,10 +377,7 @@ export async function checkPost(activityId: string, handle: string): Promise<Pos
   let response: Response
   try {
     response = await fetch(linkedInEmbedUrl(activityId), {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
-        'Accept-Language': 'en-US,en;q=0.9',
-      },
+      headers: BROWSER_HEADERS,
       signal: AbortSignal.timeout(20_000),
       cache: 'no-store',
     })
@@ -287,14 +391,17 @@ export async function checkPost(activityId: string, handle: string): Promise<Pos
   return MENTION_RE.test(text) ? 'mentions' : 'no-mention'
 }
 
-/** Checks posts a few at a time; results line up with the input */
-async function checkPosts(posts: { activityId: string; handle: string }[]) {
-  const results: PostCheck[] = []
-  for (let i = 0; i < posts.length; i += CHECKS_IN_PARALLEL) {
-    const batch = posts.slice(i, i + CHECKS_IN_PARALLEL)
-    results.push(...(await Promise.all(batch.map((post) => checkPost(post.activityId, post.handle)))))
+/** Runs `task` on a few items at a time, so LinkedIn isn't hit with many requests at once; results line up with the input */
+async function fewAtATime<T, R>(items: T[], task: (item: T) => Promise<R>) {
+  const results: R[] = []
+  for (let i = 0; i < items.length; i += CHECKS_IN_PARALLEL) {
+    results.push(...(await Promise.all(items.slice(i, i + CHECKS_IN_PARALLEL).map(task))))
   }
   return results
+}
+
+function checkPosts(posts: { activityId: string; handle: string }[]) {
+  return fewAtATime(posts, (post) => checkPost(post.activityId, post.handle))
 }
 
 /**
@@ -335,9 +442,10 @@ export async function collectFromOlostep(apiKey: string, maxQueries = 5) {
   const found = results
     .flatMap((r) => (r.status === 'fulfilled' ? r.value : []))
     .filter(mentionsDevWeekends)
-    .map((hit) =>
-      makePost(hit.url ?? hit.link ?? '', hit.title, hit.description ?? hit.snippet ?? '', 'olostep-search-index')
-    )
+    .map((hit) => {
+      const link = canonicalize(hit.url ?? hit.link)
+      return link && makePost(link, hit.title, hit.description ?? hit.snippet ?? '', 'olostep-search-index')
+    })
     .filter((post): post is PostInput => post !== null)
   // The same post often comes back from several searches; keep the copy with a snippet
   const posts = [
@@ -460,12 +568,20 @@ export async function recheckLivePosts(after: string | undefined, limit = 40) {
   }
 }
 
+/** Most links one admin import reads; short links and ugcPost links each need a LinkedIn request */
+export const MAX_IMPORT_LINKS = 300
+
+/** Splits pasted text into links */
+export function splitLinks(text: string) {
+  return text.split(/[\s,]+/).filter(Boolean)
+}
+
 /** Adds LinkedIn post links pasted by an admin. Admins are trusted, so the posts go live straight away. */
 export async function importPostUrls(text: string) {
-  const urls = text.split(/[\s,]+/).filter(Boolean)
-  const posts = urls
-    .map((url) => makePost(url, '', '', 'admin-import'))
-    .filter((post): post is PostInput => post !== null)
+  const urls = splitLinks(text)
+  const posts = (await fewAtATime(urls, resolvePostLink))
+    .filter((link): link is PostLink => link !== null)
+    .map((link) => makePost(link, '', '', 'admin-import'))
   const unique = [...new Map(posts.map((post) => [post.activityId, post])).values()]
   const saved = await savePosts(unique, 'approved', new Date())
   return { links: urls.length, invalid: urls.length - posts.length, ...saved, alreadyThere: unique.length - saved.added }

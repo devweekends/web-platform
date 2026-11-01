@@ -267,7 +267,7 @@ export default function AdminFeedPage() {
         return;
       }
       setImportMessage(
-        `${data.added} added, ${data.alreadyThere} already on the feed${data.invalid ? `, ${data.invalid} not LinkedIn post links` : ''}.`
+        `${data.added} added, ${data.alreadyThere} already on the feed${data.invalid ? `, ${data.invalid} not LinkedIn post links or couldn't be opened` : ''}.`
       );
       if (data.added > 0) setImportText('');
       await fetchPosts();
@@ -325,7 +325,7 @@ export default function AdminFeedPage() {
         <CardHeader className="pb-2">
           <CardTitle className="text-lg">Add posts by link</CardTitle>
           <p className="text-sm text-muted-foreground">
-            Paste LinkedIn post links, one per line or separated by spaces, e.g. collected from WhatsApp groups. They go live straight away.
+            Paste LinkedIn post links (any kind, including lnkd.in short links), one per line or separated by spaces, e.g. collected from WhatsApp groups. They go live straight away.
           </p>
         </CardHeader>
         <CardContent className="space-y-3">
