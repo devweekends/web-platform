@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react"
 
 import { SmartLink } from "./smart-link"
 import { LogoMark } from "./logo-mark"
+import { FeedRail } from "./feed-rail"
 import { VoicesRail } from "./voices"
 import {
   LINKS,
@@ -190,6 +191,7 @@ export function Voices() {
   return (
     <section id="voices" className="py-20">
       <VoicesRail />
+      <FeedRail />
     </section>
   )
 }
