@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { verify } from 'jsonwebtoken';
 import connectDB from '@/lib/db';
-import { collectFromOlostep, importPostUrls, recheckLivePosts } from '@/lib/linkedin-feed';
+import { MAX_IMPORT_LINKS, collectFromOlostep, importPostUrls, recheckLivePosts, splitLinks } from '@/lib/linkedin-feed';
 import { LinkedInPost } from '@/models/LinkedInPost';
 import { ActivityLog } from '@/models/ActivityLog';
 
@@ -81,6 +81,9 @@ export async function POST(request: Request) {
     if (body.action === 'import') {
       if (typeof body.urls !== 'string' || !body.urls.trim()) {
         return NextResponse.json({ error: 'Paste at least one LinkedIn post link.' }, { status: 400 });
+      }
+      if (splitLinks(body.urls).length > MAX_IMPORT_LINKS) {
+        return NextResponse.json({ error: `Paste at most ${MAX_IMPORT_LINKS} links at a time.` }, { status: 400 });
       }
       const result = await importPostUrls(body.urls.slice(0, 100_000));
       if (result.added > 0) revalidatePath('/feed');
