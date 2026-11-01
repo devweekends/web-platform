@@ -35,7 +35,10 @@ const SOURCE_LABELS: Record<FeedPost['source'], string> = {
 
 /** Olostep charges about 5 credits per search */
 const CREDITS_PER_SEARCH = 5;
-const DEEP_SEARCHES = 40;
+/** Searches per request, to stay well inside Vercel's 5-minute function limit */
+const SEARCHES_PER_REQUEST = 40;
+/** Topic searches in lib/linkedin-feed.ts; one search per member is added on top */
+const TOPIC_SEARCH_COUNT = 40;
 
 export default function AdminFeedPage() {
   const [posts, setPosts] = useState<FeedPost[]>([]);
@@ -92,21 +95,18 @@ export default function AdminFeedPage() {
     }
   };
 
-  const collect = async (searches?: number) => {
-    if (
-      searches &&
-      !confirm(`Run ${searches} Olostep searches? This uses about ${searches * CREDITS_PER_SEARCH} credits and can take a few minutes.`)
-    ) {
-      return;
-    }
+  const runSearches = (searches?: number) =>
+    fetch('/api/admin/feed', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'collect', searches }),
+    });
+
+  const collect = async () => {
     setCollecting(true);
     setCollectMessage('');
     try {
-      const res = await fetch('/api/admin/feed', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'collect', searches }),
-      });
+      const res = await runSearches();
       const data = await res.json();
       if (!res.ok) {
         setCollectMessage(data.error ?? 'Collection failed.');
@@ -120,6 +120,64 @@ export default function AdminFeedPage() {
       setCollectMessage('Collection failed.');
     } finally {
       setCollecting(false);
+    }
+  };
+
+  /**
+   * Runs every search in the list once, in batches, so one click covers all the
+   * ground search can reach. Stops early if a whole batch fails (e.g. out of credits).
+   */
+  const searchEverything = async () => {
+    const members = new Set(
+      posts
+        .filter((post) => post.status === 'approved' && post.author !== 'Dev Weekends' && post.author !== 'Community member')
+        .map((post) => post.author)
+    ).size;
+    const estimate = TOPIC_SEARCH_COUNT + members;
+    if (
+      !confirm(
+        `Run every search once? That is about ${estimate} searches and ${estimate * CREDITS_PER_SEARCH} Olostep credits. ` +
+          'It runs in batches and takes a few minutes; keep this tab open.'
+      )
+    ) {
+      return;
+    }
+
+    setCollecting(true);
+    setCollectMessage('');
+    let total = estimate;
+    let done = 0;
+    let added = 0;
+    let enriched = 0;
+    let failed = 0;
+    try {
+      while (done < total) {
+        const res = await runSearches(Math.min(SEARCHES_PER_REQUEST, total - done));
+        const data = await res.json();
+        if (!res.ok) {
+          setCollectMessage(`${data.error ?? 'Collection failed.'} Stopped after ${done} searches with ${added} new posts.`);
+          return;
+        }
+        // One full pass of the list as it was when we started; members found now are searched next time
+        if (done === 0) total = data.searchListSize;
+        done += data.queries;
+        added += data.added;
+        enriched += data.enriched;
+        failed += data.failedQueries;
+        if (data.failedQueries === data.queries) {
+          setCollectMessage(`Stopped: every search in the last batch failed (check Olostep credits). ${added} new posts found.`);
+          return;
+        }
+        setCollectMessage(`Searching… ${done} of ${total} done, ${added} new posts so far.`);
+      }
+      setCollectMessage(
+        `Searched everything: ${done} searches${failed ? ` (${failed} failed)` : ''}, ${added} new posts, ${enriched} updated.`
+      );
+    } catch {
+      setCollectMessage(`Stopped after ${done} searches with ${added} new posts.`);
+    } finally {
+      setCollecting(false);
+      await fetchPosts();
     }
   };
 
@@ -171,16 +229,17 @@ export default function AdminFeedPage() {
         </div>
         <div className="max-w-sm text-right">
           <div className="flex flex-wrap justify-end gap-2">
-            <Button onClick={() => collect()} disabled={collecting}>
-              {collecting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+            <Button variant="outline" onClick={collect} disabled={collecting}>
               Find new posts
             </Button>
-            <Button variant="outline" onClick={() => collect(DEEP_SEARCHES)} disabled={collecting}>
-              Deep search ({DEEP_SEARCHES})
+            <Button onClick={searchEverything} disabled={collecting}>
+              {collecting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+              Search everything
             </Button>
           </div>
           <p className="mt-1 text-xs text-muted-foreground">
-            Each search uses about {CREDITS_PER_SEARCH} Olostep credits. Runs continue where the last one stopped.
+            Find new posts runs 5 searches. Search everything runs the whole list once. Each search uses about{' '}
+            {CREDITS_PER_SEARCH} Olostep credits.
           </p>
           {collectMessage && <p className="mt-2 text-sm">{collectMessage}</p>}
         </div>
