@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { verify } from 'jsonwebtoken';
 import connectDB from '@/lib/db';
-import { collectFromOlostep } from '@/lib/linkedin-feed';
+import { collectFromOlostep, importPostUrls } from '@/lib/linkedin-feed';
 import { LinkedInPost } from '@/models/LinkedInPost';
 
 export const maxDuration = 300;
@@ -42,11 +42,29 @@ export async function GET() {
   }
 }
 
-/** Runs the Olostep collector on demand ("Find new posts" in the admin dashboard) */
-export async function POST() {
+/** Most searches one admin request may run: 60 searches is about 300 Olostep credits */
+const MAX_SEARCHES_PER_REQUEST = 60;
+
+/**
+ * Admin actions on the feed:
+ * - `{ action: "collect", searches?: number }` runs Olostep searches ("Find new posts", "Deep search")
+ * - `{ action: "import", urls: string }` adds pasted LinkedIn post links, live straight away
+ */
+export async function POST(request: Request) {
   try {
     if (!(await getAdminUser())) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const body = await request.json().catch(() => ({}));
+
+    if (body.action === 'import') {
+      if (typeof body.urls !== 'string' || !body.urls.trim()) {
+        return NextResponse.json({ error: 'Paste at least one LinkedIn post link.' }, { status: 400 });
+      }
+      const result = await importPostUrls(body.urls.slice(0, 100_000));
+      if (result.added > 0) revalidatePath('/feed');
+      return NextResponse.json(result);
     }
 
     const apiKey = process.env.OLOSTEP_API_KEY;
@@ -54,11 +72,12 @@ export async function POST() {
       return NextResponse.json({ error: 'OLOSTEP_API_KEY is not set on the server.' }, { status: 500 });
     }
 
-    const result = await collectFromOlostep(apiKey, Number(process.env.FEED_COLLECT_QUERIES) || 5);
+    const requested = Number(body.searches) || Number(process.env.FEED_COLLECT_QUERIES) || 5;
+    const result = await collectFromOlostep(apiKey, Math.min(requested, MAX_SEARCHES_PER_REQUEST));
     if (result.added > 0 || result.enriched > 0) revalidatePath('/feed');
     return NextResponse.json(result);
   } catch (error) {
-    console.error('LinkedIn feed collection failed:', error);
-    return NextResponse.json({ error: 'Collection failed' }, { status: 500 });
+    console.error('LinkedIn feed admin action failed:', error);
+    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
   }
 }
