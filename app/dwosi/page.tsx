@@ -214,7 +214,7 @@ function Partners() {
         <div className="grid gap-8 lg:grid-cols-2 lg:items-end lg:gap-16">
           <h2 className="dw-title">Partner on code, mentorship and hiring.</h2>
           <p className="dw-lead max-w-[48ch] text-muted-foreground">
-            Join current partner Cyberiad Labs in backing public engineering education that produces verifiable,
+            Join current partners Olostep and Cyberiad Labs in backing public engineering education that produces verifiable,
             production-ready contributors.
           </p>
         </div>
