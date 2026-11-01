@@ -1,16 +1,16 @@
 /**
  * Server-side logic for the /feed LinkedIn wall: validating LinkedIn post URLs,
- * discovering #DevWeekends posts through the Olostep Search API, and reading and
- * writing them in MongoDB.
+ * discovering #DevWeekends posts through the Olostep Search API, checking them
+ * against LinkedIn's public embed, and reading and writing them in MongoDB.
  *
- * Only public search results are used: no LinkedIn login, private API or
- * scraping. Excerpts are search snippets, not full post content.
+ * Only public pages are used: no LinkedIn login or private API. Excerpts are
+ * search snippets, not full post content.
  */
 import connectDB from '@/lib/db'
 import { FeedCollectorState } from '@/models/FeedCollectorState'
 import { LinkedInPost, type LinkedInPostSource, type LinkedInPostStatus } from '@/models/LinkedInPost'
 import starterPosts from '@/data/linkedin-posts.json'
-import { OFFICIAL_HANDLES, type FeedPost } from './linkedin-feed-shared'
+import { OFFICIAL_HANDLES, linkedInEmbedUrl, type FeedPost } from './linkedin-feed-shared'
 
 const ACTIVITY_RE = /(?:^|[-_/])activity-(\d{16,21})(?:-|$)/
 
@@ -37,6 +37,13 @@ const KNOWN_AUTHORS: Record<string, string> = {
 /** Results per Olostep search; 25 is the API maximum */
 const RESULTS_PER_SEARCH = 25
 const SEARCHES_IN_PARALLEL = 8
+/** LinkedIn pages fetched at once when checking posts */
+const CHECKS_IN_PARALLEL = 6
+/** Most new posts one collection run checks; the rest wait in "Pending review" */
+const MAX_CHECKS_PER_RUN = 120
+
+export const HIDDEN_NO_MENTION = 'The post text does not mention Dev Weekends'
+export const HIDDEN_GONE = 'The post was deleted on LinkedIn'
 
 /** Searches about programs, topics and years. Member searches are added on top (see searchQueries). */
 const TOPIC_SEARCHES = [
@@ -148,6 +155,13 @@ interface PostInput {
   source: LinkedInPostSource
 }
 
+/** A post ready to insert, with the status (and check result) it should get */
+interface NewPost extends PostInput {
+  status: LinkedInPostStatus
+  checkedAt?: Date
+  hiddenReason?: string
+}
+
 /** Builds a post record from a LinkedIn post URL and optional search title and snippet */
 export function makePost(url: string, title = '', description = '', source: LinkedInPostSource): PostInput | null {
   const parsed = canonicalize(url)
@@ -188,7 +202,11 @@ interface OlostepLink {
   snippet?: string
 }
 
-/** Search engines can surface unrelated posts, so keep only results that clearly mention Dev Weekends */
+/**
+ * Cheap first filter on search results. Snippets can quote text from around the
+ * post (comments, the author's headline, "more posts" boxes), so a match here is
+ * only a lead; checkPost decides.
+ */
 function mentionsDevWeekends(hit: OlostepLink) {
   const link = String(hit.url ?? hit.link ?? '').toLowerCase()
   const text = [hit.title, hit.description, hit.snippet].join(' ').toLowerCase()
@@ -211,6 +229,72 @@ async function searchOlostep(apiKey: string, query: string): Promise<OlostepLink
   if (!response.ok) throw new Error(`Olostep search failed with ${response.status}`)
   const data = await response.json()
   return data?.result?.links ?? []
+}
+
+const MENTION_RE = /dev\s*-?\s*weekends/i
+const POST_TEXT_RE = /class="[^"]*attributed-text-segment-list__content[^"]*"[^>]*>([\s\S]*?)<\/p>/g
+const META_TEXT_RE = /<meta (?:property|name)="(?:og|twitter):(?:title|description)" content="([^"]*)"/g
+
+function decodeEntities(text: string) {
+  return text
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(Number(dec)))
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+}
+
+/**
+ * The post's own words from its embed page: the post body and the title and
+ * description LinkedIn puts in the page meta. Leaves out the author's headline
+ * and everything else around the post. Empty when the page has no post on it.
+ */
+export function postTextFromEmbed(page: string) {
+  const parts = [...page.matchAll(POST_TEXT_RE), ...page.matchAll(META_TEXT_RE)].map((match) => match[1])
+  return decodeEntities(parts.join(' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim()
+}
+
+/**
+ * - `mentions`: the post's own text mentions Dev Weekends (or it's the official page)
+ * - `no-mention`: the post loaded and doesn't mention Dev Weekends
+ * - `gone`: LinkedIn says the post no longer exists
+ * - `unknown`: LinkedIn didn't show the post (rate limit, login wall, network error), so nothing can be said
+ */
+export type PostCheck = 'mentions' | 'no-mention' | 'gone' | 'unknown'
+
+/** Checks one post against its public LinkedIn embed, the same page /feed shows */
+export async function checkPost(activityId: string, handle: string): Promise<PostCheck> {
+  if (OFFICIAL_HANDLES.has(handle)) return 'mentions'
+  let response: Response
+  try {
+    response = await fetch(linkedInEmbedUrl(activityId), {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
+        'Accept-Language': 'en-US,en;q=0.9',
+      },
+      signal: AbortSignal.timeout(20_000),
+      cache: 'no-store',
+    })
+  } catch {
+    return 'unknown'
+  }
+  if (response.status === 404 || response.status === 410) return 'gone'
+  if (!response.ok) return 'unknown'
+  const text = postTextFromEmbed(await response.text().catch(() => ''))
+  if (!text) return 'unknown'
+  return MENTION_RE.test(text) ? 'mentions' : 'no-mention'
+}
+
+/** Checks posts a few at a time; results line up with the input */
+async function checkPosts(posts: { activityId: string; handle: string }[]) {
+  const results: PostCheck[] = []
+  for (let i = 0; i < posts.length; i += CHECKS_IN_PARALLEL) {
+    const batch = posts.slice(i, i + CHECKS_IN_PARALLEL)
+    results.push(...(await Promise.all(batch.map((post) => checkPost(post.activityId, post.handle)))))
+  }
+  return results
 }
 
 /**
@@ -248,22 +332,131 @@ export async function collectFromOlostep(apiKey: string, maxQueries = 5) {
     )
   }
 
-  const posts = results
+  const found = results
     .flatMap((r) => (r.status === 'fulfilled' ? r.value : []))
     .filter(mentionsDevWeekends)
     .map((hit) =>
       makePost(hit.url ?? hit.link ?? '', hit.title, hit.description ?? hit.snippet ?? '', 'olostep-search-index')
     )
     .filter((post): post is PostInput => post !== null)
+  // The same post often comes back from several searches; keep the copy with a snippet
+  const posts = [
+    ...found.reduce((byId, post) => {
+      if (!byId.get(post.activityId)?.excerpt) byId.set(post.activityId, post)
+      return byId
+    }, new Map<string, PostInput>()).values(),
+  ]
 
-  // Search results are trusted enough to publish directly; visitor submissions are not
-  const saved = await savePosts(posts, 'approved')
+  await connectDB()
+  const known = new Set<string>(
+    await LinkedInPost.distinct('activityId', { activityId: { $in: posts.map((post) => post.activityId) } })
+  )
+  const fresh = posts.filter((post) => !known.has(post.activityId))
+
+  // A search hit is only a lead: a post goes live when its own text on LinkedIn mentions Dev Weekends
+  const toCheck = fresh.slice(0, MAX_CHECKS_PER_RUN)
+  const checks = await checkPosts(toCheck)
+  const now = new Date()
+  const verdicts = new Map(toCheck.map((post, i) => [post.activityId, checks[i]]))
+  const newPosts: NewPost[] = []
+  let skipped = 0
+  for (const post of fresh) {
+    const check = verdicts.get(post.activityId) ?? 'unknown'
+    if (check === 'mentions') newPosts.push({ ...post, status: 'approved', checkedAt: now })
+    // Kept as hidden so the same post isn't fetched again on every search
+    else if (check === 'no-mention') newPosts.push({ ...post, status: 'hidden', checkedAt: now, hiddenReason: HIDDEN_NO_MENTION })
+    else if (check === 'gone') skipped++
+    // Couldn't check it: an admin decides
+    else newPosts.push({ ...post, status: 'pending' })
+  }
+
+  const enriched = await enrichExcerpts(posts.filter((post) => known.has(post.activityId)))
+  await LinkedInPost.insertMany(newPosts, { ordered: false }).catch(ignoreDuplicates)
+  const countWith = (status: LinkedInPostStatus) => newPosts.filter((post) => post.status === status).length
   return {
     queries: queries.length,
     failedQueries: failed,
     candidates: posts.length,
-    ...saved,
+    added: countWith('approved'),
+    rejected: countWith('hidden') + skipped,
+    needsReview: countWith('pending'),
+    enriched,
     searchListSize: allQueries.length,
+  }
+}
+
+/** Another request may have inserted the same post in the meantime; that's fine */
+function ignoreDuplicates(error: { code?: number; writeErrors?: { code?: number }[] }) {
+  const errors = error.writeErrors ?? [error]
+  if (!errors.every((e) => e.code === 11000)) throw error
+}
+
+/** Fills in missing excerpts on posts already in the database */
+async function enrichExcerpts(posts: PostInput[]) {
+  let enriched = 0
+  for (const post of posts) {
+    if (!post.excerpt) continue
+    const result = await LinkedInPost.updateOne(
+      { activityId: post.activityId, excerpt: { $in: ['', null] } },
+      { excerpt: post.excerpt }
+    )
+    enriched += result.modifiedCount
+  }
+  return enriched
+}
+
+/** Live posts from the starter list and search that haven't been checked against LinkedIn yet */
+const UNCHECKED_LIVE = {
+  status: 'approved',
+  source: { $in: ['seed', 'olostep-search-index'] },
+  checkedAt: { $exists: false },
+}
+
+/**
+ * Checks the next `limit` live posts after `after` (a post _id) against LinkedIn
+ * and hides the ones whose text doesn't mention Dev Weekends or that were
+ * deleted. Hiding is reversible from the admin. Posts LinkedIn wouldn't show are
+ * left alone. Admin-added and approved posts are never touched.
+ */
+export async function recheckLivePosts(after: string | undefined, limit = 40) {
+  await connectDB()
+  const filter = after ? { ...UNCHECKED_LIVE, _id: { $gt: after } } : UNCHECKED_LIVE
+  const posts = await LinkedInPost.find(filter)
+    .sort({ _id: 1 })
+    .limit(limit)
+    .select('_id activityId handle author url')
+    .lean<{ _id: { toString(): string }; activityId: string; handle: string; author: string; url: string }[]>()
+  const checks = await checkPosts(posts)
+  const now = new Date()
+
+  const hidden: { author: string; url: string; reason: string }[] = []
+  let unknown = 0
+  for (const [i, post] of posts.entries()) {
+    const check = checks[i]
+    if (check === 'unknown') {
+      unknown++
+      continue
+    }
+    if (check === 'mentions') {
+      await LinkedInPost.updateOne({ _id: post._id }, { checkedAt: now })
+      continue
+    }
+    const reason = check === 'gone' ? HIDDEN_GONE : HIDDEN_NO_MENTION
+    // Only if it's still live and unchecked, so an admin's decision in the meantime wins
+    const result = await LinkedInPost.updateOne(
+      { _id: post._id, status: 'approved', checkedAt: { $exists: false } },
+      { status: 'hidden', hiddenReason: reason, checkedAt: now }
+    )
+    if (result.modifiedCount) hidden.push({ author: post.author, url: post.url, reason })
+  }
+
+  const last = posts.at(-1)?._id.toString()
+  return {
+    checked: posts.length,
+    hidden,
+    unknown,
+    lastId: last,
+    remaining: last ? await LinkedInPost.countDocuments({ ...UNCHECKED_LIVE, _id: { $gt: last } }) : 0,
   }
 }
 
@@ -274,12 +467,15 @@ export async function importPostUrls(text: string) {
     .map((url) => makePost(url, '', '', 'admin-import'))
     .filter((post): post is PostInput => post !== null)
   const unique = [...new Map(posts.map((post) => [post.activityId, post])).values()]
-  const saved = await savePosts(unique, 'approved')
+  const saved = await savePosts(unique, 'approved', new Date())
   return { links: urls.length, invalid: urls.length - posts.length, ...saved, alreadyThere: unique.length - saved.added }
 }
 
-/** Inserts new posts and fills in missing excerpts. Never overwrites a post's status or curated fields. */
-export async function savePosts(posts: PostInput[], status: LinkedInPostStatus) {
+/**
+ * Inserts new posts and fills in missing excerpts. Never overwrites a post's status or curated fields.
+ * Pass `checkedAt` when a person chose these posts, so the automatic check leaves them alone.
+ */
+export async function savePosts(posts: PostInput[], status: LinkedInPostStatus, checkedAt?: Date) {
   await connectDB()
   let added = 0
   let enriched = 0
@@ -293,7 +489,7 @@ export async function savePosts(posts: PostInput[], status: LinkedInPostStatus) 
       }
       continue
     }
-    await LinkedInPost.create({ ...post, status })
+    await LinkedInPost.create(checkedAt ? { ...post, status, checkedAt } : { ...post, status })
     added++
   }
   return { added, enriched }

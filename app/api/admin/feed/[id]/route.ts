@@ -37,7 +37,10 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     }
 
     await connectDB();
-    const post = await LinkedInPost.findByIdAndUpdate(id, { status: data.status }, { new: true });
+    // An admin's approval stands: the automatic check won't hide the post again
+    const update =
+      data.status === 'approved' ? { status: data.status, checkedAt: new Date(), hiddenReason: '' } : { status: data.status };
+    const post = await LinkedInPost.findByIdAndUpdate(id, update, { new: true });
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
     }
