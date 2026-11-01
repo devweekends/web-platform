@@ -19,6 +19,7 @@ import {
   Rocket,
   MessageSquareQuote,
   ChartNoAxesCombined,
+  Linkedin,
   FileText // <-- added for Blog
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -38,6 +39,7 @@ const menuItems = [
   { title: 'Testimonials', href: '/admin/dashboard/testimonials', icon: <MessageSquareQuote className="w-5 h-5" /> },
   { title: 'Impact Stories', href: '/admin/dashboard/impact-stories', icon: <MessageSquareQuote className="w-5 h-5" /> },
   { title: 'Fellowship Impact', href: '/admin/dashboard/fellowship-impact', icon: <ChartNoAxesCombined className="w-5 h-5" /> },
+  { title: 'Community Feed', href: '/admin/dashboard/feed', icon: <Linkedin className="w-5 h-5" /> },
 
   //  New Blog Route
   { title: 'News & Blog', href: '/blog', icon: <FileText className="w-5 h-5" /> },

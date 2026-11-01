@@ -420,6 +420,7 @@ export const footerColumns = [
       { label: "Team and story", href: LINKS.ourStory },
       { label: "Impact", href: LINKS.impactNumbers },
       { label: "Stories", href: LINKS.stories },
+      { label: "Community feed", href: "/feed" },
       { label: "Partners", href: LINKS.partners },
       { label: "Projects", href: "/projects" },
       { label: "Brand kit", href: "/brand" },
