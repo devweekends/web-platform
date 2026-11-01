@@ -71,16 +71,14 @@ function PostEmbed({ post, topicLabel }: { post: FeedPost; topicLabel: string })
           <span className="h-4 w-3/5 rounded-full bg-[#F0F0F0]" />
           <span className="flex-1 rounded-xl bg-[#F7F7F7]" />
         </div>
-        {/* No inner scrollbar: long posts show a preview and continue on LinkedIn, like LinkedIn's "see more" */}
+        {/* Long posts scroll inside the card; LinkedIn doesn't expose an embed's height to size it automatically */}
         <iframe
           src={linkedInEmbedUrl(post.id)}
           title={`LinkedIn post by ${post.author}`}
           loading="lazy"
-          scrolling="no"
           allowFullScreen
           className="absolute inset-0 h-full w-full"
         />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
       </div>
       <footer className="flex items-center justify-between gap-4 border-t border-[#E6E6E6] p-4">
         <span className="rounded-full bg-[#F7F7F7] px-3 py-1 text-[13px] font-medium text-[#404040]">{topicLabel}</span>
