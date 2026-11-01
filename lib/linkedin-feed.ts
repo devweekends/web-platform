@@ -7,9 +7,10 @@
  * scraping. Excerpts are search snippets, not full post content.
  */
 import connectDB from '@/lib/db'
+import { FeedCollectorState } from '@/models/FeedCollectorState'
 import { LinkedInPost, type LinkedInPostSource, type LinkedInPostStatus } from '@/models/LinkedInPost'
 import starterPosts from '@/data/linkedin-posts.json'
-import type { FeedPost } from './linkedin-feed-shared'
+import { OFFICIAL_HANDLES, type FeedPost } from './linkedin-feed-shared'
 
 const ACTIVITY_RE = /(?:^|[-_/])activity-(\d{16,21})(?:-|$)/
 
@@ -33,29 +34,64 @@ const KNOWN_AUTHORS: Record<string, string> = {
   arslanchoudhary: 'Arslan Choudhary',
 }
 
-/** Olostep search queries, rotated across daily runs */
-const SEARCH_QUERIES = [
+/** Results per Olostep search; 25 is the API maximum */
+const RESULTS_PER_SEARCH = 25
+const SEARCHES_IN_PARALLEL = 8
+
+/** Searches about programs, topics and years. Member searches are added on top (see searchQueries). */
+const TOPIC_SEARCHES = [
   '"#DevWeekends"',
-  '"#DevWeekends" "fellowship"',
-  '"#DevWeekends" "certificate"',
-  '"#DevWeekends" "DSA"',
-  '"#DevWeekends" "MERN"',
-  '"#DevWeekends" "open source"',
-  '"#DevWeekends" "mentor"',
-  '"#DevWeekends" "AI"',
-  '"#DevWeekends" "selected"',
-  '"#DevWeekends" "completed"',
-  '"#DevWeekends" "2026"',
-  '"#DevWeekends" "2025"',
-  '"#DevWeekends" "project"',
-  '"#DevWeekends" "journey"',
-  '"#DevWeekends" "React"',
-  '"#DevWeekends" "Python"',
-  '"#DevWeekends" "backend"',
-  '"#DevWeekends" "workshop"',
-  '"DevWeekendsFellowship"',
-  '"#DevWeekends" "DSOC"',
-].map((terms) => `site:linkedin.com/posts/ ${terms}`)
+  '"Dev Weekends"',
+  '"#DevWeekendsFellowship"',
+  '"Dev Weekends Fellowship" 2026',
+  '"Dev Weekends Fellowship" 2025',
+  '"Dev Weekends Fellowship" 2024',
+  '"Dev Weekends Fellowship" 2023',
+  '"Dev Weekends" certificate',
+  '"Dev Weekends" selected',
+  '"Dev Weekends" completed',
+  '"Dev Weekends" mentor',
+  '"Dev Weekends" mentorship',
+  '"Dev Weekends" DSA',
+  '"Dev Weekends" MERN',
+  '"Dev Weekends" "full stack"',
+  '"Dev Weekends" "AI engineering"',
+  '"Dev Weekends" DSOC',
+  '"Dev Weekends" "summer of code"',
+  '"Dev Weekends" GSoC',
+  '"Dev Weekends" LFX',
+  '"Dev Weekends" "open source"',
+  '"Dev Weekends" MindMaster',
+  '"Dev Weekends" "Tech Talk"',
+  '"Dev Weekends" FYP',
+  '"Dev Weekends" roadshow',
+  '"Dev Weekends" "Weekend Tech Grind"',
+  '"Dev Weekends" ICPC',
+  '"Dev Weekends" bootcamp',
+  '"Dev Weekends" DevOps',
+  '"Dev Weekends" Kubernetes',
+  '"Dev Weekends" "system design"',
+  '"Dev Weekends" internship',
+  '"Dev Weekends" "remote job"',
+  '"Dev Weekends" session',
+  '"Dev Weekends" workshop',
+  '"Dev Weekends" ambassador',
+  '"Dev Weekends" project',
+  '"Dev Weekends" journey',
+  '"Dev Weekends" LeetCode',
+  '"Dev Weekends" Python',
+]
+
+/**
+ * The full search list: topic searches, then one search per known member, so
+ * every member we find leads to their other Dev Weekends posts.
+ */
+function searchQueries(memberNames: string[]) {
+  return [
+    ...TOPIC_SEARCHES,
+    ...memberNames.map((name) => `"${name.replace(/"/g, '')}" "Dev Weekends"`),
+  ].map((terms) => `site:linkedin.com/posts ${terms}`)
+}
 
 /** Returns the canonical post URL and activity ID, or null for anything that isn't a public LinkedIn post URL */
 export function canonicalize(raw: unknown): { url: string; activityId: string } | null {
@@ -168,7 +204,7 @@ async function searchOlostep(apiKey: string, query: string): Promise<OlostepLink
   const response = await fetch('https://api.olostep.com/v1/searches', {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, limit: 10 }),
+    body: JSON.stringify({ query, limit: RESULTS_PER_SEARCH, include_domains: ['linkedin.com'] }),
     signal: AbortSignal.timeout(75_000),
     cache: 'no-store',
   })
@@ -177,15 +213,41 @@ async function searchOlostep(apiKey: string, query: string): Promise<OlostepLink
   return data?.result?.links ?? []
 }
 
-/** Runs a few Olostep searches and saves new posts. Rotates queries by day so each run covers different ground. */
+/**
+ * Runs the next `maxQueries` searches from the search list and saves new posts.
+ * Remembers where it stopped, so consecutive runs (daily cron, admin buttons)
+ * work through the whole list instead of repeating the same searches.
+ */
 export async function collectFromOlostep(apiKey: string, maxQueries = 5) {
-  const count = Math.min(Math.max(1, maxQueries), SEARCH_QUERIES.length)
-  const day = Math.floor(Date.now() / 86_400_000)
-  const start = (day * count) % SEARCH_QUERIES.length
-  const queries = Array.from({ length: count }, (_, i) => SEARCH_QUERIES[(start + i) % SEARCH_QUERIES.length])
+  await connectDB()
+  const memberNames: string[] = await LinkedInPost.distinct('author', {
+    status: 'approved',
+    handle: { $nin: [...OFFICIAL_HANDLES] },
+  })
+  // A fallback name can't find anyone's posts, so it would only waste credits
+  const allQueries = searchQueries(memberNames.filter((name) => name !== 'Community member').sort())
+  const count = Math.min(Math.max(1, maxQueries), allQueries.length)
 
-  const results = await Promise.allSettled(queries.map((query) => searchOlostep(apiKey, query)))
+  const state = await FeedCollectorState.findById('linkedin').lean<{ cursor: number }>()
+  const start = (state?.cursor ?? 0) % allQueries.length
+  const queries = Array.from({ length: count }, (_, i) => allQueries[(start + i) % allQueries.length])
+
+  const results: PromiseSettledResult<OlostepLink[]>[] = []
+  for (let i = 0; i < queries.length; i += SEARCHES_IN_PARALLEL) {
+    const batch = queries.slice(i, i + SEARCHES_IN_PARALLEL)
+    results.push(...(await Promise.allSettled(batch.map((query) => searchOlostep(apiKey, query)))))
+  }
   const failed = results.filter((r) => r.status === 'rejected').length
+
+  // Only move on when some searches worked, so a bad key or an outage doesn't skip part of the list
+  if (failed < queries.length) {
+    await FeedCollectorState.updateOne(
+      { _id: 'linkedin' },
+      { cursor: (start + count) % allQueries.length },
+      { upsert: true }
+    )
+  }
+
   const posts = results
     .flatMap((r) => (r.status === 'fulfilled' ? r.value : []))
     .filter(mentionsDevWeekends)
@@ -196,7 +258,24 @@ export async function collectFromOlostep(apiKey: string, maxQueries = 5) {
 
   // Search results are trusted enough to publish directly; visitor submissions are not
   const saved = await savePosts(posts, 'approved')
-  return { queries: queries.length, failedQueries: failed, candidates: posts.length, ...saved }
+  return {
+    queries: queries.length,
+    failedQueries: failed,
+    candidates: posts.length,
+    ...saved,
+    searchListSize: allQueries.length,
+  }
+}
+
+/** Adds LinkedIn post links pasted by an admin. Admins are trusted, so the posts go live straight away. */
+export async function importPostUrls(text: string) {
+  const urls = text.split(/[\s,]+/).filter(Boolean)
+  const posts = urls
+    .map((url) => makePost(url, '', '', 'admin-import'))
+    .filter((post): post is PostInput => post !== null)
+  const unique = [...new Map(posts.map((post) => [post.activityId, post])).values()]
+  const saved = await savePosts(unique, 'approved')
+  return { links: urls.length, invalid: urls.length - posts.length, ...saved, alreadyThere: unique.length - saved.added }
 }
 
 /** Inserts new posts and fills in missing excerpts. Never overwrites a post's status or curated fields. */

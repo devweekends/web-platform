@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export type LinkedInPostStatus = 'approved' | 'pending' | 'hidden';
-export type LinkedInPostSource = 'seed' | 'olostep-search-index' | 'community-submission';
+export type LinkedInPostSource = 'seed' | 'olostep-search-index' | 'community-submission' | 'admin-import';
 
 /** A public LinkedIn post tagged #DevWeekends, shown on /feed once approved. */
 export interface ILinkedInPost extends Document {
@@ -35,7 +35,7 @@ const LinkedInPostSchema = new Schema<ILinkedInPost>(
     postedAt: { type: Date },
     source: {
       type: String,
-      enum: ['seed', 'olostep-search-index', 'community-submission'],
+      enum: ['seed', 'olostep-search-index', 'community-submission', 'admin-import'],
       default: 'olostep-search-index',
     },
     status: {

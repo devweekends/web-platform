@@ -15,7 +15,7 @@ interface FeedPost {
   excerpt: string;
   topic: string;
   postedAt?: string;
-  source: 'seed' | 'olostep-search-index' | 'community-submission';
+  source: 'seed' | 'olostep-search-index' | 'community-submission' | 'admin-import';
   status: 'approved' | 'pending' | 'hidden';
   createdAt: string;
 }
@@ -30,7 +30,12 @@ const SOURCE_LABELS: Record<FeedPost['source'], string> = {
   seed: 'Starter list',
   'olostep-search-index': 'Found by Olostep',
   'community-submission': 'Submitted',
+  'admin-import': 'Imported',
 };
+
+/** Olostep charges about 5 credits per search */
+const CREDITS_PER_SEARCH = 5;
+const DEEP_SEARCHES = 40;
 
 export default function AdminFeedPage() {
   const [posts, setPosts] = useState<FeedPost[]>([]);
@@ -39,6 +44,9 @@ export default function AdminFeedPage() {
   const [processingId, setProcessingId] = useState<string | null>(null);
   const [collecting, setCollecting] = useState(false);
   const [collectMessage, setCollectMessage] = useState('');
+  const [importText, setImportText] = useState('');
+  const [importing, setImporting] = useState(false);
+  const [importMessage, setImportMessage] = useState('');
 
   const fetchPosts = async () => {
     try {
@@ -84,24 +92,60 @@ export default function AdminFeedPage() {
     }
   };
 
-  const collect = async () => {
+  const collect = async (searches?: number) => {
+    if (
+      searches &&
+      !confirm(`Run ${searches} Olostep searches? This uses about ${searches * CREDITS_PER_SEARCH} credits and can take a few minutes.`)
+    ) {
+      return;
+    }
     setCollecting(true);
     setCollectMessage('');
     try {
-      const res = await fetch('/api/admin/feed', { method: 'POST' });
+      const res = await fetch('/api/admin/feed', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'collect', searches }),
+      });
       const data = await res.json();
       if (!res.ok) {
         setCollectMessage(data.error ?? 'Collection failed.');
         return;
       }
       setCollectMessage(
-        `Ran ${data.queries} searches${data.failedQueries ? ` (${data.failedQueries} failed)` : ''}: ${data.added} new posts, ${data.enriched} updated.`
+        `Ran ${data.queries} of ${data.searchListSize} searches${data.failedQueries ? ` (${data.failedQueries} failed)` : ''}: ${data.added} new posts, ${data.enriched} updated.`
       );
       await fetchPosts();
     } catch {
       setCollectMessage('Collection failed.');
     } finally {
       setCollecting(false);
+    }
+  };
+
+  const importLinks = async () => {
+    setImporting(true);
+    setImportMessage('');
+    try {
+      const res = await fetch('/api/admin/feed', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'import', urls: importText }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setImportMessage(data.error ?? 'Import failed.');
+        return;
+      }
+      setImportMessage(
+        `${data.added} added, ${data.alreadyThere} already on the feed${data.invalid ? `, ${data.invalid} not LinkedIn post links` : ''}.`
+      );
+      if (data.added > 0) setImportText('');
+      await fetchPosts();
+    } catch {
+      setImportMessage('Import failed.');
+    } finally {
+      setImporting(false);
     }
   };
 
@@ -125,15 +169,51 @@ export default function AdminFeedPage() {
             LinkedIn posts shown on <a href="/feed" target="_blank" className="underline">/feed</a>. Submissions wait here for review.
           </p>
         </div>
-        <div className="text-right">
-          <Button onClick={collect} disabled={collecting}>
-            {collecting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
-            Find new posts
-          </Button>
-          <p className="mt-1 text-xs text-muted-foreground">Runs Olostep searches; uses credits.</p>
+        <div className="max-w-sm text-right">
+          <div className="flex flex-wrap justify-end gap-2">
+            <Button onClick={() => collect()} disabled={collecting}>
+              {collecting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+              Find new posts
+            </Button>
+            <Button variant="outline" onClick={() => collect(DEEP_SEARCHES)} disabled={collecting}>
+              Deep search ({DEEP_SEARCHES})
+            </Button>
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Each search uses about {CREDITS_PER_SEARCH} Olostep credits. Runs continue where the last one stopped.
+          </p>
           {collectMessage && <p className="mt-2 text-sm">{collectMessage}</p>}
         </div>
       </div>
+
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-lg">Add posts by link</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Paste LinkedIn post links, one per line or separated by spaces, e.g. collected from WhatsApp groups. They go live straight away.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <label htmlFor="feed-import" className="sr-only">
+            LinkedIn post links
+          </label>
+          <textarea
+            id="feed-import"
+            value={importText}
+            onChange={(event) => setImportText(event.target.value)}
+            rows={4}
+            placeholder="https://www.linkedin.com/posts/..."
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+          />
+          <div className="flex flex-wrap items-center gap-3">
+            <Button onClick={importLinks} disabled={importing || !importText.trim()}>
+              {importing && <Loader2 className="h-4 w-4 animate-spin" />}
+              Add posts
+            </Button>
+            {importMessage && <p className="text-sm">{importMessage}</p>}
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="flex flex-wrap gap-2">
         {TABS.map(({ value, label }) => (
