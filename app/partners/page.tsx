@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { communityPartners, mailto, partners } from "@/components/home/data"
+import { communityPartners, LINKS, mailto, partners } from "@/components/home/data"
 import { LogoMark } from "@/components/home/logo-mark"
 import { SmartLink } from "@/components/home/smart-link"
 import { Button, Card, Eyebrow, PageHero, Panel, Section } from "@/components/site/page-kit"
@@ -14,6 +14,8 @@ export const metadata: Metadata = withSocial({
 
 const cyberiadRegistrationUrl =
   "https://cyberiadlabs.com/partner/ums1e7vdj3w8lm080hzlcr7xujrc0lyh5mvdot"
+
+const olostepLinkedIn = "https://www.linkedin.com/company/olostep/"
 
 const partnerMail = mailto("Partnership with Dev Weekends")
 
@@ -78,6 +80,23 @@ export default function PartnersPage() {
         </div>
 
         <div className="mt-10 flex flex-col gap-5 rounded-[20px] bg-[#F7F7F7] p-6 md:flex-row md:items-center md:justify-between md:p-7">
+          <div>
+            <p className="text-[17px] font-semibold tracking-[-0.01em]">Free Olostep credits for November</p>
+            <p className="mt-1.5 max-w-[56ch] text-[15px] leading-[1.6] text-[#404040]">
+              Follow{" "}
+              <SmartLink href={olostepLinkedIn} className={`font-semibold underline underline-offset-4 ${focusRing}`}>
+                Olostep on LinkedIn
+              </SmartLink>
+              , then message the Dev Weekends LinkedIn page with a screenshot showing you follow them. We will send you
+              your credit code.
+            </p>
+          </div>
+          <Button href={LINKS.linkedin} variant="secondary">
+            Get Olostep credits
+          </Button>
+        </div>
+
+        <div className="mt-4 flex flex-col gap-5 rounded-[20px] bg-[#F7F7F7] p-6 md:flex-row md:items-center md:justify-between md:p-7">
           <div>
             <p className="text-[17px] font-semibold tracking-[-0.01em]">Free AI course with Cyberiad Labs</p>
             <p className="mt-1.5 max-w-[56ch] text-[15px] leading-[1.6] text-[#404040]">
