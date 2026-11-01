@@ -3,8 +3,9 @@ import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { verify } from 'jsonwebtoken';
 import connectDB from '@/lib/db';
-import { collectFromOlostep, importPostUrls } from '@/lib/linkedin-feed';
+import { collectFromOlostep, importPostUrls, recheckLivePosts } from '@/lib/linkedin-feed';
 import { LinkedInPost } from '@/models/LinkedInPost';
+import { ActivityLog } from '@/models/ActivityLog';
 
 export const maxDuration = 300;
 
@@ -32,7 +33,7 @@ export async function GET() {
 
     await connectDB();
     const posts = await LinkedInPost.find()
-      .select('activityId url author title excerpt topic postedAt source status createdAt')
+      .select('activityId url author title excerpt topic postedAt source status hiddenReason createdAt')
       .sort({ createdAt: -1 })
       .lean();
     return NextResponse.json(posts);
@@ -47,16 +48,35 @@ const MAX_SEARCHES_PER_REQUEST = 60;
 
 /**
  * Admin actions on the feed:
- * - `{ action: "collect", searches?: number }` runs Olostep searches ("Find new posts", "Deep search")
+ * - `{ action: "collect", searches?: number }` runs Olostep searches ("Find new posts", "Search everything")
  * - `{ action: "import", urls: string }` adds pasted LinkedIn post links, live straight away
+ * - `{ action: "recheck", after?: string }` checks the next batch of live posts against LinkedIn
+ *   and hides the ones that don't mention Dev Weekends ("Check live posts")
  */
 export async function POST(request: Request) {
   try {
-    if (!(await getAdminUser())) {
+    const adminUsername = await getAdminUser();
+    if (!adminUsername) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const body = await request.json().catch(() => ({}));
+
+    if (body.action === 'recheck') {
+      const after = typeof body.after === 'string' && /^[0-9a-f]{24}$/.test(body.after) ? body.after : undefined;
+      const result = await recheckLivePosts(after);
+      if (result.hidden.length > 0) {
+        await ActivityLog.create({
+          entityType: 'LinkedInPost',
+          entityId: 'feed-check',
+          action: 'hide',
+          adminUsername,
+          details: { hidden: result.hidden },
+        });
+        revalidatePath('/feed');
+      }
+      return NextResponse.json(result);
+    }
 
     if (body.action === 'import') {
       if (typeof body.urls !== 'string' || !body.urls.trim()) {

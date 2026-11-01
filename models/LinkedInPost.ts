@@ -18,6 +18,10 @@ export interface ILinkedInPost extends Document {
   postedAt?: Date;
   source: LinkedInPostSource;
   status: LinkedInPostStatus;
+  /** When the post's own LinkedIn text was checked for a Dev Weekends mention, or an admin approved it by hand */
+  checkedAt?: Date;
+  /** Why the post was hidden automatically, shown in the admin */
+  hiddenReason: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -44,6 +48,8 @@ const LinkedInPostSchema = new Schema<ILinkedInPost>(
       default: 'pending',
       index: true,
     },
+    checkedAt: { type: Date },
+    hiddenReason: { type: String, trim: true, default: '' },
   },
   { timestamps: true }
 );

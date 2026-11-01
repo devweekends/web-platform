@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, EyeOff, ExternalLink, Loader2, Search, Trash2 } from 'lucide-react';
+import { CheckCircle, EyeOff, ExternalLink, Loader2, Search, ShieldCheck, Trash2 } from 'lucide-react';
 
 interface FeedPost {
   _id: string;
@@ -17,6 +17,8 @@ interface FeedPost {
   postedAt?: string;
   source: 'seed' | 'olostep-search-index' | 'community-submission' | 'admin-import';
   status: 'approved' | 'pending' | 'hidden';
+  /** Set when the automatic check hid the post */
+  hiddenReason?: string;
   createdAt: string;
 }
 
@@ -40,6 +42,14 @@ const SEARCHES_PER_REQUEST = 40;
 /** Topic searches in lib/linkedin-feed.ts; one search per member is added on top */
 const TOPIC_SEARCH_COUNT = 40;
 
+/** What a search run found, in words */
+function foundSummary(added: number, rejected: number, needsReview: number) {
+  const parts = [`${added} new posts live`];
+  if (needsReview) parts.push(`${needsReview} waiting for review (LinkedIn didn't load them)`);
+  if (rejected) parts.push(`${rejected} skipped (no Dev Weekends mention or deleted)`);
+  return `${parts.join(', ')}.`;
+}
+
 export default function AdminFeedPage() {
   const [posts, setPosts] = useState<FeedPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -47,6 +57,8 @@ export default function AdminFeedPage() {
   const [processingId, setProcessingId] = useState<string | null>(null);
   const [collecting, setCollecting] = useState(false);
   const [collectMessage, setCollectMessage] = useState('');
+  const [checking, setChecking] = useState(false);
+  const [checkMessage, setCheckMessage] = useState('');
   const [importText, setImportText] = useState('');
   const [importing, setImporting] = useState(false);
   const [importMessage, setImportMessage] = useState('');
@@ -113,7 +125,8 @@ export default function AdminFeedPage() {
         return;
       }
       setCollectMessage(
-        `Ran ${data.queries} of ${data.searchListSize} searches${data.failedQueries ? ` (${data.failedQueries} failed)` : ''}: ${data.added} new posts, ${data.enriched} updated.`
+        `Ran ${data.queries} of ${data.searchListSize} searches${data.failedQueries ? ` (${data.failedQueries} failed)` : ''}: ` +
+          foundSummary(data.added, data.rejected, data.needsReview)
       );
       await fetchPosts();
     } catch {
@@ -148,7 +161,8 @@ export default function AdminFeedPage() {
     let total = estimate;
     let done = 0;
     let added = 0;
-    let enriched = 0;
+    let rejected = 0;
+    let needsReview = 0;
     let failed = 0;
     try {
       while (done < total) {
@@ -162,7 +176,8 @@ export default function AdminFeedPage() {
         if (done === 0) total = data.searchListSize;
         done += data.queries;
         added += data.added;
-        enriched += data.enriched;
+        rejected += data.rejected;
+        needsReview += data.needsReview;
         failed += data.failedQueries;
         if (data.failedQueries === data.queries) {
           setCollectMessage(`Stopped: every search in the last batch failed (check Olostep credits). ${added} new posts found.`);
@@ -171,12 +186,68 @@ export default function AdminFeedPage() {
         setCollectMessage(`Searching… ${done} of ${total} done, ${added} new posts so far.`);
       }
       setCollectMessage(
-        `Searched everything: ${done} searches${failed ? ` (${failed} failed)` : ''}, ${added} new posts, ${enriched} updated.`
+        `Searched everything: ${done} searches${failed ? ` (${failed} failed)` : ''}. ${foundSummary(added, rejected, needsReview)}`
       );
     } catch {
       setCollectMessage(`Stopped after ${done} searches with ${added} new posts.`);
     } finally {
       setCollecting(false);
+      await fetchPosts();
+    }
+  };
+
+  /**
+   * Checks every live post from the starter list and search against its LinkedIn
+   * page, in batches, and hides the ones that don't mention Dev Weekends or were deleted.
+   */
+  const checkLivePosts = async () => {
+    if (
+      !confirm(
+        'Check every live post found by search against its LinkedIn page, and hide the ones whose text ' +
+          "doesn't mention Dev Weekends? Hidden posts can be approved again. No Olostep credits are used."
+      )
+    ) {
+      return;
+    }
+    setChecking(true);
+    setCheckMessage('');
+    let after: string | undefined;
+    let checked = 0;
+    let hidden = 0;
+    let unknown = 0;
+    try {
+      for (;;) {
+        const res = await fetch('/api/admin/feed', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'recheck', after }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setCheckMessage(`${data.error ?? 'Check failed.'} Stopped after ${checked} posts, ${hidden} hidden.`);
+          return;
+        }
+        checked += data.checked;
+        hidden += data.hidden.length;
+        unknown += data.unknown;
+        if (data.checked > 0 && data.unknown === data.checked) {
+          setCheckMessage(`Stopped: LinkedIn didn't show any post in the last batch. Try again later. ${hidden} hidden so far.`);
+          return;
+        }
+        if (!data.lastId || data.remaining === 0) break;
+        after = data.lastId;
+        setCheckMessage(`Checking… ${checked} done, ${data.remaining} left, ${hidden} hidden so far.`);
+      }
+      setCheckMessage(
+        checked === 0
+          ? 'Every live post has been checked already.'
+          : `Checked ${checked} posts: ${hidden} hidden (see the Hidden tab)` +
+              (unknown ? `, ${unknown} couldn't be loaded and stay live; run it again later to retry them.` : '.')
+      );
+    } catch {
+      setCheckMessage(`Stopped after ${checked} posts, ${hidden} hidden.`);
+    } finally {
+      setChecking(false);
       await fetchPosts();
     }
   };
@@ -229,19 +300,24 @@ export default function AdminFeedPage() {
         </div>
         <div className="max-w-sm text-right">
           <div className="flex flex-wrap justify-end gap-2">
-            <Button variant="outline" onClick={collect} disabled={collecting}>
+            <Button variant="outline" onClick={checkLivePosts} disabled={checking || collecting}>
+              {checking ? <Loader2 className="h-4 w-4 animate-spin" /> : <ShieldCheck className="h-4 w-4" />}
+              Check live posts
+            </Button>
+            <Button variant="outline" onClick={collect} disabled={collecting || checking}>
               Find new posts
             </Button>
-            <Button onClick={searchEverything} disabled={collecting}>
+            <Button onClick={searchEverything} disabled={collecting || checking}>
               {collecting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
               Search everything
             </Button>
           </div>
           <p className="mt-1 text-xs text-muted-foreground">
             Find new posts runs 5 searches. Search everything runs the whole list once. Each search uses about{' '}
-            {CREDITS_PER_SEARCH} Olostep credits.
+            {CREDITS_PER_SEARCH} Olostep credits. A found post goes live only if its text on LinkedIn mentions Dev Weekends.
           </p>
           {collectMessage && <p className="mt-2 text-sm">{collectMessage}</p>}
+          {checkMessage && <p className="mt-2 text-sm">{checkMessage}</p>}
         </div>
       </div>
 
@@ -306,6 +382,9 @@ export default function AdminFeedPage() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
+                {post.status === 'hidden' && post.hiddenReason && (
+                  <p className="text-sm text-muted-foreground">Hidden automatically: {post.hiddenReason}.</p>
+                )}
                 {post.excerpt && <p className="text-sm">{post.excerpt}</p>}
                 <div className="flex flex-wrap gap-2">
                   <Button asChild variant="outline" size="sm">
