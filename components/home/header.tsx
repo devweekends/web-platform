@@ -50,7 +50,7 @@ export function HomeHeader() {
           <BrandLogo height={48} />
         </Link>
 
-        {/* Seven links and the button only fit from about 1,100px, so smaller screens get the menu button */}
+        {/* Eight links and the button only fit from about 1,100px, so smaller screens get the menu button */}
         <nav aria-label="Primary" className="hidden items-center gap-8 text-[15px] font-medium xl:flex">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className="text-[#404040] transition-colors hover:text-black">
