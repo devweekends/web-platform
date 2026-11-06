@@ -24,6 +24,7 @@ import { answeredYes } from '../lib/fellowship-survey.mjs';
 const OUTPUT = path.join(process.cwd(), 'data', 'fellowship-2026-impact.json');
 const MAX_PROJECTS = 50;
 const MAX_LEETCODE = 1000;
+const MAX_COUNT = 150; // talks, articles, pages and sessions per fellow over three months
 
 const number = (value, max) => {
   const n = Number(value);
@@ -81,6 +82,15 @@ async function main() {
       },
       projects: total(fellows.map((f) => f.activity?.projectsDeveloped), MAX_PROJECTS),
       leetcode: total(fellows.map((f) => f.activity?.leetcodeSolved), MAX_LEETCODE),
+      beyondCode: {
+        mindsetTalks: total(fellows.map((f) => f.activity?.mindsetTalksCompleted), MAX_COUNT).total,
+        spiritualTalks: total(fellows.map((f) => f.activity?.spiritualTalksCompleted), MAX_COUNT).total,
+        dinnerTalks: total(fellows.map((f) => f.activity?.dinnerEngineerTalksCompleted), MAX_COUNT).total,
+        articlesRead: total(fellows.map((f) => f.activity?.articlesRead), MAX_COUNT).total,
+        reflectionPages: total(fellows.map((f) => f.activity?.thoughtQuestionPagesWritten), MAX_COUNT).total,
+        dsaRecordingsWatched: total(fellows.map((f) => f.activity?.dsaRecordedSessionsWatched), MAX_COUNT).total,
+        liveSessionsAttended: total(fellows.map((f) => f.activity?.engineeringSessionsAttended), MAX_COUNT).total,
+      },
       outcomes: {
         interviews: yes((f) => f.outcomes?.interviewsCleared),
         internships: yes((f) => f.outcomes?.internshipCracked),

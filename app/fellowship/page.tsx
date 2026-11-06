@@ -42,9 +42,11 @@ const impactOutcomes = [
 ]
 
 const impactRatings = [
-  { title: "Overall experience", rating: impact.ratings.program },
-  { title: "Mentor support", rating: impact.ratings.mentor },
+  { title: "Overall experience", text: "How fellows rated Fellowship 2026 as a whole.", rating: impact.ratings.program },
+  { title: "Mentor support", text: "How fellows rated the support from their clan mentors.", rating: impact.ratings.mentor },
 ]
+
+const FULL_REPORT = "/blog/fellowship-2026-impact-report"
 
 const steps = [
   { title: "Join a clan", text: "Get assigned to one of 25 focused clans." },
@@ -208,12 +210,12 @@ export default function FellowshipPage() {
         <SectionHeading
           eyebrow="Impact report"
           title="What Fellowship 2026 led to."
-          intro={`From the end-of-fellowship survey, answered by ${fmt(impact.survey.respondents)} fellows between ${surveyDate(
-            impact.survey.from,
-          )} and ${surveyDate(impact.survey.to)} 2026. Everything here is what fellows told us themselves.`}
+          intro={`From the end-of-fellowship survey, ${surveyDate(impact.survey.from)} to ${surveyDate(
+            impact.survey.to,
+          )} 2026. Everything here is what fellows told us themselves.`}
           action={
-            <Button href="/blog/fellowship-2026-by-the-numbers" variant="secondary">
-              Who was selected
+            <Button href={FULL_REPORT} variant="secondary">
+              Read the full report
             </Button>
           }
         />
@@ -221,8 +223,7 @@ export default function FellowshipPage() {
 
         <h3 className="mt-14 text-[22px] font-semibold tracking-[-0.02em]">Where it led them</h3>
         <p className="mt-2 max-w-[60ch] text-[15px] leading-[1.6] text-[#5C5C5C]">
-          {fmt(impact.outcomes.anyPath)} of the {fmt(impact.survey.respondents)} fellows who answered took at least one of these
-          paths. Some took more than one.
+          {fmt(impact.outcomes.anyPath)} fellows took at least one of these paths. Some took more than one.
         </p>
         <div className="mt-6">
           <OutcomeGrid items={impactOutcomes} />
@@ -230,14 +231,12 @@ export default function FellowshipPage() {
 
         <h3 className="mt-14 text-[22px] font-semibold tracking-[-0.02em]">How fellows rated it</h3>
         <ul className="mt-6 grid gap-5 md:grid-cols-2">
-          {impactRatings.map(({ title, rating }) => (
+          {impactRatings.map(({ title, text, rating }) => (
             <li key={title}>
               <Card tone="gray" className="h-full">
                 <p className="text-[clamp(28px,4vw,40px)] font-semibold leading-none tracking-[-0.04em]">{rating.average}/5</p>
                 <CardText title={title}>
-                  <p className={body}>
-                    {fmt(rating.fourOrFive)} of {fmt(rating.answered)} gave 4 or 5 stars.
-                  </p>
+                  <p className={body}>{text}</p>
                 </CardText>
               </Card>
             </li>
@@ -245,11 +244,8 @@ export default function FellowshipPage() {
         </ul>
 
         <p className="mt-10 max-w-[70ch] text-sm leading-[1.6] text-[#5C5C5C]">
-          How we counted: each fellow is counted once, using their latest answer. A path counts only when the answer was a clear yes.
-          {`Projects were reported by ${fmt(impact.projects.reportedBy)} fellows and LeetCode totals by ${fmt(
-            impact.leetcode.reportedBy,
-          )}; the rest left those questions blank.`}{" "}
-          Looking for an earlier year? Read the{" "}
+          How we counted: each fellow is counted once, using their latest answer, and a path counts only on a clear yes. Looking for
+          an earlier year? Read the{" "}
           <SmartLink href="/fellowship/2025" className="font-semibold text-[#0A0A0A] underline underline-offset-4">
             Fellowship 2025 report
           </SmartLink>

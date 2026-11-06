@@ -76,7 +76,7 @@ export default function Fellowship2025Page() {
 
         <h3 className="mt-14 text-[22px] font-semibold tracking-[-0.02em]">Where it led them</h3>
         <p className="mt-2 max-w-[60ch] text-[15px] leading-[1.6] text-[#5C5C5C]">
-          59 of the 100 certified fellows took at least one of these paths. Some took more than one.
+          59 certified fellows took at least one of these paths. Some took more than one.
         </p>
         <div className="mt-6">
           <OutcomeGrid items={outcomes} />
