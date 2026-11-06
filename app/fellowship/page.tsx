@@ -44,7 +44,6 @@ const impactOutcomes = [
 const impactRatings = [
   { title: "Overall experience", rating: impact.ratings.program },
   { title: "Mentor support", rating: impact.ratings.mentor },
-  { title: "Session quality", rating: impact.ratings.sessions },
 ]
 
 const steps = [
@@ -230,7 +229,7 @@ export default function FellowshipPage() {
         </div>
 
         <h3 className="mt-14 text-[22px] font-semibold tracking-[-0.02em]">How fellows rated it</h3>
-        <ul className="mt-6 grid gap-5 md:grid-cols-3">
+        <ul className="mt-6 grid gap-5 md:grid-cols-2">
           {impactRatings.map(({ title, rating }) => (
             <li key={title}>
               <Card tone="gray" className="h-full">

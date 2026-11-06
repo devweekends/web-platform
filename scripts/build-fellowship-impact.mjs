@@ -93,7 +93,6 @@ async function main() {
       },
       ratings: {
         program: ratingSummary(fellows.map((f) => f.ratings?.program?.overallExperience)),
-        sessions: ratingSummary(fellows.map((f) => f.ratings?.program?.sessionQuality)),
         mentor: ratingSummary(fellows.map((f) => f.ratings?.mentor?.overallSupport)),
       },
     };
