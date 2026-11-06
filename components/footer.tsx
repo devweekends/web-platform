@@ -260,7 +260,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/fellowship" className="text-background/70 hover:text-background transition-colors">
-                  Fellowship 2026 (Closed)
+                  Fellowship 2026 (Ended)
                 </Link>
               </li>
               <li>

@@ -1,0 +1,41 @@
+{
+  "survey": {
+    "from": "2026-08-29",
+    "to": "2026-09-19",
+    "responses": 284,
+    "respondents": 264
+  },
+  "projects": {
+    "total": 474,
+    "reportedBy": 96
+  },
+  "leetcode": {
+    "total": 5860,
+    "reportedBy": 134
+  },
+  "outcomes": {
+    "interviews": 61,
+    "internships": 79,
+    "jobs": 21,
+    "freelance": 32,
+    "openSource": 38,
+    "anyPath": 131
+  },
+  "ratings": {
+    "program": {
+      "average": 4.2,
+      "fourOrFive": 207,
+      "answered": 260
+    },
+    "sessions": {
+      "average": 3.9,
+      "fourOrFive": 167,
+      "answered": 260
+    },
+    "mentor": {
+      "average": 4.3,
+      "fourOrFive": 205,
+      "answered": 260
+    }
+  }
+}

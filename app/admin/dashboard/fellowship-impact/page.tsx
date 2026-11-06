@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { answeredYes } from '@/lib/fellowship-survey.mjs'
 
 type SurveyResponse = {
   _id: string
@@ -19,7 +20,8 @@ type SurveyResponse = {
   source: { form: string; submittedAt?: string }
 }
 
-const isPositive = (value?: string) => Boolean(value && /\byes\b|\btrue\b|\bselected\b|\bcracked\b/i.test(value))
+// Same rule as the public report, so "No, I haven't cracked any job" is not counted as a job.
+const isPositive = (value?: string) => answeredYes(value)
 const sum = (responses: SurveyResponse[], field: keyof SurveyResponse['activity']) => responses.reduce((total, response) => total + (Number(response.activity[field]) || 0), 0)
 const PAGE_SIZE = 25
 

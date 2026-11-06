@@ -22,6 +22,7 @@ const pages: Entry[] = [
   { path: '', changeFrequency: 'weekly', priority: 1 },
   { path: '/team', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/fellowship', changeFrequency: 'weekly', priority: 0.8 },
+  { path: '/fellowship/2025', changeFrequency: 'yearly', priority: 0.5 },
   { path: '/dsoc', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/dwosi', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/fyp-roadshow', changeFrequency: 'weekly', priority: 0.8 },

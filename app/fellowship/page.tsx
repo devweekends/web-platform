@@ -4,17 +4,48 @@ import { SmartLink } from "@/components/home/smart-link"
 import { LINKS } from "@/components/home/data"
 import { Voices } from "@/components/home/sections-bottom"
 import { Button, Card, PageHero, Panel, Section, SectionHeading } from "@/components/site/page-kit"
+import { FellowshipYearNav, OutcomeGrid } from "@/components/site/fellowship-blocks"
 import { CardText, CheckList, Chip, DarkSteps, StatRow } from "@/components/site/program-blocks"
 import { withSocial } from "@/lib/seo"
+// Totals only, no personal data. Rebuild with: node scripts/build-fellowship-impact.mjs
+import impact from "@/data/fellowship-2026-impact.json"
 
 export const metadata: Metadata = withSocial({
   alternates: { canonical: "/fellowship" },
   title: "Fellowship 2026",
   description:
-    "Dev Weekends Fellowship 2026: three months of DSA training, weekend engineering projects and mentorship. Applications are closed.",
+    "Dev Weekends Fellowship 2026 has ended. Read its impact report: projects built, LeetCode problems solved, and the internships and jobs fellows reported.",
 })
 
 const body = "mt-3 text-[15px] leading-[1.6] text-[#5C5C5C]"
+
+/** From content/blog/fellowship-2026-by-the-numbers.md */
+const SELECTED_FELLOWS = 1072
+
+const fmt = (n: number) => n.toLocaleString("en-US")
+const surveyDate = (iso: string) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", timeZone: "UTC" })
+
+const impactStats = [
+  { value: fmt(SELECTED_FELLOWS), label: "Fellows selected" },
+  { value: fmt(impact.projects.total), label: "Projects built" },
+  { value: fmt(impact.leetcode.total), label: "LeetCode problems solved" },
+  { value: `${impact.ratings.program.average}/5`, label: "Overall rating" },
+]
+
+const impactOutcomes = [
+  { value: fmt(impact.outcomes.internships), label: "Secured an internship" },
+  { value: fmt(impact.outcomes.interviews), label: "Cleared interviews" },
+  { value: fmt(impact.outcomes.jobs), label: "Landed a job" },
+  { value: fmt(impact.outcomes.openSource), label: "Contributing to open source" },
+  { value: fmt(impact.outcomes.freelance), label: "Working as freelancers" },
+]
+
+const impactRatings = [
+  { title: "Overall experience", rating: impact.ratings.program },
+  { title: "Mentor support", rating: impact.ratings.mentor },
+  { title: "Session quality", rating: impact.ratings.sessions },
+]
 
 const steps = [
   { title: "Join a clan", text: "Get assigned to one of 25 focused clans." },
@@ -123,18 +154,23 @@ export default function FellowshipPage() {
       <PageHero
         eyebrow="Dev Weekends Fellowship"
         title="Fellowship 2026"
-        intro="Three months of DSA training, weekend engineering projects and mentorship, with the goal of making you industry-ready."
+        intro="Three months of DSA training, weekend engineering projects and mentorship for 1,072 fellows, with the goal of making them industry-ready."
+        actions={<FellowshipYearNav current="2026" />}
       />
 
       <Panel>
         <div className="grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:items-start">
           <div>
-            <Chip onDark>Closed</Chip>
+            <Chip onDark>Ended</Chip>
             <h2 className="mt-5 text-[clamp(32px,4vw,52px)] font-semibold leading-[1.05] tracking-[-0.04em]">
-              Fellowship 2026 applications are closed.
+              Fellowship 2026 has ended.
             </h2>
             <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.65] text-[#C7C7C7]">
-              Applications will open next summer. We are always open to passionate people who show deep interest in technology and a
+              Thank you to all 1,072 fellows, their mentors and the clans that kept each other going. Read what came out of it in the
+              impact report below.
+            </p>
+            <p className="mt-4 max-w-[56ch] text-[17px] leading-[1.65] text-[#C7C7C7]">
+              The next Fellowship opens next summer. We are always open to passionate people who show deep interest in technology and a
               strong willingness to get things done. We review exceptional cases at{" "}
               <a
                 href="mailto:info@devweekends.com"
@@ -148,11 +184,11 @@ export default function FellowshipPage() {
               Working on a final year project (FYP)? Start with our FYP guidance.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/blog/fellowship-2026-next-steps" variant="onDark">
-                See what comes next
+              <Button href="#impact" variant="onDark">
+                Read the impact report
               </Button>
-              <Button href={LINKS.getInvolved} variant="onDarkSecondary">
-                Apply to a program
+              <Button href="/blog/fellowship-2026-next-steps" variant="onDarkSecondary">
+                See what comes next
               </Button>
             </div>
           </div>
@@ -168,6 +204,59 @@ export default function FellowshipPage() {
           </div>
         </div>
       </Panel>
+
+      <Section id="impact">
+        <SectionHeading
+          eyebrow="Impact report"
+          title="What Fellowship 2026 led to."
+          intro={`From the end-of-fellowship survey, answered by ${fmt(impact.survey.respondents)} fellows between ${surveyDate(
+            impact.survey.from,
+          )} and ${surveyDate(impact.survey.to)} 2026. Everything here is what fellows told us themselves.`}
+          action={
+            <Button href="/blog/fellowship-2026-by-the-numbers" variant="secondary">
+              Who was selected
+            </Button>
+          }
+        />
+        <StatRow stats={impactStats} />
+
+        <h3 className="mt-14 text-[22px] font-semibold tracking-[-0.02em]">Where it led them</h3>
+        <p className="mt-2 max-w-[60ch] text-[15px] leading-[1.6] text-[#5C5C5C]">
+          {fmt(impact.outcomes.anyPath)} of the {fmt(impact.survey.respondents)} fellows who answered took at least one of these
+          paths. Some took more than one.
+        </p>
+        <div className="mt-6">
+          <OutcomeGrid items={impactOutcomes} />
+        </div>
+
+        <h3 className="mt-14 text-[22px] font-semibold tracking-[-0.02em]">How fellows rated it</h3>
+        <ul className="mt-6 grid gap-5 md:grid-cols-3">
+          {impactRatings.map(({ title, rating }) => (
+            <li key={title}>
+              <Card tone="gray" className="h-full">
+                <p className="text-[clamp(28px,4vw,40px)] font-semibold leading-none tracking-[-0.04em]">{rating.average}/5</p>
+                <CardText title={title}>
+                  <p className={body}>
+                    {fmt(rating.fourOrFive)} of {fmt(rating.answered)} gave 4 or 5 stars.
+                  </p>
+                </CardText>
+              </Card>
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-10 max-w-[70ch] text-sm leading-[1.6] text-[#5C5C5C]">
+          How we counted: each fellow is counted once, using their latest answer. A path counts only when the answer was a clear yes.
+          {`Projects were reported by ${fmt(impact.projects.reportedBy)} fellows and LeetCode totals by ${fmt(
+            impact.leetcode.reportedBy,
+          )}; the rest left those questions blank.`}{" "}
+          Looking for an earlier year? Read the{" "}
+          <SmartLink href="/fellowship/2025" className="font-semibold text-[#0A0A0A] underline underline-offset-4">
+            Fellowship 2025 report
+          </SmartLink>
+          .
+        </p>
+      </Section>
 
       <Voices />
 
@@ -202,7 +291,7 @@ export default function FellowshipPage() {
       </Section>
 
       <Section id="timeline" tone="gray">
-        <SectionHeading eyebrow="Timeline" title="Your three months." />
+        <SectionHeading eyebrow="Timeline" title="The three months." />
         <ol className="grid gap-5 md:grid-cols-3">
           {timeline.map((item) => (
             <li key={item.week}>

@@ -20,6 +20,7 @@ Description: Community-driven software engineering education through weekend ses
 - https://www.devweekends.com/ambassadors
 - https://www.devweekends.com/ambassador-program
 - https://www.devweekends.com/fellowship
+- https://www.devweekends.com/fellowship/2025
 - https://www.devweekends.com/network
 
 ## Program URLs
