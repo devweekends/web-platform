@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Code to Production | Dev Weekends</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --page:#070707;
+    --card:#111111;
+    --card-2:#0d0d0d;
+    --line:#262626;
+    --line-soft:#1a1a1a;
+    --white:#f5f5f5;
+    --muted:#8c8c8c;
+    --dim:#5a5a5a;
+    --ghost:#343434;
+    --ink:#0a0a0a;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    background:#000;
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--white);
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+  }
+
+  /* ---------- Deck shell ---------- */
+  .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+  .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;margin:auto;}
+  .slide{
+    position:absolute;inset:0;background:var(--page);
+    background-image:radial-gradient(130% 80% at 50% -20%, rgba(255,255,255,.055), transparent 55%);
+    padding:5.2% 6.2%;display:none;flex-direction:column;opacity:0;transition:opacity .45s ease;
+  }
+  .slide.active{display:flex;opacity:1;animation:rise .55s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ---------- Shared atoms ---------- */
+  .tracked{letter-spacing:.26em;text-transform:uppercase;font-weight:600;font-size:clamp(9px,.78vw,13px);color:var(--white);}
+  .tracked.dim{color:var(--dim);}
+
+  .topbar{display:flex;align-items:center;gap:1.4em;margin-bottom:auto;}
+  .topbar .hr{flex:1;height:1px;background:var(--line);}
+
+  .pill{display:inline-flex;align-items:center;gap:.6em;border:1px solid var(--line);border-radius:999px;padding:.62em 1.1em;font-size:clamp(8px,.72vw,11px);letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--white);white-space:nowrap;}
+  .pill.solid{background:var(--white);color:var(--ink);border-color:var(--white);}
+  .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--white);}
+  .pill.solid .dot{background:var(--ink);}
+
+  .display{font-family:'Anton',sans-serif;font-weight:400;line-height:.92;letter-spacing:.005em;text-transform:uppercase;}
+  .ghost{color:var(--ghost);}
+
+  .lede{color:var(--muted);font-size:clamp(13px,1.25vw,20px);line-height:1.6;font-weight:400;max-width:46ch;}
+  .lede b{color:var(--white);font-weight:600;}
+  .lede.note{color:var(--dim);font-size:clamp(11px,1vw,15px);}
+
+  .foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:1em;padding-top:2.2%;}
+  .foot .url{font-size:clamp(9px,.85vw,13px);letter-spacing:.04em;color:var(--white);font-weight:600;}
+  .foot .url small{display:block;color:var(--dim);font-weight:400;letter-spacing:.02em;margin-top:.35em;text-transform:none;}
+  .foot .pg{font-size:clamp(9px,.8vw,12px);color:var(--dim);letter-spacing:.18em;font-weight:600;}
+
+  /* ---------- Cover / divider ---------- */
+  .cover .display,.divider .display{font-size:clamp(46px,9.2vw,150px);}
+  .cover .sub{margin-top:2.4%;}
+  .midblock{margin:auto 0;}
+
+  /* ---------- Generic heading block ---------- */
+  .h-kicker{margin-bottom:1.4%;}
+  .h-title{font-size:clamp(30px,5.4vw,90px);margin-bottom:2.2%;}
+  .h-title.sm{font-size:clamp(26px,4.4vw,72px);}
+
+  /* ---------- Numbered list rows ---------- */
+  .rows{display:flex;flex-direction:column;gap:.55em;margin-top:.4%;}
+  .row{display:flex;align-items:baseline;gap:1.1em;border-top:1px solid var(--line-soft);padding:.75em 0 .15em;}
+  .row .n{font-family:'Anton',sans-serif;color:var(--dim);font-size:clamp(13px,1.5vw,24px);min-width:2.1em;}
+  .row .rt{font-weight:600;font-size:clamp(13px,1.3vw,21px);color:var(--white);}
+  .row .rd{color:var(--muted);font-size:clamp(11px,1.05vw,16px);line-height:1.45;}
+  .row .rtxt{display:flex;flex-direction:column;gap:.2em;}
+
+  .two{display:grid;grid-template-columns:1fr 1.05fr;gap:6%;flex:1;align-items:center;}
+  .two .left{display:flex;flex-direction:column;justify-content:center;}
+
+  /* ---------- Stat band ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);margin-top:auto;}
+  .stat{padding:1.4em 0 0;border-right:1px solid var(--line-soft);}
+  .stat:last-child{border-right:none;}
+  .stat .v{font-family:'Anton',sans-serif;font-size:clamp(26px,4.6vw,68px);line-height:1;}
+  .stat .l{margin-top:.7em;color:var(--muted);font-size:clamp(10px,.95vw,14px);line-height:1.4;max-width:16ch;}
+
+  /* ---------- Stat card grid (3 cols, wraps) ---------- */
+  .statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85em;margin-top:.6%;}
+  .statgrid.s4{grid-template-columns:repeat(4,1fr);}
+  .statcard{border:1px solid var(--line);border-radius:14px;padding:1.3em 1.4em;background:var(--card-2);}
+  .statcard .v{font-family:'Anton',sans-serif;font-size:clamp(24px,3.4vw,54px);line-height:1;}
+  .statcard .l{margin-top:.6em;color:var(--muted);font-size:clamp(10px,.95vw,14px);line-height:1.4;}
+
+  /* ---------- Card grid ---------- */
+  .grid{display:grid;gap:.85em;margin-top:.6%;}
+  .grid.g3{grid-template-columns:repeat(3,1fr);}
+  .grid.g2{grid-template-columns:repeat(2,1fr);}
+  .gcard{border:1px solid var(--line);border-radius:14px;padding:1.5em 1.4em;background:var(--card-2);display:flex;flex-direction:column;min-height:0;}
+  .gcard.feature{background:var(--white);color:var(--ink);border-color:var(--white);}
+  .gcard .gn{font-family:'Anton',sans-serif;font-size:clamp(20px,2.4vw,40px);color:var(--ghost);line-height:1;}
+  .gcard.feature .gn{color:#cfcfcf;}
+  .gcard .gt{font-weight:700;font-size:clamp(13px,1.25vw,20px);margin-top:.9em;letter-spacing:.01em;}
+  .gcard .gd{color:var(--muted);font-size:clamp(10px,1vw,15px);line-height:1.5;margin-top:.55em;}
+  .gcard.feature .gd{color:#3a3a3a;}
+  .gcard .gtag{margin-top:auto;padding-top:1.1em;color:var(--dim);font-size:clamp(9px,.82vw,12px);letter-spacing:.16em;text-transform:uppercase;font-weight:600;}
+  .gcard.feature .gtag{color:#6a6a6a;}
+
+  /* ---------- Versus split ---------- */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:.85em;flex:1;margin-top:.6%;}
+  .vbox{border:1px solid var(--line);border-radius:14px;padding:1.7em 1.6em;display:flex;flex-direction:column;background:var(--card-2);}
+  .vbox.win{background:var(--white);color:var(--ink);border-color:var(--white);}
+  .vbox .vlab{font-size:clamp(9px,.82vw,12px);letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--dim);}
+  .vbox.win .vlab{color:#6a6a6a;}
+  .vbox .vh{font-family:'Anton',sans-serif;font-size:clamp(22px,2.9vw,46px);margin-top:.5em;line-height:.95;text-transform:uppercase;}
+  .vlist{margin-top:1.1em;display:flex;flex-direction:column;gap:.7em;}
+  .vlist .vi{display:flex;gap:.7em;align-items:baseline;font-size:clamp(11px,1.05vw,16px);line-height:1.4;color:var(--muted);}
+  .vbox.win .vlist .vi{color:#333;}
+  .vlist .vi span.b{color:var(--dim);font-weight:700;}
+  .vbox.win .vlist .vi span.b{color:#999;}
+
+  /* ---------- Quote ---------- */
+  .qwrap{flex:1;display:flex;flex-direction:column;justify-content:center;}
+  .quote{font-family:'Anton',sans-serif;font-size:clamp(24px,3.7vw,60px);line-height:1.02;text-transform:uppercase;max-width:18ch;}
+  .quote .ghost{color:var(--ghost);}
+  .qsub{color:var(--muted);font-size:clamp(12px,1.15vw,18px);line-height:1.6;max-width:50ch;margin-top:2.4%;}
+  .qsub b{color:var(--white);font-weight:600;}
+
+  /* ---------- Closing ---------- */
+  .closing .display{font-size:clamp(40px,8.2vw,134px);}
+  .closing .lede{font-size:clamp(14px,1.35vw,21px);}
+
+  /* ---------- Nav ---------- */
+  .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;z-index:50;background:rgba(15,15,15,.7);border:1px solid var(--line);border-radius:999px;padding:7px 9px;backdrop-filter:blur(8px);}
+  .nav button{width:30px;height:30px;border-radius:50%;background:transparent;border:1px solid var(--line);color:var(--white);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+  .nav button:hover{background:var(--white);color:var(--ink);}
+  .nav .count{font-size:11px;letter-spacing:.16em;color:var(--muted);font-weight:600;min-width:54px;text-align:center;}
+  .hint{position:fixed;top:16px;right:18px;z-index:50;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:600;}
+
+  /* ---------- Print / PDF ---------- */
+  @page{size:1280px 720px;margin:0;}
+  @media print{
+    .nav,.hint{display:none;}
+    html,body{overflow:visible;background:#000;}
+    .deck{position:static;display:block;}
+    .stage{position:static;width:1280px;height:auto;max-width:none;max-height:none;margin:0;}
+    .slide{position:relative;display:flex!important;opacity:1!important;animation:none!important;width:1280px;height:720px;page-break-after:always;break-after:page;inset:auto;}
+  }
+</style>
+</style>
+</head>
+<body>
+
+<div class="hint">Use arrow keys</div>
+
+<div class="deck">
+  <div class="stage" id="stage">
+    <section class="slide active cover">
+      <div class="topbar"><span class="tracked">Dev Weekends</span><span class="hr"></span><span class="pill"><span class="dot"></span>Think Like an Engineer</span></div>
+      <div class="midblock"><div class="tracked dim" style="margin-bottom:1.6%;">Engineering series</div><h1 class="display">From Code<br>to <span class="ghost">Production</span></h1><p class="lede sub">Merged is not shipped, and shipped is not done. <b>The path your code takes after you press commit.</b></p></div>
+      <div class="foot"><div class="url">resources.devweekends.com</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">The Journey</span><span class="hr"></span><span class="pill"><span class="dot"></span>Six gates</span></div>
+      <div class="tracked dim h-kicker">What this talk covers</div>
+      <h2 class="display h-title sm">Six gates between<br>your laptop and <span class="ghost">users</span></h2>
+      <div class="grid g3"><div class="gcard feature"><div class="gn">01</div><div class="gt">Merge</div><div class="gd">Tests, contracts and review stop bad code at the door.</div><div class="gtag">Before merge</div></div><div class="gcard"><div class="gn">02</div><div class="gt">Build</div><div class="gd">One artifact, tested once, deployed as is.</div><div class="gtag">Before deploy</div></div><div class="gcard"><div class="gn">03</div><div class="gt">Deploy</div><div class="gd">Roll out in a way that limits the blast radius.</div><div class="gtag">Strategy</div></div><div class="gcard"><div class="gn">04</div><div class="gt">Observe</div><div class="gd">Compare against a baseline while it rolls out.</div><div class="gtag">During deploy</div></div><div class="gcard"><div class="gn">05</div><div class="gt">Recover</div><div class="gd">A rollback you have actually practiced.</div><div class="gtag">When it breaks</div></div><div class="gcard"><div class="gn">06</div><div class="gt">Learn</div><div class="gd">Turn every incident into a stronger system.</div><div class="gtag">After</div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/overview</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide divider">
+      <div class="topbar"><span class="tracked">Act One</span><span class="hr"></span><span class="pill solid"><span class="dot"></span>Before You Merge</span></div>
+      <div class="midblock"><div class="tracked dim h-kicker">Quality gates</div><h1 class="display">Merge is a<br><span class="ghost">checkpoint</span></h1><p class="lede sub">Code that enters main should already be safe to deploy.</p></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/testing-logging-versioning</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Before Merge</span><span class="hr"></span><span class="pill"><span class="dot"></span>The PR gate</span></div>
+      <div class="two"><div class="left"><div class="tracked dim h-kicker">Gate one</div><h2 class="display h-title sm">If a check fails,<br>code <span class="ghost">stays out</span></h2><p class="lede">The production readiness checklist starts at the pull request. Each item exists for a reason you can explain.</p></div><div class="rows"><div class="row"><span class="n">01</span><div class="rtxt"><span class="rt">Unit and integration tests</span><span class="rd">Edge cases covered. Queries verified against real infrastructure with Testcontainers.</span></div></div><div class="row"><span class="n">02</span><div class="rtxt"><span class="rt">Contract tests</span><span class="rd">Any API response or event schema change is checked against its consumers.</span></div></div><div class="row"><span class="n">03</span><div class="rtxt"><span class="rt">Rollback-safe migrations</span><span class="rd">The previous app version must still run against the new database.</span></div></div><div class="row"><span class="n">04</span><div class="rtxt"><span class="rt">Flag tests cover both states</span><span class="rd">Flag on and flag off are each tested.</span></div></div><div class="row"><span class="n">05</span><div class="rtxt"><span class="rt">No PII in logs</span><span class="rd">Structured, typed events instead of raw object dumps.</span></div></div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/testing-logging-versioning</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Case Study</span><span class="hr"></span><span class="pill"><span class="dot"></span>Knight Capital</span></div>
+      <div class="tracked dim h-kicker">1 August 2012</div>
+      <h2 class="display h-title sm">What a missed<br>server <span class="ghost">costs</span></h2>
+      <p class="lede" style="max-width:60ch;">Knight Capital deployed new trading software to seven of eight production servers. The eighth still ran old code, and a reused feature flag woke it up.</p>
+      <div class="stats"><div class="stat"><div class="v">$440M</div><div class="l">Lost in one morning</div></div><div class="stat"><div class="v">45 min</div><div class="l">From the first bad trade to the loss</div></div><div class="stat"><div class="v">7 of 8</div><div class="l">Servers updated. One was missed.</div></div><div class="stat"><div class="v">0</div><div class="l">Kill switches to halt the trading</div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/testing-logging-versioning</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Case Study</span><span class="hr"></span><span class="pill"><span class="dot"></span>What was missing</span></div>
+      <div class="tracked dim h-kicker">Knight Capital, in hindsight</div>
+      <h2 class="display h-title sm">Four cheap things<br>that were <span class="ghost">absent</span></h2>
+      <div class="grid g2"><div class="gcard"><div class="gn">01</div><div class="gt">A version check</div><div class="gd">No test verified that all eight servers ran the same software.</div><div class="gtag">Testing</div></div><div class="gcard"><div class="gn">02</div><div class="gt">Automated deploys</div><div class="gd">A script, not a person, should make every server identical.</div><div class="gtag">Deployment</div></div><div class="gcard"><div class="gn">03</div><div class="gt">Gradual rollout</div><div class="gd">No canary or rolling deploy limited who was exposed.</div><div class="gtag">Strategy</div></div><div class="gcard"><div class="gn">04</div><div class="gt">A kill switch</div><div class="gd">Nothing could halt trading when the numbers looked wrong.</div><div class="gtag">Monitoring</div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/testing-logging-versioning</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide divider">
+      <div class="topbar"><span class="tracked">Act Two</span><span class="hr"></span><span class="pill solid"><span class="dot"></span>Deploy</span></div>
+      <div class="midblock"><div class="tracked dim h-kicker">Reduce the blast radius</div><h1 class="display">Deploy<br>without <span class="ghost">drama</span></h1><p class="lede sub">Choose how the new version meets real traffic.</p></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/networking-deployment</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Two Ideas</span><span class="hr"></span><span class="pill"><span class="dot"></span>Deploy vs release</span></div>
+      <div class="tracked dim h-kicker">Why the difference matters</div>
+      <h2 class="display h-title sm">Shipping code is not<br>the same as <span class="ghost">releasing</span></h2>
+      <div class="vs"><div class="vbox"><div class="vlab">Deployment</div><div class="vh">Code is on servers</div><div class="vlist"><div class="vi"><span class="b">01</span>A technical event your team controls.</div><div class="vi"><span class="b">02</span>Can happen many times a day.</div><div class="vi"><span class="b">03</span>Safe when the new code stays dormant.</div></div></div><div class="vbox win"><div class="vlab">Release</div><div class="vh">Users see it</div><div class="vlist"><div class="vi"><span class="b">01</span>A product decision, switched on by a feature flag.</div><div class="vi"><span class="b">02</span>Turn it on for a few users first.</div><div class="vi"><span class="b">03</span>Turn it off without a new deploy.</div></div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/networking-deployment</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Strategies</span><span class="hr"></span><span class="pill"><span class="dot"></span>Pick on purpose</span></div>
+      <div class="tracked dim h-kicker">Three ways to roll out</div>
+      <h2 class="display h-title sm">Rolling, blue-green<br>or <span class="ghost">canary</span></h2>
+      <div class="grid g3"><div class="gcard"><div class="gn">01</div><div class="gt">Rolling</div><div class="gd">Replace instances a few at a time. Built into most orchestrators. Rollback is slow.</div><div class="gtag">Routine, low-risk changes</div></div><div class="gcard feature"><div class="gn">02</div><div class="gt">Blue-green</div><div class="gd">Run a full second environment, then switch traffic at once. Rollback is instant but costs double infrastructure.</div><div class="gtag">Major releases, strict compliance</div></div><div class="gcard"><div class="gn">03</div><div class="gt">Canary</div><div class="gd">Send a small share of real traffic to the new version first. Catches production-only bugs. Needs strong metrics.</div><div class="gtag">High-traffic systems, unknown risk</div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/networking-deployment</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Databases</span><span class="hr"></span><span class="pill"><span class="dot"></span>Expand and contract</span></div>
+      <div class="two"><div class="left"><div class="tracked dim h-kicker">Zero-downtime migrations</div><h2 class="display h-title sm">Change the schema<br>in <span class="ghost">small steps</span></h2><p class="lede">Old and new code run side by side during a deploy, so the database must work for both.</p></div><div class="rows"><div class="row"><span class="n">01</span><div class="rtxt"><span class="rt">Expand</span><span class="rd">Add the new column or table. Nothing reads it yet.</span></div></div><div class="row"><span class="n">02</span><div class="rtxt"><span class="rt">Migrate</span><span class="rd">Backfill in batches and write to both. Switch reads when ready.</span></div></div><div class="row"><span class="n">03</span><div class="rtxt"><span class="rt">Contract</span><span class="rd">Remove the old column only after no running code uses it.</span></div></div><div class="row"><span class="n">04</span><div class="rtxt"><span class="rt">Never in one step</span><span class="rd">No column drops, no renames, no NOT NULL without a default.</span></div></div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/networking-deployment</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Before You Deploy</span><span class="hr"></span><span class="pill"><span class="dot"></span>Readiness</span></div>
+      <div class="two"><div class="left"><div class="tracked dim h-kicker">Print it. Tape it to your monitor.</div><h2 class="display h-title sm">The deploys that fail<br>skipped a <span class="ghost">step</span></h2><p class="lede">Most bad deploys were "just a small change" where someone skipped the checklist.</p></div><div class="rows"><div class="row"><span class="n">01</span><div class="rtxt"><span class="rt">Migrations tested on production-sized data</span><span class="rd">2 seconds on staging can lock a table for 20 minutes in production.</span></div></div><div class="row"><span class="n">02</span><div class="rtxt"><span class="rt">Flags configured, default off</span><span class="rd">New behavior can be toggled without a deploy.</span></div></div><div class="row"><span class="n">03</span><div class="rtxt"><span class="rt">Dashboard open before you start</span><span class="rd">Error rate, p50 p95 p99 latency, business metrics, resource use.</span></div></div><div class="row"><span class="n">04</span><div class="rtxt"><span class="rt">Rollback tested in the last 30 days</span><span class="rd">An untested rollback is not a rollback. It is a hope.</span></div></div><div class="row"><span class="n">05</span><div class="rtxt"><span class="rt">On-call knows it is happening</span><span class="rd">They know what changed and have the runbook open.</span></div></div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/networking-deployment</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide divider">
+      <div class="topbar"><span class="tracked">Act Three</span><span class="hr"></span><span class="pill solid"><span class="dot"></span>In Production</span></div>
+      <div class="midblock"><div class="tracked dim h-kicker">Watch it run</div><h1 class="display">Trust,<br>then <span class="ghost">verify</span></h1><p class="lede sub">Production tells you the truth. Instrument it before you need it.</p></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/caching-observability</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Deploy Observability</span><span class="hr"></span><span class="pill"><span class="dot"></span>Three phases</span></div>
+      <div class="tracked dim h-kicker">Compare against a baseline</div>
+      <h2 class="display h-title sm">Before, during<br>and <span class="ghost">after</span></h2>
+      <div class="grid g3"><div class="gcard"><div class="gn">01</div><div class="gt">Baseline</div><div class="gd">Capture metrics for 30 minutes before the deploy, so you have something to compare against.</div><div class="gtag">Pre-deploy</div></div><div class="gcard feature"><div class="gn">02</div><div class="gt">Watch live</div><div class="gd">One deployment dashboard shows every key metric while the rollout happens.</div><div class="gtag">During</div></div><div class="gcard"><div class="gn">03</div><div class="gt">Confirm</div><div class="gd">Check the same metrics against the baseline before you call it done.</div><div class="gtag">Post-deploy</div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/networking-deployment</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">What To Capture</span><span class="hr"></span><span class="pill"><span class="dot"></span>The baseline</span></div>
+      <div class="tracked dim h-kicker">Four signals</div>
+      <h2 class="display h-title sm">Errors from 0.1% to 0.5%<br>is a <span class="ghost">problem</span></h2>
+      <div class="statgrid s4"><div class="statcard"><div class="v">Errors</div><div class="l">4xx and 5xx, per endpoint</div></div><div class="statcard"><div class="v">Latency</div><div class="l">p50, p95, p99 and p999</div></div><div class="statcard"><div class="v">Traffic</div><div class="l">Requests per second</div></div><div class="statcard"><div class="v">Resources</div><div class="l">CPU, memory, disk, network</div></div></div>
+      <p class="lede note" style="margin-top:2%;">Also check dependency health: database latency, cache hit rate and external APIs. Do not deploy into a system that is already degraded.</p>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/networking-deployment</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Reliability</span><span class="hr"></span><span class="pill"><span class="dot"></span>The SRE view</span></div>
+      <div class="two"><div class="left"><div class="tracked dim h-kicker">Decide how reliable is enough</div><h2 class="display h-title sm">Reliability is a<br><span class="ghost">budget</span></h2><p class="lede">Perfect uptime is not the goal. Agree on a target, measure it, and spend the margin deliberately.</p></div><div class="rows"><div class="row"><span class="n">01</span><div class="rtxt"><span class="rt">SLIs, SLOs and error budgets</span><span class="rd">Measure what users feel, set a target, and track how much failure you can still afford.</span></div></div><div class="row"><span class="n">02</span><div class="rtxt"><span class="rt">Retries with backoff and jitter</span><span class="rd">Retry in a way that does not stampede a struggling service.</span></div></div><div class="row"><span class="n">03</span><div class="rtxt"><span class="rt">Timeouts, circuit breakers, bulkheads</span><span class="rd">Stop one slow dependency from taking everything down.</span></div></div><div class="row"><span class="n">04</span><div class="rtxt"><span class="rt">Graceful degradation</span><span class="rd">Serve something useful when a part fails.</span></div></div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/reliability-principles</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Observability</span><span class="hr"></span><span class="pill"><span class="dot"></span>Three pillars</span></div>
+      <div class="tracked dim h-kicker">Know why, not only that</div>
+      <h2 class="display h-title sm">Logs, metrics<br>and <span class="ghost">traces</span></h2>
+      <div class="grid g3"><div class="gcard"><div class="gn">01</div><div class="gt">Logs</div><div class="gd">Structured events that explain one thing that happened. Keep PII out.</div><div class="gtag">What happened</div></div><div class="gcard feature"><div class="gn">02</div><div class="gt">Metrics</div><div class="gd">Numbers over time that show when something is wrong.</div><div class="gtag">How often and how bad</div></div><div class="gcard"><div class="gn">03</div><div class="gt">Traces</div><div class="gd">One request followed across every service it touched.</div><div class="gtag">Where the time went</div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/caching-observability</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><span class="tracked">Checklist</span><span class="hr"></span><span class="pill"><span class="dot"></span>Take it with you</span></div>
+      <div class="tracked dim h-kicker">The production readiness checklist</div>
+      <h2 class="display h-title sm">Three gates,<br>one <span class="ghost">habit</span></h2>
+      <div class="grid g3"><div class="gcard"><div class="gn">01</div><div class="gt">Before merge</div><div class="gd">Tests, contracts, rollback-safe migrations, flags tested both ways, no PII in logs.</div><div class="gtag">The PR gate</div></div><div class="gcard feature"><div class="gn">02</div><div class="gt">Before deploy</div><div class="gd">The artifact that passed CI is the artifact you ship. Dashboards, alerts and rollback ready.</div><div class="gtag">The release gate</div></div><div class="gcard"><div class="gn">03</div><div class="gt">After deploy</div><div class="gd">Watch the baseline, confirm the numbers, and write down what you learned.</div><div class="gtag">The learning gate</div></div></div>
+      <div class="foot"><div class="url">https://resources.devweekends.com/resources/interview-questions/think-like-an-engineer/testing-logging-versioning</div><div class="pg"></div></div>
+    </section>
+
+    <section class="slide closing">
+      <div class="topbar"><span class="tracked">Keep Going</span><span class="hr"></span><span class="pill"><span class="dot"></span>Think Like an Engineer</span></div>
+      <div class="midblock"><div class="tracked dim h-kicker">Read the whole series</div><h1 class="display">Think like<br>an <span class="ghost">engineer</span></h1><p class="lede" style="margin-top:2.4%;max-width:54ch;">Testing, deployment, observability and reliability each have a full chapter with real incidents and interview questions. Free, like everything here.</p></div>
+      <div class="foot"><div class="url">resources.devweekends.com<small>Think Like an Engineer series</small></div><div class="pg"></div></div>
+    </section>
+
+  </div>
+</div>
+
+<div class="nav">
+  <button id="prev" aria-label="Previous">&#8592;</button>
+  <span class="count" id="count">01 / 18</span>
+  <button id="next" aria-label="Next">&#8594;</button>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const count = document.getElementById('count');
+  const total = slides.length;
+  const pad = n => String(n).padStart(2,'0');
+  let i = 0;
+
+  // fill page numbers
+  slides.forEach((s, idx) => {
+    const pg = s.querySelector('.foot .pg');
+    if (pg) pg.textContent = pad(idx + 1) + ' / ' + pad(total);
+  });
+
+  function show(n){
+    i = Math.max(0, Math.min(total - 1, n));
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    count.textContent = pad(i + 1) + ' / ' + pad(total);
+    location.hash = i + 1;
+  }
+  document.getElementById('next').onclick = () => show(i + 1);
+  document.getElementById('prev').onclick = () => show(i - 1);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(i + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(total - 1);
+    if (e.key.toLowerCase() === 'p') window.print();
+  });
+  let sx = 0;
+  addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+  addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(i + (dx < 0 ? 1 : -1)); }, {passive:true});
+
+  const start = parseInt(location.hash.replace('#',''), 10);
+  show(Number.isFinite(start) && start >= 1 ? start - 1 : 0);
+</script>
+</body>
+</html>
