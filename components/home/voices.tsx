@@ -1,12 +1,16 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, Play } from "lucide-react"
 
 import { getVideoEmbed } from "@/lib/video-url"
 import { byStoryRank } from "@/lib/story-order"
 import { LINKS, videoStories, voices } from "./data"
+
+const previewClass =
+  "absolute inset-0 h-full w-full object-cover opacity-80 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
 
 type LiveVideo = { name: string; role: string; url: string; previewUrl?: string }
 
@@ -104,16 +108,16 @@ export function VoicesRail() {
                   aria-label={`Play video: ${video.name}`}
                   className="group absolute inset-0 flex items-center justify-center"
                 >
-                  {video.preview && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={video.preview}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover opacity-80 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
-                    />
-                  )}
+                  {video.preview &&
+                    (video.preview.startsWith("https://img.youtube.com/") ? (
+                      // YouTube sends its thumbnails with a two hour cache and as JPEG.
+                      // Through the image optimizer they are resized, modern format and cached for a month.
+                      <Image src={video.preview} alt="" fill sizes="360px" className={previewClass} />
+                    ) : (
+                      // A preview set by hand can be on any host, so it is used as it is
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={video.preview} alt="" loading="lazy" decoding="async" className={previewClass} />
+                    ))}
                   <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#0A0A0A] shadow-lg">
                     <Play className="ml-0.5 h-5 w-5 fill-current" aria-hidden="true" />
                   </span>

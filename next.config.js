@@ -53,6 +53,8 @@ const nextConfig = {
       'res.cloudinary.com',
       'randomuser.me',
       'cdn.brandfetch.io',
+      // Video story thumbnails
+      'img.youtube.com',
     ].map((hostname) => ({ protocol: 'https', hostname })),
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60 * 60 * 24 * 30,
