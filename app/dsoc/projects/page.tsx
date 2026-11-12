@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button, Card, Panel, PageHero, container } from "@/components/site/page-kit";
+import { resizedImage } from "@/lib/image-url";
 import DSOCNavbar from "../components/DSOCNavbar";
 
 interface Project {
@@ -428,8 +429,10 @@ export default function ProjectsPage() {
                           <div className="relative -mx-7 -mt-7 mb-6 overflow-hidden bg-[#F7F7F7]">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
-                              src={projectImage}
+                              src={resizedImage(projectImage, 828)}
                               alt={project.title}
+                              loading="lazy"
+                              decoding="async"
                               className="h-48 w-full object-cover transition-transform duration-300 motion-safe:group-hover:scale-105"
                             />
                             <span className={`absolute right-4 top-4 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${getStatusColor(project.status)}`}>

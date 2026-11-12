@@ -125,6 +125,7 @@ export default async function BlogPost({
                 alt={data.title}
                 fill
                 priority
+                fetchPriority="high"
                 sizes="(max-width: 768px) 100vw, 720px"
                 className={fit === "contain" ? "object-contain" : "object-cover object-center"}
               />

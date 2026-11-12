@@ -7,6 +7,7 @@ import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
 import { blogPostingJsonLd, jsonLdString, pageTitle, withSocial } from "@/lib/seo";
+import { svgSize } from "@/lib/svg-size";
 
 const guidesDir = path.join(process.cwd(), "content", "guides");
 
@@ -117,7 +118,7 @@ export default async function GuidePage({
         {data.image && (
           <div className="mx-auto mt-12 max-w-[720px] overflow-hidden rounded-[20px] border border-[#E6E6E6]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={data.image} alt={data.title} className="block h-auto w-full" />
+            <img src={data.image} alt={data.title} {...svgSize(data.image)} fetchPriority="high" className="block h-auto w-full" />
           </div>
         )}
 

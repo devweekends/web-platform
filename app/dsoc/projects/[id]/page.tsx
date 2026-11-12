@@ -25,6 +25,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Keyboard } from "swiper/modules";
+import { resizedImage } from "@/lib/image-url";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -478,7 +479,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
           </button>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={lightboxImage}
+            src={resizedImage(lightboxImage, 1920)}
             alt="Project image"
             className="max-h-[90vh] max-w-[90vw] rounded-[14px] object-contain"
             onClick={(e) => e.stopPropagation()}
@@ -597,7 +598,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                           >
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
-                              src={url}
+                              src={resizedImage(url, 1080)}
                               alt={`${project.title} image ${i + 1}`}
                               className="h-64 w-full object-cover sm:h-80 md:h-96"
                               loading={i === 0 ? 'eager' : 'lazy'}

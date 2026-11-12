@@ -28,6 +28,7 @@ function Thumb({ item, className, priority, sizes }: { item: Post; className: st
           alt=""
           fill
           priority={priority}
+          fetchPriority={priority ? "high" : undefined}
           sizes={sizes}
           className={`${contain ? "object-contain p-3" : "object-cover"} ${
             item.imagePosition === "top" ? "object-top" : item.imagePosition === "bottom" ? "object-bottom" : "object-center"
@@ -72,7 +73,7 @@ function Row({ item }: { item: Post }) {
             <p className="mt-2 line-clamp-2 max-w-[62ch] text-[15px] leading-[1.6] text-[#5C5C5C]">{item.description}</p>
           )}
         </div>
-        <Thumb item={item} className="aspect-[4/3] w-[104px] shrink-0 rounded-[14px] sm:w-[220px] sm:rounded-[18px]" sizes="220px" />
+        <Thumb item={item} className="aspect-[4/3] w-[104px] shrink-0 rounded-[14px] sm:w-[220px] sm:rounded-[18px]" sizes="(max-width: 640px) 104px, 220px" />
       </Link>
     </li>
   );
