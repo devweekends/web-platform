@@ -2,19 +2,6 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { verifyToken, verifyMentorToken, verifyAmbassadorToken } from '@/lib/jwt';
 
-const discoveryLinkHeader = [
-  '</.well-known/api-catalog>; rel="api-catalog"',
-  '</openapi.json>; rel="service-desc"; type="application/openapi+json"',
-  '</api-docs>; rel="service-doc"; type="text/html"',
-  '</.well-known/agent-skills/index.json>; rel="describedby"; type="application/json"',
-  '</llms.txt>; rel="alternate"; type="text/plain"',
-].join(', ');
-
-function withDiscoveryHeaders(response: NextResponse): NextResponse {
-  response.headers.set('Link', discoveryLinkHeader);
-  return response;
-}
-
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const acceptHeader = request.headers.get('accept')?.toLowerCase() ?? '';
@@ -44,11 +31,6 @@ export async function middleware(request: NextRequest) {
     const markdownUrl = new URL('/agent-markdown', request.url);
     markdownUrl.searchParams.set('source', path);
     return NextResponse.rewrite(markdownUrl);
-  }
-
-  // About and Our story are now one page
-  if (path === '/about' || path === '/our-story') {
-    return NextResponse.redirect(new URL('/team', request.url), 308);
   }
 
   const token = request.cookies.get('admin-token')?.value;
@@ -173,15 +155,22 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (path === '/team') {
-    return withDiscoveryHeaders(NextResponse.next());
-  }
-
   return NextResponse.next();
 }
 
+// Middleware runs before the edge cache, so every page it matches pays for it
+// on every visit. Public pages are static and need none of it: only the three
+// signed-in areas match, plus requests that ask for Markdown by Accept header.
+// The /about redirect and the /team Link header live in next.config.js.
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|favicons|images|.*\\..*).*)',
-  ]
-}; 
+    '/admin/:path*',
+    '/mentor/:path*',
+    '/ambassador/:path*',
+    {
+      source:
+        '/((?!api|admin|mentor|ambassador|\\.well-known|_next/static|_next/image|favicon.ico|favicons|images|.*\\..*).*)',
+      has: [{ type: 'header', key: 'accept', value: '(.*)text/markdown(.*)' }],
+    },
+  ],
+};

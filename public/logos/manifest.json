@@ -17,8 +17,8 @@
     "file": "microtechx.png",
     "format": "png",
     "source": "Official site asset (logo-dark PNG from the site bundle)",
-    "width": 1920,
-    "height": 284,
+    "width": 730,
+    "height": 108,
     "notes": "Black and blue wordmark, transparent background. Identity inferred: microtechx.com is a Lahore, Pakistan Microsoft engineering partner; no page confirms it is the same org as the partner listed on the DW site. microtechx.org does not resolve."
   },
   {
@@ -39,8 +39,8 @@
     "file": "max.png",
     "format": "png",
     "source": "Official site header logo (2022-MAX-Logo-Transparent-1.png)",
-    "width": 568,
-    "height": 439,
+    "width": 217,
+    "height": 168,
     "notes": "Transparent PNG, 568px wide."
   },
   {
@@ -61,8 +61,8 @@
     "file": "empactus.png",
     "format": "png",
     "source": "Official site logo (wp-content/uploads/2025/06/empactus-logo-bg.png)",
-    "width": 634,
-    "height": 192,
+    "width": 357,
+    "height": 108,
     "notes": "Colour wordmark, navy and cyan, works on light backgrounds. 634px wide."
   },
   {
@@ -196,8 +196,8 @@
     "file": "toptal.png",
     "format": "png",
     "source": "Wikimedia Commons: File:Toptal-Logo-Main-Colors RGB.png (2019 rebrand)",
-    "width": 1969,
-    "height": 559,
+    "width": 380,
+    "height": 108,
     "notes": "Current-rebrand logo as PNG, 1969px wide. The Commons SVG is the pre-2019 logo, so not used. Site returns HTTP 403 to scripted clients (bot protection); it is the real site."
   },
   {
@@ -218,8 +218,8 @@
     "file": "salla.png",
     "format": "png",
     "source": "Official Salla developer site (salla.dev) icon: wp-content/uploads/2023/03/cropped-logo_512_512.png",
-    "width": 512,
-    "height": 512,
+    "width": 168,
+    "height": 168,
     "notes": "512x512 square icon, not the wordmark. Site returns HTTP 403 to scripted clients (bot protection); it is the real site. salla.sa is not reachable to scripts, so the wordmark could not be fetched."
   },
   {
@@ -240,8 +240,8 @@
     "file": "ruhcare.png",
     "format": "png",
     "source": "Official site main logo (Webflow CDN, 1080px PNG variant)",
-    "width": 1080,
-    "height": 593,
+    "width": 197,
+    "height": 108,
     "notes": "Instagram link on the site is instagram.com/ruhcare, matching the handle. Check dark/light on a real background."
   },
   {
@@ -251,8 +251,8 @@
     "file": "the-collectv.png",
     "format": "png",
     "source": "Official site logo (Squarespace, original PNG)",
-    "width": 2500,
-    "height": 650,
+    "width": 415,
+    "height": 108,
     "notes": "2500px wide original PNG."
   },
   {
@@ -262,8 +262,8 @@
     "file": "isource-professionals.png",
     "format": "png",
     "source": "Official site header logo (wp-content/uploads/2021/07/Isourceprofessional-logo, 1024px)",
-    "width": 1024,
-    "height": 612,
+    "width": 181,
+    "height": 108,
     "notes": "1024px wide PNG."
   },
   {

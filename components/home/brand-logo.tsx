@@ -4,7 +4,16 @@
  * never far below it, because the community runs all week. One component so the
  * header, footer and any other placement stay identical.
  */
-export function BrandLogo({ tone = "dark", height }: { tone?: "dark" | "light"; height: number }) {
+export function BrandLogo({
+  tone = "dark",
+  height,
+  lazy = false,
+}: {
+  tone?: "dark" | "light"
+  height: number
+  /** For a logo far down the page, such as the footer: do not fetch it up front */
+  lazy?: boolean
+}) {
   const src = tone === "dark" ? "/brand/dw-wordmark-black.png" : "/brand/dw-wordmark-white.png"
   const ink = tone === "dark" ? "bg-[#0A0A0A]" : "bg-white"
   const width = Math.round((height * 246) / 180)
@@ -15,7 +24,15 @@ export function BrandLogo({ tone = "dark", height }: { tone?: "dark" | "light"; 
   return (
     <span className="inline-flex flex-col" style={{ width, gap }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt="Dev Weekends" width={width} height={height} style={{ height, width }} />
+      <img
+        src={src}
+        alt="Dev Weekends"
+        width={width}
+        height={height}
+        style={{ height, width }}
+        loading={lazy ? "lazy" : undefined}
+        decoding={lazy ? "async" : undefined}
+      />
       <span aria-hidden="true" className="flex items-end justify-between" style={{ height: weekend }}>
         {[0, 1, 2, 3, 4, 5, 6].map((day) => (
           <span
