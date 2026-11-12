@@ -51,6 +51,11 @@ const discoveryLinkHeader = [
 
 const nextConfig = {
   poweredByHeader: false,
+  // The Markdown-for-agents route reads posts and guides at request time
+  outputFileTracingIncludes: {
+    '/agent-markdown': ['./content/blog/**/*.md', './content/guides/**/*.md'],
+    '/llms-full.txt': ['./content/blog/**/*.md', './content/guides/**/*.md'],
+  },
   images: {
     remotePatterns: [
       'hebbkx1anhila5yf.public.blob.vercel-storage.com',

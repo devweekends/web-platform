@@ -15,12 +15,10 @@ export async function middleware(request: NextRequest) {
     '/llms.txt',
     '/llms-full.txt',
   ]);
-  const isPrivateOrApiPath =
-    path.startsWith('/api') ||
-    path.startsWith('/admin') ||
-    path.startsWith('/mentor') ||
-    path.startsWith('/ambassador') ||
-    path.startsWith('/.well-known');
+  // Whole path segments only: /mentor is private, /mentorship is a public page
+  const isPrivateOrApiPath = ['/api', '/admin', '/mentor', '/ambassador', '/.well-known'].some(
+    (prefix) => path === prefix || path.startsWith(`${prefix}/`)
+  );
 
   if (
     wantsMarkdown &&
@@ -30,7 +28,10 @@ export async function middleware(request: NextRequest) {
   ) {
     const markdownUrl = new URL('/agent-markdown', request.url);
     markdownUrl.searchParams.set('source', path);
-    return NextResponse.rewrite(markdownUrl);
+    // The route does not see the rewritten query, so the page's path also goes in a header
+    const headers = new Headers(request.headers);
+    headers.set('x-markdown-source', path);
+    return NextResponse.rewrite(markdownUrl, { request: { headers } });
   }
 
   const token = request.cookies.get('admin-token')?.value;
@@ -169,7 +170,7 @@ export const config = {
     '/ambassador/:path*',
     {
       source:
-        '/((?!api|admin|mentor|ambassador|\\.well-known|_next/static|_next/image|favicon.ico|favicons|images|.*\\..*).*)',
+        '/((?!api(?:/|$)|admin(?:/|$)|mentor(?:/|$)|ambassador(?:/|$)|\\.well-known|_next/static|_next/image|favicon.ico|favicons|images|.*\\..*).*)',
       has: [{ type: 'header', key: 'accept', value: '(.*)text/markdown(.*)' }],
     },
   ],
