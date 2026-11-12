@@ -1,5 +1,6 @@
 ---
 title: "9 Dev Weekends contributors got into Google Summer of Code 2026, and 5 more into other open-source programs"
+seoTitle: "9 Dev Weekends contributors got into Google Summer of Code 2026"
 date: "2026-05-06"
 category: "news"
 featured: true

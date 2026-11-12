@@ -1,5 +1,6 @@
 ---
 title: "Summer Fellowship 2025 impact report: 800 fellows, 100 certified, 442 projects"
+seoTitle: "Summer Fellowship 2025 impact report: 800 fellows, 442 projects"
 date: "2025-09-21"
 category: "news"
 featured: false

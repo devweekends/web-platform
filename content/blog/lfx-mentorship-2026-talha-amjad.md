@@ -1,5 +1,6 @@
 ---
 title: "Talha Amjad selected for LFX Mentorship 2026 at CNCF, contributing to Volcano"
+seoTitle: "Talha Amjad selected for LFX Mentorship 2026 at CNCF"
 date: "2026-09-23"
 category: "news"
 featured: true

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
-import { SITE_NAME, blogPostingJsonLd, excerptOf, jsonLdString, pageTitle, withSocial } from "@/lib/seo";
+import { SITE_NAME, blogPostingJsonLd, excerptOf, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
 
 const backLink =
   "inline-flex min-h-11 items-center text-[15px] font-medium text-[#5C5C5C] transition-colors hover:text-[#0A0A0A]";
@@ -31,9 +31,10 @@ export async function generateMetadata({
   if (!fs.existsSync(filePath)) return { title: "Post not found", robots: { index: false } };
   const { data, content } = matter(fs.readFileSync(filePath, "utf-8"));
   const date = data.date ? new Date(data.date) : undefined;
-  const description = data.description ?? excerptOf(content);
+  const description = snippetOf(data.description) ?? excerptOf(content);
   return withSocial({
-    title: pageTitle(data.title),
+    // seoTitle is a shorter headline for the browser tab and search results only
+    title: pageTitle(data.seoTitle ?? data.title),
     description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {

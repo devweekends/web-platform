@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
-import { blogPostingJsonLd, jsonLdString, pageTitle, withSocial } from "@/lib/seo";
+import { blogPostingJsonLd, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
 import { svgSize } from "@/lib/svg-size";
 
 const guidesDir = path.join(process.cwd(), "content", "guides");
@@ -35,8 +35,8 @@ export async function generateMetadata({
   const guide = readGuide(slug);
   if (!guide) return { title: "Guide not found", robots: { index: false } };
   return withSocial({
-    title: pageTitle(guide.data.title),
-    description: guide.data.description ?? "",
+    title: pageTitle(guide.data.seoTitle ?? guide.data.title),
+    description: snippetOf(guide.data.description) ?? "",
     alternates: { canonical: `/guides/${slug}` },
   });
 }

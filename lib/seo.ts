@@ -69,6 +69,25 @@ export function excerptOf(markdown: string, max = 155): string | undefined {
   return `${text.slice(0, text.lastIndexOf(' ', max - 1)).replace(/[\s,;:.]+$/, '')}...`
 }
 
+/**
+ * A description cut to what a search result shows (about 160 characters):
+ * whole sentences while they fit, otherwise the first one cut at a word. The
+ * page itself still shows the full text.
+ */
+export function snippetOf(text: string | undefined, max = 160): string | undefined {
+  if (!text) return undefined
+  const clean = text.replace(/\s+/g, ' ').trim()
+  if (clean.length <= max) return clean
+  let kept = ''
+  for (const sentence of clean.split(/(?<=[.!?])\s+(?=[A-Z0-9"'])/)) {
+    const next = kept ? `${kept} ${sentence}` : sentence
+    if (next.length > max) break
+    kept = next
+  }
+  if (kept.length >= 70) return kept
+  return `${clean.slice(0, clean.lastIndexOf(' ', max - 4)).replace(/[\s,;:.]+$/, '')}...`
+}
+
 /** Long headlines fill the search result by themselves, so they go without the site name */
 export function pageTitle(title: string): string | { absolute: string } {
   return title.length > 48 ? { absolute: title } : title

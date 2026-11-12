@@ -11,7 +11,7 @@ export const metadata: Metadata = withSocial({
   alternates: { canonical: "/mentorship" },
   title: "Mentorship",
   description:
-    "Dev Weekends mentorship: a free 3-month program with a personal mentor, live coding sessions and job preparation. It runs all year, except while a fellowship is running.",
+    "Dev Weekends mentorship: a free 3-month program with a personal mentor, live coding sessions and job preparation. It runs all year, except during a fellowship.",
 })
 
 const body = "mt-3 text-[15px] leading-[1.6] text-[#5C5C5C]"

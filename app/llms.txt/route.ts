@@ -20,6 +20,7 @@ Every public page is also available as Markdown: request it with the header \`Ac
 - [Community](https://www.devweekends.com/community): Discord, WhatsApp groups and live sessions, and how to join
 - [Partners](https://www.devweekends.com/partners): The organisations and communities working with Dev Weekends
 - [Projects](https://www.devweekends.com/projects): Projects built by members
+- [Resources](https://resources.devweekends.com): The free learning hub on its own site: system design, low-level design, DSA patterns, AWS, AI engineering, operating systems, courses and case studies
 - [Blog](https://www.devweekends.com/blog): News, guides and articles
 
 ## Machine-readable discovery
