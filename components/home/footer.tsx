@@ -10,7 +10,7 @@ export function HomeFooter() {
           <div className="flex flex-wrap items-end justify-between gap-8 border-b border-[#262626] pb-14">
             <div>
               <div className="mb-8">
-                <BrandLogo tone="light" height={64} />
+                <BrandLogo tone="light" height={64} lazy />
               </div>
               <p className="text-[clamp(40px,4.6vw,64px)] font-semibold leading-[1.02] tracking-[-0.045em]">
                 Built in Pakistan.
