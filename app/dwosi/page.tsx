@@ -17,7 +17,7 @@ import {
 
 const title = "DWOSI · Dev Weekends Open Source Initiative"
 const description =
-  "Where early-career engineers prove their work in public. A free open source initiative where contributors build live products, with every pull request reviewed by product maintainers."
+  "Where early-career engineers prove their work in public. A free open source initiative: contributors build live products, maintainers review every pull request."
 
 export const metadata: Metadata = {
   title: { absolute: title },

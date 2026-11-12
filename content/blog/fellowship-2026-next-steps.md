@@ -1,5 +1,6 @@
 ---
 title: "Fellowship 2026 applications are now closed. Here is what comes next"
+seoTitle: "Fellowship 2026 applications are closed. What comes next"
 date: "2026-06-05"
 category: "news"
 featured: true

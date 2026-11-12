@@ -1,5 +1,6 @@
 ---
 title: "Fellowship 2026 impact report: 1,072 fellows, 474 projects, 79 internships"
+seoTitle: "Fellowship 2026 impact report: 1,072 fellows, 474 projects"
 date: "2026-11-06"
 category: "news"
 featured: false

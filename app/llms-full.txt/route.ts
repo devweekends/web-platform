@@ -51,6 +51,7 @@ Everything Dev Weekends runs is free for members. Any page below can be read as 
 - [Ambassadors](${SITE_URL}/ambassadors): The people who represent and grow the community around the world
 - [Sessions](${SITE_URL}/sessions): Past and upcoming talks and workshops
 - [Projects](${SITE_URL}/projects): Projects built by members
+- [Resources](https://resources.devweekends.com): The free learning hub on its own site: system design, low-level design, DSA patterns, AWS, AI engineering, operating systems, courses and case studies
 - [Partners](${SITE_URL}/partners): The organisations and communities working with Dev Weekends
 - [Network](${SITE_URL}/network): Mentors and mentees and how they connect
 
