@@ -17,6 +17,8 @@ export function BrandLogo({
   const src = tone === "dark" ? "/brand/dw-wordmark-black.png" : "/brand/dw-wordmark-white.png"
   const ink = tone === "dark" ? "bg-[#0A0A0A]" : "bg-white"
   const width = Math.round((height * 246) / 180)
+  // Up to 64px tall, ordinary screens get an 88 x 64 copy and sharper ones the full file
+  const srcSet = height <= 64 ? `${src.replace(".png", "-88.png")} 1x, ${src} 2x` : undefined
   const weekend = Math.max(5, Math.round(height / 8))
   const weekday = Math.round(weekend * 0.58)
   const gap = Math.max(2, Math.round(height / 20))
@@ -26,6 +28,7 @@ export function BrandLogo({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}
+        srcSet={srcSet}
         alt="Dev Weekends"
         width={width}
         height={height}
