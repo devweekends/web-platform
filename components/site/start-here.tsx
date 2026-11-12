@@ -87,7 +87,12 @@ export function StartHere() {
                 <ul className="mt-3">
                   {applyPrograms.map((program) => (
                     <li key={program.name} data-reveal className="border-b border-[#E6E6E6] last:border-b-0">
-                      <SmartLink href={program.href} className="flex flex-wrap items-center gap-x-4 gap-y-1 py-4 hover:bg-[#FAFAFA]">
+                      <SmartLink
+                        href={program.href}
+                        data-lead="apply_program"
+                        data-lead-program={program.name}
+                        className="flex flex-wrap items-center gap-x-4 gap-y-1 py-4 hover:bg-[#FAFAFA]"
+                      >
                         <span className="min-w-0 flex-1 basis-[200px]">
                           <span className="block text-base font-semibold sm:text-lg">{program.name}</span>
                           <span className="mt-0.5 block text-sm text-[#5C5C5C]">{program.when}</span>

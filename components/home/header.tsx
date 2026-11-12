@@ -133,6 +133,8 @@ function GetInvolvedPanel({ onNavigate }: { onNavigate: () => void }) {
             key={program.name}
             href={program.href}
             onClick={onNavigate}
+            data-lead="apply_program"
+            data-lead-program={program.name}
             className="flex min-h-11 items-center justify-between gap-3 rounded-[10px] p-3 hover:bg-[#F7F7F7]"
           >
             <span>

@@ -12,6 +12,8 @@ declare global {
         [key: string]: any;
       }
     ) => void;
+    /** Events sent before the analytics tag has loaded, kept until it has */
+    __dwEvents?: [string, Record<string, unknown>][];
   }
 }
 
@@ -26,10 +28,23 @@ export const pageview = (url: string) => {
   }
 };
 
-export const event = ({ action, params }: { action: string; params: any }) => {
-  if (typeof window !== 'undefined' && window.gtag) {
+/**
+ * Sends a named event to Google Analytics. The tag loads late on purpose (after
+ * the page is idle), so an event that happens before then is kept in a short
+ * queue, which the tag's start-up script in app/layout.tsx sends on.
+ */
+export function sendEvent(action: string, params: Record<string, unknown> = {}) {
+  if (typeof window === 'undefined') return;
+  if (window.gtag) {
     window.gtag('event', action, params);
+    return;
   }
+  const queue = (window.__dwEvents = window.__dwEvents ?? []);
+  if (queue.length < 50) queue.push([action, params]);
+}
+
+export const event = ({ action, params }: { action: string; params: any }) => {
+  sendEvent(action, params);
 };
 
 // Custom event tracking functions

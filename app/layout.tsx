@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { SiteFooter } from "@/components/site-footer"
 import Script from 'next/script'
 import { Analytics } from "@/components/analytics"
+import { LeadTracker } from "@/components/lead-tracker"
 import { SiteHeader } from "@/components/site-header"
 import { EmailChooser } from "@/components/email-chooser"
 import { dwosiThemeScript } from "@/app/dwosi/theme"
@@ -120,6 +121,9 @@ export default function RootLayout({
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
                   gtag('config', '${gaId}');
+                  // Events that happened before this tag loaded (see sendEvent in lib/analytics.ts)
+                  (window.__dwEvents || []).forEach(function (e) { gtag('event', e[0], e[1]); });
+                  window.__dwEvents = [];
                 `,
               }}
             />
@@ -141,6 +145,7 @@ export default function RootLayout({
             <SiteHeader />
             <main className="flex-1">
               <Analytics />
+              <LeadTracker />
               {children}
             </main>
             <SiteFooter />
