@@ -12,6 +12,19 @@ const publicAssetCache = [
 
 const publicAssetFolders = ['images', 'logos', 'brand', 'favicons', 'guides', 'links', 'gsoc1', 'orientation-2026', 'reports']
 
+// Sent with every response. The script rules stay open because a strict
+// script policy needs a per-request nonce, which would stop pages being
+// served as static HTML from the edge. These directives are the ones that hold
+// without it: who may frame the site, where <base> may point, and no plugins.
+const securityHeaders = [
+  { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
+  { key: 'Content-Security-Policy', value: "frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" },
+  { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+  { key: 'Cross-Origin-Opener-Policy', value: 'same-origin-allow-popups' },
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+]
+
 // Where agents can find the API description and the Markdown index
 const discoveryLinkHeader = [
   '</.well-known/api-catalog>; rel="api-catalog"',
@@ -48,6 +61,7 @@ const nextConfig = {
   },
   async headers() {
     return [
+      { source: '/:path*', headers: securityHeaders },
       { source: '/team', headers: [{ key: 'Link', value: discoveryLinkHeader }] },
       ...publicAssetFolders.map((folder) => ({
         source: `/${folder}/:path*`,
