@@ -91,6 +91,7 @@ export function Hero() {
                 fill
                 sizes="(min-width: 1024px) 520px, 100vw"
                 priority
+                fetchPriority="high"
                 className="object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
               />
               <div className="absolute bottom-6 left-6 rounded-[14px] bg-white px-5 py-4 text-[#0A0A0A]">
