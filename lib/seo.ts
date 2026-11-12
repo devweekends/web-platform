@@ -42,13 +42,36 @@ export const siteJsonLd = {
       description:
         'Learning community for software engineers through events, mentorship, projects, and programs.',
       publisher: { '@id': ORGANIZATION_ID },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: `${SITE_URL}/sessions`,
-        'query-input': 'required name=search_term_string',
-      },
     },
   ],
+}
+
+/**
+ * A page description from the first paragraph of a Markdown body, for posts
+ * whose front matter has none. Cut at a word, within what search results show.
+ */
+export function excerptOf(markdown: string, max = 155): string | undefined {
+  // Opening paragraphs, joined until there is enough to describe the page
+  let paragraph = ''
+  for (const block of markdown.split(/\n\s*\n/).map((part) => part.trim())) {
+    if (!block || /^(#|!\[|<|>|\||---|```|[-*] )/.test(block)) continue
+    paragraph = paragraph ? `${paragraph} ${block}` : block
+    if (paragraph.length >= 110) break
+  }
+  if (!paragraph) return undefined
+  const text = paragraph
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (text.length <= max) return text
+  return `${text.slice(0, text.lastIndexOf(' ', max - 1)).replace(/[\s,;:.]+$/, '')}...`
+}
+
+/** Long headlines fill the search result by themselves, so they go without the site name */
+export function pageTitle(title: string): string | { absolute: string } {
+  return title.length > 48 ? { absolute: title } : title
 }
 
 /** BlogPosting for a post page. Dates and images are optional in front matter. */
@@ -103,7 +126,13 @@ export function jsonLdString(data: unknown): string {
  * The default share image is repeated here for the same reason.
  */
 export function withSocial(meta: Metadata): Metadata {
-  const title = typeof meta.title === 'string' ? `${meta.title} | ${SITE_NAME}` : undefined
+  // A plain title gets the site name, as in the browser tab. An absolute one is used as it is.
+  const title =
+    typeof meta.title === 'string'
+      ? `${meta.title} | ${SITE_NAME}`
+      : meta.title && typeof meta.title === 'object' && 'absolute' in meta.title
+        ? meta.title.absolute
+        : undefined
   const description = meta.description ?? undefined
   const canonical = typeof meta.alternates?.canonical === 'string' ? meta.alternates.canonical : undefined
 

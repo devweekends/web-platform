@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
-import { SITE_NAME, blogPostingJsonLd, jsonLdString, withSocial } from "@/lib/seo";
+import { SITE_NAME, blogPostingJsonLd, excerptOf, jsonLdString, pageTitle, withSocial } from "@/lib/seo";
 
 const backLink =
   "inline-flex min-h-11 items-center text-[15px] font-medium text-[#5C5C5C] transition-colors hover:text-[#0A0A0A]";
@@ -29,18 +29,19 @@ export async function generateMetadata({
   const { slug } = await params;
   const filePath = path.join(process.cwd(), "content", "blog", `${slug}.md`);
   if (!fs.existsSync(filePath)) return { title: "Post not found", robots: { index: false } };
-  const { data } = matter(fs.readFileSync(filePath, "utf-8"));
+  const { data, content } = matter(fs.readFileSync(filePath, "utf-8"));
   const date = data.date ? new Date(data.date) : undefined;
+  const description = data.description ?? excerptOf(content);
   return withSocial({
-    title: data.title,
-    description: data.description,
+    title: pageTitle(data.title),
+    description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       type: "article",
       siteName: SITE_NAME,
       locale: "en_US",
       title: data.title,
-      description: data.description,
+      description,
       url: `/blog/${slug}`,
       publishedTime: date && !Number.isNaN(date.getTime()) ? date.toISOString() : undefined,
       images: data.image ? [{ url: data.image }] : undefined,
@@ -92,7 +93,7 @@ export default async function BlogPost({
   const jsonLd = blogPostingJsonLd({
     slug,
     title: data.title,
-    description: data.description,
+    description: data.description ?? excerptOf(content),
     date: data.date,
     image: data.image,
   });
