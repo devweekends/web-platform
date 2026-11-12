@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 import type { Org } from "./data"
 
 const SIZES = {
@@ -45,6 +47,10 @@ const LOGO_SIZES: Record<string, [number, number]> = {
   "/logos/upwork.svg": [120, 60],
 }
 
+/** Tallest size in px each variant is shown at, matching the classes above and below */
+const SHOWN_HEIGHT = { md: 28, lg: 36 }
+const SHOWN_HEIGHT_TALL = { md: 44, lg: 56 }
+
 /** Logos that must fit four to a row on a phone shrink at small widths */
 const COMPACT = "h-4 max-w-[60px] sm:h-6 sm:max-w-[110px] md:h-7"
 const COMPACT_TALL = "h-8 max-w-[52px] sm:h-10 sm:max-w-[100px] md:h-11"
@@ -64,18 +70,20 @@ export function LogoMark({
     return <span className={`font-semibold tracking-[-0.01em] ${compact ? "text-[10px] leading-tight sm:text-sm" : ""}`}>{org.name}</span>
   }
   const [width, height] = LOGO_SIZES[org.logo] ?? []
+  const alt = org.iconOnly ? "" : org.name
+  const className = `${compact ? (org.tall ? COMPACT_TALL : COMPACT) : (org.tall ? TALL : SIZES)[size]} w-auto object-contain brightness-0 transition duration-200 group-hover:scale-105 group-hover:opacity-100 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${muted ? "opacity-60" : "opacity-90"}`
+  // A PNG goes through the image optimizer, asked for at the size it is shown,
+  // so each screen gets a file that fits it. SVG scales by itself.
+  const shownHeight = compact ? (org.tall ? 44 : 28) : (org.tall ? SHOWN_HEIGHT_TALL : SHOWN_HEIGHT)[size]
+  const optimized = org.logo.endsWith(".png") && width && height
   return (
     <span className="inline-flex items-center gap-2.5">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={org.logo}
-        alt={org.iconOnly ? "" : org.name}
-        width={width}
-        height={height}
-        loading="lazy"
-        decoding="async"
-        className={`${compact ? (org.tall ? COMPACT_TALL : COMPACT) : (org.tall ? TALL : SIZES)[size]} w-auto object-contain brightness-0 transition duration-200 group-hover:scale-105 group-hover:opacity-100 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${muted ? "opacity-60" : "opacity-90"}`}
-      />
+      {optimized ? (
+        <Image src={org.logo} alt={alt} width={Math.round((shownHeight * width) / height)} height={shownHeight} className={className} />
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={org.logo} alt={alt} width={width} height={height} loading="lazy" decoding="async" className={className} />
+      )}
       {org.iconOnly && <span className={`font-semibold tracking-[-0.01em] ${compact ? "hidden md:inline" : ""}`}>{org.name}</span>}
     </span>
   )
