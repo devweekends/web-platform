@@ -12,6 +12,15 @@ const publicAssetCache = [
 
 const publicAssetFolders = ['images', 'logos', 'brand', 'favicons', 'guides', 'links', 'gsoc1', 'orientation-2026', 'reports']
 
+// Where agents can find the API description and the Markdown index
+const discoveryLinkHeader = [
+  '</.well-known/api-catalog>; rel="api-catalog"',
+  '</openapi.json>; rel="service-desc"; type="application/openapi+json"',
+  '</api-docs>; rel="service-doc"; type="text/html"',
+  '</.well-known/agent-skills/index.json>; rel="describedby"; type="application/json"',
+  '</llms.txt>; rel="alternate"; type="text/plain"',
+].join(', ')
+
 const nextConfig = {
   poweredByHeader: false,
   images: {
@@ -30,8 +39,16 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  async redirects() {
+    return [
+      // About and Our story are now one page
+      { source: '/about', destination: '/team', permanent: true },
+      { source: '/our-story', destination: '/team', permanent: true },
+    ]
+  },
   async headers() {
     return [
+      { source: '/team', headers: [{ key: 'Link', value: discoveryLinkHeader }] },
       ...publicAssetFolders.map((folder) => ({
         source: `/${folder}/:path*`,
         headers: publicAssetCache,
