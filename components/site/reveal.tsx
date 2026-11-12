@@ -10,6 +10,10 @@ import { usePathname } from "next/navigation"
  * stream in after this runs, so new elements are picked up as they arrive.
  * Without JavaScript, or with reduced motion, everything is visible: the hidden
  * state only applies under `html.reveal-ready` (see globals.css).
+ *
+ * Positions come from the IntersectionObserver, never from measuring elements
+ * here: measuring right after the page loads makes the browser lay the whole
+ * page out early, which is slow on a phone.
  */
 export function RevealObserver() {
   const pathname = usePathname()
@@ -25,31 +29,44 @@ export function RevealObserver() {
     }
 
     let alive = false
+    // Elements the observer has already reported on once
+    const placed = new WeakSet<Element>()
     const observer = new IntersectionObserver(
       (entries) => {
         alive = true
-        entries
-          .filter((entry) => entry.isIntersecting)
-          .forEach((entry, index) => {
-            observer.unobserve(entry.target)
-            show(entry.target as HTMLElement, Math.min(index, 5) * 70)
-          })
+        let index = 0
+        entries.forEach((entry) => {
+          const el = entry.target as HTMLElement
+          const firstReport = !placed.has(el)
+          placed.add(el)
+
+          // The first report says where the element is right now. On screen or
+          // above it: show it as it is, with no animation.
+          if (firstReport && (!entry.rootBounds || entry.boundingClientRect.top < entry.rootBounds.bottom)) {
+            observer.unobserve(el)
+            el.classList.add("is-revealed")
+            el.removeAttribute("data-reveal")
+            return
+          }
+          if (entry.isIntersecting) {
+            observer.unobserve(el)
+            show(el, Math.min(index++, 5) * 70)
+          }
+        })
+        // Hide what is still waiting only after the first reports are in
+        document.documentElement.classList.add("reveal-ready")
       },
       { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
     )
 
-    // Find marked elements not handled yet: show the ones on screen, watch the rest
+    // Hand marked elements not handled yet to the observer
     const scan = () => {
-      const fold = window.innerHeight * 0.95
-      document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-revealed):not([data-reveal-watch])").forEach((el) => {
-        if (el.getBoundingClientRect().top < fold) {
-          el.classList.add("is-revealed")
-          el.removeAttribute("data-reveal")
-        } else {
-          el.setAttribute("data-reveal-watch", "")
-          observer.observe(el)
-        }
+      const fresh = document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-revealed):not([data-reveal-watch])")
+      fresh.forEach((el) => {
+        el.setAttribute("data-reveal-watch", "")
+        observer.observe(el)
       })
+      return fresh.length
     }
 
     // Safety net for browsers that pause or skip the observer: plain scroll
@@ -69,9 +86,18 @@ export function RevealObserver() {
       })
     }
 
-    scan()
-    document.documentElement.classList.add("reveal-ready")
-    const mutations = new MutationObserver(scan)
+    // With nothing to report on, the observer never calls back
+    if (scan() === 0) document.documentElement.classList.add("reveal-ready")
+
+    // New content can arrive in many small changes: look once per frame at most
+    let queued = 0
+    const mutations = new MutationObserver(() => {
+      if (queued) return
+      queued = requestAnimationFrame(() => {
+        queued = 0
+        scan()
+      })
+    })
     mutations.observe(document.body, { childList: true, subtree: true })
     window.addEventListener("scroll", onScroll, { passive: true })
 
@@ -84,6 +110,7 @@ export function RevealObserver() {
 
     return () => {
       window.clearTimeout(failsafe)
+      cancelAnimationFrame(queued)
       observer.disconnect()
       mutations.disconnect()
       window.removeEventListener("scroll", onScroll)

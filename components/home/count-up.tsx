@@ -1,16 +1,17 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 
 /**
  * Counts a number like "2,100+" or "$2.5M+" up from zero the first time it
  * scrolls into view. The final value is what the server renders, so search
  * engines, screen readers and visitors without JavaScript see the real number.
+ * The steps are written straight to the element, so React does not re-render on
+ * every frame, and where the number sits comes from the observer, not from
+ * measuring it (which would force a layout while the page is still loading).
  */
 export function CountUp({ value, duration = 1200 }: { value: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null)
-  const [shown, setShown] = useState(value)
-
   useEffect(() => {
     const match = value.match(/^([^\d]*)([\d,.]+)(.*)$/)
     const el = ref.current
@@ -23,23 +24,29 @@ export function CountUp({ value, duration = 1200 }: { value: string; duration?: 
     const format = (n: number) =>
       prefix + (grouped ? n.toLocaleString("en-US", { maximumFractionDigits: 0 }) : n.toFixed(decimals)) + suffix
 
-    // Already on screen when the page loads: leave the real number alone
-    if (el.getBoundingClientRect().top < window.innerHeight) return
-
     let frame = 0
+    let firstReport = true
     const observer = new IntersectionObserver(
-      ([entry]) => {
+      (entries) => {
+        const entry = entries[entries.length - 1]
+        if (firstReport) {
+          firstReport = false
+          // Already on screen (or above it) when the page loads: leave the real number alone
+          if (!entry.rootBounds || entry.boundingClientRect.top < entry.rootBounds.bottom) {
+            observer.disconnect()
+            return
+          }
+        }
         if (!entry.isIntersecting) return
         observer.disconnect()
         const start = performance.now()
         const tick = (now: number) => {
           const t = Math.min(1, (now - start) / duration)
           const eased = 1 - Math.pow(1 - t, 3)
-          setShown(format(target * eased))
+          el.textContent = t < 1 ? format(target * eased) : value
           if (t < 1) frame = requestAnimationFrame(tick)
-          else setShown(value)
         }
-        setShown(format(0))
+        el.textContent = format(0)
         frame = requestAnimationFrame(tick)
       },
       { threshold: 0.4 }
@@ -48,12 +55,9 @@ export function CountUp({ value, duration = 1200 }: { value: string; duration?: 
     return () => {
       observer.disconnect()
       cancelAnimationFrame(frame)
+      el.textContent = value
     }
   }, [value, duration])
 
-  return (
-    <span ref={ref} aria-label={value}>
-      <span aria-hidden="true">{shown}</span>
-    </span>
-  )
+  return <span ref={ref}>{value}</span>
 }

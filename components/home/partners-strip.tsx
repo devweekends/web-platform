@@ -49,25 +49,47 @@ export function PartnersStrip({ partners, communities }: Props) {
       el.scrollLeft = value
     }
 
+    // Nothing here measures the strip or runs a frame loop until it is on
+    // screen: on a phone it starts below the fold, and measuring during page
+    // load forces an early layout of the whole page.
+    let seen = false
+
     // Centre the partners in the middle copy. Repeated after the font loads and
     // on resize, until someone has interacted with the strip.
     const center = () => {
-      if (interacted.current) return
+      if (interacted.current || !seen) return
       write(group.offsetLeft + group.offsetWidth / 2 - el.clientWidth / 2)
     }
-    center()
     document.fonts?.ready.then(center)
     window.addEventListener("resize", center)
 
-    // Drift only while the strip is on screen, and re-centre the first time it
+    // Width of one of the three copies. Kept up to date as logos and fonts
+    // load, instead of being read on every frame.
+    let copy = 0
+    const track = el.firstElementChild
+    const sizes = new ResizeObserver(([entry]) => {
+      copy = entry.contentRect.width / 3
+    })
+    if (track) sizes.observe(track)
+
+    let last = performance.now()
+    let raf = 0
+    const run = () => {
+      if (raf) return
+      last = performance.now()
+      raf = requestAnimationFrame(tick)
+    }
+
+    // Drift only while the strip is on screen, and centre it the first time it
     // scrolls into view so visitors always meet the partners in the middle.
-    let seen = false
     const observer = new IntersectionObserver(([entry]) => {
       visible.current = entry.isIntersecting
-      if (entry.isIntersecting && !seen) {
+      if (!entry.isIntersecting) return
+      if (!seen) {
         seen = true
         center()
       }
+      run()
     })
     observer.observe(el)
 
@@ -106,12 +128,11 @@ export function PartnersStrip({ partners, communities }: Props) {
     window.addEventListener("touchend", release)
     window.addEventListener("touchcancel", release)
 
-    let last = performance.now()
-    let raf = 0
-    const tick = (now: number) => {
+    function tick(now: number) {
+      raf = 0
       const dt = Math.min(now - last, 64)
       last = now
-      const copy = el.scrollWidth / 3
+      if (!copy) copy = el!.scrollWidth / 3
       const paused = Date.now() < pausedUntil.current
       if (visible.current && !paused && !reduceMotion && document.visibilityState === "visible") {
         let next = pos.current + (DRIFT_SPEED * dt) / 1000
@@ -119,20 +140,22 @@ export function PartnersStrip({ partners, communities }: Props) {
         write(next)
       } else if (paused) {
         // Follow manual scrolling and keep it inside the middle copies.
-        if (el.scrollLeft >= copy * 2) write(el.scrollLeft - copy)
-        else if (el.scrollLeft <= 1) write(el.scrollLeft + copy)
+        const at = el!.scrollLeft
+        if (at >= copy * 2) write(at - copy)
+        else if (at <= 1) write(at + copy)
         else {
-          pos.current = el.scrollLeft
-          lastWritten.current = el.scrollLeft
+          pos.current = at
+          lastWritten.current = at
         }
       }
-      raf = requestAnimationFrame(tick)
+      // Off screen the loop stops; the observer starts it again
+      if (visible.current) raf = requestAnimationFrame(tick)
     }
-    raf = requestAnimationFrame(tick)
 
     return () => {
       cancelAnimationFrame(raf)
       observer.disconnect()
+      sizes.disconnect()
       window.removeEventListener("resize", center)
       window.removeEventListener("pointerup", release)
       window.removeEventListener("pointercancel", release)
