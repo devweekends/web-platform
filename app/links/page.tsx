@@ -71,7 +71,7 @@ const joinLabels: Record<JoinPlatform, string> = {
   linkedin: "Join on LinkedIn",
   facebook: "Join on Facebook",
   github: "Open GitHub",
-  website: "Learn more",
+  website: "Open the page",
 }
 
 const focusRing =
@@ -167,13 +167,14 @@ function CommunityTile({ community, tone }: { community: Community; tone: "white
       <li>
         <SmartLink
           href={community.links[0].url}
-          aria-label={`${label}: ${community.title}`}
           className={`${tileClass} transition duration-200 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.35)] motion-safe:hover:-translate-y-1 ${focusRing}`}
         >
           <CommunityImage community={community} size="sm" />
           {title}
           <span className="inline-flex min-h-[44px] shrink-0 items-center rounded-xl bg-[#0A0A0A] px-4 text-[14px] font-semibold text-white">
             Join
+            {/* Read out, not shown: where the link goes. The link is named by its own words, so no aria-label. */}
+            <span className="sr-only"> {label.startsWith("Join ") ? label.slice(5) : `(${label})`}</span>
           </span>
         </SmartLink>
       </li>

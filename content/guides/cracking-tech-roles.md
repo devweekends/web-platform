@@ -188,7 +188,7 @@ Here's a suggested schedule to balance all of these aspects effectively.
 
 **5. Afternoon Routine**
 
-- Walk + sunlight: get some fresh air and sunlight. Maybe try listening to [this](https://youtu.be/14G0pl1-IRQ?si=9wum-wW71cMv0VEt) in headphones while taking a walk
+- Walk + sunlight: get some fresh air and sunlight. Maybe try listening to [this recording](https://youtu.be/14G0pl1-IRQ?si=9wum-wW71cMv0VEt) in headphones while taking a walk
 - Dhuhr prayer: midday prayer for spiritual refreshment
 - Family time: spend quality time with family
 - Write your thoughts on paper as questions and find their answers through talks. See [why all thoughts are questions](https://youtu.be/0gks6ceq4eQ)
