@@ -180,7 +180,7 @@ export function PartnersStrip({ partners, communities }: Props) {
 
 function Community({ org }: { org: Org }) {
   const className =
-    "mx-7 whitespace-nowrap rounded-full border border-[#E6E6E6] px-4 py-2 text-[17px] font-medium tracking-[-0.01em] text-[#8A8A8A]"
+    "mx-7 whitespace-nowrap rounded-full border border-[#E6E6E6] px-4 py-2 text-[17px] font-medium tracking-[-0.01em] text-[#6B6B6B]"
   return (
     <SmartLink href={org.href} draggable={false} className={`${className} transition-colors hover:border-[#0A0A0A] hover:text-[#0A0A0A]`} fallbackClassName={className}>
       {org.name}
