@@ -101,13 +101,15 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: dwosiThemeScript }} />
         {gaId && (
           <>
+            {/* Analytics waits until the page has loaded and the browser is idle, so
+                its 150 KB script never competes with the page's own code on a phone */}
             <Script
-              strategy="afterInteractive"
+              strategy="lazyOnload"
               src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
             />
             <Script
               id="google-analytics"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
               dangerouslySetInnerHTML={{
                 __html: `
                   window.dataLayer = window.dataLayer || [];
