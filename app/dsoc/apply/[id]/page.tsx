@@ -1,5 +1,6 @@
 'use client';
 
+import { sendEvent } from '@/lib/analytics';
 import Link from "next/link";
 import { useState, useEffect, use } from "react";
 import { useForm } from "react-hook-form";
@@ -216,6 +217,7 @@ export default function ApplyPage({ params }: { params: Promise<{ id: string }> 
 
       if (data.success) {
         setSuccess(true);
+        sendEvent('application_submitted', { program: 'dsoc', project_id: resolvedParams.id, page_path: window.location.pathname });
       } else {
         setError(data.error || 'Failed to submit application');
       }
