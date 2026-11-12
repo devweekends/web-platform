@@ -1,5 +1,6 @@
 'use client';
 
+import { sendEvent } from '@/lib/analytics';
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -64,6 +65,7 @@ export default function MenteeRegisterPage() {
 
       if (data.success) {
         setSuccess(true);
+        sendEvent('registration_submitted', { program: 'dsoc', role: 'mentee', page_path: window.location.pathname });
       } else {
         setError(data.error || 'Registration failed');
       }
