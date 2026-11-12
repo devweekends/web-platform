@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 
+import { CONTENT_SIGNAL } from '@/lib/seo'
+
 // Follows the llms.txt format: a title, a one-line summary, then sections of
 // Markdown links, each with a short note on what the page is for.
 export function GET() {
@@ -7,7 +9,7 @@ export function GET() {
 
 > Dev Weekends is a free community of engineers with programs, mentorship, open source and partnerships that open doors to the world.
 
-Every public page is also available as Markdown: request it with the header \`Accept: text/markdown\`. Content signals for this site: ai-train=no, search=yes, ai-input=no.
+Every public page is also available as Markdown: request it with the header \`Accept: text/markdown\`. Content signals for this site: ${CONTENT_SIGNAL}. You may use these pages to answer questions and cite them; please do not train models on them.
 
 ## Primary pages
 

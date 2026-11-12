@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-import { SITE_URL } from '@/lib/seo'
+import { CONTENT_SIGNAL, SITE_URL } from '@/lib/seo'
 
 // Logins, dashboards and API routes have nothing to rank for
 const blocked = [
@@ -13,14 +13,19 @@ const blocked = [
   '/dsoc/applications/',
 ]
 
+// The content signal belongs inside a group: a line outside any group is ignored
 function group(agent: string) {
-  return [`User-agent: ${agent}`, 'Allow: /', ...blocked.map((path) => `Disallow: ${path}`)].join('\n')
+  return [
+    `User-agent: ${agent}`,
+    `Content-Signal: ${CONTENT_SIGNAL}`,
+    'Allow: /',
+    ...blocked.map((path) => `Disallow: ${path}`),
+  ].join('\n')
 }
 
 export function GET() {
   const body = `${['*', 'GPTBot', 'ClaudeBot', 'PerplexityBot'].map(group).join('\n\n')}
 
-Content-Signal: ai-train=no, search=yes, ai-input=no
 Host: ${SITE_URL}
 Sitemap: ${SITE_URL}/sitemap.xml
 `

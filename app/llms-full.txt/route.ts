@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { NextResponse } from 'next/server'
 
-import { SITE_URL } from '@/lib/seo'
+import { CONTENT_SIGNAL, SITE_URL } from '@/lib/seo'
 
 /** Posts or guides as Markdown links, newest first, with their own descriptions */
 function contentLinks(folder: 'blog' | 'guides'): string {
@@ -26,7 +26,7 @@ export function GET() {
 
 > Dev Weekends is a free, nonprofit community of engineers founded in 2018, with programs, mentorship, open source and partnerships that open doors to the world.
 
-Everything Dev Weekends runs is free for members. Any page below can be read as Markdown by asking for it with the header \`Accept: text/markdown\`. Content signals for this site: ai-train=no, search=yes, ai-input=no.
+Everything Dev Weekends runs is free for members. Any page below can be read as Markdown by asking for it with the header \`Accept: text/markdown\`. Content signals for this site: ${CONTENT_SIGNAL}. You may use these pages to answer questions and cite them; please do not train models on them.
 
 ## About
 
