@@ -17,6 +17,14 @@ export const SOCIAL_PROFILES = [
   'https://github.com/devweekends',
 ]
 
+/**
+ * What the site allows machines to do with its content, in the Content Signals
+ * vocabulary: show it in search, use it to answer questions (AI answers that
+ * cite the site), but not train models on it. Stated in robots.txt and
+ * repeated in the llms files.
+ */
+export const CONTENT_SIGNAL = 'search=yes, ai-input=yes, ai-train=no'
+
 const ORGANIZATION_ID = `${SITE_URL}/#organization`
 
 /** Organization and WebSite, rendered once in the root layout */

@@ -59,7 +59,8 @@ Use this skill when you need to verify or reason about Dev Weekends AI usage pre
 ## Policy source
 
 - robots policy endpoint: \`/robots.txt\`
-- Content-Signal directive: \`ai-train=no, search=yes, ai-input=no\`
+- Content-Signal directive: \`search=yes, ai-input=yes, ai-train=no\`
+- Meaning: the content may appear in search and be used to answer questions with a citation, but not to train models
 
 ## Validation checklist
 
