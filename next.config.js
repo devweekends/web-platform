@@ -10,7 +10,18 @@ const publicAssetCache = [
   },
 ]
 
-const publicAssetFolders = ['images', 'logos', 'brand', 'favicons', 'guides', 'links', 'gsoc1', 'orientation-2026', 'reports']
+const publicAssetFolders = ['images', 'guides', 'links', 'gsoc1', 'orientation-2026', 'reports']
+
+// Logos and brand marks sit on every page and almost never change, so they get
+// a month. A replaced file should take a new name.
+const brandAssetCache = [
+  {
+    key: 'Cache-Control',
+    value: 'public, max-age=2592000, stale-while-revalidate=31536000',
+  },
+]
+
+const brandAssetFolders = ['logos', 'brand', 'favicons']
 
 // Sent with every response. The script rules stay open because a strict
 // script policy needs a per-request nonce, which would stop pages being
@@ -63,6 +74,10 @@ const nextConfig = {
     return [
       { source: '/:path*', headers: securityHeaders },
       { source: '/team', headers: [{ key: 'Link', value: discoveryLinkHeader }] },
+      ...brandAssetFolders.map((folder) => ({
+        source: `/${folder}/:path*`,
+        headers: brandAssetCache,
+      })),
       ...publicAssetFolders.map((folder) => ({
         source: `/${folder}/:path*`,
         headers: publicAssetCache,
