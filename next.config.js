@@ -10,10 +10,9 @@ const publicAssetCache = [
   },
 ]
 
-const publicAssetFolders = ['images', 'guides', 'links', 'gsoc1', 'orientation-2026', 'reports']
-
-// Logos and brand marks sit on every page and almost never change, so they get
-// a month. A replaced file should take a new name.
+// Images, logos and brand marks in /public get a month, including when they are
+// served resized by the image optimizer (it passes this lifetime on). A file
+// that is replaced should take a new name, or visitors keep the old one.
 const brandAssetCache = [
   {
     key: 'Cache-Control',
@@ -21,7 +20,12 @@ const brandAssetCache = [
   },
 ]
 
-const brandAssetFolders = ['logos', 'brand', 'favicons']
+const brandAssetFolders = ['logos', 'brand', 'favicons', 'images', 'guides', 'links', 'gsoc1', 'orientation-2026', 'reports']
+
+// Only files, by extension. Several of these folders share their name with a
+// page (/brand, /guides, /links, /reports), and a page must never be kept in
+// the browser for a month.
+const staticFile = ':file(.*\\.(?:png|jpe?g|gif|webp|avif|svg|ico|pdf|woff2?|mp4|webm))'
 
 // Sent with every response. The script rules stay open because a strict
 // script policy needs a per-request nonce, which would stop pages being
@@ -47,6 +51,11 @@ const discoveryLinkHeader = [
 
 const nextConfig = {
   poweredByHeader: false,
+  // The Markdown-for-agents route reads posts and guides at request time
+  outputFileTracingIncludes: {
+    '/agent-markdown': ['./content/blog/**/*.md', './content/guides/**/*.md'],
+    '/llms-full.txt': ['./content/blog/**/*.md', './content/guides/**/*.md'],
+  },
   images: {
     remotePatterns: [
       'hebbkx1anhila5yf.public.blob.vercel-storage.com',
@@ -77,12 +86,8 @@ const nextConfig = {
       { source: '/:path*', headers: securityHeaders },
       { source: '/team', headers: [{ key: 'Link', value: discoveryLinkHeader }] },
       ...brandAssetFolders.map((folder) => ({
-        source: `/${folder}/:path*`,
+        source: `/${folder}/${staticFile}`,
         headers: brandAssetCache,
-      })),
-      ...publicAssetFolders.map((folder) => ({
-        source: `/${folder}/:path*`,
-        headers: publicAssetCache,
       })),
       {
         source: '/:file(og-image.jpg|favicon.ico|apple-touch-icon.png|icon-192.png|icon-512.png)',

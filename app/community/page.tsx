@@ -106,7 +106,7 @@ export default function CommunityPage() {
               Join Discord
             </Button>
             <Button href="/team" variant="onDarkSecondary">
-              Learn more
+              Meet the team
             </Button>
           </div>
         </div>

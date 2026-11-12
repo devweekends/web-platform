@@ -6,7 +6,8 @@ import type { Metadata } from "next";
 import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
-import { blogPostingJsonLd, jsonLdString, withSocial } from "@/lib/seo";
+import { blogPostingJsonLd, jsonLdString, pageTitle, withSocial } from "@/lib/seo";
+import { svgSize } from "@/lib/svg-size";
 
 const guidesDir = path.join(process.cwd(), "content", "guides");
 
@@ -34,7 +35,7 @@ export async function generateMetadata({
   const guide = readGuide(slug);
   if (!guide) return { title: "Guide not found", robots: { index: false } };
   return withSocial({
-    title: guide.data.title,
+    title: pageTitle(guide.data.title),
     description: guide.data.description ?? "",
     alternates: { canonical: `/guides/${slug}` },
   });
@@ -117,7 +118,7 @@ export default async function GuidePage({
         {data.image && (
           <div className="mx-auto mt-12 max-w-[720px] overflow-hidden rounded-[20px] border border-[#E6E6E6]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={data.image} alt={data.title} className="block h-auto w-full" />
+            <img src={data.image} alt={data.title} {...svgSize(data.image)} fetchPriority="high" className="block h-auto w-full" />
           </div>
         )}
 

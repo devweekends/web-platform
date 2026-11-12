@@ -24,7 +24,7 @@ async function getProjects(): Promise<ProjectItem[]> {
 export const metadata = withSocial({
   alternates: { canonical: "/projects" },
   title: 'Community projects',
-  description: 'Showcase of projects built by the DevWeekends community.',
+  description: 'Projects built and shipped by Dev Weekends community members, from first web apps to open source tools, with the people behind them.',
 });
 
 export default async function ProjectsPage() {

@@ -1,6 +1,8 @@
 import Image from "next/image"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+
+import { svgSize } from "@/lib/svg-size"
 import type { Components } from "react-markdown"
 
 /**
@@ -68,7 +70,14 @@ export function ArticleBody({ content, optimizeImages = false }: Props) {
       }
       return (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={url} alt={alt} loading="lazy" className="block h-auto w-full rounded-[20px] border border-[#E6E6E6]" />
+        <img
+          src={url}
+          alt={alt}
+          {...svgSize(url)}
+          loading="lazy"
+          decoding="async"
+          className="block h-auto w-full rounded-[20px] border border-[#E6E6E6]"
+        />
       )
     },
     a({ href, children }) {

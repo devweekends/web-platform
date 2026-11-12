@@ -19,6 +19,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button, Card, Panel, PageHero, Section, SectionHeading, container } from "@/components/site/page-kit";
+import { resizedImage } from "@/lib/image-url";
 import DSOCNavbar from "./components/DSOCNavbar";
 
 interface Stats {
@@ -382,8 +383,10 @@ export default function DSOCPage() {
                       <div className="relative -mx-7 -mt-7 mb-6 overflow-hidden bg-[#F7F7F7]">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={image}
+                          src={resizedImage(image, 828)}
                           alt={project.title}
+                          loading="lazy"
+                          decoding="async"
                           className="h-52 w-full object-cover transition-transform duration-300 motion-safe:group-hover:scale-105"
                         />
                         <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-[#0A0A0A] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-white">

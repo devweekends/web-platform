@@ -1,0 +1,29 @@
+name: IndexNow
+
+# After a change reaches main and the site has redeployed, tell IndexNow (Bing
+# and others) which pages exist. Can also be run by hand from the Actions tab.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'content/**'
+      - 'components/**'
+      - 'public/**'
+  workflow_dispatch:
+
+jobs:
+  submit:
+    name: Submit sitemap URLs
+    runs-on: ubuntu-latest
+    if: github.repository == 'devweekends/web-platform'
+    steps:
+      - uses: actions/checkout@v4
+      # The deploy is triggered by this same push and takes two to three minutes
+      - name: Wait for the deploy
+        if: github.event_name == 'push'
+        run: sleep 300
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/indexnow.mjs
