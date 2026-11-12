@@ -16,6 +16,10 @@ const inter = Inter({ subsets: ["latin"], display: "swap" })
 // Without an id the tag would request gtag.js?id=undefined on every page view
 const gaId = process.env.NEXT_PUBLIC_GA_ID
 
+// Cloudflare Web Analytics site token for devweekends.com. It is public (it ships
+// in the page) and only counts on the live site, so previews and local runs stay out.
+const cfBeaconToken = process.env.VERCEL_ENV === "production" ? "5206235d2175433195c5d83df73ba4fc" : undefined
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -120,6 +124,14 @@ export default function RootLayout({
               }}
             />
           </>
+        )}
+        {/* Real-visitor page views and Core Web Vitals, by page, country and device. No cookies. */}
+        {cfBeaconToken && (
+          <Script
+            strategy="afterInteractive"
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({ token: cfBeaconToken })}
+          />
         )}
       </head>
       <body className={inter.className}>
