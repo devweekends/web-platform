@@ -55,6 +55,8 @@ const nextConfig = {
   outputFileTracingIncludes: {
     '/agent-markdown': ['./content/blog/**/*.md', './content/guides/**/*.md'],
     '/llms-full.txt': ['./content/blog/**/*.md', './content/guides/**/*.md'],
+    // Belt and braces: the sitemap is built at deploy time, but must never lose its posts
+    '/sitemap.xml': ['./content/blog/**/*.md', './content/guides/**/*.md'],
   },
   images: {
     remotePatterns: [
