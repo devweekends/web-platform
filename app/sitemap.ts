@@ -67,9 +67,9 @@ function contentEntries(folder: 'blog' | 'guides', priority: number): MetadataRo
     })
 }
 
-// Rebuilt hourly so a new DSOC project appears without a deploy
-export const revalidate = 3600
-
+// Built once per deploy, on purpose. Posts and guides are read from the content
+// folder, which exists while the site is built but not where pages are rendered
+// later, so a sitemap rebuilt on a timer loses them.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages carry no lastModified: claiming every page changed "now" on each
   // build tells search engines nothing. Posts and guides use their real dates.
