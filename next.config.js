@@ -85,6 +85,8 @@ const nextConfig = {
     return [
       { source: '/:path*', headers: securityHeaders },
       { source: '/team', headers: [{ key: 'Link', value: discoveryLinkHeader }] },
+      // A slide template speakers download: reachable, but not a page for search results
+      { source: '/brand/session-template.html', headers: [{ key: 'X-Robots-Tag', value: 'noindex' }] },
       ...brandAssetFolders.map((folder) => ({
         source: `/${folder}/${staticFile}`,
         headers: brandAssetCache,

@@ -252,7 +252,7 @@ export function FeedWall({
               <span className="hidden sm:inline"> tagged #DevWeekends</span>
             </span>
           </p>
-          <a href="/api/feed/export" className={`inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl px-2 ${text.label} can-hover:text-[#0A0A0A] ${focus}`}>
+          <a href="/api/feed/export" rel="nofollow" className={`inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl px-2 ${text.label} can-hover:text-[#0A0A0A] ${focus}`}>
             <Download className="h-4 w-4" aria-hidden="true" />
             Export CSV
           </a>

@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { MetadataRoute } from 'next'
 
+import { listDsocProjects } from '@/lib/dsoc-projects'
 import { SITE_URL } from '@/lib/seo'
 
 const baseUrl = SITE_URL
@@ -66,7 +67,10 @@ function contentEntries(folder: 'blog' | 'guides', priority: number): MetadataRo
     })
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Rebuilt hourly so a new DSOC project appears without a deploy
+export const revalidate = 3600
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages carry no lastModified: claiming every page changed "now" on each
   // build tells search engines nothing. Posts and guides use their real dates.
   const staticPages = pages.map((entry) => ({
@@ -75,5 +79,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: entry.priority,
   }))
 
-  return [...staticPages, ...contentEntries('blog', 0.6), ...contentEntries('guides', 0.6)]
+  const projects = (await listDsocProjects()).map((project) => ({
+    url: `${baseUrl}/dsoc/projects/${project.id}`,
+    lastModified: project.updatedAt,
+    changeFrequency: 'weekly' as const,
+    priority: 0.5,
+  }))
+
+  return [...staticPages, ...projects, ...contentEntries('blog', 0.6), ...contentEntries('guides', 0.6)]
 }
