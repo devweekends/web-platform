@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import { MetadataRoute } from 'next'
 
 import { listDsocProjects } from '@/lib/dsoc-projects'
+import pageDates from '@/lib/page-dates.json'
 import { SITE_URL } from '@/lib/seo'
 
 const baseUrl = SITE_URL
@@ -71,10 +72,13 @@ function contentEntries(folder: 'blog' | 'guides', priority: number): MetadataRo
 // folder, which exists while the site is built but not where pages are rendered
 // later, so a sitemap rebuilt on a timer loses them.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Static pages carry no lastModified: claiming every page changed "now" on each
-  // build tells search engines nothing. Posts and guides use their real dates.
+  // A page's date is when its own source last changed, from git history
+  // (scripts/page-dates.mjs). Never "now": claiming every page changed on each
+  // build tells search engines nothing. Posts and guides use their own dates.
+  const dates: Record<string, string> = pageDates
   const staticPages = pages.map((entry) => ({
     url: `${baseUrl}${entry.path}`,
+    lastModified: dates[entry.path || '/'] ? new Date(dates[entry.path || '/']) : undefined,
     changeFrequency: entry.changeFrequency,
     priority: entry.priority,
   }))

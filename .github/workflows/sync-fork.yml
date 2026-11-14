@@ -30,6 +30,9 @@ jobs:
           # otherwise Vercel skips the deployment.
           git config user.name "m-junaidd"
           git config user.email "176620033+m-junaidd@users.noreply.github.com"
+          # Refresh the sitemap's page dates from the full history. Never
+          # allowed to stop a deploy: on any failure the committed file is used.
+          node scripts/page-dates.mjs && git add lib/page-dates.json || echo "Page dates not refreshed"
           git commit --amend --no-edit --reset-author
           git remote add fork https://x-access-token:${{ secrets.FORK_SYNC_TOKEN }}@github.com/m-junaidd/web-platform.git
           git push fork HEAD:main --force
