@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 export interface IProject extends Document {
   title: string;
@@ -65,4 +66,4 @@ const ProjectSchema = new Schema<IProject>(
 // Index for easier searching if needed later
 ProjectSchema.index({ title: 'text', description: 'text', submitterName: 'text' });
 
-export const Project = mongoose.models.Project || mongoose.model<IProject>('Project', ProjectSchema);
+export const Project = defineModel<IProject>('Project', ProjectSchema);

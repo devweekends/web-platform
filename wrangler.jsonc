@@ -1,0 +1,47 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "devweekends-web",
+  // worker.ts wraps the OpenNext build output (.open-next/worker.js)
+  "main": "worker.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "observability": { "enabled": true },
+  // Run next to the MongoDB Atlas cluster (Mumbai): each request opens its own
+  // connection (lib/db.ts), so the round trips to the database decide the speed
+  "placement": { "mode": "targeted", "region": "aws:ap-south-1" },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  // The live site. devweekends.com is redirected to www (308) by worker.ts
+  "routes": [
+    { "pattern": "www.devweekends.com", "custom_domain": true },
+    { "pattern": "devweekends.com", "custom_domain": true }
+  ],
+  "workers_dev": true,
+  "preview_urls": false,
+  // Daily LinkedIn feed collection (was the Vercel cron in vercel.json)
+  "triggers": { "crons": ["0 4 * * *"] },
+  // Secrets (MONGODB_URI, JWT_SECRET, ...) are set with `wrangler secret put`, never here
+  "vars": {
+    "SITE_ENV": "production"
+  },
+  "services": [
+    // OpenNext calls the worker itself to rebuild cached pages
+    { "binding": "WORKER_SELF_REFERENCE", "service": "devweekends-web" }
+  ],
+  "r2_buckets": [
+    { "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "devweekends-web-opennext-cache" }
+  ],
+  "durable_objects": {
+    "bindings": [
+      { "name": "NEXT_CACHE_DO_QUEUE", "class_name": "DOQueueHandler" },
+      { "name": "NEXT_TAG_CACHE_DO_SHARDED", "class_name": "DOShardedTagCache" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["DOQueueHandler", "DOShardedTagCache"] }
+  ],
+  // next/image resizing
+  "images": { "binding": "IMAGES" }
+}

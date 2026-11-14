@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 export interface ITask extends Document {
   title: string;
@@ -45,4 +46,4 @@ TaskSchema.methods.updateTask = async function(updates: Partial<ITask>) {
   return this.save();
 };
 
-export const Task = mongoose.models.Task || mongoose.model<ITask>('Task', TaskSchema); 
+export const Task = defineModel<ITask>('Task', TaskSchema); 

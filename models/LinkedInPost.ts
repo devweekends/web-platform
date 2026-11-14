@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 export type LinkedInPostStatus = 'approved' | 'pending' | 'hidden';
 export type LinkedInPostSource = 'seed' | 'olostep-search-index' | 'community-submission' | 'admin-import';
@@ -57,4 +58,4 @@ const LinkedInPostSchema = new Schema<ILinkedInPost>(
 LinkedInPostSchema.index({ status: 1, postedAt: -1 });
 
 export const LinkedInPost =
-  mongoose.models.LinkedInPost || mongoose.model<ILinkedInPost>('LinkedInPost', LinkedInPostSchema);
+  defineModel<ILinkedInPost>('LinkedInPost', LinkedInPostSchema);

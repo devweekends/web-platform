@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 export interface IDSOCApplication extends Document {
   project: mongoose.Types.ObjectId;
@@ -144,4 +145,4 @@ const DSOCApplicationSchema = new Schema<IDSOCApplication>(
 // Ensure one application per mentee per project
 DSOCApplicationSchema.index({ project: 1, mentee: 1 }, { unique: true });
 
-export const DSOCApplication = mongoose.models.DSOCApplication || mongoose.model<IDSOCApplication>('DSOCApplication', DSOCApplicationSchema);
+export const DSOCApplication = defineModel<IDSOCApplication>('DSOCApplication', DSOCApplicationSchema);

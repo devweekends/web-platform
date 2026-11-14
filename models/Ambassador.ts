@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { defineModel } from '@/lib/model';
 import bcrypt from 'bcryptjs';
 
 const ambassadorSchema = new mongoose.Schema({
@@ -81,6 +82,6 @@ ambassadorSchema.methods.comparePassword = async function(candidatePassword: str
   }
 };
 
-const Ambassador = mongoose.models.Ambassador || mongoose.model('Ambassador', ambassadorSchema);
+const Ambassador = defineModel('Ambassador', ambassadorSchema);
 
 export { Ambassador }; 

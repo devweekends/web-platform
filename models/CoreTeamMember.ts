@@ -1,4 +1,5 @@
 import mongoose, { Schema, models } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 const coreTeamMemberSchema = new Schema({
   name: { type: String, required: true },
@@ -16,4 +17,4 @@ coreTeamMemberSchema.pre('save', function (next) {
   next();
 });
 
-export const CoreTeamMember = models.CoreTeamMember || mongoose.model('CoreTeamMember', coreTeamMemberSchema); 
+export const CoreTeamMember = defineModel('CoreTeamMember', coreTeamMemberSchema); 

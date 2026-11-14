@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 const ResourceItemSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -26,6 +27,6 @@ const ResourceCatalogSchema = new mongoose.Schema({
 
 export interface ResourceCatalogDoc extends mongoose.Document {}
 
-export const ResourceCatalog = mongoose.models.ResourceCatalog || mongoose.model<ResourceCatalogDoc>('ResourceCatalog', ResourceCatalogSchema);
+export const ResourceCatalog = defineModel<ResourceCatalogDoc>('ResourceCatalog', ResourceCatalogSchema);
 
 

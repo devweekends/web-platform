@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 export interface IMentee extends Document {
   name: string;
@@ -73,4 +74,4 @@ const MenteeSchema = new Schema<IMentee>(
   }
 );
 
-export const Mentee = mongoose.models.Mentee || mongoose.model<IMentee>('Mentee', MenteeSchema); 
+export const Mentee = defineModel<IMentee>('Mentee', MenteeSchema); 

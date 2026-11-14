@@ -1,8 +1,7 @@
-import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 import BlogClient from "./blogClient";
 import { withSocial } from "@/lib/seo";
+import { contentSlugs, readContent } from "@/lib/site-files";
 
 export const metadata = withSocial({
   title: "News, guides and blog",
@@ -31,12 +30,8 @@ export type Post = {
 const PORTRAIT_POSTER_SLUGS = new Set(["gsoc"]);
 
 function readFolder(folder: "blog" | "guides") {
-  const dir = path.join(process.cwd(), "content", folder);
   try {
-    return fs
-      .readdirSync(dir)
-      .filter((f) => f.endsWith(".md"))
-      .map((file) => ({ slug: file.replace(/\.md$/, ""), data: matter(fs.readFileSync(path.join(dir, file), "utf-8")).data }));
+    return contentSlugs(folder).map((slug) => ({ slug, data: matter(readContent(folder, slug) ?? "").data }));
   } catch (error) {
     console.error(`Could not read ${folder}:`, error);
     return [];

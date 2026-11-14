@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { defineModel } from '@/lib/model';
 import bcryptjs from 'bcryptjs';
 
 export interface IDSOCMentor extends Document {
@@ -156,4 +157,4 @@ DSOCMentorSchema.methods.comparePassword = async function(candidatePassword: str
   }
 };
 
-export const DSOCMentor = mongoose.models.DSOCMentor || mongoose.model<IDSOCMentor>('DSOCMentor', DSOCMentorSchema);
+export const DSOCMentor = defineModel<IDSOCMentor>('DSOCMentor', DSOCMentorSchema);

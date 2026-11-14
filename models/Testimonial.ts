@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 export interface ITestimonial extends Document {
   name: string;
@@ -74,4 +75,4 @@ const TestimonialSchema = new Schema<ITestimonial>(
   }
 );
 
-export const Testimonial = mongoose.models.Testimonial || mongoose.model<ITestimonial>('Testimonial', TestimonialSchema);
+export const Testimonial = defineModel<ITestimonial>('Testimonial', TestimonialSchema);

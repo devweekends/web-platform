@@ -6,8 +6,9 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 300;
 
 /**
- * Daily Vercel cron (see vercel.json): discovers new public #DevWeekends LinkedIn
- * posts through Olostep. Vercel sends `Authorization: Bearer $CRON_SECRET`.
+ * Daily cron (the Worker's scheduled handler, see worker.ts and wrangler.jsonc):
+ * discovers new public #DevWeekends LinkedIn posts through Olostep. The handler
+ * sends `Authorization: Bearer $CRON_SECRET`.
  * Each search costs Olostep credits; FEED_COLLECT_QUERIES sets how many run.
  */
 export async function GET(request: Request) {

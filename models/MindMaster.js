@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 // Define validator to handle potential undefined values
 const stringWithDefault = {
@@ -86,4 +87,4 @@ mindMasterSchema.methods.toJSON = function() {
   return obj;
 };
 
-export const MindMaster = mongoose.models.MindMaster || mongoose.model('MindMaster', mindMasterSchema); 
+export const MindMaster = defineModel('MindMaster', mindMasterSchema); 
