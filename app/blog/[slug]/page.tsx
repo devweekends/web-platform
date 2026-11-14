@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
-import { SITE_NAME, blogPostingJsonLd, excerptOf, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
+import { SITE_NAME, blogPostingJsonLd, breadcrumbJsonLd, excerptOf, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
 
 const backLink =
   "inline-flex min-h-11 items-center text-[15px] font-medium text-[#5C5C5C] transition-colors hover:text-[#0A0A0A]";
@@ -106,6 +106,12 @@ export default async function BlogPost({
   return (
     <main className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdString(breadcrumbJsonLd([{ name: "Blog", path: "/blog" }, { name: data.seoTitle ?? data.title, path: `/blog/${slug}` }])),
+        }}
+      />
       <div className={`${container} pb-20 pt-8 md:pb-24`}>
         <Link href="/blog" className={backLink}>
           <span aria-hidden="true" className="mr-2">&larr;</span>

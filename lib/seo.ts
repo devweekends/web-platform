@@ -15,6 +15,7 @@ export const SOCIAL_PROFILES = [
   'https://www.youtube.com/@devweekends',
   'https://www.instagram.com/devweekends',
   'https://github.com/devweekends',
+  'https://www.facebook.com/DevWeekends/',
 ]
 
 /**
@@ -138,6 +139,20 @@ export function blogPostingJsonLd({
       : { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@id': ORGANIZATION_ID },
     inLanguage: 'en',
+  }
+}
+
+/** The path from the home page down to this page, for the breadcrumb search engines show */
+export function breadcrumbJsonLd(trail: { name: string; path: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [{ name: 'Home', path: '' }, ...trail].map((step, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: step.name,
+      item: `${SITE_URL}${step.path}`,
+    })),
   }
 }
 

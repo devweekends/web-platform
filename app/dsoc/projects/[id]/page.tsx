@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { cache } from "react";
 
 import { getDsocProject } from "@/lib/dsoc-projects";
-import { pageTitle, snippetOf, withSocial } from "@/lib/seo";
+import { breadcrumbJsonLd, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
 import ProjectDetail from "./project-detail";
 import { SAMPLE_PROJECTS, type Project } from "./project-data";
 
@@ -48,6 +48,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { id } = await params;
-  const { project } = await loadProject(id);
-  return <ProjectDetail initialProject={project} />;
+  const { project, sample } = await loadProject(id);
+  const trail = project && !sample
+    ? breadcrumbJsonLd([
+        { name: "DSOC", path: "/dsoc" },
+        { name: "Projects", path: "/dsoc/projects" },
+        { name: project.title, path: `/dsoc/projects/${id}` },
+      ])
+    : null;
+  return (
+    <>
+      {trail && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(trail) }} />}
+      <ProjectDetail initialProject={project} />
+    </>
+  );
 }

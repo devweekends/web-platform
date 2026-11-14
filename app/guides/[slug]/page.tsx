@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
-import { blogPostingJsonLd, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
+import { blogPostingJsonLd, breadcrumbJsonLd, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
 import { svgSize } from "@/lib/svg-size";
 
 const guidesDir = path.join(process.cwd(), "content", "guides");
@@ -91,6 +91,12 @@ export default async function GuidePage({
   return (
     <main className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdString(breadcrumbJsonLd([{ name: "Guides", path: "/guides" }, { name: data.seoTitle ?? data.title, path: `/guides/${slug}` }])),
+        }}
+      />
       <div className={`${container} pb-20 pt-8 md:pb-24`}>
         <Link href="/guides" className={backLink}>
           <span aria-hidden="true" className="mr-2">&larr;</span>
