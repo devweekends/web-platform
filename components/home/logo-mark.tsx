@@ -70,7 +70,10 @@ export function LogoMark({
     return <span className={`font-semibold tracking-[-0.01em] ${compact ? "text-[10px] leading-tight sm:text-sm" : ""}`}>{org.name}</span>
   }
   const [width, height] = LOGO_SIZES[org.logo] ?? []
-  const alt = org.iconOnly ? "" : org.name
+  // Every logo carries the organisation's name. An icon-only mark also has the
+  // name printed next to it (hidden on phones in the compact grid); that printed
+  // copy is hidden from screen readers, so the name is heard once.
+  const alt = org.name
   const className = `${compact ? (org.tall ? COMPACT_TALL : COMPACT) : (org.tall ? TALL : SIZES)[size]} w-auto object-contain brightness-0 transition duration-200 group-hover:scale-105 group-hover:opacity-100 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${muted ? "opacity-60" : "opacity-90"}`
   // A PNG goes through the image optimizer, asked for at the size it is shown,
   // so each screen gets a file that fits it. SVG scales by itself.
@@ -84,7 +87,11 @@ export function LogoMark({
         // eslint-disable-next-line @next/next/no-img-element
         <img src={org.logo} alt={alt} width={width} height={height} loading="lazy" decoding="async" className={className} />
       )}
-      {org.iconOnly && <span className={`font-semibold tracking-[-0.01em] ${compact ? "hidden md:inline" : ""}`}>{org.name}</span>}
+      {org.iconOnly && (
+        <span aria-hidden="true" className={`font-semibold tracking-[-0.01em] ${compact ? "hidden md:inline" : ""}`}>
+          {org.name}
+        </span>
+      )}
     </span>
   )
 }

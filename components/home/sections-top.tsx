@@ -87,7 +87,7 @@ export function Hero() {
                   <Image
                     key={face.src}
                     src={face.src}
-                    alt=""
+                    alt={face.alt}
                     width={40}
                     height={40}
                     className={`h-10 w-10 rounded-full border-2 border-[#0A0A0A] object-cover grayscale transition-[filter] duration-500 hover:grayscale-0 ${index > 0 ? "-ml-2.5" : ""}`}

@@ -112,11 +112,11 @@ export function VoicesRail() {
                     (video.preview.startsWith("https://img.youtube.com/") ? (
                       // YouTube sends its thumbnails with a two hour cache and as JPEG.
                       // Through the image optimizer they are resized, modern format and cached for a month.
-                      <Image src={video.preview} alt="" fill sizes="360px" className={previewClass} />
+                      <Image src={video.preview} alt={`${video.name}: video story`} fill sizes="360px" className={previewClass} />
                     ) : (
                       // A preview set by hand can be on any host, so it is used as it is
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={video.preview} alt="" loading="lazy" decoding="async" className={previewClass} />
+                      <img src={video.preview} alt={`${video.name}: video story`} loading="lazy" decoding="async" className={previewClass} />
                     ))}
                   <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#0A0A0A] shadow-lg">
                     <Play className="ml-0.5 h-5 w-5 fill-current" aria-hidden="true" />
