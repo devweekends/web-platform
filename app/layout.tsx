@@ -88,6 +88,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
         <link rel="manifest" href="/favicons/site.webmanifest" />
+        <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="Dev Weekends: news, guides and blog" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLMs Full" />
         <link

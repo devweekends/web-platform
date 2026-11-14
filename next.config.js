@@ -57,6 +57,7 @@ const nextConfig = {
     '/llms-full.txt': ['./content/blog/**/*.md', './content/guides/**/*.md'],
     // Belt and braces: the sitemap is built at deploy time, but must never lose its posts
     '/sitemap.xml': ['./content/blog/**/*.md', './content/guides/**/*.md'],
+    '/rss.xml': ['./content/blog/**/*.md', './content/guides/**/*.md'],
   },
   images: {
     remotePatterns: [
@@ -81,6 +82,9 @@ const nextConfig = {
       // About and Our story are now one page
       { source: '/about', destination: '/team', permanent: true },
       { source: '/our-story', destination: '/team', permanent: true },
+      // Addresses feed readers try first
+      { source: '/feed.xml', destination: '/rss.xml', permanent: true },
+      { source: '/blog/rss.xml', destination: '/rss.xml', permanent: true },
     ]
   },
   async headers() {
