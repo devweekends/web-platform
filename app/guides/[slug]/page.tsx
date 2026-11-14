@@ -18,6 +18,10 @@ function readGuide(slug: string) {
   return matter(fileContent);
 }
 
+// Only the posts that exist. Any other address is a real 404, not a page that
+// says "not found" with a 200.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   if (!fs.existsSync(guidesDir)) return [];
   return fs

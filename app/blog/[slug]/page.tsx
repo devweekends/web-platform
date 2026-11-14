@@ -12,6 +12,10 @@ import { SITE_NAME, blogPostingJsonLd, excerptOf, jsonLdString, pageTitle, snipp
 const backLink =
   "inline-flex min-h-11 items-center text-[15px] font-medium text-[#5C5C5C] transition-colors hover:text-[#0A0A0A]";
 
+// Only the posts that exist. Any other address is a real 404, not a page that
+// says "not found" with a 200.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   const dir = path.join(process.cwd(), "content", "blog");
   if (!fs.existsSync(dir)) return [];
