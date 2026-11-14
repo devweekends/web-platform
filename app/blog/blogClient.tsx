@@ -21,11 +21,11 @@ const meta = (item: Post) => [formatDate(item.date), item.readingTime].filter(Bo
 function Thumb({ item, className, priority, sizes }: { item: Post; className: string; priority?: boolean; sizes: string }) {
   const contain = item.imageFit === "contain";
   return (
-    <div className={`relative overflow-hidden ${contain ? "bg-[#0A0A0A]" : "bg-[#F7F7F7]"} ${className}`}>
+    <div aria-hidden="true" className={`relative overflow-hidden ${contain ? "bg-[#0A0A0A]" : "bg-[#F7F7F7]"} ${className}`}>
       {item.image && (
         <Image
           src={item.image}
-          alt=""
+          alt={item.title}
           fill
           priority={priority}
           fetchPriority={priority ? "high" : undefined}

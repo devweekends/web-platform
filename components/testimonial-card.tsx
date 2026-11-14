@@ -66,7 +66,7 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={thumbnailUrl}
-                alt=""
+                alt={`${testimonial.name}: video story`}
                 loading="lazy"
                 decoding="async"
                 className="absolute inset-0 h-full w-full object-cover opacity-80 grayscale transition group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none"

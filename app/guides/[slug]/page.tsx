@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
-import { blogPostingJsonLd, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
+import { blogPostingJsonLd, breadcrumbJsonLd, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
 import { svgSize } from "@/lib/svg-size";
 
 const guidesDir = path.join(process.cwd(), "content", "guides");
@@ -17,6 +17,10 @@ function readGuide(slug: string) {
   const fileContent = fs.readFileSync(filePath, "utf-8");
   return matter(fileContent);
 }
+
+// Only the posts that exist. Any other address is a real 404, not a page that
+// says "not found" with a 200.
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   if (!fs.existsSync(guidesDir)) return [];
@@ -87,6 +91,12 @@ export default async function GuidePage({
   return (
     <main className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdString(breadcrumbJsonLd([{ name: "Guides", path: "/guides" }, { name: data.seoTitle ?? data.title, path: `/guides/${slug}` }])),
+        }}
+      />
       <div className={`${container} pb-20 pt-8 md:pb-24`}>
         <Link href="/guides" className={backLink}>
           <span aria-hidden="true" className="mr-2">&larr;</span>
