@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { preload } from "react-dom"
 import { ArrowUpRight } from "lucide-react"
 
 import { CountUp } from "./count-up"
@@ -20,6 +21,14 @@ import {
 const eyebrow = "text-[13px] font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]"
 const h2 = "mt-3.5 text-[clamp(36px,4.4vw,56px)] font-semibold leading-[1.05] tracking-[-0.04em]"
 
+// The hero photo is the largest thing on the page for many visitors. It is
+// served as ready-made files in three widths, straight from the edge cache.
+// Resizing it on demand meant that the first visitor after a quiet spell
+// waited seconds for the image service to fetch and convert it.
+const HERO = "/images/hero/community-session"
+const heroSet = (format: string) => [480, 768, 1080].map((width) => `${HERO}-${width}.${format} ${width}w`).join(", ")
+const heroSizes = "(min-width: 1024px) 520px, 100vw"
+
 const faces = [
   { src: "/saqlain.jpg", alt: "Muhammad Saqlain" },
   { src: "/salman.jpg", alt: "M Salman" },
@@ -28,6 +37,15 @@ const faces = [
 ]
 
 export function Hero() {
+  // Fetch it early and ahead of other images, in the format the browser prefers
+  preload(`${HERO}-768.avif`, {
+    as: "image",
+    type: "image/avif",
+    imageSrcSet: heroSet("avif"),
+    imageSizes: heroSizes,
+    fetchPriority: "high",
+  })
+
   return (
     <section id="top" className="px-6 pt-2">
       <div className="mx-auto max-w-[1392px] overflow-hidden rounded-[28px] bg-[#0A0A0A] text-white">
@@ -85,15 +103,20 @@ export function Hero() {
 
           <div className="min-w-0 flex-[1_1_440px]">
             <div className="group relative aspect-[5/4] overflow-hidden rounded-[20px] bg-[#1A1A1A]">
-              <Image
-                src="https://res.cloudinary.com/dcrgvq3lf/image/upload/v1748606356/about_img_lcygp4.jpg"
-                alt="Dev Weekends community members at a live session"
-                fill
-                sizes="(min-width: 1024px) 520px, 100vw"
-                priority
-                fetchPriority="high"
-                className="object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
-              />
+              <picture>
+                <source type="image/avif" srcSet={heroSet("avif")} sizes={heroSizes} />
+                <source type="image/webp" srcSet={heroSet("webp")} sizes={heroSizes} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`${HERO}-768.jpg`}
+                  alt="Dev Weekends community members at a live session"
+                  width={1080}
+                  height={864}
+                  fetchPriority="high"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
+                />
+              </picture>
               <div className="absolute bottom-6 left-6 rounded-[14px] bg-white px-5 py-4 text-[#0A0A0A]">
                 <p className="text-[15px] font-semibold">Built in Pakistan. Gone global.</p>
                 <p className="mt-0.5 text-[13px] text-[#5C5C5C]">Members across 30 countries</p>
