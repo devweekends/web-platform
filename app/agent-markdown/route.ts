@@ -1,10 +1,9 @@
-import fs from 'fs'
-import path from 'path'
 import matter from 'gray-matter'
 import { NextRequest, NextResponse } from 'next/server'
 
 import { htmlToMarkdown, pageFacts } from '@/lib/html-to-markdown'
 import { SITE_NAME, SITE_URL } from '@/lib/seo'
+import { readContent } from '@/lib/site-files'
 
 /**
  * The Markdown version of a public page, for AI agents. The middleware sends
@@ -47,9 +46,9 @@ function fromContentFile(sourcePath: string): string | undefined {
   const match = sourcePath.match(/^\/(blog|guides)\/([a-z0-9-]+)$/)
   if (!match) return undefined
   const [, folder, slug] = match
-  const file = path.join(process.cwd(), 'content', folder, `${slug}.md`)
-  if (!fs.existsSync(file)) return undefined
-  const { data, content } = matter(fs.readFileSync(file, 'utf8'))
+  const raw = readContent(folder as 'blog' | 'guides', slug)
+  if (raw === undefined) return undefined
+  const { data, content } = matter(raw)
   if (data.draft === true) return undefined
   const head = frontMatter({ title: data.title, description: data.description, url: `${SITE_URL}${sourcePath}` })
   return `${head}# ${data.title}\n\n${content.trim()}\n`
@@ -68,7 +67,7 @@ export async function GET(request: NextRequest) {
   if (fromFile) return respond(fromFile)
 
   // In production the page always comes from the public address, whatever host the request named
-  const origin = process.env.VERCEL_ENV === 'production' ? SITE_URL : request.nextUrl.origin
+  const origin = process.env.SITE_ENV === 'production' ? SITE_URL : request.nextUrl.origin
   let html: string
   try {
     const page = await fetch(`${origin}${sourcePath}`, { headers: { Accept: 'text/html' }, redirect: 'follow', cache: 'no-store' })

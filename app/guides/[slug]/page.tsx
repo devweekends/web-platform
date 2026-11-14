@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -8,13 +6,11 @@ import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
 import { blogPostingJsonLd, breadcrumbJsonLd, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
 import { svgSize } from "@/lib/svg-size";
-
-const guidesDir = path.join(process.cwd(), "content", "guides");
+import { contentSlugs, readContent } from "@/lib/site-files";
 
 function readGuide(slug: string) {
-  const filePath = path.join(guidesDir, `${slug}.md`);
-  if (!fs.existsSync(filePath)) return null;
-  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const fileContent = readContent("guides", slug);
+  if (fileContent === undefined) return null;
   return matter(fileContent);
 }
 
@@ -23,11 +19,7 @@ function readGuide(slug: string) {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  if (!fs.existsSync(guidesDir)) return [];
-  return fs
-    .readdirSync(guidesDir)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => ({ slug: f.replace(/\.md$/, "") }));
+  return contentSlugs("guides").map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({

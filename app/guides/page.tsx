@@ -1,8 +1,7 @@
-import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 import GuidesClient from "./guidesClient";
 import { withSocial } from "@/lib/seo";
+import { contentSlugs, readContent } from "@/lib/site-files";
 
 export const metadata = withSocial({
   alternates: { canonical: "/guides" },
@@ -34,22 +33,8 @@ export const GUIDE_CATEGORIES = [
 ] as const;
 
 export default function GuidesPage() {
-  const guidesDir = path.join(process.cwd(), "content", "guides");
-
-  let files: string[] = [];
-  try {
-    if (fs.existsSync(guidesDir)) {
-      files = fs.readdirSync(guidesDir).filter((f) => f.endsWith(".md"));
-    }
-  } catch (error) {
-    console.error("Could not read guides:", error);
-  }
-
-  const guides: Guide[] = files.map((file) => {
-    const filePath = path.join(guidesDir, file);
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    const { data } = matter(fileContent);
-    const slug = file.replace(/\.md$/, "");
+  const guides: Guide[] = contentSlugs("guides").map((slug) => {
+    const { data } = matter(readContent("guides", slug) ?? "");
 
     return {
       slug,

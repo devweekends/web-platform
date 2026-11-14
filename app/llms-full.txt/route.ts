@@ -1,18 +1,13 @@
-import fs from 'fs'
-import path from 'path'
 import matter from 'gray-matter'
 import { NextResponse } from 'next/server'
 
 import { CONTENT_SIGNAL, SITE_URL } from '@/lib/seo'
+import { contentSlugs, readContent } from '@/lib/site-files'
 
 /** Posts or guides as Markdown links, newest first, with their own descriptions */
 function contentLinks(folder: 'blog' | 'guides'): string {
-  const dir = path.join(process.cwd(), 'content', folder)
-  if (!fs.existsSync(dir)) return ''
-  return fs
-    .readdirSync(dir)
-    .filter((file) => file.endsWith('.md'))
-    .map((file) => ({ slug: file.replace(/\.md$/, ''), data: matter(fs.readFileSync(path.join(dir, file), 'utf8')).data }))
+  return contentSlugs(folder)
+    .map((slug) => ({ slug, data: matter(readContent(folder, slug) ?? '').data }))
     .filter(({ data }) => data.draft !== true && data.title)
     .sort((a, b) => new Date(b.data.date ?? 0).getTime() - new Date(a.data.date ?? 0).getTime())
     .map(({ slug, data }) => `- [${data.title}](${SITE_URL}/${folder}/${slug})${data.description ? `: ${data.description}` : ''}`)

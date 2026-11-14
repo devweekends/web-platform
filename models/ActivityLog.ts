@@ -1,4 +1,5 @@
 import mongoose, { Schema, models } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 const activityLogSchema = new Schema({
   entityType: { type: String, required: true }, // 'Ambassador', 'CoreTeam', 'Session'
@@ -9,4 +10,4 @@ const activityLogSchema = new Schema({
   details: { type: Schema.Types.Mixed }, // e.g. { name: 'John Doe' }
 });
 
-export const ActivityLog = models.ActivityLog || mongoose.model('ActivityLog', activityLogSchema); 
+export const ActivityLog = defineModel('ActivityLog', activityLogSchema); 

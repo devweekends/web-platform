@@ -1,8 +1,7 @@
-import fs from 'fs'
-import path from 'path'
 import matter from 'gray-matter'
 
 import { SITE_NAME, SITE_URL, excerptOf } from '@/lib/seo'
+import { contentSlugs, readContent } from '@/lib/site-files'
 
 // Built with the site, like the sitemap: posts and guides are read from the
 // content folder, which is only there at build time.
@@ -11,19 +10,15 @@ export const dynamic = 'force-static'
 type Item = { title: string; url: string; date?: Date; description?: string }
 
 function items(folder: 'blog' | 'guides'): Item[] {
-  const dir = path.join(process.cwd(), 'content', folder)
-  if (!fs.existsSync(dir)) return []
-  return fs
-    .readdirSync(dir)
-    .filter((file) => file.endsWith('.md'))
-    .flatMap((file) => {
-      const { data, content } = matter(fs.readFileSync(path.join(dir, file), 'utf8'))
+  return contentSlugs(folder)
+    .flatMap((slug) => {
+      const { data, content } = matter(readContent(folder, slug) ?? '')
       if (data.draft === true || !data.title) return []
       const date = data.date ? new Date(data.date) : undefined
       return [
         {
           title: String(data.title),
-          url: `${SITE_URL}/${folder}/${file.replace(/\.md$/, '')}`,
+          url: `${SITE_URL}/${folder}/${slug}`,
           date: date && !Number.isNaN(date.getTime()) ? date : undefined,
           description: data.description ?? excerptOf(content),
         },

@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -7,6 +5,7 @@ import Link from "next/link";
 import { ArticleBody } from "@/components/content/article-body";
 import { formatDate } from "@/components/content/format-date";
 import { Button, Eyebrow, container } from "@/components/site/page-kit";
+import { contentSlugs, readContent } from "@/lib/site-files";
 import { SITE_NAME, blogPostingJsonLd, breadcrumbJsonLd, excerptOf, jsonLdString, pageTitle, snippetOf, withSocial } from "@/lib/seo";
 
 const backLink =
@@ -17,12 +16,7 @@ const backLink =
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  const dir = path.join(process.cwd(), "content", "blog");
-  if (!fs.existsSync(dir)) return [];
-  return fs
-    .readdirSync(dir)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => ({ slug: f.replace(/\.md$/, "") }));
+  return contentSlugs("blog").map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -31,9 +25,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const filePath = path.join(process.cwd(), "content", "blog", `${slug}.md`);
-  if (!fs.existsSync(filePath)) return { title: "Post not found", robots: { index: false } };
-  const { data, content } = matter(fs.readFileSync(filePath, "utf-8"));
+  const raw = readContent("blog", slug);
+  if (raw === undefined) return { title: "Post not found", robots: { index: false } };
+  const { data, content } = matter(raw);
   const date = data.date ? new Date(data.date) : undefined;
   const description = snippetOf(data.description) ?? excerptOf(content);
   return withSocial({
@@ -62,14 +56,9 @@ export default async function BlogPost({
 }) {
   const { slug } = await params;
 
-  const filePath = path.join(
-    process.cwd(),
-    "content",
-    "blog",
-    `${slug}.md`
-  );
+  const fileContent = readContent("blog", slug);
 
-  if (!fs.existsSync(filePath)) {
+  if (fileContent === undefined) {
     return (
       <main className="bg-white">
         <div className={`${container} py-24 md:py-32`}>
@@ -88,7 +77,6 @@ export default async function BlogPost({
     );
   }
 
-  const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
   const date = formatDate(data.date instanceof Date ? data.date.toISOString() : data.date);
 

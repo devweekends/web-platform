@@ -1,4 +1,5 @@
 import mongoose, { Schema, models } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 const sessionSchema = new Schema({
   name: { type: String, required: true },
@@ -17,4 +18,4 @@ sessionSchema.pre('save', function (next) {
   next();
 });
 
-export const Session = models.Session || mongoose.model('Session', sessionSchema); 
+export const Session = defineModel('Session', sessionSchema); 

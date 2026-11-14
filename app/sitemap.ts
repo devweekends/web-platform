@@ -1,11 +1,10 @@
-import fs from 'fs'
-import path from 'path'
 import matter from 'gray-matter'
 import { MetadataRoute } from 'next'
 
 import { listDsocProjects } from '@/lib/dsoc-projects'
 import pageDates from '@/lib/page-dates.json'
 import { SITE_URL } from '@/lib/seo'
+import { contentSlugs, readContent } from '@/lib/site-files'
 
 const baseUrl = SITE_URL
 
@@ -47,19 +46,14 @@ const pages: Entry[] = [
 
 /** Blog posts and guides, each with its own publish date from its front matter */
 function contentEntries(folder: 'blog' | 'guides', priority: number): MetadataRoute.Sitemap {
-  const dir = path.join(process.cwd(), 'content', folder)
-  if (!fs.existsSync(dir)) return []
-
-  return fs
-    .readdirSync(dir)
-    .filter((file) => file.endsWith('.md'))
-    .flatMap((file) => {
-      const { data } = matter(fs.readFileSync(path.join(dir, file), 'utf8'))
+  return contentSlugs(folder)
+    .flatMap((slug) => {
+      const { data } = matter(readContent(folder, slug) ?? '')
       if (data.draft === true) return []
       const date = data.date ? new Date(data.date) : undefined
       return [
         {
-          url: `${baseUrl}/${folder}/${file.replace(/\.md$/, '')}`,
+          url: `${baseUrl}/${folder}/${slug}`,
           lastModified: date && !Number.isNaN(date.getTime()) ? date : undefined,
           changeFrequency: 'monthly' as const,
           priority,

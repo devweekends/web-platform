@@ -1,8 +1,7 @@
-import { readFile } from 'fs/promises'
-import path from 'path'
 import { ImageResponse } from 'next/og'
 
 import { SITE_NAME, SITE_TAGLINE } from '@/lib/seo'
+import { ogLogoBase64 } from '@/lib/site-files'
 
 export const OG_SIZE = { width: 1200, height: 630 }
 export const OG_ALT = `${SITE_NAME}. ${SITE_TAGLINE}`
@@ -12,8 +11,7 @@ export const OG_ALT = `${SITE_NAME}. ${SITE_TAGLINE}`
  * from public/brand) on black, with the tagline beside it.
  */
 export async function renderDefaultOgImage() {
-  const logo = await readFile(path.join(process.cwd(), 'public/brand/dw-logo-week-white.png'))
-  const src = `data:image/png;base64,${logo.toString('base64')}`
+  const src = `data:image/png;base64,${ogLogoBase64}`
 
   return new ImageResponse(
     (

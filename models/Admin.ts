@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { defineModel } from '@/lib/model';
 import bcrypt from 'bcryptjs';
 
 const adminSchema = new mongoose.Schema({
@@ -36,6 +37,6 @@ adminSchema.methods.comparePassword = async function(candidatePassword: string) 
 };
 
 // Prevent model overwrite error
-const Admin = mongoose.models.Admin || mongoose.model('Admin', adminSchema);
+const Admin = defineModel('Admin', adminSchema);
 
 export { Admin }; 

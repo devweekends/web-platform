@@ -19,7 +19,8 @@ const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 // Cloudflare Web Analytics site token for devweekends.com. It is public (it ships
 // in the page) and only counts on the live site, so previews and local runs stay out.
-const cfBeaconToken = process.env.VERCEL_ENV === "production" ? "5206235d2175433195c5d83df73ba4fc" : undefined
+// SITE_ENV is set to "production" only by `npm run deploy` (see package.json and wrangler.jsonc).
+const cfBeaconToken = process.env.SITE_ENV === "production" ? "5206235d2175433195c5d83df73ba4fc" : undefined
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

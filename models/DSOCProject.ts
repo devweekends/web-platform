@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 export interface IDSOCProject extends Document {
   title: string;
@@ -166,4 +167,4 @@ const DSOCProjectSchema = new Schema<IDSOCProject>(
 // Index for searching projects
 DSOCProjectSchema.index({ title: 'text', description: 'text', technologies: 'text', tags: 'text' });
 
-export const DSOCProject = mongoose.models.DSOCProject || mongoose.model<IDSOCProject>('DSOCProject', DSOCProjectSchema);
+export const DSOCProject = defineModel<IDSOCProject>('DSOCProject', DSOCProjectSchema);

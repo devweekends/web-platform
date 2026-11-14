@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { defineModel } from '@/lib/model';
 
 export interface ITag extends Document {
   name: string;
@@ -40,4 +41,4 @@ const TagSchema = new Schema<ITag>(
   }
 );
 
-export const Tag = mongoose.models.Tag || mongoose.model<ITag>('Tag', TagSchema); 
+export const Tag = defineModel<ITag>('Tag', TagSchema); 

@@ -1,3 +1,4 @@
+import { defineModel } from '@/lib/model';
 // Using require() here avoids TS module-resolution issues in some environments where
 // node_modules may not be present during type-checking.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,6 +27,6 @@ const jobSchema = new Schema(
   { timestamps: true }
 );
 
-export const Job = models.Job || mongoose.model('Job', jobSchema);
+export const Job = defineModel('Job', jobSchema);
 
 
