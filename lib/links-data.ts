@@ -95,7 +95,7 @@ export const linkSections: LinkSection[] = [
         links: join("https://chat.whatsapp.com/J3iIn9tuoVtCD2sAPQyr9w"),
       },
       {
-        title: "Programming Community",
+        title: "Deep Engineering Community",
         description: "Programming questions, help and discussions.",
         platform: "whatsapp",
         thumbnail: "/links/programming-community.png",
