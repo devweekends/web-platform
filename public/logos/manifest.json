@@ -276,5 +276,16 @@
     "width": 66,
     "height": 16,
     "notes": "WHITE wordmark on transparent, needs a dark background; no light variant found. Site title: 'Nectar | AI-native OS for social'. Note nectar.social redirects to my.brandhives.com (BrandHives, a different product), so nectarsocial.com is used."
+  },
+  {
+    "name": "Edorax",
+    "slug": "edorax",
+    "website": "https://www.edorax.com/",
+    "file": "edorax.svg",
+    "format": "svg",
+    "source": "Official site header logo (inline SVG wordmark on www.edorax.com)",
+    "width": 4260,
+    "height": 860,
+    "notes": "Navy wordmark with blue, navy and yellow X mark, transparent background."
   }
 ]
