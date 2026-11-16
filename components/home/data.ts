@@ -139,6 +139,7 @@ export const partners: Org[] = [
   { name: "MAX Circles", href: "https://onemax.org", logo: "/logos/max.png", tall: true },
   { name: "Hoopo", href: "https://www.gohoopo.com", logo: "/logos/hoopo.svg" },
   { name: "Cyberiad Labs", href: "https://cyberiadlabs.com", logo: "/logos/cyberiad-labs.svg", iconOnly: true },
+  { name: "Edorax", href: "https://www.edorax.com", logo: "/logos/edorax.svg" },
 ]
 export const communityPartners: Org[] = [
   { name: "MLSA COMSATS", href: "https://mvp.microsoft.com/studentambassadors", logo: null },
