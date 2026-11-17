@@ -138,6 +138,18 @@ export default async function FeedPage() {
                 </p>
               </div>
             )}
+            <p className="mt-6 border-t border-white/10 pt-5 text-[13px] leading-5 text-[#A3A3A3]">
+              Powered by{" "}
+              <a
+                href="https://www.olostep.com"
+                target="_blank"
+                rel="noopener"
+                className={`font-semibold text-white underline decoration-white/30 underline-offset-4 can-hover:decoration-white ${focus}`}
+              >
+                Olostep
+              </a>
+              , which finds new #DevWeekends posts every day.
+            </p>
           </div>
         </div>
       </section>
@@ -150,7 +162,7 @@ export default async function FeedPage() {
 
       <section className="bg-white">
         <p className={`${container} py-8 ${text.label} font-normal`}>
-          These are public LinkedIn posts, found through search and shown with LinkedIn&apos;s own embed. Dev Weekends is
+          These are public LinkedIn posts, found through search powered by Olostep and shown with LinkedIn&apos;s own embed. Dev Weekends is
           not affiliated with LinkedIn. To remove a post, email info@devweekends.com.
         </p>
       </section>
