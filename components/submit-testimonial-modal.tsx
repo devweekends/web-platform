@@ -76,7 +76,7 @@ export function SubmitTestimonialModal() {
         <DialogHeader>
           <DialogTitle>Share Your Experience</DialogTitle>
           <DialogDescription>
-            Tell us about your journey with DevWeekends. Your story inspires others!
+            Tell us about your journey with Dev Weekends. Your story inspires others!
           </DialogDescription>
         </DialogHeader>
 

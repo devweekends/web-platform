@@ -13,7 +13,7 @@ export const revalidate = 300;
 export const metadata = withSocial({
   alternates: { canonical: "/testimonials" },
   title: 'Stories from our community',
-  description: 'Hear from our community members about their experience with DevWeekends.',
+  description: 'Hear from our community members about their experience with Dev Weekends.',
 });
 
 export default async function TestimonialsPage() {
