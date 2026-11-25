@@ -13,7 +13,7 @@ const messages: HeadlineMessage[] = [
   {
     label: 'Coming soon',
     text: 'Qantara, the Palestinian AI Fellowship, is coming. We are excited to be a partner.',
-    shortText: 'Qantara is coming. We are excited!',
+    shortText: "Qantara is coming. We're excited!",
     href: '/qantara',
   },
 ]
@@ -52,7 +52,7 @@ export function HeadlineBar() {
   return (
     <div className="w-full border-b border-white/20 bg-[linear-gradient(135deg,#0a4a1d_0%,#007622_100%)] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex min-h-10 items-center justify-center overflow-hidden py-2 text-center text-xs sm:text-sm font-semibold tracking-wide">
+        <div className="relative flex min-h-10 items-center justify-center overflow-hidden py-2 text-center text-[11px] sm:text-sm font-semibold tracking-wide">
           {leavingMessage && (
             <Link
               key={`leaving-${leavingIndex}`}
@@ -60,11 +60,11 @@ export function HeadlineBar() {
               className="absolute inset-x-4 flex items-center justify-center gap-2"
               style={{ animation: `${leavingAnimation} 650ms ease-out both` }}
             >
-              <span className="rounded-full bg-white px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-[#0A4A1D] shadow-sm">
+              <span className="whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-[#0A4A1D] shadow-sm">
                 {leavingMessage.label}
               </span>
               <span className="hidden sm:inline">{leavingMessage.text}</span>
-              <span className="sm:hidden">{leavingMessage.shortText ?? leavingMessage.text}</span>
+              <span className="whitespace-nowrap sm:hidden">{leavingMessage.shortText ?? leavingMessage.text}</span>
             </Link>
           )}
 
@@ -74,11 +74,11 @@ export function HeadlineBar() {
             className="absolute inset-x-4 flex items-center justify-center gap-2"
             style={{ animation: `${enteringAnimation} 650ms ease-out both` }}
           >
-            <span className="rounded-full bg-white px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-[#0A4A1D] shadow-sm">
+            <span className="whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-[#0A4A1D] shadow-sm">
               {activeMessage.label}
             </span>
             <span className="hidden sm:inline">{activeMessage.text}</span>
-            <span className="sm:hidden">{activeMessage.shortText ?? activeMessage.text}</span>
+            <span className="whitespace-nowrap sm:hidden">{activeMessage.shortText ?? activeMessage.text}</span>
           </Link>
         </div>
       </div>
