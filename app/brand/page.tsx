@@ -118,21 +118,22 @@ export default function BrandKitPage() {
         </ul>
       </Section>
 
+      <div id="session-template" className="scroll-mt-24" />
       <Panel>
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
           <div>
             <Eyebrow onDark>Session slide template</Eyebrow>
             <h2 className="mt-3.5 text-[clamp(32px,4vw,52px)] font-semibold leading-[1.05] tracking-[-0.04em]">
-              Session Template v2.
+              Session Template v3.
             </h2>
             <p className="mt-4 max-w-[46ch] text-[17px] leading-[1.6] text-[#C7C7C7]">
-              The official deck speakers use for community sessions. Preview it in a browser, then duplicate it into Google
-              Slides, Keynote, or PowerPoint.
+              The deck our speakers use, in the same design as our AWS Community Day talk. Every slide is filled with example
+              text, so you can see each layout before you write your own.
             </p>
             <ul className="mt-6 max-w-[46ch] divide-y divide-[#262626] border-y border-[#262626] text-[15px] text-[#C7C7C7]">
-              <li className="py-3">9 pre-built slide layouts</li>
-              <li className="py-3">Inter and Anton typography baked in</li>
-              <li className="py-3">Self-contained HTML. Edit text directly, no build step</li>
+              <li className="py-3">13 example slides, one for each layout</li>
+              <li className="py-3">Presenter notes on every slide. Press N to show them</li>
+              <li className="py-3">One HTML file. Edit the text, no build step</li>
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -158,7 +159,7 @@ export default function BrandKitPage() {
           <div className="flex aspect-video flex-col items-center justify-center rounded-[20px] border border-[#262626] bg-[#161616] p-8 text-center">
             <Image src="/brand/dw-wordmark-white.png" alt="Dev Weekends" width={246} height={180} className="h-24 w-auto" />
             <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-[#A3A3A3]">
-              16:9 dark deck. Cover, agenda, two-column, full-bleed and Q&amp;A slides.
+              16:9 dark deck. Cover, agenda, flow, architecture, numbers, quiz and Q&amp;A slides.
             </p>
           </div>
         </div>
