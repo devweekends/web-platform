@@ -100,6 +100,16 @@ export default async function FeedPage() {
                 Browse the feed
               </Button>
             </div>
+            <a
+              href="https://www.olostep.com"
+              target="_blank"
+              rel="noopener"
+              className={`mt-6 inline-flex items-center gap-4 rounded-2xl border border-[#E6E6E6] bg-[#F7F7F7] px-5 py-3.5 transition-colors can-hover:border-[#0A0A0A] ${focus}`}
+            >
+              <span className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#5C5C5C]">Powered by</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logos/olostep.svg" alt="Olostep" width={341} height={102} className="h-7 w-auto" />
+            </a>
           </div>
 
           <div className="rounded-[28px] bg-[#0A0A0A] p-8 text-white">
