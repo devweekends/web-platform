@@ -415,6 +415,7 @@ export const footerColumns = [
       { label: "Blog", href: LINKS.blog },
       { label: "Free docs and courses", href: LINKS.resources },
       { label: "YouTube videos", href: LINKS.youtube },
+      { label: "Presentations", href: "/presentation" },
     ],
   },
   {
