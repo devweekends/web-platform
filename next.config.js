@@ -85,6 +85,9 @@ const nextConfig = {
       // Addresses feed readers try first
       { source: '/feed.xml', destination: '/rss.xml', permanent: true },
       { source: '/blog/rss.xml', destination: '/rss.xml', permanent: true },
+      // Slide decks now live together under /presentation
+      { source: '/from-code-to-production', destination: '/presentation/from-code-to-production/', permanent: true },
+      { source: '/from-code-to-production/:path*', destination: '/presentation/from-code-to-production/:path*', permanent: true },
     ]
   },
   async headers() {
