@@ -3,7 +3,15 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-type HeadlineMessage = { label: string; text: string; href: string; /** Shown instead of `text` on phones, where the bar has one line */ shortText?: string }
+type HeadlineMessage = {
+  label: string
+  text: string
+  href: string
+  /** Shown instead of `text` on phones, where the bar has one line */
+  shortText?: string
+  /** A second link beside the message, for example the partner's own page */
+  secondary?: { label: string; href: string }
+}
 
 // Add an entry here to show a banner. Leave the array empty to hide the bar.
 // Past entries, for reference:
@@ -15,8 +23,39 @@ const messages: HeadlineMessage[] = [
     text: 'Qantara, the Palestinian AI Fellowship, is coming. We are excited to be a partner.',
     shortText: "Qantara is coming. We're excited!",
     href: '/qantara',
+    secondary: { label: 'EmpactUs', href: 'https://empactus.org.uk/qantara-the-palestinian-ai-fellowship/' },
   },
 ]
+
+/** One banner message: the main link, and an optional second link beside it */
+function Row({ message, animation }: { message: HeadlineMessage; animation: string }) {
+  return (
+    <div
+      className="absolute inset-x-4 flex items-center justify-center gap-3"
+      style={{ animation: `${animation} 650ms ease-out both` }}
+    >
+      <Link href={message.href} className="flex items-center justify-center gap-2">
+        <span
+          className={`whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-[#0A4A1D] shadow-sm ${message.secondary ? 'hidden sm:inline-block' : ''}`}
+        >
+          {message.label}
+        </span>
+        <span className="hidden lg:inline">{message.text}</span>
+        <span className="whitespace-nowrap lg:hidden">{message.shortText ?? message.text}</span>
+      </Link>
+      {message.secondary && (
+        <a
+          href={message.secondary.href}
+          target="_blank"
+          rel="noopener"
+          className="whitespace-nowrap font-bold underline underline-offset-4 decoration-white/60 hover:decoration-white"
+        >
+          {message.secondary.label} <span aria-hidden="true">↗</span>
+        </a>
+      )}
+    </div>
+  )
+}
 
 export function HeadlineBar() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -54,32 +93,10 @@ export function HeadlineBar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex min-h-10 items-center justify-center overflow-hidden py-2 text-center text-[11px] sm:text-sm font-semibold tracking-wide">
           {leavingMessage && (
-            <Link
-              key={`leaving-${leavingIndex}`}
-              href={leavingMessage.href}
-              className="absolute inset-x-4 flex items-center justify-center gap-2"
-              style={{ animation: `${leavingAnimation} 650ms ease-out both` }}
-            >
-              <span className="whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-[#0A4A1D] shadow-sm">
-                {leavingMessage.label}
-              </span>
-              <span className="hidden sm:inline">{leavingMessage.text}</span>
-              <span className="whitespace-nowrap sm:hidden">{leavingMessage.shortText ?? leavingMessage.text}</span>
-            </Link>
+            <Row key={`leaving-${leavingIndex}`} message={leavingMessage} animation={leavingAnimation} />
           )}
 
-          <Link
-            key={`active-${activeIndex}`}
-            href={activeMessage.href}
-            className="absolute inset-x-4 flex items-center justify-center gap-2"
-            style={{ animation: `${enteringAnimation} 650ms ease-out both` }}
-          >
-            <span className="whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-[#0A4A1D] shadow-sm">
-              {activeMessage.label}
-            </span>
-            <span className="hidden sm:inline">{activeMessage.text}</span>
-            <span className="whitespace-nowrap sm:hidden">{activeMessage.shortText ?? activeMessage.text}</span>
-          </Link>
+          <Row key={`active-${activeIndex}`} message={activeMessage} animation={enteringAnimation} />
         </div>
       </div>
       <style jsx global>{`
