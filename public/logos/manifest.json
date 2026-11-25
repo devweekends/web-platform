@@ -287,5 +287,16 @@
     "width": 4260,
     "height": 860,
     "notes": "Navy wordmark with blue, navy and yellow X mark, transparent background."
+  },
+  {
+    "name": "Major League Hacking",
+    "slug": "mlh",
+    "website": "https://mlh.io/",
+    "file": "mlh.svg",
+    "format": "svg",
+    "source": "Official brand guidelines download (https://static.mlh.io/brand-assets/logo/official/mlh-logo-black.svg), approved black variant",
+    "width": 343,
+    "height": 145,
+    "notes": "Black logo on transparent. Shown as a single-tone black mark like the other partner logos."
   }
 ]

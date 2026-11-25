@@ -35,6 +35,7 @@ const LOGO_SIZES: Record<string, [number, number]> = {
   "/logos/linux-foundation.svg": [500, 500],
   "/logos/max.png": [217, 168],
   "/logos/microsoft.svg": [338, 72],
+  "/logos/mlh.svg": [343, 145],
   "/logos/microtechx.png": [730, 108],
   "/logos/nectar-social.svg": [66, 16],
   "/logos/olostep.svg": [341, 102],
