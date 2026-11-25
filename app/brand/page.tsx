@@ -17,8 +17,8 @@ type Logo = {
   description: string;
   file: string;
   download: string;
-  /** JPG files are square with plenty of white space, so they are zoomed to fill the tile */
-  kind: "jpg" | "png";
+  /** Square files carry their own background, so they fill the tile edge to edge */
+  kind: "square" | "png";
   tile: string;
 };
 
@@ -40,36 +40,20 @@ const logos: Logo[] = [
     tile: "bg-[#0A0A0A]",
   },
   {
-    name: "Logo on dark badge",
-    description: "White wordmark on a black circle. Works on light or dark backgrounds.",
-    file: "/brand/dw-logo-white.jpg",
-    download: "dev-weekends-logo-white.jpg",
-    kind: "jpg",
-    tile: "bg-white",
-  },
-  {
-    name: "Black wordmark",
-    description: "Black wordmark on white. For light surfaces.",
-    file: "/brand/dw-logo-black.jpg",
-    download: "dev-weekends-logo-black.jpg",
-    kind: "jpg",
-    tile: "bg-white",
-  },
-  {
-    name: "Black wordmark, transparent",
-    description: "Black wordmark with no background. For light surfaces.",
-    file: "/brand/dw-wordmark-black.png",
-    download: "dev-weekends-wordmark-black.png",
-    kind: "png",
-    tile: "bg-[#F7F7F7]",
-  },
-  {
-    name: "White wordmark, transparent",
-    description: "White wordmark with no background. For dark surfaces.",
-    file: "/brand/dw-wordmark-white.png",
-    download: "dev-weekends-wordmark-white.png",
-    kind: "png",
+    name: "Profile picture, dark",
+    description: "Square, 800 x 800, white logo on black. For avatars, event pages and social accounts.",
+    file: "/brand/dw-profile-dark.png",
+    download: "dev-weekends-profile-dark.png",
+    kind: "square",
     tile: "bg-[#0A0A0A]",
+  },
+  {
+    name: "Profile picture, light",
+    description: "Square, 800 x 800, black logo on white. For light pages and printed material.",
+    file: "/brand/dw-profile-light.png",
+    download: "dev-weekends-profile-light.png",
+    kind: "square",
+    tile: "bg-white",
   },
 ];
 
@@ -107,19 +91,13 @@ export default function BrandKitPage() {
           title="Download the logo."
           intro="Pick the version that fits your background."
         />
-        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {logos.map((logo) => (
             <li key={logo.file}>
               <Card tone="bordered" className="h-full overflow-hidden !p-0">
                 <div className={`relative flex h-52 items-center justify-center overflow-hidden ${logo.tile}`}>
-                  {logo.kind === "jpg" ? (
-                    <Image
-                      src={logo.file}
-                      alt={logo.name}
-                      fill
-                      sizes="(min-width: 1024px) 285px, (min-width: 640px) 50vw, 100vw"
-                      className="scale-[1.6] object-contain"
-                    />
+                  {logo.kind === "square" ? (
+                    <Image src={logo.file} alt={logo.name} width={208} height={208} className="h-52 w-52" />
                   ) : (
                     <Image src={logo.file} alt={logo.name} width={246} height={180} className="h-28 w-auto" />
                   )}
