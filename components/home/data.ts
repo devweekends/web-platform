@@ -398,6 +398,7 @@ export const footerColumns = [
       { label: "DWOSI", href: LINKS.dwosi },
       { label: "FYP mentorship", href: LINKS.fyp },
       { label: "Campus ambassadors", href: "/ambassador-program" },
+      { label: "Qantara fellowship", href: "/qantara" },
     ],
   },
   {
