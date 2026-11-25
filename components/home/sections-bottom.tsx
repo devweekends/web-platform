@@ -39,13 +39,25 @@ export function Qantara() {
               Talent isn&apos;t the missing piece. The bridge is. A fully funded, six-month fellowship for Palestinian youth, with real
               mentors, real training and a path to a global career.
             </p>
-            <p className="mt-3 text-[15px] text-[#CDE8D4] sm:mt-4">In partnership with EmpactUs.</p>
+            <p className="mt-3 text-[15px] text-[#CDE8D4] sm:mt-4">
+              In partnership with{" "}
+              <a href="https://empactus.org.uk" target="_blank" rel="noopener" className="font-semibold text-white underline underline-offset-4">
+                EmpactUs
+              </a>
+              .
+            </p>
             <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
               <SmartLink
                 href={LINKS.qantara}
                 className="inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-white px-[26px] py-4 text-base font-semibold text-[#0A4A1D] sm:w-auto"
               >
                 Learn more and apply <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </SmartLink>
+              <SmartLink
+                href="/qantara"
+                className="inline-flex min-h-[52px] w-full items-center justify-center rounded-xl border border-white/40 px-[26px] py-4 text-base font-semibold text-white transition-colors hover:bg-white/10 sm:w-auto"
+              >
+                Our Qantara page
               </SmartLink>
             </div>
           </div>

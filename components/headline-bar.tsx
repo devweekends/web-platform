@@ -3,13 +3,20 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-type HeadlineMessage = { label: string; text: string; href: string }
+type HeadlineMessage = { label: string; text: string; href: string; /** Shown instead of `text` on phones, where the bar has one line */ shortText?: string }
 
 // Add an entry here to show a banner. Leave the array empty to hide the bar.
 // Past entries, for reference:
 //   { label: 'DSOC', text: 'DSOC 2026 applications are open now. Start your open source journey today.', href: '/dsoc' }
 //   { label: 'Fellowship', text: 'Fellowship 2026 applications are now closed. See what comes next and how to stay involved.', href: '/blog/fellowship-2026-next-steps' }
-const messages: HeadlineMessage[] = []
+const messages: HeadlineMessage[] = [
+  {
+    label: 'Coming soon',
+    text: 'Qantara, the Palestinian AI Fellowship, is coming. We are excited to be a partner.',
+    shortText: 'Qantara is coming. We are excited!',
+    href: '/qantara',
+  },
+]
 
 export function HeadlineBar() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -43,7 +50,7 @@ export function HeadlineBar() {
   const leavingAnimation = slideDirection === 1 ? 'headlineExitToRight' : 'headlineExitToLeft'
 
   return (
-    <div className="w-full border-b border-white/20 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-slate-950 shadow-[0_10px_30px_rgba(249,115,22,0.35)]">
+    <div className="w-full border-b border-white/20 bg-[linear-gradient(135deg,#0a4a1d_0%,#007622_100%)] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex min-h-10 items-center justify-center overflow-hidden py-2 text-center text-xs sm:text-sm font-semibold tracking-wide">
           {leavingMessage && (
@@ -53,10 +60,11 @@ export function HeadlineBar() {
               className="absolute inset-x-4 flex items-center justify-center gap-2"
               style={{ animation: `${leavingAnimation} 650ms ease-out both` }}
             >
-              <span className="rounded-full bg-slate-950/90 px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-white shadow-sm">
+              <span className="rounded-full bg-white px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-[#0A4A1D] shadow-sm">
                 {leavingMessage.label}
               </span>
-              <span>{leavingMessage.text}</span>
+              <span className="hidden sm:inline">{leavingMessage.text}</span>
+              <span className="sm:hidden">{leavingMessage.shortText ?? leavingMessage.text}</span>
             </Link>
           )}
 
@@ -66,10 +74,11 @@ export function HeadlineBar() {
             className="absolute inset-x-4 flex items-center justify-center gap-2"
             style={{ animation: `${enteringAnimation} 650ms ease-out both` }}
           >
-            <span className="rounded-full bg-slate-950/90 px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-white shadow-sm">
+            <span className="rounded-full bg-white px-2.5 py-0.5 uppercase text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-[#0A4A1D] shadow-sm">
               {activeMessage.label}
             </span>
-            <span>{activeMessage.text}</span>
+            <span className="hidden sm:inline">{activeMessage.text}</span>
+            <span className="sm:hidden">{activeMessage.shortText ?? activeMessage.text}</span>
           </Link>
         </div>
       </div>
